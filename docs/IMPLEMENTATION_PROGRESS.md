@@ -234,3 +234,97 @@ Ara sonuçlar gizlenmedi: ilk birim test derlemesinde FluentValidation'ın iki o
 - Recurrence engine, occurrence işlemleri, takvim, premium ve bildirimler eklenmedi.
 
 **Sonraki faz: Faz 3 — Recurrence Engine. Açık kullanıcı onayı gelene kadar başlanmayacak.**
+
+## Faz 3 — Recurrence Engine
+
+Tarih: 21 Ekim 2026 (Europe/Istanbul). Durum: **Faz 3 tamamlandı. Faz 4 başlatılmadı; açık onay bekleniyor.**
+
+### Ön inceleme ve plan
+
+AGENTS.md, bu ilerleme kaydı, PaymentPlan/enum/Domain davranışları, mevcut Application CRUD servisi/DI, önceki birim ve SQL Server testleri, SDK/paket hedefleri incelendi. Çalışma ağacı başlangıçta temizdi. SDK 8.0.426, net8.0/C# 12, EF Core 8.0.21 ve Docker Engine 29.9.1 Linux doğrulandı; sürüm yükseltmesi veya yeni paket eklenmedi.
+
+Plan: saf Domain sözleşmesi/hesaplayıcısı → Application DI → açık tarih beklentileriyle birim testleri → SQL DateOnly round-trip ve eski CRUD regresyonu → performans gözlemleri → dokümantasyon ve duruş.
+
+### Eklenen özellikler ve sınıflar
+
+`PayAhead.Domain.Recurrence.IPaymentRecurrenceCalculator` ve `PaymentRecurrenceCalculator` eklendi. Önerilen iki metot korundu: `CalculateOccurrences(PaymentPlan, fromDate, toDate)` ve `GetNextOccurrence(PaymentPlan, referenceDate)`. Application DI üzerinden singleton çözümlenir. Hesaplayıcı durumsuzdur; DB/EF/HTTP/Controller veya sistem saati kullanmaz. Modelin alanlarını değiştirmez; sadece DateOnly tarihleri döndürür.
+
+- Once: yalnızca StartDate.
+- Daily: StartDate + n×Interval gün.
+- Weekly: StartDate + n×7×Interval gün.
+- Monthly: orijinal başlangıç ayından n×Interval ay.
+- Yearly: başlangıç ayını koruyarak n×Interval yıl.
+- StartDate her zaman ilk occurrence. Aylık/yıllık sonraki tekrarlarda gün `AnchorDay ?? StartDate.Day`; kısa ayda son geçerli güne kısaltılır ama anchor değiştirilmez. Günlük/haftalık/tek seferlik türlerde geçerli AnchorDay etkisizdir.
+- Ayın son günü olma otomatik yapışkan bir özellik değildir: anchor null olan 30 Nisan planı 30 Mayıs üretir; AnchorDay=31 ise 31 Mayıs üretir. StartDate=15 Ocak, AnchorDay=31 planı ilk ayda yalnızca 15 Ocak, sonra 28 Şubat ve 31 Mart üretir.
+- 31 Ocak → 28/29 Şubat → 31 Mart; 29 Şubat yıllık planı artık olmayan yılda 28 Şubat'a kısalır ve sonraki artık yılda 29 Şubat'a döner. Gregorian 2100 kuralı test edildi.
+- fromDate/toDate ve next referansı dahildir. StartDate öncesi/EndDate sonrası üretilmez. Pasif plan her aralıkta boş liste/next null verir; tarihçe motoru olarak kullanılmaz.
+- Geçersiz aralık, interval, enum, anchor veya EndDate: DomainRuleException; null model: ArgumentNullException. Yapısal doğrulama pasif modelde de çalışır.
+- Liste başına 10.000 sonuç sınırı; 10.001'inci tarihte açık hata, kısmi sonuç yok. Geniş ama seyrek aralıklar kabul edilir. Next liste oluşturmadan doğrudan ilk tarihi bulur.
+- İlk tekrar matematiksel indeksle bulunur; geçmiş bütün tekrarlar dolaşılmaz. Büyük interval çarpımları long ile ve DateOnly sınır kontrolleriyle güvenlidir. Temsil edilemeyen gelecek null ile sonlanır; taşma veya sonsuz döngü oluşmaz.
+
+### Dosyalar
+
+Yeni ürün dosyaları:
+
+- `src/PayAhead.Domain/Recurrence/IPaymentRecurrenceCalculator.cs`
+- `src/PayAhead.Domain/Recurrence/PaymentRecurrenceCalculator.cs`
+
+Yeni test dosyaları:
+
+- `tests/PayAhead.UnitTests/RecurrenceTests.cs`
+- `tests/PayAhead.IntegrationTests/RecurrenceIntegrationTests.cs`
+
+Değişen dosyalar: `src/PayAhead.Application/DependencyInjection.cs` (Domain servisi kaydı), `docs/ARCHITECTURE.md`, `docs/DEVELOPMENT.md`, bu dosya; güncel faz bilgisini korumak için `AGENTS.md`, `README.md` ve `docs/API.md`.
+
+### Veritabanı ve API etkisi
+
+Şema/entity alanı/migration değişmedi. Mevcut veriler veya migration'lar değiştirilmedi. CRUD endpoint/controller/sözleşmeleri korundu; yeni HTTP ucu yoktur. Hesaplayıcı PaymentOccurrence tablosuna kayıt yazmaz. SQL testleri sadece kendi rastgele `PayAheadTest_<guid>` veritabanlarını oluşturup temizledi; geliştirme/üretim veritabanları kullanılmadı.
+
+### Çalıştırılan komutlar ve gerçek sonuçlar
+
+Aşağıdaki dotnet komutları proje içindeki `.tools/dotnet/dotnet.exe` (SDK **8.0.426**) ile çalıştırıldı. DOTNET_CLI_HOME=.tools/cli, DOTNET_ROOT=.tools/dotnet; Docker bin dizini yalnızca oturum PATH'ine eklendi. PAYAHEAD_TEST_SQLSERVER kaldırılarak gerçek Testcontainers yolu kullanıldı.
+
+| Komut | Gerçek sonuç |
+| --- | --- |
+| dotnet --version; docker info --format ... | 8.0.426; Docker Engine 29.9.1 Linux |
+| dotnet test tests/PayAhead.UnitTests --no-restore --filter FullyQualifiedName~RecurrenceTests (ilk tur) | İlk 70 yeni recurrence vakası geçti |
+| dotnet restore PayAhead.sln (son) | Başarılı; tüm projeler güncel |
+| dotnet build PayAhead.sln --no-restore (son) | Başarılı; 0 uyarı, 0 hata |
+| dotnet test PayAhead.sln --no-build --logger trx;LogFilePrefix=phase3-final | **136 birim + 42 entegrasyon başarılı; 0 başarısız, 0 atlanan** |
+| git diff --check | Başarılı; whitespace hatası yok |
+| Migration dizini git diff kontrolü | Değişiklik yok |
+
+Son TRX dosyaları:
+
+- `tests/PayAhead.UnitTests/TestResults/phase3-final_net8.0_20261021130517.trx`
+- `tests/PayAhead.IntegrationTests/TestResults/phase3-final_net8.0_20261021130549.trx`
+
+### Test kapsamı
+
+136 birim = önceki 56 + **80 yeni recurrence vakası**. Yeni kapsam: beş sıklık, Interval 2/3/int.MaxValue, açık beklenen tarih dizileri, 30/31 Ocak, artık ve artık olmayan Şubat, 29 Şubat yearly ve 2100, özel/null anchor, ilk ayda tek ödeme, EndDate/StartDate/aralık dahil sınırları, boş aralık sonucu, pasif plan, validation, null model, DateOnly Min/Max ve taşma, son döneme matematiksel atlama, geniş seyrek aralık, 10.000/10.001 sonuç sınırı, next dahil davranışı, benzersizlik/kronolojik sıra, deterministik sonuç, modelin değişmemesi ve Application DI erişimi. Büyük iş yüklerinde tam tarih dizileri bağımsız BCL takvim beklentileriyle karşılaştırıldı; yalnızca boşluk/sayı kontrolü yapılmadı.
+
+42 entegrasyon = önceki 37 + **5 yeni gerçek SQL Server vakası**. Aylık 31 Ocak, açık AnchorDay=31, yıllık 29 Şubat, iki günlük leap geçişi ve iki haftalık yıl geçişi planları SQL Server'a kaydedildi. ChangeTracker temizlenip AsNoTracking ile yeniden okunarak StartDate/EndDate/interval/enum/anchor round-trip, SQL kolonlarının gerçek `date` tipi, beklenen recurrence tarihleri/next, rowversion'ın korunması ve occurrence yazılmaması doğrulandı. Testcontainers.MsSql SQL Server 2022 Linux kullanıldı; SQLite/EF InMemory yoktur. Tüm eski ödeme CRUD/izolasyon/concurrency/ProblemDetails testleri de geçti.
+
+### Performans değerlendirmesi
+
+Son Debug test çalıştırmasında, ısınma amaçlı doğrulama çağrısından sonra 100 hesaplamanın Stopwatch ölçümü:
+
+| İş yükü | Sonuç sayısı | 100 çağrı toplam | Çağrı başına ortalama |
+| --- | --- | --- | --- |
+| 2026-01-01–2035-12-31 aylık (10 yıl) | 120 | 0,511 ms | 0,0051 ms |
+| 2026-01-01–2055-12-31 yıllık (30 yıl) | 30 | 0,154 ms | 0,0015 ms |
+| 2026-01-01–2030-12-31 günlük (5 yıl) | 1826 | 9,548 ms | 0,0955 ms |
+
+Bunlar bu makinedeki test çıktılarıdır; Debug/JIT/GC ve eşzamanlı makine yükünden etkilenir, üretim kapasitesi veya güvenilir mikro benchmark iddiası değildir. Zamana bağlı kırılgan test assertion'ı eklenmedi. Yıl 1'de başlayan günlük plandan yıl 9999'un son üç günü doğrudan bulundu; 3,6 milyon geçmiş gün dolaşılmadı. Büyük int.MaxValue interval bütün sıklıklarda başlangıçtan sonra null üretti. Tam DateOnly aralığındaki seyrek yıllık plan 9999 tarih ile sınır içinde kaldı; yoğun günlük plan limit hatasıyla kontrollü durdu.
+
+Next O(1), liste O(min(sonuç, 10.001)), bellek sonuç sınırıyla kısıtlıdır; ek veritabanı sorgusu ve geleceğe toplu kayıt üretimi yoktur. Küçük planlar için baştan 10.000 elemanlık buffer ayrılmaz; List kapasitesi sonuçla büyür.
+
+### Sınırlamalar ve duruş
+
+- Faz 3 için açık hata, warning veya atlanan test yoktur; başarısız test turu olmadı.
+- Tek çağrıda en fazla 10.000 sonuç; daha geniş yoğun aralıklar caller tarafından bölünmelidir. Sonuçlarda streaming/pagination yoktur.
+- Gregorian takvim tarihleri hesaplanır; saat dilimi, iş günü/tatil, bildirim saati veya occurrence durumları bu servisin konusu değildir.
+- Pasif planlar için geçmiş tarih listesi de üretilmez. AnchorDay sözleşmesi artık dokümante edilmiştir; eski kayıtlar otomatik olarak değiştirilmedi.
+- PaymentOccurrence paid/skipped/pending işlemleri eklenmedi; bunlar Faz 4 kapsamındadır.
+
+**Duruş:** Faz 3 tamamlandı. Faz 4'e açık kullanıcı onayı olmadan başlanmayacak.

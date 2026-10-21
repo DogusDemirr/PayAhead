@@ -1,6 +1,6 @@
 # PayAhead Backend
 
-React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1 altyapısı ve Faz 2 ödeme planı CRUD tamamlandı. Yinelenme motoru, gerçek kullanıcı girişi ve bildirimler sonraki fazlardadır.
+React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1 altyapısı, Faz 2 ödeme planı CRUD ve Faz 3 bağımsız recurrence engine tamamlandı. Gerçek kullanıcı girişi ve bildirimler sonraki fazlardadır.
 
 ## Gereksinimler
 
@@ -134,4 +134,4 @@ Invoke-WebRequest -UseBasicParsing -Method Delete "http://localhost:5080/api/pay
 
 UserId'yi body veya başlıkla göndermeyin; sunucunun sabit Development yapılandırması kullanılır. Başka kullanıcı izolasyonunu denemek için ayrı sunucu oturumunda farklı, mevcut test UserId'si seçilmelidir. Üretim/Staging ortamında bu mekanizma başlangıçta reddedilir. İş bitince API'yi kapatıp `DevelopmentIdentity__Enabled` ve `DevelopmentIdentity__UserId` ortam değişkenlerini kaldırın.
 
-Faz 2 testleri: `dotnet test PayAhead.sln` mevcut ve yeni testleri birlikte çalıştırır. SQL testleri Testcontainers üzerinde izole veritabanı kullanır; geliştirme verilerini silmez. Faz 3 için ayrı onay gerekir.
+`dotnet test PayAhead.sln` mevcut CRUD ve yeni recurrence testlerini birlikte çalıştırır. SQL testleri Testcontainers üzerinde izole veritabanı kullanır; geliştirme verilerini silmez. Recurrence yalnızca Domain hesabıdır, yeni HTTP ucu veya geleceğe occurrence kaydı eklemez. Anchor ve 10.000 sonuç sınırı için [mimari](docs/ARCHITECTURE.md) ve [geliştirme](docs/DEVELOPMENT.md) dokümanlarına bakın. Faz 4 için ayrı onay gerekir.
