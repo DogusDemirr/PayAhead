@@ -384,6 +384,9 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("PaymentPlanId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Target")
+                        .HasColumnType("int");
+
                     b.Property<TimeOnly>("TimeOfDay")
                         .HasColumnType("time");
 
@@ -396,13 +399,94 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("PaymentPlanId", "UserId");
 
-                    b.HasIndex("PaymentPlanId", "DaysBefore", "TimeOfDay")
+                    b.HasIndex("PaymentPlanId", "Target", "DaysBefore", "TimeOfDay")
                         .IsUnique()
                         .HasFilter("[IsDeleted] = 0");
 
                     b.ToTable("ReminderRules", null, t =>
                         {
                             t.HasCheckConstraint("CK_ReminderRules_DaysBefore", "[DaysBefore] BETWEEN 0 AND 365");
+                        });
+                });
+
+            modelBuilder.Entity("PayAhead.Domain.TrackedSubscription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly?>("AccessEndsOn")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("AutoRenew")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("CancellationRequestedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CancelledAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("EnableTrialReminders")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("PaymentPlanId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProviderName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateOnly>("StartDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly?>("TrialEndDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly?>("TrialStartDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("UpdatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PaymentPlanId")
+                        .IsUnique();
+
+                    b.HasIndex("PaymentPlanId", "UserId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId", "IsDeleted", "CreatedAtUtc", "Id");
+
+                    b.ToTable("TrackedSubscriptions", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_TrackedSubscriptions_Access", "[AccessEndsOn] IS NULL OR [AccessEndsOn] >= [StartDate]");
+
+                            t.HasCheckConstraint("CK_TrackedSubscriptions_Status", "[Status] BETWEEN 0 AND 3");
+
+                            t.HasCheckConstraint("CK_TrackedSubscriptions_Trial", "([TrialStartDate] IS NULL AND [TrialEndDate] IS NULL) OR ([TrialStartDate] IS NOT NULL AND [TrialEndDate] IS NOT NULL AND [TrialEndDate] >= [TrialStartDate] AND [TrialStartDate] >= [StartDate])");
+
+                            t.HasCheckConstraint("CK_TrackedSubscriptions_TrialRequired", "[Status] <> 0 OR [TrialEndDate] IS NOT NULL");
                         });
                 });
 
@@ -606,6 +690,16 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("PaymentPlanId", "UserId")
                         .HasPrincipalKey("Id", "UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PayAhead.Domain.TrackedSubscription", b =>
+                {
+                    b.HasOne("PayAhead.Domain.PaymentPlan", null)
+                        .WithOne()
+                        .HasForeignKey("PayAhead.Domain.TrackedSubscription", "PaymentPlanId", "UserId")
+                        .HasPrincipalKey("PayAhead.Domain.PaymentPlan", "Id", "UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });

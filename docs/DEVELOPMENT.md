@@ -1,6 +1,6 @@
 # Geliştirme
 
-Faz 1–4 altyapı/CRUD/recurrence/occurrence ve Faz 5 dashboard/upcoming/calendar uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 6 authentication ve Faz 7 notifications kullanıcı onayıyla uygulanmıştır; Faz 8 için ayrı onay gerekir.
+Faz 1–4 altyapı/CRUD/recurrence/occurrence ve Faz 5 dashboard/upcoming/calendar uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 6 authentication, Faz 7 notifications ve Faz 8 subscription/trial kullanıcı onayıyla uygulanmıştır; Faz 9 için ayrı onay gerekir.
 
 VS Code çalışma alanını kök dizinden açın. `global.json` yalnızca .NET 8 SDK 8.0.4xx patch sürümlerine izin verir, C# 12 sabittir. Proje içindeki SDK kaynak kontrolüne alınmaz. .slnx istenen envanter dosyasıdır; .NET 8 uyumluluğu için .sln kullanılır. Yeni proje eklenirse iki dosyayı da güncelleyin.
 
@@ -129,3 +129,17 @@ dotnet test PayAhead.sln
 Bu makinede `.tools/dotnet/dotnet.exe`, DOTNET_ROOT=.tools/dotnet, DOTNET_CLI_HOME=.tools/cli ve Docker bin PATH kullanılır. SQL integration Testcontainers rastgele test DB oluşturur; geliştirmenin DB/volume verilerini silmez. Test assembly içindeki FakePushNotificationSender gerçek worker/SQL akışını provider bağımsız sınar; Expo ticket/receipt adapter için kontrollü HttpMessageHandler yanıtları kullanılır. Bu sonuçlar gerçek fiziksel push teslimatı değildir.
 
 Worker açılmıyorsa önce Enabled ve credential/HTTPS ayarlarını, readiness ve pending migration durumunu kontrol edin. Processing takılıysa lease expiry (2 dakika), en eski NextAttemptAtUtc, LastErrorCode ve worker çevrim loglarını inceleyin. 429 için Retry-After/backoff, Failed için credential/payload veya deneme sınırı, AwaitingReceipt için 15 dakika polling ve 24 saat belirsizlik sınırını kontrol edin. Token/parola/provider response çıktılarını paylaşmayın. Log ve güvenli SQL tanılama örnekleri NOTIFICATIONS.md içindedir.
+
+## Faz 8 — Subscription geliştirme ve doğrulama
+
+Önce migration: `dotnet ef database update --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api`. Yeni tablonun adı TrackedSubscriptions; UserSubscriptions Premium modeli değildir diye yeniden adlandırılmadı, entitlement için korundu. Server startup şema değiştirmez. DTO/örnek/lifecycle [SUBSCRIPTIONS.md](SUBSCRIPTIONS.md) içinde.
+
+```powershell
+dotnet test tests/PayAhead.UnitTests --filter FullyQualifiedName~SubscriptionTests
+dotnet test tests/PayAhead.IntegrationTests --filter FullyQualifiedName~SubscriptionIntegrationTests
+dotnet test PayAhead.sln
+```
+
+Bu makinede `.tools/dotnet/dotnet.exe` SDK8.0.426 ve mevcut DOTNET_ROOT/CLI_HOME ayarları kullanılır. SQL testleri Testcontainers ve rastgele PayAheadTest_<guid> DB kullanır. Kestrel smoke gerçek JWT ve kendi geçici SQL DB ile register/login→trial create→expiring→update→summary→cancel→cross-user akışıdır. Worker trial fake sender testi gerçek kuyruk/lease kullanır; gerçek Expo teslimatı değildir.
+
+400 için tarih ilişkilerini (FirstBillingDate > TrialEndDate), recurrence/currency ve body biçimini kontrol edin.409 için son rowVersion ve terminal lifecycle durumunu okuyun; generic payment üzerinden bağlı parent metadata değiştirilemez. Trial saat/gün farkları için response.context timezone/fallback alanına bakın. Cancel otomatik provider iptali veya Paid işaretleme yapmaz. Notifications default disabled ve credential gereksinimleri değişmedi.

@@ -38,6 +38,7 @@ public sealed class PaymentPlanStore(PayAheadDbContext db) : IPaymentPlanStore
 
     public async Task UpdateAsync(PaymentPlan plan, byte[] expectedVersion, CancellationToken cancellationToken)
     {
+        await EnsureIndependent(plan.Id, cancellationToken);
         db.Entry(plan).Property(x => x.RowVersion).OriginalValue = expectedVersion;
         // Aynı içerikli PUT da sürüm karşılaştırmasını veritabanında yapmalıdır.
         db.Entry(plan).Property(x => x.UpdatedAtUtc).IsModified = true;
@@ -46,6 +47,7 @@ public sealed class PaymentPlanStore(PayAheadDbContext db) : IPaymentPlanStore
 
     public async Task DeleteAsync(PaymentPlan plan, byte[] expectedVersion, CancellationToken cancellationToken)
     {
+        await EnsureIndependent(plan.Id, cancellationToken);
         if (!plan.RowVersion.SequenceEqual(expectedVersion))
             throw new ResourceConflictException("Kaynak başka bir işlem tarafından değiştirildi.");
         if (await db.PaymentOccurrences.AnyAsync(x => x.PaymentPlanId == plan.Id, cancellationToken)
@@ -59,5 +61,10 @@ public sealed class PaymentPlanStore(PayAheadDbContext db) : IPaymentPlanStore
             // Kontrolden sonra eklenmiş bağımlı kaydı SQL FK korur; hiçbir geçmiş kaydı silinmez.
             throw new ResourceConflictException("İlişkili kayıtlar nedeniyle ödeme planı silinemedi.");
         }
+    }
+    private async Task EnsureIndependent(Guid plan, CancellationToken ct)
+    {
+        if (await db.TrackedSubscriptions.AnyAsync(x => x.PaymentPlanId == plan, ct))
+            throw new ResourceConflictException("Bağlı ödeme planı subscription API üzerinden yönetilmelidir.");
     }
 }

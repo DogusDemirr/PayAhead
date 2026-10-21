@@ -310,3 +310,11 @@ Tüm korunan uçlara `Authorization: Bearer <accessToken>` gönderin; UserId do�
 Dokuz yeni route/işlem [NOTIFICATIONS.md](NOTIFICATIONS.md#http-sözleşmesi) içinde tanımlıdır: reminder POST/GET/PUT/DELETE; device POST/GET/DELETE; settings GET/PUT. JWT ve aktif kullanıcı zorunludur. UserId body üzerinden alınmaz; başka kullanıcı kaynağı 404, eksik JWT 401. Reminder duplicate 409; DaysBefore 0–365, saat tam HH:mm ve varsayılan 09:00. Device POST idempotent own-token upsert 200 döner, token değişimi mevcut kendi Id ile yapılır; push token yanıt/log içine konmaz. Settings timezone PUT geçersiz kimliği reddeder, legacy okuma UTC fallback döndürür.
 
 Bildirimler HTTP isteğinde gönderilmez. Kural/ayar/cihaz değişiklikleri henüz provider tarafından kabul edilmemiş işleri iptal eder; worker uygun kaydı güncel bilgilerle tekrar zamanlayabilir. Device DELETE sonrası token silinir/tombstone olur. Auth logout push cihaz kaydını otomatik silmez; istemci önce kendi device Id için DELETE yapmalıdır. Expo ticket/receipt, retry ve teslimat sınırları aynı dokümandadır.
+
+## Faz 8 — Subscription ve trial API
+
+POST/GET `/api/subscriptions`, GET/PUT/DELETE `/api/subscriptions/{id}`, POST `/api/subscriptions/{id}/cancel`, GET `/api/subscriptions/trials/expiring?withinDays=7`, GET `/api/subscriptions/summary` eklendi. Tam body/response/lifecycle sözleşmesi [SUBSCRIPTIONS.md](SUBSCRIPTIONS.md) içindedir.
+
+Create 201/Location/ETag; PUT/cancel 200/yeni ETag; DELETE güçlü If-Match ile204. PUT ve cancel body rowVersion ister. JSON enumlar string, unknown body alanı reddedilir. Geçersiz alan/geçiş400, stale version veya terminal update409, cross-user404, JWT yok401. Liste Status/ProviderName/CurrencyCode/Search ve bounded pagination kullanır. FirstBillingDate açıkça verilir ve TrialEndDate değerinden sonra olmak zorundadır; NextBillingDate/DaysRemaining timezone üzerinden hesaplanır.
+
+Summary EstimatedAmount değerleri para birimi bazında tahmini aylık karşılıktır, gerçek tahsilat değildir. Cancel/delete linked planı pasifleştirir; Paid/Skipped geçmişini değiştirmez. Provider hesabında gerçekten iptal doğrulanmaz. Trial reminder tercihi EnableTrialReminders üzerinden yönetilir; bağımsız worker yoktur.

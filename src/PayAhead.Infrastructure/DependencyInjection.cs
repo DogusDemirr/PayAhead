@@ -24,6 +24,7 @@ public static class DependencyInjection
         services.AddSingleton<PayAhead.Application.Auth.IPasswordService, IdentityPasswordService>();
         services.AddScoped<PayAhead.Application.Notifications.INotificationManagementStore, NotificationManagementStore>();
         services.AddScoped<PayAhead.Application.Notifications.INotificationQueue, SqlNotificationQueue>();
+        services.AddScoped<PayAhead.Application.Subscriptions.ISubscriptionStore, SubscriptionStore>();
         services.AddSingleton(NotificationOptions.Load(configuration));
         services.AddHttpClient("ExpoPush", client => client.Timeout = TimeSpan.FromSeconds(15))
             .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });

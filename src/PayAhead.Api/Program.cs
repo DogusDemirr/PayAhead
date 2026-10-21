@@ -25,6 +25,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<PaymentFrequency>(allowIntegerValues: false));
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<OccurrenceStatus>(allowIntegerValues: false));
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<SubscriptionStatus>(allowIntegerValues: false));
 });
 builder.Services.Configure<ApiBehaviorOptions>(options => options.InvalidModelStateResponseFactory = context =>
 {
@@ -41,7 +42,7 @@ builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("sqlserver", ta
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 7: JWT, ödeme/occurrence/overview, reminder, device ve settings API. Bildirimler SQL tabanlı worker üzerinden işlenir; push token yanıtlar içinde gösterilmez." });
+    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 8: harici abonelik/trial takibi; JWT, ödeme/occurrence/overview ve SQL tabanlı bildirimler. Premium mağaza doğrulaması kapsam dışıdır. Aylık abonelik karşılıkları tahminidir." });
     options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme { Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http, Scheme = "bearer", BearerFormat = "JWT" });
     options.DocumentFilter<HealthDocumentFilter>();
     options.SchemaFilter<PaymentSchemaFilter>();

@@ -64,3 +64,9 @@ Application/Auth DTO/validator/AuthService ve IAuthStore/IPasswordService/IToken
 Application Notifications sözleşmeleri, saf NotificationPolicy ve NotificationProcessor akışını barındırır. Infrastructure yönetim store, SQL durable queue ve IHttpClientFactory kullanan ExpoPushNotificationSender sağlar. API controller yalnızca HTTP eşler; NotificationWorker BackgroundService scoped bağımlılıklarla çalışır. Domain entity alanları dışında framework bağımlılığı almadı.
 
 Schedule işlemi plan satırı lock + unique index; claim tek atomic UPDATE OUTPUT + UPDLOCK/READPAST; completion lease owner/süre fencing kullanır. Sağlayıcı çağrısı SQL transaction dışında yapılır. Güncel durum tekrar doğrulanır; dış çağrı yarışları tamamen kapatılamaz, exactly-once garantisi yoktur. Bounded retry, receipt poll ve 400 gün terminal retention [NOTIFICATIONS.md](NOTIFICATIONS.md) içinde açıklanır.
+
+## Faz 8 — Harici abonelik sınırı
+
+UserSubscription mağaza entitlement için ayrıldı; yeni TrackedSubscription harici kullanıcı beyanını taşır. Application/Subscriptions DTO/validator/SubscriptionService, Domain TrackedSubscription lifecycle, Infrastructure SubscriptionStore transaction ve API SubscriptionsController eklenmiştir. Money/recurrence verileri yalnızca linked PaymentPlan içinde bulunur. Okuma projection'ları mevcut IPaymentRecurrenceCalculator kullanır; ikinci recurrence engine ve ikinci finansal toplam kaynağı eklenmedi.
+
+Transaction plan-first lock sırasını notification scheduler ile paylaşır; subscription rowversion, unique plan link ve ownership composite FK kullanılır. Payment API bağlı planı salt metadata yönetimi açısından korur (PUT/DELETE409); occurrence geçmişi kullanılmaya devam eder. Worker ReminderTarget.SubscriptionTrial ile aynı durable queue/lease/Expo/receipt akışını genişletir. Trial effective status ve yerel gün read-time projection olduğu için GET veri yazmaz. Ayrıntılar [SUBSCRIPTIONS.md](SUBSCRIPTIONS.md).

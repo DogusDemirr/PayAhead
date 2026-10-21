@@ -12,6 +12,7 @@ public sealed class PayAheadDbContext(DbContextOptions<PayAheadDbContext> option
     public DbSet<UserSettings> UserSettings => Set<UserSettings>();
     public DbSet<DeviceToken> DeviceTokens => Set<DeviceToken>();
     public DbSet<UserSubscription> UserSubscriptions => Set<UserSubscription>();
+    public DbSet<TrackedSubscription> TrackedSubscriptions => Set<TrackedSubscription>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
     public DbSet<NotificationDelivery> NotificationDeliveries => Set<NotificationDelivery>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();

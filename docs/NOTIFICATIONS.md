@@ -18,7 +18,7 @@ Tüm uçlarda geçerli JWT ve aktif kullanıcı gerekir. Sahiplik doğrulanmış
 | GET /api/users/me/settings | — | 200 SettingsResponse |
 | PUT /api/users/me/settings | SettingsRequest | 200 SettingsResponse |
 
-ReminderRequest: `{"daysBefore":3,"timeOfDay":"09:00","isEnabled":true}`. DaysBefore zorunlu 0–365; 0 aynı gün, 1/3/7 ve özel değerler desteklenir. Saat tam HH:mm (dakika hassasiyeti); alan verilmezse 09:00. Saat kullanıcının yerel saatidir. En fazla 10 silinmemiş kural/plan. Aynı plan + DaysBefore + TimeOfDay silinmemiş kayıtlar arasında benzersizdir; disabled kural da kombinasyonu ayırır. Duplicate/capacity 409, geçersiz alan 400. ReminderResponse: `{id,paymentPlanId,daysBefore,timeOfDay,isEnabled}`. Güncellemeler last-write-wins; bu uçlarda rowversion/ETag yoktur.
+ReminderRequest: `{"daysBefore":3,"timeOfDay":"09:00","isEnabled":true}`. DaysBefore zorunlu 0–365; 0 aynı gün, 1/3/7 ve özel değerler desteklenir. Saat tam HH:mm (dakika hassasiyeti); alan verilmezse 09:00. Saat kullanıcının yerel saatidir. En fazla 10 silinmemiş Payment hedefli kural/plan; Faz 8 otomatik trial kuralları ayrı hedefte tutulur. Aynı plan + Target + DaysBefore + TimeOfDay silinmemiş kayıtlar arasında benzersizdir; disabled kural da kombinasyonu ayırır. Duplicate/capacity 409, geçersiz alan 400. ReminderResponse: `{id,paymentPlanId,daysBefore,timeOfDay,isEnabled}`. Güncellemeler last-write-wins; bu uçlarda rowversion/ETag yoktur.
 
 DeviceRequest: `{"platform":"ios","pushToken":"ExpoPushToken[<platform-token>]","id":null}`. Platform ios/android; yalnızca ExpoPushToken[...] / ExponentPushToken[...] biçimi kabul edilir. Id verilmezse kendi mevcut token kaydı yenilenir veya yeni server Id üretilir. Token değiştiğinde kendi mevcut cihaz Id değeriyle tekrar POST yapın. Aynı token başka hesaba aktarılmaz; 409 döner. Başka hesaba ait Id 404, aynı token/Id uyuşmazlığı 409. En fazla 20 silinmemiş cihaz/kullanıcı; inactive kayıt da bu bütçeye dahildir. Device identifier ayrıca tutulmaz.
 
@@ -103,3 +103,9 @@ FROM NotificationDeliveries WHERE LastErrorCode IS NOT NULL GROUP BY LastErrorCo
 ```
 
 Provider accept/receipt gecikmesi, Failed/Cancelled sayısı, expired lease, en eski bekleyen iş ve kural tarama süresi izlenmelidir. Worker logları token veya payload içermeden çevrim adetlerini gösterir. Deploy öncesi migration tamamlanmalı; otomatik startup migration yoktur.
+
+## Faz 8 — Trial event hedefi
+
+ReminderRule.Target eklendi: Payment=0 legacy, SubscriptionTrial=1. Finansal planın ilk ücretli tarihi trial bitişinden farklıdır. Trial kuralları subscription oluşturma/update transaction içinde0/1/3/7 gün önce09:00 olarak açılır; EnableTrialReminders genel tercihtir ve payment reminders API yalnızca Payment hedefi görür. Trial için DueDate=TrialEndDate; recurrence financial occurrence değildir. RuleId/Target ayrımı delivery idempotency anahtarlarını çakıştırmaz.
+
+Aynı worker/queue/device/lease/retry/receipt/retention kullanılır; yeni worker yoktur. AutoRenew=false parent inactive olsa bile devam eden trial hatırlatılabilir. Cancelled/Expired/deleted/disabled trial ve kapalı user notifications gönderimi engeller; send öncesi yeniden değerlendirilir. Subscription değişikliği eski kabul edilmemiş işleri iptal eder, tarih değişimi yeni due key üretir. Eski/bitmiş trial taraması kaba tarih filtresiyle azaltılır, kesin kontrol kullanıcı timezone bilgisiyle yapılır. Tam lifecycle ve sınırlar [SUBSCRIPTIONS.md](SUBSCRIPTIONS.md) içindedir. Gerçek Expo/fiziksel cihaz teslimatı bu fazda doğrulanmadı.

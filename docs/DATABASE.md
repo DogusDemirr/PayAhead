@@ -1,6 +1,6 @@
 # Veritabanı
 
-SQL Server, EF Core 8 Fluent API ve InitialCreate migration kullanılır. On tablo: Users, PaymentPlans, PaymentOccurrences, ReminderRules, UserSettings, DeviceTokens, UserSubscriptions, RefreshTokens, NotificationDeliveries, AuditLogs.
+SQL Server, EF Core 8 Fluent API ve InitialCreate üzerine eklenen migration geçmişi kullanılır. Güncel on bir tablo: Users, PaymentPlans, PaymentOccurrences, ReminderRules, UserSettings, DeviceTokens, UserSubscriptions, TrackedSubscriptions, RefreshTokens, NotificationDeliveries, AuditLogs.
 
 - Kullanıcı e-postası NormalizedEmail üzerinden benzersizdir. Faz 6 Trim/ToUpperInvariant ve Identity PasswordHasher kullanır; özel parola kriptografisi yoktur.
 - Ödeme tutarları decimal(19,4), takvim tarihleri SQL date, hatırlatma saati time, zaman damgaları datetime2 ve UTC sözleşmesindedir.
@@ -62,3 +62,11 @@ Eski rule unique index silinmemiş kayıtlara filtrelenerek yeniden kurulur. Esk
 Faz 6 authentication migration bu faz başlangıcında mevcut `PayAheadDockerDevelopment` üzerinde uygulandı; önce/sonra Users/PaymentPlans/PaymentOccurrences/RefreshTokens sayıları 0 olarak aynı kaldı, DBCC CHECKCONSTRAINTS temizdi. Faz 7 migration sonuçları [IMPLEMENTATION_PROGRESS.md](IMPLEMENTATION_PROGRESS.md) içinde kayıtlıdır. Startup migration uygulamaz.
 
 NotificationDelivery terminal kayıtlarında hem UpdatedAtUtc hem DueDate 400 günden eskiyse bounded cleanup vardır; future dedup satırları korunur. Reminder DELETE logical, device DELETE token scrub + inactive yapar; FK/audit tombstone satırları kalır. Raw push token gönderim için okunabilir saklanır; TLS, TDE/encrypted storage, şifreli backup ve dar DB yetkileri gereklidir. [Tam lifecycle](NOTIFICATIONS.md).
+
+## Faz 8 — ExternalSubscriptionTracking
+
+`20261021132035_ExternalSubscriptionTracking`: TrackedSubscriptions tablosu, server UTC timestamps/date alanları, rowversion; PaymentPlanId unique ve (PaymentPlanId,UserId) ownership FK; user/deleted/created/id index; status/trial/date/access check. ReminderRules.Target default0 (Payment), yeni SubscriptionTrial=1 ve genişleyen unique index.11 tablo/12 FK olur; eski UserSubscriptions entitlement verisi değişmez. Amount/Currency/BillingFrequency/Interval/FirstBillingDate parent PaymentPlan üzerinde tek kez saklanır, decimal(19,4) ve date korunur.
+
+Up eski tablo/kolon/veri silmez; rule unique index default Payment hedefiyle yeniden kurulur. Önceki migration dosyaları değiştirilmedi. Phase7 seed Premium row ve payment ile upgrade gerçek SQL testinde korunarak geçti. Yeni kayıt/plan/trial rule atomik oluşturulur; update/cancel/delete eski queue iptaliyle aynı transaction içindedir. FailSave rollback ve SQL unique/owner/concurrency testleri vardır.
+
+Abonelik delete logical, parent inactive; ödeme ve bildirim geçmişi silinmez. Generic payment PUT/DELETE bağlı/tombstone parent için409 döner. Read-only lifecycle tarihleri türetilir, otomatik state update/migration job yoktur. Down yeni tabloyu düşürür ve eski reminder uniqueness ile uyumsuz olabilir; production backup/ileri düzeltme planı gerekir. Migration uygulanabilirliği ve geliştirme DB sonucu [IMPLEMENTATION_PROGRESS.md](IMPLEMENTATION_PROGRESS.md) içindedir.

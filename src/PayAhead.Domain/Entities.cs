@@ -52,6 +52,7 @@ public sealed class ReminderRule
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
     public Guid PaymentPlanId { get; set; }
+    public ReminderTarget Target { get; set; }
     public int DaysBefore { get; set; }
     public TimeOnly TimeOfDay { get; set; }
     public bool IsEnabled { get; set; } = true;

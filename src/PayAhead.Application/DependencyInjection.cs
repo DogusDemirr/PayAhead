@@ -26,6 +26,7 @@ public static class DependencyInjection
         services.AddScoped<PayAhead.Application.Auth.IAuthService, PayAhead.Application.Auth.AuthService>();
         services.AddScoped<PayAhead.Application.Notifications.INotificationManagementService, PayAhead.Application.Notifications.NotificationManagementService>();
         services.AddScoped<PayAhead.Application.Notifications.NotificationProcessor>();
+        services.AddScoped<PayAhead.Application.Subscriptions.ISubscriptionService, PayAhead.Application.Subscriptions.SubscriptionService>();
         return services;
     }
 }

@@ -16,18 +16,18 @@ public sealed class NotificationManagementStore(PayAheadDbContext db, TimeProvid
     public async Task<IReadOnlyList<ReminderRule>> ListRulesAsync(Guid user, Guid plan, CancellationToken ct)
     {
         await Plan(user, plan, ct);
-        return await db.ReminderRules.AsNoTracking().Where(x => x.UserId == user && x.PaymentPlanId == plan && !x.IsDeleted).OrderBy(x => x.DaysBefore).ThenBy(x => x.TimeOfDay).ToArrayAsync(ct);
+        return await db.ReminderRules.AsNoTracking().Where(x => x.UserId == user && x.PaymentPlanId == plan && !x.IsDeleted && x.Target == ReminderTarget.Payment).OrderBy(x => x.DaysBefore).ThenBy(x => x.TimeOfDay).ToArrayAsync(ct);
     }
     public Task<ReminderRule> WriteRuleAsync(Guid user, Guid plan, Guid? id, ReminderRequest request, CancellationToken ct)
         => Transaction(async () =>
         {
             await Plan(user, plan, ct, true);
             var time = TimeOnly.ParseExact(request.TimeOfDay!, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-            var rule = id.HasValue ? await db.ReminderRules.SingleOrDefaultAsync(x => x.Id == id && x.UserId == user && x.PaymentPlanId == plan && !x.IsDeleted, ct)
+            var rule = id.HasValue ? await db.ReminderRules.SingleOrDefaultAsync(x => x.Id == id && x.UserId == user && x.PaymentPlanId == plan && !x.IsDeleted && x.Target == ReminderTarget.Payment, ct)
                 ?? throw new ResourceNotFoundException() : new ReminderRule { Id = Guid.NewGuid(), UserId = user, PaymentPlanId = plan };
-            if (await db.ReminderRules.AnyAsync(x => x.PaymentPlanId == plan && !x.IsDeleted && x.Id != rule.Id && x.DaysBefore == request.DaysBefore && x.TimeOfDay == time, ct))
+            if (await db.ReminderRules.AnyAsync(x => x.PaymentPlanId == plan && !x.IsDeleted && x.Target == ReminderTarget.Payment && x.Id != rule.Id && x.DaysBefore == request.DaysBefore && x.TimeOfDay == time, ct))
                 throw new ResourceConflictException("Aynı hatırlatma zaten var.");
-            if (!id.HasValue && await db.ReminderRules.CountAsync(x => x.PaymentPlanId == plan && !x.IsDeleted, ct) >= NotificationPolicy.MaximumRulesPerPlan)
+            if (!id.HasValue && await db.ReminderRules.CountAsync(x => x.PaymentPlanId == plan && !x.IsDeleted && x.Target == ReminderTarget.Payment, ct) >= NotificationPolicy.MaximumRulesPerPlan)
                 throw new ResourceConflictException("Plan başına en fazla 10 hatırlatma olabilir.");
             if (!id.HasValue) db.ReminderRules.Add(rule);
             rule.DaysBefore = request.DaysBefore!.Value; rule.TimeOfDay = time; rule.IsEnabled = request.IsEnabled;
@@ -38,7 +38,7 @@ public sealed class NotificationManagementStore(PayAheadDbContext db, TimeProvid
         => _ = await Transaction(async () =>
         {
             await Plan(user, plan, ct, true);
-            var rule = await db.ReminderRules.SingleOrDefaultAsync(x => x.Id == id && x.PaymentPlanId == plan && x.UserId == user && !x.IsDeleted, ct) ?? throw new ResourceNotFoundException();
+            var rule = await db.ReminderRules.SingleOrDefaultAsync(x => x.Id == id && x.PaymentPlanId == plan && x.UserId == user && !x.IsDeleted && x.Target == ReminderTarget.Payment, ct) ?? throw new ResourceNotFoundException();
             rule.IsDeleted = true; rule.IsEnabled = false;
             await Cancel(db.NotificationDeliveries.Where(x => x.ReminderRuleId == id), ct);
             await db.SaveChangesAsync(ct); return true;

@@ -10,6 +10,9 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
     public async Task<Guid?> ScheduleBatchAsync(Guid? afterRule, DateTime now, CancellationToken ct)
     {
         var rules = db.ReminderRules.AsNoTracking().Where(x => !x.IsDeleted && x.IsEnabled);
+        var earliestTrialEnd = DateOnly.FromDayNumber(Math.Max(0, DateOnly.FromDateTime(now).DayNumber - 2));
+        rules = rules.Where(x => x.Target == ReminderTarget.Payment || db.TrackedSubscriptions.Any(s => s.PaymentPlanId == x.PaymentPlanId
+            && s.UserId == x.UserId && !s.IsDeleted && s.EnableTrialReminders && s.Status == SubscriptionStatus.Trial && s.TrialEndDate >= earliestTrialEnd));
         if (afterRule.HasValue) rules = rules.Where(x => x.Id.CompareTo(afterRule.Value) > 0);
         var ids = await rules.OrderBy(x => x.Id).Take(20).Select(x => x.Id).ToArrayAsync(ct);
         foreach (var id in ids) await ScheduleRule(id, now, ct);
@@ -24,7 +27,7 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
             await using var transaction = await db.Database.BeginTransactionAsync(ct);
             var plan = await db.PaymentPlans.FromSqlInterpolated($"SELECT * FROM PaymentPlans WITH (UPDLOCK,HOLDLOCK) WHERE Id={ruleInfo.PaymentPlanId} AND UserId={ruleInfo.UserId}").SingleOrDefaultAsync(ct);
             var rule = await db.ReminderRules.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id, ct);
-            if (plan is null || rule is null || !plan.IsActive || !rule.IsEnabled || rule.IsDeleted
+            if (plan is null || rule is null || !rule.IsEnabled || rule.IsDeleted
                 || !await db.Users.AnyAsync(x => x.Id == rule.UserId && x.IsActive, ct)) return;
             var settings = await db.UserSettings.AsNoTracking().SingleOrDefaultAsync(x => x.UserId == rule.UserId, ct);
             if (settings?.NotificationsEnabled == false) return;
@@ -32,7 +35,13 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
             var today = DateOnly.FromDateTime(TimeZoneInfo.ConvertTimeFromUtc(now, zone));
             var from = DateOnly.FromDayNumber(Math.Max(0, today.DayNumber - 2));
             var to = DateOnly.FromDayNumber(Math.Min(DateOnly.MaxValue.DayNumber, today.DayNumber + 32 + rule.DaysBefore));
-            var dates = recurrence.CalculateOccurrences(plan, from, to);
+            IReadOnlyList<DateOnly> dates;
+            if (rule.Target == ReminderTarget.SubscriptionTrial)
+            {
+                var subscription = await db.TrackedSubscriptions.AsNoTracking().SingleOrDefaultAsync(x => x.PaymentPlanId == plan.Id && x.UserId == rule.UserId, ct);
+                dates = subscription?.TrialEndDate is { } end && subscription.TrialReminderEligible(today, end) ? [end] : [];
+            }
+            else dates = recurrence.CalculateOccurrences(plan, from, to);
             var devices = await db.DeviceTokens.AsNoTracking().Where(x => x.UserId == rule.UserId && x.IsActive).OrderBy(x => x.Id).Take(20).Select(x => x.Id).ToArrayAsync(ct);
             if (devices.Length == 0) return;
             var statuses = await db.PaymentOccurrences.AsNoTracking().Where(x => x.PaymentPlanId == plan.Id && x.DueDate >= from && x.DueDate <= to)
@@ -41,7 +50,7 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
                 .ToDictionaryAsync(x => (x.DueDate, x.DeviceTokenId!.Value), ct);
             foreach (var due in dates)
             {
-                if (statuses.TryGetValue(due, out var status) && status != OccurrenceStatus.Pending) continue;
+                if (rule.Target == ReminderTarget.Payment && statuses.TryGetValue(due, out var status) && status != OccurrenceStatus.Pending) continue;
                 var scheduled = NotificationPolicy.ScheduledAt(due, rule.DaysBefore, rule.TimeOfDay, zone);
                 if (scheduled is null || scheduled < now.AddHours(-24) || scheduled > now.AddDays(30)) continue;
                 foreach (var device in devices)
@@ -93,9 +102,18 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
         var settings = await db.UserSettings.AsNoTracking().SingleOrDefaultAsync(x => x.UserId == delivery.UserId, ct);
         var status = await db.PaymentOccurrences.AsNoTracking().Where(x => x.PaymentPlanId == delivery.PaymentPlanId && x.DueDate == delivery.DueDate).Select(x => (OccurrenceStatus?)x.Status).SingleOrDefaultAsync(ct);
         var active = await db.Users.AnyAsync(x => x.Id == delivery.UserId && x.IsActive, ct);
+        var eligible = plan is not null && rule is not null && device is not null
+            && NotificationPolicy.Eligible(plan, rule, active, settings?.NotificationsEnabled ?? true, device.IsActive, delivery.DueDate, status, recurrence);
+        if (rule?.Target == ReminderTarget.SubscriptionTrial)
+        {
+            var subscription = await db.TrackedSubscriptions.AsNoTracking().SingleOrDefaultAsync(x => x.PaymentPlanId == delivery.PaymentPlanId && x.UserId == delivery.UserId, ct);
+            var today = DateOnly.FromDateTime(TimeZoneInfo.ConvertTimeFromUtc(now, NotificationPolicy.Zone(settings?.TimeZoneId, out _)));
+            eligible = subscription is not null && subscription.TrialReminderEligible(today, delivery.DueDate)
+                && active && settings?.NotificationsEnabled != false && device?.IsActive == true && rule.IsEnabled && !rule.IsDeleted;
+        }
         var scheduled = rule is null ? null : NotificationPolicy.ScheduledAt(delivery.DueDate, rule.DaysBefore, rule.TimeOfDay, NotificationPolicy.Zone(settings?.TimeZoneId, out _));
         if (plan is null || rule is null || device is null || !NotificationPolicy.ValidToken(device.PushToken)
-            || !NotificationPolicy.Eligible(plan, rule, active, settings?.NotificationsEnabled ?? true, device.IsActive, delivery.DueDate, status, recurrence)
+            || !eligible
             || scheduled is null || scheduled < now.AddHours(-24) || delivery.AttemptCount > 5)
         {
             await OwnedLease(delivery).ExecuteUpdateAsync(s => s.SetProperty(x => x.Status, DeliveryStatus.Cancelled)

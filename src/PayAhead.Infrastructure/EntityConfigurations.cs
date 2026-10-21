@@ -67,7 +67,7 @@ public sealed class ReminderRuleConfiguration : IEntityTypeConfiguration<Reminde
         b.HasAlternateKey(x => new { x.Id, x.PaymentPlanId, x.UserId });
         b.HasOne<PaymentPlan>().WithMany().HasForeignKey(x => new { x.PaymentPlanId, x.UserId })
             .HasPrincipalKey(x => new { x.Id, x.UserId }).OnDelete(DeleteBehavior.NoAction);
-        b.HasIndex(x => new { x.PaymentPlanId, x.DaysBefore, x.TimeOfDay }).IsUnique().HasFilter("[IsDeleted] = 0");
+        b.HasIndex(x => new { x.PaymentPlanId, x.Target, x.DaysBefore, x.TimeOfDay }).IsUnique().HasFilter("[IsDeleted] = 0");
         b.HasIndex(x => x.UserId);
     }
 }
@@ -108,6 +108,23 @@ public sealed class UserSubscriptionConfiguration : IEntityTypeConfiguration<Use
         b.HasIndex(x => new { x.Provider, x.ExternalSubscriptionId }).IsUnique();
         b.HasIndex(x => new { x.UserId, x.CurrentPeriodEndUtc });
         b.HasOne<User>().WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
+    }
+}
+public sealed class TrackedSubscriptionConfiguration : IEntityTypeConfiguration<TrackedSubscription>
+{
+    public void Configure(EntityTypeBuilder<TrackedSubscription> b)
+    {
+        b.ToTable("TrackedSubscriptions",t=>
+        {
+            t.HasCheckConstraint("CK_TrackedSubscriptions_Status","[Status] BETWEEN 0 AND 3");
+            t.HasCheckConstraint("CK_TrackedSubscriptions_Trial","([TrialStartDate] IS NULL AND [TrialEndDate] IS NULL) OR ([TrialStartDate] IS NOT NULL AND [TrialEndDate] IS NOT NULL AND [TrialEndDate] >= [TrialStartDate] AND [TrialStartDate] >= [StartDate])");
+            t.HasCheckConstraint("CK_TrackedSubscriptions_TrialRequired","[Status] <> 0 OR [TrialEndDate] IS NOT NULL");
+            t.HasCheckConstraint("CK_TrackedSubscriptions_Access","[AccessEndsOn] IS NULL OR [AccessEndsOn] >= [StartDate]");
+        });
+        b.HasKey(x=>x.Id);b.Property(x=>x.ProviderName).HasMaxLength(100).IsRequired();b.Property(x=>x.RowVersion).IsRowVersion();
+        b.HasIndex(x=>x.PaymentPlanId).IsUnique();b.HasIndex(x=>new{x.UserId,x.IsDeleted,x.CreatedAtUtc,x.Id});
+        b.HasOne<PaymentPlan>().WithOne().HasForeignKey<TrackedSubscription>(x=>new{x.PaymentPlanId,x.UserId})
+            .HasPrincipalKey<PaymentPlan>(x=>new{x.Id,x.UserId}).OnDelete(DeleteBehavior.NoAction);
     }
 }
 public sealed class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>

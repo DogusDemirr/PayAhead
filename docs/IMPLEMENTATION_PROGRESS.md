@@ -654,3 +654,82 @@ Gerçek Expo credential/proje APNs-FCM/physical-device doğrulaması yoktur; ada
 **Duruş:** Faz7 backend uygulaması ve yerel doğrulamalar tamamlandı. Faz8 başlatılmadı; kullanıcı onayı bekleniyor.
 
 Son doğrulanmış tur: `tests/PayAhead.UnitTests/TestResults/phase7-verified_net8.0_20261021160557.trx` ve `tests/PayAhead.IntegrationTests/TestResults/phase7-verified_net8.0_20261021160706.trx` (Git dışında). **464/464 başarılı; 0 failed, 0 skipped.** Son build 0 warning/0 error, model migration ile uyumlu, diff whitespace kontrolü temiz. Faz7 için açık build/test/HTTP hatası yoktur; gerçek push/provider teslimatı ve yukarıdaki operasyonel sınırlamalar doğrulanmış başarı kapsamına dahil değildir.
+
+## Faz 8 — Subscription Tracking & Free Trial Management (21 Ekim 2026)
+
+Ekli kullanıcı talebiyle yalnızca Faz8 uygulandı. AGENTS, mevcut ilerleme/güvenlik, UserSubscription/PaymentPlan/Occurrence/ReminderRule/Delivery, recurrence/overview/JWT ve migration/index yapısı incelendi. Plan: Premium modelini koruyarak harici tracking modeli; tek linked finansal plan; lifecycle/API/forecast; mevcut worker trial hedefi; unit/gerçek SQL/Kestrel; additive migration ve dokümantasyon. Faz9 Premium ve frontend başlatılmadı.
+
+### Tasarım ve tamamlanan kapsam
+
+- Mevcut UserSubscription Provider/ProductId/ExternalSubscriptionId/LastVerified alanlarıyla store entitlement için ayrılmıştır; değiştirilmedi/yeniden amaçlandırılmadı. Yeni TrackedSubscription ayrı external user-declared modeldir.
+- Subscription başına atomik yeni PaymentPlan. Name/Description/Amount/Currency/Frequency/Interval/Anchor/FirstBilling tek parent kaynaktadır; subscription servis StartDate/trial/provider/status/access/UTC event/rowversion taşır. Unique plan link ve composite owner FK vardır. İstemci UserId/PaymentPlanId veremez.
+- Sekiz endpoint: subscription POST/GET list, GET/PUT/DELETE id, POST cancel, GET trials/expiring, GET summary. JWT/aktif kullanıcı, cross-user404, unknown body400, rowversion stale409. List Status/ProviderName/Currency/Search ve deterministik CreatedAt desc/Guid sıralama, page1/20,max100, kullanıcı başına1000 silinmemiş kayıt sınırı.
+- Trial/Active write, Cancel endpoint ve read-time Expired/automatic Active lifecycle. Trial end günü dahil, kalan gün max(0,end-today). FirstBillingDate zorunlu ve TrialEndDate değerinden kesin sonra; aynı gün tahsilat varsayılmadı. Month-end/leap/weekly/yearly/daily için mevcut calculator kullanıldı.
+- AutoRenew=true trial sonrasında effective Active, ödeme yapıldığı anlamına gelmez. AutoRenew=false trial biter, future billing kapalıdır. AccessEndsOn geçince Expired. CancellationRequestedAtUtc/CancelledAtUtc server UTC yerel beyan anı; sağlayıcı iptali doğrulanmaz. Cancel plan inactive yapar, access geleceğe kadar sürebilir. Cancelled/Expired update409, Active→Trial400; yeniden etkinleştirme yerine yeni kayıt.
+- Delete logical, parent inactive; PaymentOccurrence Paid/Skipped ve accepted notification geçmişi silinmez. Bağlı/tombstone parent generic payment PUT/DELETE409; ownership/concurrency başka endpoint ile aşılamaz. Dashboard/calendar yalnızca parent PaymentPlan üzerinden tek sayar. Trial event finansal occurrence değildir, cancellation Paid üretmez.
+- Summary currency bazında forecast: monthly amount/interval; yearly amount/(12*interval); weekly52, daily365 yıllıklaştırma/12. Effective Active/Trial ve AutoRenew=true gelecek maliyet tahminleri; currency group toplamı4 haneye ToEven, satır başı erken rounding yok. EstimatedAmount gerçek tahsilat veya kurlar arası toplam değildir.
+- UserSettings timezone + TimeProvider yerel bugünü; invalid/missing zone UTC fallback. Expiring WithinDays default7,0–365; cancelled/expired/before-start trial hariç.
+- ReminderRule.Target Payment=0 legacy / SubscriptionTrial=1. Otomatik0/1/3/7 gün09:00 trial rules ayrı Id ve hedefle oluşturulur. Generic reminder API yalnızca Payment hedefini görür. EnableTrialReminders genel aç/kapat; inactive nonrenew billing plan altında devam eden trial uyarılabilir. Worker/sender/queue/lease/receipt aynıdır; bağımsız worker eklenmedi.
+- Scheduler/send revalidation mevcut subscription lifecycle/TrialEnd/preferences/device kontrol eder. Subscription change eski kabul edilmemiş işleri aynı transaction içinde iptal eder; yeni trial tarihi ayrı due key oluşturur. Eski/biten trial rule scan coarse cutoff ile azaltılır; kesin timezone kontrolü korunur.
+- Plan-first UPDLOCK/HOLDLOCK, subscription rowversion ve tek transaction. Concurrent update/update, update/cancel, update/delete tek kazanan; SaveChanges enjekte hata testi plan/rule/queue cancellation rollback doğrular.
+
+### Migration ve gerçek geliştirme DB
+
+Yeni `20261021132035_ExternalSubscriptionTracking`:11. tablo TrackedSubscriptions,17 kolon (DateOnly/UTC timestamp/rowversion dahil), unique PaymentPlanId ve composite owner FK,index/check'ler. ReminderRules.Target default0 ve genişleyen filtered unique index. Up veri/kolon/tablo silmez; eski üç migration değiştirilmedi. Seed Premium UserSubscription+PaymentPlan üzerine Phase7→Phase8 upgrade gerçek SQL'de korunarak geçti. Para alanı tek parent decimal(19,4) olarak kaldı.
+
+Yerel Docker SQL Server2022 container healthy kaldı; mevcut PayAheadDockerDevelopment geçmişinde üç migration vardı, yenisi Pending olarak listelendi. Açık EF update ile uygulandı. Önce/sonra Users/PaymentPlans/PaymentOccurrences/RefreshTokens/UserSubscriptions sayıları0/0/0/0/0 olarak aynı kaldı; yeni TrackedSubscriptions0. Dört migration kayıtlı; yeni17kolon/index,12 trusted/enabled FK ve DBCC CHECKCONSTRAINTS temiz. Mevcut named volume/DB kayıtları silinmedi. Startup otomatik migration eklenmedi. Down yeni tracking verisini siler ve eski rule index ile çakışabilir; otomatik rollback kullanılmamalıdır.
+
+### Build ve test sonuçları
+
+Yerel SDK `.tools/dotnet/dotnet.exe` **8.0.426**, net8.0/C#12/EF Core8.0.21 korundu. DOTNET_ROOT/CLI_HOME ayarlandı. PAYAHEAD_TEST_SQLSERVER kaldırılarak gerçek Testcontainers SQL Server2022 kullanıldı; SQLite/InMemory yoktur.
+
+| İşlem | Sonuç |
+| --- | --- |
+| dotnet restore PayAhead.sln | Başarılı,tüm projeler güncel |
+| dotnet build PayAhead.sln --no-restore | Başarılı,0 warning/0 error |
+| dotnet test PayAhead.sln --no-build | **330 unit +201 gerçek SQL integration geçti;0 failed/0 skipped** |
+| EF has-pending-model-changes | Model değişikliği yok |
+| Migration fresh + legacy Premium/payment upgrade | Başarılı |
+| Local development DB migration | Başarılı,12 trusted FK,constraints temiz |
+| Kestrel SQL/JWT | İstenen flow geçti |
+| Trial NotificationProcessor + SQL + FakePushNotificationSender | Başarılı; ticket accepted ayrı durum |
+| Gerçek Expo/fiziksel cihaz push | **Çalıştırılmadı** |
+
+330 unit=önceki289+yeni41: request/date/money/enum/pagination validation, lifecycle/cancel/expiry/nonnegative trial days, explicit firstbilling, recurrence month-end/leap, monthly equivalent/currency group/rounding, timezone/fallback, user isolation, plan ownership/unique/model rowversion metadata ve stale-token giriş doğrulama. Unit memory store SQL kanıtı olarak sunulmadı.
+
+201 integration=önceki175+yeni26: CRUD/soft delete/history, filters/summary/currency, cancel/access/expiry/UTC fallback, dashboard/calendar duplicate prevention, managed payment endpoint guard, JWT/cross-user/anonim/strict body, invalid query/date, SQL duplicate+owner FK, üç concurrency yarışı, trial date reschedule, injected rollback, linked month-end, trial existing queue/fake processor, cancel/delete/disable/preferences/expiry suppression ve Phase7 legacy upgrade. Mevcut Faz1–7 testleri de çalıştı; şema sayımı yeni tablo/FK için güncellendi, test atlanmadı.
+
+Son TRX (Git dışında): `tests/PayAhead.UnitTests/TestResults/phase8-final_net8.0_20261021163908.trx`, `tests/PayAhead.IntegrationTests/TestResults/phase8-final_net8.0_20261021164019.trx`. Toplam **531/531 başarılı**.
+
+Ara tur: ilk41 unit geçti. İlk SQL22 senaryonun17'si geçti, GET/list projection sonrası filtreleme EF SQL translation hatasıyla beş senaryo başarısızdı. Filtre/sıralama entity query üzerine taşınıp DTO projection sona alındı; test Read helper artık HTTP success durumunu açıkça kontrol ediyor. Düzeltme22/22 geçti. İlk full330+197, ek dört rollback/race/date/anchor testinden sonraki final330+201 geçti. Başarısız test/500 hatası gizlenmedi. Sandbox NuGet.Config erişimi ve Docker/Kestrel için açık escalation kullanıldı; Windows execution policy yalnızca smoke alt sürecinde Bypass, sistem politikası değişmedi.
+
+### Gerçek Kestrel HTTP
+
+Git dışı `.tools/phase8-smoke.ps1`: kendi PayAheadSmoke_<guid> DB, dört migration ve kendi gizli Kestrel süreci. Gerçek register/login JWT, UTC settings; worker disabled. Token/parola çıktıya yazılmadı.
+
+| Adım | HTTP / doğrulama |
+| --- | --- |
+| Readiness |200 |
+| Anonim subscription list |401 |
+| Register/login |201/200 |
+| UTC settings PUT |200 |
+| Trial subscription POST |201;DaysRemaining7,FirstBillingDate=trialend+2gün |
+| Expiring trials default7 |200;1 kayıt |
+| Subscription PUT |200;amount ve rowversion yenilendi |
+| Subscription summary |200;tek forecast currency amount120.4321 |
+| Subscription GET |200 |
+| Cancel |200;Cancelled,AutoRenew=false,NextBillingDate=null |
+| İkinci register/login |201/200 |
+| Cross-user GET |404 |
+| İkinci user summary |200;kendi kapsamı |
+| Swagger |200 |
+
+Smoke exit0; yalnızca kendi süreç/geçici DB temizlendi. SQL/fake sender trial worker senaryosu ayrı testte doğrulandı; provider ticket kabulü AwaitingReceipt, finansal Paid değil. Gerçek push yapılmadı ve teslim edilmiş gibi raporlanmadı.
+
+### Dokümanlar ve sınırlar
+
+README, API, ARCHITECTURE, DATABASE, DEVELOPMENT, NOTIFICATIONS, bu progress ve AGENTS güncellendi; SUBSCRIPTIONS.md eklendi. Kaynaklar: Domain TrackedSubscription/ReminderTarget; Application/Subscriptions; Infrastructure SubscriptionStore/DI/config/DbContext/Payment guard/management target filter/queue trial branch; API controller/enum/Swagger; yeni unit+SQL testleri ve foundation schema expectation.
+
+Açık build/test/HTTP hatası veya atlanan test yok. Harici sağlayıcı iptal/tahsilat doğrulaması ve Premium/entitlement/mağaza/frontend yoktur. Lifecycle okuma anında türetilir, status arka planda kalıcı güncellenmez. İptal beyanı geri alınamaz; yeni kayıt gerekir.1000 silinmemiş abonelik/kullanıcı bounded projection; forecast sabit52hafta/365gün ve ToEven grup rounding tahminidir. Trial lead/time otomatik sabit0/1/3/7 ve09:00, tek enable tercihi; genel bildirim metni korunur. Existing history metadata/currency snapshot ve provider race/at-least-once/24h catch-up sınırlamaları devam eder; accepted ticket geri alınamaz, exactly-once ve fiziksel cihaz görünürlüğü garantisi yoktur. Gerçek Expo cihaz teslimatı doğrulanmadı.
+
+**Duruş:** Faz8 tamamlandı. Faz9 Premium Membership başlatılmadı; kullanıcı onayı bekleniyor.
