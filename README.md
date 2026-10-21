@@ -1,6 +1,6 @@
 # PayAhead Backend
 
-React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1 altyapısı, Faz 2 ödeme planı CRUD, Faz 3 recurrence engine ve Faz 4 occurrence durum/geçmiş işlemleri tamamlandı. Gerçek kullanıcı girişi ve bildirimler sonraki fazlardadır.
+React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1–5 altyapı, ödeme CRUD, recurrence, occurrence geçmişi, dashboard/upcoming/calendar tamamlandı. Gerçek kullanıcı girişi ve bildirimler sonraki fazlardadır.
 
 ## Gereksinimler
 
@@ -134,7 +134,7 @@ Invoke-WebRequest -UseBasicParsing -Method Delete "http://localhost:5080/api/pay
 
 UserId'yi body veya başlıkla göndermeyin; sunucunun sabit Development yapılandırması kullanılır. Başka kullanıcı izolasyonunu denemek için ayrı sunucu oturumunda farklı, mevcut test UserId'si seçilmelidir. Üretim/Staging ortamında bu mekanizma başlangıçta reddedilir. İş bitince API'yi kapatıp `DevelopmentIdentity__Enabled` ve `DevelopmentIdentity__UserId` ortam değişkenlerini kaldırın.
 
-`dotnet test PayAhead.sln` CRUD, recurrence ve occurrence testlerini birlikte çalıştırır. SQL testleri Testcontainers üzerinde izole veritabanı kullanır; geliştirme verilerini silmez. Anchor ve 10.000 sonuç sınırı için [mimari](docs/ARCHITECTURE.md) ve [geliştirme](docs/DEVELOPMENT.md) dokümanlarına bakın. Faz 5 için ayrı onay gerekir.
+`dotnet test PayAhead.sln` CRUD, recurrence, occurrence ve overview testlerini birlikte çalıştırır. SQL testleri Testcontainers üzerinde izole veritabanı kullanır; geliştirme verilerini silmez. Anchor ve kapasite sınırları için [mimari](docs/ARCHITECTURE.md) ve [geliştirme](docs/DEVELOPMENT.md) dokümanlarına bakın. Faz 6 için ayrı onay gerekir.
 
 ## Faz 4 — Ödeme durumu ve kayıtlı geçmiş
 
@@ -151,3 +151,20 @@ Invoke-RestMethod -Method Put "$root/2026-02-28/status" -ContentType 'applicatio
 ```
 
 Paid tutarı zorunludur; Pending/Skipped tutar kabul etmez. Farklı durum/tutar için son **occurrence rowVersion** gerekir; plan token'ı kullanılmaz. Aynı Paid/Skipped isteği PaidAtUtc veya rowversion'ı değiştirmez. Reset Pending kaydı siler; bu geçmiş append-only audit değildir. Pasif plan geçmişi okunabilir ama değiştirilemez (409). Geçmiş listesi sadece kaydedilmiş durumları döndürür; hesaplanan takvim Faz 5 kapsamındadır. Ayrıntılı yanıt ve concurrency örnekleri [API dokümanında](docs/API.md).
+
+## Faz 5 — Ana ekran ve takvim
+
+Development kimliğiyle API çalışırken:
+
+```powershell
+Invoke-RestMethod 'http://localhost:5080/api/payments/upcoming'
+Invoke-RestMethod 'http://localhost:5080/api/dashboard/summary'
+Invoke-RestMethod 'http://localhost:5080/api/calendar?year=2026&month=10'
+# Tam 7 günlük ve 30 günlük pencereler:
+Invoke-RestMethod 'http://localhost:5080/api/dashboard/summary?fromDate=2026-10-21&toDate=2026-10-27'
+Invoke-RestMethod 'http://localhost:5080/api/dashboard/summary?fromDate=2026-10-21&toDate=2026-11-19'
+```
+
+Varsayılan başlangıç kullanıcı timezone'undaki bugündür; UserSettings yok/geçersizse UTC fallback, context.usedTimeZoneFallback ile görünür. Varsayılan bitiş from+30 (sınırlar dahil 31 tarih). Upcoming varsayılan Pending ve sayfalıdır; Calendar status belirtilmezse tüm durumları gösterir. Pending plan tutarı, Paid gerçek tutar kullanır; Skipped/Paid yaklaşan borca girmez. TRY/USD/EUR hiçbir zaman tek toplamda birleştirilmez. Calendar günlük toplamı Pending borcudur.
+
+Pasif planlar yeni Pending üretmez; aralıktaki kayıtlı Paid/Skipped geçmişi korunur. Deactivation zamanı ve currency snapshot bulunmadığından eski aktiflik/para birimi tahmin edilmez; metadata güncel parent planından gelir. En fazla 366 dahil gün, 1000 ilgili plan ve 50.000 sonuç; aşımda 400 ProblemDetails, sessiz kısmi toplam yoktur. Uçlar read-only'dır ve occurrence kaydetmez. Tam DTO/örnekler [API.md](docs/API.md), test ayrıntıları [IMPLEMENTATION_PROGRESS.md](docs/IMPLEMENTATION_PROGRESS.md) içindedir. Faz 6 authentication başlatılmadı.

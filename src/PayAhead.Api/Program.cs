@@ -40,7 +40,7 @@ builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("sqlserver", ta
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 2 ödeme planı CRUD. PUT: rowVersion; DELETE: If-Match strong ETag." });
+    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 5: ödeme CRUD, occurrence, yaklaşan ödemeler, dashboard ve takvim. Finansal toplamlar para birimi bazındadır." });
     options.DocumentFilter<HealthDocumentFilter>();
     options.SchemaFilter<PaymentSchemaFilter>();
     options.SchemaFilter<OccurrenceSchemaFilter>();

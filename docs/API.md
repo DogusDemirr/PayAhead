@@ -1,4 +1,4 @@
-# API sözleşmesi — Faz 4
+# API sözleşmesi — Faz 5
 
 | Uç | Başarı | Hata | Kimlik |
 | --- | --- | --- | --- |
@@ -123,7 +123,7 @@ Silme stratejisi **ilişkisi olmayan plan için hard delete**: PaymentOccurrence
 {"title":"İstek doğrulanamadı.","status":400,"errors":{"amount":["Tutar pozitif, decimal(19,4) sınırlarında ve en fazla dört ondalıklı olmalıdır."]},"traceId":"request-trace-id"}
 ```
 
-API model binding ve FluentValidation hataları application/problem+json döner. İç hata mesajları, SQL veya stack trace döndürülmez. Kullanıcı eşleştirmesi ve sorgu filtreleri sunucudadır. Faz 6 gelene kadar gerçek JWT kabulü kapalıdır; üretimde geliştirme kimliği etkinleştirilirse uygulama başlamaz. Development'ta test kullanıcısı hazırlama ve başlatma adımları README'dedir. Register/login/refresh ve takvim/özet uçları henüz yoktur. Faz 3 recurrence engine yalnızca Domain servisi olarak kullanılabilir; bu API sözleşmesine yeni uç veya otomatik occurrence üretimi eklemez.
+API model binding ve FluentValidation hataları application/problem+json döner. İç hata mesajları, SQL veya stack trace döndürülmez. Kullanıcı eşleştirmesi ve sorgu filtreleri sunucudadır. Faz 6 gelene kadar gerçek JWT kabulü kapalıdır; üretimde geliştirme kimliği etkinleştirilirse uygulama başlamaz. Development'ta test kullanıcısı hazırlama ve başlatma adımları README'dedir. Register/login/refresh henüz yoktur. Domain recurrence servisi Faz 5 okuma uçlarında kullanılır; geleceğe otomatik occurrence kaydı oluşturulmaz.
 
 ## PUT /api/payments/{paymentId}/occurrences/{dueDate}/status
 
@@ -220,3 +220,69 @@ GET veri yazmaz. Geçersiz tarih Pending gibi gösterilmez: bozuk takvim tarihi/
 SQL Server transaction'ı plan satırını UPDLOCK/HOLDLOCK ile korur. Tarih doğrulaması, mevcut occurrence okuması ve insert/update/delete aynı Serializable transaction içindedir. Eşzamanlı plan değişikliği/silme bu işlemle sıralanır. Aynı plan/tarihe iki Paid isteği tek kayıt ve aynı yanıt; çakışan farklı durumlar 200/409 üretir. Unique(PaymentPlanId,DueDate), FK ve occurrence rowversion korunur; SQL 2601/2627/547 kullanıcıya ham hata olarak verilmez, 409'a çevrilir. Diğer beklenmeyen hatalar ayrıntısız 500 ProblemDetails olur. Retry destekli EF execution strategy tüm transaction'ı kapsar.
 
 Bu bir **son durum geçmişidir**, append-only audit ledger değildir. Pending'e dönüş önceki durum, tutar, PaidAtUtc, Id ve CreatedAtUtc bilgisini kayıttan kaldırır; ayrı audit olayı yazılmaz. Sonradan tekrar Paid yapılırsa yeni Id/CreatedAtUtc oluşur. Idempotence ardışık aynı durum istekleri içindir; silme/reset sonrasında çok geç gelen eski, tokensız oluşturma isteğini yeni istekten ayıran kalıcı idempotency anahtarı yoktur. İstemci akışında güncel durumu okuyun ve değişikliklerde dönen occurrence rowVersion'ı kullanın. Plan adı/para birimi snapshot'ı occurrence'ta tutulmaz; finansal audit/kur değişimi geçmişi bu fazda sağlanmaz.
+
+## Faz 5 — Ortak okuma sözleşmesi
+
+Üç yeni uç salt okunurdur ve doğrulanmış kullanıcıya özeldir; UserId query/body'den alınmaz. Aktif planların geçerli tarihleri Domain recurrence servisiyle hesaplanır. Kayıt yoksa Pending, kayıt varsa kayıtlı status kullanılır. Plan+tarih anahtarıyla tekilleştirme yapılır. Kayıtlı Paid/Skipped tarihleri plan pasif olsa veya güncel takvim dışında kalsa da istenen DueDate aralığında korunur. Pasif plandan yeni Pending üretilmez; pasif planın eski Pending marker'ları gösterilmez.
+
+`ProjectedPayment`: paymentPlanId, paymentName, dueDate, amount, currencyCode, category, frequency, status, actualAmount, paidAtUtc. Paid için **amount=ActualAmount**; Pending/Skipped için amount güncel plan tutarıdır. Skipped tutarı sadece bilgi amaçlıdır, borç toplamına girmez. Timestamp'ler UTC/Z, takvim tarihleri DateOnly'dır. Bu DTO occurrence rowVersion taşımaz; mevcut durumu değiştirmeden önce Faz 4 detay GET'inden token alın.
+
+Her response `context` içerir: fromDate, toDate, today, timeZoneId, usedTimeZoneFallback. Yerel bugün UserSettings.TimeZoneId ve TimeProvider.GetUtcNow ile hesaplanır. Eksik/boş/geçersiz/desteklenmeyen timezone'da UTC ve usedTimeZoneFallback=true kullanılır; sunucu yerel timezone'u kullanılmaz. Varsayılan fromDate yerel bugün; toDate=fromDate+30, iki sınır da dahil olduğundan **31 takvim tarihi** içerir. 7 günlük tam pencere için toDate=fromDate+6, 30 günlük tam pencere için +29 gönderin. DateOnly.MaxValue yakınında varsayılan bitiş MaxValue'da durur. Yalnızca toDate gönderip bugünden önce bir tarih seçerseniz 400 döner; geçmiş için iki sınırı da verin.
+
+Örnekler sabit tarihli test verileridir: iki aktif plan (A TRY: 10.1234 TRY, B USD: 2.50 USD), 31 Ocak TRY kaydı Paid/7.4321, USD kaydı Skipped; 28 Şubat ikisi de Pending. Örnek context.today=2026-01-01 olarak varsayılmıştır; canlı yanıtta kullanıcı saatine göre değişir.
+
+## GET /api/payments/upcoming
+
+```http
+GET /api/payments/upcoming?fromDate=2026-01-01&toDate=2026-02-28&status=Pending&currencyCode=USD&pageNumber=1&pageSize=20
+```
+
+Örnek **200 OK**:
+
+```json
+{"context":{"fromDate":"2026-01-01","toDate":"2026-02-28","today":"2026-01-01","timeZoneId":"UTC","usedTimeZoneFallback":false},"items":[{"paymentPlanId":"22222222-2222-4222-8222-222222222222","paymentName":"B USD","dueDate":"2026-02-28","amount":2.50,"currencyCode":"USD","category":"Bills","frequency":"Monthly","status":"Pending","actualAmount":null,"paidAtUtc":null}],"pageNumber":1,"pageSize":20,"totalCount":1,"totalPages":1}
+```
+
+Status varsayılan Pending; Paid veya Skipped ile kayıtlı durumlar da okunabilir. CurrencyCode isteğe bağlı güncel ISO 4217 kodudur, trim/uppercase edilir. Aralık açıkça geçmişi içeriyorsa Pending filtresi gecikmiş borçları da döndürebilir. Sıra DueDate ASC → PaymentName **ordinal** ASC → PaymentPlanId (.NET Guid sırası) ASC; kullanıcı kültürü/collation sıralamayı değiştirmez. Sayfalama birleşim/filtre/sıralamadan sonra yapılır. PageNumber varsayılan 1 (1–1.000.000), PageSize varsayılan 20 (1–100). Boş listede totalPages=0; geçerli ama boş sayfada totalCount korunur.
+
+## GET /api/dashboard/summary
+
+```http
+GET /api/dashboard/summary?fromDate=2026-01-01&toDate=2026-02-28
+```
+
+Örnek **200 OK**:
+
+```json
+{"context":{"fromDate":"2026-01-01","toDate":"2026-02-28","today":"2026-01-01","timeZoneId":"UTC","usedTimeZoneFallback":false},"activePaymentPlanCount":2,"upcomingPaymentCount":2,"paidPaymentCount":1,"skippedPaymentCount":1,"pendingPaymentCount":2,"upcomingTotalsByCurrency":[{"currencyCode":"TRY","amount":10.1234},{"currencyCode":"USD","amount":2.50}],"paidTotalsByCurrency":[{"currencyCode":"TRY","amount":7.4321}],"nextUpcomingPayment":{"paymentPlanId":"11111111-1111-4111-8111-111111111111","paymentName":"A TRY","dueDate":"2026-02-28","amount":10.1234,"currencyCode":"TRY","category":"Bills","frequency":"Monthly","status":"Pending","actualAmount":null,"paidAtUtc":null}}
+```
+
+- ActivePaymentPlanCount kullanıcıdaki **IsActive=true** plan sayısıdır; tarih aralığına veya EndDate'nin geçmiş olmasına göre değişmez.
+- PendingPaymentCount istenen aralıktaki bütün Pending tarihleri sayar; gecikmiş olanlar dahildir.
+- UpcomingPaymentCount bunun DueDate>=context.today alt kümesidir. Varsayılan aralıkta sayılar aynı olabilir; geçmiş seçilince anlamları ayrılır.
+- UpcomingTotalsByCurrency yalnızca bu yaklaşan Pending alt kümesinin **plan tutarlarını** toplar; Paid/Skipped/gecikmiş Pending dahil değildir.
+- PaidTotalsByCurrency aralıktaki Paid kayıtlarının **ActualAmount** toplamıdır. Paid/Skipped sayımının aralığı PaidAtUtc değil DueDate'ye göredir.
+- NextUpcomingPayment aynı aralıktaki yaklaşan Pending'lerin ilkidir; yoksa null. Sınırsız geleceği taramaz.
+- Para birimleri ordinal kod sırasıyla ayrı döner; sıfır gruplar eklenmez. Hiçbir para birimi dönüşümü/tek ortak para toplamı yapılmaz; finansal hesaplamalar decimal'dır.
+
+## GET /api/calendar
+
+```http
+GET /api/calendar?year=2026&month=2
+```
+
+Örnek **200 OK**:
+
+```json
+{"year":2026,"month":2,"context":{"fromDate":"2026-02-01","toDate":"2026-02-28","today":"2026-01-01","timeZoneId":"UTC","usedTimeZoneFallback":false},"days":[{"date":"2026-02-28","paymentCount":2,"totalsByCurrency":[{"currencyCode":"TRY","amount":10.1234},{"currencyCode":"USD","amount":2.50}],"payments":[{"paymentPlanId":"11111111-1111-4111-8111-111111111111","paymentName":"A TRY","dueDate":"2026-02-28","amount":10.1234,"currencyCode":"TRY","category":"Bills","frequency":"Monthly","status":"Pending","actualAmount":null,"paidAtUtc":null},{"paymentPlanId":"22222222-2222-4222-8222-222222222222","paymentName":"B USD","dueDate":"2026-02-28","amount":2.50,"currencyCode":"USD","category":"Bills","frequency":"Monthly","status":"Pending","actualAmount":null,"paidAtUtc":null}]}]}
+```
+
+Year (1–9999) ve month (1–12) zorunludur. Status verilmezse bütün durumlar; isteğe bağlı status/currencyCode filtreleri uygulanabilir. Yalnızca seçilen ayın ödeme içeren günleri döner; boş günler üretilmez. Günler artan tarihle, gün içi ödemeler ortak deterministik sırayla döner. PaymentCount filtrelenmiş günün bütün durumlarını sayar. **TotalsByCurrency o günün yalnızca Pending tutarlarını** içerir; geçmiş ay seçildiyse gecikmiş Pending de bu günlük borç tutarına girer. Paid/Skipped satırları görünür fakat borca eklenmez; sadece Paid filtresinde totals boş olabilir. Takvim aylık olduğu için ayrı pagination yoktur; ortak sonuç sınırı uygulanır.
+
+## Okuma limitleri ve tarihsel sınırlar
+
+En fazla **366 dahil gün**, **1.000 ilgili plan**, **50.000 kayıtlı kaynak occurrence** ve **50.000 birleşik plan/tarih** okunabilir/hesaplanabilir. Sınır aşımı 400 ProblemDetails'tır; kısmi veya sessiz kırpılmış toplam dönmez. Sonuç sınırı status filtresi ve pagination öncesi uygulanır. Dar tarih/para birimi seçerek isteği küçültün. Domain'in plan başına 10.000 sınırı da korunur; 366 günlük pencere günlük planı en fazla 366 tarihle sınırlar.
+
+Pasife alınma zamanı modelde yoktur. Bu nedenle cutoff tarihi tahmin edilmez: istenen aralıktaki bütün kayıtlı Paid/Skipped (gelecek tarihe kaydedilmiş olanlar dahil) görünür; yeni Pending yalnızca şu an aktif ve güncel takvime uygun plandan gelir. Plan adı, fiyatı, kategorisi, frequency ve **currencyCode güncel parent planından** okunur; kayıtlı Paid tutarı ActualAmount'tır. Tarihsel para birimi snapshot'ı olmadığından sonradan para birimi değiştirilmiş eski bir ödemenin orijinal para birimi geri çıkarılamaz. Bu yanıtlar böyle kayıtlar için tarihsel kur/finansal audit doğruluğu iddia etmez. Eski para birimini tahmin eden dönüşüm yoktur.
+
+Plan ve occurrence okumaları topludur, kullanıcıya filtrelidir, AsNoTracking kullanır. Upcoming/calendar üç SQL sorgusu (timezone/planlar/occurrence'lar), dashboard aktif sayımıyla dört sorgu kullanır; N+1 yoktur. Boş ilgili plan kümesinde occurrence sorgusu atlanır ve bir sorgu azalır. Plan kimlikleriyle sınırlandırma, sorgular arasında yeni plan eklenirse eşleşmeyen kaydın projeksiyona girmesini önler. Okumalar tek point-in-time snapshot değildir; eşzamanlı durum/tarife değişikliğinde yeniden GET gerekebilir. Uçlar hiçbir occurrence veya ayar kaydı oluşturmaz. Authentication Faz 6'ya bırakılmıştır; mevcut Production Development identity engeli korunur.

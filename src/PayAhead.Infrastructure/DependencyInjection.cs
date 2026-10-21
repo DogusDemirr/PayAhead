@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PayAhead.Application.Payments;
 using PayAhead.Application.Occurrences;
+using PayAhead.Application.Overview;
 
 namespace PayAhead.Infrastructure;
 
@@ -18,6 +19,7 @@ public static class DependencyInjection
                 sql => sql.EnableRetryOnFailure(3)));
         services.AddScoped<IPaymentPlanStore, PaymentPlanStore>();
         services.AddScoped<IOccurrenceStore, OccurrenceStore>();
+        services.AddScoped<IOverviewStore, OverviewStore>();
         return services;
     }
 }

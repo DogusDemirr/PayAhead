@@ -1,6 +1,6 @@
 # Geliştirme
 
-Faz 1 altyapısı, Faz 2 CRUD, Faz 3 recurrence hesaplayıcısı ve Faz 4 occurrence durum/geçmiş işlemleri uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 5 için açık onay gerekir.
+Faz 1–4 altyapı/CRUD/recurrence/occurrence ve Faz 5 dashboard/upcoming/calendar uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 6 authentication için açık onay gerekir.
 
 VS Code çalışma alanını kök dizinden açın. `global.json` yalnızca .NET 8 SDK 8.0.4xx patch sürümlerine izin verir, C# 12 sabittir. Proje içindeki SDK kaynak kontrolüne alınmaz. .slnx istenen envanter dosyasıdır; .NET 8 uyumluluğu için .sln kullanılır. Yeni proje eklenirse iki dosyayı da güncelleyin.
 
@@ -66,3 +66,13 @@ Temsilî iş yükü testleri 10 yıl aylık (120), 30 yıl yıllık (30), 5 yıl
 `dotnet test tests/PayAhead.UnitTests --no-build --filter FullyQualifiedName~OccurrenceTests` saf Domain/Application kurallarını; `dotnet test tests/PayAhead.IntegrationTests --no-build --filter FullyQualifiedName~OccurrenceApiTests` gerçek SQL Server transaction/API davranışını çalıştırır. Tüm regresyon için `dotnet test PayAhead.sln --no-build` kullanın.
 
 SQL testleri eşzamanlı istekler, unique/FK/rowversion, SQL yazımı sonrası enjekte edilmiş hata ile rollback ve kilitli parent değişiklik/silme yarışını içerir. Kilit yarışları test-only DbCommandInterceptor sinyaliyle koordine edilir; rastgele sleep'e dayanan test yazılmadı. Aynı plandaki status yazmaları serialize edildiği için yüksek hacim performansı üretim sertleştirmesinde ayrıca ölçülmelidir. Üç yeni uç için örnekler README ve API.md içindedir.
+
+## Dashboard/upcoming/calendar doğrulaması
+
+`dotnet test tests/PayAhead.UnitTests --no-build --filter FullyQualifiedName~OverviewTests` ortak projeksiyon, decimal toplamlar, state merge, timezone ve kapasite sınırlarını çalıştırır. `dotnet test tests/PayAhead.IntegrationTests --no-build --filter FullyQualifiedName~OverviewApiTests` gerçek SQL Server API, sahiplik, query sayısı, precision ve limit testleridir. Tüm eski testler için `dotnet test PayAhead.sln --no-build` çalıştırılır.
+
+Saat testte TimeProvider ile sabittir; Europe/Istanbul ve America/Los_Angeles gece sınırı, eksik/geçersiz timezone ve UTC fallback doğrulanır. Üretim kodu sunucunun yerel saatine güvenmez. Calendar year/month zorunludur; 9999 Aralık dahil DateOnly sınırları korunur. API.md varsayılan +30 dahil gün ile tam 7/+6 veya 30/+29 günlük pencere ayrımını açıklar.
+
+10/100/1000 günlük plan ile 30/365 günlük aralıklar birim testinde değerlendirilir. 1000×365 birleşik sonuç sınırını aştığı için açık hata beklenir; 1000×30 kabul edilir. Yerel Debug Stopwatch ve mevcut thread allocation gözlemleri TRX çıktısına yazılır; bunlar isolated benchmark/peak memory/production kapasitesi değildir. Gerçek SQL testinde aynı üç plan hacmi için upcoming'in üç, dashboard'un dört query kullandığı DbCommandInterceptor ile sayılır. Snapshot veri sayısı ve DTO üretimi limitlidir; 50.000 kaynak kayıt + 50.000 birleşik key, geçici dictionary/sıralama buffer'ları yine bellek kullanır. Status veya küçük pageSize limitleri atlatmaz.
+
+Dashboard UpcomingPaymentCount bugün ve sonrasındaki Pending, PendingPaymentCount aralıktaki tüm Pending'dir; aynı alanın iki adı değildir. Calendar gün toplamları Pending borcudur; Paid ActualAmount ayrı dashboard toplamında yer alır. Pasif planın Paid/Skipped kayıtları korunur, modelde deactivation zamanı bulunmadığından geçmiş cutoff tahmin edilmez. Currency geçmiş snapshot'ı da yoktur; fiyat/para birimi sonradan değişirse current-parent metadata sınırı geçerlidir. Salt okuma aşaması kayıt üretmez veya eski veriyi düzeltmez.

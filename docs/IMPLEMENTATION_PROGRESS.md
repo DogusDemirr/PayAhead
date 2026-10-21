@@ -412,3 +412,96 @@ Git dışı `.tools/phase4-smoke.ps1`, Compose SQL Server'da sadece `PayAheadSmo
 Faz 4 için açık derleme/test/HTTP hatası veya atlanan test yoktur. Kayıtlı durum geçmişi immutable audit değildir; reset silme, kalıcı idempotency anahtarı ve para birimi snapshot'ı sınırları yukarıda ve API.md'de açıklanmıştır. Üretim giriş/JWT Faz 6'da; şu an yalnızca Development kimliğiyle API denemesi yapılır, Production/Staging koruması değiştirilmedi. Hesaplanan takvim/özet, bildirim veya başka Faz 5+ işlevi eklenmedi.
 
 **Duruş:** Faz 4 tamamlandı. Faz 5 için açık kullanıcı onayı bekleniyor.
+
+## Faz 5 — Dashboard, Upcoming Payments & Calendar API
+
+Tarih: 21 Ekim 2026 (Europe/Istanbul). Durum: **Faz 5 tamamlandı. Faz 6 authentication başlatılmadı; açık onay bekleniyor.**
+
+### İnceleme ve plan
+
+AGENTS.md, önceki ilerleme, PaymentPlan/PaymentOccurrence/UserSettings, mevcut recurrence, Faz 4 durum politikası, DTO'lar, Development identity, SQL indeksleri ve test altyapısı incelendi. Başlangıç çalışma ağacı temizdi. SDK 8.0.426, net8.0/C# 12, EF Core 8.0.21, Docker Engine 29.9.1 Linux korundu. Yeni NuGet bağımlılığı veya sürüm yükseltmesi yoktur.
+
+Plan: ortak Application okuma DTO/validation/projeksiyonu → kullanıcıya özel toplu SQL store → üç controller ucu → tarih/status/currency/timezone/limit ve SQL sorgu sayısı testleri → tüm regresyon + gerçek Kestrel → dokümantasyon ve duruş.
+
+### Endpoint ve DTO'lar
+
+| Uç | Özellik |
+| --- | --- |
+| GET /api/payments/upcoming | from/to, varsayılan Pending status, currency, deterministic sıralama ve bounded pagination |
+| GET /api/dashboard/summary | aktif plan ve durum sayıları, upcoming/paid currency toplamları, nextUpcomingPayment |
+| GET /api/calendar | zorunlu year/month; isteğe bağlı status/currency; ödeme içeren günlere gruplama |
+
+DTO'lar: ProjectedPayment, ProjectionContext, CurrencyTotal, UpcomingPaymentsResponse, DashboardSummaryResponse, CalendarDayResponse ve CalendarResponse. Response entity/UserId içermez. ProjectedPayment'ta plan Id/ad, DueDate, effective Amount, CurrencyCode, Category, Frequency, Status, ActualAmount ve UTC PaidAtUtc bulunur. Context from/to, kullanıcı yerel today, timezone Id ve fallback işareti taşır.
+
+### Hesaplama kararları
+
+- Aktif planların tarihleri mevcut IPaymentRecurrenceCalculator ile hesaplandı; recurrence/anchor/interval/end/leap davranışı değiştirilmedi. Kayıt yoksa Pending, kayıt varsa kaydedilmiş durum; plan+tarih anahtarıyla tekilleştirme.
+- Pasif veya takvimi değişmiş planların aralıktaki kayıtlı Paid/Skipped durumları korunur; yeni Pending yalnızca şu an aktif ve güncel takviminden gelir. Pasif legacy Pending marker'ı veya aktif planın artık takvim dışı Pending marker'ı gösterilmez.
+- Paid satırının Amount'u ActualAmount; Pending/Skipped Amount'u güncel plan tutarıdır. Paid dashboard toplamı ActualAmount'tır. Skipped ve Paid yaklaşan borca girmez; finansal toplamlar sadece decimal ile, CurrencyCode'a göre ayrı gruplar halinde hesaplanır.
+- PendingPaymentCount aralıktaki bütün Pending; UpcomingPaymentCount bunun kullanıcı yerel bugün ve sonrasındaki alt kümesidir. UpcomingTotalsByCurrency ve NextUpcomingPayment aynı yaklaşan alt kümeyi kullanır. Geçmiş seçilince iki count birbirinden ayrılabilir. ActivePaymentPlanCount tüm kullanıcı IsActive flag'lerini sayar, aralığa bağlı değildir.
+- Calendar sadece ay içindeki ödeme içeren günleri döndürür. PaymentCount görünür bütün durumları, TotalsByCurrency yalnızca o günün Pending borcunu sayar; geçmiş ayda gecikmiş Pending dahildir. Her gün içi sıra ortak deterministik sıradır.
+- Sıra DueDate ASC, ordinal PaymentName ASC, .NET Guid ASC. Upcoming status ve pagination birleşimden sonra uygulanır; currency SQL'e de itilerek okuma hacmi azaltılır.
+- TimeProvider bir kez okunur. UserSettings.TimeZoneId ile yerel bugün; eksik/boş/geçersiz/desteklenmeyen değerde UTC fallback ve UsedTimeZoneFallback=true. Sunucu timezone'u kullanılmaz. Default from=today, to=from+30; dahil sınırlar 31 tarih demektir. Tam 7 gün +6, tam 30 gün +29 ile istenir. DateOnly.MaxValue'da varsayılan bitiş kısaltılır.
+- Modelde deactivation zamanı veya currency snapshot yoktur. Cutoff/orijinal para birimi tahmin edilmedi; aralıktaki tüm kayıtlı Paid/Skipped tarihleri görünür ve metadata/currency güncel parent'tan gelir. Tarihsel currency değişmişse orijinal para birimi doğruluğu iddia edilmez. Bu sınır API.md/README'de belirtildi.
+
+### Performans ve veri erişimi
+
+En fazla 366 dahil gün, 1.000 ilgili plan, 50.000 kaynak occurrence ve 50.000 birleşik sonuç. Sınır aşımı 400 Domain ProblemDetails; sessiz kısmi liste/toplam yoktur. Plan başına Domain 10.000 sınırı da korunur; bu pencerede günlük plan en fazla 366 üretir. Status veya pageSize=1 korumayı atlatmaz.
+
+SQL store kullanıcıya filtreli AsNoTracking sorguları kullanır. Timezone, ilgili planlar ve occurrence'lar topludur; occurrence sorgusu yüklenen plan Id'leri ve sahiplik join'i ile sınırlandırılır. Böylece sorgular arasındaki yeni plan kayıtları dictionary dışı kayda yol açmaz. Upcoming/calendar üç, dashboard aktif sayımı ile dört sorgudur; boş ilgili planlarda occurrence sorgusu atlanır. Aktif sayımı onu kullanmayan iki uçtan kaldırıldı. N+1 yoktur. Mevcut UserId/active/start ve plan/dueDate unique indeksleri değerlendirildi; ölçümsüz yeni indeks veya migration eklenmedi. Okumalar tek point-in-time snapshot değildir; eşzamanlı yazmalarda yeniden GET gerekebilir.
+
+Yerel Debug birim ölçümleri (SQL süreleri değil; tek çağrı, input planları ölçümden önce hazır):
+
+| Günlük plan × dahil gün | Sonuç | Süre | Ölçüm thread allocation |
+| --- | --- | --- | --- |
+| 10 × 30 | 300 | 0,338 ms | 103.728 byte |
+| 10 × 365 | 3.650 | 1,519 ms | 1.089.888 byte |
+| 100 × 30 | 3.000 | 1,403 ms | 978.784 byte |
+| 100 × 365 | 36.500 | 25,700 ms | 13.864.856 byte |
+| 1000 × 30 | 30.000 | 18,439 ms | 9.439.344 byte |
+| 1000 × 365 | 50.000 sınırında açık hata | 16,256 ms | 13.561.624 byte |
+
+Allocation ölçümü aynı managed thread'de kalındığında kaydedilir; peak heap veya gerçek retained memory değildir. JIT/GC/Debug ve test makinesi yükünden etkilenir; izole benchmark veya üretim kapasitesi iddiası yoktur. Geçici snapshot/dictionary/DTO/sıralama buffer'ları da bellek kullanır; sınırlar bu hacmi kontrol eder. Kırılgan süre/bellek eşik assertion'ı eklenmedi.
+
+### Dosyalar ve veritabanı etkisi
+
+Yeni dosyalar:
+
+- `src/PayAhead.Application/Overview/Contracts.cs`, `Validators.cs`, `OverviewService.cs`
+- `src/PayAhead.Infrastructure/OverviewStore.cs`
+- `src/PayAhead.Api/Controllers/OverviewController.cs`
+- `tests/PayAhead.UnitTests/OverviewTests.cs`
+- `tests/PayAhead.IntegrationTests/OverviewApiTests.cs`
+
+Değişenler: Application/Infrastructure `DependencyInjection.cs`, API `Program.cs` (Swagger açıklaması), `docs/API.md`, `ARCHITECTURE.md`, `DEVELOPMENT.md`, bu dosya, `README.md`, `AGENTS.md`. Calendar year/month gerekli alanları ve upcoming defaults OpenAPI metadata'sında belirtildi. Önceki controller, Domain recurrence/occurrence, migration ve mevcut veriler değiştirilmedi. Okuma servisleri hiçbir occurrence/settings kaydı oluşturmaz. Model fark kontrolünde değişiklik yok; yeni migration gerekmedi.
+
+### Gerçek komut ve sonuçlar
+
+Komutlar proje `.tools/dotnet/dotnet.exe` SDK 8.0.426 ile; DOTNET_CLI_HOME=.tools/cli, DOTNET_ROOT=.tools/dotnet ve Docker bin dizini işlem PATH'inde çalıştırıldı. PAYAHEAD_TEST_SQLSERVER kaldırılarak gerçek Testcontainers SQL Server kullanıldı.
+
+| Kontrol | Son sonuç |
+| --- | --- |
+| İlk OverviewTests turu | 38 başarılı |
+| İlk OverviewApiTests SQL turu | 28 başarılı |
+| dotnet restore PayAhead.sln | Başarılı; tüm projeler güncel |
+| dotnet build PayAhead.sln --no-restore | Başarılı; 0 warning, 0 error |
+| dotnet test PayAhead.sln --no-build --logger trx;LogFilePrefix=phase5-verified | **203 birim + 105 entegrasyon geçti; 0 başarısız, 0 atlanan** |
+| ef migrations has-pending-model-changes | Model değişikliği yok |
+| 10/100/1000 plan SQL command sayımı | Her hacimde upcoming 3, dashboard 4; N+1 yok |
+| Kestrel + gerçek Compose SQL Server | Üç GET/health/OpenAPI 200; invalid month 400; Paid actual tutar, USD Pending borcu ve Skipped hariç tutulması doğrulandı |
+
+Son TRX raporları: `tests/PayAhead.UnitTests/TestResults/phase5-verified_net8.0_20261021135535.trx`, `tests/PayAhead.IntegrationTests/TestResults/phase5-verified_net8.0_20261021135627.trx`. Git dışında tutulur.
+
+203 unit = önceki 165 + yeni 38: beş recurrence türü/interval, ay sonu/leap, merge/duplicate prevention, actual/pending tutar, currency ayrımı, pasif/değişmiş takvim geçmişi, overdue farkı, tam 7 günlük pencere, calendar grouping, sorting/pagination, boş dashboard, timezone/fallback, invalid range/status/currency/year/month, DateOnly.MaxValue ve kapasite/performance senaryoları.
+
+105 integration = önceki 77 + yeni 28: üç endpoint, gerçek SQL decimal(19,4), kayıtlı Paid/Skipped ve hesaplanan Pending birleşimi, pagination/filtre, timezone UserSettings ve fallback, cross-user/anonim erişim/query UserId'nin etkisizliği, validation ProblemDetails, pasif ve değişmiş takvim geçmişi, boş kullanıcı/9999 Aralık, 10/100/1000 sabit query sayısı, SQL plan ve birleşik sonuç sınırları, OpenAPI ve overdue/pending ayrımı. Bütün eski CRUD/recurrence/occurrence/concurrency/transaction testleri de çalıştı ve geçti. SQLite/EF InMemory yoktur; birim memory store SQL kanıtı sayılmadı.
+
+Kestrel için Git dışı `.tools/phase5-smoke.ps1` yalnızca kendi `PayAheadSmoke_<guid>` DB'sini oluşturdu, mevcut migration'ı uyguladı ve UTC settings/test kullanıcısı seed etti. API gizli ayrı süreçte çalıştı; plan create 201 ve status PUT 200 sonrasında upcoming/dashboard/calendar/Swagger gerçek HTTP ile test edildi. Farklı TRY/USD toplamları, ActualAmount, Skipped sonrası borcun sıfırlanması ve timezone metadata'sı doğrulandı. Sonuç/cleanup exit code 0; yalnızca testin kendi API süreci ve geçici DB'si temizlendi. Gerçek parolalar kaynak/çıktıya yazılmadı.
+
+### Ara düzeltmeler ve sınırlar
+
+İlk derlemede LINQ query sözdiziminde contextual `from` parametresi karşılaştırması belirsizlik yarattı; parametre fromDate/toDate olarak açık adlandırıldı. Source okuması yüklenen plan Id'leriyle sabitlendi. İlk çalışan modelde ortak snapshot aktif sayımını her uçta yapıyordu; son sorgu incelemesinde upcoming/calendar sayımı kaldırıldı ve tüm regresyon/Kestrel yeniden çalıştırılarak üç/dört query doğrulandı. Başarısız test sonucu gizlenmedi; test turlarının tamamı geçti.
+
+Faz 5 için açık build/test/HTTP hatası veya atlanan test yoktur. Tarihsel para birimi/deactivation snapshot'ı, snapshot tutarlı çoklu read ve üretim yük testi sağlanmamıştır; mevcut sınırlar açıkça belgelendi. Auth/JWT/refresh veya Faz 6+ özelliği eklenmedi. Mevcut Development identity production engeli korundu.
+
+**Duruş:** Faz 5 tamamlandı. Faz 6 authentication için açık kullanıcı onayı bekleniyor.
