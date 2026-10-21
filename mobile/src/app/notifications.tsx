@@ -1,0 +1,3 @@
+import { AppScreen, AppHeader, AppCard, AppText } from '../components/ui';
+import { PreviewContent } from '../components/preview';
+export default function Notifications() { return <AppScreen><AppHeader title="Bildirimler" subtitle="Önemli günler aklında kalmasın." back /><PreviewContent emptyTitle="Henüz bildirimin yok"><AppCard><AppText variant="label">Bir sonraki ödemen yaklaşıyor</AppText><AppText tone="muted" style={{ marginTop: 10 }}>İnternet faturası yarın planlı. Bu örnek hatırlatma cihazına gönderilmedi.</AppText><AppText variant="caption" tone="accentText" style={{ marginTop: 16 }}>Örnek bildirim</AppText></AppCard></PreviewContent></AppScreen>; }
