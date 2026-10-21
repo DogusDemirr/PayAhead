@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
  <ItemGroup>
   <ProjectReference Include="../PayAhead.Domain/PayAhead.Domain.csproj" />
-  <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+  <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.2.0" />
  </ItemGroup>
 </Project>
