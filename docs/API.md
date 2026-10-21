@@ -1,4 +1,4 @@
-# API sözleşmesi — Faz 2
+# API sözleşmesi — Faz 4
 
 | Uç | Başarı | Hata | Kimlik |
 | --- | --- | --- | --- |
@@ -124,3 +124,99 @@ Silme stratejisi **ilişkisi olmayan plan için hard delete**: PaymentOccurrence
 ```
 
 API model binding ve FluentValidation hataları application/problem+json döner. İç hata mesajları, SQL veya stack trace döndürülmez. Kullanıcı eşleştirmesi ve sorgu filtreleri sunucudadır. Faz 6 gelene kadar gerçek JWT kabulü kapalıdır; üretimde geliştirme kimliği etkinleştirilirse uygulama başlamaz. Development'ta test kullanıcısı hazırlama ve başlatma adımları README'dedir. Register/login/refresh ve takvim/özet uçları henüz yoktur. Faz 3 recurrence engine yalnızca Domain servisi olarak kullanılabilir; bu API sözleşmesine yeni uç veya otomatik occurrence üretimi eklemez.
+
+## PUT /api/payments/{paymentId}/occurrences/{dueDate}/status
+
+Bir planın yalnızca belirtilen tarihindeki durumunu kaydeder. Başarılı yeni kayıt, güncelleme ve tekrar istekleri **200 OK** döner. DueDate URL'de `yyyy-MM-dd` olarak gönderilir. Paid için **ActualAmount zorunludur**; plan tutarı varsayılan alınmaz. Tutar pozitif decimal(19,4) olmalı; sıfır, negatif, taşan veya dört anlamlı ondalıktan fazla değer 400 döner. Pending/Skipped için ActualAmount null veya eksik olmalıdır.
+
+Yeni, geçerli tarihte örnek istek:
+
+```http
+PUT /api/payments/11111111-1111-4111-8111-111111111111/occurrences/2026-01-31/status
+Content-Type: application/json
+```
+
+```json
+{"status":"Paid","actualAmount":299.99}
+```
+
+Örnek 200 yanıtı (Id/token/saat temsilidir):
+
+```json
+{"id":"22222222-2222-4222-8222-222222222222","paymentPlanId":"11111111-1111-4111-8111-111111111111","dueDate":"2026-01-31","status":"Paid","actualAmount":299.99,"paidAtUtc":"2026-10-21T12:00:00Z","createdAtUtc":"2026-10-21T12:00:00Z","rowVersion":"AAAAAAAAAAE=","isRecorded":true}
+```
+
+Farklı duruma veya farklı Paid tutarına geçmek için **occurrence'ın son rowVersion'ı** gerekir; parent PaymentPlan token'ını kullanmayın. Eksik/eski token 409; biçimi bozuk token 400 döner. Yeni kayıt oluştururken rowVersion null/eksik olmalıdır; var olmayan kayda dolu token ile Paid/Skipped gönderilmesi 409'dur.
+
+```json
+{"status":"Skipped","rowVersion":"AAAAAAAAAAE="}
+```
+
+Örnek 200 yanıtı:
+
+```json
+{"id":"22222222-2222-4222-8222-222222222222","paymentPlanId":"11111111-1111-4111-8111-111111111111","dueDate":"2026-01-31","status":"Skipped","actualAmount":null,"paidAtUtc":null,"createdAtUtc":"2026-10-21T12:00:00Z","rowVersion":"AAAAAAAAAAI=","isRecorded":true}
+```
+
+Pending'e dönüş:
+
+```json
+{"status":"Pending","rowVersion":"AAAAAAAAAAI="}
+```
+
+Örnek 200 yanıtı:
+
+```json
+{"id":null,"paymentPlanId":"11111111-1111-4111-8111-111111111111","dueDate":"2026-01-31","status":"Pending","actualAmount":null,"paidAtUtc":null,"createdAtUtc":null,"rowVersion":null,"isRecorded":false}
+```
+
+Pending'e dönüşte kayıt transaction içinde **silinir**. Hiç kayıt yokken Pending isteği veya reset'in tekrarı veri yazmadan aynı sanal Pending yanıtını üretir. Aynı Paid/Skipped durum+tutar tekrarı, geçerli biçimdeki token eski veya eksik olsa da yazma yapmadan mevcut kaydı döndürür; PaidAtUtc/CreatedAtUtc/rowversion değişmez. Paid tutarı değiştirilirse güncel token gerekir ve PaidAtUtc yeni kayıt işleminin UTC zamanını alır. Status yalnızca Pending/Paid/Skipped string enum olabilir; sayısal body enum kabul edilmez. UserId, PaidAtUtc ve sözleşme dışı alanlar gönderilemez.
+
+| Geçiş | Sonuç |
+| --- | --- |
+| Sanal Pending → Paid | Kayıt oluşturulur, gerçek tutar ve sunucu PaidAtUtc yazılır |
+| Sanal Pending → Skipped | Kayıt oluşturulur; tutar ve PaidAtUtc null |
+| Paid → Skipped | Aynı Id/CreatedAtUtc korunur; tutar ve PaidAtUtc temizlenir |
+| Skipped → Paid | Aynı kayda pozitif tutar ve sunucu PaidAtUtc yazılır |
+| Paid/Skipped → Pending | Kayıt silinir; sanal Pending döner |
+| Paid/Skipped → aynı durum+tutar | Salt okuma; aynı yanıt ve token |
+
+Yazmadan önce tarih mevcut recurrence servisiyle doğrulanır: `GetNextOccurrence(plan, dueDate) == dueDate`. 31 Ocak aylık planda 28 Şubat geçerli, 27 Şubat geçersizdir. StartDate öncesi/EndDate sonrası veya takvime uymayan tarih 400 döner. Gerçekleşme tarihinin geçmişte/gelecekte olması tek başına engel değildir. Yeni tarih hesabı algoritması eklenmedi.
+
+**Pasif plan politikası:** kayıtlı geçmiş okunabilir; bütün status PUT istekleri, aynı durumu tekrar gönderme dahil, 409 döner. Plan takvimi sonradan değiştirilmişse eski kayıtlar okunabilir ama artık güncel takvime uymayan tarihe yazma 400 döner. Plan silinmiş/yok/başka kullanıcıya aitse üç uç da bilgi sızdırmadan 404 üretir.
+
+## GET /api/payments/{paymentId}/occurrences
+
+Bu uç **yalnızca veritabanında kayıtlı durumları** döndürür; hesaplanan bütün Pending tarihlerini üretmez. Normal yazma akışında Paid ve Skipped kayıtları bulunur; önceden kalmış Pending kayıtları varsa bunlar da filtreye göre görülebilir, otomatik silinmez. Hesaplanan takvim görünümü Faz 5 kapsamındadır.
+
+```http
+GET /api/payments/11111111-1111-4111-8111-111111111111/occurrences?fromDate=2026-01-01&toDate=2026-12-31&status=Paid&pageNumber=1&pageSize=20
+```
+
+Örnek **200 OK**:
+
+```json
+{"items":[{"id":"22222222-2222-4222-8222-222222222222","paymentPlanId":"11111111-1111-4111-8111-111111111111","dueDate":"2026-01-31","status":"Paid","actualAmount":299.99,"paidAtUtc":"2026-10-21T12:00:00Z","createdAtUtc":"2026-10-21T12:00:00Z","rowVersion":"AAAAAAAAAAE=","isRecorded":true}],"pageNumber":1,"pageSize":20,"totalCount":1,"totalPages":1}
+```
+
+FromDate/ToDate isteğe bağlı, sınırlar dahil; FromDate>ToDate 400. Status isteğe bağlı tanımlı enum değeridir. Sayfa varsayılanı 1/20, PageSize 1–100 ve PageNumber 1–1.000.000; hatalı değerler 400. Sıra DueDate DESC, Id ASC. Sahiplik kontrolü, count ve page için sabit üç sorgu kullanılır; N+1 yoktur. Eşzamanlı yazmalarda count/page tek snapshot garantisi vermez. Pasif plan veya takvimi değişmiş planın kayıtlı geçmişi bu uçtan okunur.
+
+## GET /api/payments/{paymentId}/occurrences/{dueDate}
+
+```http
+GET /api/payments/11111111-1111-4111-8111-111111111111/occurrences/2026-02-28
+```
+
+Kayıt varsa kaydedilmiş DTO, yoksa **aktif planın geçerli recurrence tarihinde** sanal Pending DTO döner. Örnek **200 OK**:
+
+```json
+{"id":null,"paymentPlanId":"11111111-1111-4111-8111-111111111111","dueDate":"2026-02-28","status":"Pending","actualAmount":null,"paidAtUtc":null,"createdAtUtc":null,"rowVersion":null,"isRecorded":false}
+```
+
+GET veri yazmaz. Geçersiz tarih Pending gibi gösterilmez: bozuk takvim tarihi/model binding 400; aktif plan takvimine uymayan tarih 400. Pasif planda kayıt yoksa sanal Pending üretilmez, 404 döner. Kayıtlı geçmiş, takvim değişmiş veya plan pasif olsa da gösterilir.
+
+## Occurrence concurrency ve geçmiş sınırları
+
+SQL Server transaction'ı plan satırını UPDLOCK/HOLDLOCK ile korur. Tarih doğrulaması, mevcut occurrence okuması ve insert/update/delete aynı Serializable transaction içindedir. Eşzamanlı plan değişikliği/silme bu işlemle sıralanır. Aynı plan/tarihe iki Paid isteği tek kayıt ve aynı yanıt; çakışan farklı durumlar 200/409 üretir. Unique(PaymentPlanId,DueDate), FK ve occurrence rowversion korunur; SQL 2601/2627/547 kullanıcıya ham hata olarak verilmez, 409'a çevrilir. Diğer beklenmeyen hatalar ayrıntısız 500 ProblemDetails olur. Retry destekli EF execution strategy tüm transaction'ı kapsar.
+
+Bu bir **son durum geçmişidir**, append-only audit ledger değildir. Pending'e dönüş önceki durum, tutar, PaidAtUtc, Id ve CreatedAtUtc bilgisini kayıttan kaldırır; ayrı audit olayı yazılmaz. Sonradan tekrar Paid yapılırsa yeni Id/CreatedAtUtc oluşur. Idempotence ardışık aynı durum istekleri içindir; silme/reset sonrasında çok geç gelen eski, tokensız oluşturma isteğini yeni istekten ayıran kalıcı idempotency anahtarı yoktur. İstemci akışında güncel durumu okuyun ve değişikliklerde dönen occurrence rowVersion'ı kullanın. Plan adı/para birimi snapshot'ı occurrence'ta tutulmaz; finansal audit/kur değişimi geçmişi bu fazda sağlanmaz.

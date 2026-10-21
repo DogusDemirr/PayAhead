@@ -1,6 +1,6 @@
 # Geliştirme
 
-Faz 1 altyapısı, Faz 2 CRUD ve Faz 3 recurrence hesaplayıcısı uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 4 için açık onay gerekir.
+Faz 1 altyapısı, Faz 2 CRUD, Faz 3 recurrence hesaplayıcısı ve Faz 4 occurrence durum/geçmiş işlemleri uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 5 için açık onay gerekir.
 
 VS Code çalışma alanını kök dizinden açın. `global.json` yalnızca .NET 8 SDK 8.0.4xx patch sürümlerine izin verir, C# 12 sabittir. Proje içindeki SDK kaynak kontrolüne alınmaz. .slnx istenen envanter dosyasıdır; .NET 8 uyumluluğu için .sln kullanılır. Yeni proje eklenirse iki dosyayı da güncelleyin.
 
@@ -60,3 +60,9 @@ dotnet test PayAhead.sln --no-build
 Recurrence birim testleri sabit girdilerle tam beklenen tarih dizilerini karşılaştırır; ay sonu/leap/interval/sınır/taşma/limit durumlarını içerir. SQL testleri migration uygulanmış izole test veritabanından gerçek EF DateOnly alanlarını tekrar okuyup aynı hesapları yapar ve PaymentOccurrence tablosuna yazılmadığını doğrular. Üretim/geliştirme verisi değiştirilmez.
 
 Temsilî iş yükü testleri 10 yıl aylık (120), 30 yıl yıllık (30), 5 yıl günlük (1826) tarih için tam listeyi doğrular ve 100 çağrının yerel Stopwatch sürelerini TRX test çıktısına kaydeder. Bu bir mikro ölçümdür; Debug/JIT/GC/makine yüküne bağlıdır, production throughput veya BenchmarkDotNet sonucu değildir. Süreye bağlı kırılgan assertion eklenmedi. Büyük interval ve yıl 1→9999 dar sorgu testleri ayrıca matematiksel atlama/overflow davranışını doğrular.
+
+## Occurrence durumlarını doğrulama
+
+`dotnet test tests/PayAhead.UnitTests --no-build --filter FullyQualifiedName~OccurrenceTests` saf Domain/Application kurallarını; `dotnet test tests/PayAhead.IntegrationTests --no-build --filter FullyQualifiedName~OccurrenceApiTests` gerçek SQL Server transaction/API davranışını çalıştırır. Tüm regresyon için `dotnet test PayAhead.sln --no-build` kullanın.
+
+SQL testleri eşzamanlı istekler, unique/FK/rowversion, SQL yazımı sonrası enjekte edilmiş hata ile rollback ve kilitli parent değişiklik/silme yarışını içerir. Kilit yarışları test-only DbCommandInterceptor sinyaliyle koordine edilir; rastgele sleep'e dayanan test yazılmadı. Aynı plandaki status yazmaları serialize edildiği için yüksek hacim performansı üretim sertleştirmesinde ayrıca ölçülmelidir. Üç yeni uç için örnekler README ve API.md içindedir.

@@ -30,3 +30,15 @@ Geçersiz interval/enum/anchor, EndDate<StartDate veya fromDate>toDate `DomainRu
 İlk tekrar indeksi gün farkı, ay indeksi veya yıl farkından hesaplanır; en fazla bir tarih düzeltmesi gerekir. Böylece çalışma maliyeti geçmiş tekrar sayısına değil döndürülen sonuç sayısına bağlıdır: liste O(min(sonuç, 10.001)), next O(1), liste belleği O(10.000) ile sınırlıdır (List kapasitesi büyüme payı içerir). Çarpımlar long ile ve DateOnly sınırına kalan mesafe kontrol edilerek yapılır; temsil edilemeyen gelecek tarih null ile sonlanır. İstisnayı normal döngü sonlandırma aracı olarak kullanmaz.
 
 Faz 3 veritabanına occurrence yazmaz, CRUD sözleşmesini değiştirmez ve yeni HTTP ucu eklemez. PaymentOccurrence durum işlemleri Faz 4 kapsamındadır.
+
+## Faz 4 — Payment Occurrences ve durum geçmişi
+
+Domain `PaymentOccurrence.Create/ChangeStatus` durum, UTC zaman ve ActualAmount kurallarını taşır. Altı temel Pending/Paid/Skipped geçişi desteklenir; aynı durum/tutar tekrarında değişiklik yapılmaz. `OccurrenceScheduleRules` var olan IPaymentRecurrenceCalculator.GetNextOccurrence ile tarihi doğrular; ikinci recurrence algoritması yoktur.
+
+Application/Occurrences içinde request/response DTO'ları, FluentValidation kuralları, IOccurrenceService/OccurrenceService ve IOccurrenceStore sözleşmesi bulunur. Application sahiplik bağlamını alır, pasif plan politikasını ve optimistic token kurallarını uygular. Infrastructure/OccurrenceStore EF sorgularını ve transaction'ı yürütür. OccurrencesController yalnızca HTTP mapping yapar; DbContext veya iş kuralı içermez.
+
+Write use case, sahipliği doğrulanmış kilitli plan ve occurrence ile bir senkron Application callback'i çalıştırır. Transaction sınırını veri erişimi yönetirken doğrulama ve durum kararı Application/Domain'de kalır; genel transaction/repository/CQRS katmanı eklenmedi. Serializable + parent UPDLOCK/HOLDLOCK, plan takviminin kontrol ile kayıt arasında değişmesini veya silinmesini önler. Aynı plandaki yazmalar DB üzerinden sıralanır; farklı uygulama instance'ları için de geçerlidir. SQL optimizer'ın kilit kapsamına bağlı olarak daha geniş kilitler de alınabilir; sınırsız throughput iddiası yoktur.
+
+SQL retry execution strategy transaction'ın tamamını sarar. Her denemede tracked unit of work temizlenir; commit belirsizliğinde aynı durum isteği tekrar okunarak duplicate yazma önlenir. SQL unique/FK hataları güvenli conflict'e çevrilir. [Microsoft EF retry/transaction açıklaması](https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency) ve [SQL table hints](https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-table) bu yaklaşımın dayanağıdır.
+
+Pending sanaldır; Paid/Skipped oluşturur, Pending'e dönüş mevcut kaydı siler. Sonsuz gelecek kayıtları üretilmez. Geçmiş ucu sadece kayıtlı son durumları döndürür; tam takvim Faz 5'e bırakıldı. Pasif plan geçmişi salt okunurdur. Takvim değiştirilmişse eski kayıtlar okunur; yeni yazma mevcut takvime uymalıdır. Geçmiş listesi immutable audit değildir; reset audit kaydı üretmez. Detaylar API sözleşmesindedir.

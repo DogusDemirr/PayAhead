@@ -37,6 +37,7 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
             _ => "Beklenmeyen sunucu hatası."
         };
         detail.Extensions["traceId"] = context.TraceIdentifier;
+        if (exception is DomainRuleException) detail.Detail = exception.Message;
         context.Response.StatusCode = status;
         return await problems.TryWriteAsync(new ProblemDetailsContext
         {

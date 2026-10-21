@@ -1,6 +1,6 @@
 # PayAhead Backend
 
-React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1 altyapısı, Faz 2 ödeme planı CRUD ve Faz 3 bağımsız recurrence engine tamamlandı. Gerçek kullanıcı girişi ve bildirimler sonraki fazlardadır.
+React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1 altyapısı, Faz 2 ödeme planı CRUD, Faz 3 recurrence engine ve Faz 4 occurrence durum/geçmiş işlemleri tamamlandı. Gerçek kullanıcı girişi ve bildirimler sonraki fazlardadır.
 
 ## Gereksinimler
 
@@ -134,4 +134,20 @@ Invoke-WebRequest -UseBasicParsing -Method Delete "http://localhost:5080/api/pay
 
 UserId'yi body veya başlıkla göndermeyin; sunucunun sabit Development yapılandırması kullanılır. Başka kullanıcı izolasyonunu denemek için ayrı sunucu oturumunda farklı, mevcut test UserId'si seçilmelidir. Üretim/Staging ortamında bu mekanizma başlangıçta reddedilir. İş bitince API'yi kapatıp `DevelopmentIdentity__Enabled` ve `DevelopmentIdentity__UserId` ortam değişkenlerini kaldırın.
 
-`dotnet test PayAhead.sln` mevcut CRUD ve yeni recurrence testlerini birlikte çalıştırır. SQL testleri Testcontainers üzerinde izole veritabanı kullanır; geliştirme verilerini silmez. Recurrence yalnızca Domain hesabıdır, yeni HTTP ucu veya geleceğe occurrence kaydı eklemez. Anchor ve 10.000 sonuç sınırı için [mimari](docs/ARCHITECTURE.md) ve [geliştirme](docs/DEVELOPMENT.md) dokümanlarına bakın. Faz 4 için ayrı onay gerekir.
+`dotnet test PayAhead.sln` CRUD, recurrence ve occurrence testlerini birlikte çalıştırır. SQL testleri Testcontainers üzerinde izole veritabanı kullanır; geliştirme verilerini silmez. Anchor ve 10.000 sonuç sınırı için [mimari](docs/ARCHITECTURE.md) ve [geliştirme](docs/DEVELOPMENT.md) dokümanlarına bakın. Faz 5 için ayrı onay gerekir.
+
+## Faz 4 — Ödeme durumu ve kayıtlı geçmiş
+
+Yeni uçlar: PUT `/api/payments/{paymentId}/occurrences/{dueDate}/status`, GET `/api/payments/{paymentId}/occurrences`, GET `/api/payments/{paymentId}/occurrences/{dueDate}`. Development kimliğini yukarıdaki gibi ayarlayıp Swagger veya PowerShell üzerinden deneyebilirsiniz. DueDate gerçekten plan takvimine ait olmalıdır; örneğin 31 Ocak aylık planda 28 Şubat geçerlidir.
+
+```powershell
+# paymentId yerine sahip olduğunuz planın Id'sini kullanın; tarih plan takvimine uygun olmalı.
+$root="http://localhost:5080/api/payments/$paymentId/occurrences"
+Invoke-RestMethod "$root/2026-02-28"  # Kayıt yoksa sanal Pending; GET yazma yapmaz.
+$paid=Invoke-RestMethod -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Paid';actualAmount=299.99} | ConvertTo-Json)
+$skipped=Invoke-RestMethod -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Skipped';rowVersion=$paid.rowVersion} | ConvertTo-Json)
+Invoke-RestMethod "$root`?fromDate=2026-01-01&toDate=2026-12-31&status=Skipped&pageNumber=1&pageSize=20"
+Invoke-RestMethod -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Pending';rowVersion=$skipped.rowVersion} | ConvertTo-Json)
+```
+
+Paid tutarı zorunludur; Pending/Skipped tutar kabul etmez. Farklı durum/tutar için son **occurrence rowVersion** gerekir; plan token'ı kullanılmaz. Aynı Paid/Skipped isteği PaidAtUtc veya rowversion'ı değiştirmez. Reset Pending kaydı siler; bu geçmiş append-only audit değildir. Pasif plan geçmişi okunabilir ama değiştirilemez (409). Geçmiş listesi sadece kaydedilmiş durumları döndürür; hesaplanan takvim Faz 5 kapsamındadır. Ayrıntılı yanıt ve concurrency örnekleri [API dokümanında](docs/API.md).

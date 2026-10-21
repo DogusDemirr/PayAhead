@@ -21,7 +21,10 @@ builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = 
     context.ProblemDetails.Extensions["traceId"] = context.HttpContext.TraceIdentifier);
 builder.Services.AddExceptionHandler<ApiExceptionHandler>();
 builder.Services.AddControllers().AddJsonOptions(options =>
-    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<PaymentFrequency>(allowIntegerValues: false)));
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<PaymentFrequency>(allowIntegerValues: false));
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<OccurrenceStatus>(allowIntegerValues: false));
+});
 builder.Services.Configure<ApiBehaviorOptions>(options => options.InvalidModelStateResponseFactory = context =>
 {
     // JSON parse mesajları istemcinin hassas alan değerlerini tekrar etmesin.
@@ -40,6 +43,7 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 2 ödeme planı CRUD. PUT: rowVersion; DELETE: If-Match strong ETag." });
     options.DocumentFilter<HealthDocumentFilter>();
     options.SchemaFilter<PaymentSchemaFilter>();
+    options.SchemaFilter<OccurrenceSchemaFilter>();
 });
 
 if (developmentUserId.HasValue)

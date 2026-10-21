@@ -328,3 +328,87 @@ Next O(1), liste O(min(sonuç, 10.001)), bellek sonuç sınırıyla kısıtlıd�
 - PaymentOccurrence paid/skipped/pending işlemleri eklenmedi; bunlar Faz 4 kapsamındadır.
 
 **Duruş:** Faz 3 tamamlandı. Faz 4'e açık kullanıcı onayı olmadan başlanmayacak.
+
+## Faz 4 — Payment Occurrences & Payment History
+
+Tarih: 21 Ekim 2026 (Europe/Istanbul). Durum: **Faz 4 tamamlandı. Faz 5 başlatılmadı; açık onay bekleniyor.**
+
+### İnceleme ve plan
+
+AGENTS.md, önceki ilerleme, PaymentPlan/PaymentOccurrence modelleri, Domain recurrence servisi, Application CRUD sözleşmeleri, controller/hata yönetimi, SQL konfigürasyonları/InitialCreate unique-index/rowversion ve Testcontainers testleri incelendi. Başlangıç çalışma ağacı temizdi. Mevcut yapı ve API'ler korundu; .NET 8.0.426 SDK, net8.0/C# 12, EF Core 8.0.21 ve SQL Server kullanıldı. Yeni NuGet paketi veya SDK yükseltmesi yoktur.
+
+Plan: Domain durum kuralları → Application DTO/validation/use case → atomik SQL store → üç HTTP ucu → Domain/SQL/yarış/rollback testleri → Kestrel doğrulaması → dokümantasyon ve duruş.
+
+### Endpoint'ler ve davranışlar
+
+| Uç | Sonuç |
+| --- | --- |
+| PUT /api/payments/{paymentId}/occurrences/{dueDate}/status | Yeni kayıt/güncelleme/idempotent tekrar/reset için 200 DTO; validation 400, sahiplik/yokluk 404, conflict/pasif plan 409 |
+| GET /api/payments/{paymentId}/occurrences | Kayıtlı son durum geçmişi; FromDate/ToDate/Status ve bounded pagination; 200 PagedResult |
+| GET /api/payments/{paymentId}/occurrences/{dueDate} | Kayıt varsa DTO; aktif planın geçerli takvim tarihinde yoksa sanal Pending; geçersiz tarih 400 |
+
+Domain PaymentOccurrence.Create/ChangeStatus altı temel durum geçişini uygular. Paid pozitif ve SQL decimal(19,4) sınırlarında ActualAmount ister; eksik tutar varsayılan plan tutarına çevrilmez. Pending/Skipped tutar kabul etmez, PaidAtUtc null olur. PaidAtUtc/CreatedAtUtc sunucu UTC zamanıdır; istemci bunları belirleyemez. Aynı Paid/Skipped durum+tutar tekrarı Id/CreatedAtUtc/PaidAtUtc/rowversion değiştirmez; Paid tutarı düzeltilirse güncel token gerekir ve PaidAtUtc yeni işlemin zamanıdır.
+
+Yeni/değişen occurrence tarihi `OccurrenceScheduleRules` üzerinden mevcut IPaymentRecurrenceCalculator.GetNextOccurrence ile doğrulanır; ikinci bir takvim algoritması yoktur. Geçerli ay sonu/artık yıl ve StartDate/EndDate sınırları aynen kullanılır. Bir tarihteki yazma başka tarihleri değiştirmez. Pasif planın kayıtlı geçmişi okunur; bütün status yazmaları 409 ile engellenir. Plan takvimi sonradan değişirse önceki kayıtlar okunur; artık geçerli olmayan tarihe değişiklik 400 olur. Pasif planda eksik kayıt için sanal Pending üretilmez (404).
+
+### Pending, geçmiş ve concurrency kararları
+
+- Gelecekteki bütün Pending tarihleri DB'ye yazılmaz. Aktif/geçerli tarihte GET ve kayıtsız Pending PUT sanal DTO döndürür.
+- Paid/Skipped kayıt oluşturur. Farklı duruma/tutara geçiş mevcut occurrence'ın canonical Base64 rowVersion değerini ister; eksik/eski token 409, bozuk token 400'dür. Parent plan token'ı kullanılmaz.
+- Aynı durum+tutar tekrarı, token eski/eksik olsa da yazma yapmaz. Aynı tarihe eşzamanlı aynı Paid istekleri tek kayıt ve aynı sonucu, farklı durumlar 200/409 üretir.
+- Pending'e dönüş güncel token ile kaydı siler; tekrar reset kayıtsız Pending üzerinde no-op olur. Legacy Pending satırları otomatik topluca temizlenmez.
+- Silme, önceki durum/tutar/ödeme zamanı/oluşturma kimliğini kaldırır. Ayrı AuditLog olayı yazılmaz; bu append-only audit veya tüm geçişlerin işlem defteri değildir. Çok geç gelen tokensız eski oluşturmayı reset sonrası yeni istekten ayıran kalıcı idempotency anahtarı yoktur. Plan adı/para birimi snapshot'ı da tutulmaz. Bu sınırlar API.md'de açıklandı.
+- Parent, kullanıcı ve plan Id'siyle parametreli UPDLOCK/HOLDLOCK sorgusunda doğrulanıp Serializable transaction süresince kilitlenir. Recurrence doğrulaması, mevcut satır okuması ve yazma aynı transaction içindedir; eşzamanlı plan değişikliği/silme ile sıralanır.
+- Retry destekli EF execution strategy transaction'ın tamamını sarar; her denemede tracked durum temizlenir. SQL unique 2601/2627 ve FK 547 güvenli conflict'e çevrilir; rowversion EF update/delete koruması sürer. Başarısız yazma geri alınır; ham SQL hatası response'a girmez.
+- Geçmişte AsNoTracking, sabit üç sorgu (sahiplik/count/page), DueDate DESC/Id ASC ve plan/tarih indeksi kullanılır; N+1 veya toplu gelecek üretimi yoktur. Count/page tek snapshot değildir; aynı plan yazmaları DB üzerinde serialize edilir. Yük testi/üretim throughput iddiası yoktur.
+
+### Dosyalar ve veritabanı etkisi
+
+Yeni dosyalar:
+
+- `src/PayAhead.Domain/PaymentOccurrence.Behavior.cs` (entity davranışı ve OccurrenceScheduleRules)
+- `src/PayAhead.Application/Occurrences/Contracts.cs`, `Validators.cs`, `OccurrenceService.cs`
+- `src/PayAhead.Infrastructure/OccurrenceStore.cs`
+- `src/PayAhead.Api/Controllers/OccurrencesController.cs`, `OccurrenceSchemaFilter.cs`
+- `tests/PayAhead.UnitTests/OccurrenceTests.cs`
+- `tests/PayAhead.IntegrationTests/OccurrenceApiTests.cs`
+
+Değişen dosyalar: Domain `Entities.cs` (partial), Application/Infrastructure `DependencyInjection.cs`, API `Program.cs` (enum ve schema kaydı), `ApiExceptionHandler.cs` (güvenli Domain validation açıklaması), `docs/API.md`, `ARCHITECTURE.md`, `DATABASE.md`, `DEVELOPMENT.md`, bu ilerleme dosyası, `README.md`, `AGENTS.md`.
+
+Şema değişmedi; yeni migration yoktur. Mevcut unique(PaymentPlanId,DueDate), FK, decimal(19,4), state check constraint ve rowversion zaten yeterliydi. `ef migrations has-pending-model-changes` model farkı olmadığını doğruladı. Mevcut migration/snapshot ve geliştirme/üretim kayıtları değiştirilmedi veya silinmedi. Testler sadece kendi rastgele veritabanlarını oluşturup temizledi.
+
+### Gerçek komut ve sonuçlar
+
+Dotnet komutları proje `.tools/dotnet/dotnet.exe` SDK **8.0.426** ile çalıştırıldı; DOTNET_CLI_HOME=.tools/cli, DOTNET_ROOT=.tools/dotnet. Docker bin dizini yalnızca oturum PATH'ine eklendi. PAYAHEAD_TEST_SQLSERVER kaldırılarak Testcontainers yolu kullanıldı; Engine 29.9.1 Linux çalışıyordu.
+
+| Kontrol | Gerçek sonuç |
+| --- | --- |
+| İlk yeni occurrence unit testi | 29 geçti |
+| İlk yeni occurrence SQL test turu | 31 geçti |
+| Son dotnet restore PayAhead.sln | Başarılı; tüm projeler güncel |
+| Son dotnet build PayAhead.sln --no-restore | Başarılı; 0 uyarı, 0 hata |
+| Son dotnet test PayAhead.sln --no-build --logger trx;LogFilePrefix=phase4-final | **165 unit + 77 integration başarılı; 0 başarısız, 0 atlanan** |
+| dotnet ef migrations has-pending-model-changes --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api --no-build | Model değişikliği yok |
+| Kestrel + gerçek Compose SQL Server, son tekrar | readiness 200; plan POST 201; virtual GET/Paid/repeat/Skipped/history/reset/boş history 200; stale PUT 409; invalid due GET 400; OpenAPI 200 |
+
+Son TRX: `tests/PayAhead.UnitTests/TestResults/phase4-final_net8.0_20261021132459.trx` ve `tests/PayAhead.IntegrationTests/TestResults/phase4-final_net8.0_20261021132546.trx`; Git dışında tutulur.
+
+### Test kapsamı
+
+165 unit = önceki **136** + yeni **29**. Yeni testler altı durum geçişi, PaidAtUtc oluşturma/temizleme, tutar/null/precision, invalid status/token/UTC, ay sonu/artık yıl/invalid recurrence, sanal Pending, tekrarda tek kayıt/zamanın korunması, eksik/eski version, reset'in idempotence'ı, pasif/değişmiş plan okuma-yazma politikası ve liste doğrulamasını kapsar. Birim memory store SQL kanıtı sayılmadı.
+
+77 integration = önceki **42** + yeni **35**. Gerçek SQL Server Testcontainers üzerinde insert/update/reset-delete, yalnızca ilgili tarihin değişmesi, idempotent tekrar, date/status/range/pagination filtreleri, kullanıcı izolasyonu/anonim erişim, invalid route/body/overposting, iki eşzamanlı aynı veya farklı status insert'i, eski token ve iki yazar, occurrence rowversion'ın ham EF düzeyinde çatışması, gerçek unique/FK ihlali ve store tarafından güvenli conflict'e eşlenmesi, mevcut plan delete koruması, SQL yazımı sonrası enjekte edilen hata ile transaction rollback, plan lock yarışında takvim değişikliği/silme, takvim editinden sonra geçmişin okunması ve OpenAPI required status doğrulandı. SQLite/EF InMemory yoktur. Bütün önceki CRUD ve recurrence testleri de geçti.
+
+Parent yarış testleri DbCommandInterceptor sinyali ile gerçek SQL kilidinin önünde koordine edilir; rastgele sleep'e dayanmaz. Rollback testi SaveChanges sonrası, commit öncesi hata üretir ve DB'de satır kalmadığını doğrular. Unique/FK hata çeviri testleri gerçek constraint ihlali üretir; mocked exception kullanılmaz.
+
+### Kestrel doğrulaması ve ara hatalar
+
+Git dışı `.tools/phase4-smoke.ps1`, Compose SQL Server'da sadece `PayAheadSmoke_<guid>` veritabanı oluşturdu, mevcut migration'ı uyguladı, geliştirme test kimliğini seed etti ve API'yi gizli ayrı Kestrel sürecinde başlattı. Üç endpoint, durum geçişleri, idempotence, stale token, invalid tarih ve Swagger gerçek HTTP ile doğrulandı. Betik kendi API sürecini ve sadece kendi geçici veritabanını temizledi. Gerçek parolalar kaynak koduna veya çıktıya yazılmadı.
+
+İlk unit derlemesinde FluentValidation ValidateAsync için belirsiz target-typed new açık request tipine çevrildi. Son tüm testler geçti. Kestrel betiğinin ilk denemesinde PowerShell stdin UTF-8 BOM, sqlcmd seed/cleanup girdi hatası oluşturdu; HTTP akışı o denemede başarılı sayılmadı. Adı ayrıca doğrulanan yalnızca o denemenin geçici DB'si temizlendi. Betik BOM'suz SQL dosyalarını container'a kopyalayıp sqlcmd -i ile okuyacak şekilde düzeltildi; sonraki Kestrel akışı ve cleanup exit code 0 ile tamamlandı. Ürün migration veya SQL model hatası değildi.
+
+### Sınırlamalar ve duruş
+
+Faz 4 için açık derleme/test/HTTP hatası veya atlanan test yoktur. Kayıtlı durum geçmişi immutable audit değildir; reset silme, kalıcı idempotency anahtarı ve para birimi snapshot'ı sınırları yukarıda ve API.md'de açıklanmıştır. Üretim giriş/JWT Faz 6'da; şu an yalnızca Development kimliğiyle API denemesi yapılır, Production/Staging koruması değiştirilmedi. Hesaplanan takvim/özet, bildirim veya başka Faz 5+ işlevi eklenmedi.
+
+**Duruş:** Faz 4 tamamlandı. Faz 5 için açık kullanıcı onayı bekleniyor.

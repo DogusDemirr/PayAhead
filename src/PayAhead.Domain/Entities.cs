@@ -34,7 +34,7 @@ public sealed partial class PaymentPlan
     public DateTime UpdatedAtUtc { get; set; }
     public byte[] RowVersion { get; set; } = [];
 }
-public sealed class PaymentOccurrence
+public sealed partial class PaymentOccurrence
 {
     public Guid Id { get; set; }
     public Guid PaymentPlanId { get; set; }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using PayAhead.Application.Payments;
 using PayAhead.Domain.Recurrence;
+using PayAhead.Application.Occurrences;
 
 namespace PayAhead.Application;
 
@@ -19,6 +20,7 @@ public static class DependencyInjection
         services.TryAddSingleton(TimeProvider.System);
         services.AddSingleton<IPaymentRecurrenceCalculator, PaymentRecurrenceCalculator>();
         services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IOccurrenceService, OccurrenceService>();
         return services;
     }
 }

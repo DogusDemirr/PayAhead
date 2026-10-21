@@ -1,7 +1,7 @@
 # PayAhead çalışma kuralları
 
 - Açıklamalar, ilerleme raporları ve dokümantasyon Türkçe; kod ve API adları İngilizce olmalıdır.
-- Yalnızca onaylanmış fazı uygulayın. Faz 3 onaylandı; Faz 3 tamamlandıktan sonra Faz 4 için açık onay bekleyin.
+- Yalnızca onaylanmış fazı uygulayın. Faz 4 onaylandı; Faz 4 tamamlandıktan sonra Faz 5 için açık onay bekleyin.
 - Tüm projeler net8.0, C# 12 ve EF Core 8.x kullanır. Sürüm yükseltmesi açık onay gerektirir.
 - Domain bağımsızdır; Application → Domain; Infrastructure → Application/Domain; API → Application/Infrastructure.
 - İş kuralları endpoint/controller içinde tutulmaz. MediatR, genel repository veya karmaşık CQRS eklemeyin.
