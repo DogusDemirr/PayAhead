@@ -87,6 +87,14 @@ public sealed class UserSubscription
     public string Status { get; set; } = "";
     public DateTime? CurrentPeriodEndUtc { get; set; }
     public DateTime? LastVerifiedAtUtc { get; set; }
+    public bool IsStoreVerified { get; set; }
+    public bool AutoRenew { get; set; }
+    public string StoreEnvironment { get; set; } = "";
+    public string? ProtectedEvidence { get; set; }
+    public DateTime? NextVerificationAtUtc { get; set; }
+    public DateTime CreatedAtUtc { get; set; }
+    public DateTime UpdatedAtUtc { get; set; }
+    public byte[] RowVersion { get; set; } = [];
 }
 public sealed class RefreshToken
 {

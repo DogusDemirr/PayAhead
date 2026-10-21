@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+ <ItemGroup>
+  <ProjectReference Include="../../src/PayAhead.Api/PayAhead.Api.csproj" />
+  <Compile Include="../PayAhead.Testing/StoreDoubles.cs" Link="StoreDoubles.cs" />
+ </ItemGroup>
+</Project>

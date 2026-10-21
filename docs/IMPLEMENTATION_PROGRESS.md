@@ -1,5 +1,79 @@
 # Uygulama ilerlemesi
 
+## Faz 9 — Premium Membership, Entitlements & Store Purchase Verification
+
+Kullanıcının Faz 9 isteğiyle onaylandı; aşağıdaki eski faz duruşları tarihsel kayıttır. Faz 10 veya React Native frontend başlatılmadı. AGENTS, Faz 8 ilerlemesi, güvenlik, domain/modeller, migration ve test altyapısı incelendi. Kısa plan: merkezi lifecycle/limit policy → gerçek adapter ve immutable persistence → authenticated inbox/reconcile → gerçek SQL/API/Kestrel doğrulaması → dokümantasyon. Clean Architecture, net8.0, C#12 ve EF Core8.0.21 korundu.
+
+### Uygulanan kapsam
+
+- UserSubscription yalnızca mağazada doğrulanmış PayAhead Premium üyeliğidir; TrackedSubscription harici takip olarak kaldı, entitlement vermez. Eski üyelikler IsStoreVerified=false ile Free'dir.
+- Merkezi IEntitlementService / SqlEntitlementService Free5 aktif plan / plan başına1 etkin reminder /3 aktif harici abonelik uygular. Premium varsayılan1000/10/1000 ve bounded konfigürasyon. Basic dashboard/calendar açık; AdvancedSubscriptionTracking yeteneği Premium'dur, mevcut Faz8 okumaları kapanmaz.
+- Active/GracePeriod geçerli, taze ve gelecekteki erişim bitişiyle Premium; BillingRetry/Expired/Revoked/Free erişimsiz. AutoRenew=false ücretli dönemi korur. Expiration/downgrade verileri veya etkin eski kuralları silmez; yeni oluşturma/aktifleştirme güncel limite tabidir. Trial slotları ortak limitten, öncelik1/3/7/0; Free yeni trial1-gün kuralı.
+- Anonim GET premium/plans; JWT ile GET premium/me ve entitlements, POST verify-purchase ve restore. Verify/restore10/dakika; no-store, strict DTO, isPremium kabul edilmez. Limit403 ProblemDetails/code entitlement_limit; binding409, proof400, unavailable503.
+- Apple ES256 JWS, pin'li AppleRootCA-G3, OID/chain ve online revocation, bundle/environment/product/appAccountToken ve Production app ID; App Store Server API güncel family durumu ve signed renewal/transaction. Google service-account OAuth, subscriptionsv2.get, configured package/product/account/environment/state/expiry/linkage ve gerekli acknowledge. Deprecated verifyReceipt kullanılmadı.
+- Apple V2 JWS ve Google Pub/Sub OIDC RS256 Google JWKS, issuer/audience/expiry/email_verified/email + payload subscription/package; unique inbox event replay engeli. Event sırası yerine güncel mağaza state reconcile edilir. Worker varsayılan kapalı; SQL atomic claim/2dk lease/10attempt/30s–1h retry, boş turda6saatlik üyelik yenileme, hata15dk retry. Doğrulama freshness en fazla24saat, sonra fail-closed.
+- StorePurchase token/transaction bağı ve StoreTransaction audit unique; owner compositeFK; UserSubscription rowversion. AES-GCM key ID/nonce/tag ile şifreli reconcile kanıtı ve inbox referansı, SHA256 token hash. Store HTTP URL/body/token logger kapalı; secret kaynak koda yazılmadı.
+- Shipping API'de fake yok; UseFake=true her ortamda startup reddi. Test double yalnızca test assembly ve ayrı guarded smoke executable içinde. Program ortak PayAheadApi.Build pipeline'ına taşındı; Docker publish yalnızca src/ içerir.
+
+### Migration / gerçek SQL
+
+Yeni `20261021143405_VerifiedPremiumMembership` mevcut dört migration korunarak eklendi. UserSubscriptions yeni alanlar + rowversion + owner alternate key; StorePurchases, StoreTransactions, StoreWebhookInbox. SQL model toplam14tablo/14PK/14FK. Boş DB ve veri içeren Faz8 legacy upgrade testleri geçti; legacy Active otomatik Premium olmadı. Unique token/transaction, cross-owner compositeFK ve stale membership rowversion SQL üzerinde doğrulandı.
+
+Mevcut Docker SQL Server2022 container `payahead-phase1-sqlserver-1` healthy,127.0.0.1:14333. PayAheadDockerDevelopment önce4/sonra5migration; Users/PaymentPlans/Occurrences/RefreshTokens/UserSubscriptions önce ve sonra0, tracked0. Veri silinmedi;14trusted FK, DBCC CHECKCONSTRAINTS hata yok. Başlangıç geliştirme DB boş olduğu için gerçek dolu veri koruma kanıtı ayrıca izole legacy upgrade testidir. `has-pending-model-changes`: değişiklik yok. İlk model-check denemesi eksik design-time connection env yüzünden çalışmadı; DB bağlantısı gerektirmeyen açık dummy connection ile tekrarlandı ve geçti.
+
+### Build ve test kanıtı (2026-10-21)
+
+| Kontrol | Gerçek sonuç |
+| --- | --- |
+| SDK | Yerel .tools/dotnet8.0.426; .NET9/10'a yükseltilmedi |
+| dotnet restore PayAhead.sln | Başarılı; tüm projeler güncel |
+| dotnet build PayAhead.sln --no-restore | Başarılı;0warning,0error |
+| Unit | **364/364**, başarısız0, atlanan0 (Faz8 330 + Faz9 34) |
+| Gerçek SQL integration | **228/228**, başarısız0, atlanan0 (Faz8 201 + Faz9 27) |
+| Toplam | **592/592** (son unit ve tam SQL sonuçlarının toplamı) |
+| Ayrı PremiumSmokeHost restore/build | Başarılı;0warning,0error |
+| SmokeHost Production başlangıcı | Beklenen Test host requires Testing environment reddi |
+| EF model/snapshot | Bekleyen model değişikliği yok |
+
+Son TRX (Git dışında): `tests/PayAhead.UnitTests/TestResults/phase9-final-unit_net8.0_20261021180246.trx`; `tests/PayAhead.IntegrationTests/TestResults/phase9-final_net8.0_20261021175401.trx`. PAYAHEAD_TEST_SQLSERVER unset; SQL testleri gerçek SQL Server2022 Testcontainers ile çalıştı. InMemory/SQLite veya sessiz skip yok.
+
+Unit: lifecycle/freshness/expiration/cancellation, merkezi limit tanımı, AES-GCM roundtrip/nonce/tamper, enabled-store config, Apple unsigned/malformed/bundle/environment reddi, Google state/account/product/environment/null testPurchase/linked token hash ve gerçek RSA imzalı kontrollü JWKS ile OIDC pozitif/yanlış audience/email/imza/expiry. Restore/binding/duplicate/replay/concurrency gibi kalıcılık senaryoları aşağıdaki SQL API testlerindedir; saf unit testi olarak raporlanmaz.
+
+Yeni SQL API testleri gerçek shipping entitlement policy kullanır: public catalog/JWT; legacy/tracked isolation; Free create/activation/grandfather; PaymentPlan eşzamanlı4+2; reminder ve tracked eşzamanlı sınırlar; trial slotları; Premium üç kaynak technical limit; Active/Grace/Retry/Expired/Revoked; AutoRenew kapalı erişim; süre dolması ve veri koruma; verify/restore idempotency/encryption; cross-user409; webhook duplicate/out-of-order/current-state; expiry sonrası restore; client isPremium reddi; credential yokken shipping503; Production/Development UseFake startup reddi; unique indexes, ownerFK/rowversion ve dolu legacy upgrade.
+
+Önceki Faz1–8 regresyon HTTP fixture'ları yalnızca test assembly'sinde yüksek limitli RegressionEntitlements kullanır; orijinal çoklu rule/bulk veri senaryoları korunur. Bu testler gerçek Free policy kanıtı diye sunulmaz. Faz9 testleri gerçek SqlEntitlementService'i kullanır. Direkt store testlerinde varsayılan shipping policy vardır. Store doubles gerçek satın alma kanıtı değildir.
+
+Ara turlar: İlk yeni SQL24/24; ilk tam363unit+225SQL geçti. Ardından çakışan transaction/token köklerinin açık409 reddi ve webhook timeout/network503 eşlemesi gözden geçirildi; stale rowversion/ownerFK ve ek Premium reminder/tracked + yarış testleri eklendi. Tam363+228 geçti. Son Google testPurchase=null ayrımı ve linked-token hash unit testiyle build0/0 ve unit364/364 geçti; SQL/policy akışları değişmediği için tam SQL turu tekrar edilmedi. Script hazırlığında newline/header araması bir kez başarısız oldu; düzeltilip gerçek smoke tamamlandı. Test başarısızlığı/skip gizlenmedi. NuGet.Config sandbox erişimi, Docker ve yerel HTTP süreçleri için escalation kullanıldı; sistem execution policy değiştirilmedi.
+
+### Gerçek Kestrel + SQL + JWT
+
+Önce Git dışı `.tools/phase9-smoke.ps1`, ardından kaynak kontrolündeki `tests/PayAhead.PremiumSmokeHost/smoke.ps1` ayrı PayAheadSmoke_<guid> DB ve5migration, yalnızca127.0.0.1 üzerinde kendi hidden Kestrel sürecini kullandı; iki tur da geçti. PayAhead.PremiumSmokeHost Testing env + izole DB adı + rastgele HMAC key ister; gerçekJWT register/login, gerçekSQL, shippingpolicy ve yalnızca test store double. Notification Expo worker kapalı, Premium worker açık. Credential/proof/JWT çıktıya yazılmadı.
+
+| Adım | Sonuç |
+| --- | --- |
+| Readiness / anonymous me |200 /401 |
+| Register / login / Free me |201 /200 /200;5/1/3 |
+| İlk5plan / altıncı |201 /403 |
+| Test proof verify / Premium |200;1000/10/1000 |
+| Altıncı plan Premium |201 |
+| Süre dolması / yeni aktif plan |200 Expired Free /403 |
+| Restore güncel test state |200 Premium |
+| İkinci kullanıcının restore denemesi |409 |
+| İmzalı test revocation webhook iki kez |202 /202 |
+| Worker reconcile |Me200 Revoked/Free |
+| SQL replay ve veri kontrolü |1inbox/1completed/6plan korundu |
+| Swagger |200 |
+
+Smoke exit0; yalnızca kendi test süreci/geçici DB temizlendi. Production smoke executable başlangıcı ayrıca reddedildi; test fake shipping API'ye dahil değil. **Gerçek Apple/Google satın alması, App Store sandbox, Play license tester, canlı RTDN/V2, Apple OCSP/CRL ve service-account IAM/acknowledgement bu makinede doğrulanmadı.** Bunlar production öncesi credential/ürün/mağaza kurulumu ile ayrıca denenmelidir. Kontrollü test sonucu canlı mağaza doğrulaması gibi sunulmaz.
+
+### Dosyalar, sınırlar ve duruş
+
+Yeni Domain Membership; Application/Premium; Infra policy/premiumservice/storesecurity/http/apple/google/webhook/adapters/publicAppleRoot; API PremiumController/PremiumWorker/PayAheadApi; migration+snapshot; test provider, guarded smoke host, Premium unit/SQL testleri ve regression fixture. Mevcut plan/reminder/subscription yazma yolları centralized policy kullanır. README, API, ARCHITECTURE, DATABASE, DEVELOPMENT, SECURITY, NOTIFICATIONS, SUBSCRIPTIONS, AGENTS ve bu progress güncellendi; PREMIUM.md/STORE_INTEGRATION.md eklendi.
+
+Açık build/test/HTTP hatası veya atlanan test yok. Üretim credential yok; stores/worker varsayılan kapalı. Bilinmeyen Google replacement webhook token'ı otomatik kullanıcıya bağlanmaz, verify/restore gerekir. Mağaza outage/bildirim gecikmesi, freshness içinde eski state'i tutabilir; anlık refund garantisi yoktur. Inbox/transaction otomatik purge/dead-letter operasyon servisi yok;10deneme sonrası operatör incelemesi gerekir. Pin'li Apple root rotasyonu kontrollü güncelleme ister. Hesap transferi, finansal refund muhasebesi, eski kanıtsız satın alma eşleştirme, frontend yok. Daha önce etkin limit üstü kayıtlar ve bildirimleri korunur. Ayrıntılı davranış/secret rotasyonu [PREMIUM.md](PREMIUM.md), [STORE_INTEGRATION.md](STORE_INTEGRATION.md).
+
+**Duruş: Faz 9 tamamlandı; Faz 10 başlatılmadı. Kullanıcı onayı bekleniyor.**
+
 ## Faz 1 — Çözüm temeli
 
 Tarih: 21 Ekim 2026 (Europe/Istanbul). Durum: **Faz 1 tamamlandı**. Faz 2 başlatılmadı; açık kullanıcı onayı bekleniyor.

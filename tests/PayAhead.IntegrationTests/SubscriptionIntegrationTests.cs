@@ -41,7 +41,7 @@ public sealed class SubscriptionIntegrationTests(SqlServerFixture sql) : IClassF
         await using var db=Db();await db.Database.MigrateAsync();
         foreach(var id in new[]{user,other}) { db.Users.Add(new() { Id=id,Email=id+"@test.invalid",NormalizedEmail=(id+"@TEST.INVALID").ToUpperInvariant(),DisplayName="Test",PasswordHash="seed-only",CreatedAtUtc=Now,UpdatedAtUtc=Now });db.UserSettings.Add(new() { UserId=id,TimeZoneId="UTC",CreatedAtUtc=Now,UpdatedAtUtc=Now }); }
         await db.SaveChangesAsync();
-        factory=new WebApplicationFactory<Program>().WithWebHostBuilder(b=>b.UseEnvironment("Development").UseSetting("ConnectionStrings:PayAhead",connection).UseSetting("DevelopmentIdentity:Enabled","false")
+        factory=new WebApplicationFactory<Program>().WithWebHostBuilder(b=>b.UseEnvironment("Development").UseRegressionPremium().UseSetting("ConnectionStrings:PayAhead",connection).UseSetting("DevelopmentIdentity:Enabled","false")
             .UseSetting("Notifications:Enabled","false").ConfigureTestServices(services=>services.AddSingleton<TimeProvider>(clock)));
         client=factory.CreateClient();Authenticate(user);
     }

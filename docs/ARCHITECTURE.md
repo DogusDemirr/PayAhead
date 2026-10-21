@@ -1,6 +1,14 @@
 # Mimari
 
-Domain on temel varlığı, enumları ve bağımsız recurrence hesaplayıcısını içerir; dış bağımlılığı yoktur. Application doğrulama kaydı, ICurrentUser sözleşmesi ve ödeme kullanım senaryolarını içerir. Infrastructure SQL Server DbContext, Fluent API yapılandırmaları ve migration içerir. API HTTP, kimlik doğrulama sınırı, DI, ProblemDetails, sağlık denetimi ve Serilog yapılandırmasını içerir.
+Domain varlıkları, enumları ve bağımsız recurrence hesaplayıcısını içerir; dış bağımlılığı yoktur. Application doğrulama kaydı, ICurrentUser sözleşmesi ve kullanım senaryolarını içerir. Infrastructure SQL Server DbContext, Fluent API yapılandırmaları ve migration içerir. API HTTP, kimlik doğrulama sınırı, DI, ProblemDetails, sağlık denetimi ve Serilog yapılandırmasını içerir.
+
+## Faz 9 — Üyelik sınırı
+
+Domain MembershipRules yalnızca store-verified, geçerli süreli ve taze Active/GracePeriod üyeliklere Premium verir. Application/Premium, IEntitlementService, IStorePurchaseVerifier, IStoreWebhookAuthenticator ve IPremiumService sözleşmelerini tanımlar. Infrastructure SqlEntitlementService sayım/SQL user lock; PremiumService immutable binding, encrypted persistence ve inbox reconcile; AppleStoreClient/GoogleStoreClient gerçek HTTP adapter'larıdır. Controller iş kuralı içermez. TrackedSubscription entitlement kaynağı değildir.
+
+PayAheadApi.Build ortak shipping pipeline'ı kurar; normal Program yalnızca Build/Run yapar. Ayrı test executable DI override ile test sağlayıcısı kullanabilir; production proje referans grafiğinde test kaynakları bulunmaz. Shipping `Stores:UseFake=true` başlangıcı reddeder. Test host Testing + izole DB + HMAC key + loopback gerektirir. Eski regresyon fixture'ları kendi test assembly'sinde yüksek limitli policy kullanır; yeni Premium SQL testleri gerçek SqlEntitlementService ile Free/Premium sınırını doğrular.
+
+PremiumWorker SQL inbox claim/lease ve güncel store reconcile yapar; periyodik yeniden doğrulama aynı kullanıcı kilidini kullanır. Entitlement JWT claim'inden değil DB + UTC saatten hesaplanır. Veri, geçici store kesintisi ve downgrade politikası [PREMIUM.md](PREMIUM.md); adapter/credential sınırları [STORE_INTEGRATION.md](STORE_INTEGRATION.md).
 
 Faz 2'de PaymentService, ödeme DTO'ları ve FluentValidation kuralları Application içinde eklendi. Ödemeye özel IPaymentPlanStore arayüzünü Infrastructure/PaymentPlanStore EF Core ile uygular. PaymentsController yalnızca HTTP eşlemesi yapar; DbContext sorgusu veya iş kuralı içermez. Domain PaymentPlan.Create/UpdateDetails temel kuralları korur. Genel repository/CQRS katmanı eklenmedi; Domain nesneleri HTTP yanıtı olarak dışarı açılmaz.
 

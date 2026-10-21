@@ -1,6 +1,6 @@
 # PayAhead Backend
 
-React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1–8 altyapı, ödeme CRUD, recurrence, occurrence geçmişi, dashboard/upcoming/calendar, JWT authentication ve reminder/device/settings API, SQL tabanlı bildirim worker ve harici abonelik/trial takibi uygulanmıştır. Expo adapter hazırdır; gerçek cihaz teslimatı ayrıca doğrulanmalıdır.
+React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1–9 altyapı, ödeme CRUD, recurrence, occurrence geçmişi, dashboard/upcoming/calendar, JWT, bildirim worker, harici abonelik/trial ve Premium entitlement/mağaza adapter'ları uygulanmıştır. Gerçek Apple/Google satın alması ve Expo cihaz teslimatı ayrıca doğrulanmalıdır.
 
 ## Gereksinimler
 
@@ -131,18 +131,24 @@ Invoke-RestMethod -Headers $headers 'http://localhost:5080/api/dashboard/summary
 
 Varsayılan başlangıç kullanıcı timezone'undaki bugündür; UserSettings yok/geçersizse UTC fallback, context.usedTimeZoneFallback ile görünür. Varsayılan bitiş from+30 (sınırlar dahil 31 tarih). Upcoming varsayılan Pending ve sayfalıdır; Calendar status belirtilmezse tüm durumları gösterir. Pending plan tutarı, Paid gerçek tutar kullanır; Skipped/Paid yaklaşan borca girmez. TRY/USD/EUR hiçbir zaman tek toplamda birleştirilmez. Calendar günlük toplamı Pending borcudur.
 
-Pasif planlar yeni Pending üretmez; aralıktaki kayıtlı Paid/Skipped geçmişi korunur. Deactivation zamanı ve currency snapshot bulunmadığından eski aktiflik/para birimi tahmin edilmez; metadata güncel parent planından gelir. En fazla 366 dahil gün, 1000 ilgili plan ve 50.000 sonuç; aşımda 400 ProblemDetails, sessiz kısmi toplam yoktur. Uçlar read-only'dır ve occurrence kaydetmez. Tam DTO/örnekler [API.md](docs/API.md), test ayrıntıları [IMPLEMENTATION_PROGRESS.md](docs/IMPLEMENTATION_PROGRESS.md) içindedir. Faz 6 authentication uygulanmıştır; Faz 9 için onay beklenir.
+Pasif planlar yeni Pending üretmez; aralıktaki kayıtlı Paid/Skipped geçmişi korunur. Deactivation zamanı ve currency snapshot bulunmadığından eski aktiflik/para birimi tahmin edilmez; metadata güncel parent planından gelir. En fazla 366 dahil gün, 1000 ilgili plan ve 50.000 sonuç; aşımda 400 ProblemDetails, sessiz kısmi toplam yoktur. Uçlar read-only'dır ve occurrence kaydetmez. Tam DTO/örnekler [API.md](docs/API.md), test ayrıntıları [IMPLEMENTATION_PROGRESS.md](docs/IMPLEMENTATION_PROGRESS.md) içindedir.
 
 ## Faz 6 — Authentication
 
-POST `/api/auth/register`, `/api/auth/login`, `/api/auth/refresh`, `/api/auth/logout`; GET `/api/users/me` eklendi. Parola hashleme, JWT, rotasyon, reuse, logout ve üretim sınırları [SECURITY.md](docs/SECURITY.md) içinde; başlatma ve PowerShell akışı [DEVELOPMENT.md](docs/DEVELOPMENT.md) içindedir. .NET 8 / EF Core 8 korunmuştur. Faz 9 kapsam dışıdır.
+POST `/api/auth/register`, `/api/auth/login`, `/api/auth/refresh`, `/api/auth/logout`; GET `/api/users/me` eklendi. Parola hashleme, JWT, rotasyon, reuse, logout ve üretim sınırları [SECURITY.md](docs/SECURITY.md) içinde; başlatma ve PowerShell akışı [DEVELOPMENT.md](docs/DEVELOPMENT.md) içindedir. .NET 8 / EF Core 8 korunmuştur.
 
 ## Faz 7 — Hatırlatmalar ve bildirim kuyruğu
 
 Reminder CRUD, device upsert/list/delete ve kullanıcı settings GET/PUT eklendi. [NOTIFICATIONS.md](docs/NOTIFICATIONS.md) API örneklerini, timezone/DST politikasını, SQL lease/retry/receipt akışını ve üretim konfigürasyonunu açıklar. Worker varsayılan kapalıdır; gerçek Expo credential olmadan push başarı iddiası yoktur. Sağlayıcı ticket kabulü cihaz teslimatı değildir.
 
-Faz 6 authentication migration mevcut Docker geliştirme veritabanına veri kaybı olmadan uygulandı. Faz 7 DurableNotifications migration da eski migration geçmişini korur; kurulumda yukarıdaki açık EF update komutunu kullanın. [İlerleme kaydı](docs/IMPLEMENTATION_PROGRESS.md) gerçek sonuçları içerir. Faz 9 başlatılmadı.
+Faz 6–9 migration'ları mevcut Docker geliştirme veritabanına geçmişi koruyarak uygulandı; kurulumda yukarıdaki açık EF update komutunu kullanın. [İlerleme kaydı](docs/IMPLEMENTATION_PROGRESS.md) gerçek sonuçları içerir.
 
 ## Faz 8 — Harici abonelikler ve ücretsiz denemeler
 
-Subscription CRUD/cancel, expiring trials ve summary eklendi. Harici abonelik modeli TrackedSubscription, mevcut Premium UserSubscription modelinden ayrıdır; mağaza/premium doğrulaması eklenmedi. Tek finansal kaynak linked PaymentPlan; dashboard/calendar toplamlarına ikinci kaynak eklenmez. Trial bitiş hatırlatmaları aynı SQL worker içinde ayrı hedef kullanır. Lifecycle, örnek body, rowversion, tahmini aylık karşılık ve sınırlamalar [SUBSCRIPTIONS.md](docs/SUBSCRIPTIONS.md) içinde. Faz 9 için açık onay beklenir.
+Subscription CRUD/cancel, expiring trials ve summary eklendi. Harici abonelik modeli TrackedSubscription, Premium UserSubscription modelinden ayrıdır. Tek finansal kaynak linked PaymentPlan; dashboard/calendar toplamlarına ikinci kaynak eklenmez. Trial bitiş hatırlatmaları aynı SQL worker içinde ayrı hedef kullanır. Lifecycle, örnek body, rowversion, tahmini aylık karşılık ve sınırlamalar [SUBSCRIPTIONS.md](docs/SUBSCRIPTIONS.md) içinde.
+
+## Faz 9 — Premium ve mağaza doğrulaması
+
+Free: 5 aktif plan, plan başına 1 aktif reminder, 3 aktif harici abonelik. Premium varsayılan teknik limitleri 1000/10/1000; merkezi policy ile yapılandırılır. Süre dolması mevcut veriyi silmez; yeni oluşturma/aktifleştirme güncel limite tabidir. [PREMIUM.md](docs/PREMIUM.md) lifecycle, API ve React Native sözleşmesini; [STORE_INTEGRATION.md](docs/STORE_INTEGRATION.md) Apple JWS/Server API, Google subscriptionsv2, webhook, encryption keyring ve production kurulumunu açıklar.
+
+Mağazalar ve reconcile worker varsayılan kapalıdır; gerçek credential olmadan Premium verilmez. Test sağlayıcısı yalnızca test assembly'lerindedir. Son doğrulama: .NET 8.0.426, build 0 warning/error, **364 unit + 228 gerçek SQL Server integration**, atlanan 0. Kestrel + gerçek SQL/JWT test sağlayıcılı satın alma/expiry/restore/replay geçti. Canlı mağaza doğrulaması yapılmadı. Faz 10 başlatılmadı.

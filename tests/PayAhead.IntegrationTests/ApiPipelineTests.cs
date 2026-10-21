@@ -32,7 +32,7 @@ public sealed class ApiPipelineTests
     public async Task Actual_api_can_explicitly_enable_development_identity()
     {
         await using var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder
-            .UseEnvironment("Development").UseTestIdentity()
+            .UseEnvironment("Development").UseRegressionPremium().UseTestIdentity()
             .UseSetting("DevelopmentIdentity:Enabled", "true")
             .UseSetting("DevelopmentIdentity:UserId", Guid.NewGuid().ToString()));
         using var client = factory.CreateClient();

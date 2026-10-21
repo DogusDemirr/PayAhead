@@ -1,4 +1,8 @@
-# API sözleşmesi — Faz 5
+# API sözleşmesi — Faz 1–9
+
+Faz 9 üyelik uçları: anonim GET `/api/premium/plans`; JWT ile GET `/api/premium/me`, GET `/api/premium/entitlements`, POST `/api/premium/verify-purchase`, POST `/api/premium/restore`. Son iki uç `{store,productId,evidence}` kabul eder; Apple JWS veya Google purchaseToken, sunucuda doğrulanır. 200 entitlement, 400 geçersiz kanıt, 401 kimlik, 409 hesap bağlama, 429 rate limit, 503 sağlayıcı/config hatası. Ayrıntılı alanlar ve React Native sözleşmesi [PREMIUM.md](PREMIUM.md).
+
+POST `/api/webhooks/apple/subscriptions` ve `/api/webhooks/google/subscriptions` JWT politikası dışında olsa da mağaza JWS / Google OIDC imzası zorunludur; başarılı inbox kabulü 202. Güvenlik ve konfigürasyon [STORE_INTEGRATION.md](STORE_INTEGRATION.md). Premium cevapları no-store'dur. Yeni aktif payment/reminder/subscription veya aktifleştirme güncel 5/1/3 Free / yapılandırılmış Premium limitini aşarsa 403 ProblemDetails, `code=entitlement_limit`; mevcut etkin kayıtlar downgrade ile silinmez.
 
 | Uç | Başarı | Hata | Kimlik |
 | --- | --- | --- | --- |

@@ -38,7 +38,7 @@ public sealed class NotificationIntegrationTests(SqlServerFixture sql) : IClassF
         db.PaymentPlans.Add(new() { Id=planId,UserId=user,Name="Private amount",Amount=123.4567m,StartDate=DateOnly.FromDateTime(Now),CreatedAtUtc=Now,UpdatedAtUtc=Now });
         db.ReminderRules.Add(new() { Id=ruleId,UserId=user,PaymentPlanId=planId,DaysBefore=0,TimeOfDay=new(9,0) });
         db.DeviceTokens.Add(new() { Id=deviceId,UserId=user,Platform="ios",PushToken=PushToken,LastSeenAtUtc=Now }); await db.SaveChangesAsync();
-        factory=new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Development").UseSetting("ConnectionStrings:PayAhead",connection).UseSetting("DevelopmentIdentity:Enabled","false").UseSetting("Notifications:Enabled","false"));
+        factory=new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Development").UseRegressionPremium().UseSetting("ConnectionStrings:PayAhead",connection).UseSetting("DevelopmentIdentity:Enabled","false").UseSetting("Notifications:Enabled","false"));
         client=factory.CreateClient(); Authenticate(user);
     }
     private void Authenticate(Guid id) => client.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",factory.Services.GetRequiredService<ITokenService>().CreateAccessToken(id).Token);
@@ -192,7 +192,7 @@ public sealed class NotificationIntegrationTests(SqlServerFixture sql) : IClassF
     [Fact] public async Task Hosted_worker_schedules_and_processes_real_SQL_with_test_only_fake_sender()
     {
         var fake=new FakePushNotificationSender();
-        await using var workerFactory=new WebApplicationFactory<Program>().WithWebHostBuilder(b=>b.UseEnvironment("Development")
+        await using var workerFactory=new WebApplicationFactory<Program>().WithWebHostBuilder(b=>b.UseEnvironment("Development").UseRegressionPremium()
             .UseSetting("ConnectionStrings:PayAhead",connection).UseSetting("DevelopmentIdentity:Enabled","false")
             .UseSetting("Notifications:Enabled","true").UseSetting("Notifications:AccessToken","test-only-not-a-real-credential")
             .UseSetting("Notifications:PollSeconds","5").ConfigureTestServices(services=>

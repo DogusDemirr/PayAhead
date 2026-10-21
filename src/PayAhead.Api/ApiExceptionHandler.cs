@@ -4,6 +4,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using PayAhead.Application.Payments;
 using PayAhead.Domain;
+using PayAhead.Application.Premium;
 
 namespace PayAhead.Api;
 
@@ -14,6 +15,9 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
         var status = exception switch
         {
             ValidationException or DomainRuleException => 400,
+            StoreVerificationException => 400,
+            EntitlementLimitException => 403,
+            StoreUnavailableException => 503,
             AuthenticationRequiredException => 401,
             ResourceNotFoundException => 404,
             DbUpdateConcurrencyException or ResourceConflictException => 409,
@@ -32,11 +36,14 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
         {
             400 => "İstek doğrulanamadı.",
             401 => "Kimlik doğrulama gerekli.",
+            403 => "Üyelik planının aktif kayıt sınırı aşıldı.",
+            503 => "Mağaza doğrulaması şu anda kullanılamıyor.",
             404 => "Ödeme planı bulunamadı.",
             409 => exception is ResourceConflictException ? exception.Message : "Kaynak başka bir işlem tarafından değiştirildi.",
             _ => "Beklenmeyen sunucu hatası."
         };
         detail.Extensions["traceId"] = context.TraceIdentifier;
+        if(exception is EntitlementLimitException)detail.Extensions["code"]="entitlement_limit";
         if (exception is DomainRuleException) detail.Detail = exception.Message;
         context.Response.StatusCode = status;
         return await problems.TryWriteAsync(new ProblemDetailsContext

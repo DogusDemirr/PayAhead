@@ -3,11 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using PayAhead.Application.Notifications;
 using PayAhead.Application.Payments;
 using PayAhead.Domain;
+using PayAhead.Application.Premium;
 
 namespace PayAhead.Infrastructure;
 
-public sealed class NotificationManagementStore(PayAheadDbContext db, TimeProvider clock) : INotificationManagementStore
+public sealed class NotificationManagementStore(PayAheadDbContext db, TimeProvider clock, IEntitlementService? entitlements = null) : INotificationManagementStore
 {
+    private IEntitlementService Policy => entitlements ?? new SqlEntitlementService(db,new(),clock);
     private async Task<PaymentPlan> Plan(Guid user, Guid plan, CancellationToken ct, bool locked = false)
         => await (locked ? db.PaymentPlans.FromSqlInterpolated($"SELECT * FROM PaymentPlans WITH (UPDLOCK,HOLDLOCK) WHERE Id={plan} AND UserId={user}")
             : db.PaymentPlans.Where(x => x.Id == plan && x.UserId == user)).SingleOrDefaultAsync(ct) ?? throw new ResourceNotFoundException();
@@ -21,6 +23,7 @@ public sealed class NotificationManagementStore(PayAheadDbContext db, TimeProvid
     public Task<ReminderRule> WriteRuleAsync(Guid user, Guid plan, Guid? id, ReminderRequest request, CancellationToken ct)
         => Transaction(async () =>
         {
+            await Policy.LockUserAsync(user,ct);
             await Plan(user, plan, ct, true);
             var time = TimeOnly.ParseExact(request.TimeOfDay!, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
             var rule = id.HasValue ? await db.ReminderRules.SingleOrDefaultAsync(x => x.Id == id && x.UserId == user && x.PaymentPlanId == plan && !x.IsDeleted && x.Target == ReminderTarget.Payment, ct)
@@ -29,6 +32,7 @@ public sealed class NotificationManagementStore(PayAheadDbContext db, TimeProvid
                 throw new ResourceConflictException("Aynı hatırlatma zaten var.");
             if (!id.HasValue && await db.ReminderRules.CountAsync(x => x.PaymentPlanId == plan && !x.IsDeleted && x.Target == ReminderTarget.Payment, ct) >= NotificationPolicy.MaximumRulesPerPlan)
                 throw new ResourceConflictException("Plan başına en fazla 10 hatırlatma olabilir.");
+            if (request.IsEnabled && (!id.HasValue || !rule.IsEnabled)) await Policy.EnsureIncreaseAsync(user,LimitResource.Reminders,plan,1,ct);
             if (!id.HasValue) db.ReminderRules.Add(rule);
             rule.DaysBefore = request.DaysBefore!.Value; rule.TimeOfDay = time; rule.IsEnabled = request.IsEnabled;
             await Cancel(db.NotificationDeliveries.Where(x => x.ReminderRuleId == rule.Id), ct);

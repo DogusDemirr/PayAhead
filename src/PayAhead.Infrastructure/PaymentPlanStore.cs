@@ -2,11 +2,13 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using PayAhead.Application.Payments;
 using PayAhead.Domain;
+using PayAhead.Application.Premium;
 
 namespace PayAhead.Infrastructure;
 
-public sealed class PaymentPlanStore(PayAheadDbContext db) : IPaymentPlanStore
+public sealed class PaymentPlanStore(PayAheadDbContext db, IEntitlementService? entitlements = null) : IPaymentPlanStore
 {
+    private IEntitlementService Policy => entitlements ?? new SqlEntitlementService(db,new(),TimeProvider.System);
     public Task<bool> IsActiveUserAsync(Guid userId, CancellationToken cancellationToken)
         => db.Users.AnyAsync(x => x.Id == userId && x.IsActive, cancellationToken);
 
@@ -28,8 +30,13 @@ public sealed class PaymentPlanStore(PayAheadDbContext db) : IPaymentPlanStore
 
     public async Task AddAsync(PaymentPlan plan, CancellationToken cancellationToken)
     {
-        db.PaymentPlans.Add(plan);
-        try { await db.SaveChangesAsync(cancellationToken); }
+        try { await db.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
+        {
+            await using var tx=await db.Database.BeginTransactionAsync(cancellationToken);
+            await Policy.LockUserAsync(plan.UserId,cancellationToken);
+            if(plan.IsActive)await Policy.EnsureIncreaseAsync(plan.UserId,LimitResource.PaymentPlans,null,1,cancellationToken);
+            db.Entry(plan).State=EntityState.Added;await db.SaveChangesAsync(cancellationToken);await tx.CommitAsync(cancellationToken);
+        }); }
         catch (DbUpdateException ex) when (ex.InnerException is SqlException { Number: 547 })
         {
             throw new ResourceConflictException("Kullanıcı kaydı değişti; işlem tamamlanamadı.");
@@ -38,11 +45,20 @@ public sealed class PaymentPlanStore(PayAheadDbContext db) : IPaymentPlanStore
 
     public async Task UpdateAsync(PaymentPlan plan, byte[] expectedVersion, CancellationToken cancellationToken)
     {
+        await db.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
+        {
+        await using var tx=await db.Database.BeginTransactionAsync(cancellationToken);
+        await Policy.LockUserAsync(plan.UserId,cancellationToken);
         await EnsureIndependent(plan.Id, cancellationToken);
+        var active=await db.PaymentPlans.AsNoTracking().Where(x=>x.Id==plan.Id&&x.UserId==plan.UserId).Select(x=>x.IsActive).SingleAsync(cancellationToken);
+        if(!active&&plan.IsActive)await Policy.EnsureIncreaseAsync(plan.UserId,LimitResource.PaymentPlans,null,1,cancellationToken);
+        db.Entry(plan).State=EntityState.Modified;
         db.Entry(plan).Property(x => x.RowVersion).OriginalValue = expectedVersion;
         // Aynı içerikli PUT da sürüm karşılaştırmasını veritabanında yapmalıdır.
         db.Entry(plan).Property(x => x.UpdatedAtUtc).IsModified = true;
         await db.SaveChangesAsync(cancellationToken);
+        await tx.CommitAsync(cancellationToken);
+        });
     }
 
     public async Task DeleteAsync(PaymentPlan plan, byte[] expectedVersion, CancellationToken cancellationToken)

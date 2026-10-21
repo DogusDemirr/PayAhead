@@ -1,6 +1,6 @@
 # Faz 8 — Harici abonelik ve ücretsiz deneme takibi
 
-Bu faz Netflix/Spotify/iCloud gibi **kullanıcının beyan ettiği harici abonelikleri** takip eder. PayAhead Premium, App Store/Google Play satın alma doğrulaması veya entitlement eklenmedi. Mevcut UserSubscription tablosu Provider/ProductId/ExternalSubscriptionId/LastVerifiedAtUtc alanlarıyla mağaza üyeliğine ayrılmıştır ve yeniden amaçlandırılmadı.
+Bu belge Netflix/Spotify/iCloud gibi **kullanıcının beyan ettiği harici abonelikleri** anlatır. Bunlar TrackedSubscription'dır ve Premium sağlamaz. Faz 9 PayAhead mağaza üyeliği ayrı UserSubscription üzerinden doğrulanır; [PREMIUM.md](PREMIUM.md) ve [STORE_INTEGRATION.md](STORE_INTEGRATION.md) sözleşmeleri geçerlidir. Yeni aktif harici abonelik Free 3, Premium yapılandırılmış limit (varsayılan 1000) ile sınırlıdır; bağlı aktif plan ayrıca plan limitini kullanır.
 
 ## Model ve tek finansal kaynak
 
@@ -107,7 +107,7 @@ Sabit52 hafta/365 gün yıllıklaştırma kullanılır; takvim ayı uzunluğu/le
 
 ## Mevcut worker ile trial reminder
 
-Yeni worker/provider/queue oluşturulmadı. ReminderRule.Target enum eklendi: Payment=0 (legacy default), SubscriptionTrial=1. Trial tarihleri olan abonelik için aynı linked plan altında ayrı rule Id'leriyle0/1/3/7 gün önce09:00 kuralları atomik oluşturulur; EnableTrialReminders genel aç/kapat alanıdır. Bu otomatik trial kuralları generic payment reminders API listesinde/yazma hedefinde yer almaz; o API yalnızca Payment hedefini yönetir. Payment kombinasyonunun aynısı trial için coexist edebilir; unique index artık (PaymentPlanId,Target,DaysBefore,TimeOfDay), delivery dedup hâlâ (RuleId,DueDate,DeviceId).
+Yeni trial worker/provider/queue oluşturulmadı. ReminderRule.Target: Payment=0 (legacy default), SubscriptionTrial=1. Trial tarihleri olan abonelikte dört 0/1/3/7 gün önce 09:00 rule atomik oluşturulur; Faz 9 merkezi slot limitine göre 1/3/7/0 önceliğiyle etkinleştirilir. Free tek 1-gün kuralı, Premium yeterli slotla dört kural açar. EnableTrialReminders genel aç/kapat alanıdır; downgrade mevcut etkin kuralları silmez. Payment ve trial aktif kuralları aynı plan limitini paylaşır. Generic payment reminders API yalnızca Payment hedefini yönetir. Unique index (PaymentPlanId,Target,DaysBefore,TimeOfDay), delivery dedup (RuleId,DueDate,DeviceId).
 
 Trial event DueDate, TrialEndDate değeridir; finansal recurrence günü değildir. Saat/timezone/DST dönüşümü,30gün ileri pencere,24saat catch-up, device/preferences, lease, retry, receipt ve retention Faz7 altyapısıyla ortaktır. Trial scheduler ve send revalidation halen geçerli Trial/TrialEnd/TrialStart/reminder tercihini kontrol eder; Cancelled/Expired/deleted/manual Active trial göndermez. Billing plan AutoRenew=false diye inactive olsa da devam eden trial bitişi için uyarı gönderilebilir.
 
@@ -119,4 +119,4 @@ Plan-first UPDLOCK/HOLDLOCK sırası scheduler ile paylaşılır; subscription+p
 
 Yeni `20261021132035_ExternalSubscriptionTracking`:11. tablo TrackedSubscriptions, status/trial/access checks, unique plan link, ownership FK ve indexes; ReminderRule.Target default0 ve genişleyen unique index. Up veri/kolon silmez; mevcut Premium UserSubscriptions ve payment/reminder/delivery kayıtlarını yeniden amaçlandırmaz. Eski migration dosyaları korunur; startup migrate etmez. Down yeni abonelik verisini düşürür ve eski rule uniqueness ile çakışabilir; otomatik production rollback yapmayın, backup/ileri düzeltme planlayın.
 
-Testler gerçek SQL Server Testcontainers kullanır. Unit lifecycle/validation/timezone/recurrence/forecast ve SQL schema metadata; integration CRUD/summary/ownership/concurrency/rollback/upgrade/worker fake akışını doğrular. Kestrel kendi geçici DB ve gerçek JWT ile denenir. **Gerçek Expo/fiziksel push teslimatı doğrulanmadı.** Premium doğrulaması, banka/provider entegrasyonu, otomatik gerçek iptal, frontend ve Faz9 kapsam dışıdır.
+Testler gerçek SQL Server Testcontainers kullanır. Unit lifecycle/validation/timezone/recurrence/forecast ve SQL schema metadata; integration CRUD/summary/ownership/concurrency/rollback/upgrade/worker fake akışını doğrular. Kestrel kendi geçici DB ve gerçek JWT ile denenir. **Gerçek Expo/fiziksel push teslimatı doğrulanmadı.** Banka/provider entegrasyonu, otomatik gerçek harici abonelik iptali ve frontend kapsam dışıdır. Faz 9 üyelik doğrulaması bu harici aboneliklerden ayrıdır.

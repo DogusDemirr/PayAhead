@@ -1,6 +1,21 @@
 # Veritabanı
 
-SQL Server, EF Core 8 Fluent API ve InitialCreate üzerine eklenen migration geçmişi kullanılır. Güncel on bir tablo: Users, PaymentPlans, PaymentOccurrences, ReminderRules, UserSettings, DeviceTokens, UserSubscriptions, TrackedSubscriptions, RefreshTokens, NotificationDeliveries, AuditLogs.
+SQL Server, EF Core 8 Fluent API ve InitialCreate üzerine eklenen migration geçmişi kullanılır. Güncel on dört tablo: Users, PaymentPlans, PaymentOccurrences, ReminderRules, UserSettings, DeviceTokens, UserSubscriptions, TrackedSubscriptions, RefreshTokens, NotificationDeliveries, AuditLogs, StorePurchases, StoreTransactions, StoreWebhookInbox.
+
+## Faz 9 — VerifiedPremiumMembership
+
+`20261021143405_VerifiedPremiumMembership` eski dört migration üzerine eklenir. UserSubscriptions'a IsStoreVerified (eski kayıtlar için false), AutoRenew, StoreEnvironment, şifreli ProtectedEvidence, Created/Updated/NextVerificationAtUtc ve SQL rowversion ekler. Eski üyeliklerin tarihi bilinmediğinden yeni Created/Updated alanları minimum datetime2 ile başlar; ilk gerçek doğrulama UpdatedAtUtc'yi yeniler. Legacy Active statüsü doğrulama sayılmaz.
+
+StorePurchases immutable transaction/token bağları; StoreTransactions her yeni mağaza transaction'ı için audit; StoreWebhookInbox kriptografik doğrulamadan geçen event kuyruğudur. `(Store,TransactionId)` iki binding/audit tabloda unique, `(Store,TokenHash)` non-null filtered unique, `(Store,EventId)` inbox unique. Mağaza kimlikleri ASCII ve BIN2 case-sensitive karşılaştırılır. Purchase/transaction `(UserSubscriptionId,UserId)` composite FK üyelik sahibine bağlıdır; NoAction ilişkiler veri kaybını önler. Inbox claim index'i CompletedAtUtc/NextAttemptAtUtc/LeaseExpiresAtUtc üzerindedir.
+
+SQL testleri boş DB migration, Faz 8 legacy kayıtla upgrade, transaction/token uniqueness, owner FK ve stale rowversion yazımını doğrular. Geliştirme DB'ye migration elle uygulandı; 5 migration ve 14 trusted FK mevcut, DBCC CHECKCONSTRAINTS hata vermedi. Önce/sonra eski tablo kayıt sayıları aynı (geliştirme DB başlangıçta boştu); dolu legacy upgrade ayrı izole SQL testinde doğrulandı. Snapshot ile bekleyen model değişikliği yok. Otomatik migration, eski migration silme veya veri temizliği eklenmedi.
+
+```powershell
+dotnet ef database update --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api
+dotnet test tests/PayAhead.IntegrationTests --filter FullyQualifiedName~PremiumIntegrationTests
+```
+
+Ham purchase token saklanmaz: benzersiz hash + dış keyring ile AES-GCM şifreli reconcile kanıtı kullanılır. Şifreleme/rotasyon ve inbox retry/retention [STORE_INTEGRATION.md](STORE_INTEGRATION.md).
 
 - Kullanıcı e-postası NormalizedEmail üzerinden benzersizdir. Faz 6 Trim/ToUpperInvariant ve Identity PasswordHasher kullanır; özel parola kriptografisi yoktur.
 - Ödeme tutarları decimal(19,4), takvim tarihleri SQL date, hatırlatma saati time, zaman damgaları datetime2 ve UTC sözleşmesindedir.

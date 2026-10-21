@@ -30,7 +30,7 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
     {
         connection = new SqlConnectionStringBuilder(sqlServer.ConnectionString) { InitialCatalog = "PayAheadTest_" + Guid.NewGuid().ToString("N") }.ConnectionString;
         await using var db = Db(); await db.Database.MigrateAsync();
-        factory = new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Development")
+        factory = new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Development").UseRegressionPremium()
             .UseSetting("ConnectionStrings:PayAhead", connection).UseSetting("Jwt:SigningKey", key)
             .UseSetting("DevelopmentIdentity:Enabled", "false"));
         client = factory.CreateClient();
@@ -184,7 +184,7 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
     }
     [Fact] public async Task Shipping_api_never_uses_development_identity_even_when_enabled()
     {
-        await using var shipping = new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Development")
+        await using var shipping = new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Development").UseRegressionPremium()
             .UseSetting("ConnectionStrings:PayAhead", connection).UseSetting("DevelopmentIdentity:Enabled", "true")
             .UseSetting("DevelopmentIdentity:UserId", Guid.NewGuid().ToString()));
         using var http = shipping.CreateClient(); Assert.Equal(HttpStatusCode.Unauthorized, (await http.GetAsync("/api/payments")).StatusCode);

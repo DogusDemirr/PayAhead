@@ -1,4 +1,14 @@
-# Faz 6 — Authentication ve güvenlik kararları
+# Authentication ve güvenlik kararları — Faz 6–9
+
+## Faz 9 — Premium güvenlik sınırı
+
+Premium yalnızca sunucuda doğrulanmış UserSubscription + süre + tazelikten hesaplanır. TrackedSubscription, legacy Active veya istemcinin isPremium alanı hak vermez. Verify/restore JWT ve aktif DB kullanıcısı ister; kullanıcı/IP purchase rate limit 10/dakikadır. Satın alma sahibi store hesabının appAccountToken/obfuscatedAccountId alanıyla ve SQL immutable unique transaction/token binding ile doğrulanır. Hesap aktarımı yoktur. Yeni aktif kaynaklar aynı kullanıcı SQL kilidi altında sayılır; eşzamanlı API instance'ları Free sınırını geçemez.
+
+Apple ES256/pin'li güvenilir CA zinciri + online revocation + uygulama/environment/ürün/hesap kontrolü ve güncel Server API; Google service account OAuth + subscriptionsv2 package/product/account/state kontrolü kullanılır. Apple V2 webhook JWS, Google Pub/Sub OIDC RS256/JWKS, issuer/audience/email/verified/lifetime ve payload package/subscription kontrolünden geçer. Event ID unique inbox replay'i bastırır; event state doğrudan uygulanmaz, mağaza yeniden sorgulanır.
+
+Purchase evidence ve inbox referansları dış 32-byte AES-GCM keyring ile şifrelidir; hash'ler unique binding içindir. Ham token, credential, request body ve Store HTTP URL loglanmaz. Proxy/APM için ayrıca redaction gerekir. Encryption key rotasyonu eski key ID'leri korunarak yapılır; kayıp key veya erişilemeyen mağaza fake/unencrypted fallback oluşturmaz. İşlem/gövde/cevap/teknik kayıt sayısı sınırları [STORE_INTEGRATION.md](STORE_INTEGRATION.md) içindedir.
+
+Shipping API test assembly'lerine referans vermez ve `Stores:UseFake=true` ile her environment'ta başlamaz. Ayrı test host yalnızca Testing, izole PayAheadSmoke_ DB, HMAC key ve loopback ile açılır; Production başlangıcı reddedildi. Gerçek Apple/Google credentials, mağaza IAM ve physical sandbox purchase doğrulanmadı. Tazelik penceresi içindeki mağaza kesintisi ve bildirim gecikmesi anında refund garantisi vermez; en fazla yapılandırılmış 24 saatten sonra erişim fail-closed olur. Varsayılan mağazalar/worker kapalıdır; üretim için kurulumu tamamlayın.
 
 ## Kimlik ve parola
 

@@ -2,11 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using PayAhead.Application.Payments;
 using PayAhead.Application.Subscriptions;
 using PayAhead.Domain;
+using PayAhead.Application.Premium;
 
 namespace PayAhead.Infrastructure;
 
-public sealed class SubscriptionStore(PayAheadDbContext db) : ISubscriptionStore
+public sealed class SubscriptionStore(PayAheadDbContext db, IEntitlementService? entitlements = null) : ISubscriptionStore
 {
+    private IEntitlementService Policy => entitlements ?? new SqlEntitlementService(db,new(),TimeProvider.System);
     private IQueryable<TrackedSubscription> Owned(Guid user) => db.TrackedSubscriptions.AsNoTracking().Where(x => x.UserId == user && !x.IsDeleted);
     private IQueryable<SubscriptionRecord> Joined(IQueryable<TrackedSubscription> subscriptions) => from s in subscriptions
         join p in db.PaymentPlans.AsNoTracking() on new { Id=s.PaymentPlanId,s.UserId } equals new { p.Id,p.UserId }
@@ -25,14 +27,19 @@ public sealed class SubscriptionStore(PayAheadDbContext db) : ISubscriptionStore
             if(await db.TrackedSubscriptions.CountAsync(x=>x.UserId==user&&!x.IsDeleted,ct)>=1000)throw new ResourceConflictException("En fazla 1000 abonelik oluşturulabilir.");
             var plan=PaymentPlan.Create(user,Details(request),now);
             var s=new TrackedSubscription { Id=Guid.NewGuid(),UserId=user,PaymentPlanId=plan.Id,CreatedAtUtc=now };
-            Apply(s,request,now);db.PaymentPlans.Add(plan);db.TrackedSubscriptions.Add(s);
+            Apply(s,request,now);
+            if(s.EffectiveStatus(today) is SubscriptionStatus.Active or SubscriptionStatus.Trial)await Policy.EnsureIncreaseAsync(user,LimitResource.TrackedSubscriptions,null,1,ct);
+            if(plan.IsActive)await Policy.EnsureIncreaseAsync(user,LimitResource.PaymentPlans,null,1,ct);
+            db.PaymentPlans.Add(plan);db.TrackedSubscriptions.Add(s);
             await SyncTrialRules(s,ct);await db.SaveChangesAsync(ct);return new SubscriptionRecord(s,plan);
         },ct);
     public Task<SubscriptionRecord> UpdateAsync(Guid user,Guid id,SubscriptionRequest request,DateTime now,DateOnly today,CancellationToken ct)
         => Transaction(async()=>
         {
+            await Policy.LockUserAsync(user,ct);
             var row=await Locked(user,id,Convert.FromBase64String(request.RowVersion!),ct);
             Mutable(row.Subscription,today);row.Subscription.Transition(request.Status!.Value,today);
+            if(!row.Plan.IsActive&&request.AutoRenew)await Policy.EnsureIncreaseAsync(user,LimitResource.PaymentPlans,null,1,ct);
             Apply(row.Subscription,request,now);row.Plan.UpdateDetails(Details(request),now);
             await CancelPending(row.Plan.Id,now,ct);await SyncTrialRules(row.Subscription,ct);
             await db.SaveChangesAsync(ct);return row;
@@ -73,10 +80,14 @@ public sealed class SubscriptionStore(PayAheadDbContext db) : ISubscriptionStore
     }
     private async Task SyncTrialRules(TrackedSubscription s,CancellationToken ct)
     {
+        var limits=(await Policy.GetAsync(s.UserId,ct)).Limits;
+        var leads=new[]{1,3,7,0}.Take(limits.ActiveRemindersPerPlan).ToArray();
         var rules=await db.ReminderRules.Where(x=>x.PaymentPlanId==s.PaymentPlanId&&x.UserId==s.UserId&&x.Target==ReminderTarget.SubscriptionTrial).ToListAsync(ct);
         if(rules.Count==0 && s.TrialEndDate.HasValue)
-            foreach(var lead in new[]{0,1,3,7}) { var rule=new ReminderRule { Id=Guid.NewGuid(),UserId=s.UserId,PaymentPlanId=s.PaymentPlanId,Target=ReminderTarget.SubscriptionTrial,DaysBefore=lead,TimeOfDay=new(9,0) };db.ReminderRules.Add(rule);rules.Add(rule); }
-        foreach(var rule in rules)rule.IsEnabled=!s.IsDeleted&&s.EnableTrialReminders&&s.Status==SubscriptionStatus.Trial;
+            foreach(var lead in new[]{0,1,3,7}) { var rule=new ReminderRule { Id=Guid.NewGuid(),UserId=s.UserId,PaymentPlanId=s.PaymentPlanId,Target=ReminderTarget.SubscriptionTrial,DaysBefore=lead,TimeOfDay=new(9,0),IsEnabled=false };db.ReminderRules.Add(rule);rules.Add(rule); }
+        var activate=rules.Count(rule=>!rule.IsEnabled&&!s.IsDeleted&&s.EnableTrialReminders&&s.Status==SubscriptionStatus.Trial&&leads.Contains(rule.DaysBefore));
+        if(activate>0)await Policy.EnsureIncreaseAsync(s.UserId,LimitResource.Reminders,s.PaymentPlanId,activate,ct);
+        foreach(var rule in rules)rule.IsEnabled=!s.IsDeleted&&s.EnableTrialReminders&&s.Status==SubscriptionStatus.Trial&&(rule.IsEnabled||leads.Contains(rule.DaysBefore));
     }
     private Task<int> CancelPending(Guid plan,DateTime now,CancellationToken ct)=>db.NotificationDeliveries
         .Where(x=>x.PaymentPlanId==plan&&x.ProviderMessageId==null&&(x.Status==DeliveryStatus.Pending||x.Status==DeliveryStatus.Processing))

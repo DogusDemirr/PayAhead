@@ -1,6 +1,28 @@
 # Geliştirme
 
-Faz 1–4 altyapı/CRUD/recurrence/occurrence ve Faz 5 dashboard/upcoming/calendar uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 6 authentication, Faz 7 notifications ve Faz 8 subscription/trial kullanıcı onayıyla uygulanmıştır; Faz 9 için ayrı onay gerekir.
+Faz 1–9 altyapı, ödeme/recurrence/occurrence, overview, JWT, bildirim, subscription/trial ve Premium uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 10 için ayrı onay gerekir.
+
+## Faz 9 — Premium geliştirme ve doğrulama
+
+```powershell
+dotnet restore PayAhead.sln
+dotnet build PayAhead.sln --no-restore
+dotnet ef database update --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api
+dotnet test tests/PayAhead.UnitTests --filter FullyQualifiedName~PremiumTests
+dotnet test tests/PayAhead.IntegrationTests --filter FullyQualifiedName~PremiumIntegrationTests
+dotnet test PayAhead.sln --no-build
+# Ayrı, deployment'a dahil olmayan Kestrel test executable:
+dotnet restore tests/PayAhead.PremiumSmokeHost
+dotnet build tests/PayAhead.PremiumSmokeHost --no-restore
+# Repository kökünden, bu makinedeki .tools SDK ve .env Compose SQL ile:
+powershell -NoProfile -ExecutionPolicy Bypass -File tests/PayAhead.PremiumSmokeHost/smoke.ps1
+```
+
+SQL testlerinde PAYAHEAD_TEST_SQLSERVER unset ise gerçek Testcontainers SQL Server 2022 başlar; SQLite/InMemory kullanılmaz. Faz 9 testleri gerçek merkezi entitlement policy ile çalışır. Önceki fazların izole regresyon fixture'ları yalnızca test assembly'sinde yüksek limit policy kullanır; eski CRUD/worker senaryolarını Free sınırı değiştirmez. Gerçek Free/Premium API, üç kaynak limit yarışı, unique token/transaction, sahiplik FK ve rowversion yeni SQL testlerindedir.
+
+Kestrel testi kendi PayAheadSmoke_<guid> DB'sini migrate eder; gerçek register/login JWT ile Free 5/6 reddi, test sağlayıcısıyla Premium altıncı plan, expiry, restore, cross-user409, replay202 ve tek completed inbox satırını doğrular. Kaynaklar tests/PayAhead.PremiumSmokeHost ve PayAhead.Testing içinde; test key CSPRNG'dir. Bu makinenin Git dışı `.tools/phase9-smoke.ps1` scripti yalnızca kendi sürecini/geçici DB'sini temizler. Production environment test host tarafından reddedilir. Gerçek store credentials olmadan bu sonuç canlı satın alma değildir.
+
+403 `entitlement_limit`: aktif kaynak sayımı ve planı kontrol edin; silme yerine gereksiz kaynakları pasifleştirin. 409: son rowversion veya satın alma sahipliği. 400: proof/product/environment/account eşleşmesi. 503: store enable, credential/keyring, TLS ve provider erişimi. Webhook ilerlemiyorsa WorkerEnabled, inbox AttemptCount/NextAttemptAtUtc/ErrorCode ve immutable binding kontrol edilir. Gerçek token/body/secret loglamayın. Kurulum ve sınırlar [STORE_INTEGRATION.md](STORE_INTEGRATION.md), istemci sözleşmesi [PREMIUM.md](PREMIUM.md).
 
 VS Code çalışma alanını kök dizinden açın. `global.json` yalnızca .NET 8 SDK 8.0.4xx patch sürümlerine izin verir, C# 12 sabittir. Proje içindeki SDK kaynak kontrolüne alınmaz. .slnx istenen envanter dosyasıdır; .NET 8 uyumluluğu için .sln kullanılır. Yeni proje eklenirse iki dosyayı da güncelleyin.
 
