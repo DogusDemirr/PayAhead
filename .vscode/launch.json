@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PayAhead API (Development)", "type": "coreclr", "request": "launch",
+      "preLaunchTask": "build", "program": "${workspaceFolder}/src/PayAhead.Api/bin/Debug/net8.0/PayAhead.Api.dll",
+      "cwd": "${workspaceFolder}/src/PayAhead.Api",
+      "env": { "ASPNETCORE_ENVIRONMENT": "Development", "ASPNETCORE_URLS": "http://localhost:5080" },
+      "console": "internalConsole", "stopAtEntry": false
+    }
+  ]
+}

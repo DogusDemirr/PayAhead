@@ -1,0 +1,12 @@
+<Solution>
+ <Folder Name="/src/">
+  <Project Path="src/PayAhead.Domain/PayAhead.Domain.csproj" />
+  <Project Path="src/PayAhead.Application/PayAhead.Application.csproj" />
+  <Project Path="src/PayAhead.Infrastructure/PayAhead.Infrastructure.csproj" />
+  <Project Path="src/PayAhead.Api/PayAhead.Api.csproj" />
+ </Folder>
+ <Folder Name="/tests/">
+  <Project Path="tests/PayAhead.UnitTests/PayAhead.UnitTests.csproj" />
+  <Project Path="tests/PayAhead.IntegrationTests/PayAhead.IntegrationTests.csproj" />
+ </Folder>
+</Solution>

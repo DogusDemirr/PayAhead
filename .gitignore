@@ -1,0 +1,8 @@
+**/bin/
+**/obj/
+.tools/
+.env
+*.user
+TestResults/
+logs/
+artifacts/

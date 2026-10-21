@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <ItemGroup>
+  <ProjectReference Include="../PayAhead.Application/PayAhead.Application.csproj" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.21" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.21" PrivateAssets="all" />
+ </ItemGroup>
+</Project>
