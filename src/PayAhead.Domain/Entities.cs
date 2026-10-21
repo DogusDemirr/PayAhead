@@ -2,7 +2,7 @@ namespace PayAhead.Domain;
 
 public enum PaymentFrequency { Once, Daily, Weekly, Monthly, Yearly }
 public enum OccurrenceStatus { Pending, Paid, Skipped }
-public enum DeliveryStatus { Pending, Processing, Sent, Failed }
+public enum DeliveryStatus { Pending, Processing, Sent, Failed, AwaitingReceipt, Cancelled }
 
 public sealed class User
 {
@@ -55,6 +55,7 @@ public sealed class ReminderRule
     public int DaysBefore { get; set; }
     public TimeOnly TimeOfDay { get; set; }
     public bool IsEnabled { get; set; } = true;
+    public bool IsDeleted { get; set; }
 }
 public sealed class UserSettings
 {
@@ -109,6 +110,15 @@ public sealed class NotificationDelivery
     public int AttemptCount { get; set; }
     public DateTime? LastAttemptAtUtc { get; set; }
     public DateTime? SentAtUtc { get; set; }
+    public Guid? DeviceTokenId { get; set; }
+    public string? ProviderMessageId { get; set; }
+    public string? LastErrorCode { get; set; }
+    public DateTime? NextAttemptAtUtc { get; set; }
+    public Guid? LeaseOwner { get; set; }
+    public DateTime? LeaseExpiresAtUtc { get; set; }
+    public DateTime? TicketAcceptedAtUtc { get; set; }
+    public int ReceiptAttemptCount { get; set; }
+    public DateTime UpdatedAtUtc { get; set; }
 }
 public sealed class AuditLog
 {

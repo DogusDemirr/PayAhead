@@ -67,7 +67,7 @@ public sealed class ReminderRuleConfiguration : IEntityTypeConfiguration<Reminde
         b.HasAlternateKey(x => new { x.Id, x.PaymentPlanId, x.UserId });
         b.HasOne<PaymentPlan>().WithMany().HasForeignKey(x => new { x.PaymentPlanId, x.UserId })
             .HasPrincipalKey(x => new { x.Id, x.UserId }).OnDelete(DeleteBehavior.NoAction);
-        b.HasIndex(x => new { x.PaymentPlanId, x.DaysBefore, x.TimeOfDay }).IsUnique();
+        b.HasIndex(x => new { x.PaymentPlanId, x.DaysBefore, x.TimeOfDay }).IsUnique().HasFilter("[IsDeleted] = 0");
         b.HasIndex(x => x.UserId);
     }
 }
@@ -88,6 +88,7 @@ public sealed class DeviceTokenConfiguration : IEntityTypeConfiguration<DeviceTo
     {
         b.ToTable("DeviceTokens", t => t.HasCheckConstraint("CK_DeviceTokens_Platform", "[Platform] IN ('ios', 'android')"));
         b.HasKey(x => x.Id);
+        b.HasAlternateKey(x => new { x.Id, x.UserId });
         b.Property(x => x.Platform).HasMaxLength(16).IsUnicode(false).IsRequired();
         b.Property(x => x.PushToken).HasMaxLength(512).IsUnicode(false).UseCollation("Latin1_General_100_BIN2").IsRequired();
         b.HasIndex(x => x.PushToken).IsUnique();
@@ -130,12 +131,18 @@ public sealed class NotificationDeliveryConfiguration : IEntityTypeConfiguration
         b.ToTable("NotificationDeliveries", t =>
         {
             t.HasCheckConstraint("CK_NotificationDeliveries_Attempts", "[AttemptCount] >= 0");
-            t.HasCheckConstraint("CK_NotificationDeliveries_Status", "[Status] BETWEEN 0 AND 3");
+            t.HasCheckConstraint("CK_NotificationDeliveries_Status", "[Status] BETWEEN 0 AND 5");
+            t.HasCheckConstraint("CK_NotificationDeliveries_ReceiptAttempts", "[ReceiptAttemptCount] >= 0");
         });
         b.HasKey(x => x.Id);
         b.HasOne<ReminderRule>().WithMany().HasForeignKey(x => new { x.ReminderRuleId, x.PaymentPlanId, x.UserId })
             .HasPrincipalKey(x => new { x.Id, x.PaymentPlanId, x.UserId }).OnDelete(DeleteBehavior.NoAction);
-        b.HasIndex(x => new { x.ReminderRuleId, x.DueDate }).IsUnique();
+        b.HasOne<DeviceToken>().WithMany().HasForeignKey(x => new { x.DeviceTokenId, x.UserId })
+            .HasPrincipalKey(x => new { x.Id, x.UserId }).OnDelete(DeleteBehavior.NoAction);
+        b.Property(x => x.ProviderMessageId).HasMaxLength(128).IsUnicode(false);
+        b.Property(x => x.LastErrorCode).HasMaxLength(64).IsUnicode(false);
+        b.HasIndex(x => new { x.ReminderRuleId, x.DueDate, x.DeviceTokenId }).IsUnique().HasFilter("[DeviceTokenId] IS NOT NULL");
+        b.HasIndex(x => new { x.Status, x.NextAttemptAtUtc, x.LeaseExpiresAtUtc });
         b.HasIndex(x => new { x.Status, x.ScheduledAtUtc });
         b.HasIndex(x => new { x.UserId, x.DueDate });
     }

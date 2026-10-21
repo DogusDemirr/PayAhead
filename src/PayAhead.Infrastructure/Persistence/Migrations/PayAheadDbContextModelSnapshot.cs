@@ -108,14 +108,39 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                     b.Property<int>("AttemptCount")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("DeviceTokenId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateOnly>("DueDate")
                         .HasColumnType("date");
 
                     b.Property<DateTime?>("LastAttemptAtUtc")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("LastErrorCode")
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime?>("LeaseExpiresAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LeaseOwner")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("NextAttemptAtUtc")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("PaymentPlanId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProviderMessageId")
+                        .HasMaxLength(128)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(128)");
+
+                    b.Property<int>("ReceiptAttemptCount")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("ReminderRuleId")
                         .HasColumnType("uniqueidentifier");
@@ -129,25 +154,38 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("TicketAcceptedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdatedAtUtc")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ReminderRuleId", "DueDate")
-                        .IsUnique();
+                    b.HasIndex("DeviceTokenId", "UserId");
 
                     b.HasIndex("Status", "ScheduledAtUtc");
 
                     b.HasIndex("UserId", "DueDate");
 
+                    b.HasIndex("ReminderRuleId", "DueDate", "DeviceTokenId")
+                        .IsUnique()
+                        .HasFilter("[DeviceTokenId] IS NOT NULL");
+
                     b.HasIndex("ReminderRuleId", "PaymentPlanId", "UserId");
+
+                    b.HasIndex("Status", "NextAttemptAtUtc", "LeaseExpiresAtUtc");
 
                     b.ToTable("NotificationDeliveries", null, t =>
                         {
                             t.HasCheckConstraint("CK_NotificationDeliveries_Attempts", "[AttemptCount] >= 0");
 
-                            t.HasCheckConstraint("CK_NotificationDeliveries_Status", "[Status] BETWEEN 0 AND 3");
+                            t.HasCheckConstraint("CK_NotificationDeliveries_ReceiptAttempts", "[ReceiptAttemptCount] >= 0");
+
+                            t.HasCheckConstraint("CK_NotificationDeliveries_Status", "[Status] BETWEEN 0 AND 5");
                         });
                 });
 
@@ -337,6 +375,9 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                     b.Property<int>("DaysBefore")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsEnabled")
                         .HasColumnType("bit");
 
@@ -356,7 +397,8 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                     b.HasIndex("PaymentPlanId", "UserId");
 
                     b.HasIndex("PaymentPlanId", "DaysBefore", "TimeOfDay")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[IsDeleted] = 0");
 
                     b.ToTable("ReminderRules", null, t =>
                         {
@@ -512,6 +554,12 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("PayAhead.Domain.NotificationDelivery", b =>
                 {
+                    b.HasOne("PayAhead.Domain.DeviceToken", null)
+                        .WithMany()
+                        .HasForeignKey("DeviceTokenId", "UserId")
+                        .HasPrincipalKey("Id", "UserId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.HasOne("PayAhead.Domain.ReminderRule", null)
                         .WithMany()
                         .HasForeignKey("ReminderRuleId", "PaymentPlanId", "UserId")

@@ -58,3 +58,9 @@ Modelde activation/deactivation zaman çizelgesi ve currency snapshot yoktur. O 
 ## Faz 6 — Authentication katmanları
 
 Application/Auth DTO/validator/AuthService ve IAuthStore/IPasswordService/ITokenService sözleşmelerini barındırır. Infrastructure IdentityPasswordService ve SQL AuthStore sağlar. API TokenService, JWT doğrulaması, controller, rate limiter ve proxy sınırını içerir. Domain framework bağımlılığı almaz. SQL transaction kullanıcı satırını kilitleyerek atomik rotasyon/iptali bütün sunucu örneklerinde sıraya koyar. Overview üç/dört veri sorgusuna gerçek JWT aktif kullanıcı doğrulaması için bir SQL sorgusu eklenir. [Güvenlik kararları](SECURITY.md).
+
+## Faz 7 — Background processing
+
+Application Notifications sözleşmeleri, saf NotificationPolicy ve NotificationProcessor akışını barındırır. Infrastructure yönetim store, SQL durable queue ve IHttpClientFactory kullanan ExpoPushNotificationSender sağlar. API controller yalnızca HTTP eşler; NotificationWorker BackgroundService scoped bağımlılıklarla çalışır. Domain entity alanları dışında framework bağımlılığı almadı.
+
+Schedule işlemi plan satırı lock + unique index; claim tek atomic UPDATE OUTPUT + UPDLOCK/READPAST; completion lease owner/süre fencing kullanır. Sağlayıcı çağrısı SQL transaction dışında yapılır. Güncel durum tekrar doğrulanır; dış çağrı yarışları tamamen kapatılamaz, exactly-once garantisi yoktur. Bounded retry, receipt poll ve 400 gün terminal retention [NOTIFICATIONS.md](NOTIFICATIONS.md) içinde açıklanır.

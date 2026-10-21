@@ -578,3 +578,79 @@ Değişenler: Application/Auth; Infrastructure AuthStore/IdentityPasswordService
 **Duruş:** Faz 6 tamamlandı. Faz 7 başlatılmadı; kullanıcı onayı bekleniyor.
 
 Son production incelemesinde HTTPS port keşfine bağımlılık giderildi: varsayılan hedef 443, HttpsPort ile açık override. Production host üzerinde HTTP isteğinin HTTPS 443 hedefine 307 yönlendirildiği yeni test eklendi; ardından bütün çözüm yeniden build/test edildi. Son sonuç yukarıdaki phase6-final raporlarıdır.
+
+## Faz 7 — Reminders, Push Notifications & Background Processing (21 Ekim 2026)
+
+Kullanıcının ekli Faz 7 talebiyle yalnızca bu faz uygulandı. AGENTS, Faz 6 ilerleme/güvenlik, UserSettings/ReminderRule/DeviceToken/NotificationDelivery/PaymentPlan/Occurrence, recurrence, JWT ve migration geçmişi incelendi. Plan: önce auth migration + gerçek DB bütünlüğü; management API; timezone scheduling + SQL durable queue/lease; Expo ticket/receipt adapter; unit/SQL/Kestrel/worker doğrulama; dokümantasyon. Faz 8 ve React Native kodu eklenmedi.
+
+### Mevcut geliştirme DB ve migration sonuçları
+
+Docker Engine 29.9.1, Linux SQL Server 2022 container `payahead-phase1-sqlserver-1` healthy; localhost:14333, mevcut named volume korundu. Başlangıçta `PayAheadDockerDevelopment` geçmişinde yalnızca InitialCreate vardı; AuthenticationSessions pending listelendi. Auth migration Up incelendi: sütun/index ekleme ve legacy refresh revocation, veri silme yok. Açık EF update ile uygulandı. Users/PaymentPlans/PaymentOccurrences/RefreshTokens önce ve sonra 0/0/0/0; sütunlar/index doğrulandı, DBCC CHECKCONSTRAINTS temiz.
+
+Yeni `20261021124526_DurableNotifications` migration üretildi; eski InitialCreate ve AuthenticationSessions dosyaları değiştirilmedi. ReminderRules.IsDeleted, device-owner alternate key, delivery device/provider/error/retry/lease/receipt/updated alanları; rule unique filter, rule/due/device unique ve claim index, status/receipt check ve composite device-owner FK eklendi. Up veri/kolon/tablo silmez, eski indeksler genişletilerek yeniden kurulur. Device tanımı bilinmeyen legacy delivery kayıtları silinmeden claim dışı tutulur; Sent eski hali korunur, diğerleri Cancelled/LegacyUnassigned olur. Seeded legacy delivery upgrade gerçek SQL testinden geçti.
+
+SQL testleri sonrasında Faz 7 migration mevcut geliştirme DB üzerinde de uygulandı. Üç migration kayıtlı, yeni sütunlar/indexler doğrulandı, 11 etkin/güvenilir FK ve temiz DBCC CHECKCONSTRAINTS; aynı satır sayıları korundu. Otomatik startup migration eklenmedi. Önceden çalışan SQL container veya başka DB silinmedi/durdurulmadı. Down production için otomatik çalıştırılmamalıdır; yeni çoklu cihaz verisi eski unique index ile uyumsuz olabilir.
+
+### Eklenen davranış
+
+- Dokuz işlem: reminder POST/GET/PUT/DELETE; device POST/GET/DELETE; settings GET/PUT. Tümü gerçek JWT/aktif kullanıcı ve doğrulanmış sub sahipliği kullanır; cross-user 404, anonim 401, UserId body 400.
+- Reminder DaysBefore 0–365, HH:mm (varsayılan09:00), enabled, plan başına10 limit ve SQL filtered unique duplicate koruması. Silme audit/FK için logical; silinmiş kural API listesinde yok, yeni gönderim üretmez.
+- Device ios/android Expo token; own-token upsert, server Id üzerinden rotation, en fazla20 silinmemiş kayıt. Diğer hesaba token transferi yok. Yanıtta/logda token yok; DELETE token scrub+tombstone/inactive. Provider DeviceNotRegistered inactive yapar. Logout cihazı otomatik silmez; mobil istemci önce DELETE çağırmalıdır.
+- Settings tr/en, ISO currency, valid timezone ve NotificationsEnabled. Legacy eksik/invalid timezone Faz5 UTC fallback ile tutarlı. Settings/kural/token değişimi kabul edilmemiş kuyruk işlerini transaction içinde iptal eder; gönderim öncesi her durumda güncel veri tekrar okunur.
+- Saf NotificationPolicy + mevcut recurrence: reminder UTC penceresi now-24h ile now+30gün; due araması DaysBefore kadar genişler,365 gün önceden hatırlatma kaçırılmaz. DST gap ilk geçerli dakika, fold daha geç UTC. Sunucu local timezone kullanılmaz. Paid/Skipped/inactive/disabled/deleted/preferencesfalse/invalid device/EndDate sonrası gönderimler bastırılır.
+- SQL durable queue rule/due/device unique; schedule plan lock + transaction, claim atomic UPDATE OUTPUT/UPDLOCK/READPAST/READCOMMITTEDLOCK; iki dakikalık owner lease ve stale completion fencing. Restart sonrası lease kurtarılır; cursor seek20 rules/çevrim,50 claim/çevrim,30sn poll,500 cleanup/çevrim. Worker çevrim adetleri/hata tipi loglar; hassas içerik yok.
+- En fazla5 send claim, exponential backoff; Retry-After bounded1sn–1saat. HTTP timeout/bağlantı/429/5xx retryable, kalıcı hatalar Failed. Receipt ayrı15dk polling,24saat/96 claim belirsizlik sınırı. Receipt yokken push yeniden gönderilmez; açık retryable handoff hatasında yeniden eligibility+send denenir.
+- IHttpClientFactory Expo adapter, dış credential/HTTPS endpoint, redirect kapalı, tüm response gövdesi dahil15sn timeout ve64KiB sınırı. Payload genel metin + opaque notificationId; ödeme tutarı/adı/email yok. Ticket AwaitingReceipt, receipt kabulü Sent (APNs/FCM handoff, cihazda gösterim değildir). Varsayılan worker disabled; enabled eksik credential startup hatası, sahte success yok.
+
+### Doğrulama
+
+Komutlarda yerel .NET8 SDK **8.0.426**, net8.0/C#12/EF Core8.0.21 kullanıldı. PAYAHEAD_TEST_SQLSERVER kaldırılarak gerçek Testcontainers SQL Server2022 ile çalıştırıldı; SQLite/InMemory kullanılmadı.
+
+| Kontrol | Son sonuç |
+| --- | --- |
+| dotnet restore PayAhead.sln | Başarılı, tüm projeler güncel |
+| dotnet build PayAhead.sln --no-restore | Başarılı,0 warning/0 error |
+| dotnet test PayAhead.sln --no-build | **289 birim + 175 gerçek SQL entegrasyon geçti; 0 başarısız, 0 atlanan** |
+| ef migrations has-pending-model-changes | Model değişikliği yok |
+| SQL fresh + legacy upgrade | Başarılı |
+| Geliştirme DB auth + notification migration | Başarılı, veriler/volume korundu |
+| Kestrel gerçek SQL/JWT | Tüm istenen HTTP adımları geçti |
+| Hosted BackgroundService + SQL + test FakePushNotificationSender | Başarılı; AwaitingReceipt kaydı ve tek send doğrulandı |
+| Gerçek Expo/fiziksel cihaz teslimatı | **Çalıştırılmadı**; gerçek credential ve cihaz token sağlanmadı |
+
+Yeni65 unit: days/time/device/settings doğrulama, same-day/custom leads, Istanbul ve DST gap/fold, timezone fallback/min date, paid/skipped/pending/inactive/disabled/enddate eligibility, backoff, Expo ticket/error/receipt sınıflaması, no fake success, Retry-After,65KiB response reddi, processor suppression/empty/timeout/receipt branch. SQL'e ait unique/lease/idempotency davranışları fake unit kanıtı olarak sunulmadı; gerçek SQL testlerindedir.
+
+Yeni39 SQL integration: reminder CRUD/duplicate/concurrent/validation; device upsert/rotation/delete/privacy ve unique; settings/fallback/invalidzone; JWT ownership/anonymous/strict UserId; idempotent concurrent scheduling ve iki cihaz;365 lead;26 rule cursor batching; concurrent claim/lease recovery/stale completion;10 state suppression senaryosu; timezone/rule reschedule/amount generic payload; cancellation/delete; fake send+receipt durumları; retry/permanent/invalidtoken; max5/backoff; receipt polling/resend/24h expiry; cancellation fence; composite device-owner FK;400gün cleanup; legacy migration; gerçek hosted worker. Eski Faz1–6 testleri de çalıştı.
+
+Ara turlar: ilk59 yeni unit geçti. İlk notification SQL32 testin31'i geçti; kalan test fake clock'un SQL datetime Kind=Unspecified değerini local gibi yorumlamasıydı. Test clock UTC olarak düzeltildi;38/38 SQL turu geçti, ardından hosted worker testi eklendi. Tam phase7-full288+174, phase7-final288+175 geçti. Son adapter response stream timeout/buffer düzeltmesi ve ek unit sonrasında son tam tur çalıştırıldı. Başarısız test gizlenmedi veya gerçek push gibi raporlanmadı. Sandbox NuGet/Docker erişimi açık escalation ile, smoke execution policy sadece alt süreçte Bypass ile çalıştı; sistem politikası değişmedi.
+
+### Kestrel HTTP akışı
+
+Git dışı `.tools/phase7-smoke.ps1`: kendi rastgele PayAheadSmoke_<guid> DB, üç migration, kendi gizli Kestrel süreci. Gerçek JWT kullanıldı, worker disabled, token/parola çıktıya yazılmadı.
+
+| İstek | HTTP |
+| --- | --- |
+| /health/ready / Swagger | 200 /200 |
+| Anonim GET /api/devices | 401 |
+| Birinci kullanıcı register/login | 201 /200 |
+| Payment POST | 201 |
+| Reminder POST (3gün,varsayılan09:00) | 201 |
+| Device POST (yanıtta token yok) | 200 |
+| Settings PUT/GET | 200 /200 |
+| Reminder GET/PUT (7gün10:30) | 200 /200 |
+| İkinci kullanıcı register/login | 201 /200 |
+| İkinci kullanıcı ilk plan reminder GET | 404 |
+| İkinci kullanıcı ilk device DELETE | 404 |
+| Sahibi reminder DELETE/device DELETE | 204 /204 |
+
+Smoke exit0; yalnızca kendi geçici DB ve API süreci temizlendi. Worker processing ayrıca doğrudan NotificationProcessor + fake sender/SQL ile ve gerçek hosted BackgroundService + test fake sender ile doğrulandı; receipt ve retry durumları SQL'de incelendi.
+
+### Belgeler, sınırlamalar ve duruş
+
+README, API, ARCHITECTURE, DATABASE, DEVELOPMENT, SECURITY ve bu ilerleme kaydı güncellendi; kapsamlı NOTIFICATIONS.md eklendi. AGENTS Faz7 onay/Faz8 bekleme durumuna getirildi. Source değişimleri: Application/Notifications; Infrastructure yönetim/queue/Expo/DI/model/migration+snapshot; API controllers/worker/Program/config; domain ek alan/enum; unit/SQL testleri ve schema FK sayımı.
+
+Gerçek Expo credential/proje APNs-FCM/physical-device doğrulaması yoktur; adapter sözleşme testleri ve fake sender bunu karşılamaz. Exactly-once veya cihazda görünme garantisi verilmez. Provider kabulü ile SQL completion/ödeme durumu arasında dış sistem yarışı vardır; tekrar/yanlış zamanda ulaşma ihtimali belgeli.24saatten eski kesinti catch-up yapılmaz. Büyük rule hacminde tarama gecikmesi, global Expo proje kotası, terminal Failed operasyonu ve backlog izlenmelidir. Logout push kaydını kendiliğinden kapatmaz.400gün delivery retention vardır; device/rule audit tombstone purge, yerelleştirilmiş push şablonları ve kişisel veri toplu silme süreci eklenmedi. İlişkili plan delete409 kuralı korundu.
+
+**Duruş:** Faz7 backend uygulaması ve yerel doğrulamalar tamamlandı. Faz8 başlatılmadı; kullanıcı onayı bekleniyor.
+
+Son doğrulanmış tur: `tests/PayAhead.UnitTests/TestResults/phase7-verified_net8.0_20261021160557.trx` ve `tests/PayAhead.IntegrationTests/TestResults/phase7-verified_net8.0_20261021160706.trx` (Git dışında). **464/464 başarılı; 0 failed, 0 skipped.** Son build 0 warning/0 error, model migration ile uyumlu, diff whitespace kontrolü temiz. Faz7 için açık build/test/HTTP hatası yoktur; gerçek push/provider teslimatı ve yukarıdaki operasyonel sınırlamalar doğrulanmış başarı kapsamına dahil değildir.

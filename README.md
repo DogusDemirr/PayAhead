@@ -1,6 +1,6 @@
 # PayAhead Backend
 
-React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1–5 altyapı, ödeme CRUD, recurrence, occurrence geçmişi, dashboard/upcoming/calendar tamamlandı. Gerçek kullanıcı girişi ve bildirimler sonraki fazlardadır.
+React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1–7 altyapı, ödeme CRUD, recurrence, occurrence geçmişi, dashboard/upcoming/calendar, JWT authentication ve reminder/device/settings API ile SQL tabanlı bildirim worker uygulanmıştır. Expo adapter hazırdır; gerçek cihaz teslimatı ayrıca doğrulanmalıdır.
 
 ## Gereksinimler
 
@@ -131,8 +131,14 @@ Invoke-RestMethod -Headers $headers 'http://localhost:5080/api/dashboard/summary
 
 Varsayılan başlangıç kullanıcı timezone'undaki bugündür; UserSettings yok/geçersizse UTC fallback, context.usedTimeZoneFallback ile görünür. Varsayılan bitiş from+30 (sınırlar dahil 31 tarih). Upcoming varsayılan Pending ve sayfalıdır; Calendar status belirtilmezse tüm durumları gösterir. Pending plan tutarı, Paid gerçek tutar kullanır; Skipped/Paid yaklaşan borca girmez. TRY/USD/EUR hiçbir zaman tek toplamda birleştirilmez. Calendar günlük toplamı Pending borcudur.
 
-Pasif planlar yeni Pending üretmez; aralıktaki kayıtlı Paid/Skipped geçmişi korunur. Deactivation zamanı ve currency snapshot bulunmadığından eski aktiflik/para birimi tahmin edilmez; metadata güncel parent planından gelir. En fazla 366 dahil gün, 1000 ilgili plan ve 50.000 sonuç; aşımda 400 ProblemDetails, sessiz kısmi toplam yoktur. Uçlar read-only'dır ve occurrence kaydetmez. Tam DTO/örnekler [API.md](docs/API.md), test ayrıntıları [IMPLEMENTATION_PROGRESS.md](docs/IMPLEMENTATION_PROGRESS.md) içindedir. Faz 6 authentication uygulanmıştır; Faz 7 için onay beklenir.
+Pasif planlar yeni Pending üretmez; aralıktaki kayıtlı Paid/Skipped geçmişi korunur. Deactivation zamanı ve currency snapshot bulunmadığından eski aktiflik/para birimi tahmin edilmez; metadata güncel parent planından gelir. En fazla 366 dahil gün, 1000 ilgili plan ve 50.000 sonuç; aşımda 400 ProblemDetails, sessiz kısmi toplam yoktur. Uçlar read-only'dır ve occurrence kaydetmez. Tam DTO/örnekler [API.md](docs/API.md), test ayrıntıları [IMPLEMENTATION_PROGRESS.md](docs/IMPLEMENTATION_PROGRESS.md) içindedir. Faz 6 authentication uygulanmıştır; Faz 8 için onay beklenir.
 
 ## Faz 6 — Authentication
 
-POST `/api/auth/register`, `/api/auth/login`, `/api/auth/refresh`, `/api/auth/logout`; GET `/api/users/me` eklendi. Parola hashleme, JWT, rotasyon, reuse, logout ve üretim sınırları [SECURITY.md](docs/SECURITY.md) içinde; başlatma ve PowerShell akışı [DEVELOPMENT.md](docs/DEVELOPMENT.md) içindedir. .NET 8 / EF Core 8 korunmuştur. Faz 7 kapsam dışıdır.
+POST `/api/auth/register`, `/api/auth/login`, `/api/auth/refresh`, `/api/auth/logout`; GET `/api/users/me` eklendi. Parola hashleme, JWT, rotasyon, reuse, logout ve üretim sınırları [SECURITY.md](docs/SECURITY.md) içinde; başlatma ve PowerShell akışı [DEVELOPMENT.md](docs/DEVELOPMENT.md) içindedir. .NET 8 / EF Core 8 korunmuştur. Faz 8 kapsam dışıdır.
+
+## Faz 7 — Hatırlatmalar ve bildirim kuyruğu
+
+Reminder CRUD, device upsert/list/delete ve kullanıcı settings GET/PUT eklendi. [NOTIFICATIONS.md](docs/NOTIFICATIONS.md) API örneklerini, timezone/DST politikasını, SQL lease/retry/receipt akışını ve üretim konfigürasyonunu açıklar. Worker varsayılan kapalıdır; gerçek Expo credential olmadan push başarı iddiası yoktur. Sağlayıcı ticket kabulü cihaz teslimatı değildir.
+
+Faz 6 authentication migration mevcut Docker geliştirme veritabanına veri kaybı olmadan uygulandı. Faz 7 DurableNotifications migration da eski migration geçmişini korur; kurulumda yukarıdaki açık EF update komutunu kullanın. [İlerleme kaydı](docs/IMPLEMENTATION_PROGRESS.md) gerçek sonuçları içerir. Faz 8 başlatılmadı.

@@ -7,7 +7,7 @@ SQL Server, EF Core 8 Fluent API ve InitialCreate migration kullanılır. On tab
 - PaymentPlan ve PaymentOccurrence SQL rowversion kullanır.
 - PaymentPlanId + DueDate benzersizdir. Para pozitifliği, interval, tarih sırası, anchor ve enum aralıkları check constraint ile korunur.
 - ReminderRule sahipliği bileşik foreign key ile PaymentPlan sahibine bağlanır. NotificationDelivery aynı kural/plan/kullanıcı üçlüsüne bağlanır.
-- Token hash'i benzersiz ve en fazla 64 ASCII karakterdir; sonraki fazda SHA-256 hex sözleşmesi kullanılacaktır. Ham refresh token saklanmaz.
+- Refresh token hash alanı benzersiz, 64 ASCII karakter SHA-256 hex sözleşmesindedir. Ham refresh token saklanmaz.
 - Push token ve token hash karşılaştırmaları büyük/küçük harf duyarlıdır.
 - Silme ilişkileri NoAction kullanır: SQL Server çoklu cascade yolları engellenir; hesap silme ileride transaction ile açık sırada uygulanmalıdır.
 - Kullanıcı/tarih ve iş kuyruğu indeksleri başlangıç sorgularını destekler; sonraki fazlarda gerçek sorgu planları ölçülmelidir.
@@ -52,3 +52,13 @@ AuthenticationSessions migration Users tablosuna FailedLoginCount (0), nullable 
 Eski refresh aile geçmişi bilinemez. Upgrade FamilyId=Id atar, RevokedAtUtc boşsa migration zamanı doldurur; satırlar silinmez, eski oturumlar yeniden login ister. Kullanıcı/ödeme/occurrence verileri korunur. Development placeholder hash ile giriş yapılamaz; register ile ayrı hesap açın. Migration başlangıçta otomatik uygulanmaz; backup ve bakım penceresiyle EF update komutunu çalıştırın. Down eklenen sütunları düşürür; üretim rollback için backup/oturum planı gerekir.
 
 Yeni kurulum ve InitialCreate üzerine legacy user/token içeren yükseltme gerçek SQL testinde doğrulanır. Refresh hashleri reuse tespiti için tutulur; otomatik temizleme işi yoktur. Süre ve transaction kararları [SECURITY.md](SECURITY.md) içindedir.
+
+## Faz 7 — DurableNotifications şeması
+
+`20261021124526_DurableNotifications` yeni migration: ReminderRules.IsDeleted; DeviceTokens (Id,UserId) alternate key; NotificationDeliveries.DeviceTokenId (nullable legacy), ProviderMessageId, LastErrorCode, NextAttemptAtUtc, LeaseOwner/ExpiresAtUtc, TicketAcceptedAtUtc, ReceiptAttemptCount, UpdatedAtUtc. Status 0–5 check ve receipt attempt nonnegative check. On tablo korunur, yeni device-owner composite FK ile 11 trusted FK vardır.
+
+Eski rule unique index silinmemiş kayıtlara filtrelenerek yeniden kurulur. Eski rule/due delivery unique index, rule/due/device filtered unique index ile genişletilir; claim index eklenir. Up tablo/kolon/veri silmez; index/constraint değişimleri transaction içindedir. Önceki migration dosyaları değiştirilmedi. Device kimliği bulunmayan legacy delivery satırları korunur: Sent eski değeri kalır, diğerleri Cancelled/LegacyUnassigned olur; device bilinmediğinden gönderilmez. Upgrade seeded legacy delivery ile gerçek SQL testindedir. Down eski uniqueness ile uyumsuz çoklu cihaz/tombstone verisinde başarısız olabilir; production rollback için backup ve ileri düzeltme planı kullanın, otomatik down çalıştırmayın.
+
+Faz 6 authentication migration bu faz başlangıcında mevcut `PayAheadDockerDevelopment` üzerinde uygulandı; önce/sonra Users/PaymentPlans/PaymentOccurrences/RefreshTokens sayıları 0 olarak aynı kaldı, DBCC CHECKCONSTRAINTS temizdi. Faz 7 migration sonuçları [IMPLEMENTATION_PROGRESS.md](IMPLEMENTATION_PROGRESS.md) içinde kayıtlıdır. Startup migration uygulamaz.
+
+NotificationDelivery terminal kayıtlarında hem UpdatedAtUtc hem DueDate 400 günden eskiyse bounded cleanup vardır; future dedup satırları korunur. Reminder DELETE logical, device DELETE token scrub + inactive yapar; FK/audit tombstone satırları kalır. Raw push token gönderim için okunabilir saklanır; TLS, TDE/encrypted storage, şifreli backup ve dar DB yetkileri gereklidir. [Tam lifecycle](NOTIFICATIONS.md).

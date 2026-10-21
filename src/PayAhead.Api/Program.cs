@@ -16,6 +16,7 @@ builder.Host.UseSerilog((context, logger) => logger.ReadFrom.Configuration(conte
 _ = DevelopmentIdentity.Validate(builder.Environment, builder.Configuration);
 builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHostedService<NotificationWorker>();
 builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = context =>
     context.ProblemDetails.Extensions["traceId"] = context.HttpContext.TraceIdentifier);
@@ -40,7 +41,7 @@ builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("sqlserver", ta
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 6: JWT authentication; ödeme CRUD, occurrence, yaklaşan ödemeler, dashboard ve takvim. Finansal toplamlar para birimi bazındadır." });
+    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 7: JWT, ödeme/occurrence/overview, reminder, device ve settings API. Bildirimler SQL tabanlı worker üzerinden işlenir; push token yanıtlar içinde gösterilmez." });
     options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme { Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http, Scheme = "bearer", BearerFormat = "JWT" });
     options.DocumentFilter<HealthDocumentFilter>();
     options.SchemaFilter<PaymentSchemaFilter>();

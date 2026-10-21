@@ -37,3 +37,9 @@ React Native için iOS Keychain / Android Keystore destekli güvenli cihaz depos
 Kaynaklar: [Microsoft JWT Bearer](https://learn.microsoft.com/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-8.0), [rate limiting](https://learn.microsoft.com/aspnet/core/performance/rate-limit?view=aspnetcore-8.0).
 
 HTTPS yönlendirme hedefi varsayılan 443 olarak açıkça ayarlıdır; farklı TLS portu için HttpsPort kullanılır. Production HTTP→HTTPS yönlendirmesi gerçek API host testiyle kontrol edilir. Forwarded proto ancak izinli proxy üzerinden kabul edilir.
+
+## Faz 7 — Push güvenlik sınırları
+
+Reminder/device/settings uçları gerçek JWT + aktif kullanıcı kontrolü ve server-owned UserId kullanır. Push token endpoint response veya loglarda görünmez; DELETE token alanını scrub eder. Aynı token başka hesaba otomatik taşınmaz. Provider secret yalnızca güvenilir dış konfigürasyondadır; enabled worker eksik credential ile başlamaz, disabled adapter sahte başarı döndürmez. Payload yalnızca genel hatırlatma ve opaque notificationId taşır; ödeme tutarı/adı/email içermez.
+
+Logout ile device arasında otomatik ilişki yoktur: mobil istemci logout öncesi device DELETE yapmalıdır; offline logout kalıcı aboneliği tek başına kapatmaz. NotificationsEnabled=false genel kapatma sağlar. DB tokenları gönderim için geri okunabilir olmalıdır; en az yetki/TLS/TDE ve şifreli backup deployment sorumluluğudur. Queue completion lease fence uygular; dış provider yarışları nedeniyle tam exactly-once yoktur. Token/notification retention ve operasyonel sınırlar [NOTIFICATIONS.md](NOTIFICATIONS.md) içindedir.

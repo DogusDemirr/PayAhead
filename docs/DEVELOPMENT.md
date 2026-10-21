@@ -1,6 +1,6 @@
 # Geliştirme
 
-Faz 1–4 altyapı/CRUD/recurrence/occurrence ve Faz 5 dashboard/upcoming/calendar uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 6 authentication kullanıcı onayıyla uygulanmıştır; Faz 7 için ayrı onay gerekir.
+Faz 1–4 altyapı/CRUD/recurrence/occurrence ve Faz 5 dashboard/upcoming/calendar uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 6 authentication ve Faz 7 notifications kullanıcı onayıyla uygulanmıştır; Faz 8 için ayrı onay gerekir.
 
 VS Code çalışma alanını kök dizinden açın. `global.json` yalnızca .NET 8 SDK 8.0.4xx patch sürümlerine izin verir, C# 12 sabittir. Proje içindeki SDK kaynak kontrolüne alınmaz. .slnx istenen envanter dosyasıdır; .NET 8 uyumluluğu için .sln kullanılır. Yeni proje eklenirse iki dosyayı da güncelleyin.
 
@@ -115,3 +115,17 @@ Remove-Variable session,headers,account
 Eski README seed/development identity akışı kaldırıldı; JWT bypass yoktur. Swagger Authorize ile access token girilebilir. Birim: `dotnet test tests/PayAhead.UnitTests`; gerçek SQL: `dotnet test tests/PayAhead.IntegrationTests`; yalnızca auth: `dotnet test tests/PayAhead.IntegrationTests --filter FullyQualifiedName~AuthApiTests`. SQL testleri Docker Testcontainers ve rastgele PayAheadTest_<guid> DB kullanır; mevcut geliştirme verileri silinmez. Tüm çözüm için restore/build/test çalıştırın.
 
 401: issuer/audience/key, expiration, aktif kullanıcı ve migration durumunu kontrol edin. 409 register: normalize email mevcut olabilir. 429: IP bütçesi dolmuştur, Retry-After bekleyin. Beş yanlış parola sonrası doğru parola da kilit süresince reddedilir. Reuse sonrası yeni refresh de 401 ise yeniden login gerekir; paralel refresh göndermeyin. Readiness 503 için migration/SQL kontrol edin. Token/parola/connection string içeren çıktıları paylaşmayın.
+
+## Faz 7 — Worker ve push geliştirme
+
+Önce migration: `dotnet ef database update --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api`. Notifications varsayılan disabled olduğundan gerçek push veya fake başarı üretilmez. JWT ile reminder/device/settings HTTP akışını provider olmadan deneyebilirsiniz. Örnekler ve alanlar [NOTIFICATIONS.md](NOTIFICATIONS.md) içindedir. Gerçek gönderim için Notifications__Enabled=true, güvenli dış Notifications__AccessToken ve Expo projesinde APNs/FCM yapılandırması gerekir; endpoint varsayılanları Expo HTTPS send/getReceipts, PollSeconds 30 (5–300).
+
+```powershell
+dotnet test tests/PayAhead.UnitTests --filter FullyQualifiedName~NotificationTests
+dotnet test tests/PayAhead.IntegrationTests --filter FullyQualifiedName~NotificationIntegrationTests
+dotnet test PayAhead.sln
+```
+
+Bu makinede `.tools/dotnet/dotnet.exe`, DOTNET_ROOT=.tools/dotnet, DOTNET_CLI_HOME=.tools/cli ve Docker bin PATH kullanılır. SQL integration Testcontainers rastgele test DB oluşturur; geliştirmenin DB/volume verilerini silmez. Test assembly içindeki FakePushNotificationSender gerçek worker/SQL akışını provider bağımsız sınar; Expo ticket/receipt adapter için kontrollü HttpMessageHandler yanıtları kullanılır. Bu sonuçlar gerçek fiziksel push teslimatı değildir.
+
+Worker açılmıyorsa önce Enabled ve credential/HTTPS ayarlarını, readiness ve pending migration durumunu kontrol edin. Processing takılıysa lease expiry (2 dakika), en eski NextAttemptAtUtc, LastErrorCode ve worker çevrim loglarını inceleyin. 429 için Retry-After/backoff, Failed için credential/payload veya deneme sınırı, AwaitingReceipt için 15 dakika polling ve 24 saat belirsizlik sınırını kontrol edin. Token/parola/provider response çıktılarını paylaşmayın. Log ve güvenli SQL tanılama örnekleri NOTIFICATIONS.md içindedir.
