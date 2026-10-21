@@ -34,8 +34,13 @@ public sealed class PaymentApiTests : IClassFixture<SqlServerFixture>, IAsyncLif
         await db.Database.MigrateAsync();
         foreach (var id in new[] { owner, other }) db.Users.Add(new User
         {
-            Id = id, Email = $"{id:N}@example.invalid", NormalizedEmail = $"{id:N}@EXAMPLE.INVALID",
-            DisplayName = "Test", PasswordHash = "test-only-placeholder", CreatedAtUtc = DateTime.UtcNow, UpdatedAtUtc = DateTime.UtcNow
+            Id = id,
+            Email = $"{id:N}@example.invalid",
+            NormalizedEmail = $"{id:N}@EXAMPLE.INVALID",
+            DisplayName = "Test",
+            PasswordHash = "test-only-placeholder",
+            CreatedAtUtc = DateTime.UtcNow,
+            UpdatedAtUtc = DateTime.UtcNow
         });
         await db.SaveChangesAsync();
     }
@@ -255,8 +260,15 @@ public sealed class PaymentApiTests : IClassFixture<SqlServerFixture>, IAsyncLif
     }
     private static Dictionary<string, object?> Body() => new()
     {
-        ["name"] = " Payment ", ["description"] = "Test", ["amount"] = 12.3456m, ["currencyCode"] = " usd ",
-        ["category"] = "Bills", ["frequency"] = "Monthly", ["interval"] = 1, ["startDate"] = "2026-01-31", ["anchorDay"] = 31
+        ["name"] = " Payment ",
+        ["description"] = "Test",
+        ["amount"] = 12.3456m,
+        ["currencyCode"] = " usd ",
+        ["category"] = "Bills",
+        ["frequency"] = "Monthly",
+        ["interval"] = 1,
+        ["startDate"] = "2026-01-31",
+        ["anchorDay"] = 31
     };
     private static async Task<PaymentResponse> Payment(HttpResponseMessage response)
     {

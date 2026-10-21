@@ -1,4 +1,8 @@
-# Authentication ve güvenlik kararları — Faz 6–9
+# Authentication ve güvenlik kararları — Faz 6–10
+
+## Faz 10 ekleri
+
+Production/Staging TLS doğrulayan SA olmayan SQL, açık AllowedHosts ve güçlü dış JWT key ile fail-fast; fake push/etkin resmi olmayan Expo URL reddi. CORS exact HTTPS allowlist, credentials yok. Genel1MiB ve privacy4096byte sınırı, güvenlik başlıkları ve doğrulanmış CorrelationId eklendi. SQL rate limit tüm instance'larda ortak, kesinti sensitive route503 fail-closed. İki API bütçesi/40bağlantı yarışı, export izolasyonu, reauth deletion/rollback, cleanup ve eski JWT/replay/IDOR testleri vardır. Ayrıntılar [runbook](OPERATIONS_RUNBOOK.md), [privacy](DATA_PRIVACY.md), [deployment](DEPLOYMENT.md).
 
 ## Faz 9 — Premium güvenlik sınırı
 
@@ -30,13 +34,13 @@ SQL transaction önce kullanıcı satırında UPDLOCK/HOLDLOCK alır, token duru
 
 İptal edilmiş token tekrar kullanılırsa ailedeki bütün aktif refresh token üyeleri iptal edilir. Expired token da ailesini iptal eder. İptal commit edildikten sonra servis 401 üretir. Aynı refresh token ile yarışta biri 200, diğeri 401 alır; ikinci istek reuse olduğundan kazananın child refresh token değeri de iptal edilir. İstemci refresh işlemlerini tekilleştirmelidir. Ağ hatasında kör tekrar oturumu kapatabilir; refresh idempotent değildir.
 
-Logout refresh token sahipliğine dayanır, access JWT istemez. Eski aile üyesiyle logout güncel üyeyi de iptal eder. Tekrarlanan/bilinmeyen doğru biçimli token logout 204 döner; yanlış biçim 400. Ayrı login ailesi etkilenmez. **Logout/reuse access token değerini anında iptal etmez:** geçerli JWT kısa ömrü + skew boyunca kullanılabilir. Kullanıcı pasif/silinmiş ise her istekte SQL kontrolü hemen engeller. Otomatik token temizliği ve oturum yönetimi UI bu fazda yoktur; hash satırları reuse tespiti için tutulur.
+Logout refresh token sahipliğine dayanır, access JWT istemez. Eski aile üyesiyle logout güncel üyeyi de iptal eder. Tekrarlanan/bilinmeyen doğru biçimli token logout204; yanlış biçim400. Ayrı login ailesi etkilenmez. **Logout/reuse access JWT'yi anında iptal etmez:** kısa ömrü+skew boyunca kullanılabilir. Pasif/silinmiş kullanıcı SQL kontrolüyle engellenir. Faz10 bounded maintenance retention120gün ve aile bütünlüğüyle reuse geçmişini koruyarak eski hash'leri temizler; aktif aile silinmez. Oturum UI yoktur.
 
 ## Brute force, proxy ve dağıtım
 
-Auth uçları ortak IP bütçesi: 20 istek/dakika, kuyruk yok, 429 ProblemDetails ve Retry-After: 60. Beş yanlış parola SQL üzerinde 15 dakikalık hesap kilidi yaratır; doğru parola kilit süresince de 401 alır. Başarılı login sayacı sıfırlar. Hız sınırı süreç başınadır; yatay ölçekli dağıtımda edge/distributed limit gerekir. SQL hesap kilidi örnekler arasında ortaktır; hesap kilitleme saldırıları için edge izleme/koruma gereklidir.
+Auth ortak IP bütçesi20/dakika, kuyruk yok,429 ProblemDetails/Retry-After60. Faz10 SQL distributed sayaç ve transaction application lock tüm instance'larda bütçeyi korur; local limiter ek koruma. Beş yanlış parola SQL15dk hesap kilidi; doğru parola kilit süresinde401. Başarılı login sayacı sıfırlar. DDoS/counter cardinality ve hesap kilitleme saldırıları için edge WAF/izleme gerekir.
 
-TrustedProxies:0 vb. ile açık IP allowlist verilmedikçe forwarded header işlenmez. Verildiğinde KnownNetworks boş, ForwardLimit=1, yalnızca izinli proxy için X-Forwarded-For/Proto işlenir. Rastgele istemci başlıkları IP sınırını aşamaz. Production HTTPS redirection ve HSTS aktiftir; doğrudan TLS veya güvenilir TLS terminasyonu gerekir. CORS açılmadı; native istemci için gerekmez. Auth ve /me yanıtları no-store/no-cache taşır. İstek gövdeleri/query/token loglanmaz.
+TrustedProxies açık IP allowlist yoksa forwarded header işlenmez. ForwardLimit1 ve yalnızca izinli proxy için X-Forwarded-For/Proto; rastgele client header sınırı aşamaz. Production HTTPS/HSTS, iç health probe redirect dışında. CORS boş varsayılan exact HTTPS allowlist; native istemci için zorunlu değildir. Auth/me/export no-store; body/query/token loglanmaz.
 
 DevelopmentIdentity shipping API içinde authentication şeması değildir; Development bayrağı kimlik sağlamaz, yanlış JWT ile erişim açılamaz. Eski bayrak Development dışında açıksa başlangıç reddedilir. Regresyonlar test assembly içindeki özel handler kullanır; yeni auth testleri gerçek JWT ile çalışır.
 

@@ -1,5 +1,7 @@
 # Faz 7 — Hatırlatmalar ve push işleme
 
+Faz10 worker shutdown/cancellation, ayrı `/health/workers` heartbeat ve notification result Meter instrumentation ile izlenir. Production resmi Expo endpoint/credential kullanır, fake push başarı üretemez. Hesap silme ilgili delivery/rule/device kayıtlarını transaction içinde kaldırır; in-flight kabul edilmiş push geri alınamaz. Yerel load controlled sender'dır, fiziksel teslimat kanıtı değildir. [Runbook](OPERATIONS_RUNBOOK.md), [privacy](DATA_PRIVACY.md), [checklist](PRODUCTION_CHECKLIST.md).
+
 Yalnızca Faz 7 uygulanmıştır; .NET 8 / EF Core 8 / SQL Server ve mevcut JWT sınırı korunur. Frontend eklenmedi. Push varsayılan kapalıdır; credential yokken sahte başarı yoktur.
 
 ## HTTP sözleşmesi

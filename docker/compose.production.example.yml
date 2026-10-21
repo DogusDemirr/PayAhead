@@ -1,0 +1,22 @@
+name: payahead-production-example
+services:
+  api:
+    image: ${PAYAHEAD_IMAGE:?Set an immutable reviewed image digest}
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    init: true
+    stop_grace_period: 40s
+    cpus: 2
+    mem_limit: 768m
+    pids_limit: 128
+    ports:
+      - "127.0.0.1:8080:8080"
+    env_file:
+      - ${PAYAHEAD_SECRET_ENV_FILE:?Set an external restricted secret env file}
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      DOTNET_EnableDiagnostics: "0"

@@ -22,6 +22,7 @@ public sealed class NotificationProcessor(INotificationQueue queue, IPushNotific
         catch (OperationCanceledException) when (ct.IsCancellationRequested) { throw; }
         catch (Exception) { result = new(PushResultKind.Retryable, ErrorCode: "ProviderUnavailable"); }
         await queue.CompleteAsync(delivery, result, clock.GetUtcNow().UtcDateTime, ct);
+        Operations.OperationsMetrics.Deliveries.Add(1, new KeyValuePair<string, object?>("result", result.Kind.ToString()));
         return true;
     }
 }

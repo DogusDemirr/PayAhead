@@ -1,4 +1,10 @@
-# API sözleşmesi — Faz 1–9
+# API sözleşmesi — Faz 1–10
+
+## Faz 10 — Privacy ve işletim
+
+JWT GET `/api/users/me/export`: kendi profil/settings/plan/occurrence/reminder/tracked/membership/device metadata JSON attachment, no-store. Secret/token/hash ve başka kullanıcı verisi yok. Bounded satırlar ve8MiB çıktı; aşım413. DELETE `/api/users/me`: `{"currentPassword":"..."}`, tekrar parola doğrulaması,4096byte limit; başarı204, yanlış parola401. Sonraki eski JWT401. UserId body/query üzerinden seçilemez. Geçmiş silinir, store anti-replay bağları pseudonymous tutulur; mağaza auto-renew iptal olmaz. Tam sözleşme [DATA_PRIVACY.md](DATA_PRIVACY.md).
+
+Privacy ortak5/dakika/user; auth20/dakika/IP; verify/restore10/dakika/user; webhook60/dakika/IP SQL-backed distributed limit.429 Retry-After60, limiter outage503 fail-closed. Genel body1MiB; endpoint özel daha küçük limitler korunur. Oversize413 ProblemDetails, sensitive alanlar hata yanıtında tekrarlanmaz. CORS exact HTTPS allowlist, credentials yok. X-Correlation-ID, nosniff/DENY/no-referrer/Permissions-Policy başlıkları eklenir. Live/ready yanında anonim minimal GET `/health/workers` vardır; ready dış provider outage'a bağlı değildir. [Runbook](OPERATIONS_RUNBOOK.md).
 
 Faz 9 üyelik uçları: anonim GET `/api/premium/plans`; JWT ile GET `/api/premium/me`, GET `/api/premium/entitlements`, POST `/api/premium/verify-purchase`, POST `/api/premium/restore`. Son iki uç `{store,productId,evidence}` kabul eder; Apple JWS veya Google purchaseToken, sunucuda doğrulanır. 200 entitlement, 400 geçersiz kanıt, 401 kimlik, 409 hesap bağlama, 429 rate limit, 503 sağlayıcı/config hatası. Ayrıntılı alanlar ve React Native sözleşmesi [PREMIUM.md](PREMIUM.md).
 

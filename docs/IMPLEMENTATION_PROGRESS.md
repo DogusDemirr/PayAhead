@@ -1,5 +1,77 @@
 # Uygulama ilerlemesi
 
+## Faz 10 — Production Hardening & Release Readiness
+
+Kullanıcının Faz10 attachment isteğiyle onaylandı. Önce AGENTS/README/ilerleme/güvenlik/mimari/DB/notification/premium/store belgeleri ve startup/DI/JWT/rate/worker/migration/Docker/test altyapısı incelendi. Başlangıç git durumu temizdi. Risk listesi: process-local rate limiter, refresh retention eksikliği, export/delete yokluğu, production config/CORS/body sınırları, worker heartbeat/manuel retry, CI ve gerçek API image startup kanıtı eksikliği. Plan: ortak policy/SQL → privacy/maintenance → observability/config → Docker/CI → gerçek SQL/security/load → runbook/checklist. Production'a deploy edilmedi; canlı DB/kullanıcı/store üzerinde işlem yapılmadı.
+
+### Kod ve mimari
+
+- .NET8.0.426 SDK, net8.0/C#12/EF8.0.21 korundu. Domain RateLimitBucket; Application Operations sözleşmeleri/maintenance/metrics; Infrastructure SQL limiter/AccountStore/MaintenanceStore; API config/headers/correlation/worker health/middleware/controller. Clean Architecture korunur, Redis/genel repository/CQRS eklenmez.
+- SQL shared rate: transaction application lock + PK seek/UPDLOCK/HOLDLOCK, SQL UTC saat, HMAC bucket. Auth20/IP/dk, verify+restore10/user/dk, webhook60/IP/dk, privacy5/user/dk.5s middleware deadline, SQL outage503 fail-closed; local limiter ek koruma. JWT key bütün instance'larda ortak olmalı; düz IP/user/token key yok. TTL/cleanup var, WAF/çok-IP cardinality koruması hâlâ deployment işi.
+- Production/Staging JWT secret, host allowlist, TLS doğrulayan SA olmayan SQL fail-fast; fake store her ortamda reddedilir, production fake push/etkin resmi olmayan Expo endpoint reddi. Testing ayrı key ister, yalnızca Development Swagger/ephemeralJWT. Exact HTTPS CORS allowlist, credentials yok; proxy allowlist/ForwardLimit1 korunur. Health internalHTTP dışında iş API HTTPS/HSTS.
+- Body genel1MiB, privacy4096byte, mevcut purchase/webhook küçük limitleri korunur; oversize413/ProblemDetails. Nosniff/DENY/no-referrer/Permissions-Policy ve doğrulanmış max64ASCII CorrelationId. Serilog structured ID, Meter/Activity request/auth/rate/worker/notification/store sonuçları; user/token label yok. Kalıcı collector/exporter ve alerts kurulmadı (Pending).
+- Maintenance dakika başı bounded200/batch, retention120gün (90–3650). Ailede retention içindeki token varsa eski zincir korunur; incoming selfFK olmayan eski başlar temizlenir. Aktif oturum/reuse detection geçmişi erken silinmez; multi-instance/idempotent SQL. Rate expiry+5dk bounded cleanup.
+- GET users/me/export: JWT, kendi allowlisted metadata, SERIALIZABLE bounded JSON/no-store/8MiB; secret/hash/token yok, fazlası413. SQL datetime2 export'u UTC Z olarak yazılır. DELETE users/me: JWT+güncel parola recheck, User→plan locks, tek transaction/FK sıralı operasyonel veri silme + account scrub. Refresh/device/pending işler kaldırılır, store evidence temizlenir; pseudonymous anti-replay bağları tutulur. Başka kullanıcı etkilenmez, hata rollback, servis tekrarları idempotent; HTTP eskiJWT401. Store auto-renew ayrıca mağazada iptal edilmelidir. Hukuki retention/purge kararı Pending, uygunluk garantisi yok.
+- Notification/store mevcut bounded lease/backoff korunur; WorkerStatus heartbeat10dk ve ayrı /health/workers. Store terminal AttemptCount10 için ops/retry-webhook.sql guard'lı manuel requeue; active lease/completed kayıt açılmaz. Inactive account provider sorgusu yapmaz. Exactly-once/accepted push geri çekme garantisi yok.
+
+### Migration / DB
+
+Yeni `20261021152026_ProductionOperations`: yalnızca RateLimitBuckets+expiry index;15tablo/15PK/14FK. Önceki beş migration dosyası değiştirilmedi/silinmedi. Phase9 seed kullanıcılı upgrade gerçek SQL testinde geçti. Snapshot/model pending değişiklik yok. Startup migrate etmez. Geliştirme DB/volume'u silinmedi; Phase10 migration ve privacy/load/backup denemeleri kendi rastgele test DB'lerinde yapıldı. Mevcut geliştirme DB için gerektiğinde açık EF update bakım adımı kullanılmalıdır.
+
+SQL runtime command timeout30s, retry3, pooling varsayılan; export SERIALIZABLE, policy user locks, queue READPAST/READCOMMITTEDLOCK. Backup/restore/index/Query Store/retention/RPO-RTO/rollback stratejisi OPERATIONS_RUNBOOK'ta. Production şifreli backup veya sertifikalı runtime hesabı bu çalışmada test edilmedi.
+
+### CI / Docker / audit
+
+GitHub Actions PR/main/master/manual pipeline: restore/whitespace/Release build/unit/gerçek SQL Testcontainers/audit/Docker build/artifact. Minimum contents:read, checkout credentials kalıcı değil, action tag SHA'ları resmi git ls-remote ile doğrulandı. Manuel run image archive örneği; registry push/deploy yok. Release-review workflow yalnızca manuel production environment onay kaydı örneği, gerçek reviewer koruması repo ayarı gerektirir. **GitHub üzerinde workflow çalıştırılmadı.** Yerel actionlint1.7.7 digest `sha256:887a259a5a534f3c4f36cb02dca341673c6089431057242cdc931e9f133147e9` ile iki workflow statik kontrolü exit0. Production Compose config --quiet geçti, servis başlatılmadı.
+
+NuGet ilk audit Testcontainers transitif SSH.NET2024.2.0 için High GHSA-q939-rpr3-3284 ve GHSA-mggc-4xg6-vcxf buldu. Yalnızca integration test projesine PrivateAssets=all SSH.NET2026.0.0 güvenlik pin'i eklendi; gerçek Testcontainers regresyonu geçti. Yeniden audit ve scripts/check-audit.ps1 temiz exit0. Runtime bağımlılıklarında raporlanan advisory yok. OS/base image CVE taraması yapılmadı, checklist Pending.
+
+Docker SDK8→ASP.NET8 multi-stage, project restore layer, src-only publish, non-root app, dahili dotnet health probe, SIGTERM. Read-only root/tmpfs64MiB,768MiB/2CPU/128PID,cap_drop ALL,no-new-privileges/init ile gerçek startup geçti. USER UID1654, readonly true; explicit probe exit0, graceful stop exit0. Test edilen imaj `sha256:e79c7afc35879a4244a935ed5664bc78cb387c2b10a6f44f5102aa2488a4ce4c`, uncompressed348167399byte. İmaj runtime8.0 digest'i build çıktısında kayıtlı; üretimde reviewed immutable digest kullanılmalıdır.
+
+scripts/local-container-smoke.ps1 yalnızca kendi PayAheadSmoke_/PayAheadRestore_<guid> DB ve payahead-phase10-<guid> container'ını oluşturup temizledi. **Testing environment**, gerçek SQL/JWT, kontrollü bridge proxy header; production TLS veya gerçek credential kanıtı değildir. Live/ready200, anonymous export401; anonymous Swagger401/JWT404; register201/login200/export200; credential yokken shipping purchase503; deletion204/eskiJWT401. COPY_ONLY+CHECKSUM backup, VERIFYONLY, ayrı DB'ye gerçek RESTORE,1user/6migration count ve CHECKDB geçti. Son tur container shutdown0; yalnızca kendi test süreç/DB/secret env file temizlendi. Yerel test backup dosyası SQL volume'unda sentetik veri kanıtıdır; production backup değildir.
+
+### Build / test sonuçları — 21 Ekim2026
+
+| Kontrol | Gerçek sonuç |
+| --- | --- |
+| Restore | .NET8 SDK ile başarılı |
+| Debug/Release build | Başarılı,0warning/0error |
+| Format | dotnet format whitespace --verify-no-changes başarılı |
+| Unit | **379/379**; Faz9 364 +15 yeni; fail0/skip0 |
+| SQL integration | **242/242**; Faz9 228 +14 yeni; fail0/skip0 |
+| Toplam | **621/621** |
+| EF snapshot | Pending model değişikliği yok |
+| Docker build/start/probe/shutdown | Başarılı; Testing+gerçek SQL; prod deployment değil |
+| CI static / Compose syntax | actionlint0 / config--quiet0 |
+| NuGet audit | Güvenlik pin'i sonrası raporlanan advisory0 |
+
+Son tam TRX (Git dışı): `tests/PayAhead.UnitTests/TestResults/phase10-verified_net8.0_20261021185226.trx`; `tests/PayAhead.IntegrationTests/TestResults/phase10-verified_net8.0_20261021185720.trx`. PAYAHEAD_TEST_SQLSERVER unset, gerçek SQL Server2022 Testcontainers. SQLite/InMemory/skip yok. SQL sınıfları CI belleğini sınırlamak için seri; yarışlar açık parallel requests/connections kullanır. Faz1–8 privileged regression fixture ve Faz9 gerçek entitlement policy ayrımı korunur. Sonrasında yalnızca413 hata başlığı metni genelleştirildi; işlem/policy değişmedi.
+
+Yeni test kapsamı: unsafe production/staging/CORS config ve fake push; owner export/secret yokluğu/UTC/size; password deletion/JWT invalidation/store binding/session-device scrub/rollback/idempotency; SQL40connection quota/expiry ve iki API ortak bütçe/proxy spoof; fail-closed limiter; CORS/security/correlation; refresh aile retention/batch; poison inbox/lease/manual requeue; Phase9→10 upgrade; oversized body/parameterized SQL injection verisi. Önceki JWT missing/expired/forged, IDOR, refresh replay/race, Free race, purchase replay, Apple invalidJWS/Google OIDC, fake/development bypass, notification lease/concurrency senaryoları tam regresyonda geçti.
+
+Ara hatalar gizlenmedi: ilk yeni SQL10 test7geçti/3kaldı (delete collation500 ve TestServer content-size beklentisi). Explicit BIN2 + bounded ContentLength kontrolü/HTTP body mapping düzeltildi,11/11 geçti. İlk tam tur379unit +241SQL geçti/1SQL deadlock kaldı; direct40connection testinde ilk bucket oluşturma yarışına application lock/PK seek ve production retry ayarı eklendi. İzole yarış1/1 ve son tam379+242 geçti. İlk container turu Swagger anonim404 beklentisinde kaldı; mevcut fallback401/JWT404 sözleşmesi korunup test düzeltildi, sonraki turlar geçti. İlk actionlint Git project discovery hatası explicit workflow yollarıyla düzeltildi. EF migration add implicit build sandbox/NuGet erişiminde kaldı, no-restore build/no-build EF ile üretildi. Python bulunmadığı için audit gate PowerShell ile yazıldı. Bunlar atlanmış doğrulama gibi sunulmadı.
+
+### Yerel yük testi
+
+tests/PayAhead.LoadTests ayrı guarded local executable; kendi PayAheadLoad_<guid> DB'si. SQL'e doğrudan1000plan/10000PaidOccurrence/1000reminder ve1device seed; bu, Free1000plan oluşturma izni kanıtı değildir. Loopback Kestrel, gerçekJWT/SQL,20satır payment list read. Bir warmup ve birer100/500eşzamanlı burst. API ve load client aynı süreç, SQL ayrı; memory seed materyalizasyonunu da içerir. Ham çıktı `tests/PayAhead.LoadTests/artifacts/phase10-load.json` (Git dışı).
+
+| Concurrency | Errors | p50 | p95 | p99 | CPU (bir core yüzdesi) | Working set |
+| --- | --- | --- | --- | --- | --- | --- |
+|100|0/100|110.6ms|148.7ms|151.2ms|142.6% (~1.43core)|395.4MiB|
+|500|0/500|155.4ms|246.2ms|248.7ms|743.6% (~7.44core)|551.6MiB|
+
+Notification schedule20rule ve processing cap50;20iş1362.4ms controlled sender ile işlendi. Store50unbound inbox765.2ms; provider çağrısı yok. CPU kısa burst/combined process ölçümüdür, SQL CPU ölçülmedi. Tek tur, warm cache ve yerel donanım; sustained/soak, production SLO, çok-instance throughput ve gerçek dış servis gecikmesi kanıtı değildir. Hata oranı0 yalnızca bu örnekleme aittir.
+
+### Dosyalar / açık kapılar / genel durum
+
+Yeni kaynaklar Operations/AccountStore/MaintenanceStore/SqlSharedRateLimiter/RateLimitBucket; production config/telemetry/shared middleware/account controller/probe; migration+snapshot; hardening unit/SQL testleri; local load runner; Docker production example/health/ignore; GitHub CI/review/dependabot; audit/smoke/retry scriptleri. README/API/ARCHITECTURE/DATABASE/DEVELOPMENT/SECURITY/NOTIFICATIONS/PREMIUM/STORE_INTEGRATION/AGENTS güncellendi; DEPLOYMENT/PRODUCTION_CHECKLIST yeniden yazıldı, OPERATIONS_RUNBOOK ve DATA_PRIVACY eklendi. Legacy C# dosyalarının ek whitespace farkları CI format baseline'ıdır; önceki migration'lar formatlanmadı/değiştirilmedi.
+
+Faz1–10 backend kodu ve yerel doğrulama tamamlandı. Frontend test API'leriyle geliştirmeye başlayabilir; JWT secure storage/tek refresh, timezone/currency, rowversion, push device lifecycle, store appAccountToken/obfuscatedAccountId ve account deletion uyarıları sözleşmelerde hazırdır. Frontend geliştirilmedi.
+
+**Production hazır/onaylı değildir:** gerçek Apple/Google/Expo credentials/cihaz/RTDN-V2 yok; GitHub run/reviewer/branch protection, gerçek domain/TLS/en az yetki SQL, collector/alerts, production şifreli backup/restore/RPO-RTO, retention/hukuk/privacy metni, OS image taraması, sustained capacity ve10 Kasım2026 .NET8 destek sonu planı Pending/Blocked. Checklist bunları Completed yapmaz. Exactly-once, anlık refund, yasal uygunluk veya production kapasite garantisi verilmez.
+
+**Duruş: Faz10 tamamlandı, production'a deploy edilmedi. Yeni iş için kullanıcı talimatı bekleniyor.** Aşağıdaki eski faz sonuçları tarihsel kayıttır.
+
 ## Faz 9 — Premium Membership, Entitlements & Store Purchase Verification
 
 Kullanıcının Faz 9 isteğiyle onaylandı; aşağıdaki eski faz duruşları tarihsel kayıttır. Faz 10 veya React Native frontend başlatılmadı. AGENTS, Faz 8 ilerlemesi, güvenlik, domain/modeller, migration ve test altyapısı incelendi. Kısa plan: merkezi lifecycle/limit policy → gerçek adapter ve immutable persistence → authenticated inbox/reconcile → gerçek SQL/API/Kestrel doğrulaması → dokümantasyon. Clean Architecture, net8.0, C#12 ve EF Core8.0.21 korundu.

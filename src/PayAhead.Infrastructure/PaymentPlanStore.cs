@@ -8,7 +8,7 @@ namespace PayAhead.Infrastructure;
 
 public sealed class PaymentPlanStore(PayAheadDbContext db, IEntitlementService? entitlements = null) : IPaymentPlanStore
 {
-    private IEntitlementService Policy => entitlements ?? new SqlEntitlementService(db,new(),TimeProvider.System);
+    private IEntitlementService Policy => entitlements ?? new SqlEntitlementService(db, new(), TimeProvider.System);
     public Task<bool> IsActiveUserAsync(Guid userId, CancellationToken cancellationToken)
         => db.Users.AnyAsync(x => x.Id == userId && x.IsActive, cancellationToken);
 
@@ -30,13 +30,16 @@ public sealed class PaymentPlanStore(PayAheadDbContext db, IEntitlementService? 
 
     public async Task AddAsync(PaymentPlan plan, CancellationToken cancellationToken)
     {
-        try { await db.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
+        try
         {
-            await using var tx=await db.Database.BeginTransactionAsync(cancellationToken);
-            await Policy.LockUserAsync(plan.UserId,cancellationToken);
-            if(plan.IsActive)await Policy.EnsureIncreaseAsync(plan.UserId,LimitResource.PaymentPlans,null,1,cancellationToken);
-            db.Entry(plan).State=EntityState.Added;await db.SaveChangesAsync(cancellationToken);await tx.CommitAsync(cancellationToken);
-        }); }
+            await db.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
+        {
+            await using var tx = await db.Database.BeginTransactionAsync(cancellationToken);
+            await Policy.LockUserAsync(plan.UserId, cancellationToken);
+            if (plan.IsActive) await Policy.EnsureIncreaseAsync(plan.UserId, LimitResource.PaymentPlans, null, 1, cancellationToken);
+            db.Entry(plan).State = EntityState.Added; await db.SaveChangesAsync(cancellationToken); await tx.CommitAsync(cancellationToken);
+        });
+        }
         catch (DbUpdateException ex) when (ex.InnerException is SqlException { Number: 547 })
         {
             throw new ResourceConflictException("Kullanıcı kaydı değişti; işlem tamamlanamadı.");
@@ -47,17 +50,17 @@ public sealed class PaymentPlanStore(PayAheadDbContext db, IEntitlementService? 
     {
         await db.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
         {
-        await using var tx=await db.Database.BeginTransactionAsync(cancellationToken);
-        await Policy.LockUserAsync(plan.UserId,cancellationToken);
-        await EnsureIndependent(plan.Id, cancellationToken);
-        var active=await db.PaymentPlans.AsNoTracking().Where(x=>x.Id==plan.Id&&x.UserId==plan.UserId).Select(x=>x.IsActive).SingleAsync(cancellationToken);
-        if(!active&&plan.IsActive)await Policy.EnsureIncreaseAsync(plan.UserId,LimitResource.PaymentPlans,null,1,cancellationToken);
-        db.Entry(plan).State=EntityState.Modified;
-        db.Entry(plan).Property(x => x.RowVersion).OriginalValue = expectedVersion;
-        // Aynı içerikli PUT da sürüm karşılaştırmasını veritabanında yapmalıdır.
-        db.Entry(plan).Property(x => x.UpdatedAtUtc).IsModified = true;
-        await db.SaveChangesAsync(cancellationToken);
-        await tx.CommitAsync(cancellationToken);
+            await using var tx = await db.Database.BeginTransactionAsync(cancellationToken);
+            await Policy.LockUserAsync(plan.UserId, cancellationToken);
+            await EnsureIndependent(plan.Id, cancellationToken);
+            var active = await db.PaymentPlans.AsNoTracking().Where(x => x.Id == plan.Id && x.UserId == plan.UserId).Select(x => x.IsActive).SingleAsync(cancellationToken);
+            if (!active && plan.IsActive) await Policy.EnsureIncreaseAsync(plan.UserId, LimitResource.PaymentPlans, null, 1, cancellationToken);
+            db.Entry(plan).State = EntityState.Modified;
+            db.Entry(plan).Property(x => x.RowVersion).OriginalValue = expectedVersion;
+            // Aynı içerikli PUT da sürüm karşılaştırmasını veritabanında yapmalıdır.
+            db.Entry(plan).Property(x => x.UpdatedAtUtc).IsModified = true;
+            await db.SaveChangesAsync(cancellationToken);
+            await tx.CommitAsync(cancellationToken);
         });
     }
 

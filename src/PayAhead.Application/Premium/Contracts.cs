@@ -7,12 +7,12 @@ public enum LimitResource { PaymentPlans, Reminders, TrackedSubscriptions }
 public sealed record PlanLimits(int ActivePaymentPlans, int ActiveRemindersPerPlan, int ActiveTrackedSubscriptions);
 public sealed class MembershipOptions
 {
-    public PlanLimits Free { get; } = new(5,1,3);
+    public PlanLimits Free { get; } = new(5, 1, 3);
     public int PremiumPaymentPlans { get; init; } = 1000;
     public int PremiumReminders { get; init; } = 10;
     public int PremiumTrackedSubscriptions { get; init; } = 1000;
     public int VerificationFreshnessHours { get; init; } = 24;
-    public PlanLimits Premium => new(PremiumPaymentPlans,PremiumReminders,PremiumTrackedSubscriptions);
+    public PlanLimits Premium => new(PremiumPaymentPlans, PremiumReminders, PremiumTrackedSubscriptions);
 }
 public sealed record EntitlementResponse(string Plan, MembershipState State, bool IsPremium, PlanLimits Limits,
     DateTime? AccessEndsAtUtc, bool AutoRenew, Guid AppAccountToken, string GoogleObfuscatedAccountId,

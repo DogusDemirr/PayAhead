@@ -5,3 +5,12 @@
 .env
 TestResults
 artifacts
+tests
+docs
+.github
+ops
+**/*.pfx
+**/*.pem
+**/*.key
+**/appsettings.*.local.json
+.env.*

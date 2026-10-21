@@ -29,8 +29,13 @@ public sealed class RecurrenceIntegrationTests(SqlServerFixture server) : IClass
             var userId = Guid.NewGuid();
             db.Users.Add(new User
             {
-                Id = userId, Email = "recurrence@example.invalid", NormalizedEmail = "RECURRENCE@EXAMPLE.INVALID",
-                DisplayName = "Recurrence test", PasswordHash = "test-only-placeholder", CreatedAtUtc = DateTime.UtcNow, UpdatedAtUtc = DateTime.UtcNow
+                Id = userId,
+                Email = "recurrence@example.invalid",
+                NormalizedEmail = "RECURRENCE@EXAMPLE.INVALID",
+                DisplayName = "Recurrence test",
+                PasswordHash = "test-only-placeholder",
+                CreatedAtUtc = DateTime.UtcNow,
+                UpdatedAtUtc = DateTime.UtcNow
             });
             var plan = PaymentPlan.Create(userId, new PaymentPlanDetails("Schedule", null, 15, "TRY", "Bills", frequency,
                 interval, D(start), D(to), anchor, true), DateTime.UtcNow);

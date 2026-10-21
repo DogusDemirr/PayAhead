@@ -1,5 +1,7 @@
 # Apple / Google mağaza entegrasyonu
 
+Faz10 webhook ingress ortak SQL60/dakika/IP, verify/restore10/dakika/user; outage503 fail-closed. Worker health/metrics ve terminal inbox için guard'lı `ops/retry-webhook.sql` manuel retry eklendi. Lease/poison/retry SQL testleri ve unbound inbox load gerçek provider çağrısı değildir. Silinmiş hesabın evidence'i kaldırılır, yeniden provider sorgusu yapılmaz; geç gelen event retention'ı privacy incelemesine tabidir. [Runbook](OPERATIONS_RUNBOOK.md), [privacy](DATA_PRIVACY.md), [checklist](PRODUCTION_CHECKLIST.md).
+
 Faz 9 adapter'ları Infrastructure katmanındadır. Varsayılan tüm mağaza bayrakları ve worker kapalıdır. Credential yokken Premium verme veya otomatik fake fallback yoktur. **Canlı Apple/Google veya gerçek sandbox satın alması bu makinede doğrulanmadı.** SQL ve HTTP testleri kontrollü test sağlayıcısı kullanır; Google OIDC imza testleri yerel RSA/JWKS ile çalışır.
 
 ## Apple

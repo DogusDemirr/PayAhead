@@ -50,13 +50,14 @@ public sealed class FoundationTests
         var occurrence = db.Model.FindEntityType(typeof(PaymentOccurrence))!;
         Assert.Contains(occurrence.GetIndexes(), x => x.IsUnique && x.Properties.Select(p => p.Name)
             .SequenceEqual([nameof(PaymentOccurrence.PaymentPlanId), nameof(PaymentOccurrence.DueDate)]));
-        Assert.Equal(14, db.Model.GetEntityTypes().Count());
+        Assert.Equal(15, db.Model.GetEntityTypes().Count());
     }
 
     private static IConfiguration Config(bool enabled, string? id) => new ConfigurationBuilder()
         .AddInMemoryCollection(new Dictionary<string, string?>
         {
-            ["DevelopmentIdentity:Enabled"] = enabled.ToString(), ["DevelopmentIdentity:UserId"] = id
+            ["DevelopmentIdentity:Enabled"] = enabled.ToString(),
+            ["DevelopmentIdentity:UserId"] = id
         }).Build();
 
     private sealed class TestEnvironment(string name) : IHostEnvironment

@@ -1,0 +1,12 @@
+name: manual-release-review
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    environment: production
+    steps:
+      - name: Approval record only
+        run: echo 'Review successful CI evidence and production checklist. This workflow does not deploy. Configure required reviewers on the production environment.'

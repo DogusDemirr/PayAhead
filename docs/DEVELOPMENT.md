@@ -1,6 +1,26 @@
 # Geliştirme
 
-Faz 1–9 altyapı, ödeme/recurrence/occurrence, overview, JWT, bildirim, subscription/trial ve Premium uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 10 için ayrı onay gerekir.
+Faz 1–10 backend ve production hardening uygulanmıştır; frontend ve production deployment ayrı açık talimat gerektirir.
+
+## Faz 10 doğrulama
+
+```powershell
+dotnet restore PayAhead.sln
+dotnet format whitespace PayAhead.sln --no-restore --verify-no-changes
+dotnet build PayAhead.sln --no-restore
+dotnet test PayAhead.sln --no-build --logger trx
+dotnet test tests/PayAhead.IntegrationTests --filter FullyQualifiedName~HardeningIntegrationTests
+dotnet list PayAhead.sln package --vulnerable --include-transitive --format json > artifacts/audit.json
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-audit.ps1 artifacts/audit.json
+docker build -f docker/Dockerfile -t payahead:phase10-local .
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-container-smoke.ps1
+```
+
+Container smoke bu makinenin .tools SDK/.env geliştirme SQL/Compose network'ünü kullanır; Testing env, kendi rastgele DB/container, test JWT ve kontrollü proxy header ile gerçekSQL bağlantısıdır. Gerçek TLS/production credential kanıtı değildir. Backup/restore/CHECKDB ve export/delete de aynı izole testte çalışır. Secret env file finally'de kaldırılır; volume/geliştirme verisi silinmez.
+
+`tests/PayAhead.LoadTests` ayrı executable'dır, çözüm testi sayısına dahil değildir. Restore/build sonrası `PAYAHEAD_LOAD_SQLSERVER` yalnızca yerel SQL base connection olarak güvenli environment'tan sağlanır; runner kendi PayAheadLoad_<guid> DB'sini migrate/seed/cleanup eder.1000plan/10000occurrence/1000rule;100/500concurrent HTTP, bounded worker ve unbound inbox ölçer. Çıktı proje çalışma dizinindeki artifacts/phase10-load.json; API+client aynı süreç CPU/memory, SQL ayrı. Gerçek Expo/store çağrısı yoktur, production kapasitesi değildir. Son sonuçlar progress'tedir.
+
+SQL integration sınıfları container belleği için seri, yarış senaryoları açıkça paraleldir. Testcontainers'ın transitif SSH.NET iki High advisory'si test-only2026.0.0 pin'iyle giderildi; net8/EF8 korunur. CI GitHub'da çalıştırılmadı; yerel actionlint tam workflow dosyalarıyla doğrulandı. Docker/actionlint komutları [DEPLOYMENT.md](DEPLOYMENT.md), privacy [DATA_PRIVACY.md](DATA_PRIVACY.md).
 
 ## Faz 9 — Premium geliştirme ve doğrulama
 

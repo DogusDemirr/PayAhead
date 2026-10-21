@@ -65,9 +65,18 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
                             delivery.UpdatedAtUtc = now;
                         }
                     }
-                    else db.NotificationDeliveries.Add(new() { Id = Guid.NewGuid(), UserId = rule.UserId, PaymentPlanId = plan.Id,
-                        ReminderRuleId = id, DeviceTokenId = device, DueDate = due, ScheduledAtUtc = scheduled.Value,
-                        NextAttemptAtUtc = scheduled, UpdatedAtUtc = now });
+                    else db.NotificationDeliveries.Add(new()
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = rule.UserId,
+                        PaymentPlanId = plan.Id,
+                        ReminderRuleId = id,
+                        DeviceTokenId = device,
+                        DueDate = due,
+                        ScheduledAtUtc = scheduled.Value,
+                        NextAttemptAtUtc = scheduled,
+                        UpdatedAtUtc = now
+                    });
                 }
             }
             await db.SaveChangesAsync(ct); await transaction.CommitAsync(ct);
@@ -172,7 +181,8 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
     {
         "DeviceNotRegistered" or "MessageRateExceeded" or "MessageTooBig" or "InvalidCredentials" or "MismatchSenderId"
             or "ProviderUnavailable" or "ProviderRejected" or "ProviderProtocol" or "NotConfigured" or "ReceiptExpired" => code,
-        null => null, _ => "ProviderRejected"
+        null => null,
+        _ => "ProviderRejected"
     };
     public Task<int> CleanupAsync(DateTime now, CancellationToken ct)
         // Preserve 400 days of terminal dedup keys: longer than the 365-day lead + 30-day horizon + catch-up.

@@ -19,6 +19,7 @@ public sealed class PayAheadDbContext(DbContextOptions<PayAheadDbContext> option
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
     public DbSet<NotificationDelivery> NotificationDeliveries => Set<NotificationDelivery>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
+    public DbSet<RateLimitBucket> RateLimitBuckets => Set<RateLimitBucket>();
 
     protected override void OnModelCreating(ModelBuilder model)
         => model.ApplyConfigurationsFromAssembly(typeof(PayAheadDbContext).Assembly);

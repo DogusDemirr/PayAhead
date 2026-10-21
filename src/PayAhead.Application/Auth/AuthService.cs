@@ -12,9 +12,15 @@ public sealed class AuthService(IAuthStore store, IPasswordService passwords, IT
     {
         await registration.ValidateAndThrowAsync(request, ct);
         var now = clock.GetUtcNow().UtcDateTime;
-        var user = new User { Id = Guid.NewGuid(), Email = request.Email!.Trim(),
-            NormalizedEmail = EmailNormalization.Normalize(request.Email), DisplayName = request.DisplayName!.Trim(),
-            CreatedAtUtc = now, UpdatedAtUtc = now };
+        var user = new User
+        {
+            Id = Guid.NewGuid(),
+            Email = request.Email!.Trim(),
+            NormalizedEmail = EmailNormalization.Normalize(request.Email),
+            DisplayName = request.DisplayName!.Trim(),
+            CreatedAtUtc = now,
+            UpdatedAtUtc = now
+        };
         user.PasswordHash = passwords.Hash(user, request.Password!);
         await store.RegisterAsync(user, ct);
         return UserResponse.From(user);
@@ -59,8 +65,14 @@ public sealed class AuthService(IAuthStore store, IPasswordService passwords, IT
         => UserResponse.From(await store.FindActiveAsync(currentUser.UserId ?? Guid.Empty, ct)
             ?? throw new AuthenticationRequiredException());
 
-    private RefreshToken NewRefresh(string raw, DateTime now) => new() { Id = Guid.NewGuid(), FamilyId = Guid.NewGuid(),
-        TokenHash = tokens.HashRefreshToken(raw), CreatedAtUtc = now, ExpiresAtUtc = now.AddDays(tokens.RefreshLifetimeDays) };
+    private RefreshToken NewRefresh(string raw, DateTime now) => new()
+    {
+        Id = Guid.NewGuid(),
+        FamilyId = Guid.NewGuid(),
+        TokenHash = tokens.HashRefreshToken(raw),
+        CreatedAtUtc = now,
+        ExpiresAtUtc = now.AddDays(tokens.RefreshLifetimeDays)
+    };
     private AuthResponse Response(User user, string raw, RefreshToken session)
     {
         var access = tokens.CreateAccessToken(user.Id);

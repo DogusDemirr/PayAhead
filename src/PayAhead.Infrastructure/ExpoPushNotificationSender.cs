@@ -27,8 +27,14 @@ public sealed class NotificationOptions
 public sealed class ExpoPushNotificationSender(IHttpClientFactory clients, NotificationOptions options) : IPushNotificationSender
 {
     public Task<PushResult> SendAsync(PushMessage message, CancellationToken ct)
-        => Call(options.SendEndpoint, new { to = message.PushToken, title = "PayAhead", body = "Bir ödeme hatırlatmanız var.",
-            data = new { notificationId = message.DeliveryId }, ttl = 3600 }, null, ct);
+        => Call(options.SendEndpoint, new
+        {
+            to = message.PushToken,
+            title = "PayAhead",
+            body = "Bir ödeme hatırlatmanız var.",
+            data = new { notificationId = message.DeliveryId },
+            ttl = 3600
+        }, null, ct);
     public Task<PushResult> GetReceiptAsync(string messageId, CancellationToken ct)
         => Call(options.ReceiptEndpoint, new { ids = new[] { messageId } }, messageId, ct);
     private async Task<PushResult> Call(string endpoint, object payload, string? receiptId, CancellationToken ct)

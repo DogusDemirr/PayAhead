@@ -35,10 +35,18 @@ public sealed class JwtSettings
 
     public TokenValidationParameters ValidationParameters() => new()
     {
-        RequireSignedTokens = true, RequireExpirationTime = true, ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(KeyBytes), ValidAlgorithms = [SecurityAlgorithms.HmacSha256],
-        ValidateIssuer = true, ValidIssuer = Issuer, ValidateAudience = true, ValidAudience = Audience,
-        ValidateLifetime = true, ClockSkew = TimeSpan.FromSeconds(15), NameClaimType = JwtRegisteredClaimNames.Sub
+        RequireSignedTokens = true,
+        RequireExpirationTime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(KeyBytes),
+        ValidAlgorithms = [SecurityAlgorithms.HmacSha256],
+        ValidateIssuer = true,
+        ValidIssuer = Issuer,
+        ValidateAudience = true,
+        ValidAudience = Audience,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.FromSeconds(15),
+        NameClaimType = JwtRegisteredClaimNames.Sub
     };
 }
 

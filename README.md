@@ -1,6 +1,6 @@
 # PayAhead Backend
 
-React Native istemcisi için .NET 8 / C# 12 / EF Core 8 / SQL Server tabanlı backend. Faz 1–9 altyapı, ödeme CRUD, recurrence, occurrence geçmişi, dashboard/upcoming/calendar, JWT, bildirim worker, harici abonelik/trial ve Premium entitlement/mağaza adapter'ları uygulanmıştır. Gerçek Apple/Google satın alması ve Expo cihaz teslimatı ayrıca doğrulanmalıdır.
+React Native istemcisi için .NET8/C#12/EF8/SQL Server backend. Faz1–10 ödeme, recurrence/geçmiş/overview, JWT, notification, harici abonelik/trial, Premium ve production hardening uygulanmıştır. Gerçek Apple/Google satın alması, Expo cihaz teslimatı ve production kurulumu ayrıca doğrulanmalıdır.
 
 ## Gereksinimler
 
@@ -151,4 +151,8 @@ Subscription CRUD/cancel, expiring trials ve summary eklendi. Harici abonelik mo
 
 Free: 5 aktif plan, plan başına 1 aktif reminder, 3 aktif harici abonelik. Premium varsayılan teknik limitleri 1000/10/1000; merkezi policy ile yapılandırılır. Süre dolması mevcut veriyi silmez; yeni oluşturma/aktifleştirme güncel limite tabidir. [PREMIUM.md](docs/PREMIUM.md) lifecycle, API ve React Native sözleşmesini; [STORE_INTEGRATION.md](docs/STORE_INTEGRATION.md) Apple JWS/Server API, Google subscriptionsv2, webhook, encryption keyring ve production kurulumunu açıklar.
 
-Mağazalar ve reconcile worker varsayılan kapalıdır; gerçek credential olmadan Premium verilmez. Test sağlayıcısı yalnızca test assembly'lerindedir. Son doğrulama: .NET 8.0.426, build 0 warning/error, **364 unit + 228 gerçek SQL Server integration**, atlanan 0. Kestrel + gerçek SQL/JWT test sağlayıcılı satın alma/expiry/restore/replay geçti. Canlı mağaza doğrulaması yapılmadı. Faz 10 başlatılmadı.
+Mağazalar ve reconcile worker varsayılan kapalıdır; gerçek credential olmadan Premium verilmez. Test sağlayıcısı yalnızca test assembly'lerindedir. Faz9 baseline364unit+228SQL geçti; güncel Faz10 sonuçları [ilerleme raporunda](docs/IMPLEMENTATION_PROGRESS.md). Canlı mağaza doğrulaması yapılmadı.
+
+## Faz 10 — Production hardening
+
+SQL-backed distributed rate limiting, bounded refresh retention, CORS/headers/correlation/metrics/worker health, güvenli JSON export ve parola recheck ile hesap silme eklendi. Docker non-root/read-only startup ve yerel backup/restore denendi. GitHub Actions PR pipeline ve manuel release-review örneği hazır; GitHub üzerinde çalıştırılmadı ve production'a deploy edilmedi. [DEPLOYMENT](docs/DEPLOYMENT.md), [OPERATIONS_RUNBOOK](docs/OPERATIONS_RUNBOOK.md), [DATA_PRIVACY](docs/DATA_PRIVACY.md) ve Completed/Pending/Blocked [checklist](docs/PRODUCTION_CHECKLIST.md) kalan release kapılarını açıklar. Frontend test API sözleşmesiyle başlayabilir; canlı ücretli entegrasyonların credential/mağaza doğrulaması tamamlanmış sayılmaz.

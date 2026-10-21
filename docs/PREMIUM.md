@@ -1,5 +1,7 @@
 # Premium üyelik ve entitlement
 
+Faz10 verify/restore tüm instance'larda ortak10/dakika/user SQL bütçesi, limiter outage503 fail-closed kullanır. Hesap silme store auto-renew iptali değildir, store anti-replay bağları pseudonymous tutulur. [DATA_PRIVACY.md](DATA_PRIVACY.md), [OPERATIONS_RUNBOOK.md](OPERATIONS_RUNBOOK.md). Gerçek mağaza doğrulaması yapılmadı.
+
 Faz 9, PayAhead'in kendi `UserSubscription` üyeliğini yönetir. Netflix/Spotify gibi harici hizmetlerin `TrackedSubscription` kayıtları Premium sağlamaz. Eski `UserSubscription.Status=Active` kayıtları da `IsStoreVerified=false` olduğu sürece Free kalır. İstemciden üyelik durumu veya sahiplik kabul edilmez.
 
 ## Merkezi kurallar

@@ -3,17 +3,17 @@ using PayAhead.Infrastructure;
 
 namespace PayAhead.Api;
 
-public sealed class PremiumWorker(IServiceScopeFactory scopes,StoreOptions options,ILogger<PremiumWorker> logger) : BackgroundService
+public sealed class PremiumWorker(IServiceScopeFactory scopes, StoreOptions options, ILogger<PremiumWorker> logger, WorkerStatus health) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken ct)
     {
-        if(!options.WorkerEnabled)return;
-        while(!ct.IsCancellationRequested)
+        if (!options.WorkerEnabled) return;
+        while (!ct.IsCancellationRequested)
         {
-            try { using var scope=scopes.CreateScope();await scope.ServiceProvider.GetRequiredService<IPremiumService>().ProcessAsync(ct); }
-            catch(OperationCanceledException)when(ct.IsCancellationRequested){break;}
-            catch(Exception ex){logger.LogError("Store reconciliation failed. ExceptionType={ExceptionType}",ex.GetType().Name);}
-            try {await Task.Delay(TimeSpan.FromSeconds(5),ct);}catch(OperationCanceledException)when(ct.IsCancellationRequested){break;}
+            try { using var scope = scopes.CreateScope(); await scope.ServiceProvider.GetRequiredService<IPremiumService>().ProcessAsync(ct); health.Beat("store", true); }
+            catch (OperationCanceledException) when (ct.IsCancellationRequested) { break; }
+            catch (Exception ex) { health.Beat("store", false); logger.LogError("Store reconciliation failed. ExceptionType={ExceptionType}", ex.GetType().Name); }
+            try { await Task.Delay(TimeSpan.FromSeconds(5), ct); } catch (OperationCanceledException) when (ct.IsCancellationRequested) { break; }
         }
     }
 }

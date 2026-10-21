@@ -1,6 +1,12 @@
 # Veritabanı
 
-SQL Server, EF Core 8 Fluent API ve InitialCreate üzerine eklenen migration geçmişi kullanılır. Güncel on dört tablo: Users, PaymentPlans, PaymentOccurrences, ReminderRules, UserSettings, DeviceTokens, UserSubscriptions, TrackedSubscriptions, RefreshTokens, NotificationDeliveries, AuditLogs, StorePurchases, StoreTransactions, StoreWebhookInbox.
+## Faz 10 — ProductionOperations
+
+`20261021152026_ProductionOperations` yalnızca RateLimitBuckets (Id varchar64 HMAC PK, Count int, ExpiresAtUtc datetime2 ve expiry index) ekler. Önceki beş migration korunur;15tablo/15PK/14FK. Startup migrate etmez. Phase9 seed kullanıcıyla upgrade gerçek SQL testindedir. Rate bucket TTL ve refresh cleanup SQL saat/retention/lease stratejileri [OPERATIONS_RUNBOOK.md](OPERATIONS_RUNBOOK.md) içinde.
+
+Yeni model para/date precision değiştirmez. Privacy export SERIALIZABLE ve bounded; account deletion reauth/User→plan locks/FK-sıralı atomic delete+owner anonymization kullanır. SQL collation farkı token-hash/inbox eşleşmesinde açık BIN2 ile ele alınır. Runtime command timeout30s/retry3/pooling; migration deployment, backup/restore, index health ve rollback runbook'tadır. Yerel iki izole DB'de COPY_ONLY+CHECKSUM, gerçek restore ve CHECKDB geçti; production backup doğrulanmış sayılmaz. Bu faz mevcut geliştirme verisine destructive işlem uygulamadı.
+
+SQL Server, EF Core8 ve korunmuş migration geçmişi kullanılır. Güncel15tablo: Users, PaymentPlans, PaymentOccurrences, ReminderRules, UserSettings, DeviceTokens, UserSubscriptions, TrackedSubscriptions, RefreshTokens, NotificationDeliveries, AuditLogs, StorePurchases, StoreTransactions, StoreWebhookInbox, RateLimitBuckets.
 
 ## Faz 9 — VerifiedPremiumMembership
 

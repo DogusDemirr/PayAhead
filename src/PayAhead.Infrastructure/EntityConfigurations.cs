@@ -4,6 +4,16 @@ using PayAhead.Domain;
 
 namespace PayAhead.Infrastructure;
 
+public sealed class RateLimitBucketConfiguration : IEntityTypeConfiguration<RateLimitBucket>
+{
+    public void Configure(EntityTypeBuilder<RateLimitBucket> b)
+    {
+        b.HasKey(x => x.Id);
+        b.Property(x => x.Id).HasMaxLength(64).IsUnicode(false);
+        b.HasIndex(x => x.ExpiresAtUtc);
+    }
+}
+
 public sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> b)
@@ -101,9 +111,9 @@ public sealed class UserSubscriptionConfiguration : IEntityTypeConfiguration<Use
     public void Configure(EntityTypeBuilder<UserSubscription> b)
     {
         b.ToTable("UserSubscriptions"); b.HasKey(x => x.Id);
-        b.HasAlternateKey(x=>new{x.Id,x.UserId});
-        b.Property(x=>x.RowVersion).IsRowVersion();b.Property(x=>x.StoreEnvironment).HasMaxLength(16).IsUnicode(false);
-        b.Property(x=>x.ProtectedEvidence).HasColumnType("varchar(max)");
+        b.HasAlternateKey(x => new { x.Id, x.UserId });
+        b.Property(x => x.RowVersion).IsRowVersion(); b.Property(x => x.StoreEnvironment).HasMaxLength(16).IsUnicode(false);
+        b.Property(x => x.ProtectedEvidence).HasColumnType("varchar(max)");
         b.Property(x => x.Provider).HasMaxLength(32).IsRequired();
         b.Property(x => x.ProductId).HasMaxLength(200).IsRequired();
         b.Property(x => x.ExternalSubscriptionId).HasMaxLength(200).IsRequired();
@@ -117,47 +127,47 @@ public sealed class StorePurchaseConfiguration : IEntityTypeConfiguration<StoreP
 {
     public void Configure(EntityTypeBuilder<StorePurchase> b)
     {
-        b.HasKey(x=>x.Id);b.Property(x=>x.Store).HasMaxLength(16).IsUnicode(false);b.Property(x=>x.TransactionId).HasMaxLength(200).IsUnicode(false).UseCollation("Latin1_General_100_BIN2");
-        b.Property(x=>x.TokenHash).HasMaxLength(64).IsUnicode(false).UseCollation("Latin1_General_100_BIN2");
-        b.HasIndex(x=>new{x.Store,x.TransactionId}).IsUnique();b.HasIndex(x=>new{x.Store,x.TokenHash}).IsUnique().HasFilter("[TokenHash] IS NOT NULL");
-        b.HasOne<UserSubscription>().WithMany().HasForeignKey(x=>new{x.UserSubscriptionId,x.UserId}).HasPrincipalKey(x=>new{x.Id,x.UserId}).OnDelete(DeleteBehavior.NoAction);
+        b.HasKey(x => x.Id); b.Property(x => x.Store).HasMaxLength(16).IsUnicode(false); b.Property(x => x.TransactionId).HasMaxLength(200).IsUnicode(false).UseCollation("Latin1_General_100_BIN2");
+        b.Property(x => x.TokenHash).HasMaxLength(64).IsUnicode(false).UseCollation("Latin1_General_100_BIN2");
+        b.HasIndex(x => new { x.Store, x.TransactionId }).IsUnique(); b.HasIndex(x => new { x.Store, x.TokenHash }).IsUnique().HasFilter("[TokenHash] IS NOT NULL");
+        b.HasOne<UserSubscription>().WithMany().HasForeignKey(x => new { x.UserSubscriptionId, x.UserId }).HasPrincipalKey(x => new { x.Id, x.UserId }).OnDelete(DeleteBehavior.NoAction);
     }
 }
 public sealed class StoreWebhookInboxConfiguration : IEntityTypeConfiguration<StoreWebhookInbox>
 {
     public void Configure(EntityTypeBuilder<StoreWebhookInbox> b)
     {
-        b.ToTable("StoreWebhookInbox");b.HasKey(x=>x.Id);b.Property(x=>x.Store).HasMaxLength(16).IsUnicode(false);
-        b.Property(x=>x.EventId).HasMaxLength(200).IsUnicode(false).UseCollation("Latin1_General_100_BIN2");b.Property(x=>x.ReferenceHash).HasMaxLength(64).IsUnicode(false);
-        b.Property(x=>x.ProtectedReference).HasColumnType("varchar(max)");b.Property(x=>x.ErrorCode).HasMaxLength(64).IsUnicode(false);
-        b.HasIndex(x=>new{x.Store,x.EventId}).IsUnique();b.HasIndex(x=>new{x.CompletedAtUtc,x.NextAttemptAtUtc,x.LeaseExpiresAtUtc});
+        b.ToTable("StoreWebhookInbox"); b.HasKey(x => x.Id); b.Property(x => x.Store).HasMaxLength(16).IsUnicode(false);
+        b.Property(x => x.EventId).HasMaxLength(200).IsUnicode(false).UseCollation("Latin1_General_100_BIN2"); b.Property(x => x.ReferenceHash).HasMaxLength(64).IsUnicode(false);
+        b.Property(x => x.ProtectedReference).HasColumnType("varchar(max)"); b.Property(x => x.ErrorCode).HasMaxLength(64).IsUnicode(false);
+        b.HasIndex(x => new { x.Store, x.EventId }).IsUnique(); b.HasIndex(x => new { x.CompletedAtUtc, x.NextAttemptAtUtc, x.LeaseExpiresAtUtc });
     }
 }
 public sealed class StoreTransactionConfiguration : IEntityTypeConfiguration<StoreTransaction>
 {
     public void Configure(EntityTypeBuilder<StoreTransaction> b)
     {
-        b.HasKey(x=>x.Id);b.Property(x=>x.Store).HasMaxLength(16).IsUnicode(false);
-        b.Property(x=>x.TransactionId).HasMaxLength(200).IsUnicode(false).UseCollation("Latin1_General_100_BIN2");
-        b.HasIndex(x=>new{x.Store,x.TransactionId}).IsUnique();
-        b.HasOne<UserSubscription>().WithMany().HasForeignKey(x=>new{x.UserSubscriptionId,x.UserId}).HasPrincipalKey(x=>new{x.Id,x.UserId}).OnDelete(DeleteBehavior.NoAction);
+        b.HasKey(x => x.Id); b.Property(x => x.Store).HasMaxLength(16).IsUnicode(false);
+        b.Property(x => x.TransactionId).HasMaxLength(200).IsUnicode(false).UseCollation("Latin1_General_100_BIN2");
+        b.HasIndex(x => new { x.Store, x.TransactionId }).IsUnique();
+        b.HasOne<UserSubscription>().WithMany().HasForeignKey(x => new { x.UserSubscriptionId, x.UserId }).HasPrincipalKey(x => new { x.Id, x.UserId }).OnDelete(DeleteBehavior.NoAction);
     }
 }
 public sealed class TrackedSubscriptionConfiguration : IEntityTypeConfiguration<TrackedSubscription>
 {
     public void Configure(EntityTypeBuilder<TrackedSubscription> b)
     {
-        b.ToTable("TrackedSubscriptions",t=>
+        b.ToTable("TrackedSubscriptions", t =>
         {
-            t.HasCheckConstraint("CK_TrackedSubscriptions_Status","[Status] BETWEEN 0 AND 3");
-            t.HasCheckConstraint("CK_TrackedSubscriptions_Trial","([TrialStartDate] IS NULL AND [TrialEndDate] IS NULL) OR ([TrialStartDate] IS NOT NULL AND [TrialEndDate] IS NOT NULL AND [TrialEndDate] >= [TrialStartDate] AND [TrialStartDate] >= [StartDate])");
-            t.HasCheckConstraint("CK_TrackedSubscriptions_TrialRequired","[Status] <> 0 OR [TrialEndDate] IS NOT NULL");
-            t.HasCheckConstraint("CK_TrackedSubscriptions_Access","[AccessEndsOn] IS NULL OR [AccessEndsOn] >= [StartDate]");
+            t.HasCheckConstraint("CK_TrackedSubscriptions_Status", "[Status] BETWEEN 0 AND 3");
+            t.HasCheckConstraint("CK_TrackedSubscriptions_Trial", "([TrialStartDate] IS NULL AND [TrialEndDate] IS NULL) OR ([TrialStartDate] IS NOT NULL AND [TrialEndDate] IS NOT NULL AND [TrialEndDate] >= [TrialStartDate] AND [TrialStartDate] >= [StartDate])");
+            t.HasCheckConstraint("CK_TrackedSubscriptions_TrialRequired", "[Status] <> 0 OR [TrialEndDate] IS NOT NULL");
+            t.HasCheckConstraint("CK_TrackedSubscriptions_Access", "[AccessEndsOn] IS NULL OR [AccessEndsOn] >= [StartDate]");
         });
-        b.HasKey(x=>x.Id);b.Property(x=>x.ProviderName).HasMaxLength(100).IsRequired();b.Property(x=>x.RowVersion).IsRowVersion();
-        b.HasIndex(x=>x.PaymentPlanId).IsUnique();b.HasIndex(x=>new{x.UserId,x.IsDeleted,x.CreatedAtUtc,x.Id});
-        b.HasOne<PaymentPlan>().WithOne().HasForeignKey<TrackedSubscription>(x=>new{x.PaymentPlanId,x.UserId})
-            .HasPrincipalKey<PaymentPlan>(x=>new{x.Id,x.UserId}).OnDelete(DeleteBehavior.NoAction);
+        b.HasKey(x => x.Id); b.Property(x => x.ProviderName).HasMaxLength(100).IsRequired(); b.Property(x => x.RowVersion).IsRowVersion();
+        b.HasIndex(x => x.PaymentPlanId).IsUnique(); b.HasIndex(x => new { x.UserId, x.IsDeleted, x.CreatedAtUtc, x.Id });
+        b.HasOne<PaymentPlan>().WithOne().HasForeignKey<TrackedSubscription>(x => new { x.PaymentPlanId, x.UserId })
+            .HasPrincipalKey<PaymentPlan>(x => new { x.Id, x.UserId }).OnDelete(DeleteBehavior.NoAction);
     }
 }
 public sealed class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>

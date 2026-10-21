@@ -4,7 +4,7 @@ using PayAhead.Infrastructure;
 namespace PayAhead.Api;
 
 public sealed class NotificationWorker(IServiceScopeFactory scopes, NotificationOptions options,
-    TimeProvider clock, ILogger<NotificationWorker> logger) : BackgroundService
+    TimeProvider clock, ILogger<NotificationWorker> logger, WorkerStatus health) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -21,11 +21,13 @@ public sealed class NotificationWorker(IServiceScopeFactory scopes, Notification
                 var processed = 0;
                 while (processed < 50 && await processor.ProcessOneAsync(stoppingToken)) processed++;
                 var cleaned = await queue.CleanupAsync(clock.GetUtcNow().UtcDateTime, stoppingToken);
+                health.Beat("notification", true, processed);
                 logger.LogInformation("Notification cycle completed. Processed={Processed} Cleaned={Cleaned}", processed, cleaned);
             }
             catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested) { break; }
             catch (Exception ex)
             {
+                health.Beat("notification", false);
                 // Provider exceptions may contain URLs or tokens: log only the exception type.
                 logger.LogError("Notification cycle failed. ExceptionType={ExceptionType}", ex.GetType().Name);
             }

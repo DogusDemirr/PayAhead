@@ -54,7 +54,8 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
     }
     private void Bearer(string token) => client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-    [Fact] public async Task Registration_persists_hash_and_settings_without_automatic_login()
+    [Fact]
+    public async Task Registration_persists_hash_and_settings_without_automatic_login()
     {
         var result = await client.PostAsJsonAsync("/api/auth/register", Registration(" First@Example.com "));
         Assert.Equal(HttpStatusCode.Created, result.StatusCode);
@@ -64,7 +65,8 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         Assert.True(new IdentityPasswordService().Verify(user, Registration().Password!, out _));
         Assert.Equal(user.Id, (await db.UserSettings.SingleAsync()).UserId); Assert.Empty(await db.RefreshTokens.ToArrayAsync());
     }
-    [Fact] public async Task Concurrent_duplicate_registration_has_one_winner_and_no_orphan_settings()
+    [Fact]
+    public async Task Concurrent_duplicate_registration_has_one_winner_and_no_orphan_settings()
     {
         var responses = await Task.WhenAll(client.PostAsJsonAsync("/api/auth/register", Registration()), client.PostAsJsonAsync("/api/auth/register", Registration("FIRST@example.com")));
         Assert.Single(responses, x => x.StatusCode == HttpStatusCode.Created); Assert.Single(responses, x => x.StatusCode == HttpStatusCode.Conflict);
@@ -82,7 +84,8 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode); Assert.Equal("application/problem+json", response.Content.Headers.ContentType?.MediaType);
         Assert.DoesNotContain("correct-long-password!", await response.Content.ReadAsStringAsync());
     }
-    [Fact] public async Task Login_failure_is_generic_and_persistent_account_lock_blocks_correct_password()
+    [Fact]
+    public async Task Login_failure_is_generic_and_persistent_account_lock_blocks_correct_password()
     {
         await client.PostAsJsonAsync("/api/auth/register", Registration());
         var missing = await client.PostAsJsonAsync("/api/auth/login", new LoginRequest("missing@example.com", "wrong"));
@@ -99,7 +102,8 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         await db.Users.ExecuteUpdateAsync(x => x.SetProperty(u => u.LoginLockedUntilUtc, DateTime.UtcNow.AddSeconds(-1)));
         await Login();
     }
-    [Fact] public async Task Rotation_reuse_revokes_family_but_other_login_session_survives_and_logout_is_idempotent()
+    [Fact]
+    public async Task Rotation_reuse_revokes_family_but_other_login_session_survives_and_logout_is_idempotent()
     {
         var first = await RegisterLogin(); var independent = await Login();
         var result = await client.PostAsJsonAsync("/api/auth/refresh", new RefreshRequest(first.RefreshToken)); Assert.Equal(HttpStatusCode.OK, result.StatusCode);
@@ -116,7 +120,8 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         Assert.All(tokens, x => Assert.Equal(64, x.TokenHash.Length)); Assert.DoesNotContain(tokens, x => x.TokenHash == first.RefreshToken);
         Assert.All(tokens.Where(x => x.ReplacedByTokenId is not null), chain => Assert.Equal(chain.FamilyId, tokens.Single(x => x.Id == chain.ReplacedByTokenId).FamilyId));
     }
-    [Fact] public async Task Concurrent_refresh_only_one_wins_and_reuse_invalidates_winning_child()
+    [Fact]
+    public async Task Concurrent_refresh_only_one_wins_and_reuse_invalidates_winning_child()
     {
         var login = await RegisterLogin();
         var responses = await Task.WhenAll(client.PostAsJsonAsync("/api/auth/refresh", new RefreshRequest(login.RefreshToken)), client.PostAsJsonAsync("/api/auth/refresh", new RefreshRequest(login.RefreshToken)));
@@ -125,7 +130,9 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         Assert.Equal(HttpStatusCode.Unauthorized, (await client.PostAsJsonAsync("/api/auth/refresh", new RefreshRequest(winner.RefreshToken))).StatusCode);
         await using var db = Db(); Assert.Equal(2, await db.RefreshTokens.CountAsync()); Assert.All(await db.RefreshTokens.ToArrayAsync(), x => Assert.NotNull(x.RevokedAtUtc));
     }
-    [Theory] [InlineData(false)] [InlineData(true)]
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
     public async Task Expired_or_revoked_refresh_is_rejected(bool revoked)
     {
         var login = await RegisterLogin(); await using var db = Db();
@@ -133,7 +140,8 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         else await db.RefreshTokens.ExecuteUpdateAsync(x => x.SetProperty(t => t.CreatedAtUtc, DateTime.UtcNow.AddDays(-2)).SetProperty(t => t.ExpiresAtUtc, DateTime.UtcNow.AddDays(-1)));
         Assert.Equal(HttpStatusCode.Unauthorized, (await client.PostAsJsonAsync("/api/auth/refresh", new RefreshRequest(login.RefreshToken))).StatusCode);
     }
-    [Fact] public async Task Inactive_and_deleted_users_cannot_use_access_or_login_or_refresh()
+    [Fact]
+    public async Task Inactive_and_deleted_users_cannot_use_access_or_login_or_refresh()
     {
         var login = await RegisterLogin(); await using var db = Db(); await db.Users.ExecuteUpdateAsync(x => x.SetProperty(u => u.IsActive, false));
         Bearer(login.AccessToken);
@@ -145,8 +153,15 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         Assert.Equal(HttpStatusCode.Unauthorized, (await client.GetAsync("/api/users/me")).StatusCode);
     }
     [Theory]
-    [InlineData("missing")] [InlineData("signature")] [InlineData("issuer")] [InlineData("audience")]
-    [InlineData("expired")] [InlineData("algorithm")] [InlineData("subject")] [InlineData("unknown-user")] [InlineData("malformed")]
+    [InlineData("missing")]
+    [InlineData("signature")]
+    [InlineData("issuer")]
+    [InlineData("audience")]
+    [InlineData("expired")]
+    [InlineData("algorithm")]
+    [InlineData("subject")]
+    [InlineData("unknown-user")]
+    [InlineData("malformed")]
     public async Task Jwt_validation_rejects_invalid_credentials(string scenario)
     {
         var login = await RegisterLogin();
@@ -162,7 +177,8 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         var result = await client.GetAsync("/api/payments"); Assert.Equal(HttpStatusCode.Unauthorized, result.StatusCode);
         Assert.Equal("application/problem+json", result.Content.Headers.ContentType?.MediaType);
     }
-    [Fact] public async Task Real_jwt_isolates_payments_occurrences_upcoming_dashboard_and_calendar()
+    [Fact]
+    public async Task Real_jwt_isolates_payments_occurrences_upcoming_dashboard_and_calendar()
     {
         var first = await RegisterLogin(); Bearer(first.AccessToken); var date = DateTime.UtcNow.ToString("yyyy-MM-dd");
         var result = await client.PostAsJsonAsync("/api/payments", new { name = "private", amount = 12.3456m, currencyCode = "TRY", category = "Bills", frequency = "Once", interval = 1, startDate = date });
@@ -176,36 +192,44 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
         var summary = await client.GetFromJsonAsync<System.Text.Json.JsonElement>("/api/dashboard/summary"); Assert.Equal(0, summary.GetProperty("activePaymentPlanCount").GetInt32());
         var calendar = await client.GetFromJsonAsync<System.Text.Json.JsonElement>($"/api/calendar?year={DateTime.UtcNow.Year}&month={DateTime.UtcNow.Month}"); Assert.Equal(0, calendar.GetProperty("days").GetArrayLength());
     }
-    [Fact] public async Task Rate_limit_returns_429_and_spoofed_forwarded_IP_cannot_bypass_it()
+    [Fact]
+    public async Task Rate_limit_returns_429_and_spoofed_forwarded_IP_cannot_bypass_it()
     {
         for (var i = 0; i < 20; i++) { client.DefaultRequestHeaders.Remove("X-Forwarded-For"); client.DefaultRequestHeaders.Add("X-Forwarded-For", $"192.0.2.{i}"); Assert.Equal(HttpStatusCode.BadRequest, (await client.PostAsJsonAsync("/api/auth/login", new LoginRequest("", ""))).StatusCode); }
         var blocked = await client.PostAsJsonAsync("/api/auth/login", new LoginRequest("", ""));
         Assert.Equal(HttpStatusCode.TooManyRequests, blocked.StatusCode); Assert.NotNull(blocked.Headers.RetryAfter);
     }
-    [Fact] public async Task Shipping_api_never_uses_development_identity_even_when_enabled()
+    [Fact]
+    public async Task Shipping_api_never_uses_development_identity_even_when_enabled()
     {
         await using var shipping = new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Development").UseRegressionPremium()
             .UseSetting("ConnectionStrings:PayAhead", connection).UseSetting("DevelopmentIdentity:Enabled", "true")
             .UseSetting("DevelopmentIdentity:UserId", Guid.NewGuid().ToString()));
         using var http = shipping.CreateClient(); Assert.Equal(HttpStatusCode.Unauthorized, (await http.GetAsync("/api/payments")).StatusCode);
     }
-    [Theory] [InlineData(null)] [InlineData("weak")] [InlineData("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")]
+    [Theory]
+    [InlineData(null)]
+    [InlineData("weak")]
+    [InlineData("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")]
     public void Production_startup_refuses_missing_or_weak_secret(string? secret)
     {
         using var shipping = new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Production")
             .UseSetting("ConnectionStrings:PayAhead", connection).UseSetting("DevelopmentIdentity:Enabled", "false").UseSetting("Jwt:SigningKey", secret ?? ""));
         var error = Assert.ThrowsAny<Exception>(() => shipping.CreateClient()); Assert.Contains("JWT signing key", error.ToString());
     }
-    [Fact] public async Task Production_redirects_plain_HTTP_to_explicit_HTTPS_port()
+    [Fact]
+    public async Task Production_redirects_plain_HTTP_to_explicit_HTTPS_port()
     {
+        var secureConnection = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(connection) { TrustServerCertificate = false, Encrypt = true, UserID = "payahead_runtime" }.ConnectionString;
         await using var shipping = new WebApplicationFactory<Program>().WithWebHostBuilder(b => b.UseEnvironment("Production")
-            .UseSetting("ConnectionStrings:PayAhead", connection).UseSetting("DevelopmentIdentity:Enabled", "false").UseSetting("Jwt:SigningKey", key));
+            .UseSetting("ConnectionStrings:PayAhead", secureConnection).UseSetting("DevelopmentIdentity:Enabled", "false").UseSetting("Jwt:SigningKey", key));
         using var http = shipping.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
-        var response = await http.GetAsync("/health/live");
+        var response = await http.GetAsync("/api/premium/plans");
         Assert.Equal(HttpStatusCode.TemporaryRedirect, response.StatusCode);
         Assert.Equal("https", response.Headers.Location?.Scheme); Assert.Equal(443, response.Headers.Location?.Port);
     }
-    [Fact] public async Task Rotation_rolls_back_child_insert_when_parent_update_fails()
+    [Fact]
+    public async Task Rotation_rolls_back_child_insert_when_parent_update_fails()
     {
         var login = await RegisterLogin();
         var interceptor = new FailSecondSave();
@@ -227,7 +251,8 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
             return ValueTask.FromResult(result);
         }
     }
-    [Fact] public async Task Migration_preserves_legacy_records_and_revokes_unknown_refresh_lineage()
+    [Fact]
+    public async Task Migration_preserves_legacy_records_and_revokes_unknown_refresh_lineage()
     {
         // Separate test-owned DB: start at Phase 1, seed existing user/token, then upgrade.
         var legacyConnection = new SqlConnectionStringBuilder(connection) { InitialCatalog = "PayAheadTest_" + Guid.NewGuid().ToString("N") }.ConnectionString;
@@ -237,7 +262,7 @@ public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<Sql
             await legacy.GetService<IMigrator>().MigrateAsync("20261021084857_InitialCreate");
             var id = Guid.NewGuid(); var tokenId = Guid.NewGuid();
             await legacy.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO Users (Id,Email,NormalizedEmail,DisplayName,PasswordHash,IsActive,CreatedAtUtc,UpdatedAtUtc) VALUES ({id},'legacy@example.com','LEGACY@EXAMPLE.COM','Legacy','hash',1,SYSUTCDATETIME(),SYSUTCDATETIME())");
-            await legacy.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO RefreshTokens (Id,UserId,TokenHash,CreatedAtUtc,ExpiresAtUtc) VALUES ({tokenId},{id},{new string('A',64)},SYSUTCDATETIME(),DATEADD(day,1,SYSUTCDATETIME()))");
+            await legacy.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO RefreshTokens (Id,UserId,TokenHash,CreatedAtUtc,ExpiresAtUtc) VALUES ({tokenId},{id},{new string('A', 64)},SYSUTCDATETIME(),DATEADD(day,1,SYSUTCDATETIME()))");
             await legacy.Database.MigrateAsync(); Assert.Equal(id, (await legacy.Users.SingleAsync()).Id);
             var token = await legacy.RefreshTokens.SingleAsync(); Assert.Equal(tokenId, token.FamilyId); Assert.NotNull(token.RevokedAtUtc);
             Assert.Empty(await legacy.Database.GetPendingMigrationsAsync());

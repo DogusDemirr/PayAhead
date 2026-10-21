@@ -41,8 +41,13 @@ public sealed class OccurrenceApiTests : IClassFixture<SqlServerFixture>, IAsync
         await db.Database.MigrateAsync();
         foreach (var id in new[] { owner, other }) db.Users.Add(new()
         {
-            Id = id, Email = $"{id:N}@example.invalid", NormalizedEmail = $"{id:N}@EXAMPLE.INVALID", DisplayName = "Test",
-            PasswordHash = "test-only-placeholder", CreatedAtUtc = DateTime.UtcNow, UpdatedAtUtc = DateTime.UtcNow
+            Id = id,
+            Email = $"{id:N}@example.invalid",
+            NormalizedEmail = $"{id:N}@EXAMPLE.INVALID",
+            DisplayName = "Test",
+            PasswordHash = "test-only-placeholder",
+            CreatedAtUtc = DateTime.UtcNow,
+            UpdatedAtUtc = DateTime.UtcNow
         });
         plan = PaymentPlan.Create(owner, new("Plan", null, 10, "TRY", "Bills", PaymentFrequency.Monthly, 1,
             new(2026, 1, 31), new(2026, 12, 31), null, true), DateTime.UtcNow);
@@ -235,8 +240,15 @@ public sealed class OccurrenceApiTests : IClassFixture<SqlServerFixture>, IAsync
         var paid = await Read(await Put(client, "2026-01-31", "Paid", 10));
         var update = await client.PutAsJsonAsync($"/api/payments/{plan.Id}", new
         {
-            name = "Changed schedule", amount = 10, currencyCode = "TRY", category = "Bills", frequency = "Monthly", interval = 1,
-            startDate = "2026-02-01", endDate = "2026-12-31", rowVersion = Convert.ToBase64String(plan.RowVersion)
+            name = "Changed schedule",
+            amount = 10,
+            currencyCode = "TRY",
+            category = "Bills",
+            frequency = "Monthly",
+            interval = 1,
+            startDate = "2026-02-01",
+            endDate = "2026-12-31",
+            rowVersion = Convert.ToBase64String(plan.RowVersion)
         });
         Assert.Equal(HttpStatusCode.OK, update.StatusCode);
         Assert.Equal(paid, await Read(await client.GetAsync(Root + "/2026-01-31")));

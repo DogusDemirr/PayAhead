@@ -1,0 +1,53 @@
+name: backend-ci
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: 8.0.426
+      - name: Restore
+        run: dotnet restore PayAhead.sln
+      - name: Formatting
+        run: dotnet format whitespace PayAhead.sln --no-restore --verify-no-changes
+      - name: Build
+        run: dotnet build PayAhead.sln -c Release --no-restore
+      - name: Unit tests
+        run: dotnet test tests/PayAhead.UnitTests -c Release --no-build --logger trx --results-directory artifacts/unit
+      - name: SQL Server Testcontainers integration tests
+        run: dotnet test tests/PayAhead.IntegrationTests -c Release --no-build --logger trx --results-directory artifacts/sql
+      - name: Dependency audit
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          dotnet list PayAhead.sln package --vulnerable --include-transitive --format json > artifacts/dependency-audit.json
+          pwsh -NoProfile -File scripts/check-audit.ps1 artifacts/dependency-audit.json
+      - name: Docker build
+        run: docker build -f docker/Dockerfile -t payahead-ci:${{ github.sha }} .
+      - name: Release image archive (manual run only; no registry push or deployment)
+        if: github.event_name == 'workflow_dispatch'
+        run: docker save payahead-ci:${{ github.sha }} | gzip > artifacts/payahead-image.tar.gz
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: backend-evidence
+          path: artifacts/
+          retention-days: 3
+          if-no-files-found: error

@@ -162,15 +162,29 @@ public sealed class PaymentTests
     internal static CreatePaymentRequest Request(string? name = "Payment", decimal amount = 10, string? currency = "TRY",
         PaymentFrequency frequency = PaymentFrequency.Monthly, int interval = 1, DateOnly? start = null,
         DateOnly? end = null, int? anchor = null, string? description = null, string category = "Bills") => new()
-    {
-        Name = name, Amount = amount, CurrencyCode = currency, Frequency = frequency, Interval = interval,
-        StartDate = start ?? new DateOnly(2026, 1, 31), EndDate = end, AnchorDay = anchor, Description = description, Category = category
-    };
+        {
+            Name = name,
+            Amount = amount,
+            CurrencyCode = currency,
+            Frequency = frequency,
+            Interval = interval,
+            StartDate = start ?? new DateOnly(2026, 1, 31),
+            EndDate = end,
+            AnchorDay = anchor,
+            Description = description,
+            Category = category
+        };
 
     private static UpdatePaymentRequest Update(string? token) => new()
     {
-        Name = "Payment", Amount = 10, CurrencyCode = "TRY", Category = "Bills", Frequency = PaymentFrequency.Monthly,
-        Interval = 1, StartDate = new DateOnly(2026, 1, 31), RowVersion = token
+        Name = "Payment",
+        Amount = 10,
+        CurrencyCode = "TRY",
+        Category = "Bills",
+        Frequency = PaymentFrequency.Monthly,
+        Interval = 1,
+        StartDate = new DateOnly(2026, 1, 31),
+        RowVersion = token
     };
     private static PaymentPlanDetails Details() => new("Payment", null, 10, "TRY", "Bills", PaymentFrequency.Monthly, 1, new(2026, 1, 31), null, 31, true);
     private static PaymentService Service(CapturingStore store, Guid? owner) => new(store, new UserContext(owner), new FixedClock(), new CreatePaymentValidator(), new UpdatePaymentValidator(), new PaymentListValidator());

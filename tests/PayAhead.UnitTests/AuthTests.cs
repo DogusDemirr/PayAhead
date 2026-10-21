@@ -37,12 +37,15 @@ public sealed class AuthTests
     [InlineData("a@b.com", "valid-long-password", " ")]
     public void Registration_rejects_invalid_fields(string? email, string password, string name)
         => Assert.False(new RegisterValidator().Validate(new RegisterRequest(email, password, name)).IsValid);
-    [Fact] public void Registration_accepts_long_passphrases_and_trimmed_email()
+    [Fact]
+    public void Registration_accepts_long_passphrases_and_trimmed_email()
         => Assert.True(new RegisterValidator().Validate(new RegisterRequest(" User@example.com ", new string('p', 128), "Name")).IsValid);
-    [Fact] public void Registration_caps_password_length()
+    [Fact]
+    public void Registration_caps_password_length()
         => Assert.False(new RegisterValidator().Validate(new RegisterRequest("a@b.com", new string('p', 129), "Name")).IsValid);
     [Fact] public void Email_normalization_is_invariant() => Assert.Equal("USER@EXAMPLE.COM", EmailNormalization.Normalize(" user@example.com "));
-    [Fact] public void Identity_hash_is_salted_verifiable_and_never_plaintext()
+    [Fact]
+    public void Identity_hash_is_salted_verifiable_and_never_plaintext()
     {
         var hasher = new IdentityPasswordService(); var user = new User();
         user.PasswordHash = hasher.Hash(user, "a-long-password");
@@ -53,9 +56,13 @@ public sealed class AuthTests
         user.PasswordHash = "legacy-placeholder"; Assert.False(hasher.Verify(user, "wrong", out _));
     }
     [Theory]
-    [InlineData(null)] [InlineData("")] [InlineData("weak")] [InlineData("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("weak")]
+    [InlineData("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")]
     public void Production_rejects_missing_or_weak_key(string? key) => Assert.Throws<InvalidOperationException>(() => Settings("Production", key));
-    [Fact] public void Jwt_contains_only_identifiers_and_has_short_lifetime()
+    [Fact]
+    public void Jwt_contains_only_identifiers_and_has_short_lifetime()
     {
         var settings = Settings(); var tokens = new TokenService(settings, TimeProvider.System); var id = Guid.NewGuid();
         var result = tokens.CreateAccessToken(id); var jwt = new JwtSecurityTokenHandler().ReadJwtToken(result.Token);
@@ -66,7 +73,8 @@ public sealed class AuthTests
         _ = new JwtSecurityTokenHandler().ValidateToken(result.Token, settings.ValidationParameters(), out _);
         Assert.Equal(TimeSpan.FromSeconds(15), settings.ValidationParameters().ClockSkew);
     }
-    [Fact] public void Refresh_tokens_have_384_bits_of_randomness_and_only_hash_is_persistable()
+    [Fact]
+    public void Refresh_tokens_have_384_bits_of_randomness_and_only_hash_is_persistable()
     {
         var tokens = new TokenService(Settings(), TimeProvider.System);
         var generated = Enumerable.Range(0, 100).Select(_ => tokens.CreateRefreshToken()).ToArray();
@@ -76,13 +84,17 @@ public sealed class AuthTests
         Assert.Equal(tokens.HashRefreshToken(generated[0]), tokens.HashRefreshToken(generated[0]));
         Assert.NotEqual(tokens.HashRefreshToken(generated[0]), tokens.HashRefreshToken(generated[1]));
     }
-    [Theory] [InlineData(false, "sub")] [InlineData(true, "userId")] [InlineData(true, ClaimTypes.NameIdentifier)]
+    [Theory]
+    [InlineData(false, "sub")]
+    [InlineData(true, "userId")]
+    [InlineData(true, ClaimTypes.NameIdentifier)]
     public void Current_user_rejects_unverified_or_unexpected_claim(bool authenticated, string type)
     {
         var context = new DefaultHttpContext { User = new ClaimsPrincipal(new ClaimsIdentity([new Claim(type, Guid.NewGuid().ToString())], authenticated ? "Bearer" : null)) };
         Assert.Null(new CurrentUser(new HttpContextAccessor { HttpContext = context }).UserId);
     }
-    [Fact] public void Current_user_accepts_verified_subject()
+    [Fact]
+    public void Current_user_accepts_verified_subject()
     {
         var id = Guid.NewGuid(); var context = new DefaultHttpContext { User = new ClaimsPrincipal(new ClaimsIdentity([new Claim("sub", id.ToString())], "Bearer")) };
         Assert.Equal(id, new CurrentUser(new HttpContextAccessor { HttpContext = context }).UserId);
@@ -106,7 +118,8 @@ public sealed class AuthTests
     }
     private sealed class NoUser : ICurrentUser { public Guid? UserId => null; }
     private static AuthService Service(MemoryStore store) => new(store, new IdentityPasswordService(), new TokenService(Settings(), TimeProvider.System), new NoUser(), TimeProvider.System, new RegisterValidator(), new LoginValidator(), new RefreshValidator());
-    [Fact] public async Task Registration_login_rotation_reuse_and_logout_service_contract()
+    [Fact]
+    public async Task Registration_login_rotation_reuse_and_logout_service_contract()
     {
         var store = new MemoryStore(); var service = Service(store); var ct = CancellationToken.None;
         var user = await service.RegisterAsync(new(" first@example.com ", "correct-long-password", " Name "), ct);

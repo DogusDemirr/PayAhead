@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: Microsoft.EntityFrameworkCore*
+        update-types: [version-update:semver-major]
+      - dependency-name: Microsoft.AspNetCore*
+        update-types: [version-update:semver-major]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

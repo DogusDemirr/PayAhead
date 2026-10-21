@@ -1,5 +1,11 @@
 # Mimari
 
+## Faz 10 — Operasyon sınırı
+
+Application/Operations, IAccountStore/ISharedRateLimiter ve maintenance seçenekleri/metrikleri tanımlar. Infrastructure AccountStore owner-scoped DTO export ve parola recheck + tek transaction silme; SqlSharedRateLimiter ortak SQL application lock/atomik quota; MaintenanceStore bounded retention sağlar. Domain yalnızca RateLimitBucket varlığı alır. API config/CORS/proxy/headers, shared limiter middleware, correlation/activity, worker heartbeat ve MaintenanceWorker içerir. Yeni repository/CQRS katmanı veya Redis eklenmedi.
+
+Privacy işlemleri [DATA_PRIVACY.md](DATA_PRIVACY.md), SQL lock/retention/worker retry [OPERATIONS_RUNBOOK.md](OPERATIONS_RUNBOOK.md), container/CI [DEPLOYMENT.md](DEPLOYMENT.md) içindedir. Eski dosyalardaki ilave whitespace farkları CI format baseline'ı içindir; mimari veya domain davranışı değiştirmez. SQL test sınıfları CI container belleğini sınırlamak için ardışık çalışır; concurrency senaryoları kendi paralel isteklerini üretir.
+
 Domain varlıkları, enumları ve bağımsız recurrence hesaplayıcısını içerir; dış bağımlılığı yoktur. Application doğrulama kaydı, ICurrentUser sözleşmesi ve kullanım senaryolarını içerir. Infrastructure SQL Server DbContext, Fluent API yapılandırmaları ve migration içerir. API HTTP, kimlik doğrulama sınırı, DI, ProblemDetails, sağlık denetimi ve Serilog yapılandırmasını içerir.
 
 ## Faz 9 — Üyelik sınırı

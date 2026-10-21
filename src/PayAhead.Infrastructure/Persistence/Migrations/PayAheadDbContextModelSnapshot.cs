@@ -318,6 +318,26 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PayAhead.Domain.RateLimitBucket", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpiresAtUtc");
+
+                    b.ToTable("RateLimitBuckets");
+                });
+
             modelBuilder.Entity("PayAhead.Domain.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
