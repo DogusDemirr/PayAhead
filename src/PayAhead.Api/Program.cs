@@ -6,6 +6,9 @@ using PayAhead.Api;
 using PayAhead.Application;
 using PayAhead.Infrastructure;
 using Serilog;
+using PayAhead.Domain;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, logger) => logger.ReadFrom.Configuration(context.Configuration)
@@ -17,12 +20,26 @@ builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = context =>
     context.ProblemDetails.Extensions["traceId"] = context.HttpContext.TraceIdentifier);
 builder.Services.AddExceptionHandler<ApiExceptionHandler>();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<PaymentFrequency>(allowIntegerValues: false)));
+builder.Services.Configure<ApiBehaviorOptions>(options => options.InvalidModelStateResponseFactory = context =>
+{
+    // JSON parse mesajları istemcinin hassas alan değerlerini tekrar etmesin.
+    var errors = context.ModelState.Where(x => x.Value?.Errors.Count > 0)
+        .ToDictionary(x => x.Key, _ => new[] { "Alan biçimi veya değeri geçersiz." });
+    var problem = new ValidationProblemDetails(errors) { Status = 400, Title = "İstek doğrulanamadı." };
+    problem.Extensions["traceId"] = context.HttpContext.TraceIdentifier;
+    var result = new BadRequestObjectResult(problem);
+    result.ContentTypes.Add("application/problem+json");
+    return result;
+});
 builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("sqlserver", tags: ["ready"]);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 1 altyapısı; iş uçları sonraki fazlarda eklenecek." });
+    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 2 ödeme planı CRUD. PUT: rowVersion; DELETE: If-Match strong ETag." });
     options.DocumentFilter<HealthDocumentFilter>();
+    options.SchemaFilter<PaymentSchemaFilter>();
 });
 
 if (developmentUserId.HasValue)
@@ -63,6 +80,7 @@ app.UseSerilogRequestLogging(options => options.MessageTemplate = "HTTP {Request
 if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapControllers();
 app.MapGet("/health/live", () => Results.Ok(new { status = "Healthy" })).AllowAnonymous()
     .WithName("Liveness").WithTags("Health").Produces(200);
 app.MapHealthChecks("/health/ready", new HealthCheckOptions

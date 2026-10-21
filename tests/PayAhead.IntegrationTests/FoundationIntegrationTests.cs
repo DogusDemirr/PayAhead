@@ -10,16 +10,7 @@ using Xunit;
 
 namespace PayAhead.IntegrationTests;
 
-public sealed class SqlServerFactAttribute : FactAttribute
-{
-    public SqlServerFactAttribute()
-    {
-        if (string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("PAYAHEAD_TEST_SQLSERVER")))
-            Skip = "Gerçek SQL Server için PAYAHEAD_TEST_SQLSERVER ayarlanmamış; test çalıştırılmadı.";
-    }
-}
-
-public sealed class FoundationIntegrationTests
+public sealed class FoundationIntegrationTests(SqlServerFixture sqlServer) : IClassFixture<SqlServerFixture>
 {
     [Fact]
     public async Task Api_starts_and_liveness_is_public()
@@ -37,10 +28,10 @@ public sealed class FoundationIntegrationTests
         Assert.Equal("application/problem+json", missing.Content.Headers.ContentType?.MediaType);
     }
 
-    [SqlServerFact]
+    [Fact]
     public async Task Migration_constraints_transactions_and_readiness_work_on_real_sql_server()
     {
-        var baseConnection = Environment.GetEnvironmentVariable("PAYAHEAD_TEST_SQLSERVER")!;
+        var baseConnection = sqlServer.ConnectionString;
         var builder = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(baseConnection)
         {
             InitialCatalog = "PayAheadTest_" + Guid.NewGuid().ToString("N")
@@ -50,6 +41,7 @@ public sealed class FoundationIntegrationTests
         {
             await db.Database.MigrateAsync();
             Assert.Empty(await db.Database.GetPendingMigrationsAsync());
+            await VerifySchemaAsync(db);
             var user = new User { Id = Guid.NewGuid(), Email = "test@example.invalid", NormalizedEmail = "TEST@EXAMPLE.INVALID", DisplayName = "Test", PasswordHash = "test-only-placeholder", CreatedAtUtc = DateTime.UtcNow, UpdatedAtUtc = DateTime.UtcNow };
             db.Users.Add(user);
             await db.SaveChangesAsync();
@@ -66,6 +58,7 @@ public sealed class FoundationIntegrationTests
             {
                 var stale = await second.PaymentPlans.SingleAsync();
                 loaded.Name = "Updated"; await db.SaveChangesAsync();
+                Assert.Equal("Updated", await second.PaymentPlans.AsNoTracking().Select(x => x.Name).SingleAsync());
                 stale.Name = "Stale";
                 await Assert.ThrowsAsync<DbUpdateConcurrencyException>(() => second.SaveChangesAsync());
             }
@@ -88,6 +81,12 @@ public sealed class FoundationIntegrationTests
                 await transaction.RollbackAsync();
             }
             Assert.Equal(0, await db.AuditLogs.CountAsync());
+            var disposablePlan = new PaymentPlan { Id = Guid.NewGuid(), UserId = user.Id, Name = "Delete test", Amount = 1, StartDate = plan.StartDate };
+            db.PaymentPlans.Add(disposablePlan);
+            await db.SaveChangesAsync();
+            db.PaymentPlans.Remove(disposablePlan);
+            await db.SaveChangesAsync();
+            Assert.False(await db.PaymentPlans.AnyAsync(x => x.Id == disposablePlan.Id));
             await using var factory = CreateFactory(builder.ConnectionString);
             using var client = factory.CreateClient();
             using var scope = factory.Services.CreateScope();
@@ -104,6 +103,33 @@ public sealed class FoundationIntegrationTests
                 throw new InvalidOperationException("Test veritabanı güvenlik kontrolü başarısız.");
             await db.Database.EnsureDeletedAsync();
         }
+    }
+
+    private static async Task VerifySchemaAsync(PayAheadDbContext db)
+    {
+        await db.Database.OpenConnectionAsync();
+        try
+        {
+            await using var command = db.Database.GetDbConnection().CreateCommand();
+            command.CommandText = "SELECT name FROM sys.tables WHERE name <> '__EFMigrationsHistory' ORDER BY name";
+            await using (var reader = await command.ExecuteReaderAsync())
+            {
+                var tables = new List<string>();
+                while (await reader.ReadAsync()) tables.Add(reader.GetString(0));
+                Assert.Equal(new[] { "AuditLogs", "DeviceTokens", "NotificationDeliveries", "PaymentOccurrences", "PaymentPlans", "RefreshTokens", "ReminderRules", "UserSettings", "UserSubscriptions", "Users" }.OrderBy(x => x, StringComparer.Ordinal), tables.OrderBy(x => x, StringComparer.Ordinal));
+            }
+            command.CommandText = "SELECT COUNT(*) FROM sys.key_constraints WHERE type = 'PK' AND parent_object_id <> OBJECT_ID('__EFMigrationsHistory')";
+            Assert.Equal(10, (int)(await command.ExecuteScalarAsync())!);
+            command.CommandText = "SELECT COUNT(*) FROM sys.foreign_keys WHERE is_disabled = 0 AND is_not_trusted = 0";
+            Assert.Equal(10, (int)(await command.ExecuteScalarAsync())!);
+            command.CommandText = "SELECT COUNT(*) FROM sys.columns WHERE object_id = OBJECT_ID('PaymentPlans') AND name = 'Amount' AND precision = 19 AND scale = 4";
+            Assert.Equal(1, (int)(await command.ExecuteScalarAsync())!);
+            command.CommandText = "SELECT COUNT(*) FROM sys.columns WHERE object_id IN (OBJECT_ID('PaymentPlans'), OBJECT_ID('PaymentOccurrences')) AND name = 'RowVersion' AND system_type_id = 189 AND max_length = 8 AND is_nullable = 0";
+            Assert.Equal(2, (int)(await command.ExecuteScalarAsync())!);
+            command.CommandText = "SELECT COUNT(*) FROM sys.indexes WHERE object_id = OBJECT_ID('PaymentOccurrences') AND name = 'IX_PaymentOccurrences_PaymentPlanId_DueDate' AND is_unique = 1";
+            Assert.Equal(1, (int)(await command.ExecuteScalarAsync())!);
+        }
+        finally { await db.Database.CloseConnectionAsync(); }
     }
 
     private static WebApplicationFactory<Program> CreateFactory(string connection) => new WebApplicationFactory<Program>()

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PayAhead.Application.Payments;
 
 namespace PayAhead.Infrastructure;
 
@@ -14,6 +15,7 @@ public static class DependencyInjection
         services.AddDbContext<PayAheadDbContext>((provider, options) =>
             options.UseSqlServer(provider.GetRequiredService<IConfiguration>().GetConnectionString("PayAhead"),
                 sql => sql.EnableRetryOnFailure(3)));
+        services.AddScoped<IPaymentPlanStore, PaymentPlanStore>();
         return services;
     }
 }

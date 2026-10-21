@@ -15,7 +15,7 @@ public sealed class User
     public DateTime CreatedAtUtc { get; set; }
     public DateTime UpdatedAtUtc { get; set; }
 }
-public sealed class PaymentPlan
+public sealed partial class PaymentPlan
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }

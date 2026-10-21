@@ -10,7 +10,7 @@ Yükseltme yolu: ayrı dalda SDK/TargetFramework/EF paketleri birlikte güncelle
 dotnet publish src/PayAhead.Api -c Release -o artifacts/publish
 ```
 
-`docker/Dockerfile` API için başlangıç paketlemesidir. Compose yalnızca yerel SQL Server içindir; parola ortamdan gelir. API imajı üretimde HTTPS reverse proxy arkasında çalıştırılmalıdır. Docker bu makinede bulunmadığından imaj/compose çalıştırılması doğrulanmamıştır.
+`docker/Dockerfile` API için başlangıç paketlemesidir. Compose yalnızca yerel SQL Server içindir; parola ortamdan gelir. API imajı üretimde HTTPS reverse proxy arkasında çalıştırılmalıdır. 21 Ekim 2026 ek doğrulamasında SQL Compose healthcheck, migration ve kalıcılık doğrulandı. API bu aşamada host üzerinde çalıştırıldı; API Docker imajının build/run doğrulaması bu çalışmanın kapsamında yapılmadı.
 
 Yedekleme: RPO/RTO belirleyin; şifreli tam ve işlem günlüğü yedekleri alın; ayrı erişim alanında saklayın; staging ortamına düzenli restore denemesi yapın. Migration öncesi doğrulanmış yedek gereklidir. Saklama süreleri veri envanteri ve hukuki incelemeye göre belirlenmelidir. Faz 1 kapsamında yedek/geri yükleme denemesi yapılmadı.
 
