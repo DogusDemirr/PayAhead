@@ -3,7 +3,7 @@
   <ProjectReference Include="../PayAhead.Application/PayAhead.Application.csproj" />
   <ProjectReference Include="../PayAhead.Infrastructure/PayAhead.Infrastructure.csproj" />
   <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.21" />
-  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.21" PrivateAssets="all" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.32" PrivateAssets="all" />
   <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
   <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
  </ItemGroup>
