@@ -4,7 +4,7 @@ Domain on temel varlığı, enumları ve bağımsız recurrence hesaplayıcısı
 
 Faz 2'de PaymentService, ödeme DTO'ları ve FluentValidation kuralları Application içinde eklendi. Ödemeye özel IPaymentPlanStore arayüzünü Infrastructure/PaymentPlanStore EF Core ile uygular. PaymentsController yalnızca HTTP eşlemesi yapar; DbContext sorgusu veya iş kuralı içermez. Domain PaymentPlan.Create/UpdateDetails temel kuralları korur. Genel repository/CQRS katmanı eklenmedi; Domain nesneleri HTTP yanıtı olarak dışarı açılmaz.
 
-Kimliği doğrulanmamış istekler için varsayılan yetkilendirme politikası erişimi kapatır. Sağlık uçları açıkça anonimdir. Development kimliği yapılandırma ile sabitlenir; üretim ortamında etkinleştirildiğinde başlangıç reddedilir. JWT paketinin bulunması gerçek giriş akışının tamamlandığı anlamına gelmez.
+Kimliği doğrulanmamış istekler için varsayılan yetkilendirme politikası erişimi kapatır. Sağlık uçları açıkça anonimdir. Kimlik gerçek JWT ile doğrulanır. DevelopmentIdentity API içinde kaydedilmez. Eski bayrak Development dışında açıksa başlangıç reddedilir.
 
 Serilog istek gövdesini, query string'i veya tokenları loglamaz. EF hassas veri loglaması kapalıdır. Merkezi hata yanıtı stack trace veya veritabanı içeriği döndürmez. Readiness dışarıya bağlantı ayrıntısı vermez.
 
@@ -53,4 +53,8 @@ Birleşim DueDate/ordinal PaymentName/Guid sırasıyla deterministik hale getiri
 
 TimeProvider bir kez çağrılır; UserSettings.TimeZoneId ile kullanıcı yerel bugünü bulunur. Eksik/bozuk timezone UTC fallback ve response context işaretiyle açıklanır. Sınırlar dahil from/to, 366 günlük üst sınır, 1.000 plan ve 50.000 kaynak/birleşik sonuç kapasitesi vardır. Varsayılan +30 gün dahil 31 tarih demektir. Tüm hesaplamalar read-only'dır; future occurrence kayıtları yaratılmaz. Upcoming/calendar üç, dashboard dört SQL sorgusu kullanır; boş planlarda bir sorgu azalır. Aktif sayımı onu kullanmayan uçlarda çalıştırılmaz. N+1 yoktur; tek veritabanı snapshot garantisi verilmez.
 
-Modelde activation/deactivation zaman çizelgesi ve currency snapshot yoktur. O nedenle geçmiş aktiflik cutoff'u veya orijinal para birimi tahmin edilmez. Bu sınırlamalar API.md'de görünürdür. Faz 6 authentication veya başka sonraki özellik eklenmedi.
+Modelde activation/deactivation zaman çizelgesi ve currency snapshot yoktur. O nedenle geçmiş aktiflik cutoff'u veya orijinal para birimi tahmin edilmez. Bu sınırlamalar API.md'de görünürdür. Faz 6 authentication ayrı kullanım senaryoları ile eklenmiştir.
+
+## Faz 6 — Authentication katmanları
+
+Application/Auth DTO/validator/AuthService ve IAuthStore/IPasswordService/ITokenService sözleşmelerini barındırır. Infrastructure IdentityPasswordService ve SQL AuthStore sağlar. API TokenService, JWT doğrulaması, controller, rate limiter ve proxy sınırını içerir. Domain framework bağımlılığı almaz. SQL transaction kullanıcı satırını kilitleyerek atomik rotasyon/iptali bütün sunucu örneklerinde sıraya koyar. Overview üç/dört veri sorgusuna gerçek JWT aktif kullanıcı doğrulaması için bir SQL sorgusu eklenir. [Güvenlik kararları](SECURITY.md).

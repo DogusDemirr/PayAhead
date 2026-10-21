@@ -20,6 +20,8 @@ public static class DependencyInjection
         services.AddScoped<IPaymentPlanStore, PaymentPlanStore>();
         services.AddScoped<IOccurrenceStore, OccurrenceStore>();
         services.AddScoped<IOverviewStore, OverviewStore>();
+        services.AddScoped<PayAhead.Application.Auth.IAuthStore, AuthStore>();
+        services.AddSingleton<PayAhead.Application.Auth.IPasswordService, IdentityPasswordService>();
         return services;
     }
 }

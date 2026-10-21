@@ -2,7 +2,7 @@
 
 SQL Server, EF Core 8 Fluent API ve InitialCreate migration kullanılır. On tablo: Users, PaymentPlans, PaymentOccurrences, ReminderRules, UserSettings, DeviceTokens, UserSubscriptions, RefreshTokens, NotificationDeliveries, AuditLogs.
 
-- Kullanıcı e-postası NormalizedEmail üzerinden benzersizdir. Normalleştirme ve parola hashleme Faz 6'da uygulanacaktır; özel kriptografi kullanılmaz.
+- Kullanıcı e-postası NormalizedEmail üzerinden benzersizdir. Faz 6 Trim/ToUpperInvariant ve Identity PasswordHasher kullanır; özel parola kriptografisi yoktur.
 - Ödeme tutarları decimal(19,4), takvim tarihleri SQL date, hatırlatma saati time, zaman damgaları datetime2 ve UTC sözleşmesindedir.
 - PaymentPlan ve PaymentOccurrence SQL rowversion kullanır.
 - PaymentPlanId + DueDate benzersizdir. Para pozitifliği, interval, tarih sırası, anchor ve enum aralıkları check constraint ile korunur.
@@ -44,3 +44,11 @@ Durum yazarken plan, UserId ve Id ile parametreli SQL üzerinden UPDLOCK/HOLDLOC
 Liste sorgusu kayıtlı durumları AsNoTracking ile okur; UserId parent join üzerinden her occurrence sorgusunda sınırlandırılır. Sahiplik kontrolü + count + page sabit üç sorgudur. DueDate DESC/Id ASC sırası ve tarih aralığı filtreleri mevcut plan/tarih unique indeksinden yararlanabilir; status için yeni indeks ölçüm yapılmadan eklenmedi. Count/page farklı sorgular olduğundan eşzamanlı yazmalarda snapshot tutarlılığı iddia edilmez.
 
 Varsayılan Pending satırı eklenmez. Pending'e reset, yalnızca ilgili plan+tarih satırını siler; diğer tarihler değişmez. Eski Pending satırları otomatik topluca temizlenmez; açık ve yetkili reset ile kaldırılabilir. Kaydı silmek önceki Paid/Skipped bilgisini de kaldırır; AuditLog'a değişiklik olayı yazılmaz. Bu tablo immutable işlem defteri değildir. CurrencyCode/plan adı snapshot'ı tutulmaz; geçmiş para birimi yorumunda parent plan değişiklikleri dikkate alınmalıdır. Plan ve kullanıcı silme/export gibi genel yaşam döngüleri sonraki fazların konusudur.
+
+## Faz 6 — Güvenli migration
+
+AuthenticationSessions migration Users tablosuna FailedLoginCount (0), nullable LoginLockedUntilUtc; RefreshTokens tablosuna FamilyId ve (UserId,FamilyId) index ekler. Eski InitialCreate değişmedi. NormalizedEmail/TokenHash unique index, Users FK ve ReplacedByTokenId self FK korunur; yeni tablo/cascade delete yoktur.
+
+Eski refresh aile geçmişi bilinemez. Upgrade FamilyId=Id atar, RevokedAtUtc boşsa migration zamanı doldurur; satırlar silinmez, eski oturumlar yeniden login ister. Kullanıcı/ödeme/occurrence verileri korunur. Development placeholder hash ile giriş yapılamaz; register ile ayrı hesap açın. Migration başlangıçta otomatik uygulanmaz; backup ve bakım penceresiyle EF update komutunu çalıştırın. Down eklenen sütunları düşürür; üretim rollback için backup/oturum planı gerekir.
+
+Yeni kurulum ve InitialCreate üzerine legacy user/token içeren yükseltme gerçek SQL testinde doğrulanır. Refresh hashleri reuse tespiti için tutulur; otomatik temizleme işi yoktur. Süre ve transaction kararları [SECURITY.md](SECURITY.md) içindedir.

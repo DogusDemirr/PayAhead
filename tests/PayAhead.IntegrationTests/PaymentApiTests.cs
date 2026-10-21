@@ -246,7 +246,7 @@ public sealed class PaymentApiTests : IClassFixture<SqlServerFixture>, IAsyncLif
 
     private HttpClient Client(Guid userId, bool authenticated = true)
     {
-        var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder.UseEnvironment("Development")
+        var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder.UseEnvironment("Development").UseTestIdentity()
             .UseSetting("ConnectionStrings:PayAhead", connection)
             .UseSetting("DevelopmentIdentity:Enabled", authenticated.ToString())
             .UseSetting("DevelopmentIdentity:UserId", userId.ToString()));

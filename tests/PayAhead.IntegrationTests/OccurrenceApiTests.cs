@@ -291,7 +291,7 @@ public sealed class OccurrenceApiTests : IClassFixture<SqlServerFixture>, IAsync
 
     private HttpClient Client(Guid id, bool authenticated = true)
     {
-        var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder.UseEnvironment("Development")
+        var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder.UseEnvironment("Development").UseTestIdentity()
             .UseSetting("ConnectionStrings:PayAhead", connection).UseSetting("DevelopmentIdentity:Enabled", authenticated.ToString())
             .UseSetting("DevelopmentIdentity:UserId", id.ToString()));
         factories.Add(factory); return factory.CreateClient();

@@ -1,6 +1,6 @@
 # Geliştirme
 
-Faz 1–4 altyapı/CRUD/recurrence/occurrence ve Faz 5 dashboard/upcoming/calendar uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 6 authentication için açık onay gerekir.
+Faz 1–4 altyapı/CRUD/recurrence/occurrence ve Faz 5 dashboard/upcoming/calendar uygulanmıştır. Her yeni faz öncesinde mevcut model, testler ve ilerleme kaydı incelenir; yalnızca onaylanmış faz tamamlanır, ardından gerçek doğrulamalar ve dokümantasyon güncellenip durulur. Faz 6 authentication kullanıcı onayıyla uygulanmıştır; Faz 7 için ayrı onay gerekir.
 
 VS Code çalışma alanını kök dizinden açın. `global.json` yalnızca .NET 8 SDK 8.0.4xx patch sürümlerine izin verir, C# 12 sabittir. Proje içindeki SDK kaynak kontrolüne alınmaz. .slnx istenen envanter dosyasıdır; .NET 8 uyumluluğu için .sln kullanılır. Yeni proje eklenirse iki dosyayı da güncelleyin.
 
@@ -16,7 +16,7 @@ README'deki Docker bölümünü izleyin: `.env.example` → yerel `.env`, `docke
 
 `dotnet test tests/PayAhead.UnitTests --no-build` birim testlerini, `dotnet test tests/PayAhead.IntegrationTests --no-build` entegrasyonu çalıştırır. Testcontainers kendi rastgele host portunu seçer. İlk çalışmada SQL imajı ve Ryuk kaynak temizleme imajı indirilir. Docker Engine erişimi ve registry ağı gerekir; Ryuk'u devre dışı bırakmayın.
 
-API pipeline testleri üretim merkezi hata middleware'ini 500 ve 409 senaryolarında kontrol eder; yanıtlar ProblemDetails olur, iç hata mesajı/stack trace dönmez. Gerçek API host testleri Development kimliğinin Development'ta açıkça etkinleştirilebildiğini ve Production/Staging'de başlangıcın reddedildiğini doğrular. Faz 2 ödeme endpoint testleri gerçek SQL Server'da CRUD, izolasyon, concurrency, filtre ve hata sözleşmelerini kontrol eder.
+API pipeline testleri üretim merkezi hata middleware'ini 500 ve 409 senaryolarında kontrol eder; yanıtlar ProblemDetails olur, iç hata mesajı/stack trace dönmez. Regresyon API testleri yalnızca test assembly içindeki handler ile çalışır. Gerçek JWT testleri shipping API içinde DevelopmentIdentity ile erişim açılamadığını ve Production/Staging bayrak engelini doğrular. Faz 2 ödeme endpoint testleri gerçek SQL Server'da CRUD, izolasyon, concurrency, filtre ve hata sözleşmelerini kontrol eder.
 
 Docker CLI bulunamadığında yeni terminal açın veya README'deki kurulum dizinini oturum PATH'ine ekleyin. `docker info` başarısızsa önce Engine'i çözün. SQL `unhealthy` ise Compose loglarını inceleyin; parola, bellek, disk ve sqlcmd yolu kontrol edilir. `dotnet --list-sdks` sistem SDK'larını, `.tools/dotnet/dotnet --list-sdks` proje SDK'sını gösterir. Bu doğrulama .NET 8.0.426 ile yapılmıştır; .NET 9 ile alınmış build değildir.
 
@@ -76,3 +76,42 @@ Saat testte TimeProvider ile sabittir; Europe/Istanbul ve America/Los_Angeles ge
 10/100/1000 günlük plan ile 30/365 günlük aralıklar birim testinde değerlendirilir. 1000×365 birleşik sonuç sınırını aştığı için açık hata beklenir; 1000×30 kabul edilir. Yerel Debug Stopwatch ve mevcut thread allocation gözlemleri TRX çıktısına yazılır; bunlar isolated benchmark/peak memory/production kapasitesi değildir. Gerçek SQL testinde aynı üç plan hacmi için upcoming'in üç, dashboard'un dört query kullandığı DbCommandInterceptor ile sayılır. Snapshot veri sayısı ve DTO üretimi limitlidir; 50.000 kaynak kayıt + 50.000 birleşik key, geçici dictionary/sıralama buffer'ları yine bellek kullanır. Status veya küçük pageSize limitleri atlatmaz.
 
 Dashboard UpcomingPaymentCount bugün ve sonrasındaki Pending, PendingPaymentCount aralıktaki tüm Pending'dir; aynı alanın iki adı değildir. Calendar gün toplamları Pending borcudur; Paid ActualAmount ayrı dashboard toplamında yer alır. Pasif planın Paid/Skipped kayıtları korunur, modelde deactivation zamanı bulunmadığından geçmiş cutoff tahmin edilmez. Currency geçmiş snapshot'ı da yoktur; fiyat/para birimi sonradan değişirse current-parent metadata sınırı geçerlidir. Salt okuma aşaması kayıt üretmez veya eski veriyi düzeltmez.
+
+## Faz 6 — JWT ile yerel akış
+
+SQL için yukarıdaki Compose ve ConnectionStrings__PayAhead adımlarını kullanın; migration otomatik uygulanmaz:
+
+```powershell
+dotnet ef database update --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api
+$env:ASPNETCORE_ENVIRONMENT='Development'
+$env:DevelopmentIdentity__Enabled='false'
+# Kalıcı geliştirme anahtarı: Base64 ile en az 32 CSPRNG byte; gerçek değeri paylaşmayın.
+$keyBytes=New-Object byte[] 64
+$rng=[Security.Cryptography.RandomNumberGenerator]::Create(); $rng.GetBytes($keyBytes); $rng.Dispose()
+$env:Jwt__SigningKey=[Convert]::ToBase64String($keyBytes)
+$env:Jwt__Issuer='PayAhead'
+$env:Jwt__Audience='PayAhead.Mobile'
+dotnet run --project src/PayAhead.Api --no-build --no-launch-profile --urls http://localhost:5080
+```
+
+Bu makinede `dotnet` yerine `.tools/dotnet/dotnet.exe` (SDK 8.0.426), DOTNET_ROOT=.tools/dotnet ve DOTNET_CLI_HOME=.tools/cli kullanılır. PowerShell 5 için RNG Fill yerine Create().GetBytes($keyBytes) kullanılabilir. Development anahtarı verilmezse yalnızca süreç ömründe geçerli geçici anahtar üretilir. Production/Staging eksik/zayıf secret ile başlamaz; secret manager üzerinden Jwt__SigningKey sağlayın. AllowedHosts ve HTTPS/TLS terminasyonunu dağıtıma göre ayarlayın. TrustedProxies__0 gibi yalnızca açık proxy IP adreslerini verin; allowlist yoksa forwarded headers kapalıdır. Güvenlik sınırları [SECURITY.md](SECURITY.md).
+
+Ayrı PowerShell terminalinde; token içeren değişkenleri/yanıtları ekrana yazdırmayın:
+
+```powershell
+$base='http://localhost:5080'
+# Yerel örnek parola; üretim hesabında benzersiz parola kullanın.
+$account=@{email='local@example.com';password='LocalExamplePassword123!';displayName='Local'}
+$null=Invoke-RestMethod -Method Post "$base/api/auth/register" -ContentType application/json -Body ($account|ConvertTo-Json)
+$session=Invoke-RestMethod -Method Post "$base/api/auth/login" -ContentType application/json -Body (@{email=$account.email;password=$account.password}|ConvertTo-Json)
+$headers=@{Authorization="Bearer $($session.accessToken)"}
+$me=Invoke-RestMethod "$base/api/users/me" -Headers $headers
+$payments=Invoke-RestMethod "$base/api/payments" -Headers $headers
+$session=Invoke-RestMethod -Method Post "$base/api/auth/refresh" -ContentType application/json -Body (@{refreshToken=$session.refreshToken}|ConvertTo-Json)
+$null=Invoke-RestMethod -Method Post "$base/api/auth/logout" -ContentType application/json -Body (@{refreshToken=$session.refreshToken}|ConvertTo-Json)
+Remove-Variable session,headers,account
+```
+
+Eski README seed/development identity akışı kaldırıldı; JWT bypass yoktur. Swagger Authorize ile access token girilebilir. Birim: `dotnet test tests/PayAhead.UnitTests`; gerçek SQL: `dotnet test tests/PayAhead.IntegrationTests`; yalnızca auth: `dotnet test tests/PayAhead.IntegrationTests --filter FullyQualifiedName~AuthApiTests`. SQL testleri Docker Testcontainers ve rastgele PayAheadTest_<guid> DB kullanır; mevcut geliştirme verileri silinmez. Tüm çözüm için restore/build/test çalıştırın.
+
+401: issuer/audience/key, expiration, aktif kullanıcı ve migration durumunu kontrol edin. 409 register: normalize email mevcut olabilir. 429: IP bütçesi dolmuştur, Retry-After bekleyin. Beş yanlış parola sonrası doğru parola da kilit süresince reddedilir. Reuse sonrası yeni refresh de 401 ise yeniden login gerekir; paralel refresh göndermeyin. Readiness 503 için migration/SQL kontrol edin. Token/parola/connection string içeren çıktıları paylaşmayın.

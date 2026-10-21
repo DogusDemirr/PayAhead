@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, logger) => logger.ReadFrom.Configuration(context.Configuration)
     .Enrich.FromLogContext().WriteTo.Console());
-var developmentUserId = DevelopmentIdentity.Validate(builder.Environment, builder.Configuration);
+_ = DevelopmentIdentity.Validate(builder.Environment, builder.Configuration);
 builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUser, CurrentUser>();
@@ -40,48 +40,27 @@ builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("sqlserver", ta
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 5: ödeme CRUD, occurrence, yaklaşan ödemeler, dashboard ve takvim. Finansal toplamlar para birimi bazındadır." });
+    options.SwaggerDoc("v1", new() { Title = "PayAhead API", Version = "v1", Description = "Faz 6: JWT authentication; ödeme CRUD, occurrence, yaklaşan ödemeler, dashboard ve takvim. Finansal toplamlar para birimi bazındadır." });
+    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme { Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http, Scheme = "bearer", BearerFormat = "JWT" });
     options.DocumentFilter<HealthDocumentFilter>();
     options.SchemaFilter<PaymentSchemaFilter>();
     options.SchemaFilter<OccurrenceSchemaFilter>();
+    options.OperationFilter<AuthenticationOperationFilter>();
 });
 
-if (developmentUserId.HasValue)
-    builder.Services.AddAuthentication(DevelopmentIdentity.Scheme)
-        .AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, DevelopmentIdentityHandler>(DevelopmentIdentity.Scheme, _ => { });
-else
-    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-    {
-        // Faz 6 gelene kadar token kabul edilmez. Varsayılan davranış erişimi reddeder.
-        options.MapInboundClaims = false;
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            RequireSignedTokens = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            SignatureValidator = (_, _) => throw new SecurityTokenValidationException("Kimlik doğrulama Faz 6'da etkinleştirilecek.")
-        };
-        options.Events = new JwtBearerEvents
-        {
-            OnChallenge = async context =>
-            {
-                context.HandleResponse();
-                await Results.Problem(statusCode: 401, title: "Kimlik doğrulama gerekli.").ExecuteAsync(context.HttpContext);
-            },
-            OnForbidden = context => Results.Problem(statusCode: 403, title: "Erişim reddedildi.").ExecuteAsync(context.HttpContext)
-        };
-    });
+builder.Services.AddPayAheadAuthentication(builder.Configuration, builder.Environment);
 builder.Services.AddAuthorization(options => options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 
 var app = builder.Build();
+app.UseForwardedHeaders();
 app.UseExceptionHandler();
 app.UseStatusCodePages(async context => await Results.Problem(statusCode: context.HttpContext.Response.StatusCode)
     .ExecuteAsync(context.HttpContext));
 if (!app.Environment.IsDevelopment()) { app.UseHsts(); app.UseHttpsRedirection(); }
 app.UseSerilogRequestLogging(options => options.MessageTemplate = "HTTP {RequestMethod} {StatusCode} {Elapsed:0.0000} ms");
 if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
+app.UseRouting();
+app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

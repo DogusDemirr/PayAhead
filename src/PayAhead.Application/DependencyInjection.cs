@@ -23,6 +23,7 @@ public static class DependencyInjection
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IOccurrenceService, OccurrenceService>();
         services.AddScoped<IOverviewService, OverviewService>();
+        services.AddScoped<PayAhead.Application.Auth.IAuthService, PayAhead.Application.Auth.AuthService>();
         return services;
     }
 }

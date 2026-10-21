@@ -505,3 +505,76 @@ Kestrel için Git dışı `.tools/phase5-smoke.ps1` yalnızca kendi `PayAheadSmo
 Faz 5 için açık build/test/HTTP hatası veya atlanan test yoktur. Tarihsel para birimi/deactivation snapshot'ı, snapshot tutarlı çoklu read ve üretim yük testi sağlanmamıştır; mevcut sınırlar açıkça belgelendi. Auth/JWT/refresh veya Faz 6+ özelliği eklenmedi. Mevcut Development identity production engeli korundu.
 
 **Duruş:** Faz 5 tamamlandı. Faz 6 authentication için açık kullanıcı onayı bekleniyor.
+
+## Faz 6 — Authentication, Authorization & Security (21 Ekim 2026)
+
+Kullanıcının ekli Faz 6 talebiyle yalnızca authentication/security uygulandı. Önce AGENTS, mevcut katmanlar, User/RefreshToken, API pipeline, migration ve testler incelendi. Plan: Application auth sözleşmeleri ve servisleri; Identity hash/SQL store; JWT/proxy/rate limit/controller; güvenli ek migration; birim ve gerçek SQL regresyonları; Kestrel akışı; dokümantasyon. Faz 7 başlatılmadı.
+
+### Tamamlanan davranış
+
+- POST /api/auth/register (201, otomatik login yok), login (200), refresh (200), logout (204), GET /api/users/me (200).
+- Register email Trim/ToUpperInvariant, NormalizedEmail unique yarış koruması, parola 12–128, ad 1–100, başlangıç UserSettings ile atomik insert. Duplicate 409; hash/parola yanıtta yok.
+- ASP.NET Identity PasswordHasher V3, PBKDF2, 210.000 iteration, salt ve verify/rehash; özel parola hash algoritması yok. Bilinmeyen hesap için dummy verify, login genel 401. Beş yanlış parola sonrası 15 dakika SQL hesap kilidi.
+- JWT HS256, imza/algoritma/issuer/audience/lifetime; sub/iss/aud/iat/nbf/exp/jti, PII yok. Access varsayılan 15 dakika, skew 15 saniye. Production/Staging missing/weak secret başlangıç hatası; anahtar kaynakta yok. Development eksik anahtarda süreç ömürlü CSPRNG anahtar.
+- Refresh 48 CSPRNG byte, DB SHA-256 hex hash, varsayılan 30 gün, aile ve atomik rotasyon. Kullanıcı UPDLOCK/HOLDLOCK ile birden fazla API örneğinde aynı token yarışında tek kazanan; child insert + parent revoke self-FK transaction içinde. Reuse aileyi kapatır; yarışın kaybedeni kazanan child token değerini de iptal eder. İptal commit edildikten sonra 401. Enjekte edilen ikinci SaveChanges hatası ilk insert dahil rollback ile doğrulandı.
+- Logout aileyi iptal eder, tekrarı/bilinmeyen doğru biçimli token 204. Access JWT ömrü dolana kadar geçerli kalır; pasif/silinmiş kullanıcı her doğrulamada SQL üzerinden hemen engellenir. Ayrı login aileleri birbirini kapatmaz.
+- Tüm mevcut ödeme/occurrence/overview controller yetkilendirmeleri korunur; gerçek JWT sub kullanıcı sahipliğini belirler. Başka kullanıcı kaydı 404. İstek başına aktif kullanıcı için ek SQL sorgusu vardır; overview veri sorgu sayısı değişmedi.
+- Shipping API DevelopmentIdentity handler kaydetmez; eski Development bayrağı da kimlik sağlamaz. Production/Staging eski bayrak açıksa başlangıç hatası. Eski regresyonlar test assembly içindeki özel handler kullanır; yeni auth testleri gerçek JWT.
+- Auth IP bütçesi 20/dakika, 429 ProblemDetails/Retry-After, no-store/no-cache yanıtları, güvenilir proxy IP allowlist dışında forwarded headers kapalı, production HSTS/HTTPS. Swagger bearer tanımı ve korunan uç güvenlik gereksinimi.
+
+### Migration ve veri koruma
+
+Yeni `20261021121138_AuthenticationSessions`: Users.FailedLoginCount/LoginLockedUntilUtc, RefreshTokens.FamilyId ve (UserId,FamilyId) index. InitialCreate değiştirilmedi. Eski token satırları silinmeden FamilyId=Id ve boş RevokedAtUtc=migration zamanı; bilinmeyen legacy lineage için yeniden login gerekir. Yeni kurulum ve eski migration + seed user/token üzerine yükseltme gerçek SQL Server üzerinde geçti. Beklenen 10 tablo ve mevcut FK/unique/decimal/rowversion regresyonları geçti. Mevcut geliştirme DB/volume verileri değiştirilmedi; yeni migration kullanımdan önce açık EF update komutuyla uygulanmalıdır. Startup otomatik migrate etmez.
+
+### Gerçek doğrulama sonuçları
+
+SDK `.tools/dotnet/dotnet.exe` **8.0.426**, hedef net8.0/C#12, EF Core 8.0.21. Docker Engine 29.9.1 Linux, Testcontainers SQL Server 2022. PAYAHEAD_TEST_SQLSERVER kaldırılarak testlerin kendi container kullanması sağlandı; SQLite/InMemory SQL kanıtı olarak kullanılmadı.
+
+| İşlem | Sonuç |
+| --- | --- |
+| dotnet restore PayAhead.sln | Başarılı |
+| dotnet build PayAhead.sln --no-restore | Başarılı, 0 warning / 0 error |
+| dotnet test PayAhead.sln --no-build | **224 birim + 136 gerçek SQL entegrasyon geçti; 0 başarısız, 0 atlanan** |
+| EF has-pending-model-changes | Model değişikliği yok |
+| Migration fresh + legacy upgrade | Başarılı; kullanıcı/token kayıtları korunarak yükseltildi |
+| git diff --check | Başarılı |
+| Kestrel + Compose SQL Server | Aşağıdaki akışın tamamı geçti |
+
+224 birim = önceki 203 + yeni 21; registration sınırları, normalizasyon, Identity salt/verify/legacy hash, JWT claims/ömür/ayarlar, zayıf/eksik key, refresh rastgeleliği/hash ve auth servis orkestrasyonu/claim sınırları. Servis memory fake testleri SQL kanıtı sayılmadı.
+
+136 integration = önceki 105 + yeni 31; register/persistence/settings, duplicate concurrent register, validation, login generic hata/kalıcı lock/unlock, gerçek JWT me/izolasyon, rotation/reuse/independent family/logout, concurrent refresh, expired/revoked refresh, pasif/silinmiş kullanıcı, missing/malformed/invalid signature/issuer/audience/lifetime/algorithm/subject/unknown user JWT, hız sınırı ve sahte forwarded IP, missing/weak production key, Production HTTP→HTTPS yönlendirmesi, DevelopmentIdentity kapalı sınır, ikinci save failure rollback ve legacy migration. Önceki bütün payment/recurrence/occurrence/overview testleri de çalıştı.
+
+TRX (Git dışında): `tests/PayAhead.UnitTests/TestResults/phase6-final_net8.0_20261021153230.trx`, `tests/PayAhead.IntegrationTests/TestResults/phase6-final_net8.0_20261021153330.trx`.
+
+### Kestrel HTTP kanıtı
+
+Git dışı `.tools/phase6-smoke.ps1` yeni rastgele PayAheadSmoke_<guid> DB üzerinde iki migration uyguladı, Kestrel başlattı; gerçek JWT dışında kimlik kullanılmadı. Token/parola çıktıya yazılmadı.
+
+| Adım | HTTP |
+| --- | --- |
+| Ready / Swagger | 200 / 200 |
+| JWT olmadan payments | 401 |
+| İlk kullanıcı register / login / me | 201 / 200 / 200 |
+| Access token ile payment create / list | 201 / 200 (1 kayıt) |
+| İkinci kullanıcı register / login | 201 / 200 |
+| İkinci kullanıcı ilk payment GET | 404 |
+| İlk refresh rotation | 200 |
+| Eski refresh reuse | 401 |
+| Reuse sonrası child refresh | 401 |
+| İkinci oturum logout / tekrar logout | 204 / 204 |
+| Logout sonrası refresh | 401 |
+| Logout sonrası henüz süresi dolmamış access ile me | 200 (belgelenen davranış) |
+
+Smoke exit 0; sadece kendi Kestrel süreci durduruldu ve kendi geçici DB temizlendi. Mevcut container, named volume ve geliştirme verileri korundu.
+
+### Ara hatalar ve açık sınırlar
+
+İlk derlemede kullanılmayan constructor parametresi ve testte eksik using/target-typed validator belirsizliği düzeltildi. İlk auth SQL turu 23/25 geçti: iki test assertion hatası (aynı response stream tekrar okuma ve bağımsız iki zinciri tek sanma) düzeltildi; son tam regresyon 360/360 geçti. Başarısız sonuçlar başarı gibi raporlanmadı. Sandbox NuGet.Config/Docker erişimi için açık escalation kullanıldı. Windows script execution policy yalnızca smoke alt sürecinde Bypass ile aşıldı; sistem politikası değiştirilmedi.
+
+Açık build/test/HTTP hatası veya atlanan test yok. Access anlık oturum iptali, çok anahtarlı JWT rotation, dağıtık IP limiter, mutlak refresh aile ömrü ve otomatik token temizliği bu fazda sağlanmadı; [SECURITY.md](SECURITY.md) içinde açıkça belgeli. Rate limiter süreç başına; üretimde edge/distributed koruma gerekir. Duplicate registration email varlığını çıkarılabilir kılar. Mevcut overview tarihsel currency/deactivation/snapshot sınırları aynen geçerlidir. MFA, parola sıfırlama/email doğrulama ve frontend eklenmedi.
+
+Değişenler: Application/Auth; Infrastructure AuthStore/IdentityPasswordService/DI/model/migration+snapshot; API auth/users controller, TokenService/JwtSettings, AuthConfiguration, Swagger OperationFilter, Program/CurrentUser; yeni auth unit/integration testleri ve eski API test factory için test handler; README, API/ARCHITECTURE/DATABASE/DEVELOPMENT/SECURITY/IMPLEMENTATION_PROGRESS/DEPLOYMENT/PRODUCTION_CHECKLIST, AGENTS.
+
+**Duruş:** Faz 6 tamamlandı. Faz 7 başlatılmadı; kullanıcı onayı bekleniyor.
+
+Son production incelemesinde HTTPS port keşfine bağımlılık giderildi: varsayılan hedef 443, HttpsPort ile açık override. Production host üzerinde HTTP isteğinin HTTPS 443 hedefine 307 yönlendirildiği yeni test eklendi; ardından bütün çözüm yeniden build/test edildi. Son sonuç yukarıdaki phase6-final raporlarıdır.

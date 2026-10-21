@@ -88,7 +88,7 @@ Docker sorunları: `docker info` bağlantı hatasında Docker Desktop Engine'i v
 
 `ConnectionStrings__PayAhead` bağlantıyı, `ASPNETCORE_ENVIRONMENT` ortamı, `AllowedHosts` izinli alan adlarını belirler. Production bağlantısı varsayılan olarak yoktur. Swagger yalnızca Development ortamındadır.
 
-Geliştirme kimliği varsayılan kapalıdır. Yalnızca yerel denemelerde `DevelopmentIdentity__Enabled=true` ve boş olmayan `DevelopmentIdentity__UserId=<guid>` ayarlanabilir. Kullanıcı kaydı otomatik oluşturulmaz; HTTP başlığıyla kullanıcı seçilemez. Production/Staging ortamında etkinleştirme başlangıç hatası üretir. Gerçek JWT akışı Faz 6 kapsamındadır; o zamana kadar JWT erişimi kapalıdır.
+Faz 6 ile korunan uçlar gerçek JWT ister. DevelopmentIdentity API içinde kimlik sağlamaz; test handler yalnızca test projesindedir. Production/Staging ortamında eski bayrak açık ise başlangıç reddedilir. JWT ve giriş adımları docs/DEVELOPMENT.md içindedir.
 
 503 readiness: SQL servisi, bağlantı izinleri ve bekleyen migration kontrol edilmelidir. SDK bulunamıyorsa global.json ile uyumlu SDK kurun. `.slnx` .NET 8 CLI tarafından desteklenmediği için `.sln` derleme dosyası kullanılır; ikisi aynı altı projeyi listeler.
 
@@ -98,73 +98,41 @@ Ayrıntılar: [mimari](docs/ARCHITECTURE.md), [veritabanı](docs/DATABASE.md), [
 
 Beş uç: POST/GET `/api/payments`, GET/PUT/DELETE `/api/payments/{id}`. Tam örnekler, filtreler ve rowversion sözleşmesi [API dokümanında](docs/API.md). PUT body içindeki rowVersion zorunludur; DELETE son ETag'i If-Match başlığında ister. İlişkili geçmiş/hatırlatma varsa silme 409 döner. Yeni migration gerekmedi; Name için 150 karakter uygulama sınırı, mevcut nvarchar(200) kolonunu daraltmadan uygulanır.
 
-Gerçek kayıt/giriş henüz olmadığından test için yalnızca Development kimliği kullanılır. SQL Server'a bağlı SSMS veya VS Code SQL oturumunda **yalnızca geliştirme veritabanını seçerek** aşağıdaki test kullanıcısını ekleyin. Var olan kullanıcı kaydı değiştirilmez; bu kayıtla parola girişi yapılamaz (PasswordHash, giriş özelliği olmayan geliştirme kimliği için kullanılamaz bir işarettir).
-
-```sql
-USE PayAheadDockerDevelopment;
-DECLARE @UserId uniqueidentifier = '33333333-3333-4333-8333-333333333333';
-IF NOT EXISTS (SELECT 1 FROM Users WHERE Id = @UserId)
-INSERT INTO Users (Id, Email, NormalizedEmail, DisplayName, PasswordHash, IsActive, CreatedAtUtc, UpdatedAtUtc)
-VALUES (@UserId, 'dev-payments@example.invalid', 'DEV-PAYMENTS@EXAMPLE.INVALID', 'Development user',
-        'development-identity-only', 1, SYSUTCDATETIME(), SYSUTCDATETIME());
-```
-
-Docker bağlantısını yukarıdaki gibi ortam değişkenine yükledikten sonra:
-
-```powershell
-$env:ASPNETCORE_ENVIRONMENT='Development'
-$env:DevelopmentIdentity__Enabled='true'
-$env:DevelopmentIdentity__UserId='33333333-3333-4333-8333-333333333333'
-dotnet run --project src/PayAhead.Api --no-build --no-launch-profile --urls http://localhost:5080
-```
-
-Swagger http://localhost:5080/swagger üzerinden POST, list, get ve put deneyin. POST response Location ve ETag döndürür. Başka terminalde örnek istek:
-
-```powershell
-$payload=@{name='İnternet';amount=499.90;currencyCode='TRY';category='Bills';frequency='Monthly';interval=1;startDate='2026-10-31'}
-$created=Invoke-WebRequest -UseBasicParsing -Method Post http://localhost:5080/api/payments -ContentType 'application/json; charset=utf-8' -Body ($payload | ConvertTo-Json)
-$payment=$created.Content | ConvertFrom-Json
-Invoke-RestMethod "http://localhost:5080/api/payments?currencyCode=TRY&pageNumber=1&pageSize=20"
-Invoke-RestMethod "http://localhost:5080/api/payments/$($payment.id)"
-$payload.amount=599.90
-$payload.rowVersion=$payment.rowVersion
-$updated=Invoke-WebRequest -UseBasicParsing -Method Put "http://localhost:5080/api/payments/$($payment.id)" -ContentType 'application/json; charset=utf-8' -Body ($payload | ConvertTo-Json)
-Invoke-WebRequest -UseBasicParsing -Method Delete "http://localhost:5080/api/payments/$($payment.id)" -Headers @{'If-Match'=$updated.Headers['ETag']}
-```
-
-UserId'yi body veya başlıkla göndermeyin; sunucunun sabit Development yapılandırması kullanılır. Başka kullanıcı izolasyonunu denemek için ayrı sunucu oturumunda farklı, mevcut test UserId'si seçilmelidir. Üretim/Staging ortamında bu mekanizma başlangıçta reddedilir. İş bitince API'yi kapatıp `DevelopmentIdentity__Enabled` ve `DevelopmentIdentity__UserId` ortam değişkenlerini kaldırın.
-
-`dotnet test PayAhead.sln` CRUD, recurrence, occurrence ve overview testlerini birlikte çalıştırır. SQL testleri Testcontainers üzerinde izole veritabanı kullanır; geliştirme verilerini silmez. Anchor ve kapasite sınırları için [mimari](docs/ARCHITECTURE.md) ve [geliştirme](docs/DEVELOPMENT.md) dokümanlarına bakın. Faz 6 için ayrı onay gerekir.
+Önce POST /api/auth/register ve POST /api/auth/login çağırın. Dönen access token değerini Authorization: Bearer başlığında gönderin. UserId doğrulanmış JWT sub claim üzerinden alınır. Çalıştırılabilir PowerShell akışı [DEVELOPMENT.md](docs/DEVELOPMENT.md), tam sözleşme [API.md](docs/API.md) içindedir. SQL testleri izole Testcontainers veritabanlarında çalışır.
 
 ## Faz 4 — Ödeme durumu ve kayıtlı geçmiş
 
-Yeni uçlar: PUT `/api/payments/{paymentId}/occurrences/{dueDate}/status`, GET `/api/payments/{paymentId}/occurrences`, GET `/api/payments/{paymentId}/occurrences/{dueDate}`. Development kimliğini yukarıdaki gibi ayarlayıp Swagger veya PowerShell üzerinden deneyebilirsiniz. DueDate gerçekten plan takvimine ait olmalıdır; örneğin 31 Ocak aylık planda 28 Şubat geçerlidir.
+Yeni uçlar: PUT `/api/payments/{paymentId}/occurrences/{dueDate}/status`, GET `/api/payments/{paymentId}/occurrences`, GET `/api/payments/{paymentId}/occurrences/{dueDate}`. Login ile aldığınız JWT değerini Authorization başlığında gönderip Swagger veya PowerShell üzerinden deneyebilirsiniz. DueDate gerçekten plan takvimine ait olmalıdır; örneğin 31 Ocak aylık planda 28 Şubat geçerlidir.
 
 ```powershell
 # paymentId yerine sahip olduğunuz planın Id'sini kullanın; tarih plan takvimine uygun olmalı.
 $root="http://localhost:5080/api/payments/$paymentId/occurrences"
-Invoke-RestMethod "$root/2026-02-28"  # Kayıt yoksa sanal Pending; GET yazma yapmaz.
-$paid=Invoke-RestMethod -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Paid';actualAmount=299.99} | ConvertTo-Json)
-$skipped=Invoke-RestMethod -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Skipped';rowVersion=$paid.rowVersion} | ConvertTo-Json)
-Invoke-RestMethod "$root`?fromDate=2026-01-01&toDate=2026-12-31&status=Skipped&pageNumber=1&pageSize=20"
-Invoke-RestMethod -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Pending';rowVersion=$skipped.rowVersion} | ConvertTo-Json)
+Invoke-RestMethod -Headers $headers "$root/2026-02-28"  # Kayıt yoksa sanal Pending; GET yazma yapmaz.
+$paid=Invoke-RestMethod -Headers $headers -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Paid';actualAmount=299.99} | ConvertTo-Json)
+$skipped=Invoke-RestMethod -Headers $headers -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Skipped';rowVersion=$paid.rowVersion} | ConvertTo-Json)
+Invoke-RestMethod -Headers $headers "$root`?fromDate=2026-01-01&toDate=2026-12-31&status=Skipped&pageNumber=1&pageSize=20"
+Invoke-RestMethod -Headers $headers -Method Put "$root/2026-02-28/status" -ContentType 'application/json; charset=utf-8' -Body (@{status='Pending';rowVersion=$skipped.rowVersion} | ConvertTo-Json)
 ```
 
 Paid tutarı zorunludur; Pending/Skipped tutar kabul etmez. Farklı durum/tutar için son **occurrence rowVersion** gerekir; plan token'ı kullanılmaz. Aynı Paid/Skipped isteği PaidAtUtc veya rowversion'ı değiştirmez. Reset Pending kaydı siler; bu geçmiş append-only audit değildir. Pasif plan geçmişi okunabilir ama değiştirilemez (409). Geçmiş listesi sadece kaydedilmiş durumları döndürür; hesaplanan takvim Faz 5 kapsamındadır. Ayrıntılı yanıt ve concurrency örnekleri [API dokümanında](docs/API.md).
 
 ## Faz 5 — Ana ekran ve takvim
 
-Development kimliğiyle API çalışırken:
+Login sonrası $headers=@{Authorization="Bearer $($session.accessToken)"} hazırlayıp API çalışırken:
 
 ```powershell
-Invoke-RestMethod 'http://localhost:5080/api/payments/upcoming'
-Invoke-RestMethod 'http://localhost:5080/api/dashboard/summary'
-Invoke-RestMethod 'http://localhost:5080/api/calendar?year=2026&month=10'
+Invoke-RestMethod -Headers $headers 'http://localhost:5080/api/payments/upcoming'
+Invoke-RestMethod -Headers $headers 'http://localhost:5080/api/dashboard/summary'
+Invoke-RestMethod -Headers $headers 'http://localhost:5080/api/calendar?year=2026&month=10'
 # Tam 7 günlük ve 30 günlük pencereler:
-Invoke-RestMethod 'http://localhost:5080/api/dashboard/summary?fromDate=2026-10-21&toDate=2026-10-27'
-Invoke-RestMethod 'http://localhost:5080/api/dashboard/summary?fromDate=2026-10-21&toDate=2026-11-19'
+Invoke-RestMethod -Headers $headers 'http://localhost:5080/api/dashboard/summary?fromDate=2026-10-21&toDate=2026-10-27'
+Invoke-RestMethod -Headers $headers 'http://localhost:5080/api/dashboard/summary?fromDate=2026-10-21&toDate=2026-11-19'
 ```
 
 Varsayılan başlangıç kullanıcı timezone'undaki bugündür; UserSettings yok/geçersizse UTC fallback, context.usedTimeZoneFallback ile görünür. Varsayılan bitiş from+30 (sınırlar dahil 31 tarih). Upcoming varsayılan Pending ve sayfalıdır; Calendar status belirtilmezse tüm durumları gösterir. Pending plan tutarı, Paid gerçek tutar kullanır; Skipped/Paid yaklaşan borca girmez. TRY/USD/EUR hiçbir zaman tek toplamda birleştirilmez. Calendar günlük toplamı Pending borcudur.
 
-Pasif planlar yeni Pending üretmez; aralıktaki kayıtlı Paid/Skipped geçmişi korunur. Deactivation zamanı ve currency snapshot bulunmadığından eski aktiflik/para birimi tahmin edilmez; metadata güncel parent planından gelir. En fazla 366 dahil gün, 1000 ilgili plan ve 50.000 sonuç; aşımda 400 ProblemDetails, sessiz kısmi toplam yoktur. Uçlar read-only'dır ve occurrence kaydetmez. Tam DTO/örnekler [API.md](docs/API.md), test ayrıntıları [IMPLEMENTATION_PROGRESS.md](docs/IMPLEMENTATION_PROGRESS.md) içindedir. Faz 6 authentication başlatılmadı.
+Pasif planlar yeni Pending üretmez; aralıktaki kayıtlı Paid/Skipped geçmişi korunur. Deactivation zamanı ve currency snapshot bulunmadığından eski aktiflik/para birimi tahmin edilmez; metadata güncel parent planından gelir. En fazla 366 dahil gün, 1000 ilgili plan ve 50.000 sonuç; aşımda 400 ProblemDetails, sessiz kısmi toplam yoktur. Uçlar read-only'dır ve occurrence kaydetmez. Tam DTO/örnekler [API.md](docs/API.md), test ayrıntıları [IMPLEMENTATION_PROGRESS.md](docs/IMPLEMENTATION_PROGRESS.md) içindedir. Faz 6 authentication uygulanmıştır; Faz 7 için onay beklenir.
+
+## Faz 6 — Authentication
+
+POST `/api/auth/register`, `/api/auth/login`, `/api/auth/refresh`, `/api/auth/logout`; GET `/api/users/me` eklendi. Parola hashleme, JWT, rotasyon, reuse, logout ve üretim sınırları [SECURITY.md](docs/SECURITY.md) içinde; başlatma ve PowerShell akışı [DEVELOPMENT.md](docs/DEVELOPMENT.md) içindedir. .NET 8 / EF Core 8 korunmuştur. Faz 7 kapsam dışıdır.

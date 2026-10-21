@@ -242,7 +242,7 @@ public sealed class OverviewApiTests : IClassFixture<SqlServerFixture>, IAsyncLi
         => PaymentOccurrence.Create(plan.Id, date, status, amount, Now);
     private HttpClient Client(Guid id, bool authenticated = true)
     {
-        var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder.UseEnvironment("Development")
+        var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder.UseEnvironment("Development").UseTestIdentity()
             .UseSetting("ConnectionStrings:PayAhead", connection).UseSetting("DevelopmentIdentity:Enabled", authenticated.ToString())
             .UseSetting("DevelopmentIdentity:UserId", id.ToString()).ConfigureServices(services => services.AddSingleton<TimeProvider>(new FixedClock())));
         factories.Add(factory); return factory.CreateClient();

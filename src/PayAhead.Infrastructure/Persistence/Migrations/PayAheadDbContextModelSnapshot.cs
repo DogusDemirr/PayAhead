@@ -292,6 +292,9 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("ExpiresAtUtc")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("FamilyId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("ReplacedByTokenId")
                         .HasColumnType("uniqueidentifier");
 
@@ -316,6 +319,8 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         .IsUnique();
 
                     b.HasIndex("UserId", "ExpiresAtUtc");
+
+                    b.HasIndex("UserId", "FamilyId");
 
                     b.ToTable("RefreshTokens", null, t =>
                         {
@@ -378,8 +383,14 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         .HasMaxLength(254)
                         .HasColumnType("nvarchar(254)");
 
+                    b.Property<int>("FailedLoginCount")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LoginLockedUntilUtc")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NormalizedEmail")
                         .IsRequired()

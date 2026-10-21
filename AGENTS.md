@@ -1,7 +1,7 @@
 # PayAhead çalışma kuralları
 
 - Açıklamalar, ilerleme raporları ve dokümantasyon Türkçe; kod ve API adları İngilizce olmalıdır.
-- Yalnızca onaylanmış fazı uygulayın. Faz 5 onaylandı; Faz 5 tamamlandıktan sonra Faz 6 için açık onay bekleyin.
+- Yalnızca onaylanmış fazı uygulayın. Faz 6 onaylandı; Faz 6 tamamlandıktan sonra Faz 7 için açık onay bekleyin.
 - Tüm projeler net8.0, C# 12 ve EF Core 8.x kullanır. Sürüm yükseltmesi açık onay gerektirir.
 - Domain bağımsızdır; Application → Domain; Infrastructure → Application/Domain; API → Application/Infrastructure.
 - İş kuralları endpoint/controller içinde tutulmaz. MediatR, genel repository veya karmaşık CQRS eklemeyin.
@@ -9,7 +9,7 @@
 - Her kullanıcı kaynağını doğrulanmış UserId ile sınırlandırın. İstemcinin gönderdiği sahiplik bilgisine güvenmeyin.
 - SQL Server zorunludur. SQLite/InMemory testleri SQL Server kanıtı sayılmaz.
 - Kaynak kontrolüne gizli anahtar/parola eklemeyin. Hassas veri veya token loglamayın.
-- DevelopmentIdentity yalnızca Development ortamında açıkça etkinleştirilebilir; diğer ortamlarda uygulama başlamamalıdır.
+- DevelopmentIdentity API içinde kimlik sağlamaz. Test handler yalnızca test projesindedir; eski bayrak Development dışında açıksa uygulama başlamamalıdır.
 - Otomatik migration veya yıkıcı veritabanı işlemi eklemeyin.
 - Her faz sonunda restore/build/test çalıştırın; gerçek sonuçları ve engelleri docs/IMPLEMENTATION_PROGRESS.md içine kaydedin.
 

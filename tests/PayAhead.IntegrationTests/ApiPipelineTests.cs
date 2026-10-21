@@ -32,12 +32,12 @@ public sealed class ApiPipelineTests
     public async Task Actual_api_can_explicitly_enable_development_identity()
     {
         await using var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder
-            .UseEnvironment("Development")
+            .UseEnvironment("Development").UseTestIdentity()
             .UseSetting("DevelopmentIdentity:Enabled", "true")
             .UseSetting("DevelopmentIdentity:UserId", Guid.NewGuid().ToString()));
         using var client = factory.CreateClient();
         var schemes = factory.Services.GetRequiredService<IAuthenticationSchemeProvider>();
-        Assert.Equal(DevelopmentIdentity.Scheme, (await schemes.GetDefaultAuthenticateSchemeAsync())?.Name);
+        Assert.Equal("TestIdentity", (await schemes.GetDefaultAuthenticateSchemeAsync())?.Name);
         Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/health/live")).StatusCode);
     }
 

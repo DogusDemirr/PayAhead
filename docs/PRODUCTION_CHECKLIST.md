@@ -5,7 +5,7 @@
 - [x] ProblemDetails ve liveness/readiness altyapısı.
 - [ ] Faz 2–10 iş özellikleri ve ilgili kabul testleri.
 - [ ] Desteklenen LTS sürümüne onaylı geçiş ve güncel bağımlılık taraması.
-- [ ] JWT, refresh rotasyonu, brute-force koruması ve IDOR testleri.
+- [x] Faz 6 JWT, refresh rotasyonu, brute-force koruması ve gerçek SQL IDOR testleri; dağıtım ortamına özgü staging doğrulaması ayrıca gerekir.
 - [ ] Üretim TLS, secret store ve en az yetkili SQL hesabı.
 - [ ] Docker/CI, staging migration ve rollback planı.
 - [ ] Yük testi, sorgu planları ve indeks ölçümleri.

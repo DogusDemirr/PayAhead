@@ -21,22 +21,8 @@ public static class DevelopmentIdentity
     }
 }
 
-public sealed class DevelopmentIdentityHandler(
-    IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger,
-    UrlEncoder encoder, IConfiguration configuration)
-    : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)
-{
-    protected override Task<AuthenticateResult> HandleAuthenticateAsync()
-    {
-        // Kimlik HTTP başlığından alınmaz; sadece sunucu yapılandırması kullanılır.
-        var id = configuration["DevelopmentIdentity:UserId"]!;
-        var identity = new ClaimsIdentity([new Claim(ClaimTypes.NameIdentifier, id)], Scheme.Name);
-        return Task.FromResult(AuthenticateResult.Success(new AuthenticationTicket(new ClaimsPrincipal(identity), Scheme.Name)));
-    }
-}
-
 public sealed class CurrentUser(IHttpContextAccessor accessor) : ICurrentUser
 {
-    public Guid? UserId => Guid.TryParse(accessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier), out var id)
+    public Guid? UserId => Guid.TryParse((accessor.HttpContext?.User.Identity?.IsAuthenticated == true ? accessor.HttpContext.User.FindFirstValue("sub") : null), out var id)
         && id != Guid.Empty ? id : null;
 }

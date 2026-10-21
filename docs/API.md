@@ -123,7 +123,7 @@ Silme stratejisi **ilişkisi olmayan plan için hard delete**: PaymentOccurrence
 {"title":"İstek doğrulanamadı.","status":400,"errors":{"amount":["Tutar pozitif, decimal(19,4) sınırlarında ve en fazla dört ondalıklı olmalıdır."]},"traceId":"request-trace-id"}
 ```
 
-API model binding ve FluentValidation hataları application/problem+json döner. İç hata mesajları, SQL veya stack trace döndürülmez. Kullanıcı eşleştirmesi ve sorgu filtreleri sunucudadır. Faz 6 gelene kadar gerçek JWT kabulü kapalıdır; üretimde geliştirme kimliği etkinleştirilirse uygulama başlamaz. Development'ta test kullanıcısı hazırlama ve başlatma adımları README'dedir. Register/login/refresh henüz yoktur. Domain recurrence servisi Faz 5 okuma uçlarında kullanılır; geleceğe otomatik occurrence kaydı oluşturulmaz.
+API model binding ve FluentValidation hataları application/problem+json döner. İç hata mesajları, SQL veya stack trace döndürülmez. Kullanıcı eşleştirmesi ve sorgu filtreleri sunucudadır. Faz 6 ile gerçek JWT aktiftir; DevelopmentIdentity API içinde kimlik sağlamaz. Auth sözleşmesi aşağıdadır. Domain recurrence servisi Faz 5 okuma uçlarında kullanılır; geleceğe otomatik occurrence kaydı oluşturulmaz.
 
 ## PUT /api/payments/{paymentId}/occurrences/{dueDate}/status
 
@@ -285,4 +285,22 @@ En fazla **366 dahil gün**, **1.000 ilgili plan**, **50.000 kayıtlı kaynak oc
 
 Pasife alınma zamanı modelde yoktur. Bu nedenle cutoff tarihi tahmin edilmez: istenen aralıktaki bütün kayıtlı Paid/Skipped (gelecek tarihe kaydedilmiş olanlar dahil) görünür; yeni Pending yalnızca şu an aktif ve güncel takvime uygun plandan gelir. Plan adı, fiyatı, kategorisi, frequency ve **currencyCode güncel parent planından** okunur; kayıtlı Paid tutarı ActualAmount'tır. Tarihsel para birimi snapshot'ı olmadığından sonradan para birimi değiştirilmiş eski bir ödemenin orijinal para birimi geri çıkarılamaz. Bu yanıtlar böyle kayıtlar için tarihsel kur/finansal audit doğruluğu iddia etmez. Eski para birimini tahmin eden dönüşüm yoktur.
 
-Plan ve occurrence okumaları topludur, kullanıcıya filtrelidir, AsNoTracking kullanır. Upcoming/calendar üç SQL sorgusu (timezone/planlar/occurrence'lar), dashboard aktif sayımıyla dört sorgu kullanır; N+1 yoktur. Boş ilgili plan kümesinde occurrence sorgusu atlanır ve bir sorgu azalır. Plan kimlikleriyle sınırlandırma, sorgular arasında yeni plan eklenirse eşleşmeyen kaydın projeksiyona girmesini önler. Okumalar tek point-in-time snapshot değildir; eşzamanlı durum/tarife değişikliğinde yeniden GET gerekebilir. Uçlar hiçbir occurrence veya ayar kaydı oluşturmaz. Authentication Faz 6'ya bırakılmıştır; mevcut Production Development identity engeli korunur.
+Plan ve occurrence okumaları topludur, kullanıcıya filtrelidir, AsNoTracking kullanır. Upcoming/calendar üç SQL sorgusu (timezone/planlar/occurrence'lar), dashboard aktif sayımıyla dört sorgu kullanır; N+1 yoktur. Boş ilgili plan kümesinde occurrence sorgusu atlanır ve bir sorgu azalır. Plan kimlikleriyle sınırlandırma, sorgular arasında yeni plan eklenirse eşleşmeyen kaydın projeksiyona girmesini önler. Okumalar tek point-in-time snapshot değildir; eşzamanlı durum/tarife değişikliğinde yeniden GET gerekebilir. Uçlar hiçbir occurrence veya ayar kaydı oluşturmaz. Faz 6 JWT ve aktif kullanıcı doğrulaması bu uçlarda da uygulanır.
+
+## Faz 6 — Authentication sözleşmesi
+
+| Uç | Başarı | Kimlik |
+| --- | --- | --- |
+| POST /api/auth/register | 201 UserResponse | Anonim |
+| POST /api/auth/login | 200 AuthResponse | Anonim |
+| POST /api/auth/refresh | 200 AuthResponse | Refresh token sahipliği |
+| POST /api/auth/logout | 204 | Refresh token sahipliği |
+| GET /api/users/me | 200 UserResponse | Bearer JWT |
+
+Register body: `{"email":"user@example.com","password":"ExamplePassword123!","displayName":"Example User"}`. Email en fazla 254, DisplayName 1–100, parola 12–128 karakter. Email/ad trim edilir, parola edilmez. Register otomatik login yapmaz; UserResponse `{id,email,displayName}`. Duplicate email 409; geçersiz alanlar 400 ProblemDetails.
+
+Login body: `{"email":"user@example.com","password":"ExamplePassword123!"}`. AuthResponse: `{accessToken,refreshToken,accessTokenExpiresAtUtc,refreshTokenExpiresAtUtc,user:{id,email,displayName},tokenType:"Bearer"}`. Zamanlar UTC ISO 8601. Yanlış email/parola/pasif/kilitli hesap aynı genel 401. Auth ve /me no-store/no-cache.
+
+Refresh/logout body: `{"refreshToken":"<64 karakter base64url>"}`. Yanlış biçim 400; bilinmeyen/expired/revoked token refresh 401. Rotation tek kullanımlık; reuse aileyi kapatır. Logout doğru biçimli bilinmeyen veya tekrar token ile de 204. Access token logout sonrasında kısa ömrü dolana kadar geçerlidir. İstemci refresh isteklerini tekilleştirmelidir; yarışın kaybedeni kazananın child token ailesini de iptal eder.
+
+Tüm korunan uçlara `Authorization: Bearer <accessToken>` gönderin; UserId doğrulanan sub üzerinden alınır. /me yalnızca id/email/displayName döndürür; password/hash dönmez. Auth bütçesi IP başına 20/dakika; aşım 429 ProblemDetails + Retry-After:60. Beş yanlış parola 15 dakika hesap kilidi. Güvenlik/proxy ayarları, JWT claim ve süreler, React Native güvenli token saklama sözleşmesi [SECURITY.md](SECURITY.md) içindedir. DTO örneklerindeki token yer tutucuları gerçek token değildir.

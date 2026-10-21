@@ -12,6 +12,8 @@ public sealed class User
     public string DisplayName { get; set; } = "";
     public string PasswordHash { get; set; } = "";
     public bool IsActive { get; set; } = true;
+    public int FailedLoginCount { get; set; }
+    public DateTime? LoginLockedUntilUtc { get; set; }
     public DateTime CreatedAtUtc { get; set; }
     public DateTime UpdatedAtUtc { get; set; }
 }
@@ -87,6 +89,7 @@ public sealed class UserSubscription
 public sealed class RefreshToken
 {
     public Guid Id { get; set; }
+    public Guid FamilyId { get; set; }
     public Guid UserId { get; set; }
     public string TokenHash { get; set; } = "";
     public DateTime ExpiresAtUtc { get; set; }

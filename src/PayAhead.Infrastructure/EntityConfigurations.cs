@@ -118,6 +118,7 @@ public sealed class RefreshTokenConfiguration : IEntityTypeConfiguration<Refresh
         b.Property(x => x.TokenHash).HasMaxLength(64).IsUnicode(false).UseCollation("Latin1_General_100_BIN2").IsRequired();
         b.HasIndex(x => x.TokenHash).IsUnique();
         b.HasIndex(x => new { x.UserId, x.ExpiresAtUtc });
+        b.HasIndex(x => new { x.UserId, x.FamilyId });
         b.HasOne<User>().WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
         b.HasOne<RefreshToken>().WithMany().HasForeignKey(x => x.ReplacedByTokenId).OnDelete(DeleteBehavior.NoAction);
     }
