@@ -38,8 +38,11 @@ export function createApiClient(baseURL?: string, session?: SessionAccess, devel
     if (session && config && failed.response?.status === 401) {
       if (config.signal?.aborted || session.credential()?.epoch !== config.sessionEpoch) throw new CanceledError();
       if (config.replayed) { await session.invalidate('Oturumun artık geçerli değil. Yeniden giriş yap.'); throw mapApiError(error); }
-      // Phase 2 protected API is GET /me. Never silently replay a future mutation.
-      if (!['get', 'head', 'options'].includes(config.method ?? 'get')) throw mapApiError(error);
+      // A write may have an uncertain outcome: rotate centrally but require explicit resubmission.
+      if (!['get', 'head', 'options'].includes(config.method ?? 'get')) {
+        if (session.credential()?.accessToken === config.sentToken) await session.refresh();
+        throw new ApiError('Oturum yenilendi. İşlem otomatik tekrarlanmadı; güncel kaydı kontrol edip yeniden dene.', 401, undefined, undefined, 'session');
+      }
       config.replayed = true;
       if (session.credential()?.accessToken === config.sentToken) await session.refresh();
       if (config.signal?.aborted || session.credential()?.epoch !== config.sessionEpoch) throw new CanceledError();

@@ -1,15 +1,15 @@
 // Reviewed against Application/Overview, Payments, Auth and Notifications/Contracts.cs.
-// Phase 1 uses UI preview models separately; no network request is sent by a screen.
+// Finance JSON decimals are preserved as strings; runtime schemas live in features/payments/contracts.ts.
 export type DateOnly = string;
 export type CurrencyCode = string;
 export type PaymentFrequency = 'Once' | 'Daily' | 'Weekly' | 'Monthly' | 'Yearly';
 export type OccurrenceStatus = 'Pending' | 'Paid' | 'Skipped';
 export interface ProjectedPayment {
-  paymentPlanId: string; paymentName: string; dueDate: DateOnly; amount: number;
+  paymentPlanId: string; paymentName: string; dueDate: DateOnly; amount: string;
   currencyCode: CurrencyCode; category: string; frequency: PaymentFrequency;
-  status: OccurrenceStatus; actualAmount: number | null; paidAtUtc: string | null;
+  status: OccurrenceStatus; actualAmount: string | null; paidAtUtc: string | null;
 }
-export interface CurrencyTotal { currencyCode: CurrencyCode; amount: number }
+export interface CurrencyTotal { currencyCode: CurrencyCode; amount: string }
 export interface ProjectionContext { fromDate: DateOnly; toDate: DateOnly; today: DateOnly; timeZoneId: string; usedTimeZoneFallback: boolean }
 export interface DashboardSummaryResponse {
   context: ProjectionContext; activePaymentPlanCount: number; upcomingPaymentCount: number;

@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View, type TextProps, type TextInputProps, type ViewStyle, type StyleProp } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TextInput, View, type TextProps, type TextInputProps, type ViewStyle, type StyleProp } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Eye, EyeOff, Layers3, Plus, ShieldCheck, TriangleAlert, type LucideIcon } from 'lucide-react-native';
 import Animated, { FadeInDown, useReducedMotion, useSharedValue, useAnimatedStyle, withRepeat, withTiming, cancelAnimation } from 'react-native-reanimated';
@@ -12,11 +12,11 @@ export function AppText({ variant = 'body', tone = 'text', style, ...props }: Te
   const { colors } = useTheme();
   return <Text {...props} style={[typography[variant], { color: colors[tone] }, style]} />;
 }
-export function AppScreen({ children, keyboard = false }: { children: ReactNode; keyboard?: boolean }) {
+export function AppScreen({ children, keyboard = false, refreshing = false, onRefresh }: { children: ReactNode; keyboard?: boolean; refreshing?: boolean; onRefresh?: () => void }) {
   const { colors } = useTheme();
   return <SafeAreaView edges={['left', 'right', 'bottom']} style={{ flex: 1, backgroundColor: colors.background }}>
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={keyboard && Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic" keyboardShouldPersistTaps="handled" contentContainerStyle={styles.screen} showsVerticalScrollIndicator={false}>{children}</ScrollView>
+      <ScrollView refreshControl={onRefresh ? <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={colors.accentText} colors={[colors.accentText]} /> : undefined} contentInsetAdjustmentBehavior="automatic" keyboardShouldPersistTaps="handled" contentContainerStyle={styles.screen} showsVerticalScrollIndicator={false}>{children}</ScrollView>
     </KeyboardAvoidingView>
   </SafeAreaView>;
 }

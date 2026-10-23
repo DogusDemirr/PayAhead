@@ -7,8 +7,19 @@ namespace PayAhead.Api.Controllers;
 
 [ApiController, Route("api/auth"), AllowAnonymous, EnableRateLimiting("auth")]
 [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
-public sealed class AuthController(IAuthService auth) : ControllerBase
+public sealed class AuthController(IAuthService auth, PasswordResetService reset) : ControllerBase
 {
+    [HttpPost("forgot-password")]
+    public async Task<IActionResult> ForgotPassword(ForgotPasswordRequest request, CancellationToken ct)
+    {
+        await reset.ForgotAsync(request, ct);
+        return Accepted(new { message = "Adres kayıtlıysa şifre yenileme bağlantısı gönderilecektir." });
+    }
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword(ResetPasswordRequest request, CancellationToken ct)
+    {
+        await reset.ResetAsync(request, ct); return NoContent();
+    }
     [HttpPost("register")]
     public async Task<ActionResult<UserResponse>> Register(RegisterRequest request, CancellationToken ct)
         => StatusCode(201, await auth.RegisterAsync(request, ct));

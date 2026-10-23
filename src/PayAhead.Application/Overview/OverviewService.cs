@@ -5,7 +5,7 @@ using PayAhead.Domain.Recurrence;
 
 namespace PayAhead.Application.Overview;
 
-public sealed class OverviewService(IOverviewStore store, ICurrentUser currentUser, IPaymentRecurrenceCalculator calculator,
+public sealed partial class OverviewService(IOverviewStore store, ICurrentUser currentUser, IPaymentRecurrenceCalculator calculator,
     TimeProvider clock, IValidator<UpcomingPaymentsQuery> upcomingValidator, IValidator<OverviewRangeQuery> summaryValidator,
     IValidator<CalendarQuery> calendarValidator) : IOverviewService
 {

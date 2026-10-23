@@ -23,7 +23,9 @@ public static class DependencyInjection
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IOccurrenceService, OccurrenceService>();
         services.AddScoped<IOverviewService, OverviewService>();
+        services.AddScoped<IAnalyticsService, OverviewService>();
         services.AddScoped<PayAhead.Application.Auth.IAuthService, PayAhead.Application.Auth.AuthService>();
+        services.AddScoped<PayAhead.Application.Auth.PasswordResetService>();
         services.AddScoped<PayAhead.Application.Notifications.INotificationManagementService, PayAhead.Application.Notifications.NotificationManagementService>();
         services.AddScoped<PayAhead.Application.Notifications.NotificationProcessor>();
         services.AddScoped<PayAhead.Application.Subscriptions.ISubscriptionService, PayAhead.Application.Subscriptions.SubscriptionService>();

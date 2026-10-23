@@ -1,5 +1,9 @@
 # API sözleşmesi — Faz 1–10
 
+## Frontend Phase 4 ekleri
+
+`POST /api/auth/forgot-password` (202 generic), `POST /api/auth/reset-password` (204) ve yetkili `GET /api/analytics?year=&month=&currencyCode=` eklendi. Ayrıntılı gövdeler, hata/kota ve semantik: [PASSWORD_RESET](PASSWORD_RESET.md), [ANALYTICS](ANALYTICS.md). Mevcut occurrence/calendar/payment sözleşmeleri değişmedi.
+
 ## Faz 10 — Privacy ve işletim
 
 JWT GET `/api/users/me/export`: kendi profil/settings/plan/occurrence/reminder/tracked/membership/device metadata JSON attachment, no-store. Secret/token/hash ve başka kullanıcı verisi yok. Bounded satırlar ve8MiB çıktı; aşım413. DELETE `/api/users/me`: `{"currentPassword":"..."}`, tekrar parola doğrulaması,4096byte limit; başarı204, yanlış parola401. Sonraki eski JWT401. UserId body/query üzerinden seçilemez. Geçmiş silinir, store anti-replay bağları pseudonymous tutulur; mağaza auto-renew iptal olmaz. Tam sözleşme [DATA_PRIVACY.md](DATA_PRIVACY.md).

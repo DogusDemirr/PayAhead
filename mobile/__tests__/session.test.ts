@@ -4,6 +4,7 @@ import { SessionManager } from '../src/services/session-manager';
 import { createApiClient, ApiError } from '../src/services/api';
 import { navigationAccess } from '../src/services/navigation-policy';
 import { loginSchema, registerSchema } from '../src/features/auth-validation';
+import { QueryClient } from '@tanstack/react-query';
 import type { StoredSession } from '../src/services/session-model';
 import type { AuthResponse } from '../src/types/api';
 
@@ -128,4 +129,20 @@ test('production refuses HTTP and bearer tokens cannot be sent to another origin
 test('timeout is mapped without exposing config or token bodies', async () => {
   const client = createApiClient('https://api.example.test'); client.defaults.adapter = async (config) => { throw new AxiosError('raw private detail', 'ECONNABORTED', config); };
   await expect(client.post('/api/auth/login', credentials)).rejects.toMatchObject({ kind: 'timeout' });
+});
+test('logout and another account login clear all previous financial data', async () => {
+  const cache = new QueryClient({ defaultOptions: { queries: { gcTime: Infinity } } }); const s = setup();
+  s.clearCache.mockImplementation(() => { cache.clear(); }); await s.manager.login(credentials);
+  const oldEpoch = s.manager.credential()!.epoch; cache.setQueryData(['finance', user.id, oldEpoch, 'plans'], { privateAmount: '12.00' });
+  await s.manager.logout(); expect(cache.getQueryCache().getAll()).toHaveLength(0);
+  const second = { ...user, id: 'another-user', email: 'second@example.com' };
+  s.api.login.mockResolvedValueOnce({ ...response('c'), user: second }); s.getUser.mockResolvedValueOnce(second);
+  await s.manager.login({ ...credentials, email: second.email }); expect(s.manager.getSnapshot().user?.id).toBe(second.id);
+  expect(s.manager.credential()!.epoch).not.toBe(oldEpoch); expect(cache.getQueryData(['finance', user.id, oldEpoch, 'plans'])).toBeUndefined(); cache.clear();
+});
+test('write 401 rotates centrally but never automatically replays a mutation', async () => {
+  const s = setup(); await s.manager.login(credentials); const client = createApiClient('https://api.example.test', s.manager); let sent = 0;
+  client.defaults.adapter = async (config) => { sent++; throw unauthorized(config); };
+  await expect(client.post('/api/payments', { name: 'Test' })).rejects.toMatchObject({ status: 401, kind: 'session' });
+  expect(sent).toBe(1); expect(s.api.refresh).toHaveBeenCalledTimes(1);
 });

@@ -1,5 +1,7 @@
 # Geliştirme
 
+Frontend Phase 4 ayrıca onaylanarak uygulanmıştır: [şifre sıfırlama, SMTP/Mailpit, development migration ve Expo bağlantısı](PASSWORD_RESET.md), [analiz API](ANALYTICS.md). E-posta varsayılan kapalı; provider kimlik bilgileri yalnızca environment/User Secrets. Gerçek inbox ve fiziksel Android kabulü ayrı adımlardır.
+
 Faz 1–10 backend ve production hardening uygulanmıştır; frontend ve production deployment ayrı açık talimat gerektirir.
 
 ## Faz 10 doğrulama

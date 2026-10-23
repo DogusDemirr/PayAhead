@@ -22,6 +22,10 @@ public static class PayAheadApi
             .Enrich.FromLogContext().WriteTo.Console());
         _ = DevelopmentIdentity.Validate(builder.Environment, builder.Configuration);
         builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
+        if (!builder.Environment.IsDevelopment() && builder.Configuration.GetValue<bool>("Email:Enabled")
+            && (!builder.Configuration.GetValue("Email:EnableSsl", true)
+                || !Uri.TryCreate(builder.Configuration["PasswordReset:LinkBase"], UriKind.Absolute, out var resetLink) || resetLink.Scheme != "https"))
+            throw new InvalidOperationException("Production reset mail requires TLS SMTP and a trusted HTTPS reset link.");
         var origins = ProductionConfiguration.CorsOrigins(builder.Configuration);
         builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.WithOrigins(origins)
             .WithMethods("GET", "POST", "PUT", "DELETE").WithHeaders("Authorization", "Content-Type", "If-Match", "X-Correlation-ID")

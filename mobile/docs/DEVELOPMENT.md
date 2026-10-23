@@ -1,5 +1,13 @@
 # Geliştirme — Authentication ve Android bağlantısı
 
+## Frontend Phase 4 kurulumu
+
+Yeni ekranlar güncel backend gerektirir. [Reset/SMTP/Mailpit/migration/deep link rehberi](../../docs/PASSWORD_RESET.md) ve [analytics API](../../docs/ANALYTICS.md) esas alınmalıdır. `npx.cmd expo install` ile kurulan datetimepicker **9.1.0**, Expo Go SDK 57 içindedir; mevcut SVG **15.15.4** ile grafik çizilir. Sürüm yükseltilmedi. [Expo tarih seçici](https://docs.expo.dev/versions/v57.0.0/sdk/date-time-picker/) ve [SVG](https://docs.expo.dev/versions/v57.0.0/sdk/svg/) uyumluluğu kontrol edildi. Web için DateOnly metin fallback vardır; native Android modalı jest mock testi gerçek cihaz kabulü sayılmaz.
+
+Takvim aylık veri; geçmiş aylık ve bugüne kadar, 20 kayıt/sayfa ve tek durum filtresi kullanır. Analiz son altı ayı sunucuda toplar. Grafikler para string'ini yalnızca boyut oranı için Number'a çevirir; gösterilen para lexical decimal olarak korunur. Yeni finans sorguları aynı kullanıcı/epoch cache altında; logout temizliği devam eder. Development e-posta linki Expo Go `exp://IP:PORT/--/reset-password` adresini kullanır; production domain/App Links burada kurulmadı. Link açılmazsa uygulamadaki kod/bağlantı alanı kullanılabilir.
+
+Önceki fazdaki “backend değişmedi / migration yok” kayıtları kendi tarihsel kapsamını anlatır; Phase 4 yeni additive migration gerektirir. Çalışan kullanıcı API'si bu görevde durdurulmadı. Normal build DLL kilidine takılırsa kullanıcı kendi development API terminalini kontrollü kapatıp yeni kodla başlatabilir; production süreci için bu adımı otomatik uygulama.
+
 ## Mobil uygulama
 
 Node 24.22.0/npm 11.19.1 ile doğrulandı; Expo 57.0.31, RN 0.86.3, React 19.2.3 sürümleri korundu. Yeni projede `npm.cmd ci`; mevcut workspace'te kurulum hazır. Windows execution policy değiştirilmez; `.cmd` kullanılır.
@@ -15,7 +23,7 @@ npx.cmd expo start
 
 1. Telefonu ve bilgisayarı aynı güvenilir Wi-Fi ağına bağla. Guest Wi-Fi/client isolation ve VPN erişimi engelleyebilir.
 2. Bilgisayar IPv4 adresini `ipconfig` ile bul. Bu çalışmada etkin Wi-Fi IPv4 `192.168.1.155`; DHCP değiştirirse `.env` de değişmelidir.
-3. Backend'in mevcut SQL/connection string/migration kurulumunu root README ve docs/DEVELOPMENT.md üzerinden hazır tut. Bu mobil görev SQL verilerini değiştirmez, migration çalıştırmaz. Bu oturumda Docker komutu bulunamadı; çalışan API de tespit edilmedi.
+3. Backend'in mevcut SQL/connection string/migration kurulumunu root README ve docs/DEVELOPMENT.md üzerinden hazır tut. Bu mobil görev SQL verilerini değiştirmez, migration çalıştırmaz. 23 Ekim doğrulamasında yapılandırılmış backend ready endpoint HTTP 200 döndürdü; ayrı bir SQL/Docker kurulumu yapılmadı.
 4. Repository **kökündeki ayrı terminalde**, mevcut SQL ortam ayarlarını koruyarak Kestrel'i LAN'dan dinlet:
 
 ```powershell
@@ -79,3 +87,13 @@ Jest testleri mock adapter/storage kullanır; gerçek backend veya SecureStore d
 | Port dolu | Mevcut servisi durdurmadan Metro için `--port 8082` gibi boş port seç. |
 | Metro/cache | Ctrl+C, ardından `npx.cmd expo start --clear`. Env değişince yeniden yükle. |
 | npm audit | Major/downgrade önerilerini kör uygulama; ilerleme raporundaki direct/transitive ayrımını incele. |
+
+## Frontend Phase 3 doğrulama ve kullanım
+
+Normal akışta preview kapalı kalır. Gerçek login sonrası Dashboard ve Ödemeler backend verisini gösterir. DateOnly alanları YYYY-AA-GG, tutar alanı virgül/nokta ondalık ile girilir; binlik ayraç kullanılmaz. Pull-to-refresh ve edit/create sonrası otomatik cache yenilemesi vardır. Backend'de doğrudan yapılan değişiklikleri refresh ile al.
+
+`npm.cmd run test:finance:live` yalnızca LAN/localhost geliştirme API'sinde rastgele geçici hesap/planlarla CRUD, 403 limit, 409 concurrency, 404 izolasyon ve decimal roundtrip kontrolü yapar. Kendi test hesaplarını temizler; mevcut kullanıcıların verisini kullanmaz. 23 Ekim'de bu script ve auth smoke gerçek backend üzerinde geçti. Bunlar fiziksel Android testi değildir.
+
+Backend dev sunucusu çalışırken standart .NET build dosya kilidi alabilir. Servisi durdurmadan doğrulama için repository kökünde `.tools/dotnet/dotnet.exe build PayAhead.sln --artifacts-path artifacts/phase3-backend-check` kullanılabilir. Backend testinin ops SQL dosyası için sabit göreli yolu olduğundan artifact kökü `mobile/artifacts` altında olmamalıdır. Bu, backend kaynak değişikliği gerektirmez. Ayrıntılı komut sonuçları IMPLEMENTATION_PROGRESS.md içindedir.
+
+Güncel güvenlik denetimi 7 kayıt (4 high/3 moderate) bildiriyor; önceki 58 kaydın artık aynı olmaması bu fazda düzeltilmiş açık sayısı değildir. node-forge ve Router query decoder zincirleri için SDK uyumlu upstream düzeltme beklenir; major/downgrade veya force uygulanmadı.

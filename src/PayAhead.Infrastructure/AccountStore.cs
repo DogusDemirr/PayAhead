@@ -50,6 +50,7 @@ public sealed class AccountStore(PayAheadDbContext db, IPasswordService password
         await db.SaveChangesAsync(ct);
         await db.RefreshTokens.Where(x => x.UserId == user).ExecuteUpdateAsync(s => s.SetProperty(x => x.RevokedAtUtc, now).SetProperty(x => x.ReplacedByTokenId, (Guid?)null), ct);
         await db.RefreshTokens.Where(x => x.UserId == user).ExecuteDeleteAsync(ct);
+        await db.Set<PasswordResetToken>().Where(x => x.UserId == user).ExecuteDeleteAsync(ct);
         // Lock plans in a stable order to fence the notification scheduler before deleting dependent rows.
         _ = await db.PaymentPlans.FromSqlInterpolated($"SELECT * FROM PaymentPlans WITH(UPDLOCK,HOLDLOCK) WHERE UserId={user} ORDER BY Id").AsNoTracking().ToArrayAsync(ct);
         await db.NotificationDeliveries.Where(x => x.UserId == user).ExecuteDeleteAsync(ct);

@@ -16,6 +16,10 @@ export class SessionManager {
   constructor(private readonly deps: { api: AuthApi; storage: SessionStorage; getUser: () => Promise<UserResponse>; clearCache: () => void; publish: (state: SessionSnapshot) => void; now?: () => number }) {}
   getSnapshot = () => this.snapshot;
   credential = () => this.tokens ? { accessToken: this.tokens.accessToken, epoch: this.epoch } : null;
+  async ensureFreshAccess() {
+    if (!this.tokens) throw new ApiError('Yeniden giriş yap.', 401);
+    if (Date.parse(this.tokens.accessTokenExpiresAtUtc) <= this.now() + 30000) await this.refresh();
+  }
   private now = () => this.deps.now?.() ?? Date.now();
   private publish(state: SessionSnapshot) { this.snapshot = state; this.deps.publish(state); }
   private check(epoch: number) { if (this.epoch !== epoch) throw new CanceledError('Oturum değişti.'); }

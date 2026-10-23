@@ -50,7 +50,9 @@ public sealed class FoundationTests
         var occurrence = db.Model.FindEntityType(typeof(PaymentOccurrence))!;
         Assert.Contains(occurrence.GetIndexes(), x => x.IsUnique && x.Properties.Select(p => p.Name)
             .SequenceEqual([nameof(PaymentOccurrence.PaymentPlanId), nameof(PaymentOccurrence.DueDate)]));
-        Assert.Equal(15, db.Model.GetEntityTypes().Count());
+        Assert.Equal(16, db.Model.GetEntityTypes().Count());
+        var reset = db.Model.FindEntityType(typeof(PasswordResetToken))!;
+        Assert.Contains(reset.GetIndexes(), x => x.IsUnique && x.Properties.Single().Name == nameof(PasswordResetToken.TokenHash));
     }
 
     private static IConfiguration Config(bool enabled, string? id) => new ConfigurationBuilder()

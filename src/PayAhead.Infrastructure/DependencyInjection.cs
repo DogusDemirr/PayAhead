@@ -21,6 +21,17 @@ public static class DependencyInjection
         services.AddScoped<IOccurrenceStore, OccurrenceStore>();
         services.AddScoped<IOverviewStore, OverviewStore>();
         services.AddScoped<PayAhead.Application.Auth.IAuthStore, AuthStore>();
+        services.AddScoped<PayAhead.Application.Auth.IPasswordResetStore, PasswordResetStore>();
+        services.AddScoped<PayAhead.Application.Auth.IPasswordResetEmail, SmtpPasswordResetEmail>();
+        services.AddSingleton<PasswordResetEmailWorker>();
+        services.AddSingleton<PayAhead.Application.Auth.IPasswordResetDispatcher>(provider => provider.GetRequiredService<PasswordResetEmailWorker>());
+        services.AddHostedService(provider => provider.GetRequiredService<PasswordResetEmailWorker>());
+        var reset = configuration.GetSection("PasswordReset").Get<PayAhead.Application.Auth.PasswordResetOptions>() ?? new();
+        if (reset.LifetimeMinutes is < 5 or > 60) throw new InvalidOperationException("PasswordReset lifetime must be 5–60 minutes.");
+        if (configuration.GetValue<bool>("Email:Enabled") && (!Uri.TryCreate(reset.LinkBase, UriKind.Absolute, out var resetUri)
+            || resetUri.Scheme is not ("https" or "exp" or "payahead") || resetUri.Query.Length != 0 || resetUri.Fragment.Length != 0))
+            throw new InvalidOperationException("PasswordReset:LinkBase must be a trusted absolute reset-password link without query/fragment.");
+        services.AddSingleton(reset);
         services.AddSingleton<PayAhead.Application.Auth.IPasswordService, IdentityPasswordService>();
         services.AddScoped<PayAhead.Application.Notifications.INotificationManagementStore, NotificationManagementStore>();
         services.AddScoped<PayAhead.Application.Notifications.INotificationQueue, SqlNotificationQueue>();

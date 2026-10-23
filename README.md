@@ -1,5 +1,7 @@
 # PayAhead Backend
 
+Frontend Phase 4 için additive `PasswordResetTokens` migration'ı, güvenli reset API/e-posta kuyruğu ve read-only `/api/analytics` eklendi. [Şifre sıfırlama ve SMTP kurulumu](docs/PASSWORD_RESET.md), [analiz sözleşmesi](docs/ANALYTICS.md), [mobil uygulama](mobile/README.md). Production deployment yapılmadı; mevcut development API yeni kod/migration ile kontrollü yeniden başlatılmalıdır.
+
 React Native istemcisi için .NET8/C#12/EF8/SQL Server backend. Faz1–10 ödeme, recurrence/geçmiş/overview, JWT, notification, harici abonelik/trial, Premium ve production hardening uygulanmıştır. Gerçek Apple/Google satın alması, Expo cihaz teslimatı ve production kurulumu ayrıca doğrulanmalıdır.
 
 ## Gereksinimler

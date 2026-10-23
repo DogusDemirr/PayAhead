@@ -189,6 +189,40 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PayAhead.Domain.PasswordResetToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ConsumedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TokenHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TokenHash")
+                        .IsUnique();
+
+                    b.HasIndex("UserId", "CreatedAtUtc");
+
+                    b.ToTable("PasswordResetTokens", (string)null);
+                });
+
             modelBuilder.Entity("PayAhead.Domain.PaymentOccurrence", b =>
                 {
                     b.Property<Guid>("Id")
@@ -847,6 +881,15 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         .HasForeignKey("ReminderRuleId", "PaymentPlanId", "UserId")
                         .HasPrincipalKey("Id", "PaymentPlanId", "UserId")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PayAhead.Domain.PasswordResetToken", b =>
+                {
+                    b.HasOne("PayAhead.Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

@@ -1,5 +1,9 @@
 # Veritabanı
 
+## Frontend Phase 4 — PasswordResetTokens
+
+`20261023190720_PasswordResetTokens` yalnızca reset tablosu, User FK, TokenHash unique index ve `(UserId, CreatedAtUtc)` index'i ekler. SHA-256 hash `varchar(64)`; created/expiry/consumed UTC timestamp. Finansal kolonlar ve eski migration'lar değiştirilmedi. Migration uygulaması otomatik değildir; [development adımları](PASSWORD_RESET.md). İzole SQL testinde önceki migration'dan yükseltmede mevcut kullanıcı/plan/tutar korunması doğrulanır. Analiz için yeni mali tablo veya index eklenmedi; mevcut UserId ve `(PaymentPlanId, DueDate)` index'leri ve projection limitleri kullanılır.
+
 ## Faz 10 — ProductionOperations
 
 `20261021152026_ProductionOperations` yalnızca RateLimitBuckets (Id varchar64 HMAC PK, Count int, ExpiresAtUtc datetime2 ve expiry index) ekler. Önceki beş migration korunur;15tablo/15PK/14FK. Startup migrate etmez. Phase9 seed kullanıcıyla upgrade gerçek SQL testindedir. Rate bucket TTL ve refresh cleanup SQL saat/retention/lease stratejileri [OPERATIONS_RUNBOOK.md](OPERATIONS_RUNBOOK.md) içinde.

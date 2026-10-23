@@ -8,7 +8,10 @@ export function SessionBootstrap() {
   useEffect(() => {
     void session.restore();
     const listener = AppState.addEventListener('change', (state) => {
-      if (state === 'active' && session.getSnapshot().status === 'authenticated') void queryClient.invalidateQueries({ queryKey: currentUserKey() });
+      if (state === 'active' && session.getSnapshot().status === 'authenticated') {
+        void queryClient.invalidateQueries({ queryKey: currentUserKey() });
+        void queryClient.invalidateQueries({ queryKey: ['finance'] });
+      }
     });
     return () => listener.remove();
   }, []);

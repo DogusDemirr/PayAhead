@@ -1,6 +1,8 @@
-# PayAhead Mobile — Frontend Phase 2
+# PayAhead Mobile — Frontend Phase 4
 
-Mevcut Expo 57.0.31 / React Native 0.86.3 / React 19.2.3 uygulamasında gerçek authentication ve session management. Phase 1 lacivert/teal tasarımı, Inter, light/dark teması ve ortak bileşenler korundu. Backend kodu değiştirilmedi. Frontend Phase 3 başlatılmadı.
+Expo 57.0.31 / React Native 0.86.3 / React 19.2.3 üzerinde gerçek takvim, ödeme geçmişi, tek ödeme durumları, native tarih seçici, e-posta ile şifre sıfırlama ve ayrı Analizler ekranı eklendi. Kayıt/giriş, oturum/cache izolasyonu ve ödeme CRUD korundu. Backend'e yalnızca reset ve read-only analytics desteği eklendi; .NET/EF sürümleri yükseltilmedi. Frontend Phase 5 başlatılmadı.
+
+Phase 4 için backend'in yeni migration ve yapılandırmayla çalışması gerekir: [SMTP, migration ve deep link kurulumu](../docs/PASSWORD_RESET.md), [analiz sözleşmesi ve tarih/para semantiği](../docs/ANALYTICS.md). SMTP varsayılan kapalıdır; gerçek posta kutusuna teslim doğrulanmadı. [Android kabul listesi](docs/ANDROID_TESTING.md) fiziksel cihazda tamamlanmalıdır. Önceki faz kayıtları aşağıda tarihsel olarak korunmuştur.
 
 ## Çalıştırma
 
@@ -29,7 +31,13 @@ Login, SecureStore yazımı ve `/me` doğrulaması tamamlanınca korunan Dashboa
 
 Refresh tekilleştirilir; geç dönen eski-token 401 yanıtı yeni bir rotation başlatmaz. İptal edilmiş istek veya eski oturum isteği replay edilmez. Logout yerel token/cache'i temizler; offline sunucu iptalinin doğrulanamadığını bildirir. Ayrıntılı [oturum mimarisi](docs/ARCHITECTURE.md).
 
-Varsayılan `EXPO_PUBLIC_DESIGN_PREVIEW=false`. Development önizlemesi etkinleştirilse bile **gerçek giriş gerektirir** ve açıkça etiketlenir; production'da kapanır. Finans ekranlarının gerçek API bağlantısı Phase 3'e bırakıldı; bu sürümde veri bağlı olmadığını belirten görünüm kullanılır. Settings profili gerçek `/me` yanıtından gelir; Premium/finans işlemleri yapılmaz.
+## Gerçek Dashboard ve ödeme yönetimi
+
+Dashboard aylık yaklaşan/ödenen toplamları para birimi bazında sunucudan alır. En yakın ödeme, aktif plan sayısı, ayın Pending/Paid/Skipped sayıları, bu ayın gecikenleri ve yaklaşan ilk kayıtlar gösterilir. Loading/empty/error/retry ve pull-to-refresh desteklenir; başarılı değişikliklerde finans cache'i yenilenir.
+
+Ödemeler sunucu tarafı arama, aktif/pasif, para birimi ve kategori filtreleriyle sayfalanır. Detay, create, edit, onaylı delete/pasifleştirme vardır. Gerçek recurrence alanları, DateOnly, decimal(19,4) precision, RowVersion/If-Match ve entitlement limiti korunur. Tutarlar JSON sayısı olarak gönderilir; uygulama içinde hassasiyet için lexical ondalık metin tutulur. [Sözleşme ve davranış ayrıntıları](docs/PAYMENTS_API.md).
+
+Home/Payments artık tasarım fixture'ı göstermez. Varsayılan preview false; Calendar/Subscriptions önizlemesi ayrı, etiketli ve development + gerçek oturum gerektirir. Bu diğer ekranların gerçek API entegrasyonuna geçilmedi. Premium bağlantısı mevcut bilgilendirme ekranına gider; sahte satın alma yoktur.
 
 SecureStore yalnızca native Android/iOS hedefinde kullanılır. Web gerçek kalıcı oturum desteklemez; güvensiz localStorage/AsyncStorage alternatifi yoktur. Web bundle smoke testi native SecureStore testi yerine geçmez.
 
@@ -42,13 +50,14 @@ npm.cmd test
 npx.cmd expo-doctor
 npx.cmd expo install --check
 npx.cmd expo export --platform android
-node --env-file-if-exists=.env scripts/auth-smoke.cjs
+npm.cmd run test:auth:live
+npm.cmd run test:finance:live
 ```
 
-Son komut yalnızca yerel/LAN geliştirme backend'ine gider. Rastgele geçici hesabı oluşturur, auth sözleşmesini kontrol eder ve yalnızca oluşturduğu hesabı siler. Şifre/token/yanıt gövdesi yazdırmaz. Backend erişilemiyorsa hata koduyla çıkar; başarılı sayılmaz.
+Canlı smoke komutları yalnızca yerel/LAN geliştirme backend'ine gider. Rastgele geçici hesap/planlar oluşturur ve yalnızca kendi oluşturduklarını temizler; şifre/token/finansal yanıt gövdesi yazdırmaz.
 
-TypeScript/ESLint ve Expo Doctor 21/21 geçti; otomatik testler ve sonuçların ayrıntısı [ilerleme raporunda](docs/IMPLEMENTATION_PROGRESS.md). Android Hermes export ve Metro/web bundle başarılı. Gerçek backend smoke ilk register isteğinde bağlantı kuramadı; bu çalışmada fiziksel Android testi yapılmadı. Kullanıcı Phase 1 tasarımını fiziksel cihazda beğendiğini bildirdi; bu, Phase 2 auth testinin yerine geçmez.
+23 Ekim 2026: 68/68 Jest testi, strict TypeScript, ESLint, Expo Doctor 21/21 ve Android Hermes export başarılı. Gerçek auth smoke 8 HTTP adımı, finans smoke 24 HTTP kontrolü ve 4 cleanup çağrısıyla geçti. Startup/uygulama HTML'i ve development JS bundle HTTP 200 döndürdü. Bunlar fiziksel Android testi değildir; yeni ekranların cihaz kabulü bekliyor.
 
-npm audit: 58 kayıt (50 high/8 moderate), `--omit=dev` ile 53 (45 high/8 moderate). Dört temel transitive bildirim ve Expo araç zinciri etkisi [güvenlik değerlendirmesinde](docs/IMPLEMENTATION_PROGRESS.md). Uyumsuz major sürüm, zorlanmış downgrade veya doğrulanmamış override uygulanmadı.
+Güncel npm audit 7 kayıt (4 high/3 moderate), dev hariç de 7 raporladı. Önceki fazın 58 kaydı güncel registry çıktısında aynı değildir; bunu kod değişikliğiyle giderilmiş açık sayısı olarak sunmuyoruz. Kalan node-forge/Router query decoder zincirleri ve build/test ayrıntıları [ilerleme raporunda](docs/IMPLEMENTATION_PROGRESS.md). SDK'yı bozan major/downgrade/force uygulanmadı.
 
 Belgeler: [Mimari](docs/ARCHITECTURE.md), [tasarım sistemi](docs/DESIGN_SYSTEM.md), [geliştirme](docs/DEVELOPMENT.md), [Android kabul matrisi](docs/ANDROID_TESTING.md), [ilerleme ve açık noktalar](docs/IMPLEMENTATION_PROGRESS.md).

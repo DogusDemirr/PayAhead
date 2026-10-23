@@ -1,4 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web"><PropertyGroup>  <UserSecretsId>4f2e6561-2907-48a4-8369-86b2570bb8bd</UserSecretsId>
+  </PropertyGroup>
  <ItemGroup>
   <ProjectReference Include="../PayAhead.Application/PayAhead.Application.csproj" />
   <ProjectReference Include="../PayAhead.Infrastructure/PayAhead.Infrastructure.csproj" />

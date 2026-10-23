@@ -1,0 +1,11 @@
+name: payahead-email-dev
+services:
+  mailpit:
+    image: axllent/mailpit:v1.27.4
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${PAYAHEAD_SMTP_PORT:-1025}:1025"
+      - "127.0.0.1:${PAYAHEAD_MAIL_UI_PORT:-8025}:8025"
+    environment:
+      MP_MAX_MESSAGES: "100"
+    # Development capture only. No relay or forwarding; messages remain in container memory.

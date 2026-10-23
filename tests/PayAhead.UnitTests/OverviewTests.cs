@@ -199,6 +199,34 @@ public sealed class OverviewTests(ITestOutputHelper output)
     public async Task Plan_limit_is_not_silently_truncated()
         => await Assert.ThrowsAsync<DomainRuleException>(() => Service(new(Enumerable.Range(0, 1001).Select(_ => Plan()).ToArray())).GetSummaryAsync(new(), default));
 
+    [Fact]
+    public async Task Analytics_keeps_due_month_actual_amount_and_current_plan_estimate_separate()
+    {
+        var paid = Plan(amount: 100); var pending = Plan(amount: 20); var skipped = Plan(amount: 30);
+        var store = new MemoryStore([paid, pending, skipped], [Occurrence(paid, new(2026, 1, 31), OccurrenceStatus.Paid, 7.4321m), Occurrence(skipped, new(2026, 1, 31), OccurrenceStatus.Skipped)]);
+        var result = await Service(store, instant: new DateTimeOffset(2026, 2, 1, 0, 0, 0, TimeSpan.Zero)).GetAnalyticsAsync(new() { Year = 2026, Month = 1 }, default);
+        var currency = Assert.Single(result.Currencies); var month = currency.Months.Last();
+        Assert.Equal(150, month.PlannedAmount); Assert.Equal(7.4321m, month.PaidAmount); Assert.Equal(20, month.PendingAmount); Assert.Equal(20, month.OverdueAmount);
+        Assert.Equal(1, month.PaidCount); Assert.Equal(1, month.PendingCount); Assert.Equal(1, month.SkippedCount);
+        Assert.Equal(7.4321m, Assert.Single(currency.PaidCategories).Amount); Assert.Equal(100, currency.TopPlans.First().Amount);
+    }
+    [Theory]
+    [InlineData(1, 1)]
+    [InlineData(1, 5)]
+    public async Task Analytics_rejects_six_month_underflow(int year, int month)
+        => await Assert.ThrowsAsync<DomainRuleException>(() => Service(new([])).GetAnalyticsAsync(new() { Year = year, Month = month }, default));
+    [Fact]
+    public async Task Analytics_empty_data_returns_no_fabricated_currency_and_supports_maximum_date()
+    {
+        var result = await Service(new([])).GetAnalyticsAsync(new() { Year = 9999, Month = 12 }, default);
+        Assert.Empty(result.Currencies); Assert.Equal(new DateOnly(9999, 12, 31), result.Context.ToDate);
+    }
+    [Fact]
+    public async Task Analytics_propagates_projection_limits_instead_of_partial_totals()
+    {
+        var plans = Enumerable.Range(0, 1000).Select(_ => { var p = Plan(); p.StartDate = new(2026, 1, 1); p.Frequency = PaymentFrequency.Daily; return p; }).ToArray();
+        await Assert.ThrowsAsync<DomainRuleException>(() => Service(new(plans)).GetAnalyticsAsync(new() { Year = 2026, Month = 6 }, default));
+    }
     private static PaymentPlan Plan(string currency = "TRY", decimal amount = 10, string name = "Payment")
         => new() { Id = Guid.NewGuid(), Name = name, Amount = amount, CurrencyCode = currency, Category = "Bills", StartDate = new(2026, 1, 31), Frequency = PaymentFrequency.Monthly, IsActive = true };
     private static PaymentOccurrence Occurrence(PaymentPlan plan, DateOnly date, OccurrenceStatus status, decimal? amount = null)
