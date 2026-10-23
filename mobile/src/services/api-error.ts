@@ -14,6 +14,10 @@ export function mapApiError(error: unknown): Error {
   if (!error.response) return new ApiError('Sunucuya ulaşılamıyor. İnternet bağlantını ve API adresini kontrol et.', undefined, undefined, undefined, 'network');
   const { status, data } = error.response;
   const registration = error.config?.url === '/api/auth/register';
+  const reset = ['/api/auth/forgot-password', '/api/auth/reset-password'].includes(error.config?.url ?? '');
+  if (reset && [401, 404].includes(status)) return new ApiError('Şifre yenileme hizmeti şu anda kullanılamıyor. Daha sonra tekrar dene.', status, data?.traceId);
+  if (error.config?.url === '/api/auth/reset-password' && status === 400 && !data?.errors)
+    return new ApiError('Bağlantı geçersiz, kullanılmış veya süresi dolmuş. Yeni bir bağlantı iste.', status, data?.traceId);
   const messages: Record<number, string> = { 401: 'E-posta veya şifre hatalı ya da oturum artık geçerli değil.', 403: data?.code === 'entitlement_limit' ? 'Aktif kayıt limitine ulaştın. Mevcut planlarını pasifleştirebilir veya Premium seçeneklerini inceleyebilirsin.' : 'Bu işlem için yetkin yok.', 404: 'Kayıt bulunamadı veya artık erişilemiyor.', 409: registration ? 'Bu e-posta ile kayıt oluşturulamıyor.' : data?.title ?? 'Kayıt değişti. Güncel bilgileri yükleyip tekrar dene.', 429: 'Çok fazla deneme yapıldı. Biraz bekleyip tekrar dene.' };
   return new ApiError(messages[status] ?? (status >= 500 ? 'Sunucu şu anda kullanılamıyor. Daha sonra tekrar dene.' : data?.title ?? 'İstek tamamlanamadı.'), status, data?.traceId, data?.errors, 'http', data?.code);
 }

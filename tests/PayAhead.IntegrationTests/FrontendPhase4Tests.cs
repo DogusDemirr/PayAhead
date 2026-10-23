@@ -60,6 +60,23 @@ public sealed class FrontendPhase4Tests(SqlServerFixture sql) : IClassFixture<Sq
     }
     private string Token => email.Links.Single().Split("token=")[1];
     [Fact]
+    public async Task Missing_reset_migration_returns_same_safe_503_for_known_and_unknown_addresses()
+    {
+        await Register();
+        await using var db = Db();
+        await db.GetService<Microsoft.EntityFrameworkCore.Migrations.IMigrator>().MigrateAsync("20261021152026_ProductionOperations");
+        Assert.Equal(HttpStatusCode.ServiceUnavailable, (await client.GetAsync("/health/ready")).StatusCode);
+        foreach (var address in new[] { "phase4@example.com", "absent@example.com" })
+        {
+            var response = await client.PostAsJsonAsync("/api/auth/forgot-password", new ForgotPasswordRequest(address));
+            Assert.Equal(HttpStatusCode.ServiceUnavailable, response.StatusCode);
+            var problem = await response.Content.ReadFromJsonAsync<System.Text.Json.JsonElement>();
+            Assert.Equal("Şifre yenileme hizmeti şu anda kullanılamıyor.", problem.GetProperty("title").GetString());
+            Assert.DoesNotContain("PasswordResetTokens", await response.Content.ReadAsStringAsync());
+        }
+        Assert.Empty(email.Links); Assert.Equal(1, await db.Users.CountAsync());
+    }
+    [Fact]
     public async Task Real_Kestrel_http_smoke_uses_isolated_SQL_and_new_endpoints()
     {
         await using var app = PayAhead.Api.PayAheadApi.Build([], builder =>

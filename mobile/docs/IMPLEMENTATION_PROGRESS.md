@@ -1,5 +1,13 @@
 # Frontend Phase 4 — Takvim, geçmiş, reset ve analizler
 
+## Fiziksel cihaz bildirimi sonrası düzeltme — 23 Ekim 2026
+
+Gerçek API'de forgot POST401 tekrarlandı: çalışan eski binary'de Phase4 controller yoktu, fallback authorization devreye giriyordu. Mobil Zod/email payload doğruydu; mapper401'i yanıltıcı credentials mesajına çeviriyordu. Mapper reset401/404 için güvenli hizmet mesajı, reset domain400 için invalid/expired/used mesajı verir. Eksik migration için backend hesap aramasından önce şemayı kontrol ederek kayıtlı/kayıtsız aynı503 döndürür; yeni SQL regresyon testi eklendi.
+
+Canlı API ile hedef DB eşleşmesi doğrulandı; PayAheadDockerDevelopment'a yalnız additive PasswordResetTokens migration elle uygulandı (satır sayıları korunarak, pending0). Eski API güncel Development derlemesiyle aynı5080'de yeniden başlatıldı. Yerel Mailpit gerçek SMTP capture ve process env LinkBase yapılandırıldı. Registered/unknown202 aynıgövde, invalid400; queue→SMTP→Mailpit gerçek mesajı; reset204/replay400/eski parola-refresh401/yeni parola200 doğrulandı. SMTP capture kişisel inbox teslimi değildir; telefon deep link'i kontrol edilmedi.
+
+TS/lint temiz, Jest **94/94**; backend restore/build0warning0error, unit384/384, gerçek SQL254/254, skipped0. [Tanı raporu, güncel başlatma komutu ve Android adımları](../../docs/PASSWORD_RESET_DIAGNOSIS.md). Development API/Mailpit çalışır; Metro'yu `npx.cmd expo start --port 8081` ile açıp Expo Go'yu yeniden yükle. Phase4 fiziksel/provider kabulü bekler; Phase5 yoktur. Aşağıdaki ilk teslim kaydı tarihsel kapsamıyla korunur.
+
 **23 Ekim 2026.** Kullanıcının Phase 4 attachment talebiyle frontend ve yalnızca reset/read-only analytics için gerekli backend ekleri onaylandı. Başlangıçta Phase 3 değişiklikleri commit edilmemişti; korundu. Kullanıcının API csproj/appsettings.Development değişiklikleri ve production-operations-review.sql dosyası korunmuştur. .NET 8/C#12/EF8 ve Expo57/RN0.86 sürümleri yükseltilmedi. Production deployment ve Frontend Phase 5 yapılmadı.
 
 Gerçek aylık takvim, server Today, ay/gün seçimi, durum işaretleri, geçmiş dönem/durum/pagination, plan ve tek ödeme ayrımı, Paid/Skipped/Pending mutation'ları ve açık 409/uncertain-result yönetimi uygulandı. PaidAtUtc API tarafından atanır; mobil sahte tarih alanı göndermez. Tüm finans cache'i kullanıcı/epoch kökünde invalidate edilir. Başlangıç/bitiş için SDK57 datetimepicker9.1.0, opsiyonel bitiş temizleme ve yerel DateOnly parçaları kullanıldı. Analiz ayrı route'tur; beş tab korunur. Son altı ay aggregation sunucuda; decimal string metinleri, currency seçimi/server filtresi, SVG bar/donut, kategori ve top5 vardır.

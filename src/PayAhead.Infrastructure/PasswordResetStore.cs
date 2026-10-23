@@ -17,9 +17,16 @@ public sealed class PasswordResetConfiguration : IEntityTypeConfiguration<Passwo
 }
 public sealed class PasswordResetStore(PayAheadDbContext db) : IPasswordResetStore
 {
+    private async Task EnsureSchemaAsync(CancellationToken ct)
+    {
+        // Check before account lookup so missing deployment schema cannot reveal account existence.
+        var exists = await db.Database.SqlQueryRaw<int>("SELECT CASE WHEN OBJECT_ID(N'dbo.PasswordResetTokens', N'U') IS NULL THEN 0 ELSE 1 END AS [Value]").SingleAsync(ct);
+        if (exists == 0) throw new PasswordResetUnavailableException();
+    }
     public Task<User?> IssueAsync(string normalizedEmail, PasswordResetToken token, CancellationToken ct)
         => db.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
         {
+            await EnsureSchemaAsync(ct);
             db.ChangeTracker.Clear(); await using var tx = await db.Database.BeginTransactionAsync(ct);
             var user = await db.Users.FromSqlInterpolated($"SELECT * FROM Users WITH(UPDLOCK,HOLDLOCK) WHERE NormalizedEmail={normalizedEmail}").SingleOrDefaultAsync(ct);
             if (user is null || !user.IsActive) { await tx.CommitAsync(ct); return null; }
@@ -33,6 +40,7 @@ public sealed class PasswordResetStore(PayAheadDbContext db) : IPasswordResetSto
         });
     public async Task<bool> ConsumeAsync(string hash, DateTime now, Func<User, string> newHash, CancellationToken ct)
     {
+        await EnsureSchemaAsync(ct);
         var owner = await db.Set<PasswordResetToken>().AsNoTracking().Where(x => x.TokenHash == hash).Select(x => (Guid?)x.UserId).SingleOrDefaultAsync(ct);
         if (owner is null) return false;
         return await db.Database.CreateExecutionStrategy().ExecuteAsync(async () =>

@@ -1,5 +1,7 @@
 # Geliştirme — Authentication ve Android bağlantısı
 
+Şifremi unuttum401 düzeltmesi ve güncel başlatma/Android adımları: [hata analizi](../../docs/PASSWORD_RESET_DIAGNOSIS.md). Güncel helper `scripts/Start-Development.ps1`; yerel Mailpit kullanırken `-EmailCapture -ResetLinkBase exp://IP:8081/--/reset-password` gereklidir. SMTP capture kişisel inbox değildir. Sadece readiness200 eski backend sürümünü elemez; Swagger path'lerini de kontrol et.
+
 ## Frontend Phase 4 kurulumu
 
 Yeni ekranlar güncel backend gerektirir. [Reset/SMTP/Mailpit/migration/deep link rehberi](../../docs/PASSWORD_RESET.md) ve [analytics API](../../docs/ANALYTICS.md) esas alınmalıdır. `npx.cmd expo install` ile kurulan datetimepicker **9.1.0**, Expo Go SDK 57 içindedir; mevcut SVG **15.15.4** ile grafik çizilir. Sürüm yükseltilmedi. [Expo tarih seçici](https://docs.expo.dev/versions/v57.0.0/sdk/date-time-picker/) ve [SVG](https://docs.expo.dev/versions/v57.0.0/sdk/svg/) uyumluluğu kontrol edildi. Web için DateOnly metin fallback vardır; native Android modalı jest mock testi gerçek cihaz kabulü sayılmaz.

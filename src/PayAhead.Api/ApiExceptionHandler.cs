@@ -20,6 +20,7 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
             StoreVerificationException => 400,
             EntitlementLimitException => 403,
             StoreUnavailableException => 503,
+            PayAhead.Application.Auth.PasswordResetUnavailableException => 503,
             PayAhead.Application.Operations.OperationalUnavailableException => 503,
             PayAhead.Application.Operations.ExportLimitException => 413,
             AuthenticationRequiredException => 401,
@@ -30,6 +31,8 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
         // İstisna mesajı/veritabanı parametreleri veya istek gövdesi loglanmaz.
         if (status == 500) logger.LogError("İstek başarısız. ExceptionType={ExceptionType} TraceId={TraceId}",
             exception.GetType().Name, context.TraceIdentifier);
+        if (exception is PayAhead.Application.Auth.PasswordResetUnavailableException)
+            logger.LogWarning("Password reset schema is unavailable. Pending migrations require operator review.");
         ProblemDetails detail = exception is ValidationException validation
             ? new ValidationProblemDetails(validation.Errors.GroupBy(x => x.PropertyName)
                 .ToDictionary(g => System.Text.Json.JsonNamingPolicy.CamelCase.ConvertName(g.Key),
@@ -41,7 +44,7 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
             400 => "İstek doğrulanamadı.",
             401 => "Kimlik doğrulama gerekli.",
             403 => "Üyelik planının aktif kayıt sınırı aşıldı.",
-            503 => "Mağaza doğrulaması şu anda kullanılamıyor.",
+            503 => exception is PayAhead.Application.Auth.PasswordResetUnavailableException ? "Şifre yenileme hizmeti şu anda kullanılamıyor." : "Mağaza doğrulaması şu anda kullanılamıyor.",
             413 => exception is PayAhead.Application.Operations.ExportLimitException ? "Veri dışa aktarım sınırı aşıldı; destek üzerinden parçalara ayrılmış aktarım isteyin." : "İstek gövdesi çok büyük.",
             404 => "Ödeme planı bulunamadı.",
             409 => exception is ResourceConflictException ? exception.Message : "Kaynak başka bir işlem tarafından değiştirildi.",

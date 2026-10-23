@@ -18,3 +18,14 @@ test('ProblemDetails becomes a typed error with status and trace ID', async () =
   client.defaults.adapter = async (config) => { throw new AxiosError('Rejected', 'ERR_BAD_RESPONSE', config, undefined, { data: { title: 'İstek doğrulanamadı.', traceId: 'example-trace' }, status: 400, statusText: 'Bad Request', headers: {}, config }); };
   await expect(client.get('/api/example')).rejects.toMatchObject({ name: 'ApiError', message: 'İstek doğrulanamadı.', status: 400, traceId: 'example-trace' });
 });
+
+test.each([401, 404])('missing/stale reset endpoint %s never blames credentials or reveals an account', async status => {
+  const client = createApiClient('https://api.example.test');
+  client.defaults.adapter = async config => { throw new AxiosError('Rejected', 'ERR_BAD_RESPONSE', config, undefined, { data: { title: 'Kimlik doğrulama gerekli.', traceId: 'safe-trace' }, status, statusText: 'Rejected', headers: {}, config }); };
+  await expect(client.post('/api/auth/forgot-password', { email: 'user@example.test' })).rejects.toMatchObject({ status, traceId: 'safe-trace', message: 'Şifre yenileme hizmeti şu anda kullanılamıyor. Daha sonra tekrar dene.' });
+});
+test('expired reset ProblemDetails maps to a useful safe message', async () => {
+  const client = createApiClient('https://api.example.test');
+  client.defaults.adapter = async config => { throw new AxiosError('Rejected', 'ERR_BAD_RESPONSE', config, undefined, { data: { title: 'İstek doğrulanamadı.', detail: 'sensitive transport detail' }, status: 400, statusText: 'Bad Request', headers: {}, config }); };
+  await expect(client.post('/api/auth/reset-password', {})).rejects.toMatchObject({ status: 400, message: 'Bağlantı geçersiz, kullanılmış veya süresi dolmuş. Yeni bir bağlantı iste.' });
+});

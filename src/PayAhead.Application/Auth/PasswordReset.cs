@@ -6,6 +6,8 @@ using PayAhead.Domain;
 
 namespace PayAhead.Application.Auth;
 
+public sealed class PasswordResetUnavailableException : Exception;
+
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
 public sealed record ForgotPasswordRequest(string? Email);
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]

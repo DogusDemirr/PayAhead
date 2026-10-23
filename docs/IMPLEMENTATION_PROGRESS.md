@@ -1,5 +1,17 @@
 # Uygulama ilerlemesi
 
+## Phase 4 forgot-password düzeltmesi — 23 Ekim 2026
+
+Kullanıcının Android/Expo Go hata bildirimi gerçek yerel API'de tekrarlandı. LAN5080'de eski18:19 binary'si çalışıyor, Swagger'da Phase4 path'leri yoktu; registered/unknown/invalid email POST'ları **401 Authentication challenge** aldı. DTO/Zod/payload uyumluydu; sorun controller validation değildi. Gerçek disposable HTTP kullanıcısı ile **PayAheadDockerDevelopment** hedefi eşleştirildi; tek pending migration PasswordResetTokens ve tablo eksikliği doğrulandı. SMTP/LinkBase dosya/UserSecrets/default shell'de tanımsızdı.
+
+Düzeltme: hesap varlığından bağımsız schema preflight ve güvenli503, mapper'ın reset401/404'te yanlış credentials mesajını kaldırması, domain reset400 için güvenli expired/used mesajı. Yeni migration gerekmedi. Hedef doğrulamasından sonra mevcut additive migration elle uygulandı; User/PaymentPlan/Occurrence sayıları korundu, pending0. Eski Development API kontrollü kapatılıp aynı5080'de güncel `artifacts/development` derlemesi başlatıldı. `scripts/Start-Development.ps1` güncel kaynağı derler; otomatik migration yoktur. Yalnız loopback1025/8025 Mailpit container'ı eklendi; çalışan API process ortamında capture ayarları var, UserSecrets/gerçek provider kimlik bilgileri değiştirilmedi.
+
+Gerçek HTTP: ready200, Swagger yeni path'ler mevcut; register201/login200; forgot registered202/unknown202 **aynı gövde**, invalid400; token hash-only64 karakter/15dk SQL kaydı; gerçek queue→SMTP→Mailpit mesajı; reset204/replay400/eski parola401/eski refresh401/yeni giriş200. Disposable account ve yalnız kendi yakalanan mesajı temizlendi. Kişisel inbox teslimi yapılmadı. Parola/reset/access/refresh token ve connection string yazdırılmadı.
+
+Son kontroller: .NET8.0.426 restore/build başarılı0warning0error; unit **384/384**, gerçek SQL integration **254/254**, skipped0; eksik migration503/generic yanıt regresyonu da geçti. Mobil TS/lint temiz, Jest **94/94** (9suite). Rate limit, expiry/replay, SMTP failure ve önceki ödeme/auth senaryoları yeniden geçti. Güncel Development API'de ayrıca24 gerçek finans HTTP kontrolü +4cleanup başarılı: CRUD/free limit/cross-user/concurrency ve yalnız kendi test hesaplarının temizliği. Kanıt: `artifacts/reset-fix-tests.log`, `artifacts/reset-fix-results/*.trx`; tanı/smoke araçları ignored artifacts altında. [Ayrıntılı hata analizi ve Android adımları](PASSWORD_RESET_DIAGNOSIS.md).
+
+**Durum:** HTTP401 kök nedeni ve environment engelleri giderildi. Güncel Development API ve Mailpit çalışır bırakıldı. Fiziksel Android'de tekrar deneme, Expo Go link açılışı ve isteniyorsa gerçek SMTP/inbox teslimi bekler; Phase4 bütünüyle kapanmış sayılmaz. Phase5 başlatılmadı.
+
 ## Frontend Phase 4 için izinli backend ekleri — 23 Ekim 2026
 
 Kullanıcı yalnızca password reset ve gerekli read-only analytics backend desteğini açıkça onayladı. `/api/auth/forgot-password`, `/api/auth/reset-password`, `/api/analytics` eklendi; Clean Architecture, net8.0/C#12/EF8 korundu. Additive `PasswordResetTokens` migration/hash unique index/User FK, kriptografik kısa ömürlü tek kullanım, kilitli transaction ile parola ve tüm refresh session iptali, IP ve kullanıcı quota/cooldown, SMTP soyutlaması/bounded memory queue/Türkçe template uygulandı. E-posta HTTP'den ayrıdır; hata/hesap varlığı yanıtla açığa çıkmaz. Analiz son6 ayı currency ayrı ve server decimal ile toplar; mevcut recurrence/ownership/limitler kullanılır. Snapshot ve DueDate/PaidAtUtc sınırları belgelidir.
