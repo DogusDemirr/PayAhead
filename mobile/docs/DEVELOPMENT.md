@@ -1,5 +1,7 @@
 # Geliştirme — Authentication ve Android bağlantısı
 
+E-posta202 sonrası inbox'a gelmiyorsa mevcut kurulum Mailpit capture modundadır. [Teslim zinciri ve gerçek SMTP/Gmail/User Secrets/Outlook kurulum rehberi](../../docs/EMAIL_DELIVERY.md). Mobil public env içine SMTP secret eklenmez; gerçek SMTP için backend `-EmailCapture` olmadan başlatılır.
+
 Şifremi unuttum401 düzeltmesi ve güncel başlatma/Android adımları: [hata analizi](../../docs/PASSWORD_RESET_DIAGNOSIS.md). Güncel helper `scripts/Start-Development.ps1`; yerel Mailpit kullanırken `-EmailCapture -ResetLinkBase exp://IP:8081/--/reset-password` gereklidir. SMTP capture kişisel inbox değildir. Sadece readiness200 eski backend sürümünü elemez; Swagger path'lerini de kontrol et.
 
 ## Frontend Phase 4 kurulumu

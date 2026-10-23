@@ -1,5 +1,7 @@
 # Şifre sıfırlama — Frontend Phase 4
 
+**E-posta inbox'a gelmiyorsa:** Mevcut çalışan Development API, SMTP `127.0.0.1:1025` üzerinden Mailpit'e gönderir; dış relay yoktur. Gerçek202/token/worker/SMTP kanıtları, yapılandırma kaynağı ve Gmail/User Secrets/Outlook adımları [EMAIL_DELIVERY](EMAIL_DELIVERY.md) içindedir. API202 teslim garantisi değildir.
+
 **23 Ekim hata düzeltmesi:** Eski çalışan API401'i, eksik Development migration ve SMTP kurulumu tespit edilip düzeltildi. Güncel gerçek HTTP/SMTP sonuçları ve Android yeniden deneme adımları [PASSWORD_RESET_DIAGNOSIS](PASSWORD_RESET_DIAGNOSIS.md) içindedir. Yeni `scripts/Start-Development.ps1` eski binary'ye dönmek yerine güncel kaynakları derleyerek başlatır. Bu düzeltmede hedef Development DB'ye additive migration elle uygulandı; önceki fazın “çalışan API durdurulmadı/migration uygulanmadı” kayıtları kendi tarihsel kapsamıdır.
 
 Bu özellik backend'in mevcut JWT, rotating refresh ve SQL Server mimarisini kullanır. Production'a dağıtım veya otomatik migration eklenmedi. Yeni migration yalnızca `PasswordResetTokens` tablosunu, hash unique index'ini, kullanıcı/tarih index'ini ve User FK'sını ekler. Finansal tabloları değiştirmez.

@@ -1,5 +1,11 @@
 # Uygulama ilerlemesi
 
+## Phase 4 — Inbox'a ulaşmayan e-posta incelemesi
+
+23 Ekim2026: yeni disposable gerçek HTTP testi registered202/unknown202 aynı gövde, invalid400; SQL'de1 hash-only reset token,15dk, unconsumed; queue→worker→gerçek SMTP→Mailpit yeni mesajı doğrulandı. Yalnız kendi test hesabı ve mesajı temizlendi. Runtime yapılandırma kaynağı Start-Development.ps1 `-EmailCapture` process environment: Enabled=true,127.0.0.1:1025,TLS=false,credentials yok. Dosya/UserSecrets'i başka process'te okuyan tanı, runtime override'ını göstermez. Docker Engine salt okunur inspect: capture çalışıyor,1025/8025 yalnızloopback; relay/forwarding env yok, custom mount0. Bu yüzden kişisel inbox'a gönderim beklenmez. Dış SMTP hesabı/kimlik bilgisi ve sağlayıcı/inbox testi yoktur; API202 teslim sayılmadı.
+
+Uygulama/auth/token/queue kodu değiştirilmedi; yeni [EMAIL_DELIVERY](EMAIL_DELIVERY.md) gerçek sağlayıcı key tablosunu, gizli girdili Gmail environment/UserSecrets adımlarını, OAuth gerektiren Outlook ile mevcut NetworkCredential transport farkını ve SMTP kabulü/inbox teslim ayrımını belgeler. Rastgele SMTP ayarı veya dış gönderim yapılmadı. Yalnız tanı helper'ı .NET8'de derlendi0warning0error; canlı zincir yeniden test edildi. Önceki384unit/254SQL/94mobil sonuçları bu oturumda yeniden çalıştırılmış gibi raporlanmaz. Fiziksel Android, gerçek sağlayıcı ve inbox kabulü bekler; Phase5/production deployment yoktur.
+
 ## Phase 4 forgot-password düzeltmesi — 23 Ekim 2026
 
 Kullanıcının Android/Expo Go hata bildirimi gerçek yerel API'de tekrarlandı. LAN5080'de eski18:19 binary'si çalışıyor, Swagger'da Phase4 path'leri yoktu; registered/unknown/invalid email POST'ları **401 Authentication challenge** aldı. DTO/Zod/payload uyumluydu; sorun controller validation değildi. Gerçek disposable HTTP kullanıcısı ile **PayAheadDockerDevelopment** hedefi eşleştirildi; tek pending migration PasswordResetTokens ve tablo eksikliği doğrulandı. SMTP/LinkBase dosya/UserSecrets/default shell'de tanımsızdı.
