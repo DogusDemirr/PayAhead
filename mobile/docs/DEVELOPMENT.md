@@ -1,5 +1,11 @@
 # Geliştirme — Authentication ve Android bağlantısı
 
+## Frontend Phase 6
+
+[PUSH_SETUP](PUSH_SETUP.md) EAS development build, Firebase/FCM v1, backend Expo access token, worker, gerçek teslim ve çıkış sınırları için esas belgedir. `npm.cmd run push:preflight` gerçek config yoksa exit1 verir; credential olmadan APK/push başarı raporu yok. `npx.cmd expo start --go` UI/CRUD, `--dev-client` gerçek APK içindir. Mevcut Android package com.payahead.mobile; native plugin/FCM değişimi yeni build gerektirir. Yerel HTTP izni yalnız development profilinde açılır; production introspection false doğrulandı. SMTP/Resend bu fazda yapılmaz.
+
+Gerçek API smoke için test backend'ini Notifications__Enabled=false ile başlat; yalnız o test sürecinde PAYAHEAD_NOTIFICATION_SMOKE_WORKER_DISABLED=true ve gerekirse EXPO_PUBLIC_API_BASE_URL=loopback kullan. `npm.cmd run test:notifications:live` kendi geçici hesapları ve sentetik cihaz token'larıyla API ownership/CRUD doğrular; Expo'ya göndermez. Gerçek cihaz token'ı/deployment testi yerine geçmez. .NET restore/build/test için üç komutta aynı `--artifacts-path artifacts/phase6-check`; Docker gerçek SQL gereklidir.
+
 ## Frontend Phase 5
 
 Gerçek abonelik listesi, form/detay/iptal/kaldırma ve denemeler için [sözleşme ve semantik](SUBSCRIPTIONS.md), [sonuç raporu](PHASE5_REPORT.md), [Android kabul listesi](ANDROID_TESTING.md). Yeni dependency/backend/migration yoktur. Normal mobil başlangıç ve API LAN ayarı aşağıdakiyle aynıdır. `npm.cmd run test:subscriptions:live` yalnız geçici hesaplarla yerel gerçek API'yi test eder; mevcut kişisel veritabanını temizlemez. Hedef API hazır değilse önce mevcut Development kurulumunu başlat, SMTP'yi bu faz için değiştirme. Mobil API kökünü süreç içinde loopback'e çevirmek için `$env:EXPO_PUBLIC_API_BASE_URL='http://127.0.0.1:5080'`; fiziksel telefonda LAN adresini kullan.

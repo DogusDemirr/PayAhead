@@ -13,7 +13,7 @@ export class SessionManager {
   private refreshing?: { epoch: number; promise: Promise<void> };
   private restoring?: Promise<void>;
   private snapshot: SessionSnapshot = { status: 'restoring', user: null, notice: null };
-  constructor(private readonly deps: { api: AuthApi; storage: SessionStorage; getUser: () => Promise<UserResponse>; clearCache: () => void; publish: (state: SessionSnapshot) => void; now?: () => number }) {}
+  constructor(private readonly deps: { api: AuthApi; storage: SessionStorage; getUser: () => Promise<UserResponse>; clearCache: () => void; publish: (state: SessionSnapshot) => void; now?: () => number; beforeEnd?: (identity: { userId: string; epoch: number; accessToken: string }) => Promise<void> }) {}
   getSnapshot = () => this.snapshot;
   credential = () => this.tokens ? { accessToken: this.tokens.accessToken, epoch: this.epoch } : null;
   async ensureFreshAccess() {
@@ -25,10 +25,15 @@ export class SessionManager {
   private check(epoch: number) { if (this.epoch !== epoch) throw new CanceledError('Oturum değişti.'); }
   private persist(action: () => Promise<void>) { const next = this.writes.then(action); this.writes = next.catch(() => {}); return next; }
   async invalidate(message = 'Oturumun sona erdi. Yeniden giriş yap.') {
+    const identity = this.tokens && this.snapshot.user ? { userId: this.snapshot.user.id, epoch: this.epoch, accessToken: this.tokens.accessToken } : null;
     const epoch = ++this.epoch; this.tokens = null; this.deps.clearCache();
     this.publish({ status: 'anonymous', user: null, notice: message });
     try { await this.persist(() => this.deps.storage.clear()); }
     catch { if (this.epoch === epoch) this.publish({ status: 'anonymous', user: null, notice: 'Cihazdaki oturum kaydı temizlenemedi. Uygulamayı kapatmadan önce çıkışı tekrar dene.' }); }
+    if (identity && this.deps.beforeEnd) {
+      try { await this.deps.beforeEnd(identity); }
+      catch { if (this.epoch === epoch) this.publish({ status: 'anonymous', user: null, notice: `${this.snapshot.notice || 'Bu cihazdan çıkış yapıldı.'} Sunucudaki cihaz kaydı kaldırılamadı. Bildirimler sürebilir. Android ayarlarından kapatabilir veya aynı hesapla yeniden bağlanıp kaydı kaldırabilirsin.` }); }
+    }
   }
   private async accept(response: AuthResponse, epoch: number) {
     this.check(epoch);
@@ -39,6 +44,7 @@ export class SessionManager {
   }
   async login(request: LoginRequest) {
     if (this.snapshot.status === 'authenticating') throw new ApiError('Giriş işlemi sürüyor.');
+    if (this.tokens) await this.invalidate('');
     const epoch = ++this.epoch; this.tokens = null; this.deps.clearCache();
     this.publish({ status: 'authenticating', user: null, notice: null });
     try {

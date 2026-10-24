@@ -1,5 +1,13 @@
 # Uygulama ilerlemesi
 
+## Frontend Phase 6 — Push ve hatırlatmalar
+
+24 Ekim2026: kullanıcı açık talebiyle mobil reminder CRUD/native HH:mm, gerçek user settings/permissions/device registration ve rotation/logout, typed notification tap + login sonrası API ownership doğrulaması uygulandı. Backend yalnız PushMessage optional hedef GUID'leri, SQL revalidation'dan owned hedef ve Expo adapter'da channel/generic trial data eki aldı; yeni endpoint/migration yoktur. Trial09:00/lead/expiry, timezone/DST/catch-up, Free1 ve Premium kotası mevcut server politikasıdır; mobil çelişen scheduler yazmadı. Net8/C#12/EF8/Expo57 korunur.
+
+Bu oturumda restore/build **0warning0error**, unit **386/386**, gerçek SQL2022 Testcontainers **256/256**, skipped0. Mobil **161/161,15suite**, TS/lint temiz; Doctor21/21, SDK uyumlu, Hermes4095modül/~8.2MB; Metrostatus/HTML/AndroiddevJS200. Gerçek yönetim API smoke **32+4cleanup**, worker disabled/sentetik token yalnız API testi; gerçek Expo gönderimi değildir. Yalnız izole testDB ve kendi geçici hesapları temizlendi; mevcut devDB'ye migration uygulanmadı. Test API/Metro kapatıldı; SQL/Mailpit/volume korunur.
+
+**Uçtan uca kabul açık:** EAS projectId/Firebase dosya yolu yok, preflight exit1; backend Expo access token kontrol edilen UserSecrets/env'de yok. EAS login/FCM v1 upload/development APK ve fiziksel push teslimi yapılmadı. Kullanıcı Phase5 fiziksel testlerini başarılı bildirdi; Phase4 açık maddeleri korunur. npm audit8 (5high/3moderate) sürer; offline device cleanup ve accepted push geri alma sınırı raporda. Yeni geliştirme SMTP/Resend veya production deployment içermez. [Phase6 raporu](../mobile/docs/PHASE6_REPORT.md), [kurulum](../mobile/docs/PUSH_SETUP.md), [Android kabulü](../mobile/docs/ANDROID_TESTING.md). **Phase7 başlatılmadı; gerçek provider/device kabulü için duruldu.**
+
 ## Frontend Phase 5 — Abonelik ve ücretsiz deneme takibi
 
 24 Ekim2026: kullanıcı açık talebiyle yalnız Frontend Phase5 uygulandı. Mevcut `/api/subscriptions` CRUD/cancel/summary/trials ve entitlement sözleşmesi mobil liste, form/detay, 1/3/7gün deneme ve Dashboard'a bağlandı. TrackedSubscription dış takip/UserSubscription PayAhead üyeliği ayrımı korunur; backend tek transaction ile tek PaymentPlan oluşturur, mobil ikinci plan/tutar eklemez. Server lifecycle/timezone/rowVersion ve decimal19,4; dış sağlayıcı iptal edilmediği açık uyarı; accessEndsOn dahil devam eden erişim/Expired; Free3 takip/Free5 plan ve Premium response limitleri; user/epoch cache invalidation. Backend kaynak/paket/migration değişmedi. SMTP/Resend/production/Phase6 yoktur.

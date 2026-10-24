@@ -113,9 +113,11 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
         var active = await db.Users.AnyAsync(x => x.Id == delivery.UserId && x.IsActive, ct);
         var eligible = plan is not null && rule is not null && device is not null
             && NotificationPolicy.Eligible(plan, rule, active, settings?.NotificationsEnabled ?? true, device.IsActive, delivery.DueDate, status, recurrence);
+        Guid? subscriptionId = null;
         if (rule?.Target == ReminderTarget.SubscriptionTrial)
         {
             var subscription = await db.TrackedSubscriptions.AsNoTracking().SingleOrDefaultAsync(x => x.PaymentPlanId == delivery.PaymentPlanId && x.UserId == delivery.UserId, ct);
+            subscriptionId = subscription?.Id;
             var today = DateOnly.FromDateTime(TimeZoneInfo.ConvertTimeFromUtc(now, NotificationPolicy.Zone(settings?.TimeZoneId, out _)));
             eligible = subscription is not null && subscription.TrialReminderEligible(today, delivery.DueDate)
                 && active && settings?.NotificationsEnabled != false && device?.IsActive == true && rule.IsEnabled && !rule.IsDeleted;
@@ -138,7 +140,7 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
         }
         // A configuration mutation may have revoked the lease during the reads above.
         if (!await OwnedLease(delivery).AnyAsync(x => x.LeaseExpiresAtUtc > now, ct)) return null;
-        return new(delivery.Id, device.PushToken);
+        return new(delivery.Id, device.PushToken, plan.Id, subscriptionId);
     }
     private IQueryable<NotificationDelivery> OwnedLease(NotificationDelivery delivery)
         => db.NotificationDeliveries.Where(x => x.Id == delivery.Id && x.Status == DeliveryStatus.Processing && x.LeaseOwner == delivery.LeaseOwner);

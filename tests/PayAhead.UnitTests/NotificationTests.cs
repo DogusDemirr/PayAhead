@@ -108,6 +108,21 @@ public sealed class NotificationTests
         { Payload = await request.Content!.ReadAsStringAsync(cancellationToken); return new(status) { Content = new StringContent(body, Encoding.UTF8, "application/json") }; }
     }
     [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task Push_payload_has_typed_resource_target_channel_and_no_financial_details(bool trial)
+    {
+        var handler = new Handler(HttpStatusCode.OK, "{\"data\":{\"status\":\"ok\",\"id\":\"ticket\"}}");
+        var plan = Guid.NewGuid(); Guid? subscription = trial ? Guid.NewGuid() : null;
+        var sender = new ExpoPushNotificationSender(new Factory(handler), new() { Enabled = true, AccessToken = "test-only" });
+        await sender.SendAsync(new(Guid.NewGuid(), "ExpoPushToken[0123456789abcdefgh]", plan, subscription), CancellationToken.None);
+        using var json = System.Text.Json.JsonDocument.Parse(handler.Payload!); var root = json.RootElement;
+        Assert.Equal("payahead-reminders", root.GetProperty("channelId").GetString());
+        Assert.Equal(trial ? "subscription" : "payment", root.GetProperty("data").GetProperty("kind").GetString());
+        Assert.Equal(subscription ?? plan, root.GetProperty("data").GetProperty("resourceId").GetGuid());
+        Assert.DoesNotContain("amount", handler.Payload); Assert.DoesNotContain("userId", handler.Payload);
+    }
+    [Theory]
     [InlineData(200, "{\"data\":{\"status\":\"ok\",\"id\":\"ticket-123\"}}", PushResultKind.TicketAccepted)]
     [InlineData(200, "{\"data\":{\"status\":\"error\",\"details\":{\"error\":\"DeviceNotRegistered\"}}}", PushResultKind.InvalidDevice)]
     [InlineData(200, "{\"data\":{\"status\":\"error\",\"details\":{\"error\":\"MessageRateExceeded\"}}}", PushResultKind.Retryable)]

@@ -130,6 +130,14 @@ public sealed class NotificationIntegrationTests(SqlServerFixture sql) : IClassF
         await Assert.ThrowsAsync<DbUpdateException>(() => check.SaveChangesAsync());
     }
     [Fact]
+    public async Task Claimed_payment_message_targets_only_the_owned_payment_plan()
+    {
+        await Schedule(); await using var db = Db();
+        var queue = Queue(db); var claimed = (await queue.ClaimAsync(Guid.NewGuid(), Now, CancellationToken.None))!;
+        var message = await queue.RevalidateAsync(claimed, Now, CancellationToken.None);
+        Assert.NotNull(message); Assert.Equal(planId, message.PaymentPlanId); Assert.Null(message.SubscriptionId);
+    }
+    [Fact]
     public async Task Long_lead_schedules_due_beyond_thirty_days()
     {
         await using (var db = Db()) { await db.PaymentPlans.ExecuteUpdateAsync(s => s.SetProperty(x => x.StartDate, DateOnly.FromDateTime(Now.AddDays(365)))); await db.ReminderRules.ExecuteUpdateAsync(s => s.SetProperty(x => x.DaysBefore, 365)); }

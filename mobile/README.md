@@ -1,4 +1,12 @@
-# PayAhead Mobile — Frontend Phase 5
+# PayAhead Mobile — Frontend Phase 6
+
+Gerçek ödeme hatırlatma CRUD, native saat seçimi, hesap bildirim/saat dilimi tercihleri, cihaz kaydı/rotation/çıkış temizliği ve güvenli bildirim tap navigasyonu eklendi. [Phase6 raporu](docs/PHASE6_REPORT.md), [gerçek EAS/FCM/push kurulum adımları](docs/PUSH_SETUP.md), [Android kabulü](docs/ANDROID_TESTING.md).
+
+**Gerçek push henüz doğrulanmadı:** EAS projectId, Firebase Android dosyası, EAS FCM v1 yetkisi ve backend Expo access token kurulumu gerekiyor. Development APK oluşturulmadı; Expo Go remote push kanıtı değildir. Yalnız reminder/ayar UI akışı için `npx.cmd expo start --go`; gerçek kurulum sonrası `npx.cmd expo start --dev-client`. `npm.cmd run push:preflight` eksik gerçek ayarlarda bilerek başarısız olur. İzin, kayıt, Expo ticket/receipt ve telefon teslimi ayrı durumlardır. Phase7 başlatılmadı, SMTP/Resend ve production deployment yapılmadı.
+
+Son testler: mobil161/161; backend unit386/386, gerçek SQL256/256; TS/lint/build temiz, Doctor21/21. Kullanıcı Phase5 fiziksel kabulünü başarılı bildirdi; Phase4 açık fiziksel/inbox maddeleri korunur. Aşağıdaki Phase5 açıklaması önceki fazın işlevlerini anlatır.
+
+## Frontend Phase 5
 
 Expo 57.0.31 / React Native 0.86.3 / React 19.2.3 üzerinde abonelik listesi, oluşturma/düzenleme, detay, iptal/kaldırma ve yaklaşan denemeler gerçek API'ye bağlandı. Dashboard abonelik özeti eklendi. Kayıt/giriş, takvim/geçmiş/analiz ve oturum izolasyonu korundu; backend ve migration değiştirilmedi. [Phase 5 raporu](docs/PHASE5_REPORT.md), [API ve finansal semantik](docs/SUBSCRIPTIONS.md). Phase 6 başlatılmadı.
 

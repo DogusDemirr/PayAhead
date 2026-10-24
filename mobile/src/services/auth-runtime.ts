@@ -7,10 +7,13 @@ import { useSessionStore } from '../store/session';
 import type { UserResponse } from '../types/api';
 
 const baseURL = process.env.EXPO_PUBLIC_API_BASE_URL;
+let deviceCleanup: ((identity: { userId: string; epoch: number; accessToken: string }) => Promise<void>) | undefined;
+export function setDeviceCleanup(cleanup: NonNullable<typeof deviceCleanup>) { deviceCleanup = cleanup; }
 export const authApi = createAuthApi(createApiClient(baseURL));
 export const currentUserKey = (): readonly ['current-user', number | undefined] => ['current-user', session.credential()?.epoch];
 export const session: SessionManager = new SessionManager({
   api: authApi, storage: tokenStorage,
+  beforeEnd: identity => deviceCleanup?.(identity) ?? Promise.resolve(),
   publish: (snapshot) => useSessionStore.setState(snapshot),
   clearCache: () => { void queryClient.cancelQueries(); queryClient.clear(); },
   getUser: () => queryClient.fetchQuery({ queryKey: currentUserKey(), queryFn: ({ signal }) => fetchCurrentUser(signal), retry: false }),

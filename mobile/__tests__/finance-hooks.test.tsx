@@ -11,6 +11,7 @@ import { plan } from './finance-fixtures';
 import { useSubscriptionMutation } from '../src/features/subscriptions/queries';
 import { subscription } from './subscription-fixtures';
 import { subscriptionDefaults, toSubscriptionWrite } from '../src/features/subscriptions/validation';
+import { useNotificationMutation } from '../src/features/notifications/queries';
 jest.mock('../src/services/auth-runtime', () => ({ apiClient: require('axios').create(), session: { credential: jest.fn(() => ({ epoch: 1, accessToken: 'test' })), ensureFreshAccess: async () => {} } }));
 beforeEach(() => { jest.mocked(session.credential).mockReturnValue({ epoch: 1, accessToken: 'test' }); useSessionStore.setState({ status: 'authenticated', user: { id: 'user-a', email: 'test@example.com', displayName: 'Test' }, notice: null }); });
 test('successful mutation invalidates only the current user/session financial caches', async () => {
@@ -58,4 +59,9 @@ test('subscription mutation cannot navigate with a previous session result after
   apiClient.defaults.adapter = async config => ({ config, data: JSON.stringify(subscription), status: 200, statusText: 'OK', headers: {} });
   const view = await renderHook(() => useSubscriptionMutation(), { wrapper: ({ children }: { children: ReactNode }) => <QueryClientProvider client={client}>{children}</QueryClientProvider> });
   await act(async () => { await expect(view.result.current.mutateAsync({ kind: 'cancel', id: subscription.id, rowVersion: subscription.rowVersion, accessEndsOn: '2026-11-01' })).rejects.toMatchObject({ code: 'ERR_CANCELED' }); }); await view.unmount(); client.clear();
+});
+test('reminder mutation invalidates own settings/rules and finance only within current user epoch', async () => {
+  const client = new QueryClient({ defaultOptions: { queries: { gcTime: Infinity, retry: false } } }); const own = [...financeKey('user-a', 1), 'notifications', 'reminders', plan.id]; const other = [...financeKey('user-b', 2), 'notifications', 'reminders', plan.id]; client.setQueryData(own, []); client.setQueryData(other, []);
+  apiClient.defaults.adapter = async config => ({ config, data: JSON.stringify({ id: plan.id, paymentPlanId: plan.id, daysBefore: 1, timeOfDay: '09:00', isEnabled: true }), status: 201, statusText: 'Created', headers: {} });
+  const view = await renderHook(() => useNotificationMutation(), { wrapper: ({ children }: { children: ReactNode }) => <QueryClientProvider client={client}>{children}</QueryClientProvider> }); await act(async () => { await view.result.current.mutateAsync({ kind: 'saveReminder', plan: plan.id, body: { daysBefore: 1, timeOfDay: '09:00', isEnabled: true } }); }); expect(client.getQueryState(own)?.isInvalidated).toBe(true); expect(client.getQueryState(other)?.isInvalidated).toBe(false); await view.unmount(); client.clear();
 });

@@ -35,7 +35,8 @@
           "imageWidth": 100
         }
       ],
-      "@react-native-community/datetimepicker"
+      "@react-native-community/datetimepicker",
+      ["expo-notifications", { "defaultChannel": "payahead-reminders", "color": "#101D35" }]
     ],
     "experiments": {
       "typedRoutes": true

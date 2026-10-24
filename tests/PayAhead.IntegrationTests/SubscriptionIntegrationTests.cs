@@ -246,6 +246,16 @@ public sealed class SubscriptionIntegrationTests(SqlServerFixture sql) : IClassF
         await Queue(db).ScheduleBatchAsync(null, Now, CancellationToken.None); Assert.Null(await Queue(db).ClaimAsync(Guid.NewGuid(), Now, CancellationToken.None));
     }
     [Fact]
+    public async Task Trial_push_target_is_the_owned_subscription_not_the_payment_plan()
+    {
+        var value = await Create(); await using var db = Db();
+        db.DeviceTokens.Add(new() { Id = Guid.NewGuid(), UserId = user, Platform = "android", PushToken = "ExpoPushToken[target0123456789abc]", LastSeenAtUtc = Now }); await db.SaveChangesAsync();
+        var queue = Queue(db); await queue.ScheduleBatchAsync(null, Now, CancellationToken.None);
+        var delivery = (await queue.ClaimAsync(Guid.NewGuid(), Now, CancellationToken.None))!;
+        var message = await queue.RevalidateAsync(delivery, Now, CancellationToken.None);
+        Assert.NotNull(message); Assert.Equal(value.Id, message.SubscriptionId); Assert.Equal(value.PaymentPlanId, message.PaymentPlanId);
+    }
+    [Fact]
     public async Task Trial_delivery_is_revalidated_after_expiry_or_disabled_settings()
     {
         var value = await Create(); await using var db = Db(); db.DeviceTokens.Add(new() { Id = Guid.NewGuid(), UserId = user, Platform = "ios", PushToken = "ExpoPushToken[trial0123456789abc]", LastSeenAtUtc = Now }); await db.SaveChangesAsync(); await Queue(db).ScheduleBatchAsync(null, Now, CancellationToken.None);

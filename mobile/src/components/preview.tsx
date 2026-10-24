@@ -10,7 +10,7 @@ import type { ReactNode } from 'react';
 export function PreviewBanner() {
   const { colors } = useTheme(); const { enabled } = usePreview();
   const pathname = usePathname();
-  if (!enabled || !['/preview', '/notifications'].includes(pathname)) return null;
+  if (!enabled || pathname !== '/preview') return null;
   return <Pressable accessibilityRole="button" accessibilityLabel="Tasarım önizlemesi, örnek veriler. Görünüm seçeneklerini aç" onPress={() => router.push('/preview')} style={[styles.row, { backgroundColor: colors.accentSoft, paddingHorizontal: 20, minHeight: 48, gap: 8 }]}><FlaskConical size={15} color={colors.accentText} /><AppText variant="caption" tone="accentText" style={{ flex: 1 }}>Tasarım önizlemesi · Örnek veriler</AppText><SlidersHorizontal color={colors.accentText} size={16} /></Pressable>;
 }
 export function PreviewContent({ children, emptyTitle, emptyMessage }: { children: ReactNode; emptyTitle?: string; emptyMessage?: string }) {

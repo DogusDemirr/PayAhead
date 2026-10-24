@@ -1,4 +1,27 @@
-# Android kabul matrisi — Frontend Phase 5
+# Android kabul matrisi — Frontend Phase 6
+
+24 Ekim2026: kullanıcı Phase5 fiziksel testlerini başarılı bildirdi; bu bildirim Phase5 kabul kaydıdır. Aşağıdaki eski Phase5 matrisi tarihsel olarak korunur; bu oturumda yeniden fiziksel ölçülmedi. **Phase6 gerçek development APK ve fiziksel push kabulü henüz yapılmadı.** Phase4 açık maddeleri devam eder.
+
+Ön koşullar: [PUSH_SETUP](PUSH_SETUP.md) gerçek EAS projectId, com.payahead.mobile Firebase dosyası, FCM v1 credentials, backend Expo access token ve enabled worker; development APK, güncel LAN API, aynı Wi-Fi. Expo Go ile yalnız CRUD test edilebilir. Finansal/sentetik test verilerini gerçek teslim kanıtı sayma; token/secret screenshot/log paylaşma.
+
+| Senaryo | Kabul ölçütü | Durum |
+|---|---|---|
+| 1. İzin isteme | Açılışta otomatik istem yok; kullanıcı açıklama sonrası düğmeye basınca channel+Android13 runtime izin | Bekliyor |
+| 2. Grant/deny | Deny uygulamayı engellemez; canAskAgain=false sistem ayarlarına gider, tekrar istemez; geri dönünce güncel durum | Bekliyor |
+| 3. Cihaz kaydı | Gerçek Expo token alınır; API kaydı doğrulanır, token ekranda/logda yok; izin tek başına teslim sayılmaz | Bekliyor |
+| 4. Reminder create | Ödeme detayında0/1/3/7/özel0–365, native24saat; HH:mm hesap saatinde; geçerli sunucu kaydı | Bekliyor |
+| 5. Reminder edit | Gün/saat/etkinlik düzenlenir; duplicate409, Free1/Premium limit403; timeout sonrası reload | Bekliyor |
+| 6. Reminder delete | Onay gerekir; liste/cache yenilenir; henüz gönderilmemiş işler iptal, çift dokunma tek işlem | Bekliyor |
+| 7. Gerçek ödeme push | Yeni pending plan için gelecekteki yerel saat; worker→ticket→receipt ve telefonda görünen bildirim ayrı kaydedilir | Bekliyor |
+| 8. Ödeme tap | App açık/arka plan/kapalı; sahiplik GET doğrulanır, doğru ödeme açılır; foreign/deleted/invalid payload açılmaz | Bekliyor |
+| 9. Gerçek trial push | Mevcut server09:00/Free1/Premium quota kuralları; deneme bitişi ve ilk ücretli ayrı; iptal/expiry/tercih off göndermez | Bekliyor |
+| 10. Çıkış | Online kendi device kaydı kalkar; offline uyarı ve binding korunur; başka hesaba transfer yok; önceden accepted mesaj geri alınamaz | Bekliyor |
+| 11. Rotation/login | Native token değişince Expo token yeniden alınır, aynı cihaz id güncellenir; anonymous tap login sonrası yeni hesabın sahipliğiyle açılır | Bekliyor |
+| 12. Native/regresyon | Timezone/DST açıklaması; picker iptal/geri, küçük ekran/klavye/uzun ad, tema/TalkBack, logout/cache, Phase1–5 akışları | Bekliyor |
+
+Gerçek ödeme kabulünde provider ticket ID/secret yerine test zamanı ve durum sonucu kaydet. Receipt provider kabulü olsa bile telefonda görünmediğinde başarılı teslim yazma. Trial saatini mobilde değiştirmiş gibi davranma; gereken server saatini bekle. Backend24saat catch-up politikası korunur; sınırsız geçmiş bildirim üretilmez.
+
+## Önceki Frontend Phase 5 matrisi
 
 24 Ekim 2026. Aşağıdaki yeni akışlar **fiziksel Android/Expo Go üzerinde henüz doğrulanmadı**. Otomatik test, Hermes ve HTTP smoke fiziksel kabul yerine geçmez. Phase 4'ün açık matrisi aşağıda korunur; gerçek SMTP/Resend yayın öncesine ertelenmiştir.
 

@@ -11,15 +11,25 @@ import type { AuthResponse } from '../src/types/api';
 const user = { id: 'test-user', email: 'test@example.com', displayName: 'Test' };
 const response = (suffix = 'a'): AuthResponse => ({ accessToken: `access-${suffix}`, refreshToken: suffix.repeat(64), accessTokenExpiresAtUtc: '2099-01-01T00:00:00Z', refreshTokenExpiresAtUtc: '2099-02-01T00:00:00Z', user, tokenType: 'Bearer' });
 function deferred<T>() { let resolve!: (value: T) => void; let reject!: (error: unknown) => void; const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; }
-function setup(saved: StoredSession | null = null) {
+function setup(saved: StoredSession | null = null, beforeEnd?: (identity: { userId: string; epoch: number; accessToken: string }) => Promise<void>) {
   let record = saved;
   const storage = { read: jest.fn(async () => record), write: jest.fn(async (value: StoredSession) => { record = value; }), clear: jest.fn(async () => { record = null; }) };
   const api = { login: jest.fn(async () => response()), refresh: jest.fn(async (_token: string) => response('b')), logout: jest.fn(async (_token: string) => {}), register: jest.fn(async () => user) };
   const getUser = jest.fn(async () => user); const clearCache = jest.fn();
-  const manager = new SessionManager({ api, storage, getUser, clearCache, publish: () => {}, now: () => Date.parse('2026-10-21T12:00:00Z') });
+  const manager = new SessionManager({ api, storage, getUser, clearCache, publish: () => {}, beforeEnd, now: () => Date.parse('2026-10-21T12:00:00Z') });
   return { manager, api, storage, getUser, clearCache, record: () => record };
 }
 const credentials = { email: 'test@example.com', password: 'Example-password-123' };
+test('logout clears local credentials/cache before waiting for device cleanup', async () => {
+  const cleanup = deferred<void>(); const beforeEnd = jest.fn(() => cleanup.promise); const s = setup(null, beforeEnd); await s.manager.login(credentials); const logout = s.manager.logout();
+  for (let i = 0; i < 10 && !beforeEnd.mock.calls.length; i++) await Promise.resolve(); expect(s.manager.credential()).toBeNull(); expect(s.record()).toBeNull(); expect(beforeEnd).toHaveBeenCalledWith(expect.objectContaining({ userId: user.id, accessToken: 'access-a' })); cleanup.resolve(); await logout; expect(s.api.logout).toHaveBeenCalledTimes(1);
+});
+test('offline device cleanup preserves local logout and warns that push may continue', async () => {
+  const s = setup(null, async () => { throw new Error('offline'); }); await s.manager.login(credentials); await s.manager.logout(); expect(s.manager.credential()).toBeNull(); expect(s.record()).toBeNull(); expect(s.manager.getSnapshot().notice).toContain('Bildirimler sürebilir');
+});
+test('device cleanup warning does not hide failed local credential deletion', async () => {
+  const s = setup(null, async () => { throw new Error('offline'); }); await s.manager.login(credentials); s.storage.clear.mockRejectedValueOnce(new Error('locked')); await s.manager.logout(); expect(s.manager.getSnapshot().notice).toContain('Cihazdaki oturum kaydı temizlenemedi'); expect(s.manager.getSnapshot().notice).toContain('Bildirimler sürebilir');
+});
 function unauthorized(config: InternalAxiosRequestConfig) { return new AxiosError('Unauthorized', 'ERR_BAD_REQUEST', config, undefined, { status: 401, statusText: '', data: {}, headers: {}, config }); }
 
 test('login requires a password but does not impose registration length', () => {

@@ -1,4 +1,14 @@
-# Frontend Phase 5 — Abonelik ve ücretsiz deneme takibi
+# Frontend Phase 6 — Push ve hatırlatmalar
+
+**24 Ekim2026.** Kullanıcı açık Phase6 talebiyle reminder CRUD/native saat seçimi, gerçek hesap notification/timezone/currency tercihleri, cihaz permission/channel/Expo token registration/rotation, opt-in ve güvenli logout cleanup, typed tap/login sonrası ownership kontrolü uygulandı. Backend'e yalnız mevcut push mesajına payment/subscription resource target/channel ve generic trial metni eklendi; yeni endpoint/migration yok. Expo57/RN0.86/net8/EF8 korundu; SDK57 uyumlu Notifications/Device/DevClient/BuildProperties kuruldu. Development APK profili/config/preflight hazır; HTTP izni yalnız development'ta (manifest introspect true/production false).
+
+Son kontroller: **TS/lint temiz, Jest161/161 (15suite,skipped0), Doctor21/21, SDK check uyumlu**, Android Hermes4095modül/~8.2MB; Metrostatus/HTML200 ve routerRoot ile yeni push kodu içeren AndroiddevJS200. .NET8.0.426 restore/build0warning0error; **unit386/386, gerçek SQL2022 Testcontainers256/256**, skipped0. Backend queue/claim/retry/receipt/trial lifecycle ve yeni2typedtargetSQL+2payloadunit geçti. Gerçek yerel API **32+4cleanup** geçti; worker açıkça kapalı ve sentetik token yalnız API testi, Expo gönderimi değildir. Yalnız kendi geçici hesapları/testDB'leri temizlendi.
+
+**Açık teslim engeli:** gerçek EAS projectId ve GOOGLE_SERVICES_JSON yok; preflight doğru şekilde exit1. EAS giriş/FCM v1 credentials yüklemesi ve APK yapılmadı; backend Expo access token kontrol edilen UserSecrets/env'de yok, worker disabled. Gerçek token/Expo ticket/receipt/telefon teslimi doğrulanmadı; Phase6 tam uçtan uca kapanmış sayılmaz. **Kullanıcı Phase5 fiziksel kabulünü başarılı bildirdi**; Phase6 matrisi ve Phase4 açık fiziksel/inbox maddeleri ayrı korunur. npm audit8 (5high/3moderate) sürer; force yapılmadı. Offline cleanup/accepted push geri alma sınırları açıkça belgeli. SMTP/Resend/production/Phase7 yoktur.
+
+[13 maddeli rapor](PHASE6_REPORT.md), [gerçek push kurulum rehberi](PUSH_SETUP.md), [Android matrisi](ANDROID_TESTING.md). Test API/Metro teslimde kapatıldı; SQL/Mailpit ve mevcut volume korunur. Aşağıdaki Phase1–5 kayıtları tarihsel kapsamındadır.
+
+## Frontend Phase 5 — Abonelik ve ücretsiz deneme takibi
 
 **24 Ekim 2026.** Kullanıcının açık Phase5 talebi uygulandı. Gerçek abonelik listesi/arama/status/döviz/pagination, RHF+Zod create/edit, native tarih alanları, detay, rowVersion'lı iptal ve soft-delete, 1/3/7 gün deneme listesi, Dashboard özeti geliştirildi. Tek bağlı PaymentPlan finansal kaynak; ikinci plan/tutar eklenmez. Decimal19,4 kayıpsız, lifecycle/timezone/kalan gün sunucudan; Cancelled erişim devamı ve Expired ayrıdır. Dış sağlayıcıda iptal yapılmadığı açıkça belirtilir. Free3 takip/Free5 aktif plan canlı response ve sunucuyla doğrulandı; Premium limitleri entitlement'dan okunur. Aynı user/epoch finans kökü invalidate edilir; logout mevcut cache temizliğini korur. Backend ve migration dosyası/dependency değişmedi; .NET8/EF8/Expo57 korundu.
 
