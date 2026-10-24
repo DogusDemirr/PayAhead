@@ -56,6 +56,7 @@
     "test:watch": "jest --watch",
     "test:auth:live": "node --env-file-if-exists=.env scripts/auth-smoke.cjs",
     "test:finance:live": "node --env-file-if-exists=.env scripts/finance-smoke.cjs",
+    "test:subscriptions:live": "node --env-file-if-exists=.env scripts/subscriptions-smoke.cjs",
     "brand:generate": "node scripts/generate-brand.cjs"
   },
   "private": true

@@ -1,0 +1,34 @@
+# Frontend Phase 5 sonuç raporu
+
+24 Ekim 2026. Kullanıcının bu faz için açık talebi uygulandı. Phase 4'ün açık fiziksel kabulü korunur; Phase 6 ve production deployment yapılmadı. SMTP/Resend/alan adı çalışması yapılmadı. Expo57/RN0.86/React19, net8.0/C#12/EF8 korundu; dependency ve migration eklenmedi.
+
+1. **Değişen dosyalar:** yeni `src/features/subscriptions/{contracts,api,queries,validation,components,SubscriptionFormScreen,SubscriptionDetailScreen,TrialsScreen}`; yeni `app/{add-subscription,edit-subscription,subscription,subscription-trials}` route'ları. Güncellenenler: SubscriptionsScreen, HomeScreen, payments queries/money/PaymentDetailScreen, app payment/root layout, preview banner ve package.json smoke komutu. Yeni subscription fixtures/pure/API/RNTL testleri, finance-hooks testleri; eski Home/preview test mock'ları uyumlandı. Yeni scripts/subscriptions-smoke.cjs; README, DEVELOPMENT, ANDROID_TESTING, iki IMPLEMENTATION_PROGRESS ve bu rapor/SUBSCRIPTIONS belgeleri. Backend kaynak dosyası değişmedi.
+2. **Endpoint'ler:** mevcut GET/POST `/api/subscriptions`, GET/PUT/DELETE `/{id}`, POST `/{id}/cancel`, GET `/summary`, GET `/trials/expiring`; mevcut entitlement/dashboard/calendar/analytics altyapısı. Alanlar ve HTTP ayrıntıları [SUBSCRIPTIONS](SUBSCRIPTIONS.md) içinde. Yeni backend endpoint'i uydurulmadı.
+3. **CRUD:** gerçek sayfalı liste, server sırası, ad/sağlayıcı arama, status ve döviz filtresi, loading/empty/error-retry/pull-refresh. RHF+Zod formu tam backend alanlarını doğrular; native DateField tekrar kullanılır. Decimal19,4 kayıpsızdır. Detay ve düzenleme yüklenen rowVersion'ı kullanır; soft-delete ve geçmiş koruması ayrı onaylıdır.
+4. **Trial lifecycle:** sunucunun hesap tarihi/saat dilimi/durum/kalan günü esas alınır; 0 son gün, geçmiş deneme, iptal denemesi ve Expired ayrıdır. 1/3/7 gün içinde bitecek denemeler ve ilk ücretli tarih ayrı gösterilir. İlk ücretli tarih deneme bitişinden kesinlikle sonradır. NextBillingDate istemcide tahmin edilmez. Bildirim gönderildiği iddia edilmez.
+5. **İptal/erişim:** kullanıcı accessEndsOn seçip dış sağlayıcıda iptal yapılmadığı uyarısını onaylar. Tek gönderim kilidi; 409/network/timeout sonrası explicit reload. Sunucu Cancelled yanıtı erişimin son günü dahil sürdüğünü gösterir; sonrasında Expired. Yeniden etkinleştirme/düzenleme yok; kaldırma geçmişi korur.
+6. **Dashboard/takvim:** gerçek abonelik sayısı, en yakın yenileme ve yaklaşan denemeye erişim. Mutation mevcut kullanıcının tüm finans kökünü yeniler. Takvim/analiz tek bağlı PaymentPlan'ı kullanır; ikinci plan veya ikinci tutar yok. Aylık eşdeğer döviz bazında açık formüllü tahmindir. **Sınır:** mevcut backend aboneliklere özel kesin bu ay toplamı sağlamaz; eksik sayfadan toplam veya tahminden gerçekleşmiş harcama üretilmedi. Kesin vade/durumlar mevcut takvim/geçmiş/analizden izlenebilir; ayrı abonelik-ay aggregate'i sonraki onaylı backend işi olabilir.
+7. **Free/Premium:** canlı Free response ve backend kuralı 3 aktif/deneme takip, 5 aktif plan. Her ikisi ayrı kontrol edilir, sunucu karar verir. Premium limitleri response'dan okunur; sabit/sınırsız varsayılmaz. 403 entitlement_limit için anlaşılır uyarı, mevcut üyelik seçeneklerine bağlantı; sahte store satın alma yok.
+8. **Test sonuçları:** aşağıdaki tabloda gerçek bu oturum sonuçları vardır. Testler hassas token/parola/finansal gövdeleri loglamaz; SQL testleri yalnız kendi rastgele DB'lerini, HTTP smoke yalnız kendi geçici hesaplarını temizler.
+
+| Kontrol | Gerçek sonuç |
+|---|---|
+| TypeScript / ESLint | Geçti; hata/uyarı yok. |
+| Jest / RNTL | **123/123**, 11 suite; atlanan yok. 29 yeni test; önceki 94 test korunur. |
+| Expo Doctor / SDK dependency check | **21/21**; uyumlu. |
+| Android Hermes | **4021 modül**, ~8MB HBC, başarılı; APK/fiziksel cihaz kanıtı değildir. |
+| Expo startup | Metro8085 status200/running, HTML200, Android devJS200. |
+| Gerçek subscription HTTP | **32 kontrol +4 cleanup** başarılı; auth401/ownership404/limit403/stale409, CRUD/cancel/access/decimal/trial/currency/calendar tek plan. |
+| Önceki gerçek finance smoke | **24 kontrol +4 cleanup** başarılı. |
+| Yerel API | Readiness200, Swagger200; subscription ve Phase4 reset path'leri mevcut. |
+| .NET8 restore/build | SDK8.0.426 ile başarılı, 0 uyarı/0 hata; ayrı artifacts/phase5-check. |
+| .NET unit | **384/384**, skipped0. |
+| Gerçek SQL integration | **254/254**, skipped0; Testcontainers SQL Server2022 üzerinde, son çalışma 5dk24sn. |
+| npm audit | **8** etkilenen paket kaydı: 5 high, 3 moderate, critical0. Önceden var; uyumsuz force/downgrade uygulanmadı. |
+| Fiziksel Android/görsel kabul | Çalıştırılmadı; bekliyor. |
+
+İlk SQL denemelerinde Docker named pipe erişilemedi; bu başarısız çalışmalar başarı sayılmadı (ilk251 ve ikinci249 entegrasyon başarısız; SQL bağlantısı kurulamayan denemeler). Docker Desktop updater süreci görüldü; sonraki kontrol Docker29.9.1, mevcut SQL ve Mailpit sağlıklı gösterdi. Son çalışma **254/254** geçti. API5080 o anda kapalıydı; güncel kaynak çıktısı Development'ta test için başlatıldı, migration uygulanmadı. İlk no-restore ayrı artifacts build'i o dizindeki assets eksikliğinden başarısız oldu; aynı artifacts yolunda restore ardından build geçti. İlk Expo/Hermes sandbox izin hataları izinli tekrar ile çözüldü. Test kanıtları root `artifacts/phase5-check/test-results/phase5-final*.trx`; Android export `mobile/artifacts/phase5-android`, audit `mobile/artifacts/phase5-audit.json` (ignored). Test için açılan API5080 ve Metro8085 teslim öncesi kapatıldı; mevcut SQL/Mailpit container'ları ve volume'lar korunur. Android kabulünde normal Development helper ve Metro yeniden başlatılmalıdır.
+
+9. **Android'de bekleyenler:** native picker/geri, küçük ekran/uzun ad/%200 yazı, klavye/scroll, tema/TalkBack, iptal double-tap, cache/logout ve cihaz saat dilimi. [12 maddeli kabul matrisi](ANDROID_TESTING.md). Önceki Phase3 fiziksel başarısı bu faz için kanıt değildir.
+10. **Açık sorunlar:** fiziksel/görsel kabul; önceki audit8; subscription-only gerçek aylık aggregate eksikliği; genel ödeme DTO'su bağlı aboneliği belirtmediğinden o yoldaki düzenleme backend409 ile engellenir. Backend summary/list en çok1000 kayıtla bounded; mobil liste20 satır, trial ekranı20 satır gösterir. Test API logunda beklenen entitlement/concurrency exception'ları için iç request logger500 yazarken exception handler'ın istemciye gönderdiği gerçek durum403/409 oldu; HTTP smoke bunları doğruladı. Mevcut backend logging bu fazda değiştirilmedi. Gerçek SMTP/inbox ve Phase4 açık fiziksel maddeleri yayın öncesinde ayrıca ele alınır.
+11. **Phase6 hazırlığı:** tipli API, kullanıcı/epoch cache, mutation invalidation ve gerçek backend test altyapısı hazır. Otomatik Phase6 başlatılmadı; bu teslim sonunda durulur. Fiziksel kabul veya açık sınırlar kapatılmış gibi raporlanmaz.

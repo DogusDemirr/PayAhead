@@ -22,7 +22,7 @@ export function parseFinancialJson(raw: unknown): unknown {
     while (index < raw.length) { if (raw[index] === '\\') { index += 2; continue; } if (raw[index] === '"') break; index++; }
     const token = raw.slice(start, index + 1); let after = index + 1;
     while (/\s/.test(raw[after] ?? '') && after < raw.length) after++;
-    if (raw[after] !== ':' || !['"amount"', '"actualAmount"', '"plannedAmount"', '"paidAmount"', '"pendingAmount"', '"overdueAmount"'].includes(token)) continue;
+    if (raw[after] !== ':' || !['"amount"', '"actualAmount"', '"plannedAmount"', '"paidAmount"', '"pendingAmount"', '"overdueAmount"', '"estimatedAmount"'].includes(token)) continue;
     after++; while (/\s/.test(raw[after] ?? '') && after < raw.length) after++;
     const number = raw.slice(after).match(/^-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/);
     if (number) { result += raw.slice(cursor, after) + JSON.stringify(number[0]); cursor = after + number[0].length; index = cursor - 1; }

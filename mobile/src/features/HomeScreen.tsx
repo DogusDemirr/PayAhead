@@ -5,6 +5,7 @@ import { AppScreen, AppText, AppButton, Brand, IconButton, AppCard, SectionHeade
 import { useDashboard } from './payments/queries';
 import { FinancialAmount, FinanceError, MonthlySummary, ProjectedRow } from './payments/components';
 import { dateLabel, greeting } from '../utils/format';
+import { SubscriptionDashboardCard } from './subscriptions/components';
 
 export default function HomeScreen() {
   const { clock, summary, upcoming, overdue, hasOverdueRange, refresh } = useDashboard();
@@ -31,6 +32,6 @@ export default function HomeScreen() {
   };
   return <AppScreen refreshing={clock.isRefetching || summary.isRefetching || upcoming.isRefetching || overdue.isRefetching} onRefresh={() => { void refresh(); }}>
     <View style={[styles.row, { marginBottom: 28 }]}><Brand /><IconButton icon={Bell} label="Bildirimler" onPress={() => router.push('/notifications')} /></View>
-    <AppText tone="muted">{greeting(new Date().getHours())}</AppText><AppText variant="title" accessibilityRole="header" style={{ marginTop: 4, marginBottom: 24 }}>Yarına bir adım önde.</AppText>{content()}
+    <AppText tone="muted">{greeting(new Date().getHours())}</AppText><AppText variant="title" accessibilityRole="header" style={{ marginTop: 4, marginBottom: 24 }}>Yarına bir adım önde.</AppText>{content()}<SubscriptionDashboardCard />
   </AppScreen>;
 }

@@ -1,5 +1,15 @@
 # Uygulama ilerlemesi
 
+## Frontend Phase 5 — Abonelik ve ücretsiz deneme takibi
+
+24 Ekim2026: kullanıcı açık talebiyle yalnız Frontend Phase5 uygulandı. Mevcut `/api/subscriptions` CRUD/cancel/summary/trials ve entitlement sözleşmesi mobil liste, form/detay, 1/3/7gün deneme ve Dashboard'a bağlandı. TrackedSubscription dış takip/UserSubscription PayAhead üyeliği ayrımı korunur; backend tek transaction ile tek PaymentPlan oluşturur, mobil ikinci plan/tutar eklemez. Server lifecycle/timezone/rowVersion ve decimal19,4; dış sağlayıcı iptal edilmediği açık uyarı; accessEndsOn dahil devam eden erişim/Expired; Free3 takip/Free5 plan ve Premium response limitleri; user/epoch cache invalidation. Backend kaynak/paket/migration değişmedi. SMTP/Resend/production/Phase6 yoktur.
+
+AGENTS son kontrolleri .NET8.0.426 ile bu oturumda yeniden çalıştırıldı: restore/build **başarılı0uyarı0hata**, **unit384/384**, **SQL Server2022 Testcontainers254/254**, skipped0. Ayrı `artifacts/phase5-check` tüm komutlarda aynı yol; mevcut dev DB'ye migration uygulanmadı. İlk Docker erişimsiz iki test denemesi başarısız (251 ve249 failure); Engine sonradan29.9.1 ve SQL/Mailpit sağlıklı doğrulandı, final254/254 geçti. Ayrı artifacts restore eksikliği ve sandbox izin hataları başarılı tekrar öncesi kaydedildi.
+
+Mobil **TS/lint başarılı, Jest123/123 (11suite), Doctor21/21, dependencycheck uyumlu, AndroidHermes4021modül/~8MB**; Metrostatus/HTML/AndroiddevJS200. Gerçek API readiness/Swagger200; **abonelik32+4cleanup** ve önceki **finance24+4cleanup** kontrolü geçti. Yalnız bu testin disposable hesapları ve testlerin rastgele DB'leri temizlendi; mevcut dev kullanıcı/SQL volume korunur. Test için başlatılan API/Metro kapatıldı, SQL/Mailpit container'ları korunur.
+
+Fiziksel Android/görsel kabul bekler; önceki audit **8 (5high/3moderate)** açık. Aboneliklere özel kesin bu ay aggregate'i mevcut sözleşmede yok; döviz bazında aylık eşdeğer tahmini açık formüllü ve gerçek harcama olmadığı belirtilerek gösterilir. Phase4'ün açık fiziksel/inbox maddeleri kapatılmış sayılmaz; gerçek SMTP yayın öncesine ertelenmiş olarak korunur. [Phase5 sonuç raporu](../mobile/docs/PHASE5_REPORT.md), [sözleşme](../mobile/docs/SUBSCRIPTIONS.md), [Android matrisi](../mobile/docs/ANDROID_TESTING.md). **Phase5 kodu/otomatik doğrulaması tamamlandı; Phase6 için duruldu.**
+
 ## Phase 4 — Inbox'a ulaşmayan e-posta incelemesi
 
 23 Ekim2026: yeni disposable gerçek HTTP testi registered202/unknown202 aynı gövde, invalid400; SQL'de1 hash-only reset token,15dk, unconsumed; queue→worker→gerçek SMTP→Mailpit yeni mesajı doğrulandı. Yalnız kendi test hesabı ve mesajı temizlendi. Runtime yapılandırma kaynağı Start-Development.ps1 `-EmailCapture` process environment: Enabled=true,127.0.0.1:1025,TLS=false,credentials yok. Dosya/UserSecrets'i başka process'te okuyan tanı, runtime override'ını göstermez. Docker Engine salt okunur inspect: capture çalışıyor,1025/8025 yalnızloopback; relay/forwarding env yok, custom mount0. Bu yüzden kişisel inbox'a gönderim beklenmez. Dış SMTP hesabı/kimlik bilgisi ve sağlayıcı/inbox testi yoktur; API202 teslim sayılmadı.

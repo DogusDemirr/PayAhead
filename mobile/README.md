@@ -1,8 +1,12 @@
-# PayAhead Mobile — Frontend Phase 4
+# PayAhead Mobile — Frontend Phase 5
 
-Expo 57.0.31 / React Native 0.86.3 / React 19.2.3 üzerinde gerçek takvim, ödeme geçmişi, tek ödeme durumları, native tarih seçici, e-posta ile şifre sıfırlama ve ayrı Analizler ekranı eklendi. Kayıt/giriş, oturum/cache izolasyonu ve ödeme CRUD korundu. Backend'e yalnızca reset ve read-only analytics desteği eklendi; .NET/EF sürümleri yükseltilmedi. Frontend Phase 5 başlatılmadı.
+Expo 57.0.31 / React Native 0.86.3 / React 19.2.3 üzerinde abonelik listesi, oluşturma/düzenleme, detay, iptal/kaldırma ve yaklaşan denemeler gerçek API'ye bağlandı. Dashboard abonelik özeti eklendi. Kayıt/giriş, takvim/geçmiş/analiz ve oturum izolasyonu korundu; backend ve migration değiştirilmedi. [Phase 5 raporu](docs/PHASE5_REPORT.md), [API ve finansal semantik](docs/SUBSCRIPTIONS.md). Phase 6 başlatılmadı.
 
-Phase 4 için backend'in yeni migration ve yapılandırmayla çalışması gerekir: [SMTP, migration ve deep link kurulumu](../docs/PASSWORD_RESET.md), [analiz sözleşmesi ve tarih/para semantiği](../docs/ANALYTICS.md). SMTP varsayılan kapalıdır; gerçek posta kutusuna teslim doğrulanmadı. [Android kabul listesi](docs/ANDROID_TESTING.md) fiziksel cihazda tamamlanmalıdır. Önceki faz kayıtları aşağıda tarihsel olarak korunmuştur.
+Aylık tahmini karşılık para birimlerine göre ayrıdır; bu ayın kesin harcaması değildir. İptal işlemi yalnızca PayAhead takibini durdurur; dış sağlayıcıda ayrıca iptal gerekir. Bağlı tek PaymentPlan takvim ve analizin finansal kaynağıdır. Free limitleri güncel entitlement yanıtından okunur; sunucu ayrıca uygular. Gerçek satın alma yapılmaz.
+
+Phase 5 kalite komutları: `npm.cmd run typecheck`, `npm.cmd run lint`, `npm.cmd test -- --silent`, `npx.cmd expo-doctor`, `npx.cmd expo export --platform android --output-dir artifacts/phase5-android`, çalışan yerel backend için `npm.cmd run test:subscriptions:live`. Smoke yalnızca kendi geçici hesaplarını oluşturup temizler; gerçek kişisel aboneliklerini kullanmaz. [Android Phase 5 kabul listesi](docs/ANDROID_TESTING.md) fiziksel cihazda bekliyor.
+
+Phase 4 için backend'in yeni migration ve yapılandırmayla çalışması gerekir: [SMTP, migration ve deep link kurulumu](../docs/PASSWORD_RESET.md), [analiz sözleşmesi ve tarih/para semantiği](../docs/ANALYTICS.md). Development e-postası Mailpit yakalamasıdır; gerçek sağlayıcı/inbox kabulü yayın öncesine ertelenmiştir. Bu fazda SMTP/Resend kurulmadı. Phase 4'ün açık fiziksel kabulü sürer. Önceki faz kayıtları aşağıda tarihsel olarak korunmuştur.
 
 ## Çalıştırma
 

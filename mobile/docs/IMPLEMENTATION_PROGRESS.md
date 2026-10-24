@@ -1,4 +1,14 @@
-# Frontend Phase 4 — Takvim, geçmiş, reset ve analizler
+# Frontend Phase 5 — Abonelik ve ücretsiz deneme takibi
+
+**24 Ekim 2026.** Kullanıcının açık Phase5 talebi uygulandı. Gerçek abonelik listesi/arama/status/döviz/pagination, RHF+Zod create/edit, native tarih alanları, detay, rowVersion'lı iptal ve soft-delete, 1/3/7 gün deneme listesi, Dashboard özeti geliştirildi. Tek bağlı PaymentPlan finansal kaynak; ikinci plan/tutar eklenmez. Decimal19,4 kayıpsız, lifecycle/timezone/kalan gün sunucudan; Cancelled erişim devamı ve Expired ayrıdır. Dış sağlayıcıda iptal yapılmadığı açıkça belirtilir. Free3 takip/Free5 aktif plan canlı response ve sunucuyla doğrulandı; Premium limitleri entitlement'dan okunur. Aynı user/epoch finans kökü invalidate edilir; logout mevcut cache temizliğini korur. Backend ve migration dosyası/dependency değişmedi; .NET8/EF8/Expo57 korundu.
+
+Son kontroller: **TS/lint temiz; Jest123/123,11suite,skipped0; Doctor21/21; SDK check uyumlu; Hermes4021modül/~8MB; Metro8085 status/HTML/Android devJS200.** .NET8.0.426 restore/build0error0warning, **unit384/384**, **gerçek SQL Testcontainers254/254**, skipped0. Canlı Development API readiness/Swagger200; **abonelik32+4cleanup**, önceki **finans24+4cleanup** HTTP kontrolü geçti. Yalnız kendi geçici hesapları/izole test DB'leri temizlendi. İlk Docker erişimsiz testler başarısız olarak kaydedildi; Engine sağlıklı olduktan sonra final test tamamlandı. Ayrı artifacts yolunda restore eksikliği ve sandbox/Hermes izin hataları giderildi; başarısız ara denemeler raporda korunur.
+
+**Açık:** fiziksel Android/görsel kabul yapılmadı; [12 maddelik Phase5 matrisi](ANDROID_TESTING.md) bekler. npm audit önceki **8 (5high/3moderate)** sürer; force uygulanmadı. Backend aboneliklere özel kesin aylık aggregate sağlamaz; açık formüllü döviz bazında aylık tahmin gösterilir ve gerçek harcama gibi sunulmaz. Genel ödeme DTO'su abonelik sahipliğini işaretlemez; abonelikten açılan plan salt okunur, diğer yoldaki değişiklik backend409 ile korunur. Phase4 fiziksel kabul ve gerçek inbox yayına kadar ayrı açık kalır; profesyonel SMTP/Resend'e başlanmadı. Test API/Metro kapatıldı, SQL/Mailpit/volume korunur.
+
+[Detaylı 11 maddeli Phase5 raporu](PHASE5_REPORT.md), [endpoint/para/tarih/cache sözleşmesi](SUBSCRIPTIONS.md), [çalıştırma](DEVELOPMENT.md). **Phase6 başlatılmadı; burada duruldu.** Aşağıdaki Phase1–4 kayıtları tarihseldir; kendi tarihindeki “Phase5 yok” ifadeleri bu yeni onayın öncesine aittir.
+
+## Frontend Phase 4 — Takvim, geçmiş, reset ve analizler
 
 ## Fiziksel cihaz bildirimi sonrası düzeltme — 23 Ekim 2026
 

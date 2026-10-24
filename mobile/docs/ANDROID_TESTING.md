@@ -1,4 +1,27 @@
-# Android kabul matrisi — Frontend Phase 4
+# Android kabul matrisi — Frontend Phase 5
+
+24 Ekim 2026. Aşağıdaki yeni akışlar **fiziksel Android/Expo Go üzerinde henüz doğrulanmadı**. Otomatik test, Hermes ve HTTP smoke fiziksel kabul yerine geçmez. Phase 4'ün açık matrisi aşağıda korunur; gerçek SMTP/Resend yayın öncesine ertelenmiştir.
+
+Önce SQL Server'ın sağlıklı, güncel backend `/health/ready` yanıtının 200 ve Swagger subscription path'lerinin mevcut olduğunu kontrol et. Backend kapalıysa repository kökünde `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Start-Development.ps1` çalıştır. Phase 4 Mailpit reset akışını da kullanacaksan [mevcut capture başlatma komutunu](../../docs/PASSWORD_RESET_DIAGNOSIS.md) ve Metro portuna uygun ResetLinkBase'i kullan. `mobile/.env` içindeki API adresi güncel LAN IPv4:5080 olsun; telefonda localhost kullanma. `mobile` içinde `npx.cmd expo start --clear`, Expo Go'da QR tarama ve gerçek test hesabıyla giriş.
+
+| Senaryo | Kabul ölçütü | Durum |
+|---|---|---|
+| 1. Liste | Gerçek kayıtlar; loading/empty/error-retry; pull-refresh; 20 satır pagination; arama, status, currency filtreleri | Bekliyor |
+| 2. Oluşturma | Ad/sağlayıcı/tutar/döviz; 4 sıklık ve aralık; başarı sonrası tek detay; ödeme listesinde yalnız bir bağlı plan | Bekliyor |
+| 3. Native picker | Başlangıç, ilk ücretli, deneme, erişim tarihleri; mevcut seçim; minimum; Android geri/iptal tarihi değiştirmesin | Bekliyor |
+| 4. Trial | Bugün başlayıp 1/3/7 gün sonra biten kayıtlar; ilk ücretli tarih bitişten sonra; son gün 0; negatif gün yok | Bekliyor |
+| 5. Tarih sınırı | Ay sonu/29 Şubat; cihaz/hesap saat dilimi farklı; hesap tarihine göre durum ve nextBillingDate | Bekliyor |
+| 6. Düzenleme | Tutar/sağlayıcı/sıklık/deneme/yenileme tercihleri; kayıt sonrası doğru geri yığını; eski rowVersion 409 ve reload | Bekliyor |
+| 7. İptal | Dış sağlayıcı uyarısı ve explicit tarih/onay; çift dokunma tek istek; seçilen son gün dahil erişim devam, sonrasında sona erdi | Bekliyor |
+| 8. Kaldırma | Ayrı destructive onay; kaydı listeden gizle; mevcut ödeme geçmişi kalsın; dış abonelik iptal olmuş iddiası olmasın | Bekliyor |
+| 9. Finans | TRY/USD ayrı tahmin; “kesin harcama değildir”; Dashboard/takvim/analizde plan tutarı tek kez; iptal yenilemeyi kaldırsın | Bekliyor |
+| 10. Limit | Free3 takip ve Free5 plan kotası ayrı; anlamlı uyarı; Premium response limiti; satın alma taklidi yok | Bekliyor |
+| 11. Oturum/ağ | Uçak modu, timeout, 409; kör tekrar engeli; logout/login başka hesapta eski abonelik görünmesin | Bekliyor |
+| 12. Görsel/native | Küçük ekran, uzun ad/sağlayıcı, %200 yazı, klavye/scroll, light/dark/system, TalkBack ve Android geri | Bekliyor |
+
+Ücretli harici hizmet satın almak/iptal etmek gerekmez; bu akış yalnız takip uygulamasını test eder. Sahte finans verisi production'a eklenmez. Fiziksel sonuç ve cihaz/Expo Go sürümü kullanıcı kabulünde kaydedilmelidir.
+
+## Önceki Frontend Phase 4 matrisi
 
 Phase 4 aşağıdaki kontrolleri fiziksel Android/Expo Go üzerinde bekliyor. Kullanıcı Phase 1–3 kayıt/giriş/CRUD başarısını bildirdi; bu bildirim yeni Phase 4 native akışlarının kanıtı değildir. Ön koşul: güncel backend, additive reset migration, çalışan Metro ve [SMTP/deep link kurulumu](../../docs/PASSWORD_RESET.md).
 

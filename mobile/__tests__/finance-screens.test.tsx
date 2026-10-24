@@ -9,6 +9,7 @@ import { PaymentForm } from '../src/features/payments/PaymentFormScreen';
 import { useDashboard, usePaymentList, useFinanceClock, usePayment, usePaymentMutation } from '../src/features/payments/queries';
 import { ApiError } from '../src/services/api-error';
 import { plan, projected, summary, entitlement } from './finance-fixtures';
+jest.mock('../src/features/subscriptions/queries', () => ({ useSubscriptionSummary: () => ({ data: undefined, refetch: jest.fn() }), useExpiringTrials: () => ({ data: [], refetch: jest.fn() }) }));
 jest.mock('../src/features/payments/queries', () => ({ useDashboard: jest.fn(), usePaymentList: jest.fn(), useFinanceClock: jest.fn(), usePayment: jest.fn(), usePaymentMutation: jest.fn(), useEntitlements: jest.fn() }));
 function result<T>(data?: T, error?: Error) { return { data, error, isPending: !data && !error, isError: !!error, isRefetching: false, refetch: jest.fn(async () => ({ data, isSuccess: true })) }; }
 const mutateAsync = jest.fn<ReturnType<typeof usePaymentMutation>['mutateAsync']>();

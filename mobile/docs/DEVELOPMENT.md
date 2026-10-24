@@ -1,5 +1,11 @@
 # Geliştirme — Authentication ve Android bağlantısı
 
+## Frontend Phase 5
+
+Gerçek abonelik listesi, form/detay/iptal/kaldırma ve denemeler için [sözleşme ve semantik](SUBSCRIPTIONS.md), [sonuç raporu](PHASE5_REPORT.md), [Android kabul listesi](ANDROID_TESTING.md). Yeni dependency/backend/migration yoktur. Normal mobil başlangıç ve API LAN ayarı aşağıdakiyle aynıdır. `npm.cmd run test:subscriptions:live` yalnız geçici hesaplarla yerel gerçek API'yi test eder; mevcut kişisel veritabanını temizlemez. Hedef API hazır değilse önce mevcut Development kurulumunu başlat, SMTP'yi bu faz için değiştirme. Mobil API kökünü süreç içinde loopback'e çevirmek için `$env:EXPO_PUBLIC_API_BASE_URL='http://127.0.0.1:5080'`; fiziksel telefonda LAN adresini kullan.
+
+Kontroller: `npm.cmd run typecheck`, `npm.cmd run lint`, `npm.cmd test -- --silent`, `npx.cmd expo-doctor`, `npx.cmd expo install --check`, `npx.cmd expo export --platform android --output-dir artifacts/phase5-android`. Root AGENTS gereği .NET restore/build/test de yapıldı; çalışan API dosyalarını kilitlememek için üç komutta da aynı `--artifacts-path artifacts/phase5-check` kullanıldı. İlk restore yalnız varsayılan obj'yi oluşturur; ayrı artifacts ile no-restore build için o dizinde restore da gerekir. SQL entegrasyon Testcontainers ve gerçek SQL Server2022 kullanır; Docker erişimi olmadan geçmiş sonuç başarı olarak taşınmaz.
+
 E-posta202 sonrası inbox'a gelmiyorsa mevcut kurulum Mailpit capture modundadır. [Teslim zinciri ve gerçek SMTP/Gmail/User Secrets/Outlook kurulum rehberi](../../docs/EMAIL_DELIVERY.md). Mobil public env içine SMTP secret eklenmez; gerçek SMTP için backend `-EmailCapture` olmadan başlatılır.
 
 Şifremi unuttum401 düzeltmesi ve güncel başlatma/Android adımları: [hata analizi](../../docs/PASSWORD_RESET_DIAGNOSIS.md). Güncel helper `scripts/Start-Development.ps1`; yerel Mailpit kullanırken `-EmailCapture -ResetLinkBase exp://IP:8081/--/reset-password` gereklidir. SMTP capture kişisel inbox değildir. Sadece readiness200 eski backend sürümünü elemez; Swagger path'lerini de kontrol et.

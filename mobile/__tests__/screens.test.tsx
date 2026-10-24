@@ -12,6 +12,8 @@ import AuthScreen from '../src/features/AuthScreen';
 
 import SettingsScreen from '../src/features/SettingsScreen';
 import SubscriptionsScreen from '../src/features/SubscriptionsScreen';
+jest.mock('../src/features/subscriptions/queries', () => ({ useSubscriptions: () => ({ data: { items: [], totalCount: 0, totalPages: 0 }, refetch: jest.fn() }), useSubscriptionSummary: () => ({ data: undefined, refetch: jest.fn() }) }));
+jest.mock('../src/features/payments/queries', () => ({ useEntitlements: () => ({ data: undefined, refetch: jest.fn() }) }));
 
 import { canUseDesignPreview } from '../src/services/preview-policy';
 import { currencyTotals, dateLabel, money } from '../src/utils/format';

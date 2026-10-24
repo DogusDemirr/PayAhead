@@ -33,21 +33,22 @@ export function useFinanceScope() {
   const state = useSessionStore(); const epoch = session.credential()?.epoch;
   const key = financeKey(state.user?.id ?? 'anonymous', epoch);
   const enabled = state.status === 'authenticated' && !!state.user && epoch !== undefined;
-  const api = createFinanceApi(apiClient, { epoch, isCurrent: () => enabled && session.credential()?.epoch === epoch, prepareWrite: () => session.ensureFreshAccess() });
-  return { key, enabled, api };
+  const context = { epoch, isCurrent: () => enabled && session.credential()?.epoch === epoch, prepareWrite: () => session.ensureFreshAccess() };
+  const api = createFinanceApi(apiClient, context);
+  return { key, enabled, api, context };
 }
 export function useFinanceClock() {
   const scope = useFinanceScope();
   return useQuery({ queryKey: [...scope.key, 'summary', 'rolling'], queryFn: ({ signal }) => scope.api.summary(undefined, signal), enabled: scope.enabled });
 }
 export function useDashboard() {
-  const scope = useFinanceScope(); const clock = useFinanceClock(); const today = clock.data?.context.today;
+  const scope = useFinanceScope(); const client = useQueryClient(); const clock = useFinanceClock(); const today = clock.data?.context.today;
   const range = monthRange(today ?? '2000-01-01');
   const summary = useQuery({ queryKey: [...scope.key, 'summary', range], queryFn: ({ signal }) => scope.api.summary(range, signal), enabled: scope.enabled && !!today });
   const upcoming = useQuery({ queryKey: [...scope.key, 'upcoming', today], queryFn: ({ signal }) => scope.api.upcoming({ fromDate: today!, toDate: clock.data!.context.toDate, pageNumber: 1, pageSize: 3, status: 'Pending' }, signal), enabled: scope.enabled && !!today });
   const hasOverdueRange = !!today && range.fromDate < today;
   const overdue = useQuery({ queryKey: [...scope.key, 'overdue', today], queryFn: ({ signal }) => scope.api.upcoming({ fromDate: range.fromDate, toDate: shiftDay(today!, -1), pageNumber: 1, pageSize: 3, status: 'Pending' }, signal), enabled: scope.enabled && hasOverdueRange });
-  return { clock, summary, upcoming, overdue, hasOverdueRange, async refresh() { if (!today) { await clock.refetch(); return; } await Promise.all([clock.refetch(), summary.refetch(), upcoming.refetch(), ...(hasOverdueRange ? [overdue.refetch()] : [])]); } };
+  return { clock, summary, upcoming, overdue, hasOverdueRange, async refresh() { await client.invalidateQueries({ queryKey: [...scope.key, 'subscriptions'] }); if (!today) { await clock.refetch(); return; } await Promise.all([clock.refetch(), summary.refetch(), upcoming.refetch(), ...(hasOverdueRange ? [overdue.refetch()] : [])]); } };
 }
 export function usePaymentList(filter: PlanFilter) {
   const scope = useFinanceScope();
