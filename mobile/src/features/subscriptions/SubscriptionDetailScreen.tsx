@@ -12,6 +12,7 @@ import { dateLabel } from '../../utils/format';
 import { useSubscription, useSubscriptionMutation } from './queries';
 import { statusLabels, trialHint, accessHint, MutationFailure, SubscriptionLimitNotice } from './components';
 import type { Subscription } from './contracts';
+import { CatalogIdentity } from '../catalog/CatalogIdentity';
 export default function SubscriptionDetailScreen({ id }: { id: string }) {
   const query = useSubscription(id); const [revision, setRevision] = useState(0);
   const reload = async () => { const result = await query.refetch(); if (result.isSuccess) setRevision(n => n + 1); };
@@ -42,6 +43,7 @@ export function SubscriptionDetail({ initial, reload }: { initial: Subscription;
       {record.description && <AppText style={{ marginTop: 16 }}>{record.description}</AppText>}
     </AppCard>
     <AppButton title="Bağlı ödeme planını gör" variant="secondary" onPress={() => router.push({ pathname: '/payment', params: { id: record.paymentPlanId, readOnly: 'true' } })} />
+    <CatalogIdentity categoryId={record.catalogCategoryId} serviceId={record.catalogServiceId} fallback={record.category ?? 'Özel abonelik'} />
     <AppButton title="Bağlı planın ödeme hatırlatmaları" variant="secondary" onPress={() => router.push({ pathname: '/reminders', params: { id: record.paymentPlanId } })} />
     <AppCard><AppText variant="label">Deneme hatırlatmaları: {record.enableTrialReminders ? 'Tercih açık' : 'Tercih kapalı'}</AppText><AppText variant="caption" tone="muted" style={{ marginTop: 8 }}>Sunucu deneme kurallarını üyelik kotasına göre 09:00 hesap saatinde oluşturur: Free için 1 gün, uygun Premium kotasında 1/3/7 gün ve son gün. Özel deneme günü/saat seçimi desteklenmez. Tercihi aboneliği düzenleyerek değiştirebilirsin; iptal/sona ermede gönderim uygunluğu sunucuda kontrol edilir. Tercih, cihaz teslimi değildir.</AppText></AppCard>
     <AppText variant="caption" tone="muted">Bağlı ödeme planı finansal tek kaynaktır; takvim ve analizde ayrıca ikinci abonelik tutarı eklenmez.</AppText>

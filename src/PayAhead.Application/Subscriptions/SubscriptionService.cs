@@ -69,7 +69,7 @@ public sealed class SubscriptionService(ISubscriptionStore store, ICurrentUser c
         var s = row.Subscription; var p = row.Plan; var status = s.EffectiveStatus(context.Today);
         var next = status is SubscriptionStatus.Trial or SubscriptionStatus.Active && s.AutoRenew ? recurrence.GetNextOccurrence(p, context.Today) : null;
         return new(s.Id, p.Id, p.Name, p.Description, s.ProviderName, p.Amount, p.CurrencyCode, p.Frequency, p.Interval, p.AnchorDay, s.StartDate, p.StartDate, next, s.TrialStartDate, s.TrialEndDate, s.TrialDaysRemaining(context.Today), status, s.AutoRenew, s.EnableTrialReminders,
-            Utc(s.CancellationRequestedAtUtc), Utc(s.CancelledAtUtc), s.AccessEndsOn, DateTime.SpecifyKind(s.CreatedAtUtc, DateTimeKind.Utc), DateTime.SpecifyKind(s.UpdatedAtUtc, DateTimeKind.Utc), Convert.ToBase64String(s.RowVersion), context);
+            Utc(s.CancellationRequestedAtUtc), Utc(s.CancelledAtUtc), s.AccessEndsOn, DateTime.SpecifyKind(s.CreatedAtUtc, DateTimeKind.Utc), DateTime.SpecifyKind(s.UpdatedAtUtc, DateTimeKind.Utc), Convert.ToBase64String(s.RowVersion), context) { CatalogCategoryId = p.CatalogCategoryId, CatalogServiceId = p.CatalogServiceId, Category = p.Category };
     }
     private static DateTime? Utc(DateTime? value) => value is { } date ? DateTime.SpecifyKind(date, DateTimeKind.Utc) : null;
     private static byte[] Version(string? version)

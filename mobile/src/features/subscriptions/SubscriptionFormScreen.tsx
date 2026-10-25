@@ -13,6 +13,7 @@ import { ApiError } from '../../services/api-error';
 import { useSubscription, useSubscriptionMutation, useSubscriptionSummary } from './queries';
 import { subscriptionDefaults, subscriptionFormSchema, toSubscriptionWrite, consumesTrackingSlot, billingLabels, type SubscriptionFields } from './validation';
 import type { Subscription } from './contracts';
+import { CatalogSelectionField } from '../catalog/CatalogPicker';
 import { SubscriptionLimitNotice, MutationFailure } from './components';
 
 export default function SubscriptionFormScreen({ id }: { id?: string }) {
@@ -27,11 +28,14 @@ export function SubscriptionForm({ record, today, trackingCount, paymentCount, e
   const [original] = useState(record); const busy = useRef(false); const mutation = useSubscriptionMutation(); const [failure, setFailure] = useState<unknown>(null); const [blocked, setBlocked] = useState(false);
   const { control, setValue, setError, handleSubmit, formState: { errors } } = useForm<SubscriptionFields>({ resolver: zodResolver(subscriptionFormSchema), defaultValues: subscriptionDefaults(today, original) });
   const values = useWatch({ control }); const status = values.status; const frequency = values.billingFrequency;
+  const [catalogError, setCatalogError] = useState('');
   const needsTracking = !original && consumesTrackingSlot(values as SubscriptionFields, today);
   const trackingLimit = !!entitlement && needsTracking && trackingCount >= entitlement.limits.activeTrackedSubscriptions;
   const paymentLimit = !!entitlement && !!values.autoRenew && !original?.autoRenew && paymentCount >= entitlement.limits.activePaymentPlans;
   const submit = () => handleSubmit(async fields => {
-    if (busy.current || blocked || trackingLimit || paymentLimit) return; busy.current = true; setFailure(null);
+    if (busy.current || blocked || trackingLimit || paymentLimit) return;
+    if (!original && !fields.catalogCategoryId) { setCatalogError('Bir kategori seç. Katalogda yoksa özel abonelik oluşturabilirsin.'); return; }
+    busy.current = true; setFailure(null);
     try {
       const body = toSubscriptionWrite(fields); const result = await mutation.mutateAsync(original ? { kind: 'update', id: original.id, rowVersion: original.rowVersion, body } : { kind: 'create', body });
       if (result) { const target = { pathname: '/subscription' as const, params: { id: result.id } }; if (original) router.dismissTo(target); else router.replace(target); }
@@ -55,7 +59,8 @@ export function SubscriptionForm({ record, today, trackingCount, paymentCount, e
   return <AppScreen keyboard><AppHeader title={original ? 'Aboneliği düzenle' : 'Yeni abonelik'} subtitle="Düzenli giderlerine net bir bakış." back /><View style={{ gap: 20 }}>
     {entitlement ? <AppText variant="caption" tone="muted">{entitlement.plan} · {trackingCount}/{entitlement.limits.activeTrackedSubscriptions} aktif/deneme · {paymentCount}/{entitlement.limits.activePaymentPlans} aktif ödeme planı</AppText> : <AppText variant="caption" tone="muted">Üyelik limitini sunucu kaydederken kontrol edecek.</AppText>}
     {(trackingLimit || paymentLimit || failure instanceof ApiError && failure.code === 'entitlement_limit') && <SubscriptionLimitNotice />}
-    {input('name', 'Abonelik adı', 150)}{input('providerName', 'Sağlayıcı adı', 100)}{input('amount', 'Abonelik tutarı')}{input('currencyCode', 'Para birimi · ISO 4217', 3)}
+    <CatalogSelectionField mode="Subscription" initialOpen={!original} categoryId={values.catalogCategoryId} serviceId={values.catalogServiceId} error={catalogError || errors.catalogCategoryId?.message || errors.catalogServiceId?.message} disabled={disabled} onSelect={selection => { setCatalogError(''); setValue('catalogCategoryId', selection.category.id); setValue('catalogServiceId', selection.service?.id ?? null); if (selection.service) { setValue('name', selection.service.displayName); setValue('providerName', selection.service.displayName.slice(0, 100)); const f = selection.service.defaultRecurrenceType; if (f && f !== 'Once') setValue('billingFrequency', f); } else if (values.catalogServiceId) { setValue('name', ''); setValue('providerName', ''); } }} />
+    {!values.catalogServiceId || original ? <>{input('name', 'Abonelik adı', 150)}{input('providerName', 'Sağlayıcı adı', 100)}</> : <AppText variant="section">{values.name}</AppText>}{input('amount', 'Abonelik tutarı')}{input('currencyCode', 'Para birimi · ISO 4217', 3)}
     <AppText variant="label">Faturalandırma sıklığı</AppText><Controller control={control} name="billingFrequency" render={({ field }) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>{(Object.keys(billingLabels) as (keyof typeof billingLabels)[]).map(value => <View key={value} style={{ flexGrow: 1, minWidth: '45%' }}><AppButton title={billingLabels[value] + (field.value === value ? ' ✓' : '')} variant={field.value === value ? 'primary' : 'secondary'} disabled={disabled} onPress={() => { field.onChange(value); if (!['Monthly', 'Yearly'].includes(value)) setValue('anchorDay', ''); }} /></View>)}</View>} />
     {input('billingInterval', 'Faturalandırma aralığı')}{date('startDate', 'Abonelik başlangıcı')}{date('firstBillingDate', 'İlk ücretli ödeme tarihi', values.startDate)}
     <AppText variant="caption" tone="muted">Sonraki ücretli tarih sunucu tarafından hesaplanır. İlk ücretli tarih deneme bitişiyle aynı değildir.</AppText>

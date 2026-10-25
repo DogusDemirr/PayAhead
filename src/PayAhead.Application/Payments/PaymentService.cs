@@ -16,6 +16,7 @@ public sealed class PaymentService(IPaymentPlanStore store, ICurrentUser current
         await createValidator.ValidateAndThrowAsync(request, cancellationToken);
         if (!await store.IsActiveUserAsync(userId, cancellationToken)) throw new AuthenticationRequiredException();
         var plan = PaymentPlan.Create(userId, Details(request), clock.GetUtcNow().UtcDateTime);
+        ApplyCatalog(plan, request);
         await store.AddAsync(plan, cancellationToken);
         return PaymentResponse.From(plan);
     }
@@ -39,6 +40,7 @@ public sealed class PaymentService(IPaymentPlanStore store, ICurrentUser current
         await updateValidator.ValidateAndThrowAsync(request, cancellationToken);
         var plan = await FindAsync(userId, id, cancellationToken);
         plan.UpdateDetails(Details(request), clock.GetUtcNow().UtcDateTime);
+        ApplyCatalog(plan, request);
         await store.UpdateAsync(plan, Convert.FromBase64String(request.RowVersion!), cancellationToken);
         return PaymentResponse.From(plan);
     }
@@ -60,4 +62,6 @@ public sealed class PaymentService(IPaymentPlanStore store, ICurrentUser current
         request.Description?.Trim(), request.Amount!.Value, request.CurrencyCode!.Trim().ToUpperInvariant(),
         request.Category!.Trim(), request.Frequency!.Value, request.Interval!.Value, request.StartDate!.Value,
         request.EndDate, request.AnchorDay, request.IsActive);
+    private static void ApplyCatalog(PaymentPlan plan, PaymentWriteRequest request)
+    { if (request.CatalogSelectionSpecified) { plan.CatalogCategoryId = request.CatalogCategoryId; plan.CatalogServiceId = request.CatalogServiceId; } }
 }

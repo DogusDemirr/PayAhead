@@ -1,3 +1,29 @@
+## Phase5.1.1 — Kategori ve gerçek logo denemesi
+
+Backend'i güncel kodla yeniden başlatın: repository kökünde `./scripts/Start-Development.ps1 -Port 5080`. Bu makinede CatalogCoverage uygulanmıştır;startup migrate yoktur. Mevcut eski API sürecini önce kendi terminalinden Ctrl+C ile kapatın. Mobile `.env` LAN adresi aynı port/IP'yi göstermeli;telefonda localhost kullanmayın. Mobile dizininde `npx.cmd expo start --go --clear`, ardından yeni bundle ile giriş ve seçicide **Kataloğu yenile**. Her kategori kartının tamamı tıklanır; seçili yol görünür. Dijital altı başlığa ana sayfada kısayol vardır. Payment araç giderlerini gösterir,Subscription göstermez. Haber→Dijital Gazete çalışmalıdır.
+
+5gerçek yerel marka görseli(Netflix/Spotify/Opet/Microsoft/Adobe);99fallback. Güncel Metro bundle olmadan eski0logo ekranını görmeye devam edebilirsiniz. Katalog bellekte5dakika stale/24saatgc;diskofflinegarantisi yoktur. Manuel yenile/pull-to-refresh aktif;logout cache'i temizler. `npm.cmd run test:catalog:live` yerel/LAN API'de37HTTP+4cleanup yapar;geçici hesaplar kullanır. [10fiziksel kabul adımı](ANDROID_TESTING.md), [kaynak/telif notları](../assets/brands/NOTICE.md), [rapor](PHASE5_1_1_REPORT.md). ExpoGo katalogCRUD için yeterlidir;gerçekpush ayrıPhase6kabulüdür.
+
+## Phase5.1 — Kategori ve katalog kabulü
+
+Backend'e CatalogFoundation migration'ı açıkça uygulanmış olmalıdır; otomatik migration yoktur. Development hedefi/pending kontrolü [backend rehberindedir](../../docs/DEVELOPMENT.md). Bu makinede hedef doğrulanarak uygulandı. Katalog endpoint'leri JWT ister. Ödeme/abonelik ekle tam ekran ortak seçiciyi açar; özel kayıt için ilgili kategori veya Diğer seçilir. Tutar/tarih kullanıcıya aittir. 0 marka logosu, mevcut kategori ikonları fallback'tir; gerçek logo beklemeyin.
+
+```powershell
+# mobile dizininde; .env mevcut LAN adresini içermeli, credential içermez
+npm.cmd run typecheck
+npm.cmd run lint
+npm.cmd test
+npx.cmd expo-doctor
+npx.cmd expo install --check
+npx.cmd expo export --platform android --output-dir artifacts/phase51-android
+npm.cmd run test:catalog:live
+npx.cmd expo start --go --clear
+```
+
+Canlı smoke local/LAN hedefleri kabul eder; iki geçici kendi hesabını oluşturup cleanup yapar; gerçek kullanıcı verisiyle çalışmaz. API'yi önce Development'ta başlatın. Fiziksel cihazda localhost bilgisayar değildir; mevcut yerel IP, aynı Wi-Fi ve güvenlik duvarı erişimini doğrulayın. Bu işlem production veya push kurulumu yapmaz. Phase5.1 CRUD Expo Go'da denenebilir; gerçek Phase6 push için ayrı development APK/kabul gerekir.
+
+Cache24saat yalnız bellektedir; ilk açılış offline ise katalog gelmez, tekrar dene gerekir. Önceden alınmış veri aynı oturumda kullanılabilir; logout temizler. Katalog hatası eski finansal kayıtları gizlemez. [20 adım](ANDROID_TESTING.md), [rapor](PHASE5_1_REPORT.md), [logo envanteri](../../docs/CATALOG_LOGOS.md). Önceki Phase6/Phase4 açık kabulleri sürer.
+
 # Geliştirme — Authentication ve Android bağlantısı
 
 ## Frontend Phase 6

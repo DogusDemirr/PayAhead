@@ -36,6 +36,8 @@ public sealed class PaymentPlanStore(PayAheadDbContext db, IEntitlementService? 
         {
             await using var tx = await db.Database.BeginTransactionAsync(cancellationToken);
             await Policy.LockUserAsync(plan.UserId, cancellationToken);
+            var category = await new CatalogStore(db).ValidateSelectionAsync(plan.CatalogCategoryId, plan.CatalogServiceId, CatalogApplicability.Payment, false, cancellationToken);
+            if (category is not null) plan.Category = category.NameTr;
             if (plan.IsActive) await Policy.EnsureIncreaseAsync(plan.UserId, LimitResource.PaymentPlans, null, 1, cancellationToken);
             db.Entry(plan).State = EntityState.Added; await db.SaveChangesAsync(cancellationToken); await tx.CommitAsync(cancellationToken);
         });
@@ -53,8 +55,11 @@ public sealed class PaymentPlanStore(PayAheadDbContext db, IEntitlementService? 
             await using var tx = await db.Database.BeginTransactionAsync(cancellationToken);
             await Policy.LockUserAsync(plan.UserId, cancellationToken);
             await EnsureIndependent(plan.Id, cancellationToken);
-            var active = await db.PaymentPlans.AsNoTracking().Where(x => x.Id == plan.Id && x.UserId == plan.UserId).Select(x => x.IsActive).SingleAsync(cancellationToken);
-            if (!active && plan.IsActive) await Policy.EnsureIncreaseAsync(plan.UserId, LimitResource.PaymentPlans, null, 1, cancellationToken);
+            var previous = await db.PaymentPlans.AsNoTracking().Where(x => x.Id == plan.Id && x.UserId == plan.UserId).Select(x => new { x.IsActive, x.CatalogCategoryId, x.CatalogServiceId, x.Category }).SingleAsync(cancellationToken);
+            var unchanged = previous.CatalogCategoryId == plan.CatalogCategoryId && previous.CatalogServiceId == plan.CatalogServiceId;
+            var category = await new CatalogStore(db).ValidateSelectionAsync(plan.CatalogCategoryId, plan.CatalogServiceId, CatalogApplicability.Payment, unchanged, cancellationToken);
+            if (category is not null) plan.Category = unchanged ? previous.Category : category.NameTr;
+            if (!previous.IsActive && plan.IsActive) await Policy.EnsureIncreaseAsync(plan.UserId, LimitResource.PaymentPlans, null, 1, cancellationToken);
             db.Entry(plan).State = EntityState.Modified;
             db.Entry(plan).Property(x => x.RowVersion).OriginalValue = expectedVersion;
             // Aynı içerikli PUT da sürüm karşılaştırmasını veritabanında yapmalıdır.

@@ -26,6 +26,8 @@ public sealed partial class PaymentPlan
     public decimal Amount { get; set; }
     public string CurrencyCode { get; set; } = "TRY";
     public string Category { get; set; } = "Other";
+    public Guid? CatalogCategoryId { get; set; }
+    public Guid? CatalogServiceId { get; set; }
     public PaymentFrequency Frequency { get; set; }
     public int Interval { get; set; } = 1;
     public DateOnly StartDate { get; set; }

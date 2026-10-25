@@ -1,0 +1,10 @@
+import type { CatalogCategory, CatalogService } from '../src/features/catalog/contracts';
+export const digital: CatalogCategory = { id: 'a1111111-1111-4111-8111-111111111111', code: 'digital', parentId: null, nameTr: 'Dijital Abonelikler', nameEn: 'Digital subscriptions', iconKey: 'digital', sortOrder: 0, isActive: true, applicableTo: 'Both' };
+export const video: CatalogCategory = { ...digital, id: 'b1111111-1111-4111-8111-111111111111', code: 'video', parentId: digital.id, nameTr: 'Film ve Dizi', nameEn: 'Film and TV', iconKey: 'video' };
+export const transport: CatalogCategory = { ...digital, id: 'c1111111-1111-4111-8111-111111111111', code: 'transport', nameTr: 'Araç ve Ulaşım', nameEn: 'Vehicle and transport', iconKey: 'transport', applicableTo: 'Payment' };
+export const fuel: CatalogCategory = { ...transport, id: 'd1111111-1111-4111-8111-111111111111', parentId: transport.id, code: 'transport.fuel', nameTr: 'Yakıt', nameEn: 'Fuel', iconKey: 'fuel' };
+export const petrol: CatalogCategory = { ...fuel, id: 'e1111111-1111-4111-8111-111111111111', parentId: fuel.id, code: 'transport.petrol', nameTr: 'Benzin', nameEn: 'Petrol' };
+export const other: CatalogCategory = { ...digital, id: 'f1111111-1111-4111-8111-111111111111', code: 'other', nameTr: 'Diğer', nameEn: 'Other', iconKey: 'other' };
+export const categories = [digital, video, transport, fuel, petrol, other];
+export const netflix: CatalogService = { id: 'a2222222-2222-4222-8222-222222222222', code: 'netflix', displayName: 'Netflix', categoryId: video.id, categoryIds: [video.id], logoKey: null, searchKeywords: '', sortOrder: 0, isPopular: true, isActive: true, applicableTo: 'Both', defaultRecurrenceType: 'Monthly', countryCode: null };
+export const shell: CatalogService = { ...netflix, id: 'b2222222-2222-4222-8222-222222222222', code: 'shell', displayName: 'Shell', categoryId: petrol.id, categoryIds: [petrol.id], applicableTo: 'Payment', defaultRecurrenceType: 'Once', countryCode: 'TR' };

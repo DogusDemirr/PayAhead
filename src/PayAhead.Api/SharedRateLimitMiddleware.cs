@@ -11,8 +11,9 @@ public sealed class SharedRateLimitMiddleware(RequestDelegate next)
         var path = context.Request.Path.Value?.TrimEnd('/').ToLowerInvariant() ?? "";
         var policy = path.StartsWith("/api/auth/", StringComparison.Ordinal) ? "auth" : path is "/api/premium/verify-purchase" or "/api/premium/restore" ? "purchase" : path.StartsWith("/api/webhooks/", StringComparison.Ordinal) ? "webhook" : path == "/api/users/me/export" || path == "/api/users/me" && HttpMethods.IsDelete(context.Request.Method) ? "privacy" : null;
         if (path == "/api/analytics") policy = "analytics";
+        if (path.StartsWith("/api/catalog/", StringComparison.Ordinal)) policy = "catalog";
         if (policy is null) { await next(context); return; }
-        var identity = policy is "purchase" or "privacy" or "analytics" ? context.User.FindFirst("sub")?.Value : null;
+        var identity = policy is "purchase" or "privacy" or "analytics" or "catalog" ? context.User.FindFirst("sub")?.Value : null;
         identity ??= context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
         var key = Convert.ToHexString(HMACSHA256.HashData(jwt.KeyBytes, Encoding.UTF8.GetBytes("PayAhead.Rate.v1:" + policy + ":" + identity)));
         using var deadline = CancellationTokenSource.CreateLinkedTokenSource(context.RequestAborted); deadline.CancelAfter(TimeSpan.FromSeconds(5));

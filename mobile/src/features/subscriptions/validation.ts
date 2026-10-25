@@ -7,6 +7,7 @@ const requiredDate = z.string().refine(x => validDate(x) && x !== '0001-01-01', 
 const optionalDate = z.string().refine(x => !x || validDate(x), 'Geçerli bir tarih seç.');
 export const billingLabels = { Daily: 'Günlük', Weekly: 'Haftalık', Monthly: 'Aylık', Yearly: 'Yıllık' } as const;
 export const subscriptionFormSchema = z.object({
+  catalogCategoryId: z.uuid().nullable().optional(), catalogServiceId: z.uuid().nullable().optional(),
   name: z.string().trim().min(1, 'Abonelik adı yaz.').max(150), providerName: z.string().trim().min(1, 'Sağlayıcı adı yaz.').max(100), description: z.string().trim().max(2000),
   amount: z.string().refine(x => canonicalAmount(x) !== null, 'Pozitif, en fazla 15 tam ve 4 ondalık basamaklı tutar gir.'), currencyCode: z.string().trim().toUpperCase().refine(x => currencyCodes.includes(x), 'Geçerli ISO 4217 kodu gir.'),
   billingFrequency: z.enum(['Daily', 'Weekly', 'Monthly', 'Yearly']), billingInterval: z.string().regex(/^\d+$/, 'Pozitif tam sayı gir.').refine(x => Number(x) >= 1 && Number(x) <= 2147483647, 'Aralık 1–2147483647 olmalı.'),
@@ -27,11 +28,11 @@ export const subscriptionFormSchema = z.object({
 });
 export type SubscriptionFields = z.infer<typeof subscriptionFormSchema>;
 export function subscriptionDefaults(today: string, record?: Subscription): SubscriptionFields {
-  return record ? { name: record.name, providerName: record.providerName, description: record.description ?? '', amount: record.amount.replace('.', ','), currencyCode: record.currencyCode,
+  return record ? { catalogCategoryId: record.catalogCategoryId, catalogServiceId: record.catalogServiceId, name: record.name, providerName: record.providerName, description: record.description ?? '', amount: record.amount.replace('.', ','), currencyCode: record.currencyCode,
     billingFrequency: record.billingFrequency, billingInterval: String(record.billingInterval), anchorDay: record.anchorDay === null ? '' : String(record.anchorDay),
     startDate: record.startDate, firstBillingDate: record.firstBillingDate, trialStartDate: record.trialStartDate ?? '', trialEndDate: record.trialEndDate ?? '', accessEndsOn: record.accessEndsOn ?? '',
     status: record.status === 'Trial' ? 'Trial' : 'Active', autoRenew: record.autoRenew, enableTrialReminders: record.enableTrialReminders }
-    : { name: '', providerName: '', description: '', amount: '', currencyCode: 'TRY', billingFrequency: 'Monthly', billingInterval: '1', anchorDay: '', startDate: today, firstBillingDate: today,
+    : { catalogCategoryId: undefined, catalogServiceId: undefined, name: '', providerName: '', description: '', amount: '', currencyCode: 'TRY', billingFrequency: 'Monthly', billingInterval: '1', anchorDay: '', startDate: today, firstBillingDate: today,
       trialStartDate: '', trialEndDate: '', accessEndsOn: '', status: 'Active', autoRenew: true, enableTrialReminders: true };
 }
 export function toSubscriptionWrite(fields: SubscriptionFields): SubscriptionWrite {

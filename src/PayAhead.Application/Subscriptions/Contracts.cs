@@ -5,7 +5,7 @@ using PayAhead.Domain;
 namespace PayAhead.Application.Subscriptions;
 
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
-public sealed class SubscriptionRequest
+public sealed class SubscriptionRequest : PayAhead.Application.Catalog.CatalogReferenceRequest
 {
     public string? Name { get; init; }
     public string? Description { get; init; }
@@ -44,7 +44,12 @@ public sealed record SubscriptionResponse(Guid Id, Guid PaymentPlanId, string Na
     DateOnly StartDate, DateOnly FirstBillingDate, DateOnly? NextBillingDate, DateOnly? TrialStartDate, DateOnly? TrialEndDate,
     int? TrialDaysRemaining, SubscriptionStatus Status, bool AutoRenew, bool EnableTrialReminders,
     DateTime? CancellationRequestedAtUtc, DateTime? CancelledAtUtc, DateOnly? AccessEndsOn,
-    DateTime CreatedAtUtc, DateTime UpdatedAtUtc, string RowVersion, SubscriptionContext Context);
+    DateTime CreatedAtUtc, DateTime UpdatedAtUtc, string RowVersion, SubscriptionContext Context)
+{
+    public Guid? CatalogCategoryId { get; init; }
+    public Guid? CatalogServiceId { get; init; }
+    public string Category { get; init; } = "Subscriptions";
+}
 public sealed record ExpiringTrialResponse(Guid SubscriptionId, string Name, string ProviderName, DateOnly TrialEndDate,
     int DaysRemaining, DateOnly FirstBillingDate, decimal Amount, string CurrencyCode);
 public sealed record MonthlyEquivalentTotal(string CurrencyCode, decimal EstimatedAmount);

@@ -7,6 +7,7 @@ import { ApiError } from '../../services/api-error';
 import { dateLabel } from '../../utils/format';
 import { useSubscriptionSummary, useExpiringTrials } from './queries';
 import type { Subscription, SubscriptionSummary } from './contracts';
+import { CatalogIdentity } from '../catalog/CatalogIdentity';
 export const statusLabels = { Trial: 'Ücretsiz deneme', Active: 'Aktif', Cancelled: 'İptal edildi', Expired: 'Sona erdi' } as const;
 export function trialHint(record: Pick<Subscription, 'status' | 'trialStartDate' | 'trialEndDate' | 'trialDaysRemaining' | 'context'>) {
   if (!record.trialEndDate) return null;
@@ -25,6 +26,7 @@ export function SubscriptionRow({ record }: { record: Subscription }) {
   return <Pressable accessibilityRole="button" accessibilityLabel={`${record.name}, ${statusLabels[record.status]}, detay`} onPress={() => router.push({ pathname: '/subscription', params: { id: record.id } })} style={{ paddingVertical: 18, minHeight: 150, gap: 10 }}>
     <View style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start' }}><View style={{ flex: 1 }}><AppText variant="section">{record.name}</AppText><AppText tone="muted" variant="caption">{record.providerName} · {frequencyLabels[record.billingFrequency]} / {record.billingInterval} dönem</AppText></View><StatusBadge label={statusLabels[record.status]} tone={record.status === 'Trial' ? 'warning' : record.status === 'Active' ? 'success' : 'muted'} /></View>
     <FinancialAmount amount={record.amount} currency={record.currencyCode} />
+    <CatalogIdentity categoryId={record.catalogCategoryId} serviceId={record.catalogServiceId} fallback={record.category ?? 'Özel abonelik'} />
     <AppText variant="caption" tone="muted">{record.nextBillingDate ? `Sonraki ücretli tarih: ${dateLabel(record.nextBillingDate, false, true)}` : 'Yeni ücretli ödeme tarihi yok'}</AppText>
     {trial && <AppText variant="caption" tone={urgent ? 'warning' : 'muted'}>{trial}</AppText>}
     {(record.status === 'Cancelled' || record.status === 'Expired') && <AppText variant="caption" tone="muted">{accessHint(record)}</AppText>}
@@ -45,7 +47,7 @@ export function MutationFailure({ error, blocked, reload }: { error: unknown; bl
 export function SubscriptionDashboardCard() {
   const summary = useSubscriptionSummary(); const trials = useExpiringTrials();
   return <><SectionHeader title="Aboneliklerin" action="Tümü" onPress={() => router.push('/(tabs)/subscriptions')} />
-    {summary.isError ? <FinanceError error={summary.error} retry={() => { void summary.refetch(); }} /> : !summary.data ? <AppCard><AppText tone="muted">Abonelik özeti yükleniyor…</AppText></AppCard> : <AppCard><AppText variant="section">{summary.data.activeSubscriptionCount} aktif · {summary.data.trialSubscriptionCount} deneme</AppText><AppText variant="caption" tone="muted" style={{ marginTop: 8 }}>Abonelik ödemeleri finansal özete bağlı plan üzerinden zaten dahildir.</AppText>{summary.data.nextRenewal && <AppText style={{ marginTop: 12 }}>Sonraki yenileme: {summary.data.nextRenewal.name} · {summary.data.nextRenewal.nextBillingDate ? dateLabel(summary.data.nextRenewal.nextBillingDate) : 'Tarih yok'}</AppText>}<AppButton title={`${summary.data.expiringTrialsCount} yaklaşan deneme bitişi`} variant="secondary" onPress={() => router.push('/subscription-trials')} /></AppCard>}
+    {summary.isError ? <FinanceError error={summary.error} retry={() => { void summary.refetch(); }} /> : !summary.data ? <AppCard><AppText tone="muted">Abonelik özeti yükleniyor…</AppText></AppCard> : <AppCard><AppText variant="section">{summary.data.activeSubscriptionCount} aktif · {summary.data.trialSubscriptionCount} deneme</AppText><AppText variant="caption" tone="muted" style={{ marginTop: 8 }}>Abonelik ödemeleri finansal özete bağlı plan üzerinden zaten dahildir.</AppText>{summary.data.nextRenewal && <CatalogIdentity categoryId={summary.data.nextRenewal.catalogCategoryId} serviceId={summary.data.nextRenewal.catalogServiceId} fallback={summary.data.nextRenewal.category} />}{summary.data.nextRenewal && <AppText style={{ marginTop: 12 }}>Sonraki yenileme: {summary.data.nextRenewal.name} · {summary.data.nextRenewal.nextBillingDate ? dateLabel(summary.data.nextRenewal.nextBillingDate) : 'Tarih yok'}</AppText>}<AppButton title={`${summary.data.expiringTrialsCount} yaklaşan deneme bitişi`} variant="secondary" onPress={() => router.push('/subscription-trials')} /></AppCard>}
     {trials.isError ? <FinanceError error={trials.error} retry={() => { void trials.refetch(); }} /> : trials.data?.length ? <AppCard style={{ marginTop: 12 }}>{trials.data.slice(0, 3).map(item => <View key={item.subscriptionId} style={{ marginVertical: 8 }}><AppText variant="label">{item.name} · {item.daysRemaining === 0 ? 'Son gün' : `${item.daysRemaining} gün kaldı`}</AppText><AppText variant="caption" tone="muted">İlk ücretli: {dateLabel(item.firstBillingDate, false, true)}</AppText></View>)}</AppCard> : null}
   </>;
 }

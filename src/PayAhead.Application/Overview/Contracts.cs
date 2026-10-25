@@ -41,7 +41,11 @@ public static class OverviewLimits
 
 public sealed record ProjectionContext(DateOnly FromDate, DateOnly ToDate, DateOnly Today, string TimeZoneId, bool UsedTimeZoneFallback);
 public sealed record ProjectedPayment(Guid PaymentPlanId, string PaymentName, DateOnly DueDate, decimal Amount,
-    string CurrencyCode, string Category, PaymentFrequency Frequency, OccurrenceStatus Status, decimal? ActualAmount, DateTime? PaidAtUtc);
+    string CurrencyCode, string Category, PaymentFrequency Frequency, OccurrenceStatus Status, decimal? ActualAmount, DateTime? PaidAtUtc)
+{
+    public Guid? CatalogCategoryId { get; init; }
+    public Guid? CatalogServiceId { get; init; }
+}
 public sealed record CurrencyTotal(string CurrencyCode, decimal Amount);
 public sealed record UpcomingPaymentsResponse(ProjectionContext Context, IReadOnlyList<ProjectedPayment> Items,
     int PageNumber, int PageSize, int TotalCount)

@@ -50,6 +50,7 @@ public static class PayAheadApi
         builder.Services.AddControllers().AddApplicationPart(typeof(PayAheadApi).Assembly).AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<PaymentFrequency>(allowIntegerValues: false));
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<CatalogApplicability>(allowIntegerValues: false));
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<OccurrenceStatus>(allowIntegerValues: false));
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<SubscriptionStatus>(allowIntegerValues: false));
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter<MembershipState>(allowIntegerValues: false));

@@ -1,3 +1,19 @@
+## Phase5.1.1 — Kategori ve gerçek logo düzeltmesi (25 Ekim2026)
+
+Kod değişikliğinden önce kök neden raporu verildi. Alt kategorilerden hizmetlere geçiş dar hit alanı/doğrudan üyelik filtresi/yol eksikliğiyle sınırlıydı; Haber ve birçok ana başlığın alt seçimleri yoktu. Tüm kart Pressable, breadcrumb/gerçek ebeveyn geri, dijital kısayollar, global hiyerarşik arama,5dakika stale+manuel yenileme eklendi. Araç23gideri korunur;Yakıt→Shell ve Bakım ve Tamir doğrudan hizmetleri, Haber10alt/7yayıncı eklendi.116kategori(19kök/97alt),104hizmet/102aktif,245bağlantı. Eski56kategori/97hizmet değerleri değişmedi.5gerçek yerel marka görseli/99fallback;PD-textlogo kaynak/marka notları ve orijinalSVG/PNG/hash korunur.
+
+CatalogCoverage yalnız60kategori/7hizmet/113bağlantı INSERT eder. Doğrulanmış yerel Development DB'ye açıkça uygulandı; eski katalog ve user/plan/occurrence/subscription değerleri,rowversion'lar aynı,pending0. .NET8.0.426/EF8.0.21/C#12; restore/build0warning0error,unit398/398,gerçek SQL2022 Testcontainers269/269,skipped0. Son mobil TS/lint temiz; Jest180/180,18suite,skipped0; kayıt [raporda](../mobile/docs/PHASE5_1_1_REPORT.md); Doctor21/21,SDKuyumlu,Hermes4106modül/8.2MB/36asset. Canlı Development API5086:37HTTP+4cleanup geçti. Audit8(5high/3moderate) önceki durumunu korur.
+
+[Her ana kategori denetimi](CATALOG_AUDIT.md), [kök neden/ara hatalar](PHASE5_1_1_DIAGNOSIS.md), [logo envanteri](CATALOG_LOGOS.md). Otomatik yol erişimi116benzersiz/Payment115/Subscription50; fiziksel Android kanıtı değildir.10Android kabul adımı ve kalan marka görselleri açıktır. Phase6gerçekpush/Phase4inbox açıkları korunur; yeni Phase6/7,SMTP/Resend/production yoktur. Açık eski API DLL kilidi sebebiyle artifacts build kullanıldı; kullanıcının süreci durdurulmadı, Android öncesi güncel backend restart gerekir. Aşağıdaki kayıtlar tarihseldir.
+
+## Phase5.1 — Akıllı kategori ve hizmet kataloğu (25 Ekim 2026)
+
+Açık Phase5.1 talebi uygulandı. 56 kategori(19kök/37alt),97 hizmet(95aktif/2pasif),132bağlantı; üç yeni tablo ve PaymentPlan'a iki nullable referans. Eski isim/kategori ve finansal tek kaynak korundu, backfill yok. Development hedefi doğrulanıp CatalogFoundation açıkça uygulandı; eski değer/rowversion fingerprint aynı, pending0. Ortak mobil seçim/arama/özel kayıt/kimlik eklendi. Gerçek marka logosu0; lisans envanterinde97fallback açıkça belirtilir.
+
+.NET8.0.426 restore/build0error0warning; önceki tam tur unit397/397 ve gerçek SQL2022 Testcontainers267/267,skipped0. Canlı JSON enum hatası sonradan yakalanıp converter/ham JSON testiyle giderildi; son tam tur da unit397/397 ve SQL267/267,skipped0 geçti; [19 maddeli rapor](../mobile/docs/PHASE5_1_REPORT.md). Nihai canlı API28+4cleanup geçti; readiness/Swagger200. TS/lint temiz, Jest173/173(16suite), Doctor21/21, paket uyumlu; Hermes4099modül/8.2MB. Audit8(5high/3moderate) önceki durumunu korur, force yok. İlk fixture sayım/decimal parametre ve mobil mock hataları raporda kayıtlıdır.
+
+**Kabul açık:** fiziksel Android20adım, lisanslı gerçek marka görselleri ve bazı sağlayıcı sayfalarının erişim sınırları. Önceki Phase6 gerçek push ve Phase4 inbox/fiziksel açıkları sürer. Yeni push kurulumu/SMTP/Resend/production/Phase7 yoktur. [Model](CATALOG.md), [envanter](CATALOG_INVENTORY.md), [kaynaklar](CATALOG_SOURCES.md), [logo lisansları](CATALOG_LOGOS.md). Aşağıdaki kayıtlar tarihseldir.
+
 # Uygulama ilerlemesi
 
 ## Frontend Phase 6 — Push ve hatırlatmalar

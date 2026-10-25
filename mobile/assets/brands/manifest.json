@@ -1,0 +1,57 @@
+[
+  {
+    "serviceId": "8f505405-b286-4a61-a2fa-18428bed8134",
+    "code": "netflix",
+    "asset": "assets/brands/netflix.png",
+    "original": "assets/brands/netflix.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Netflix_2015_logo.svg",
+    "copyrightStatus": "PD-textlogo",
+    "reviewedOn": "2026-10-25",
+    "usage": "Tanımlayıcı katalog kullanımı; marka tescili sürer, ortaklık/onay iddiası yok. Renk/oran/şekil korunur; PNG boyutlandırması dışında değişiklik yok.",
+    "sha256": "0c12d5374247e16fced565a207d010bf39f1eb55ee0394581ced67b2e6fa7b92"
+  },
+  {
+    "serviceId": "f3ee3df2-22aa-4492-8097-cb376d5db11b",
+    "code": "spotify",
+    "asset": "assets/brands/spotify.png",
+    "original": "assets/brands/spotify.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Spotify_logo_without_text.svg",
+    "copyrightStatus": "PD-textlogo",
+    "reviewedOn": "2026-10-25",
+    "usage": "Tanımlayıcı katalog kullanımı; marka tescili sürer, ortaklık/onay iddiası yok. Renk/oran/şekil korunur; PNG boyutlandırması dışında değişiklik yok.",
+    "sha256": "72984c8e3ff72bcc9d1f689ecf32ea4da74b74b27cbf1341f8f36de686b3ebbb"
+  },
+  {
+    "serviceId": "37e55a59-6067-4afd-98ee-d9f1585fc3c9",
+    "code": "opet",
+    "asset": "assets/brands/opet.png",
+    "original": "assets/brands/opet.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Opet_logo.svg",
+    "copyrightStatus": "PD-textlogo",
+    "reviewedOn": "2026-10-25",
+    "usage": "Tanımlayıcı katalog kullanımı; marka tescili sürer, ortaklık/onay iddiası yok. Renk/oran/şekil korunur; PNG boyutlandırması dışında değişiklik yok.",
+    "sha256": "cae6330fe836376831711ab52117709f90493ac58572b8d05d06643b0897bd91"
+  },
+  {
+    "serviceId": "d9f4d7c8-c234-4cd2-815b-6100896ba386",
+    "code": "microsoft-365",
+    "asset": "assets/brands/microsoft.png",
+    "original": "assets/brands/microsoft.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Microsoft_logo_(2012).svg",
+    "copyrightStatus": "PD-textlogo",
+    "reviewedOn": "2026-10-25",
+    "usage": "Tanımlayıcı katalog kullanımı; marka tescili sürer, ortaklık/onay iddiası yok. Renk/oran/şekil korunur; PNG boyutlandırması dışında değişiklik yok.",
+    "sha256": "34ec1619e4a62515d67c5240fe5762ef5a1838fe67d2fb1fb0b001099cebf1db"
+  },
+  {
+    "serviceId": "9014b93e-7b76-46a2-9f1b-c101dfcbb3e1",
+    "code": "adobe-creative-cloud",
+    "asset": "assets/brands/adobe.png",
+    "original": "assets/brands/adobe.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Adobe_Corporate_logo.svg",
+    "copyrightStatus": "PD-textlogo",
+    "reviewedOn": "2026-10-25",
+    "usage": "Tanımlayıcı katalog kullanımı; marka tescili sürer, ortaklık/onay iddiası yok. Renk/oran/şekil korunur; PNG boyutlandırması dışında değişiklik yok.",
+    "sha256": "8c7f21dd6e9038216b218456df0aa03b01f30ef615af3d43a5a2e62b0953a631"
+  }
+]

@@ -1,3 +1,17 @@
+## Phase5.1.1 — Gerçek logo ve kategori düzeltmeleri (25 Ekim2026)
+
+Tüm kart hit alanı, tam kategori yolu, gerçek ebeveyn geri, ana ekranda dijital kısayollar, hiyerarşik arama, her zaman katalog yenile/pull-to-refresh ve5dakika stale cache uygulandı.116kategori,102aktif hizmet; araç23gideri korunur, haber10alt/7yayıncı ve tüm ana başlıkların anlamlı alt seçimleri var. Hazır hizmet olmayan yaprak özel kayıt sunar. Netflix/Spotify/Opet/Microsoft/Adobe5gerçek yerel varlığı;99hizmet fallback. Manifest/source/telif/marka notları korunur. Otomatik erişim116benzersiz,Payment115/Subscription50; fiziksel sayım değildir.
+
+TS/lint temiz; Jest180/180,18suite,skipped0; [rapor](PHASE5_1_1_REPORT.md). Doctor21/21,SDKuyumlu,nihaiHermes4106modül/8.2MB/36asset. Backend restore/build temiz;unit398/398,gerçekSQL269/269,skipped0;Development migration uygulandı,pending0,eski değer/rowversion değişmedi. Güncel API5086canlı37+4cleanup geçti. Audit8önceki bulgu korunur. [10Android kabulü](ANDROID_TESTING.md), [her ana kategori denetimi](../../docs/CATALOG_AUDIT.md). Fiziksel kabul ve öncekiPhase6push/Phase4inbox açıkları sürer. Android öncesi eski backend yerine güncel build'i yeniden başlatın. YeniPhase6/7,SMTP/Resend/production yoktur; aşağıdaki kayıtlar tarihseldir.
+
+## Phase5.1 — Kategori, katalog ve ödeme UX (25 Ekim 2026)
+
+Ortak tam ekran katalog seçici iki formda aktiftir: popülerler, kategori ağacı, araç/yakıt türleri, 300ms TR arama, pagination, özel kayıt, Android geri ve hata/boş/tekrar dene. GUID'siz eski satırlar ağ isteği yapmadan görünür; adlar korunur. Yeni seçim tutar/tarih belirlemez, abonelik tek mevcut PaymentPlan kullanır. Liste/detay/Dashboard/takvim ortak kimlik gösterir. 0 gerçek logo/97fallback; yerel lisanslı asset eklenmedi. Cache24saat yalnız bellekte, logout temizler.
+
+Son TS/lint temiz; Jest173/173,16suite,skipped0; Doctor21/21, SDKpaket uyumlu, Hermes4099modül/8.2MB; Metro200. Backend restore/build temiz, unit397/397; gerçek SQL nihai267/267,skipped0; [rapor](PHASE5_1_REPORT.md). Gerçek API28+4cleanup geçti. Development migration uygulandı, eski değer/rowversion değişmedi. Canlı sayısal enum hatası giderildi, ham JSON regresyonu eklendi. Audit önceki8(5high/3moderate) kalır.
+
+**Fiziksel Android Phase5.1 yapılmadı:** [20 adım](ANDROID_TESTING.md) bekler. Gerçek marka görseli0 ve bazı sağlayıcı doğrulama sınırları açıktır. Önceki Phase6 push kabulü, Phase4 inbox/fiziksel maddeleri korunur. Phase7/push kurulum/SMTP/Resend/production yoktur. [19 maddeli sonuç](PHASE5_1_REPORT.md), [backend sözleşmesi](../../docs/CATALOG.md). Aşağıdaki faz kayıtları tarihseldir.
+
 # Frontend Phase 6 — Push ve hatırlatmalar
 
 **24 Ekim2026.** Kullanıcı açık Phase6 talebiyle reminder CRUD/native saat seçimi, gerçek hesap notification/timezone/currency tercihleri, cihaz permission/channel/Expo token registration/rotation, opt-in ve güvenli logout cleanup, typed tap/login sonrası ownership kontrolü uygulandı. Backend'e yalnız mevcut push mesajına payment/subscription resource target/channel ve generic trial metni eklendi; yeni endpoint/migration yok. Expo57/RN0.86/net8/EF8 korundu; SDK57 uyumlu Notifications/Device/DevClient/BuildProperties kuruldu. Development APK profili/config/preflight hazır; HTTP izni yalnız development'ta (manifest introspect true/production false).

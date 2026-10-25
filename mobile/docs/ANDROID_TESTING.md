@@ -1,3 +1,53 @@
+# Android kabulü — Phase5.1.1
+
+25 Ekim2026. **Aşağıdaki fiziksel10senaryonun tamamı kullanıcı kabulünü bekler.** Otomatik116kategori yol erişimi ve backend gerçekHTTP sonuçları cihaz görünürlüğü kanıtı değildir. Önce güncel backend'i yeniden başlat, Development migration pending0olduğunu doğrula;Metro `npx.cmd expo start --go --clear`,doğruLANadresiveaynıWiFi. Seçicide Kataloğu yenile. Gerçek token/kişisel veri screenshot paylaşma. Önceki Phase5/5.1/6matrisleri aşağıda tarihsel olarak korunur.
+
+| # | Fiziksel akış | Beklenen | Durum |
+| --- | --- | --- | --- |
+|1| Ödeme Ekle→Araç ve Ulaşım→Yakıt→Shell | Kartın ikon/boş alanına dokunmak da açar;Shell doğrudanYakıt'ta görünür;formtekseferlik,para/tarihmanuel | Bekliyor |
+|2| Ödeme Ekle→Araç ve Ulaşım→Bakım ve Tamir | Bosch Car Service/Otopratik/Özel Tamirci seçilir;tekPaymentPlan | Bekliyor |
+|3| Ödeme Ekle→Araç ve Ulaşım→Motorlu Taşıtlar Vergisi→MTV | Tutar/yasal taksit/tarihuydurulmaz;seçim formu açar | Bekliyor |
+|4| Ödeme Ekle→Araç ve Ulaşım→Araç Muayenesi→TÜVTÜRK | Doğrukategori;mevcutplanaltyapısı;Egzozda daüyelik | Bekliyor |
+|5| Abonelik Ekle→Haber ve Yayıncılık→Dijital Gazete | NYT/WSJ/FT/Bloomberg;gerçekfaturatutar/sıklığınıkullanıcıseçer;basılıgazete/spor boşhazırlistedeözelabonelikaçılır | Bekliyor |
+|6| Abonelik Ekle→Film ve Dizi→Netflix | Doğrudankısayol veyaDijitalaltındanerişim;gerçekNetflixwordmark,formdolumu,teklinkedplan | Bekliyor |
+|7| Abonelik Ekle→Müzik ve Podcast→Spotify | GerçekSpotifygörseli,doğrukategori,amount19,4korunur;araçkategorisiyok | Bekliyor |
+|8| Herhangi bir alt kategori→Bu kategoride özel ödeme/abonelik | Manuelözelisim,doğrukategori,ortakkataloğayazımyok;heranabaşlığıdenetimtablosunagöregez | Bekliyor |
+|9| Netflix/Spotify/Opet/Microsoft365/AdobeCreativeCloud ve fallback |5gerçekyerellogo,diğerlerindeikon;light/dark,uzunisim/büyükyazı/darekran,scroll,aramanet/spot/arac/dogalgaz,tamyol,Androidgeri | Bekliyor |
+|10| Eski ödeme/abonelik ve Dashboard/takvim/geçmiş | Eskiad/kategori/tutar/rowversionkorunur;çiftsayım/ikinciyazımyok;logout/başkahesaptaözelverisızmaz | Bekliyor |
+
+[Her ana kategori→altkategori→hizmet denetimi](../../docs/CATALOG_AUDIT.md), [sonuç raporu](PHASE5_1_1_REPORT.md). Cihaz/model/OS/tarih ve başarısız adımı ayrıca kaydet. Phase6gerçekpush ve Phase4inbox açıkları bu kabulden bağımsızdır. Sonraki faz başlatılmadı.
+
+# Android kabul matrisi — Phase5.1
+
+25 Ekim 2026. **Bu20adım fiziksel cihazda bu oturumda çalıştırılmadı; tamamı bekliyor.** Expo Go ile katalog CRUD denenebilir. Gerçek push kabulü aşağıdaki Phase6 bölümünde ayrı açık kalır. Önceki Phase5 kullanıcı başarı bildirimi bu yeni arayüzün kabulü değildir.
+
+Ön koşullar: aynı Wi-Fi/LAN API, güncel Development backend, uygulanmış CatalogFoundation, aktif test hesabı, test amaçlı bütçe verileri. Free plan/abonelik sınırlarını aşmamak için yalnız kendi test kayıtlarını temizle veya yetkili Premium test hesabı kullan. Credential/token ekran görüntüsü paylaşma. Yeni kayıtta fiyat ve tarihi kendin gir; otomatik fiyat/sağlayıcı teslimi yoktur. Gerçek marka logosu0; kategori ikonu beklenir.
+
+| # | Senaryo ve beklenen sonuç | Durum |
+| --- | --- | --- |
+| 1 | Yeni ödeme aç: tam ekran kategori/hizmet seçici, popüler hizmetler, güvenli alan ve okunabilir başlık | Bekliyor |
+| 2 | Dijital→Film/Dizi→Netflix: doğru kategori/ad ve aylık öneri; tutar/tarih uydurulmaz | Bekliyor |
+| 3 | Netflix tutarını12,3456 girip kaydet: listede/detayda dört basamak korunur, tek istek/tek plan | Bekliyor |
+| 4 | `net` ve `spot` araması: debounce sonrası ilgili sonuç; hızlı yazmada eski sonuç seçime karışmaz | Bekliyor |
+| 5 | `dogalgaz`, `arac`, `ARAÇ`, `turk` araması: Türkçe/diakritik eşleşme, boş sonuç açıklaması | Bekliyor |
+| 6 | Araç→Yakıt→Benzin→Shell: ad/kategori doğru, tek seferlik öneri; sıklık değiştirilebilir | Bekliyor |
+| 7 | Motorin ve LPG'de de Shell/uygun hizmetler görünür; seçilen alt kategori korunur | Bekliyor |
+| 8 | Araç 23 gider türü: bakım/tamir/lastik/sigorta/MTV/HGS/otopark vb gezin; liste scroll ve geri düzgün | Bekliyor |
+| 9 | MTV seç: fiyat/yasal taksit/tarih hesaplanmaz; kullanıcı tarihi ve tutarı belirler | Bekliyor |
+| 10 | Seçilen kategoride özel ödeme: manuel isim yaz, kaydet; başka hesap kataloğuna eklenmez | Bekliyor |
+| 11 | Diğer→özel kayıt; seçici kapat/aç ve Android geri: taslak tutar/tarih korunur, önce alt gezinme geri gider | Bekliyor |
+| 12 | Yeni abonelik→Netflix: ad/sağlayıcı ve sıklık dolar; tutar/deneme/fatura tarihi manuel, tek bağlı plan | Bekliyor |
+| 13 | Abonelik seçicisinde araç/yakıt hizmetleri yok; özel abonelik manuel adla kaydedilir | Bekliyor |
+| 14 | Apple TV/bp yeni seçimde yok; iCloud+/HBO Max/Google AI Pro ve eski ad araması beklenen davranışta | Bekliyor |
+| 15 | Ödeme/abonelik listesi, detay, Dashboard ve takvimde kategori kimliği/fallback tutarlı; toplamlar çift sayılmaz | Bekliyor |
+| 16 | Eski GUID'siz kayıt adı/kategorisi aynen görünür; düzenleyip kaydetmek zorla katalog eşleştirme yapmaz | Bekliyor |
+| 17 | Önce katalog yükle, interneti kes: aynı oturum cache'i/finansal eski kayıtlar korunur. İlk soğuk offline açılış hata/tekrar dene gösterir | Bekliyor |
+| 18 | API erişimini geri getir, tekrar dene: kategori/hizmet gelir; logout/başka hesapta özel ad/taslak sızmaz | Bekliyor |
+| 19 | Açık/koyu tema, büyük yazı, dar ekran, uzun isim, ekran okuyucu, klavye/scroll kontrolü; gerçek logo0 olduğu anlaşılır, bozuk resim fallback unit testi fiziksel logo kanıtı sayılmaz | Bekliyor |
+| 20 | Free limit/rowversion çakışması/çift dokunma ve silme: açık hata, ikinci plan/tutar yok; eski ödeme/geçmiş ve mevcut bildirim navigasyonu bozulmaz | Bekliyor |
+
+[19 maddeli rapor](PHASE5_1_REPORT.md), [merkezi sözleşme](../../docs/CATALOG.md), [logo/lisans envanteri](../../docs/CATALOG_LOGOS.md). Kabul sonuçlarını gerçek cihaz/model/OS/tarih ile ayrıca kaydet. Aşağıdaki Phase6 ve eski matrisler korunmuştur.
+
 # Android kabul matrisi — Frontend Phase 6
 
 24 Ekim2026: kullanıcı Phase5 fiziksel testlerini başarılı bildirdi; bu bildirim Phase5 kabul kaydıdır. Aşağıdaki eski Phase5 matrisi tarihsel olarak korunur; bu oturumda yeniden fiziksel ölçülmedi. **Phase6 gerçek development APK ve fiziksel push kabulü henüz yapılmadı.** Phase4 açık maddeleri devam eder.

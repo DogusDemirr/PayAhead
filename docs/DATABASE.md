@@ -1,3 +1,13 @@
+## Phase5.1.1 — Additive katalog kapsamı
+
+`20261025145738_CatalogCoverage` yalnız INSERT ile60kategori,7hizmet,113üyelik ekler. Önceki kategori/hizmet kimlik,code,parent,isimleri değişmez; kullanıcı finansal kayıtlarına SQL UPDATE/DELETE yoktur. Yeni tablo/kolon yok;19tablo/PK,22FK aynı. Development `PayAheadDockerDevelopment` hedefi doğrulanıp açıkça uygulandı; eski katalog ve finansal değer/rowversion kontrolü aynı,pending0. Toplam116kategori/104hizmet/245üyelik;102aktif. İdempotentseed ve öncekiCatalogFoundation'dan dolu linked planla upgrade gerçek SQL'de geçti. Down yeni katalog satırlarını kaldırır; artık referans varsa NoAction FK engeller. Gerçek veri üzerinde rollback otomatik yapılmaz. [Kök neden](PHASE5_1_1_DIAGNOSIS.md), [rapor](../mobile/docs/PHASE5_1_1_REPORT.md). Aşağıdaki migration kayıtları tarihseldir.
+
+## Phase5.1 — Katalog migration'ı (25 Ekim 2026)
+
+`20261025134913_CatalogFoundation` üç tablo(CatalogCategories/CatalogServices/CatalogServiceCategories), PaymentPlans'a nullable CatalogCategoryId/CatalogServiceId, unique/index ve NoAction FK'ları ekler. Hizmet-kategori composite FK geçersiz eşleşmeyi de engeller. Toplam19tablo/PK,22FK; para19,4/DateOnly/UTC/rowversion değişmez. Eski migration'lar korunur; startup migrate yoktur. TrackedSubscription ikinci referans/plan depolamaz; mevcut bağlı plan üzerinden okur.
+
+Doğrulanmış loopback `PayAheadDockerDevelopment` hedefinde yalnız bu migration pending bulundu ve açıkça uygulandı. Önce/sonra eski user/plan/occurrence/subscription değerleri ve rowversion fingerprint aynı; backfill yok, pending0; kategori56/hizmet97/bağlantı132. İzole gerçek SQL'de önceki sürümden veriyle upgrade/rollback/re-upgrade ve idempotent seed testlidir. Gerçek veride rollback yeni katalog ilişkilerini kaybettirir; yedek/inceleme gerekir. [Ayrıntı](CATALOG.md), [rapor](../mobile/docs/PHASE5_1_REPORT.md).
+
 # Veritabanı
 
 ## Frontend Phase 4 — PasswordResetTokens

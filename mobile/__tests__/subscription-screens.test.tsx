@@ -11,6 +11,7 @@ import { useSubscriptions, useSubscriptionSummary, useExpiringTrials, useSubscri
 import { ApiError } from '../src/services/api-error';
 import { subscription, subscriptionSummary } from './subscription-fixtures';
 import { entitlement } from './finance-fixtures';
+jest.mock('../src/features/catalog/CatalogPicker', () => ({ CatalogSelectionField: ({ onSelect }: { onSelect(value: unknown): void }) => { const { Pressable, Text } = require('react-native'); return <Pressable accessibilityRole="button" accessibilityLabel="Test özel kategorisini seç" onPress={() => onSelect({ category: { id: 'c1111111-1111-4111-8111-111111111111', nameTr: 'Diğer' }, service: null })}><Text>Kategori seç</Text></Pressable>; } }));
 jest.mock('../src/features/subscriptions/queries', () => ({ useSubscriptions: jest.fn(), useSubscriptionSummary: jest.fn(), useExpiringTrials: jest.fn(), useSubscriptionMutation: jest.fn() }));
 jest.mock('../src/features/payments/queries', () => ({ useEntitlements: () => ({ data: undefined, refetch: jest.fn() }) }));
 jest.mock('../src/components/date-field', () => ({ DateField: ({ label, value, onChange, disabled, error }: { label: string; value: string; onChange: (value: string) => void; disabled?: boolean; error?: string }) => { const { TextInput, Text, View } = require('react-native'); return <View><TextInput accessibilityLabel={label} value={value} onChangeText={onChange} editable={!disabled} />{error && <Text>{error}</Text>}</View>; } }));
@@ -23,7 +24,7 @@ beforeEach(() => {
   mutateAsync.mockReset(); mutateAsync.mockResolvedValue(subscription);
   jest.mocked(useSubscriptionMutation).mockReturnValue({ mutateAsync, isPending: false } as unknown as ReturnType<typeof useSubscriptionMutation>);
 });
-async function fill() { await fireEvent.changeText(screen.getByLabelText('Abonelik adı'), 'Real subscription'); await fireEvent.changeText(screen.getByLabelText('Sağlayıcı adı'), 'Real provider'); await fireEvent.changeText(screen.getByLabelText('Abonelik tutarı'), '199,9001'); }
+async function fill() { await fireEvent.changeText(screen.getByLabelText('Abonelik adı'), 'Real subscription'); await fireEvent.changeText(screen.getByLabelText('Sağlayıcı adı'), 'Real provider'); await fireEvent.changeText(screen.getByLabelText('Abonelik tutarı'), '199,9001'); await fireEvent.press(screen.getByRole('button', { name: 'Test özel kategorisini seç' })); }
 const formProps = { today: '2026-10-24', trackingCount: 0, paymentCount: 0, reload: async () => {} };
 test('real list uses server pagination/status/currency and detail navigation', async () => {
   await render(<SubscriptionsScreen />); expect(screen.getByText('21 abonelik · Sayfa 1/2')).toBeTruthy();

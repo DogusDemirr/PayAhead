@@ -95,7 +95,7 @@ public sealed partial class OverviewService(IOverviewStore store, ICurrentUser c
             payments[key] = new(plan.Id, plan.Name, date,
                 status == OccurrenceStatus.Paid ? occurrence!.ActualAmount!.Value : plan.Amount,
                 plan.CurrencyCode, plan.Category, plan.Frequency, status, occurrence?.ActualAmount,
-                occurrence?.PaidAtUtc is { } paidAt ? DateTime.SpecifyKind(paidAt, DateTimeKind.Utc) : null);
+                occurrence?.PaidAtUtc is { } paidAt ? DateTime.SpecifyKind(paidAt, DateTimeKind.Utc) : null) { CatalogCategoryId = plan.CatalogCategoryId, CatalogServiceId = plan.CatalogServiceId };
         }
     }
 

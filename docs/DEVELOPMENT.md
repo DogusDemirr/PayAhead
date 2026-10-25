@@ -1,3 +1,27 @@
+## Phase5.1.1 — Güncel katalog için yeniden başlatma
+
+Bu makinenin doğrulanmış Development DB'sine `20261025145738_CatalogCoverage` uygulandı;pending0. Başka ortamda önce hedef/pendingmigration kontrolü ve yedek/inceleme yapın; startup migrate yoktur. Sonra açık eski API terminalini Ctrl+C ile kontrollü kapatıp `./scripts/Start-Development.ps1 -Port 5080` çalıştırın. Güncel kod ayrı artifacts çıktısında derlenir; eski `src/bin` DLL'i `--no-build` ile çalıştırmayın. Bu oturum mevcut eski API'yi durdurmadı; güncel API ayrı5086portunda doğrulandı.
+
+Katalog testleri: `.tools/dotnet/dotnet.exe test PayAhead.sln --filter FullyQualifiedName~Catalog`;tam restore/build/test de çalıştırılmalıdır. Açık süreç default output DLL'lerini kilitliyorsa `--artifacts-path artifacts/phase511-check` ile restore/build/test aynı yolu kullanın. Docker Engine SQL Testcontainers için gereklidir. [Rapor](../mobile/docs/PHASE5_1_1_REPORT.md), [model/API](CATALOG.md), [kategori denetimi](CATALOG_AUDIT.md).
+
+## Phase5.1 — Kataloğu çalıştırma ve doğrulama
+
+Hedef development DB ve pending migration listesini önce doğrulayın. Secret connection string'i komut/loga yazmayın. SQL Compose'u mevcut `.env` ile `docker compose --env-file .env -f docker/compose.yml up -d --wait` kullanarak başlatın; volume silmeyin. `stop sqlserver` veriyi korur.
+
+```powershell
+$env:DOTNET_CLI_HOME="$PWD/.tools/cli"
+$env:ASPNETCORE_ENVIRONMENT='Development'
+& ./.tools/dotnet/dotnet.exe tool restore
+& ./.tools/dotnet/dotnet.exe ef migrations list --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api
+# Yalnız doğru hedef ve bekleyen migration doğrulandıktan sonra:
+& ./.tools/dotnet/dotnet.exe ef database update 20261025145738_CatalogCoverage --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api
+& ./.tools/dotnet/dotnet.exe restore PayAhead.sln
+& ./.tools/dotnet/dotnet.exe build PayAhead.sln --no-restore
+& ./.tools/dotnet/dotnet.exe test PayAhead.sln --no-build
+```
+
+Testcontainers gerçek SQL2022 için Docker Engine gerektirir. `--filter FullyQualifiedName~Catalog` katalog testlerini seçer; tam regresyonu ayrıca çalıştırın. SQL yokken başarı raporlamayın. Startup migration yapmaz. Bu makinenin Development DB'sine CatalogFoundation zaten uygulandı (pending0). Eski referanslar otomatik doldurulmadı. [Şema/API/cache/seed](CATALOG.md), [19 maddeli sonuç](../mobile/docs/PHASE5_1_REPORT.md).
+
 # Geliştirme
 
 Frontend Phase 4 ayrıca onaylanarak uygulanmıştır: [şifre sıfırlama, SMTP/Mailpit, development migration ve Expo bağlantısı](PASSWORD_RESET.md), [analiz API](ANALYTICS.md). E-posta varsayılan kapalı; provider kimlik bilgileri yalnızca environment/User Secrets. Gerçek inbox ve fiziksel Android kabulü ayrı adımlardır.

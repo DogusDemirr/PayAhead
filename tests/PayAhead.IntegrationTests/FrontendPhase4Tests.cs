@@ -118,8 +118,11 @@ public sealed class FrontendPhase4Tests(SqlServerFixture sql) : IClassFixture<Sq
         await migrator.MigrateAsync("20261021152026_ProductionOperations");
         var id = Guid.NewGuid(); var now = DateTime.UtcNow;
         db.Users.Add(new() { Id = id, Email = "migration@example.test", NormalizedEmail = "MIGRATION@EXAMPLE.TEST", DisplayName = "Retained", PasswordHash = "retained-hash", CreatedAtUtc = now, UpdatedAtUtc = now });
-        db.PaymentPlans.Add(new() { Id = Guid.NewGuid(), UserId = id, Name = "Retained", Amount = 10.1234m, CurrencyCode = "TRY", Category = "Bills", StartDate = DateOnly.FromDateTime(now), Frequency = PaymentFrequency.Once, CreatedAtUtc = now, UpdatedAtUtc = now });
-        await db.SaveChangesAsync(); await db.Database.MigrateAsync();
+        await db.SaveChangesAsync();
+        // Insert using the historical schema; the current EF model has later nullable catalog columns.
+        var retainedAmount = new SqlParameter("RetainedAmount", System.Data.SqlDbType.Decimal) { Precision = 19, Scale = 4, Value = 10.1234m };
+        await db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO PaymentPlans (Id,UserId,Name,Amount,CurrencyCode,Category,Frequency,Interval,StartDate,IsActive,CreatedAtUtc,UpdatedAtUtc) VALUES ({Guid.NewGuid()},{id},{"Retained"},{retainedAmount},{"TRY"},{"Bills"},{0},{1},{DateOnly.FromDateTime(now)},{true},{now},{now})");
+        await db.Database.MigrateAsync();
         Assert.Equal("retained-hash", (await db.Users.SingleAsync()).PasswordHash); Assert.Equal(10.1234m, (await db.PaymentPlans.SingleAsync()).Amount);
         Assert.Empty(await db.Set<PasswordResetToken>().ToArrayAsync()); Assert.False(db.Database.HasPendingModelChanges());
     }

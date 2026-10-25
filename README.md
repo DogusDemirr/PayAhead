@@ -1,3 +1,7 @@
+> **Phase5.1.1 — 25 Ekim2026:** Katalog gezinme/hit alanı/arama ve içerik eksikleri giderildi.116kategori(19kök/97alt),104hizmet(102aktif),245bağlantı;5gerçek yerel marka görseli/99fallback. CatalogCoverage Development'a uygulandı; eski veriler/rowversion/kimlikler korunur,pending0. [Rapor](mobile/docs/PHASE5_1_1_REPORT.md), [her ana kategori denetimi](docs/CATALOG_AUDIT.md), [kök neden](docs/PHASE5_1_1_DIAGNOSIS.md). Fiziksel Android kabulü bekler; aşağıdaki Phase5.1 sayıları tarihsel kayıttır.
+
+> **25 Ekim 2026 — Phase5.1:** Merkezi kategori/hizmet kataloğu ve mobil ödeme/abonelik seçimi eklendi. 56 kategori,97 hizmet(95aktif),132 bağlantı; gerçek marka logosu0, kategori ikonu fallback97. Development CatalogFoundation migration'ı uygulanmış, eski finansal değerler/rowversion korunmuştur. Fiziksel Android kabulü bekler. [Model/API](docs/CATALOG.md), [19 maddeli rapor](mobile/docs/PHASE5_1_REPORT.md), [envanter](docs/CATALOG_INVENTORY.md), [lisanslar](docs/CATALOG_LOGOS.md). Önceki Phase6 push kabulü açık; SMTP/Resend/production/Phase7 kapsam dışıdır.
+
 # PayAhead Backend
 
 Frontend Phase 4 için additive `PasswordResetTokens` migration'ı, güvenli reset API/e-posta kuyruğu ve read-only `/api/analytics` eklendi. [Şifre sıfırlama ve SMTP kurulumu](docs/PASSWORD_RESET.md), [analiz sözleşmesi](docs/ANALYTICS.md), [mobil uygulama](mobile/README.md). Production deployment yapılmadı; mevcut development API yeni kod/migration ile kontrollü yeniden başlatılmalıdır.

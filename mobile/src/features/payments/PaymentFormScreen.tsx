@@ -11,6 +11,7 @@ import { FinanceError, LimitNotice } from './components';
 import { paymentFormSchema, formDefaults, toPaymentWrite, frequencyLabels, type PaymentFields } from './validation';
 import { DateField } from '../../components/date-field';
 import type { PaymentPlan, Entitlement } from './contracts';
+import { CatalogSelectionField } from '../catalog/CatalogPicker';
 
 export default function PaymentFormScreen({ id }: { id?: string }) {
   const query = usePayment(id); const clock = useFinanceClock(); const entitlements = useEntitlements(); const [revision, setRevision] = useState(0);
@@ -24,10 +25,15 @@ export function PaymentForm({ plan, today, activeCount, entitlement, entitlement
   const [failure, setFailure] = useState<unknown>(null); const [conflict, setConflict] = useState(false); const [uncertain, setUncertain] = useState(false);
   const { control, setValue, setError, handleSubmit, formState: { errors } } = useForm<PaymentFields>({ resolver: zodResolver(paymentFormSchema), defaultValues: formDefaults(today, original) });
   const startDate = useWatch({ control, name: 'startDate' });
+  const categoryId = useWatch({ control, name: 'catalogCategoryId' }); const serviceId = useWatch({ control, name: 'catalogServiceId' }); const category = useWatch({ control, name: 'category' });
+  const selectedName = useWatch({ control, name: 'name' });
+  const [catalogError, setCatalogError] = useState('');
   const frequency = useWatch({ control, name: 'frequency' }); const active = useWatch({ control, name: 'isActive' });
   const limitReached = !!entitlement && activeCount >= entitlement.limits.activePaymentPlans && !original?.isActive;
   const submit = () => handleSubmit(async (fields) => {
-    if (busy.current || conflict || uncertain) return; busy.current = true; setFailure(null);
+    if (busy.current || conflict || uncertain) return;
+    if (!original && !fields.catalogCategoryId) { setCatalogError('Bir kategori seç. Katalogda yoksa özel ödeme oluşturabilirsin.'); return; }
+    busy.current = true; setFailure(null);
     try {
       const body = toPaymentWrite(fields);
       const result = await mutation.mutateAsync(original ? { kind: 'update', id: original.id, rowVersion: original.rowVersion, body } : { kind: 'create', body });
@@ -49,16 +55,17 @@ export function PaymentForm({ plan, today, activeCount, entitlement, entitlement
       }
     } finally { busy.current = false; }
   })();
-  const input = (name: Exclude<keyof PaymentFields, 'isActive' | 'frequency'>, label: string, options: { numeric?: boolean; placeholder?: string; maxLength?: number; multiline?: boolean } = {}) => <Controller key={name} control={control} name={name} render={({ field }) => <AppInput label={label} value={field.value} onChangeText={field.onChange} onBlur={field.onBlur} error={errors[name]?.message} placeholder={options.placeholder} maxLength={options.maxLength} multiline={options.multiline} keyboardType={name === 'amount' ? 'decimal-pad' : options.numeric ? 'number-pad' : 'default'} autoCapitalize={name === 'currencyCode' ? 'characters' : 'sentences'} editable={!mutation.isPending && !conflict} />} />;
+  const input = (name: Exclude<keyof PaymentFields, 'isActive' | 'frequency' | 'catalogCategoryId' | 'catalogServiceId'>, label: string, options: { numeric?: boolean; placeholder?: string; maxLength?: number; multiline?: boolean } = {}) => <Controller key={name} control={control} name={name} render={({ field }) => <AppInput label={label} value={field.value} onChangeText={field.onChange} onBlur={field.onBlur} error={errors[name]?.message} placeholder={options.placeholder} maxLength={options.maxLength} multiline={options.multiline} keyboardType={name === 'amount' ? 'decimal-pad' : options.numeric ? 'number-pad' : 'default'} autoCapitalize={name === 'currencyCode' ? 'characters' : 'sentences'} editable={!mutation.isPending && !conflict && !uncertain} />} />;
   return <AppScreen keyboard><AppHeader title={original ? 'Planı düzenle' : 'Yeni ödeme'} subtitle="Gelecek günlerine yer aç." back />
     {entitlement && <AppText variant="caption" tone="muted" style={{ marginBottom: 16 }}>{entitlement.plan} · {activeCount}/{entitlement.limits.activePaymentPlans} aktif plan</AppText>}
     {(limitReached || failure instanceof ApiError && failure.code === 'entitlement_limit') && <LimitNotice />}
     {entitlementError && <AppText tone="warning" variant="caption" style={{ marginBottom: 16 }}>Üyelik limiti alınamadı. Kaydetme sırasında sunucu sınırı kontrol edecek.</AppText>}
     <View style={{ gap: 20 }}>
-      {input('name', 'Ödeme adı', { maxLength: 150, placeholder: 'Örn. İnternet faturası' })}
+      <CatalogSelectionField mode="Payment" initialOpen={!original} categoryId={categoryId} serviceId={serviceId} legacyCategory={category || undefined} error={catalogError || errors.catalogCategoryId?.message || errors.catalogServiceId?.message || errors.category?.message} disabled={mutation.isPending || conflict || uncertain} onSelect={selection => { setCatalogError(''); setValue('catalogCategoryId', selection.category.id); setValue('catalogServiceId', selection.service?.id ?? null); setValue('category', selection.category.nameTr); if (selection.service) { setValue('name', selection.service.displayName); setValue('frequency', selection.service.defaultRecurrenceType ?? 'Once'); setValue('anchorDay', ''); } else if (serviceId) setValue('name', ''); }} />
+      {!serviceId || original ? input('name', 'Ödeme adı', { maxLength: 150, placeholder: 'Örn. Mahalle tamircisi' }) : <AppText variant="section">{selectedName}</AppText>}
       {input('amount', 'Tutar', { placeholder: '899,90' })}
       {input('currencyCode', 'Para birimi · ISO 4217', { maxLength: 3, placeholder: 'TRY / USD / EUR' })}
-      {input('category', 'Kategori', { maxLength: 50, placeholder: 'Örn. Ev ve yaşam' })}
+      {original && !categoryId && input('category', 'Kategori', { maxLength: 50 })}
       <AppText variant="label">Tekrarlama</AppText>
       <Controller control={control} name="frequency" render={({ field }) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>{(Object.keys(frequencyLabels) as (keyof typeof frequencyLabels)[]).map((value) => <View key={value} style={{ minWidth: '45%', flexGrow: 1 }}><AppButton title={frequencyLabels[value] + (value === field.value ? ' ✓' : '')} variant={value === field.value ? 'primary' : 'secondary'} disabled={mutation.isPending || conflict} onPress={() => { field.onChange(value); if (!['Monthly', 'Yearly'].includes(value)) setValue('anchorDay', ''); }} /></View>)}</View>} />
       {frequency !== 'Once' && input('interval', 'Tekrar aralığı', { numeric: true, placeholder: '1' })}

@@ -4,6 +4,7 @@ import { frequencySchema, type PaymentWrite, type PaymentPlan } from './contract
 import { validDate } from './dates';
 import { currencyCodes } from './currencies';
 export const paymentFormSchema = z.object({
+  catalogCategoryId: z.uuid().nullable().optional(), catalogServiceId: z.uuid().nullable().optional(),
   name: z.string().trim().min(1, 'Ödeme adı yaz.').max(150, 'En fazla 150 karakter kullan.'),
   description: z.string().trim().max(2000, 'En fazla 2000 karakter kullan.'),
   amount: z.string().refine((value) => canonicalAmount(value) !== null, 'Pozitif, en fazla 15 tam ve 4 ondalık basamaklı tutar yaz. Örn. 899,90'),
@@ -20,10 +21,10 @@ export const paymentFormSchema = z.object({
 });
 export type PaymentFields = z.infer<typeof paymentFormSchema>;
 export function formDefaults(today: string, plan?: PaymentPlan): PaymentFields {
-  return plan ? { ...plan, description: plan.description ?? '', amount: plan.amount.replace('.', ','), interval: String(plan.interval), endDate: plan.endDate ?? '', anchorDay: plan.anchorDay === null ? '' : String(plan.anchorDay) } : { name: '', description: '', amount: '', currencyCode: 'TRY', category: '', frequency: 'Monthly', interval: '1', startDate: today, endDate: '', anchorDay: '', isActive: true };
+  return plan ? { ...plan, description: plan.description ?? '', amount: plan.amount.replace('.', ','), interval: String(plan.interval), endDate: plan.endDate ?? '', anchorDay: plan.anchorDay === null ? '' : String(plan.anchorDay) } : { catalogCategoryId: undefined, catalogServiceId: undefined, name: '', description: '', amount: '', currencyCode: 'TRY', category: '', frequency: 'Monthly', interval: '1', startDate: today, endDate: '', anchorDay: '', isActive: true };
 }
 export function toPaymentWrite(fields: PaymentFields): PaymentWrite {
   const value = paymentFormSchema.parse(fields);
-  return { name: value.name, description: value.description || null, amount: canonicalAmount(value.amount)!, currencyCode: value.currencyCode, category: value.category, frequency: value.frequency, interval: Number(value.interval), startDate: value.startDate, endDate: value.endDate || null, anchorDay: ['Monthly', 'Yearly'].includes(value.frequency) && value.anchorDay ? Number(value.anchorDay) : null, isActive: value.isActive };
+  return { name: value.name, description: value.description || null, amount: canonicalAmount(value.amount)!, currencyCode: value.currencyCode, category: value.category, frequency: value.frequency, interval: Number(value.interval), startDate: value.startDate, endDate: value.endDate || null, anchorDay: ['Monthly', 'Yearly'].includes(value.frequency) && value.anchorDay ? Number(value.anchorDay) : null, isActive: value.isActive, ...(value.catalogCategoryId !== undefined ? { catalogCategoryId: value.catalogCategoryId, catalogServiceId: value.catalogServiceId ?? null } : {}) };
 }
 export const frequencyLabels = { Once: 'Tek seferlik', Daily: 'Günlük', Weekly: 'Haftalık', Monthly: 'Aylık', Yearly: 'Yıllık' } as const;

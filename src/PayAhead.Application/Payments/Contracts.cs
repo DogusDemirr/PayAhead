@@ -3,7 +3,7 @@ using PayAhead.Domain;
 
 namespace PayAhead.Application.Payments;
 
-public abstract class PaymentWriteRequest
+public abstract class PaymentWriteRequest : PayAhead.Application.Catalog.CatalogReferenceRequest
 {
     public string? Name { get; init; }
     public string? Description { get; init; }
@@ -43,10 +43,12 @@ public sealed record PaymentResponse(Guid Id, string Name, string? Description, 
     string Category, PaymentFrequency Frequency, int Interval, DateOnly StartDate, DateOnly? EndDate, int? AnchorDay,
     bool IsActive, DateTime CreatedAtUtc, DateTime UpdatedAtUtc, string RowVersion)
 {
+    public Guid? CatalogCategoryId { get; init; }
+    public Guid? CatalogServiceId { get; init; }
     public static PaymentResponse From(PaymentPlan plan) => new(plan.Id, plan.Name, plan.Description, plan.Amount,
         plan.CurrencyCode, plan.Category, plan.Frequency, plan.Interval, plan.StartDate, plan.EndDate, plan.AnchorDay,
         plan.IsActive, DateTime.SpecifyKind(plan.CreatedAtUtc, DateTimeKind.Utc),
-        DateTime.SpecifyKind(plan.UpdatedAtUtc, DateTimeKind.Utc), Convert.ToBase64String(plan.RowVersion));
+        DateTime.SpecifyKind(plan.UpdatedAtUtc, DateTimeKind.Utc), Convert.ToBase64String(plan.RowVersion)) { CatalogCategoryId = plan.CatalogCategoryId, CatalogServiceId = plan.CatalogServiceId };
 }
 
 public static class Pagination

@@ -26,6 +26,7 @@ public sealed class SubscriptionStore(PayAheadDbContext db, IEntitlementService?
             if (await db.Users.FromSqlInterpolated($"SELECT * FROM Users WITH (UPDLOCK,HOLDLOCK) WHERE Id={user} AND IsActive=1").SingleOrDefaultAsync(ct) is null) throw new AuthenticationRequiredException();
             if (await db.TrackedSubscriptions.CountAsync(x => x.UserId == user && !x.IsDeleted, ct) >= 1000) throw new ResourceConflictException("En fazla 1000 abonelik oluşturulabilir.");
             var plan = PaymentPlan.Create(user, Details(request), now);
+            await ApplyCatalog(plan, request, false, ct);
             var s = new TrackedSubscription { Id = Guid.NewGuid(), UserId = user, PaymentPlanId = plan.Id, CreatedAtUtc = now };
             Apply(s, request, now);
             if (s.EffectiveStatus(today) is SubscriptionStatus.Active or SubscriptionStatus.Trial) await Policy.EnsureIncreaseAsync(user, LimitResource.TrackedSubscriptions, null, 1, ct);
@@ -40,7 +41,8 @@ public sealed class SubscriptionStore(PayAheadDbContext db, IEntitlementService?
             var row = await Locked(user, id, Convert.FromBase64String(request.RowVersion!), ct);
             Mutable(row.Subscription, today); row.Subscription.Transition(request.Status!.Value, today);
             if (!row.Plan.IsActive && request.AutoRenew) await Policy.EnsureIncreaseAsync(user, LimitResource.PaymentPlans, null, 1, ct);
-            Apply(row.Subscription, request, now); row.Plan.UpdateDetails(Details(request), now);
+            Apply(row.Subscription, request, now); row.Plan.UpdateDetails(Details(request, row.Plan.Category), now);
+            await ApplyCatalog(row.Plan, request, true, ct);
             await CancelPending(row.Plan.Id, now, ct); await SyncTrialRules(row.Subscription, ct);
             await db.SaveChangesAsync(ct); return row;
         }, ct);
@@ -71,7 +73,15 @@ public sealed class SubscriptionStore(PayAheadDbContext db, IEntitlementService?
     }
     private static void Mutable(TrackedSubscription s, DateOnly today)
     { if (s.EffectiveStatus(today) is SubscriptionStatus.Cancelled or SubscriptionStatus.Expired) throw new ResourceConflictException("İptal edilmiş veya süresi bitmiş abonelik güncellenemez."); }
-    private static PaymentPlanDetails Details(SubscriptionRequest r) => new(r.Name!.Trim(), r.Description?.Trim(), r.Amount!.Value, r.CurrencyCode!.Trim().ToUpperInvariant(), "Subscriptions", r.BillingFrequency!.Value, r.BillingInterval!.Value, r.FirstBillingDate!.Value,
+    private async Task ApplyCatalog(PaymentPlan plan, SubscriptionRequest request, bool update, CancellationToken ct)
+    {
+        if (!request.CatalogSelectionSpecified) return;
+        var unchanged = update && plan.CatalogCategoryId == request.CatalogCategoryId && plan.CatalogServiceId == request.CatalogServiceId;
+        var category = await new CatalogStore(db).ValidateSelectionAsync(request.CatalogCategoryId, request.CatalogServiceId, CatalogApplicability.Subscription, unchanged, ct);
+        plan.CatalogCategoryId = request.CatalogCategoryId; plan.CatalogServiceId = request.CatalogServiceId;
+        if (category is not null && !unchanged) plan.Category = category.NameTr;
+    }
+    private static PaymentPlanDetails Details(SubscriptionRequest r, string category = "Subscriptions") => new(r.Name!.Trim(), r.Description?.Trim(), r.Amount!.Value, r.CurrencyCode!.Trim().ToUpperInvariant(), category, r.BillingFrequency!.Value, r.BillingInterval!.Value, r.FirstBillingDate!.Value,
         r.AutoRenew ? r.AccessEndsOn : null, r.AnchorDay, r.AutoRenew);
     private static void Apply(TrackedSubscription s, SubscriptionRequest r, DateTime now)
     {

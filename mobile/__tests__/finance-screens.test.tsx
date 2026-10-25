@@ -9,6 +9,7 @@ import { PaymentForm } from '../src/features/payments/PaymentFormScreen';
 import { useDashboard, usePaymentList, useFinanceClock, usePayment, usePaymentMutation } from '../src/features/payments/queries';
 import { ApiError } from '../src/services/api-error';
 import { plan, projected, summary, entitlement } from './finance-fixtures';
+jest.mock('../src/features/catalog/CatalogPicker', () => ({ CatalogSelectionField: ({ onSelect }: { onSelect(value: unknown): void }) => { const { Pressable, Text } = require('react-native'); return <Pressable accessibilityRole="button" accessibilityLabel="Test özel kategorisini seç" onPress={() => onSelect({ category: { id: 'c1111111-1111-4111-8111-111111111111', nameTr: 'Ev' }, service: null })}><Text>Kategori seç</Text></Pressable>; } }));
 jest.mock('../src/features/subscriptions/queries', () => ({ useSubscriptionSummary: () => ({ data: undefined, refetch: jest.fn() }), useExpiringTrials: () => ({ data: [], refetch: jest.fn() }) }));
 jest.mock('../src/features/payments/queries', () => ({ useDashboard: jest.fn(), usePaymentList: jest.fn(), useFinanceClock: jest.fn(), usePayment: jest.fn(), usePaymentMutation: jest.fn(), useEntitlements: jest.fn() }));
 function result<T>(data?: T, error?: Error) { return { data, error, isPending: !data && !error, isError: !!error, isRefetching: false, refetch: jest.fn(async () => ({ data, isSuccess: true })) }; }
@@ -47,7 +48,7 @@ test('payment list shows server count and plan status without pretending page is
   await fireEvent.press(screen.getByRole('button', { name: 'Sonraki' })); expect(usePaymentList).toHaveBeenLastCalledWith(expect.objectContaining({ pageNumber: 2 }));
 });
 async function fillCreateForm() {
-  await fireEvent.changeText(screen.getByLabelText('Ödeme adı'), 'Ev interneti'); await fireEvent.changeText(screen.getByLabelText('Tutar'), '899,9001'); await fireEvent.changeText(screen.getByLabelText('Kategori'), 'Ev');
+  await fireEvent.changeText(screen.getByLabelText('Ödeme adı'), 'Ev interneti'); await fireEvent.changeText(screen.getByLabelText('Tutar'), '899,9001'); await fireEvent.press(screen.getByRole('button', { name: 'Test özel kategorisini seç' }));
 }
 test('create form validates required fields before a mutation', async () => {
   await render(<PaymentForm today="2026-10-23" activeCount={0} reload={async () => {}} />);

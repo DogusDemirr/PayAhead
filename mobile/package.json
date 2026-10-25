@@ -50,6 +50,7 @@
     "test-renderer": "1.2.0"
   },
   "scripts": {
+    "test:catalog:live": "node --env-file-if-exists=.env scripts/catalog-smoke.cjs",
     "push:preflight": "node --env-file-if-exists=.env scripts/push-preflight.cjs",
     "test:notifications:live": "node --env-file-if-exists=.env scripts/notifications-smoke.cjs",
     "eas-build-pre-install": "node scripts/push-preflight.cjs",

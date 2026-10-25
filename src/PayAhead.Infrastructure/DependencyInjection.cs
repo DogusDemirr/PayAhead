@@ -18,6 +18,7 @@ public static class DependencyInjection
             options.UseSqlServer(provider.GetRequiredService<IConfiguration>().GetConnectionString("PayAhead"),
                 sql => sql.EnableRetryOnFailure(3).CommandTimeout(30)));
         services.AddScoped<IPaymentPlanStore, PaymentPlanStore>();
+        services.AddScoped<PayAhead.Application.Catalog.ICatalogStore, CatalogStore>();
         services.AddScoped<IOccurrenceStore, OccurrenceStore>();
         services.AddScoped<IOverviewStore, OverviewStore>();
         services.AddScoped<PayAhead.Application.Auth.IAuthStore, AuthStore>();

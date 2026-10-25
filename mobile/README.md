@@ -1,3 +1,7 @@
+> **Phase5.1.1:** Tüm kategori kartı tıklanır; tam yol/geri, hiyerarşik arama, alt kategori ve özel kayıt korunur.116kategori,102aktif hizmet;Netflix/Spotify/Opet/Microsoft/Adobe gerçek yerel görselleri,99fallback. [Sonuç](docs/PHASE5_1_1_REPORT.md), [10Android kabulü](docs/ANDROID_TESTING.md), [lisans/marka notları](assets/brands/NOTICE.md). Güncel backend'i yeniden başlatıp Metro cache'ini temizleyin. Fiziksel kabul, önceki push/inbox açıkları ayrı kalır.
+
+> **Phase5.1 — 25 Ekim 2026:** Ödeme/abonelik için ortak kategori/hizmet seçici, arama, popülerler, araç giderleri ve özel kayıt geliştirildi. 0 gerçek marka logosu; kategori ikonları fallback olarak kullanılır. TS/lint temiz, Jest173/173, Doctor21/21, Hermes4099modül/8.2MB. [Rapor](docs/PHASE5_1_REPORT.md), [Android20adım](docs/ANDROID_TESTING.md), [merkezi sözleşme](../docs/CATALOG.md). Fiziksel Phase5.1 kabulü ve mevcut Phase6 gerçek push kabulü bekler. Bu faz SMTP/production/Phase7 içermez.
+
 # PayAhead Mobile — Frontend Phase 6
 
 Gerçek ödeme hatırlatma CRUD, native saat seçimi, hesap bildirim/saat dilimi tercihleri, cihaz kaydı/rotation/çıkış temizliği ve güvenli bildirim tap navigasyonu eklendi. [Phase6 raporu](docs/PHASE6_REPORT.md), [gerçek EAS/FCM/push kurulum adımları](docs/PUSH_SETUP.md), [Android kabulü](docs/ANDROID_TESTING.md).
