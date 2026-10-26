@@ -22,6 +22,7 @@ public static class DependencyInjection
         services.AddSingleton<IPaymentRecurrenceCalculator, PaymentRecurrenceCalculator>();
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<PayAhead.Application.Catalog.CatalogReader>();
+        services.AddScoped<PayAhead.Application.Localization.LanguagePreferenceService>();
         services.AddScoped<IOccurrenceService, OccurrenceService>();
         services.AddScoped<IOverviewService, OverviewService>();
         services.AddScoped<IAnalyticsService, OverviewService>();

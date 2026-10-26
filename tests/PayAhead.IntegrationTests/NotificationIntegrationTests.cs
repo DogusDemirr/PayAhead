@@ -133,9 +133,11 @@ public sealed class NotificationIntegrationTests(SqlServerFixture sql) : IClassF
     public async Task Claimed_payment_message_targets_only_the_owned_payment_plan()
     {
         await Schedule(); await using var db = Db();
+        await db.UserSettings.Where(x => x.UserId == user).ExecuteUpdateAsync(s => s.SetProperty(x => x.LanguageCode, "ja"));
         var queue = Queue(db); var claimed = (await queue.ClaimAsync(Guid.NewGuid(), Now, CancellationToken.None))!;
         var message = await queue.RevalidateAsync(claimed, Now, CancellationToken.None);
-        Assert.NotNull(message); Assert.Equal(planId, message.PaymentPlanId); Assert.Null(message.SubscriptionId);
+        Assert.NotNull(message); Assert.Equal(planId, message.PaymentPlanId); Assert.Null(message.SubscriptionId); Assert.Equal("ja", message.LanguageCode);
+        Assert.Equal("お支払いのリマインダーがあります。", PayAhead.Application.Localization.NotificationText.Body(message.LanguageCode, false));
     }
     [Fact]
     public async Task Long_lead_schedules_due_beyond_thirty_days()

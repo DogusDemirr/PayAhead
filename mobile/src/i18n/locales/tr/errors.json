@@ -1,0 +1,16 @@
+{
+  "m_b7ac953bddf5": "İşlem tamamlanamadı. Tekrar deneyebilirsin.",
+  "m_97fef89efdf8": "Bağlantı zaman aşımına uğradı. Tekrar dene.",
+  "m_148edfcba033": "Sunucuya ulaşılamıyor. İnternet bağlantını ve API adresini kontrol et.",
+  "m_64872a0e18b3": "Şifre yenileme hizmeti şu anda kullanılamıyor. Daha sonra tekrar dene.",
+  "m_96d8c326f702": "Bağlantı geçersiz, kullanılmış veya süresi dolmuş. Yeni bir bağlantı iste.",
+  "m_0d2b1db5ac23": "E-posta veya şifre hatalı ya da oturum artık geçerli değil.",
+  "m_99a158d3b327": "Aktif kayıt limitine ulaştın. Mevcut planlarını pasifleştirebilir veya Premium seçeneklerini inceleyebilirsin.",
+  "m_a25c909874f9": "Bu işlem için yetkin yok.",
+  "m_cfec70e3a8bc": "Kayıt bulunamadı veya artık erişilemiyor.",
+  "m_4caef90dffc6": "Bu e-posta ile kayıt oluşturulamıyor.",
+  "m_73614d4af236": "Kayıt değişti. Güncel bilgileri yükleyip tekrar dene.",
+  "m_bef85276f101": "Çok fazla deneme yapıldı. Biraz bekleyip tekrar dene.",
+  "m_79cea1288206": "Sunucu şu anda kullanılamıyor. Daha sonra tekrar dene.",
+  "m_2d8988bb1fc4": "İstek tamamlanamadı."
+}

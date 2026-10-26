@@ -180,3 +180,23 @@ SDK 57 uyumlu [Expo Go](https://expo.dev/go), aynı Wi-Fi, çalışan SQL/backen
 Production HTTP reddi otomatik testte doğrulandı; gerçek cihaz production build testi yapılmadı. Web SecureStore oturumu desteklenmez. Örnek finans preview flag'i açılsa bile auth guard atlanamaz; varsayılan kapalıdır.
 
 Sonuç kaydı: cihaz modeli, Android ve Expo Go sürümü, boyut/font ölçeği, API erişim yolu, test satırı ve gözlenen sonucu yaz. JWT/parola/refresh body ekran görüntüsü veya loga koyma. Bu faz push cihazı kaydetmez ve gerçek finans verisini bağlamaz; bunları auth başarısı olarak test etme.
+## Phase 5.2 — Fiziksel Android kabulü (bekliyor)
+
+Otomatik Jest/SQL/HTTP testleri fiziksel Expo Go veya development build kabulü değildir. Her adımı light/dark ve büyük sistem yazı boyutuyla deneyin; gerçek kişisel veriler yerine kendi test hesabınızı kullanın.
+
+1. **Türkçe → English:** Ayarlar → Uygulama Dili. Sekmeler, dashboard, auth/reset, hata ve boş ekran metinleri hemen değişmeli.
+2. **English → Deutsch:** Açık ödeme taslağı varsa alanlar korunmalı; tutar ve currency aynı kalmalı.
+3. **Deutsch → Français:** Takvim, geçmiş, analiz, hatırlatıcı ve bildirim tercihleri Fransızca olmalı.
+4. **Français → Español:** Aranabilir dil listesini ve erişilebilir seçili radio durumunu kontrol edin.
+5. **Español → العربية:** JS metin/hizalama hemen RTL olmalı; gereken native yeniden yükleme uyarısı görünmeli, otomatik reload olmamalı.
+6. **Arapça RTL:** Geri/ileri okları, ayar satırları, form/klavye ve tam ekran katalog modalını inceleyin. Taslağı kaydettikten sonra uyarıdaki yeniden başlatmayı deneyin. Expo Go ile development build davranışlarını ayrı kaydedin.
+7. **Japonca ve Çince:** Japonca, 简体中文, ayrıca 한국어 ve हिन्दी seçerek karakter/font/uzun metin taşmasını kontrol edin. Italiano, Português (Brasil), Nederlands ve Русский için de aynı ekran turunu tamamlayın.
+8. **Kapat-aç:** 14 dilin her birinde uygulamayı tam kapatıp yeniden açın; manuel dil korunmalı. İlk kurulumda desteklenen cihaz dili, desteklenmeyen dilde İngilizce beklenir.
+9. **Logout/login:** 14 dilin her birinde çıkış ve giriş yapın; manuel seçim korunmalı. Farklı hesapta para birimi/saat dilimi değişmemeli; eski hesaptan gelen geç yanıt seçimi bozmamalı.
+10. **Kategoriler:** Kök ve alt kategorileri değişik dillerde açın; toplam 116 kategori mevcut olmalı. Almanca `Kraftstoff` ve genel elektrik faturası adının yerel çevirisiyle arama yapın; Türkçe/İngilizce arama da çalışmalı.
+11. **Markalar:** Netflix/Spotify/Shell adları aynı kalmalı; genel fatura/kira/tamirci şablonları çevrilmeli. Kendi ödeme ve sağlayıcı isimleriniz değişmemeli.
+12. **Para:** `250 TRY`, `12.3456 USD` ve büyük tutarları gözlemleyin; dil seçimi döviz dönüştürmemeli. Nokta/virgül ondalık, Arapça/Hindi rakamları denenebilir; karma binlik ayraçları reddedilmeli.
+13. **Tarih:** Aynı DateOnly günü Türkçe/İngilizce/Almanca dahil tüm dillerde değişen biçimde gösterilmeli, gün kaymamalı. Android native tarih/saat penceresinin işletim sistemi dilinde olması bilinen sınırdır.
+14. **CRUD ve offline:** Her dilde ödeme/abonelik oluştur-güncelle-sorgula-sil akışını, generic validation/401/409/429 hatalarını ve kaydedilmemiş taslağı deneyin. Uçak modunda dil seçip uygulamayı açın; seçim korunmalı, bağlantı sonrası uygulamayı öne getirince hesap eşitlemesi tamamlanmalı. Gerçek push teslimini bu fazın sonucu saymayın.
+
+Sonuç: **Bu 14 fiziksel senaryo bu çalışma sırasında yapılmadı; kullanıcı kabulü açık.** AI taslak çeviriler ayrıca hedef dil uzmanı incelemesi bekler. SMTP/Resend veya production deployment yapılmadı.

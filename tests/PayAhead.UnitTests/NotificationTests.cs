@@ -88,7 +88,7 @@ public sealed class NotificationTests
     [Theory]
     [InlineData("tr", "TRY", "Europe/Istanbul", true)]
     [InlineData("en", "usd", "UTC", true)]
-    [InlineData("de", "TRY", "UTC", false)]
+    [InlineData("xx", "TRY", "UTC", false)]
     [InlineData("en", "INVALID", "UTC", false)]
     [InlineData("en", "USD", "badzone", false)]
     public void Settings_validate_language_currency_and_zone(string language, string currency, string zone, bool valid)

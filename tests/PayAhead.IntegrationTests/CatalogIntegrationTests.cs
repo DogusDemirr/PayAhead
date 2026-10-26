@@ -50,6 +50,37 @@ public sealed class CatalogIntegrationTests(SqlServerFixture sql) : IClassFixtur
         Assert.All(categoryWire, x => Assert.Contains(x!["applicableTo"]!.GetValue<string>(), new[] { "Payment", "Subscription", "Both" }));
         var inactive = await Read(await client.GetAsync($"/api/catalog/services/{S("bp")}")); Assert.False(inactive["isActive"]!.GetValue<bool>());
     }
+    [Fact] public async Task Language_preference_is_user_scoped_validated_and_preserves_other_settings_and_finance()
+    {
+        await using var db = Db(); var before = await db.UserSettings.AsNoTracking().SingleAsync(x => x.UserId == user);
+        var plan = await Read(await client.PostAsJsonAsync("/api/payments", Payment(C("video"), S("netflix"))), HttpStatusCode.Created);
+        foreach (var code in PayAhead.Application.Localization.SupportedLanguages.All)
+        {
+            var result = await Read(await client.PutAsJsonAsync("/api/users/me/language", new { languageCode = code })); Assert.Equal(code, result["languageCode"]!.GetValue<string>());
+            Assert.Equal(code, (await Read(await client.GetAsync("/api/users/me/language")))["languageCode"]!.GetValue<string>());
+        }
+        foreach (var code in new[] { "xx", "ar-SA", "", "DE" }) Assert.Equal(HttpStatusCode.BadRequest, (await client.PutAsJsonAsync("/api/users/me/language", new { languageCode = code })).StatusCode);
+        Assert.Equal(HttpStatusCode.BadRequest, (await client.PutAsJsonAsync("/api/users/me/language", new { languageCode = "en", userId = other })).StatusCode);
+        Authenticate(other); Assert.Equal("tr", (await Read(await client.GetAsync("/api/users/me/language")))["languageCode"]!.GetValue<string>()); Authenticate(user);
+        var after = await db.UserSettings.AsNoTracking().SingleAsync(x => x.UserId == user); Assert.Equal(before.DefaultCurrencyCode, after.DefaultCurrencyCode); Assert.Equal(before.TimeZoneId, after.TimeZoneId); Assert.Equal(before.NotificationsEnabled, after.NotificationsEnabled);
+        Assert.Equal(plan.ToJsonString(), (await Read(await client.GetAsync($"/api/payments/{plan["id"]!.GetValue<Guid>()}"))).ToJsonString());
+        client.DefaultRequestHeaders.Authorization = null; Assert.Equal(HttpStatusCode.Unauthorized, (await client.GetAsync("/api/users/me/language")).StatusCode);
+    }
+    [Fact] public async Task Catalog_has_all_fourteen_locales_preserves_legacy_names_and_searches_localized_hierarchy()
+    {
+        foreach (var code in PayAhead.Application.Localization.SupportedLanguages.All)
+        {
+            var rows = await client.GetFromJsonAsync<CatalogCategoryResponse[]>("/api/catalog/categories?locale=" + code, Json); Assert.Equal(116, rows!.Length);
+            Assert.All(rows, c => { Assert.Equal(code, c.CultureCode); Assert.False(c.UsedLanguageFallback); Assert.Equal(Assert.Single(CatalogTranslationSeed.All, t => t.CategoryId == c.Id && t.CultureCode == code).DisplayName, c.DisplayName); });
+            var shell = await Read(await client.GetAsync($"/api/catalog/services/{S("shell")}?locale={code}")); Assert.Equal("Shell", shell["displayName"]!.GetValue<string>());
+            var generic = await Read(await client.GetAsync($"/api/catalog/services/{S("elektrik-faturasi")}?locale={code}")); Assert.Equal(CatalogServiceNames.Name("elektrik-faturasi", "missing", code), generic["displayName"]!.GetValue<string>());
+        }
+        var german = await Read(await client.GetAsync("/api/catalog/services?locale=de&search=Kraftstoff")); Assert.Contains(german["items"]!.AsArray(), x => x!["code"]!.GetValue<string>() == "shell");
+        Assert.Equal(HttpStatusCode.BadRequest, (await client.GetAsync("/api/catalog/categories?locale=xx")).StatusCode);
+        await using var db = Db(); var saved = await db.CatalogCategories.AsNoTracking().SingleAsync(x => x.Code == "transport.fuel"); Assert.Equal("Yakıt", saved.NameTr); Assert.Equal("Fuel", saved.NameEn);
+        var missing = await db.CatalogCategoryTranslations.SingleAsync(x => x.CategoryId == saved.Id && x.CultureCode == "de"); db.Remove(missing); await db.SaveChangesAsync();
+        var fallback = await Read(await client.GetAsync($"/api/catalog/categories/{saved.Id}?locale=de")); Assert.Equal("Fuel", fallback["displayName"]!.GetValue<string>()); Assert.True(fallback["usedLanguageFallback"]!.GetValue<bool>());
+    }
     [Fact] public async Task Expanded_category_paths_and_hierarchical_search_return_services_in_correct_mode()
     {
         foreach (var code in new[] { "transport", "transport.fuel", "transport.service", "transport.inspection", "transport.vehicle-tax" })

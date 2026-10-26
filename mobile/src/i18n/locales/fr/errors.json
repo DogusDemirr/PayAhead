@@ -1,0 +1,16 @@
+{
+  "m_b7ac953bddf5": "Impossible de terminer l’action. Vous pouvez réessayer.",
+  "m_97fef89efdf8": "Délai de connexion dépassé. Réessayez.",
+  "m_148edfcba033": "Serveur inaccessible. Vérifiez Internet et l’adresse de l’API.",
+  "m_64872a0e18b3": "Réinitialisation du mot de passe indisponible. Réessayez plus tard.",
+  "m_96d8c326f702": "Lien invalide, déjà utilisé ou expiré. Demandez-en un nouveau.",
+  "m_0d2b1db5ac23": "E-mail ou mot de passe incorrect, ou session expirée.",
+  "m_99a158d3b327": "Limite d’entrées actives atteinte. Désactivez des plans ou découvrez Premium.",
+  "m_a25c909874f9": "Vous n’êtes pas autorisé à effectuer cette action.",
+  "m_cfec70e3a8bc": "Entrée introuvable ou plus accessible.",
+  "m_4caef90dffc6": "Impossible de créer un compte avec cet e-mail.",
+  "m_73614d4af236": "L’entrée a changé. Chargez les données actuelles et réessayez.",
+  "m_bef85276f101": "Trop de tentatives. Patientez et réessayez.",
+  "m_79cea1288206": "Serveur actuellement indisponible. Réessayez plus tard.",
+  "m_2d8988bb1fc4": "Impossible de terminer la demande."
+}

@@ -1,0 +1,165 @@
+[
+  {
+    "key": "common:m_dc1356403d5c",
+    "text": "Ana sayfaya dön",
+    "files": [
+      "src/app/+not-found.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_32818902a3d4",
+    "text": "Cihaz kaydı kaldırılsın mı?",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_3608ae3ad221",
+    "text": "Bu kayıt için yeni gönderimler durur. Daha önce sağlayıcıya kabul ettirilmiş push geri alınamaz. Bu telefon için üstteki bağlantıyı kaldır düğmesini kullan.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_dc2b092891f8",
+    "text": "Hatırlatma silinsin mi?",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_635302bd313c",
+    "text": "Bu kuralın henüz gönderilmemiş işleri iptal edilir.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f4ba3168e4d4",
+    "text": "Plan pasifleştirilsin mi?",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d9a435bdbef5",
+    "text": "Yeni bekleyen tarihler üretilmez. Mevcut ödeme geçmişi korunur.",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9c62bf8ff200",
+    "text": "Ödeme planı silinsin mi?",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_78b46a64eb5e",
+    "text": "Ödeme adı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_0c9e12052e29",
+    "text": "Para birimi · ISO 4217",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_dfdb7b4f231e",
+    "text": "Tekrar aralığı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_62cae61c31f3",
+    "text": "Tekrar günü · isteğe bağlı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9f4ce70fe7c2",
+    "text": "Açıklama · isteğe bağlı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_74fddbd51925",
+    "text": "Takip kaydı iptal edilsin mi?",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5c0481ebe4d9",
+    "text": "Takip kaydı kaldırılsın mı?",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d3579181350f",
+    "text": "Abonelik listeden gizlenir ve bağlı plan pasifleştirilir. Ödeme geçmişi korunur; dış sağlayıcıda iptal yapılmaz.",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_a45e9436a4ba",
+    "text": "Abonelik adı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_93f01c808be2",
+    "text": "Sağlayıcı adı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_da20470ab885",
+    "text": "Abonelik tutarı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5ff71b7378f6",
+    "text": "Faturalandırma aralığı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  }
+]

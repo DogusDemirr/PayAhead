@@ -1,0 +1,16 @@
+{
+  "m_b7ac953bddf5": "Não foi possível concluir a operação. Tente novamente.",
+  "m_97fef89efdf8": "O tempo de conexão esgotou. Tente novamente.",
+  "m_148edfcba033": "Não foi possível acessar o servidor. Verifique a conexão com a internet e o endereço da API.",
+  "m_64872a0e18b3": "O serviço de redefinição de senha está indisponível. Tente novamente mais tarde.",
+  "m_96d8c326f702": "Link inválido, já usado ou expirado. Solicite um novo link.",
+  "m_0d2b1db5ac23": "E-mail ou senha incorretos, ou a sessão não é mais válida.",
+  "m_99a158d3b327": "Você atingiu o limite de registros ativos. Desative planos existentes ou veja as opções Premium.",
+  "m_a25c909874f9": "Você não tem permissão para esta operação.",
+  "m_cfec70e3a8bc": "Registro não encontrado ou não está mais acessível.",
+  "m_4caef90dffc6": "Não é possível criar um cadastro com este e-mail.",
+  "m_73614d4af236": "O registro mudou. Carregue os dados atuais e tente novamente.",
+  "m_bef85276f101": "Muitas tentativas. Aguarde um pouco e tente novamente.",
+  "m_79cea1288206": "O servidor está indisponível. Tente novamente mais tarde.",
+  "m_2d8988bb1fc4": "Não foi possível concluir a solicitação."
+}

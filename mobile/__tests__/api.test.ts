@@ -16,7 +16,7 @@ test('missing API URL fails before reaching an adapter', async () => {
 test('ProblemDetails becomes a typed error with status and trace ID', async () => {
   const client = createApiClient('https://api.example.test');
   client.defaults.adapter = async (config) => { throw new AxiosError('Rejected', 'ERR_BAD_RESPONSE', config, undefined, { data: { title: 'İstek doğrulanamadı.', traceId: 'example-trace' }, status: 400, statusText: 'Bad Request', headers: {}, config }); };
-  await expect(client.get('/api/example')).rejects.toMatchObject({ name: 'ApiError', message: 'İstek doğrulanamadı.', status: 400, traceId: 'example-trace' });
+  await expect(client.get('/api/example')).rejects.toMatchObject({ name: 'ApiError', message: 'İstek tamamlanamadı.', status: 400, traceId: 'example-trace' });
 });
 
 test.each([401, 404])('missing/stale reset endpoint %s never blames credentials or reveals an account', async status => {

@@ -139,3 +139,22 @@ Normal akışta preview kapalı kalır. Gerçek login sonrası Dashboard ve Öde
 Backend dev sunucusu çalışırken standart .NET build dosya kilidi alabilir. Servisi durdurmadan doğrulama için repository kökünde `.tools/dotnet/dotnet.exe build PayAhead.sln --artifacts-path artifacts/phase3-backend-check` kullanılabilir. Backend testinin ops SQL dosyası için sabit göreli yolu olduğundan artifact kökü `mobile/artifacts` altında olmamalıdır. Bu, backend kaynak değişikliği gerektirmez. Ayrıntılı komut sonuçları IMPLEMENTATION_PROGRESS.md içindedir.
 
 Güncel güvenlik denetimi 7 kayıt (4 high/3 moderate) bildiriyor; önceki 58 kaydın artık aynı olmaması bu fazda düzeltilmiş açık sayısı değildir. node-forge ve Router query decoder zincirleri için SDK uyumlu upstream düzeltme beklenir; major/downgrade veya force uygulanmadı.
+## Phase 5.2 — 14 dil geliştirme
+
+Ayarlar → Uygulama Dili seçimi anında metin/JS yönünü günceller; form taslakları yeniden mount edilmez. Dil tercihi token deposundan ayrıdır, logout sonrası korunur. Offline seçim bekleyen hesap eşitlemesi olarak gösterilir; uygulamayı öne getirmek yeniden dener. Arapça native kontrolleri yeniden yükleme uyarısı gösterebilir; önce taslağı kaydedin. Android sistem tarih/saat penceresi cihaz dilini kullanır. [Ayrıntılı rehber](../../docs/LOCALIZATION.md).
+
+```powershell
+npm.cmd run i18n:audit
+npm.cmd run typecheck
+npm.cmd run lint
+npm.cmd test -- --silent
+npx.cmd expo-doctor
+npx.cmd expo install --check
+npx.cmd expo export --platform android --output-dir artifacts/phase52-export
+# Ayrı terminalde güncel Development API çalışırken, .env LAN adresini değiştirmeden:
+$env:EXPO_PUBLIC_API_BASE_URL='http://127.0.0.1:5088'
+npm.cmd run test:localization:live
+Remove-Item Env:EXPO_PUBLIC_API_BASE_URL
+```
+
+Live yerelleştirme testi yalnız localhost kabul eder ve kendi rastgele hesaplarını kullanır. Telefonda `127.0.0.1` yerine bilgisayarın LAN adresi gerekir; mevcut `mobile/.env` adresi korunmuştur. Expo Go'yu kapat-açıp güncel Metro bundle'ına bağlanın. Hermes export bir APK, fiziksel cihaz testi veya production yayın değildir.

@@ -1,0 +1,5955 @@
+[
+  {
+    "key": "common:m_dcd2f7f89bdc",
+    "text": "Ana Sayfa",
+    "files": [
+      "src/app/(tabs)/_layout.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_c40832ab139b",
+    "text": "Ödemeler",
+    "files": [
+      "src/app/(tabs)/_layout.tsx",
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5785a01da6e0",
+    "text": "Takvim",
+    "placeholders": [],
+    "files": [
+      "src/app/(tabs)/_layout.tsx"
+    ]
+  },
+  {
+    "key": "common:m_305a7abea88b",
+    "text": "Abonelikler",
+    "files": [
+      "src/app/(tabs)/_layout.tsx",
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_80ad54ad05fa",
+    "text": "Ayarlar",
+    "placeholders": [],
+    "files": [
+      "src/app/(tabs)/_layout.tsx"
+    ]
+  },
+  {
+    "key": "common:m_6a9128aa68d3",
+    "text": "Bu sayfayı bulamadık",
+    "files": [
+      "src/app/+not-found.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_a86988a50cd1",
+    "text": "Ana sayfaya dönerek devam edebilirsin.",
+    "files": [
+      "src/app/+not-found.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_dc1356403d5c",
+    "text": "Ana sayfaya dön",
+    "files": [
+      "src/app/+not-found.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_46e308473e94",
+    "text": "Planı düzenle",
+    "files": [
+      "src/app/edit-payment.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d5f9262c7b68",
+    "text": "Geçerli bir plan seç",
+    "files": [
+      "src/app/edit-payment.tsx",
+      "src/app/payment.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_a77cb430aae5",
+    "text": "Abonelik düzenleme",
+    "files": [
+      "src/app/edit-subscription.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_6bc63db3c9c3",
+    "text": "Geçerli bir abonelik seç",
+    "files": [
+      "src/app/edit-subscription.tsx",
+      "src/app/subscription.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_abbbdafe41fa",
+    "text": "Bilgi",
+    "placeholders": [],
+    "files": [
+      "src/app/information.tsx"
+    ]
+  },
+  {
+    "key": "common:m_c545594549bd",
+    "text": "Bu özellik henüz kullanılamıyor.",
+    "files": [
+      "src/app/information.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_52ba82f41da1",
+    "text": "Tek ödeme",
+    "files": [
+      "src/app/occurrence.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9b14761462ed",
+    "text": "Geçerli bir ödeme tarihi seç",
+    "files": [
+      "src/app/occurrence.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_7c72e97a2e24",
+    "text": "Ödeme detayı",
+    "files": [
+      "src/app/payment.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "premium:m_263fcd13faeb",
+    "text": "Daha fazla alan.\\nDaha az telaş.",
+    "files": [
+      "src/app/premium.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "premium:m_6bba58d6b506",
+    "text": "Ödeme ve abonelik planlarına biraz daha özgürlük kat.",
+    "files": [
+      "src/app/premium.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "premium:m_452d9718d03a",
+    "text": "Daha fazla aktif ödeme planı",
+    "files": [
+      "src/app/premium.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "premium:m_0b0dfbdda6fe",
+    "text": "Birden fazla ödeme hatırlatması",
+    "files": [
+      "src/app/premium.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "premium:m_c5d8de4c849c",
+    "text": "Daha kapsamlı abonelik takibi",
+    "files": [
+      "src/app/premium.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "premium:m_7f84ca611f74",
+    "text": "Ürün ve fiyat bilgileri mağaza bağlantısı hazır olduğunda gösterilecek. Bu önizleme Premium erişim sağlamaz.",
+    "files": [
+      "src/app/premium.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "premium:m_beae145ed70b",
+    "text": "Satın alma henüz kullanılamıyor",
+    "files": [
+      "src/app/premium.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "premium:m_90d82406fd2f",
+    "text": "Satın alma veya ücretlendirme yapılmaz.",
+    "files": [
+      "src/app/premium.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_87c8b717052f",
+    "text": "Tasarım önizlemesi",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_af1af17b6039",
+    "text": "Örnek veriler, gerçek olmayan işlemler.",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f6acdcf3a45e",
+    "text": "Bu alan yalnızca geliştirme görünümüdür. Oturum açılmaz; ödeme, abonelik veya bildirim işlemi yapılmaz.",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_44a04da0609b",
+    "text": "Örnek içerik",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_8413667ec6c2",
+    "text": "Dolu ekranların görünümü",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_2d74c208f0c3",
+    "text": "Boş durum",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_3c9870336f1d",
+    "text": "Henüz veri olmayan hesap",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_daa069d849f4",
+    "text": "Yükleniyor",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_3745003f5a43",
+    "text": "İçerik hazırlanırken",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_870a46c3db7b",
+    "text": "Bağlantı hatası",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_02490070e7be",
+    "text": "Güvenli hata ve yeniden deneme",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_c1081025bfce",
+    "text": "Görünüme dön",
+    "files": [
+      "src/app/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_4877b5ec41d9",
+    "text": "Hatırlatmalar",
+    "files": [
+      "src/app/reminders.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_e68c08fd0390",
+    "text": "Geçerli bir ödeme planı seç",
+    "files": [
+      "src/app/reminders.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5a3414a08005",
+    "text": "Abonelik detayı",
+    "files": [
+      "src/app/subscription.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_56457ea60f9a",
+    "text": "{{value0}} · YYYY-AA-GG",
+    "files": [
+      "src/components/date-field.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "common:m_e8fa6bec6bd2",
+    "text": "{{value0}}: {{value1}}",
+    "files": [
+      "src/components/date-field.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "common:m_54d5fd12a94c",
+    "text": "Tarih seç",
+    "files": [
+      "src/components/date-field.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_6c97805c0bd9",
+    "text": "Bitiş tarihi yok",
+    "files": [
+      "src/components/date-field.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_72278748133a",
+    "text": "İptal",
+    "files": [
+      "src/components/date-field.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_2f36f3362ead",
+    "text": "Ödendi",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_594b1254c47d",
+    "text": "Atlandı",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_6a98ba6759ef",
+    "text": "Yaklaşıyor",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_2723833db0f2",
+    "text": "{{value0}}, {{value1}}, {{value2}} {{value3}}",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2",
+      "value3"
+    ]
+  },
+  {
+    "key": "common:m_b667168f2be7",
+    "text": "{{value0}}, {{value1}}",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "common:m_3ec33746857c",
+    "text": "{{value0}} gün deneme",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "common:m_bc53cde866a2",
+    "text": "aktif abonelik",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_a24915d688f1",
+    "text": "{{value0}} gün ücretsiz",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "common:m_d5f884547452",
+    "text": "Aktif",
+    "placeholders": [],
+    "files": [
+      "src/components/finance.tsx"
+    ]
+  },
+  {
+    "key": "common:m_2538351e6a40",
+    "text": "{{value0}} tarihinde yenilenir",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "common:m_310478811716",
+    "text": "/ ay",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_21cc6a327c14",
+    "text": "ÖNÜMÜZDEKİ 30 GÜN",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_1e038a30bbdf",
+    "text": "Yaklaşan ödemelerin",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_3120cb691453",
+    "text": "{{value0}} ödeme · {{value1}}",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "common:m_dbe3bbf2bf1d",
+    "text": "Ayrıca {{value0}}",
+    "files": [
+      "src/components/finance.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "common:m_f9b5f266396e",
+    "text": "Tasarım önizlemesi, örnek veriler. Görünüm seçeneklerini aç",
+    "files": [
+      "src/components/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_87b958b6436a",
+    "text": "Tasarım önizlemesi · Örnek veriler",
+    "files": [
+      "src/components/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_2d0d3fe32985",
+    "text": "Finans görünümün hazırlanıyor",
+    "files": [
+      "src/components/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_87a4bbff702f",
+    "text": "Hesap bağlantın hazır. Bu sürümde ödeme ve abonelik verileri henüz bağlı değil.",
+    "files": [
+      "src/components/preview.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_b7e193af9550",
+    "text": "Geri dön",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_7320279cca24",
+    "text": "Şifreyi gizle",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_8102f4f7ff35",
+    "text": "Şifreyi göster",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_2eaf24d56ba0",
+    "text": "Burada henüz bir şey yok",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_764562096839",
+    "text": "Ödemelerini eklediğinde hepsini tek bir yerde görebileceksin.",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_ef8c222befc5",
+    "text": "Şu an gösteremiyoruz",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_4c97e807cb38",
+    "text": "Biraz sonra tekrar deneyebilirsin.",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_0ce9380b07f8",
+    "text": "Tekrar dene",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_317a7648ba7f",
+    "text": "İçerik yükleniyor",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_059faeaf0f7c",
+    "text": "Kontrol sende. Her zaman.",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_aa81c136b41c",
+    "text": "{{value0}}{{value1}}",
+    "files": [
+      "src/components/ui.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "analytics:m_34db704cad42",
+    "text": "Analizler",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_0694bb658290",
+    "text": "Rakamların ardındaki düzen.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_b12a04091838",
+    "text": "Para birimi filtresi · isteğe bağlı",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_6e567ddfeb02",
+    "text": "Tümü için boş bırak · TRY / USD / EUR",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_7f441105ea24",
+    "text": "Para birimi filtresini uygula",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_9ca92bf2de8d",
+    "text": "Geçerli ISO 4217 kodu gir.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_554c13c8e0dc",
+    "text": "Analizlerin yeni planlara hazır",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_dde3c601ccef",
+    "text": "Seçilen altı ayda ödeme verisi yok. Başka bir dönem seçebilir veya yeni bir plan oluşturabilirsin.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_8e5f3bed5189",
+    "text": "Tüm grafikler planlanan tarihin ayına göre gruplandırılır; ödeme zamanına göre nakit akışı değildir. Planlanan tutarlar güncel plan tanımına dayanır, geçmiş fiyat snapshot kaydı değildir. Geçmiş tutarlar güncel plan para birimi ve kategorisiyle gösterilir. Para birimleri ayrı tutulur. Geciken yalnızca seçili ay içindir.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_9e98d8624610",
+    "text": "Tarihler UTC ile hesaplandı.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_554b441847dd",
+    "text": "Dönem verisi bulunamadı",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_086522a2222f",
+    "text": "Planlanan · seçili ay",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_432698bc04fb",
+    "text": "Gerçek ödenen · seçili ay",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_6da9e452fcbc",
+    "text": "Bekleyen · geciken dahil",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_982cf9cb2005",
+    "text": "Bu aydan geciken",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_8d285b551104",
+    "text": "6 aylık gerçek ödemeler",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_9fef2b0f0a4d",
+    "text": "Yalnızca ödendi durumundaki gerçek tutarlar. Sıfır, bu kapsamdaki ödendi tutarının sıfır olduğu anlamına gelir.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_c86cd1a1d946",
+    "text": "Planlanan tutar trendi",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_3864edd32cbf",
+    "text": "Bu ay ödeme durumları",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_e8bd0861623e",
+    "text": "Bu ay ödenen kategoriler",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_582f83600904",
+    "text": "{{value0}} kategoriden tutarı en yüksek 8 kategori gösteriliyor.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "analytics:m_f607b1237936",
+    "text": "Seçili ayda ödenmiş kategori verisi yok.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_85a931fa2f9f",
+    "text": "En yüksek 5 plan",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_2219dab1c111",
+    "text": "Seçili aydaki planlanan tekrar tutarları.",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_6d38d0719d06",
+    "text": "{{value0}} tekrar",
+    "files": [
+      "src/features/analytics/AnalyticsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "analytics:m_2f36f3362ead",
+    "text": "Ödendi",
+    "files": [
+      "src/features/analytics/Charts.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9025b4af025a",
+    "text": "Bekliyor",
+    "placeholders": [],
+    "files": [
+      "src/features/analytics/Charts.tsx"
+    ]
+  },
+  {
+    "key": "analytics:m_594b1254c47d",
+    "text": "Atlandı",
+    "files": [
+      "src/features/analytics/Charts.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "analytics:m_e7e0215652f9",
+    "text": "{{value0}}: {{value1}} ödeme",
+    "files": [
+      "src/features/analytics/Charts.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "validation:m_e41e9e9f2fdb",
+    "text": "En fazla 254 karakter kullan.",
+    "files": [
+      "src/features/auth-validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_4a6cbab3aabd",
+    "text": "Geçerli bir e-posta adresi yaz.",
+    "files": [
+      "src/features/auth-validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_1c0653073271",
+    "text": "Şifreni yaz.",
+    "files": [
+      "src/features/auth-validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_337e59f03420",
+    "text": "En fazla 128 karakter kullan.",
+    "files": [
+      "src/features/auth-validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_bf6b1946fd11",
+    "text": "En az 12 karakter kullan.",
+    "files": [
+      "src/features/auth-validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_fedb94fa1ddd",
+    "text": "Adını yaz.",
+    "files": [
+      "src/features/auth-validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_503fe2c9852c",
+    "text": "En fazla 100 karakter kullan.",
+    "files": [
+      "src/features/auth-validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_8c8b07e2aba8",
+    "text": "Güvenli oturum kurulamadı. Cihaz depolamasını ve bağlantını kontrol et.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_819ad30ff99b",
+    "text": "Hesabın oluşturuldu. Şimdi giriş yapabilirsin.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_e8d8f98d769d",
+    "text": "Daha sakin bir\nyarınla tanış.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_53c03a9fee45",
+    "text": "Finansal hayatına\nbiraz ferahlık.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_fe08d685f51c",
+    "text": "Ödemelerin ve aboneliklerin için tek bir yer. Kontrolü eline al.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_e002f77215ca",
+    "text": "Ödemelerini önceden gör. Aboneliklerini takip et. Zihninde yer aç.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_ff138299a73e",
+    "text": "Bir bakışta, her şey net.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_f82e21c5a4e0",
+    "text": "Ödemeler · Abonelikler · Denemeler",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_c5176ef33f7c",
+    "text": "Adın",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_899e435d76b8",
+    "text": "Sana nasıl hitap edelim?",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_e1081b69d80a",
+    "text": "E-posta",
+    "files": [
+      "src/features/AuthScreen.tsx",
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_b9c454be10ce",
+    "text": "ornek@eposta.com",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_e1ac97fff826",
+    "text": "Şifre",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_7f510bd4744d",
+    "text": "En az 12 karakter",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_d247f5085a6c",
+    "text": "Şifren",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_fea4c6044718",
+    "text": "Bilgilerin yalnızca PayAhead sunucusuna gönderilir. Şifren bu cihazda saklanmaz.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_14411176800f",
+    "text": "Şifremi unuttum",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_bc5c818f2f46",
+    "text": "Hesap oluştur",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_b872b116e8f6",
+    "text": "Giriş yap",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_2d479812c86b",
+    "text": "Zaten hesabın var mı? ",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_1056f070e7ea",
+    "text": "PayAhead’de yeni misin? ",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_aa6bc6b1c20b",
+    "text": "Senin verin, senin kontrolün.",
+    "files": [
+      "src/features/AuthScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_5785a01da6e0",
+    "text": "Takvim",
+    "placeholders": [],
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_4d83791ea31c",
+    "text": "Her ödemenin kendi hikâyesi.",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_50636cefa8dc",
+    "text": "Ödeme geçmişi",
+    "files": [
+      "src/features/CalendarScreen.tsx",
+      "src/features/occurrences/HistoryScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_059b7d11ff43",
+    "text": "Bugüne dön",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_4c5c101be403",
+    "text": "Pzt",
+    "placeholders": [],
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_59cc0fc7e93e",
+    "text": "Sal",
+    "placeholders": [],
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_6d46ddd615db",
+    "text": "Çar",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_89ac4dc9eddf",
+    "text": "Per",
+    "placeholders": [],
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_5f9967713ae0",
+    "text": "Cum",
+    "placeholders": [],
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_36986d15c759",
+    "text": "Cmt",
+    "placeholders": [],
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_3b4ca471d9af",
+    "text": "Paz",
+    "placeholders": [],
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_5117f9601eb1",
+    "text": "{{value0}}{{value1}}{{value2}}",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "calendar:m_58e8caab760d",
+    "text": ", bugün",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_2f36f3362ead",
+    "text": "Ödendi",
+    "files": [
+      "src/features/CalendarScreen.tsx",
+      "src/features/occurrences/HistoryScreen.tsx",
+      "src/features/occurrences/shared.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_594b1254c47d",
+    "text": "Atlandı",
+    "files": [
+      "src/features/CalendarScreen.tsx",
+      "src/features/occurrences/HistoryScreen.tsx",
+      "src/features/occurrences/shared.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_bffd1dfbfbed",
+    "text": "Gecikti",
+    "placeholders": [],
+    "files": [
+      "src/features/CalendarScreen.tsx",
+      "src/features/occurrences/shared.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_0cf0ee99c1d9",
+    "text": "Yeşil: ödendi · Gri: atlandı · Kırmızı: gecikti · Teal: bekliyor. Durumlar gün seçildiğinde metinle de gösterilir.",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_9e98d8624610",
+    "text": "Tarihler UTC ile hesaplandı.",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_840a9f0b1c3a",
+    "text": "Bu gün için ödeme yok",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_f0c374b5f4a5",
+    "text": "İşaretli bir günü seçerek ödeme durumunu inceleyebilirsin.",
+    "files": [
+      "src/features/CalendarScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_0cc914823e8a",
+    "text": "{{value0}} logosu",
+    "files": [
+      "src/features/catalog/CatalogIdentity.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "catalog:m_b3202c47f786",
+    "text": "Hizmet",
+    "placeholders": [],
+    "files": [
+      "src/features/catalog/CatalogIdentity.tsx"
+    ]
+  },
+  {
+    "key": "catalog:m_679e5d207fbc",
+    "text": "{{value0}} kategori ikonu",
+    "files": [
+      "src/features/catalog/CatalogIdentity.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "catalog:m_c3a976e80ce0",
+    "text": "Özel kayıt",
+    "files": [
+      "src/features/catalog/CatalogIdentity.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_d51a1547850f",
+    "text": " · Katalogda pasif",
+    "files": [
+      "src/features/catalog/CatalogIdentity.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_9cc94140f48b",
+    "text": "Alt kategoriler",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_e9371667baa4",
+    "text": "Kategoriler",
+    "placeholders": [],
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ]
+  },
+  {
+    "key": "catalog:m_1e52995f1656",
+    "text": "Popüler hizmetler",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_2ce0a7da99c6",
+    "text": "Hizmetler",
+    "placeholders": [],
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ]
+  },
+  {
+    "key": "catalog:m_4be65ffd3c4d",
+    "text": "Kategori veya hizmet ara",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_62c753f4ee0b",
+    "text": "Netflix, benzin, arac, doğalgaz…",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_40c306d33ace",
+    "text": "Seçimde geri dön",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_74581d3a753b",
+    "text": "Abonelik hizmetini seç",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_a1d2f560a2b9",
+    "text": "Ödeme türünü seç",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_ce0be00a3a04",
+    "text": "Seçili yol: {{value0}}",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "catalog:m_9669271ce541",
+    "text": "Ana kategorilere dön",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_6b467007b709",
+    "text": "Bu kategoride özel abonelik",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_9ef05e22a5c5",
+    "text": "Bu kategoride özel ödeme",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_f08718d380a0",
+    "text": "Katalog yenilenemedi. Varsa son başarılı veri gösteriliyor; mevcut kayıtların etkilenmez.",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_bfccb99faf79",
+    "text": "Kataloğu yeniden dene",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_d8416cf1ef26",
+    "text": "Marka seçimi satın alma değildir. Tutar ve tarihler sana aittir. Marka logosu yoksa kategori ikonu gösterilir.",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_2c842aaf0967",
+    "text": "Bu alt kategoride hazır hizmet yok. Özel kayıt seçeneğiyle kendi hizmet adını yazabilirsin.",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_174c47177720",
+    "text": "Bu seçimde hizmet bulunamadı. Kategoriden özel kayıt ekleyebilirsin.",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_dc072fb4b5c8",
+    "text": "Alt kategorileri ve hizmetleri aç ›",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_9b49b29dfd07",
+    "text": "Hizmet sayfası {{value0}}/{{value1}}",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "catalog:m_b3f4caeb18ea",
+    "text": "Önceki hizmet sayfası",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_71c803f67c3c",
+    "text": "Sonraki hizmet sayfası",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_caf667e8034a",
+    "text": "Özel Abonelik · Diğer",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_33c3c73b3f07",
+    "text": "Özel Ödeme · Diğer",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_c7f4be34c02a",
+    "text": "Kataloğu yenile",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_be1e5431a411",
+    "text": "Seçimi kapat",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_df43bddffd68",
+    "text": "Kategori ve hizmet",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_1b585966d2ac",
+    "text": "Kategori veya hizmeti değiştir",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_5c04ad033072",
+    "text": "Kategori ve hizmet seç",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_5ad326037b81",
+    "text": "Seçilen hizmet: {{value0}}",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "catalog:m_64527440a4b7",
+    "text": "Henüz seçilmedi",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_ad6823727591",
+    "text": " · Özel kayıt",
+    "files": [
+      "src/features/catalog/CatalogPicker.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "catalog:m_df0c13e7b694",
+    "text": "Katalog yanıtı geçerli değil. Mevcut kayıtların korunuyor.",
+    "files": [
+      "src/features/catalog/queries.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_720e8781912b",
+    "text": "Daha sakin bir başlangıç",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_187bc29a9dcf",
+    "text": "Bu ay aktif planın veya ödeme hareketin yok. Yeni bir planla daha rahat bir başlangıç yap.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_fc47d3ee96ea",
+    "text": "Ödeme ekle",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_c33b5ecf8b44",
+    "text": "Hesap saat dilimi bulunamadı; tarihler UTC ile hesaplandı.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_fd5e149b0c41",
+    "text": "Tüm analizleri gör",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_c88d4e2ae324",
+    "text": "Bu ay ödendi",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_26f92ff4efd1",
+    "text": "Bu ay henüz ödenmiş tutar yok.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_48cce4a622e0",
+    "text": "{{value0}} ödenen · {{value1}} bekleyen · {{value2}} atlanan",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "dashboard:m_a918756a64ea",
+    "text": "En yakın ödeme",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_4a986bd03b55",
+    "text": "Gösterilen yaklaşan tarih aralığında bekleyen ödeme yok.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_f550df9dcee0",
+    "text": "Bu aydan gecikenler",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_4a7f5b58233f",
+    "text": "Bu ay için geciken tarih aralığı yok.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_be0bd1466097",
+    "text": "{{value0}} geciken ödeme · Bu ayın başından düne kadar",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "dashboard:m_28555f323d63",
+    "text": "Bu ay geciken ödemen yok.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_6747ed989728",
+    "text": "İlk 3 kayıt gösteriliyor.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_978b30c5e213",
+    "text": "Yaklaşan ödemeler",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_aa6a83bfcde1",
+    "text": "Planlar",
+    "placeholders": [],
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ]
+  },
+  {
+    "key": "dashboard:m_a7770145884b",
+    "text": "{{value0}} – {{value1}} · {{value2}} kayıt",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "dashboard:m_1ffb3a1d64e7",
+    "text": "Bu aralıkta yaklaşan ödemen yok.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_fc2cbca9acbe",
+    "text": "Bildirimler",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "dashboard:m_3d89a3625605",
+    "text": "Yarına bir adım önde.",
+    "files": [
+      "src/features/HomeScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_72ec2727147f",
+    "text": "Oturum değişti.",
+    "files": [
+      "src/features/notifications/api.ts",
+      "src/features/notifications/device-manager.ts",
+      "src/features/notifications/queries.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_5aff753f517b",
+    "text": "Bildirim yanıtı beklenen biçimde değil.",
+    "files": [
+      "src/features/notifications/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_c7f4e5354a2e",
+    "text": "0–365 arasında tam gün gir.",
+    "files": [
+      "src/features/notifications/contracts.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_812b82ac9973",
+    "text": "En fazla 365 gün önce olabilir.",
+    "files": [
+      "src/features/notifications/contracts.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_5a2a329dd50e",
+    "text": "Saati HH:mm biçiminde seç.",
+    "files": [
+      "src/features/notifications/contracts.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_9ca92bf2de8d",
+    "text": "Geçerli ISO 4217 kodu gir.",
+    "files": [
+      "src/features/notifications/contracts.ts",
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_c8e8f2254b43",
+    "text": "Geçerli IANA saat dilimi gir.",
+    "files": [
+      "src/features/notifications/contracts.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_65717ed18036",
+    "text": "Önceki hesabın cihaz kaydı temizlenemedi. O hesapla giriş yapıp cihaz kaydını kaldır veya Android ayarlarından bildirimleri kapat.",
+    "files": [
+      "src/features/notifications/device-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_7900e641cb36",
+    "text": "Cihaz izni okunamadı. Sistem ayarlarını kontrol et.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_996149c57168",
+    "text": "Bildirimler ve hatırlatmalar",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_5c778761062b",
+    "text": "İzin, cihaz ve hesap tercihlerin.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_796e7d39b546",
+    "text": "Bu cihazın bildirim izni",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_49e62454340a",
+    "text": "İzin verildi",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_9376cf52ba0d",
+    "text": "İzin reddedildi",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_95ed0d227581",
+    "text": "İzin henüz kontrol edilmedi",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_e41167a535f4",
+    "text": "İzin verirsen yaklaşan ödeme ve deneme bitişi hatırlatmalarını görebilirsin. İzin olmadan uygulamayı kullanmaya devam edebilirsin. İzin ve cihaz kaydı gerçek teslim kanıtı değildir.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_1679d0879814",
+    "text": "Bu oturum için cihaz kaydı sunucuda doğrulandı.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_6122961c79fc",
+    "text": "Bu oturum için cihaz kaydı doğrulanmadı.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_26b8a5c03dfb",
+    "text": "İzni kontrol et ve cihazı bağla",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_aba251b45799",
+    "text": "Sistem bildirim ayarlarını aç",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_e1670ba6707d",
+    "text": "Sistem ayarları açılamadı.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_4a3cd0d3f2ee",
+    "text": "Bu cihazda push bağlantısını kaldır",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_a9a9861c603e",
+    "text": "Sunucu cihaz kaydı kaldırılamadı. Bildirimler sürebilir; bağlantıyla yeniden dene veya sistem ayarlarından kapat.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_082675ccc2b8",
+    "text": "İzin tekrar istenemiyor; sistem ayarlarından değiştirebilirsin.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_55352df66012",
+    "text": "Hesabındaki cihaz kayıtları",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_aa3cf0d408e7",
+    "text": "{{value0}} · Cihaz {{value1}}",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "reminders:m_dd339f27d49c",
+    "text": "{{value0}} · Son kayıt {{value1}}",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "reminders:m_b44948b30289",
+    "text": "Sunucu kaydı etkin",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_dc1ec4a10b02",
+    "text": "Sunucu kaydı devre dışı",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_14477af7fb8f",
+    "text": "Cihaz {{value0}} kaydını kaldır",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "common:m_32818902a3d4",
+    "text": "Cihaz kaydı kaldırılsın mı?",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_3608ae3ad221",
+    "text": "Bu kayıt için yeni gönderimler durur. Daha önce sağlayıcıya kabul ettirilmiş push geri alınamaz. Bu telefon için üstteki bağlantıyı kaldır düğmesini kullan.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_39a8d28c1c6b",
+    "text": "Vazgeç",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx",
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_b88019aa289e",
+    "text": "Kaldır",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_e9e3db3d1e8f",
+    "text": "Kayıtlı cihaz yok",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_cc44fa0414a3",
+    "text": "Gerçek push için development build ve cihaz bağlantısı gerekir.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_8a2d59b0f70d",
+    "text": "Bu ekran gelen kutusu değildir; backend bildirim geçmişi endpoint sunmaz. Deneme tercihleri abonelik detayındaki düzenleme ekranındadır. Varsayılan hatırlatma saati hesap ayarı olarak desteklenmez; her ödeme kuralında ayrı seçilir.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_decce11aef29",
+    "text": "Hesap bildirim tercihleri",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_bc3703640ed8",
+    "text": "Sunucu UTC yedeğine geçti; geçerli saat dilimi kaydet.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_99fca4be5948",
+    "text": "Hesap bildirimleri etkin",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_ca7732645140",
+    "text": "Hesap saat dilimi · IANA",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_29085b405b36",
+    "text": "Europe/Istanbul",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_c958a8d64dde",
+    "text": "Varsayılan para birimi",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_dcafb2602a42",
+    "text": "Mevcut hesap dili korunur. Bildirimleri kapatmak planları veya hatırlatma kurallarını silmez; gönderim uygunluğunu değiştirir. Saat dilimini cihaz saatinden bağımsız seçiyorsun.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_ebf40e0c6eb4",
+    "text": "Tercihler kaydedilemedi.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_25353ac12585",
+    "text": "Güncel tercihleri yükle",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_78a55771dc4b",
+    "text": "Bildirim tercihlerini kaydet",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_bf1fb9b3ea59",
+    "text": "Tercihler sunucuda kaydedildi. Bu, teslim doğrulaması değildir.",
+    "files": [
+      "src/features/notifications/NotificationsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_5c9cc7e3f90d",
+    "text": "Remote push için Android/iOS development build kullan.",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_2b18cfa9c7a0",
+    "text": "Expo Go remote push için kullanılmaz. Development build gerekli.",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_bbc97b82622a",
+    "text": "Bu kabul akışı fiziksel cihaz gerektirir.",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_efbdfa191c3e",
+    "text": "EAS projectId yapılandırılmamış. Push kurulumu belgesini izle.",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_864d4467fe43",
+    "text": "Cihaz kayıt bilgisi okunamadı; güvenli yeniden kayıt yapılamıyor.",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_db632663ff41",
+    "text": "Push token alınırken zaman aşımı. Bağlantıyla yeniden dene.",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_5022903c0ba5",
+    "text": "Ödeme ve deneme hatırlatmaları",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_2e98da897a50",
+    "text": "Remote push",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_99647b43db30",
+    "text": "Bu kabul",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_91f7ad7393ad",
+    "text": "EAS projectId",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_e3737762b564",
+    "text": "Önceki hesabın",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_8c2002849317",
+    "text": "Cihaz kayıt bilgisi",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_b630524b9490",
+    "text": "Oturum değişti",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_80397522181a",
+    "text": "Push token alınırken",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_71998b7a8647",
+    "text": "Cihaz kaydı yapılamadı. Bağlantını ve FCM/EAS push yapılandırmasını kontrol et.",
+    "files": [
+      "src/features/notifications/push-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_4239abd5c0fe",
+    "text": "Bildirim dinleyicisi başlatılamadı. Development build yapılandırmasını kontrol et.",
+    "files": [
+      "src/features/notifications/PushBootstrap.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_449704e67047",
+    "text": "Bildirim kaydı açılamadı",
+    "files": [
+      "src/features/notifications/PushBootstrap.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_1065fb378e00",
+    "text": "Kayıt kaldırılmış olabilir veya bu hesapla erişilemiyor.",
+    "files": [
+      "src/features/notifications/PushBootstrap.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_af7041d035cb",
+    "text": "Bağlantını kontrol et. Bildirimdeki kaydı ilgili listeden yeniden açabilirsin.",
+    "files": [
+      "src/features/notifications/PushBootstrap.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_ea6119aa5393",
+    "text": "Ödeme hatırlatmaları",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_3420bbb71219",
+    "text": "Hesap saat dilimi: {{value0}}",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "reminders:m_68dce5fdd9e4",
+    "text": "Saatler bu hesap saat dilimindedir. Sunucu yaz saati boşluğunda ilk geçerli dakikayı, tekrarlanan saatte geç UTC anını seçer. Takvim ve UTC zamanlaması sunucudadır.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_3771184e8e48",
+    "text": "Saat dilimi geçersiz; sunucu UTC yedeği kullanıyor.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_66d73eec21dd",
+    "text": "Hesap bildirimleri kapalı; kural kaydetmek gönderimi açmaz.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_8d54e58502d4",
+    "text": "Plan pasif; yeni ödeme bildirimleri gönderilmez.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_424dbf42bf81",
+    "text": "Bildirim izinleri ve ayarları",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_ff4947e183f7",
+    "text": "Ödeme günü",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_32cab8a0ff96",
+    "text": "{{value0}} gün önce",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "reminders:m_d50fb5cd0e44",
+    "text": "{{value0}} · Teslim kanıtı değildir",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "reminders:m_82bd83d6cabb",
+    "text": "Kural etkin",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_788c248434f3",
+    "text": "Kural kapalı",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_86471fc0130e",
+    "text": "{{value0}} gün {{value1}} düzenle",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "reminders:m_7d21de34f624",
+    "text": "{{value0}} gün {{value1}} sil",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "common:m_dc2b092891f8",
+    "text": "Hatırlatma silinsin mi?",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_635302bd313c",
+    "text": "Bu kuralın henüz gönderilmemiş işleri iptal edilir.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f698e9b40f9f",
+    "text": "Sil",
+    "placeholders": [],
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ]
+  },
+  {
+    "key": "reminders:m_14842beb581f",
+    "text": "Henüz ödeme hatırlatması yok",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_44331cdb99ad",
+    "text": "Ödeme günü veya öncesi için bir kural oluştur.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_439e3be67e95",
+    "text": "Hatırlatma ekle",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_77b658b9666c",
+    "text": "Ücretsiz deneme kuralları bu listede değildir; abonelik detayındaki deneme tercihiyle yönetilir. Üyelik kotası sunucuda tüm etkin kurallara uygulanır. Geçmiş işler için sunucunun 24 saatlik telafi penceresi vardır; mobil bağımsız alarm kurmaz.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_46954ab8fe15",
+    "text": "Hatırlatmayı düzenle",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_5bfd5c4fc74c",
+    "text": "Yeni hatırlatma",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_e67c2a090f36",
+    "text": "Kaç gün önce · 0–365",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_70ba032f779d",
+    "text": "Hatırlatma kuralı etkin",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_be3095cc7a25",
+    "text": "Etkin hatırlatma sınırına ulaştın. Free/Premium sınırını sunucu belirler; deneme kuralları da kotayı etkileyebilir.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_5cc017022589",
+    "text": "Üyelik seçeneklerini incele",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_643f2c5b4ff3",
+    "text": "İşlem tamamlanamadı.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_73922fe9b8e9",
+    "text": "Güncel hatırlatmaları yükle",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_a5ef4ea66a75",
+    "text": "Hatırlatma değişikliklerini kaydet",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_0406a6037ff3",
+    "text": "Hatırlatmayı kaydet",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_17d89dfee53d",
+    "text": "Formu kapat",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_ffadd8e17995",
+    "text": "Kural kaydı, izin veya Expo ticket kabulü telefona teslim edildiği anlamına gelmez. Saat dilimini bildirim ayarlarından kontrol et.",
+    "files": [
+      "src/features/notifications/RemindersScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_4e2d3f27bc91",
+    "text": "Yerel hatırlatma saati",
+    "files": [
+      "src/features/notifications/TimeField.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_bb7ed58f17c4",
+    "text": "Yerel hatırlatma saati · HH:mm",
+    "files": [
+      "src/features/notifications/TimeField.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "reminders:m_c62d351d4d79",
+    "text": "Yerel hatırlatma saati: {{value0}}",
+    "files": [
+      "src/features/notifications/TimeField.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "reminders:m_72278748133a",
+    "text": "İptal",
+    "files": [
+      "src/features/notifications/TimeField.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_a993d56aacf7",
+    "text": "Planlanan tarihe göre dönem görünümü.",
+    "files": [
+      "src/features/occurrences/HistoryScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_4d2f75ead23f",
+    "text": "Gelecek plan tarihleri gösterilmez. Bekleyenler, kaydedilmemiş tekrarları da içerir. Sıra: planlanan tarih, ardından ödeme adı.",
+    "files": [
+      "src/features/occurrences/HistoryScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_3caac5efb49b",
+    "text": "{{value0}} hareket · Sayfa {{value1}}/{{value2}}",
+    "files": [
+      "src/features/occurrences/HistoryScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "calendar:m_b231b2e3abdf",
+    "text": "Bu dönemde hareket yok",
+    "files": [
+      "src/features/occurrences/HistoryScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_b643b19b02e5",
+    "text": "Başka bir durum veya ay seçebilirsin.",
+    "files": [
+      "src/features/occurrences/HistoryScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_b74566b03eea",
+    "text": "Önceki sayfa",
+    "files": [
+      "src/features/occurrences/HistoryScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_4c68362c332e",
+    "text": "Sonraki sayfa",
+    "files": [
+      "src/features/occurrences/HistoryScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_140b6a85ed4f",
+    "text": "Önceki ay",
+    "files": [
+      "src/features/occurrences/MonthNavigation.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_bc1d7478bad2",
+    "text": "Sonraki ay",
+    "files": [
+      "src/features/occurrences/MonthNavigation.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_52ba82f41da1",
+    "text": "Tek ödeme",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_25e24627a6ee",
+    "text": "Pozitif, en fazla 4 ondalık basamaklı gerçek tutarı gir.",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_186683421cb0",
+    "text": "Planlanan tarih",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_291dca1a2d0c",
+    "text": "Plan tutarı · güncel tanım",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_b49835f3551b",
+    "text": "Geçmiş plan tutarı snapshot olarak saklanmıyor. Bu tutar plan düzenlendiğinde değişebilir. Geçmiş ödemenin para birimi güncel plana aittir; tarihsel para birimi saklanmıyor.",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_ec38317781ca",
+    "text": "Gerçek ödenen",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_1fda86a53e46",
+    "text": "Ödeme zamanı: {{value0}}",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "calendar:m_a258e497496d",
+    "text": "Ödeme planını gör",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_77f23e1b9711",
+    "text": "Gerçek ödenen tutar",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_fdaf91355c38",
+    "text": "Ödeme zamanı sunucu tarafından işlem anında UTC kaydedilir. Geçmiş bir ödeme zamanı seçmek bu API ile desteklenmiyor. Bu işlem bankadan tahsilat yapmaz.",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_fac7f884c235",
+    "text": "Ödendi olarak işaretle",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_c79dbe3338b9",
+    "text": "Atlandı olarak işaretle",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_c1db7b38a01d",
+    "text": "Yeniden bekliyor",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_5c1120aa3f2a",
+    "text": "Pasif planın geçmişi salt okunurdur.",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_e41da48c42b3",
+    "text": "Ödeme durumu sunucuda güncellendi.",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_643f2c5b4ff3",
+    "text": "İşlem tamamlanamadı.",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_2aeed2ec24bc",
+    "text": "Kayıt değişmiş veya istek sonucu belirsiz olabilir. Yeniden göndermeden önce güncel durumu yükle.",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_a1ee8d6f35e4",
+    "text": "Güncel durumu yükle",
+    "files": [
+      "src/features/occurrences/OccurrenceScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "calendar:m_9025b4af025a",
+    "text": "Bekliyor",
+    "placeholders": [],
+    "files": [
+      "src/features/occurrences/shared.tsx"
+    ]
+  },
+  {
+    "key": "calendar:m_66f71e58bc91",
+    "text": "{{value0}}, {{value1}}, {{value2}}",
+    "files": [
+      "src/features/occurrences/shared.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "calendar:m_86276a545c73",
+    "text": "Planlanan: {{value0}}",
+    "files": [
+      "src/features/occurrences/shared.tsx",
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "calendar:m_4a7458f9b406",
+    "text": "Gerçek ödenen tutar · {{value0}}",
+    "files": [
+      "src/features/occurrences/shared.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "calendar:m_3a56ed96d493",
+    "text": "Ödeme zamanı bulunamadı",
+    "files": [
+      "src/features/occurrences/shared.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_b2a75aba2a9a",
+    "text": "Şifren yenilendi. Yeni şifrenle giriş yap.",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_f39a90606360",
+    "text": "İşlem tamamlanamadı. Bağlantını kontrol edip tekrar dene.",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_48cc793fec26",
+    "text": "Yeni şifren",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_907f977177d1",
+    "text": "Şifreni yenile",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_17901d377b68",
+    "text": "Hesabına güvenli bir başlangıç.",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_fd3f0daece3c",
+    "text": "E-posta adresinle devam et.",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_1ab5f8dd3652",
+    "text": "Adres kayıtlıysa şifre yenileme bağlantısı gönderilecektir. Gelen kutunu ve spam klasörünü kontrol et.",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_bd00063bca49",
+    "text": "Birkaç dakika içinde ulaşmazsa adresini kontrol edip yeni bir bağlantı isteyebilirsin.",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_d00c902689a9",
+    "text": "E-postadaki bağlantı veya kod",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_7b15b84ff5be",
+    "text": "Bağlantı otomatik açılmadıysa e-postadaki bağlantının tamamını buraya yapıştır. Tek kullanımlıktır ve kısa sürede sona erer.",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_fefced24bd71",
+    "text": "Yeni şifre",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_df7cb2aa8f92",
+    "text": "Yeni şifre tekrar",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_24c83f2c27f8",
+    "text": "Şifreyi yenile",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_d3ca60d80048",
+    "text": "Yenileme bağlantısı iste",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_c7e7daf09eac",
+    "text": "Bağlantım var, yeni şifre belirle",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_5064114b875a",
+    "text": "Yeni bağlantı iste",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_9ff2fd4e9f6d",
+    "text": "Girişe dön",
+    "files": [
+      "src/features/PasswordResetScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_368f3e476b9e",
+    "text": "Tutar geçersiz.",
+    "files": [
+      "src/features/payments/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_72ec2727147f",
+    "text": "Oturum değişti.",
+    "files": [
+      "src/features/payments/api.ts",
+      "src/features/payments/queries.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_f5e0975c723a",
+    "text": "Sunucu yanıtı beklenen biçimde değil. Daha sonra tekrar dene.",
+    "files": [
+      "src/features/payments/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_1dee1d8d2aaf",
+    "text": "Gerçek ödenen tutarı gir.",
+    "files": [
+      "src/features/payments/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_ef8c222befc5",
+    "text": "Şu an gösteremiyoruz",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_9b81103a9b48",
+    "text": "Bağlantını kontrol edip tekrar deneyebilirsin.",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_0ce9380b07f8",
+    "text": "Tekrar dene",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_687f69a3496a",
+    "text": "Planlarına biraz daha alan",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_287ade462d7f",
+    "text": "Aktif ödeme planı limitine ulaştın. Mevcut bir planı pasifleştirebilir veya Premium seçeneklerini inceleyebilirsin.",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_875c469eccea",
+    "text": "Premium’u incele",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_0d3206e39f9e",
+    "text": "{{value0}} detayını aç",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "payments:m_82413ba35131",
+    "text": "{{value0}} · Her {{value1}} dönem",
+    "files": [
+      "src/features/payments/components.tsx",
+      "src/features/payments/PaymentDetailScreen.tsx",
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "payments:m_b31385e605a6",
+    "text": "Aktif plan",
+    "files": [
+      "src/features/payments/components.tsx",
+      "src/features/payments/PaymentDetailScreen.tsx",
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_aff1d602e8dd",
+    "text": "Pasif plan",
+    "files": [
+      "src/features/payments/components.tsx",
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_97b31ba37783",
+    "text": "Plan tarihi yükleniyor…",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_5c0fc0b491b9",
+    "text": "Yeni plan tarihi yok",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_3dfd364d95c2",
+    "text": "{{value0}}, {{value1}} ödeme",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "payments:m_bffd1dfbfbed",
+    "text": "Gecikti",
+    "placeholders": [],
+    "files": [
+      "src/features/payments/components.tsx"
+    ]
+  },
+  {
+    "key": "payments:m_d19d95f2f5f1",
+    "text": "yaklaşan",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_9025b4af025a",
+    "text": "Bekliyor",
+    "placeholders": [],
+    "files": [
+      "src/features/payments/components.tsx"
+    ]
+  },
+  {
+    "key": "payments:m_60c98fa1f6ed",
+    "text": "BU AY · YAKLAŞAN ÖDEMELER",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_e12baefecd33",
+    "text": "Yaklaşan tutarın yok.",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_887b8091622e",
+    "text": "{{value0}} yaklaşan · {{value1}} aktif plan",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "payments:m_7d5afa5c041e",
+    "text": "Bugünden ay sonuna kadar. Para birimleri ayrı gösterilir.",
+    "files": [
+      "src/features/payments/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_7c72e97a2e24",
+    "text": "Ödeme detayı",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_cd613d82a1a6",
+    "text": "Kategori",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx",
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_5da57b457b37",
+    "text": "Tekrar",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_72373d3f7768",
+    "text": "İlk ödeme",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_b649bea15b42",
+    "text": "Bitiş",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_8fd6cbabf5c7",
+    "text": "Belirtilmedi",
+    "placeholders": [],
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ]
+  },
+  {
+    "key": "payments:m_774dac727b5c",
+    "text": "Tekrar günü",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_4ac8ab998cc8",
+    "text": "Başlangıç günü",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_01e23f52e395",
+    "text": "Planlanan",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_cacd6a7dd4d4",
+    "text": "Hesap tarihi alınamadı",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_1b8b6498c5f1",
+    "text": "Yeni tarih yok",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_c7efa547ceea",
+    "text": "Planlanan tarih tekrar takvimidir; ödenen/atlanan durumunu içermez.",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_d382a5a56146",
+    "text": "Ödeme hatırlatmalarını yönet",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_432ffe87483d",
+    "text": "Bağlı plan abonelik takip kaydı üzerinden yönetilir. Değişiklikler için abonelik detayına geri dön.",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_46e308473e94",
+    "text": "Planı düzenle",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx",
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_41bb7b55f9b1",
+    "text": "Planı pasifleştir",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f4ba3168e4d4",
+    "text": "Plan pasifleştirilsin mi?",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d9a435bdbef5",
+    "text": "Yeni bekleyen tarihler üretilmez. Mevcut ödeme geçmişi korunur.",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_39a8d28c1c6b",
+    "text": "Vazgeç",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_5d59500b0808",
+    "text": "Pasifleştir",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_8546b2337a9a",
+    "text": "Planı sil",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9c62bf8ff200",
+    "text": "Ödeme planı silinsin mi?",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_aafd5445c85f",
+    "text": "{{value0}} kalıcı olarak silinecek. Geçmiş/hatırlatma veya abonelik bağlantısı varsa sunucu işlemi reddedebilir.",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "payments:m_f698e9b40f9f",
+    "text": "Sil",
+    "placeholders": [],
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ]
+  },
+  {
+    "key": "payments:m_7c017ff51519",
+    "text": "İşlem tamamlanamadı. Güncel kaydı kontrol et.",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_40e816c987a2",
+    "text": "Güncel kaydı yükle",
+    "files": [
+      "src/features/payments/PaymentDetailScreen.tsx",
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_7e31f8204d5e",
+    "text": "Yeni ödeme",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_05fbb278ab68",
+    "text": "Bir kategori seç. Katalogda yoksa özel ödeme oluşturabilirsin.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_50cea4c0f664",
+    "text": "Gelecek günlerine yer aç.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_e4d8d83eef36",
+    "text": "{{value0}} · {{value1}}/{{value2}} aktif plan",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "payments:m_51929427e17d",
+    "text": "Üyelik limiti alınamadı. Kaydetme sırasında sunucu sınırı kontrol edecek.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_78b46a64eb5e",
+    "text": "Ödeme adı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_2b98db0ebe2f",
+    "text": "Örn. Mahalle tamircisi",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_c15a0321c925",
+    "text": "Tutar",
+    "placeholders": [],
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ]
+  },
+  {
+    "key": "common:m_0c9e12052e29",
+    "text": "Para birimi · ISO 4217",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_d13255fd6d45",
+    "text": "Tekrarlama",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_dfdb7b4f231e",
+    "text": "Tekrar aralığı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_c2cc4ed0e0de",
+    "text": "İlk ödeme tarihi",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_edd225f78b1c",
+    "text": "Bitiş tarihi · isteğe bağlı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_62cae61c31f3",
+    "text": "Tekrar günü · isteğe bağlı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_f3c0ae536e6c",
+    "text": "Başlangıç günü kullanılır",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_9c6457504337",
+    "text": "İlk ödeme her zaman başlangıç tarihidir. Sonraki dönemlerde seçilen gün ayda yoksa ayın son günü kullanılır. 31 Ocak sonrası 28/29 Şubat, 29 Şubat yıllık tekrarında 28 Şubat uygulanır.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9f4ce70fe7c2",
+    "text": "Açıklama · isteğe bağlı",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_12bb0cfdd296",
+    "text": "Pasif plan yeni bekleyen tarih üretmez.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_df44192b41ac",
+    "text": "İşlem tamamlanamadı. Kaydın oluşup oluşmadığını kontrol edip yeniden dene.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_97aa3193e40c",
+    "text": "Yeni sürümün üzerine yazılmadı. Güncel kaydı yüklemek formdaki değişiklikleri kaldırır. Aboneliğe bağlı planlar bu ekrandan değiştirilemeyebilir.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_e7bbbd13fda6",
+    "text": "Sonuç doğrulanamadı. Tekrar göndermeden önce planlarını kontrol et; sunucu kaydı tamamlamış olabilir.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_42a396b3c3dd",
+    "text": "Planlarımı kontrol et",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_c6e47849be91",
+    "text": "Kontrol ettim, yeniden göndereceğim",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_f63044f8dff1",
+    "text": "Değişiklikleri kaydet",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_6c7d3be05e89",
+    "text": "Ödeme planını oluştur",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_9a4f23eb644c",
+    "text": "Plan oluşturulur; banka hesabından tahsilat yapılmaz.",
+    "files": [
+      "src/features/payments/PaymentFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_51403c693698",
+    "text": "Ödeme adı yaz.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_9cce51c167cb",
+    "text": "En fazla 150 karakter kullan.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_b2a241f9b3d3",
+    "text": "En fazla 2000 karakter kullan.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_d99126b70aa4",
+    "text": "Pozitif, en fazla 15 tam ve 4 ondalık basamaklı tutar yaz. Örn. 899,90",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_ceafeb1d890f",
+    "text": "Geçerli bir ISO 4217 para birimi seç.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_0406076bbb52",
+    "text": "Kategori yaz.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_2b89bd250950",
+    "text": "En fazla 50 karakter kullan.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_9e4a7f1d9944",
+    "text": "Pozitif tam sayı yaz.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_bbd78b58d296",
+    "text": "Aralık 1–2147483647 arasında olmalı.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_d8a8544c7998",
+    "text": "Geçerli tarihi YYYY-AA-GG biçiminde yaz.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_525f19e832a6",
+    "text": "Bitiş başlangıçtan önce olamaz.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_a9dc55ee7ab6",
+    "text": "Gün 1–31 arasında olmalı.",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_e34221564fe3",
+    "text": "Tek seferlik",
+    "files": [
+      "src/features/payments/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_301ef766a15b",
+    "text": "Günlük",
+    "files": [
+      "src/features/payments/validation.ts",
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_abc3e615d675",
+    "text": "Haftalık",
+    "files": [
+      "src/features/payments/validation.ts",
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_e055e06d7581",
+    "text": "Aylık",
+    "files": [
+      "src/features/payments/validation.ts",
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_9f2134dbbdd8",
+    "text": "Yıllık",
+    "files": [
+      "src/features/payments/validation.ts",
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_00fda1a8f061",
+    "text": "Her plan, yerli yerinde.",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_fc47d3ee96ea",
+    "text": "Ödeme ekle",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_ab071c7811fb",
+    "text": "Ödeme ara",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f3bb1ae02837",
+    "text": "Ödeme adına göre ara",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_849ff7f27107",
+    "text": "Filtre seçenekleri",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5991df187aaf",
+    "text": "Para birimi filtresi",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_1062dae67545",
+    "text": "Boş bırak veya TRY / USD / EUR",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_19c537a16cf8",
+    "text": "Kategori filtresi",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_bd072c271289",
+    "text": "Kategoriyle tam eşleşme",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_362c4c8a211f",
+    "text": "Filtreleri uygula",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_7c98416792c1",
+    "text": "Geçerli ISO 4217 kodu yaz.",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_28dc74dcd54b",
+    "text": "Ek filtreleri temizle",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f43a65ad8268",
+    "text": "Tümü",
+    "files": [
+      "src/features/PaymentsScreen.tsx",
+      "src/features/subscriptions/components.tsx",
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "payments:m_d5f884547452",
+    "text": "Aktif",
+    "placeholders": [],
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ]
+  },
+  {
+    "key": "payments:m_edd812578cbb",
+    "text": "Pasif",
+    "placeholders": [],
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ]
+  },
+  {
+    "key": "common:m_71605e3019a3",
+    "text": "Yeni eklenenler önce · Arama ve filtre sunucuda uygulanır.",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_16c74bf5cc6f",
+    "text": "Tüm para birimleri",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_22ae0cc71dfc",
+    "text": "Tüm kategoriler",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_3be6008529d7",
+    "text": "{{value0}} plan · Sayfa {{value1}}/{{value2}}",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "common:m_5a0a2ac2ea70",
+    "text": "Hesap tarihi alınamadı; plan tarihleri gösterilemiyor.",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d6b86f56f585",
+    "text": "Planlanan tarih, tekrar takviminden hesaplanır; ödenen/atlanan durumunu içermez.",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f1d48e85474e",
+    "text": "Önceki",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_ffe6922f5329",
+    "text": "Sonraki",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_8522d5a985f5",
+    "text": "Bu sayfada plan kalmadı",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_1176f5007df5",
+    "text": "Bu filtrede plan yok",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_6709724982cc",
+    "text": "İlk planına yer aç",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_8bbeb6b2e32b",
+    "text": "Ödemelerini eklediğinde tutarlarını ve tekrar takvimini burada görebileceksin.",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_b74566b03eea",
+    "text": "Önceki sayfa",
+    "files": [
+      "src/features/PaymentsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_1a8415416e0e",
+    "text": "İnternet faturası",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_a81cab46eebf",
+    "text": "Ev & yaşam",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_cde9b289b121",
+    "text": "Studio Music",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_ad57a5c86aa1",
+    "text": "Aylık abonelik",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_8ea3b2614264",
+    "text": "Ev kirası",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_782916f8f2c5",
+    "text": "Cloud Space",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_80f230efe8c4",
+    "text": "Bulut depolama",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_654c3d5d92af",
+    "text": "Elektrik faturası",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_fd914780f3f4",
+    "text": "Dil atölyesi",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_41d28f6e4e7b",
+    "text": "Kişisel gelişim",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_8471ab6843ff",
+    "text": "Kitap kulübü",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_c1579f388f19",
+    "text": "Müzik & eğlence",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_1f748b0ca081",
+    "text": "Focus Pro",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9dd69ea580be",
+    "text": "Üretkenlik",
+    "files": [
+      "src/features/preview-data.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_80ad54ad05fa",
+    "text": "Ayarlar",
+    "placeholders": [],
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ]
+  },
+  {
+    "key": "settings:m_64bd1224db11",
+    "text": "Senin düzenin, senin tercihlerin.",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_a20eda1e3a04",
+    "text": "Hesabın",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_121128a3449b",
+    "text": "Profil yükleniyor…",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_1c56ac8f2dc6",
+    "text": "Hesap",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_69022fb48e27",
+    "text": "Profil yüklenemedi. Tekrar dene.",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_e1b0af0c144d",
+    "text": "Görünüm",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_7c08e78575d6",
+    "text": "Uygulama teması",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_bbb1132f30f1",
+    "text": "Açık",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_b24a36089466",
+    "text": "Koyu",
+    "placeholders": [],
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ]
+  },
+  {
+    "key": "settings:m_1c466db79243",
+    "text": "Sistem",
+    "placeholders": [],
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ]
+  },
+  {
+    "key": "settings:m_366fcd93889e",
+    "text": "Tercihler",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_be761e877712",
+    "text": "Bildirim izinleri ve hesap tercihleri",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_a13a55a714f1",
+    "text": "Hesap bilgileri",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_9b7337a7225a",
+    "text": "Profil henüz yüklenmedi.",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_6f71eadb6aaa",
+    "text": "Güvenlik ve gizlilik",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_d5fb076f2548",
+    "text": "Oturum bilgilerin cihazın güvenli depolamasında tutulur. Şifren saklanmaz. Ödeme planların ve aylık özetin PayAhead sunucusundan alınır.",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_21858317874a",
+    "text": "Bir adım daha önde.",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_f43b35270139",
+    "text": "PayAhead Premium’u keşfet",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_69fbb458f5f0",
+    "text": "Çıkış yapılıyor…",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_ea5b69c1ad74",
+    "text": "Çıkış yap",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "settings:m_f7b305154a1e",
+    "text": "PayAhead · Her şey zamanında.",
+    "files": [
+      "src/features/SettingsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_8cb49b7388e8",
+    "text": "Geçerli bir abonelik tutarı gir.",
+    "files": [
+      "src/features/subscriptions/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_72ec2727147f",
+    "text": "Oturum değişti.",
+    "files": [
+      "src/features/subscriptions/api.ts",
+      "src/features/subscriptions/queries.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_4fcd73a757cc",
+    "text": "Abonelik yanıtı beklenen biçimde değil. Daha sonra tekrar dene.",
+    "files": [
+      "src/features/subscriptions/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_a75abe66fec2",
+    "text": "Ücretsiz deneme",
+    "files": [
+      "src/features/subscriptions/components.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_d5f884547452",
+    "text": "Aktif",
+    "placeholders": [],
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ]
+  },
+  {
+    "key": "subscriptions:m_dbd417da03e1",
+    "text": "İptal edildi",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_87e91c19c039",
+    "text": "Sona erdi",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_eeee62ca562d",
+    "text": "Deneme takip kaydı iptal edildi.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_4045e1f2fa19",
+    "text": "Deneme süresi bitti.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_39ece7b68bec",
+    "text": "Deneme {{value0}} başlayacak.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_0499b314e350",
+    "text": "Denemenin son günü",
+    "files": [
+      "src/features/subscriptions/components.tsx",
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_c3f52697e59c",
+    "text": "Denemenin bitmesine {{value0}} gün",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_22641ad761bf",
+    "text": "Erişim bitişi belirtilmedi.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_af985fbab912",
+    "text": "Erişim sona erdi · {{value0}}",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_a2b74b09a1e6",
+    "text": "{{value0}} dahil erişim {{value1}}.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "subscriptions:m_c8c32fd44bb1",
+    "text": "devam ediyor",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_7b6ad902719e",
+    "text": "bitişi",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_96a9ac11297f",
+    "text": "{{value0}}, {{value1}}, detay",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "subscriptions:m_f85cb0113896",
+    "text": "{{value0}} · {{value1}} / {{value2}} dönem",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "subscriptions:m_cd0d38999b7e",
+    "text": "Özel abonelik",
+    "files": [
+      "src/features/subscriptions/components.tsx",
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_90e3db49d29e",
+    "text": "Sonraki ücretli tarih: {{value0}}",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_dc2c56f19435",
+    "text": "Yeni ücretli ödeme tarihi yok",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_59bb6eb356f4",
+    "text": "AYLIK TAHMİNİ KARŞILIK",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_d96738411504",
+    "text": "{{value0}} / ay",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_4ecad399a85a",
+    "text": "Bu kapsamda maliyet tahmini yok.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_f5fdcac75a16",
+    "text": "{{value0}} aktif · {{value1}} deneme · {{value2}} iptal · {{value3}} sona erdi",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2",
+      "value3"
+    ]
+  },
+  {
+    "key": "subscriptions:m_1a6296fdf554",
+    "text": "Otomatik yenilenen aktif ve deneme kayıtları için tahmin; bu ayın kesin harcaması değildir. Aylık: tutar/aralık; yıllık: tutar/(12×aralık); haftalık: tutar×52/(12×aralık); günlük: tutar×365/(12×aralık). Para birimleri ayrı, grup sonucu 4 basamakta yuvarlanır.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_31a31e2fdfe1",
+    "text": "Aktif kayıt sınırına ulaştın",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_99e46aeb1075",
+    "text": "Abonelik takibi ve bağlı aktif ödeme planı için ayrı limitler vardır. Mevcut kayıtlarını kontrol edebilir veya üyelik seçeneklerini inceleyebilirsin.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_5cc017022589",
+    "text": "Üyelik seçeneklerini incele",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_7c017ff51519",
+    "text": "İşlem tamamlanamadı. Güncel kaydı kontrol et.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_21319cec854e",
+    "text": "Kayıt değişmiş veya istek sonucu belirsiz olabilir. Yeniden göndermeden önce güncel kayıtları kontrol et.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_40e816c987a2",
+    "text": "Güncel kaydı yükle",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_0426bc127d33",
+    "text": "Aboneliklerin",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_5a685ba46d97",
+    "text": "Abonelik özeti yükleniyor…",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_b3012876af05",
+    "text": "{{value0}} aktif · {{value1}} deneme",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "subscriptions:m_e6a9d0c56b98",
+    "text": "Abonelik ödemeleri finansal özete bağlı plan üzerinden zaten dahildir.",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_b8691c27fa4c",
+    "text": "Sonraki yenileme: {{value0}} · {{value1}}",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "subscriptions:m_37e4b6a7987d",
+    "text": "Tarih yok",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_b88a01eb7582",
+    "text": "{{value0}} yaklaşan deneme bitişi",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_b51cb4cab2c8",
+    "text": "Son gün",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_008749f47ce5",
+    "text": "{{value0}} gün kaldı",
+    "files": [
+      "src/features/subscriptions/components.tsx",
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_5a89e7b9050a",
+    "text": "İlk ücretli: {{value0}}",
+    "files": [
+      "src/features/subscriptions/components.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_5a3414a08005",
+    "text": "Abonelik detayı",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_8fd6cbabf5c7",
+    "text": "Belirtilmedi",
+    "placeholders": [],
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ]
+  },
+  {
+    "key": "subscriptions:m_cdcb6a19c6d2",
+    "text": "Faturalandırma",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_39b03995fcce",
+    "text": "Abonelik başlangıcı",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_c1c27516789b",
+    "text": "İlk ücretli ödeme",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_8c74b392a2f7",
+    "text": "Sonraki ücretli ödeme",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_38432ff279cf",
+    "text": "Deneme başlangıcı",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_ca1dff322c77",
+    "text": "Deneme bitişi",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_c9f213296e2e",
+    "text": "Otomatik yenileme takibi",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_bbb1132f30f1",
+    "text": "Açık",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_39ce8f387818",
+    "text": "Kapalı",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_ad24d7cfe429",
+    "text": "Erişim bitişi",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_0a95b6578caa",
+    "text": "Takip iptal zamanı",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_5e19d63b6120",
+    "text": "Hesap tarihi: {{value0}} · {{value1}}{{value2}}",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "subscriptions:m_623fc8183b37",
+    "text": " · UTC yedeği kullanıldı",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_e6ecb5aacb90",
+    "text": "Bağlı ödeme planını gör",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_a28ea32a92a3",
+    "text": "Bağlı planın ödeme hatırlatmaları",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_d0ae165f2ea1",
+    "text": "Deneme hatırlatmaları: {{value0}}",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_a139ddfe6c16",
+    "text": "Tercih açık",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_d38040e92e84",
+    "text": "Tercih kapalı",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_120955beb4d9",
+    "text": "Sunucu deneme kurallarını üyelik kotasına göre 09:00 hesap saatinde oluşturur: Free için 1 gün, uygun Premium kotasında 1/3/7 gün ve son gün. Özel deneme günü/saat seçimi desteklenmez. Tercihi aboneliği düzenleyerek değiştirebilirsin; iptal/sona ermede gönderim uygunluğu sunucuda kontrol edilir. Tercih, cihaz teslimi değildir.",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_af18c85b8d43",
+    "text": "Bağlı ödeme planı finansal tek kaynaktır; takvim ve analizde ayrıca ikinci abonelik tutarı eklenmez.",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_8810c95e97ad",
+    "text": "Aboneliği düzenle",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx",
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_9c855e9dea46",
+    "text": "İptal ve erişim",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_8c19506de966",
+    "text": "PayAhead takip kaydını iptal etmek dış hizmetteki aboneliği iptal etmez. Sağlayıcında ayrıca iptal etmelisin. Gerçek erişim bitişini aşağıda belirt.",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_09ac97477bbd",
+    "text": "İptal sonrası erişimin son günü",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_2487cd5b4552",
+    "text": "Takip kaydını iptal et",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_74fddbd51925",
+    "text": "Takip kaydı iptal edilsin mi?",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_307f11592d33",
+    "text": "Dış sağlayıcıda iptal yapılmaz. PayAhead yenilemeleri durur; {{value0}} dahil erişim devam ediyor olarak izlenir.",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_39a8d28c1c6b",
+    "text": "Vazgeç",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_2c5a5df10ac9",
+    "text": "Takibi iptal et",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_dc2fe2ce17ea",
+    "text": "İptal edilmiş veya sona ermiş kayıt yeniden etkinleştirilemez. Gerekirse yeni bir takip kaydı oluştur.",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_a73ff22c9a90",
+    "text": "Takip kaydını kaldır",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5c0481ebe4d9",
+    "text": "Takip kaydı kaldırılsın mı?",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d3579181350f",
+    "text": "Abonelik listeden gizlenir ve bağlı plan pasifleştirilir. Ödeme geçmişi korunur; dış sağlayıcıda iptal yapılmaz.",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_b88019aa289e",
+    "text": "Kaldır",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_5230f2b7aaa9",
+    "text": "İşlem sürüyor…",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_e8acb1ee980d",
+    "text": "Takip kaydı iptal edildi. Dış sağlayıcıda ayrıca işlem yapmalısın.",
+    "files": [
+      "src/features/subscriptions/SubscriptionDetailScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_6c57e9a1d5bc",
+    "text": "Abonelik",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_a77cb430aae5",
+    "text": "Abonelik düzenleme",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_9db9e4ffd519",
+    "text": "İptal edilmiş veya sona ermiş takip kaydı düzenlenemez.",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_2ba638fe6b81",
+    "text": "Bir kategori seç. Katalogda yoksa özel abonelik oluşturabilirsin.",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_3d84aa9bcade",
+    "text": "Yeni abonelik",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx",
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_43b35e8a5c47",
+    "text": "Düzenli giderlerine net bir bakış.",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_ad10ab3a2d2a",
+    "text": "{{value0}} · {{value1}}/{{value2}} aktif/deneme · {{value3}}/{{value4}} aktif ödeme planı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2",
+      "value3",
+      "value4"
+    ]
+  },
+  {
+    "key": "subscriptions:m_18527dae8cdd",
+    "text": "Üyelik limitini sunucu kaydederken kontrol edecek.",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_a45e9436a4ba",
+    "text": "Abonelik adı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_93f01c808be2",
+    "text": "Sağlayıcı adı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_da20470ab885",
+    "text": "Abonelik tutarı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_bbc1a8b9becc",
+    "text": "Faturalandırma sıklığı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5ff71b7378f6",
+    "text": "Faturalandırma aralığı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_2140719bfbc7",
+    "text": "İlk ücretli ödeme tarihi",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_2ac439186d4f",
+    "text": "Sonraki ücretli tarih sunucu tarafından hesaplanır. İlk ücretli tarih deneme bitişiyle aynı değildir.",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_7754aee3cc38",
+    "text": "Gün ayda yoksa ay sonu kullanılır. İlk ücretli tarih ilk tekrardır; sonraki aylar seçilen güne göre ilerler.",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_0d95451acf39",
+    "text": "Aktif abonelik",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_046f79b76c42",
+    "text": "Deneme tarihlerini kaldır",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_6ace31f2854a",
+    "text": "Deneme hatırlatmalarını etkinleştir",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_075e106597b7",
+    "text": "Hatırlatma tercihi kaydedilir; bildirim gönderildiği veya telefona ulaştığı anlamına gelmez. Kullanılabilir kuralları üyelik limiti ve sunucu belirler.",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_6b853275a321",
+    "text": "Erişim bitişi · isteğe bağlı",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_e510182bc9ac",
+    "text": "Erişim bitişi belirtilmedi",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_cdaea12e4154",
+    "text": "Abonelik değişikliklerini kaydet",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_9a75e128810d",
+    "text": "Aboneliği oluştur",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_cfcd181c31ea",
+    "text": "Takip kaydı ve bağlı tek ödeme planı birlikte oluşturulur. Dış sağlayıcıdan satın alma veya tahsilat yapılmaz.",
+    "files": [
+      "src/features/subscriptions/SubscriptionFormScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_65aedc4c30ef",
+    "text": "Denemen bitmeden",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_92aab347c863",
+    "text": "İlk ücretli güne hazırlıklı ol.",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_1387bc38b3ee",
+    "text": "{{value0}} gün içinde{{value1}}",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "subscriptions:m_49eae7447e75",
+    "text": "Sunucunun hesap saat dilimine göre başlamış ve halen denemede olan kayıtlar. Bitiş günü dahil; iptal ve sona erenler bu listede değildir.",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_9154c18c668d",
+    "text": "Deneme bitişi: {{value0}}",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_322ce9e70bfc",
+    "text": "İlk ücretli ödeme: {{value0}}",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_e88a0897c5ca",
+    "text": "{{value0}} detayını gör",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "subscriptions:m_ba04e88c13f0",
+    "text": "Sayfa {{value0}}/{{value1}}",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1"
+    ]
+  },
+  {
+    "key": "subscriptions:m_b52d1a229ccf",
+    "text": "Önceki deneme sayfası",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_4bd9f29d4bbd",
+    "text": "Sonraki deneme sayfası",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_0a83a3c1d4cf",
+    "text": "Bu aralıkta bitecek deneme yok",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "subscriptions:m_615e317726c3",
+    "text": "Başka bir aralık seçebilir veya abonelik listeni inceleyebilirsin.",
+    "files": [
+      "src/features/subscriptions/TrialsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_8790a538a1c4",
+    "text": "Geçerli bir tarih seç.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_53fb989d42a5",
+    "text": "Abonelik adı yaz.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_f2b4cfecfac2",
+    "text": "Sağlayıcı adı yaz.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_652316e16657",
+    "text": "Pozitif, en fazla 15 tam ve 4 ondalık basamaklı tutar gir.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_3603d7f2ee2f",
+    "text": "Pozitif tam sayı gir.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_0b006dd3e844",
+    "text": "Aralık 1–2147483647 olmalı.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_579d1caa7d8c",
+    "text": "İlk ücretli tarih başlangıçtan önce olamaz.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_30f875728cf9",
+    "text": "Deneme başlangıç ve bitiş tarihlerini birlikte seç.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_bf89ccd17e64",
+    "text": "Deneme başlangıcı abonelik başlangıcından önce olamaz.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_c3e70fe9969f",
+    "text": "Deneme bitişi başlangıcından önce olamaz.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_5b7d76f73e12",
+    "text": "İlk ücretli tarih deneme bitişinden sonra olmalı.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_41165b001f79",
+    "text": "Gün 1–31 olmalı.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_d4aa12f6efd2",
+    "text": "Otomatik yenileme kapalı aktif abonelikte erişim bitişi gerekli.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "validation:m_d649c199ee3b",
+    "text": "Erişim bitişi başlangıçtan; otomatik yenilemede ilk ücretli tarihten önce olamaz.",
+    "files": [
+      "src/features/subscriptions/validation.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_056559cd4769",
+    "text": "Küçük tutarlar, büyük bir netlik.",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_3bb51670d4e2",
+    "text": "Abonelik ekle",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5e19d63b6120",
+    "text": "Hesap tarihi: {{value0}} · {{value1}}{{value2}}",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "common:m_1b794efacab7",
+    "text": " · UTC yedeği",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_02222f976398",
+    "text": "{{value0}} · {{value1}}/{{value2}} aktif/deneme limiti",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "common:m_b88a01eb7582",
+    "text": "{{value0}} yaklaşan deneme bitişi",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "common:m_1e1adc209eed",
+    "text": "EN YAKIN ÜCRETLİ YENİLEME",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_fbafe9fc3173",
+    "text": "Takip kayıtların",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_108e1b550628",
+    "text": "Abonelik veya sağlayıcı ara",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_7060d276702b",
+    "text": "Abonelik para birimi filtresi",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_ff166f34034b",
+    "text": "Tümü için boş bırak",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d789bd722598",
+    "text": "Abonelik filtresini uygula",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9ca92bf2de8d",
+    "text": "Geçerli ISO 4217 kodu gir.",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_4fa460adaf28",
+    "text": "Sunucu sırası: en yeni oluşturulan önce. Özet tüm takip kayıtlarını kapsar; liste filtrelerinden bağımsızdır.",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f334350d4252",
+    "text": "{{value0}} abonelik · Sayfa {{value1}}/{{value2}}",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": [
+      "value0",
+      "value1",
+      "value2"
+    ]
+  },
+  {
+    "key": "common:m_2aa78fcdc0ca",
+    "text": "Burada henüz abonelik yok",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_a0256836986f",
+    "text": "Filtrelerini değiştirebilir veya takip etmek istediğin bir abonelik ekleyebilirsin.",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_028ac77e95d4",
+    "text": "Önceki abonelik sayfası",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_887c317bfdb9",
+    "text": "Sonraki abonelik sayfası",
+    "files": [
+      "src/features/SubscriptionsScreen.tsx"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_b7ac953bddf5",
+    "text": "İşlem tamamlanamadı. Tekrar deneyebilirsin.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_97fef89efdf8",
+    "text": "Bağlantı zaman aşımına uğradı. Tekrar dene.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_148edfcba033",
+    "text": "Sunucuya ulaşılamıyor. İnternet bağlantını ve API adresini kontrol et.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_64872a0e18b3",
+    "text": "Şifre yenileme hizmeti şu anda kullanılamıyor. Daha sonra tekrar dene.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_96d8c326f702",
+    "text": "Bağlantı geçersiz, kullanılmış veya süresi dolmuş. Yeni bir bağlantı iste.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_0d2b1db5ac23",
+    "text": "E-posta veya şifre hatalı ya da oturum artık geçerli değil.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_99a158d3b327",
+    "text": "Aktif kayıt limitine ulaştın. Mevcut planlarını pasifleştirebilir veya Premium seçeneklerini inceleyebilirsin.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_a25c909874f9",
+    "text": "Bu işlem için yetkin yok.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_cfec70e3a8bc",
+    "text": "Kayıt bulunamadı veya artık erişilemiyor.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_4caef90dffc6",
+    "text": "Bu e-posta ile kayıt oluşturulamıyor.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_73614d4af236",
+    "text": "Kayıt değişti. Güncel bilgileri yükleyip tekrar dene.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_bef85276f101",
+    "text": "Çok fazla deneme yapıldı. Biraz bekleyip tekrar dene.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_79cea1288206",
+    "text": "Sunucu şu anda kullanılamıyor. Daha sonra tekrar dene.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "errors:m_2d8988bb1fc4",
+    "text": "İstek tamamlanamadı.",
+    "files": [
+      "src/services/api-error.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_9c1deb6987ec",
+    "text": "API adresi yapılandırılmamış.",
+    "files": [
+      "src/services/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5f4b398cc5b6",
+    "text": "API için geçerli, production ortamında HTTPS bir adres kullan.",
+    "files": [
+      "src/services/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_43a1354bdee5",
+    "text": "API isteği izin verilen adresin dışında.",
+    "files": [
+      "src/services/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_72ec2727147f",
+    "text": "Oturum değişti.",
+    "files": [
+      "src/services/api.ts",
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_1e6636df44e1",
+    "text": "Oturumun artık geçerli değil. Yeniden giriş yap.",
+    "files": [
+      "src/services/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d1d749ecce55",
+    "text": "Oturum yenilendi. İşlem otomatik tekrarlanmadı; güncel kaydı kontrol edip yeniden dene.",
+    "files": [
+      "src/services/api.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "auth:m_0e15daef0882",
+    "text": "Hesabın artık kullanılamıyor. Yeniden giriş yap.",
+    "files": [
+      "src/services/auth-runtime.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_632f0add5824",
+    "text": "Geçerli e-posta adresini yaz.",
+    "files": [
+      "src/services/password-reset.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_d3cd4aca0609",
+    "text": "Geçerli bağlantıyı veya kodu gir.",
+    "files": [
+      "src/services/password-reset.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_bf6b1946fd11",
+    "text": "En az 12 karakter kullan.",
+    "files": [
+      "src/services/password-reset.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_782480e8798a",
+    "text": "Şifreler aynı olmalı.",
+    "files": [
+      "src/services/password-reset.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_33355201acda",
+    "text": "Yeniden giriş yap.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_39f6162d8263",
+    "text": "Oturumun sona erdi. Yeniden giriş yap.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_f3df8a754f4c",
+    "text": "Cihazdaki oturum kaydı temizlenemedi. Uygulamayı kapatmadan önce çıkışı tekrar dene.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_94963f065d53",
+    "text": "{{value0}} Sunucudaki cihaz kaydı kaldırılamadı. Bildirimler sürebilir. Android ayarlarından kapatabilir veya aynı hesapla yeniden bağlanıp kaydı kaldırabilirsin.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": [
+      "value0"
+    ]
+  },
+  {
+    "key": "common:m_5e33f996840e",
+    "text": "Bu cihazdan çıkış yapıldı.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_8218c437b97c",
+    "text": "Sunucudan geçerli bir oturum alınamadı.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_5a2b7cd2f617",
+    "text": "Giriş işlemi sürüyor.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_de17ccfcb3a8",
+    "text": "Oturum doğrulanamadı. Bağlantını kontrol edip yeniden giriş yap.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_b8dd5f6d646f",
+    "text": "Oturum bulunamadı.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_c88aa79e449a",
+    "text": "Oturum sona erdi.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_95a5cb5fa1fc",
+    "text": "Çıkış yapıldı.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_0c4b3d96c974",
+    "text": "Bu cihazdan çıkış yapıldı; sunucu iptali doğrulanamadı. İnternet bağlantısı olmadan sunucu oturumu süresi dolana kadar geçerli kalabilir.",
+    "files": [
+      "src/services/session-manager.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_50fbcc5ae0d0",
+    "text": "Kalıcı güvenli oturum için Android veya iOS uygulamasını kullan.",
+    "files": [
+      "src/services/token-storage.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_cd1e0724e02a",
+    "text": "Günaydın",
+    "files": [
+      "src/utils/format.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_badc3e7e2b20",
+    "text": "İyi günler",
+    "files": [
+      "src/utils/format.ts"
+    ],
+    "placeholders": []
+  },
+  {
+    "key": "common:m_7df387187c77",
+    "text": "İyi akşamlar",
+    "files": [
+      "src/utils/format.ts"
+    ],
+    "placeholders": []
+  }
+]

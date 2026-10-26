@@ -42,7 +42,7 @@ public interface INotificationManagementService
 
 public enum PushResultKind { TicketAccepted, ReceiptAccepted, PendingReceipt, Retryable, Permanent, InvalidDevice, Resend }
 public sealed record PushResult(PushResultKind Kind, string? MessageId = null, string? ErrorCode = null, TimeSpan? RetryAfter = null);
-public sealed record PushMessage(Guid DeliveryId, string PushToken, Guid? PaymentPlanId = null, Guid? SubscriptionId = null);
+public sealed record PushMessage(Guid DeliveryId, string PushToken, Guid? PaymentPlanId = null, Guid? SubscriptionId = null, string LanguageCode = "tr");
 public interface IPushNotificationSender
 {
     Task<PushResult> SendAsync(PushMessage message, CancellationToken ct);

@@ -1,0 +1,16 @@
+{
+  "m_b7ac953bddf5": "Aktion konnte nicht abgeschlossen werden. Versuche es erneut.",
+  "m_97fef89efdf8": "Verbindungszeit überschritten. Versuche es erneut.",
+  "m_148edfcba033": "Server nicht erreichbar. Prüfe Internetverbindung und API-Adresse.",
+  "m_64872a0e18b3": "Passwortzurücksetzung derzeit nicht verfügbar. Versuche es später erneut.",
+  "m_96d8c326f702": "Link ungültig, bereits verwendet oder abgelaufen. Fordere einen neuen an.",
+  "m_0d2b1db5ac23": "E-Mail oder Passwort falsch, oder Sitzung nicht mehr gültig.",
+  "m_99a158d3b327": "Limit aktiver Einträge erreicht. Deaktiviere vorhandene Pläne oder entdecke Premium.",
+  "m_a25c909874f9": "Du darfst diese Aktion nicht ausführen.",
+  "m_cfec70e3a8bc": "Eintrag nicht gefunden oder nicht mehr zugänglich.",
+  "m_4caef90dffc6": "Mit dieser E-Mail kann kein Konto erstellt werden.",
+  "m_73614d4af236": "Eintrag geändert. Lade die aktuellen Daten und versuche es erneut.",
+  "m_bef85276f101": "Zu viele Versuche. Warte kurz und versuche es erneut.",
+  "m_79cea1288206": "Server derzeit nicht verfügbar. Versuche es später erneut.",
+  "m_2d8988bb1fc4": "Anfrage konnte nicht abgeschlossen werden."
+}

@@ -3,6 +3,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PayAhead.Domain;
 namespace PayAhead.Infrastructure;
 
+public sealed class CatalogTranslationConfiguration : IEntityTypeConfiguration<CatalogCategoryTranslation>
+{
+    public void Configure(EntityTypeBuilder<CatalogCategoryTranslation> b)
+    {
+        b.ToTable("CatalogCategoryTranslations"); b.HasKey(x => new { x.CategoryId, x.CultureCode });
+        b.Property(x => x.CultureCode).HasMaxLength(16).IsUnicode(false).IsRequired();
+        b.Property(x => x.DisplayName).HasMaxLength(150).IsRequired(); b.Property(x => x.SearchText).HasMaxLength(500).IsRequired();
+        b.HasOne<CatalogCategory>().WithMany().HasForeignKey(x => x.CategoryId).OnDelete(DeleteBehavior.NoAction);
+        b.HasIndex(x => new { x.CultureCode, x.SearchText }); b.HasData(CatalogTranslationSeed.All);
+    }
+}
+
 public sealed class CatalogCategoryConfiguration : IEntityTypeConfiguration<CatalogCategory>
 {
     public void Configure(EntityTypeBuilder<CatalogCategory> b)

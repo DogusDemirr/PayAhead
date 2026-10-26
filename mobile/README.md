@@ -77,3 +77,6 @@ Canlı smoke komutları yalnızca yerel/LAN geliştirme backend'ine gider. Rastg
 Güncel npm audit 7 kayıt (4 high/3 moderate), dev hariç de 7 raporladı. Önceki fazın 58 kaydı güncel registry çıktısında aynı değildir; bunu kod değişikliğiyle giderilmiş açık sayısı olarak sunmuyoruz. Kalan node-forge/Router query decoder zincirleri ve build/test ayrıntıları [ilerleme raporunda](docs/IMPLEMENTATION_PROGRESS.md). SDK'yı bozan major/downgrade/force uygulanmadı.
 
 Belgeler: [Mimari](docs/ARCHITECTURE.md), [tasarım sistemi](docs/DESIGN_SYSTEM.md), [geliştirme](docs/DEVELOPMENT.md), [Android kabul matrisi](docs/ANDROID_TESTING.md), [ilerleme ve açık noktalar](docs/IMPLEMENTATION_PROGRESS.md).
+# Phase 5.2 — Global yerelleştirme
+
+14 dilde merkezi kaynaklar, Ayarlar → Uygulama Dili, cihazda kalıcı tercih, hesap senkronizasyonu ve locale ayrımlı katalog cache'i hazır. [Phase 5.2 raporu](docs/PHASE5_2_REPORT.md), [mimari/komutlar](../docs/LOCALIZATION.md), [fiziksel Android kabulü](docs/ANDROID_TESTING.md). Çeviriler AI taslağıdır; dil uzmanı ve fiziksel cihaz kabulü yapılmış sayılmaz. Eski Phase 6 push kabulü ayrı kalır.

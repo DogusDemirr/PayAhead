@@ -19,6 +19,7 @@ public static class DependencyInjection
                 sql => sql.EnableRetryOnFailure(3).CommandTimeout(30)));
         services.AddScoped<IPaymentPlanStore, PaymentPlanStore>();
         services.AddScoped<PayAhead.Application.Catalog.ICatalogStore, CatalogStore>();
+        services.AddScoped<PayAhead.Application.Localization.ILanguagePreferenceStore, LanguagePreferenceStore>();
         services.AddScoped<IOccurrenceStore, OccurrenceStore>();
         services.AddScoped<IOverviewStore, OverviewStore>();
         services.AddScoped<PayAhead.Application.Auth.IAuthStore, AuthStore>();

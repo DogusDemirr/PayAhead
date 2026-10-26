@@ -1,4 +1,4 @@
-import { beforeEach, test, expect, jest } from '@jest/globals';
+import { beforeEach, afterEach, test, expect, jest } from '@jest/globals';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react-native';
 import { Alert } from 'react-native';
 import { router } from 'expo-router';
@@ -9,6 +9,10 @@ import { PaymentForm } from '../src/features/payments/PaymentFormScreen';
 import { useDashboard, usePaymentList, useFinanceClock, usePayment, usePaymentMutation } from '../src/features/payments/queries';
 import { ApiError } from '../src/services/api-error';
 import { plan, projected, summary, entitlement } from './finance-fixtures';
+import { financialMoney } from '../src/features/payments/money';
+import { i18next, t, useLanguageStore } from '../src/i18n/runtime';
+import { useCatalogService } from '../src/features/catalog/queries';
+jest.mock('../src/features/catalog/queries', () => ({ useCatalogCategories: jest.fn(() => ({ data: [] })), useCatalogService: jest.fn(() => ({ data: { id: 'dddddddd-dddd-4ddd-bddd-dddddddddddd', displayName: 'Shell', isActive: true } })) }));
 jest.mock('../src/features/catalog/CatalogPicker', () => ({ CatalogSelectionField: ({ onSelect }: { onSelect(value: unknown): void }) => { const { Pressable, Text } = require('react-native'); return <Pressable accessibilityRole="button" accessibilityLabel="Test özel kategorisini seç" onPress={() => onSelect({ category: { id: 'c1111111-1111-4111-8111-111111111111', nameTr: 'Ev' }, service: null })}><Text>Kategori seç</Text></Pressable>; } }));
 jest.mock('../src/features/subscriptions/queries', () => ({ useSubscriptionSummary: () => ({ data: undefined, refetch: jest.fn() }), useExpiringTrials: () => ({ data: [], refetch: jest.fn() }) }));
 jest.mock('../src/features/payments/queries', () => ({ useDashboard: jest.fn(), usePaymentList: jest.fn(), useFinanceClock: jest.fn(), usePayment: jest.fn(), usePaymentMutation: jest.fn(), useEntitlements: jest.fn() }));
@@ -21,6 +25,20 @@ beforeEach(() => {
   jest.mocked(usePaymentMutation).mockReturnValue({ mutateAsync, isPending: false } as unknown as ReturnType<typeof usePaymentMutation>);
   mutateAsync.mockReset(); mutateAsync.mockResolvedValue(plan);
   setDashboard(summary);
+});
+afterEach(() => { void i18next.changeLanguage('tr'); useLanguageStore.setState({ language: 'tr' }); });
+test.each(['tr', 'en', 'de', 'ar'] as const)('Payments renders exact mixed currencies and keeps UUID navigation in %s with number-only Intl', async language => {
+  await act(async () => { await i18next.changeLanguage(language); useLanguageStore.setState({ language }); });
+  const ids = ['ffffffff-ffff-4fff-bfff-ffffffffffff', 'eeeeeeee-eeee-4eee-beee-eeeeeeeeeeee', 'cccccccc-cccc-4ccc-bccc-cccccccccccc'];
+  const rows = ['TRY', 'USD', 'EUR'].map((currencyCode, index) => ({ ...plan, id: ids[index], name: `Exact ${currencyCode}`, currencyCode, amount: '999999999999999.9999', catalogCategoryId: 'bbbbbbbb-bbbb-4bbb-bbbb-bbbbbbbbbbbb', catalogServiceId: 'dddddddd-dddd-4ddd-bddd-dddddddddddd' }));
+  const before = JSON.stringify(rows);
+  jest.mocked(usePaymentList).mockReturnValue(result({ items: rows, pageNumber: 1, pageSize: 20, totalCount: 3, totalPages: 1 }) as unknown as ReturnType<typeof usePaymentList>);
+  await render(<PaymentsScreen />);
+  for (const row of rows) expect(screen.getByText(financialMoney(row.amount, row.currencyCode))).toBeTruthy();
+  expect(useCatalogService).toHaveBeenCalledWith(rows[0].catalogServiceId);
+  await fireEvent.press(screen.getByRole('button', { name: t('payments:m_0d3206e39f9e', { value0: rows[0].name }) }));
+  expect(router.push).toHaveBeenCalledWith({ pathname: '/payment', params: { id: ids[0] } });
+  expect(JSON.stringify(rows)).toBe(before);
 });
 function setDashboard(data?: typeof summary, error?: Error) {
   jest.mocked(useDashboard).mockReturnValue({ clock: result(data) as unknown as ReturnType<typeof useDashboard>['clock'], summary: result(data, error) as unknown as ReturnType<typeof useDashboard>['summary'], upcoming: result({ context: summary.context, items: [projected], totalCount: 1 }) as unknown as ReturnType<typeof useDashboard>['upcoming'], overdue: result({ context: summary.context, items: [], totalCount: 0 }) as unknown as ReturnType<typeof useDashboard>['overdue'], hasOverdueRange: true, refresh: jest.fn(async () => {}) });

@@ -31,7 +31,7 @@ public sealed class ExpoPushNotificationSender(IHttpClientFactory clients, Notif
         {
             to = message.PushToken,
             title = "PayAhead",
-            body = message.SubscriptionId.HasValue ? "Bir deneme bitişi hatırlatmanız var." : "Bir ödeme hatırlatmanız var.",
+            body = PayAhead.Application.Localization.NotificationText.Body(message.LanguageCode, message.SubscriptionId.HasValue),
             data = new { notificationId = message.DeliveryId, kind = message.SubscriptionId.HasValue ? "subscription" : "payment", resourceId = message.SubscriptionId ?? message.PaymentPlanId },
             channelId = "payahead-reminders",
             sound = "default",

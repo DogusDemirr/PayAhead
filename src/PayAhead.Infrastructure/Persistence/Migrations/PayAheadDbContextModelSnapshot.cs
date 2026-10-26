@@ -1605,6 +1605,11403 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PayAhead.Domain.CatalogCategoryTranslation", b =>
+                {
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CultureCode")
+                        .HasMaxLength(16)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(16)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("SearchText")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("CategoryId", "CultureCode");
+
+                    b.HasIndex("CultureCode", "SearchText");
+
+                    b.ToTable("CatalogCategoryTranslations", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "tr",
+                            DisplayName = "Dijital Abonelikler",
+                            SearchText = "dijital abonelikler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "en",
+                            DisplayName = "Digital subscriptions",
+                            SearchText = "digital subscriptions"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "de",
+                            DisplayName = "Digitale Abonnements",
+                            SearchText = "digitale abonnements"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "fr",
+                            DisplayName = "Abonnements numériques",
+                            SearchText = "abonnements numeriques"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "es",
+                            DisplayName = "Suscripciones digitales",
+                            SearchText = "suscripciones digitales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "it",
+                            DisplayName = "Abbonamenti digitali",
+                            SearchText = "abbonamenti digitali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Assinaturas digitais",
+                            SearchText = "assinaturas digitais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "nl",
+                            DisplayName = "Digitale abonnementen",
+                            SearchText = "digitale abonnementen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "ru",
+                            DisplayName = "Цифровые подписки",
+                            SearchText = "цифровые подписки"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "ar",
+                            DisplayName = "الاشتراكات الرقمية",
+                            SearchText = "الاشتراكات الرقمية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "数字订阅",
+                            SearchText = "数字订阅"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "ja",
+                            DisplayName = "デジタルサブスクリプション",
+                            SearchText = "テシタルサフスクリフション"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "ko",
+                            DisplayName = "디지털 구독",
+                            SearchText = "디지털 구독"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b33d075-b932-45a9-b02a-3df8e0f0a2ec"),
+                            CultureCode = "hi",
+                            DisplayName = "डिजिटल सदस्यताएँ",
+                            SearchText = "डिजिटल सदसयताए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "tr",
+                            DisplayName = "Film ve Dizi",
+                            SearchText = "film ve dizi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "en",
+                            DisplayName = "Film and TV",
+                            SearchText = "film and tv"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "de",
+                            DisplayName = "Film und Fernsehen",
+                            SearchText = "film und fernsehen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "fr",
+                            DisplayName = "Films et séries",
+                            SearchText = "films et series"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "es",
+                            DisplayName = "Cine y series",
+                            SearchText = "cine y series"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "it",
+                            DisplayName = "Film e serie TV",
+                            SearchText = "film e serie tv"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Filmes e séries",
+                            SearchText = "filmes e series"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "nl",
+                            DisplayName = "Films en series",
+                            SearchText = "films en series"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "ru",
+                            DisplayName = "Фильмы и сериалы",
+                            SearchText = "фильмы и сериалы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "ar",
+                            DisplayName = "الأفلام والمسلسلات",
+                            SearchText = "الافلام والمسلسلات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "电影和电视剧",
+                            SearchText = "电影和电视剧"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "ja",
+                            DisplayName = "映画・ドラマ",
+                            SearchText = "映画・トラマ"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "ko",
+                            DisplayName = "영화 및 TV 시리즈",
+                            SearchText = "영화 및 tv 시리즈"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64ecf69-c259-42c3-bc3b-4bc80dfa37b9"),
+                            CultureCode = "hi",
+                            DisplayName = "फ़िल्में और धारावाहिक",
+                            SearchText = "फिलम और धारावाहिक"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "tr",
+                            DisplayName = "Müzik ve Podcast",
+                            SearchText = "muzik ve podcast"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "en",
+                            DisplayName = "Music and podcasts",
+                            SearchText = "music and podcasts"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "de",
+                            DisplayName = "Musik und Podcasts",
+                            SearchText = "musik und podcasts"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "fr",
+                            DisplayName = "Musique et podcasts",
+                            SearchText = "musique et podcasts"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "es",
+                            DisplayName = "Música y pódcast",
+                            SearchText = "musica y podcast"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "it",
+                            DisplayName = "Musica e podcast",
+                            SearchText = "musica e podcast"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Música e podcasts",
+                            SearchText = "musica e podcasts"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "nl",
+                            DisplayName = "Muziek en podcasts",
+                            SearchText = "muziek en podcasts"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "ru",
+                            DisplayName = "Музыка и подкасты",
+                            SearchText = "музыка и подкасты"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "ar",
+                            DisplayName = "الموسيقى والبودكاست",
+                            SearchText = "الموسيقى والبودكاست"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "音乐和播客",
+                            SearchText = "音乐和播客"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "ja",
+                            DisplayName = "音楽・ポッドキャスト",
+                            SearchText = "音楽・ホットキャスト"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "ko",
+                            DisplayName = "음악 및 팟캐스트",
+                            SearchText = "음악 및 팟캐스트"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2dc8c7ab-920c-4b01-b191-9605039723fb"),
+                            CultureCode = "hi",
+                            DisplayName = "संगीत और पॉडकास्ट",
+                            SearchText = "सगीत और पॉडकासट"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "tr",
+                            DisplayName = "Oyun ve Eğlence",
+                            SearchText = "oyun ve eglence"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "en",
+                            DisplayName = "Games and entertainment",
+                            SearchText = "games and entertainment"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "de",
+                            DisplayName = "Spiele und Unterhaltung",
+                            SearchText = "spiele und unterhaltung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "fr",
+                            DisplayName = "Jeux et divertissement",
+                            SearchText = "jeux et divertissement"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "es",
+                            DisplayName = "Juegos y entretenimiento",
+                            SearchText = "juegos y entretenimiento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "it",
+                            DisplayName = "Giochi e intrattenimento",
+                            SearchText = "giochi e intrattenimento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Jogos e entretenimento",
+                            SearchText = "jogos e entretenimento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "nl",
+                            DisplayName = "Games en entertainment",
+                            SearchText = "games en entertainment"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "ru",
+                            DisplayName = "Игры и развлечения",
+                            SearchText = "игры и развлечения"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "ar",
+                            DisplayName = "الألعاب والترفيه",
+                            SearchText = "الالعاب والترفيه"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "游戏和娱乐",
+                            SearchText = "游戏和娱乐"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "ja",
+                            DisplayName = "ゲーム・エンターテインメント",
+                            SearchText = "ケーム・エンターテインメント"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "ko",
+                            DisplayName = "게임 및 엔터테인먼트",
+                            SearchText = "게임 및 엔터테인먼트"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c3f7efbd-2591-4237-9f4f-ff77648ba333"),
+                            CultureCode = "hi",
+                            DisplayName = "खेल और मनोरंजन",
+                            SearchText = "खल और मनोरजन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "tr",
+                            DisplayName = "Yapay Zekâ",
+                            SearchText = "yapay zeka"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "en",
+                            DisplayName = "Artificial intelligence",
+                            SearchText = "artificial intelligence"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "de",
+                            DisplayName = "Künstliche Intelligenz",
+                            SearchText = "kunstliche intelligenz"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "fr",
+                            DisplayName = "Intelligence artificielle",
+                            SearchText = "intelligence artificielle"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "es",
+                            DisplayName = "Inteligencia artificial",
+                            SearchText = "inteligencia artificial"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "it",
+                            DisplayName = "Intelligenza artificiale",
+                            SearchText = "intelligenza artificiale"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Inteligência artificial",
+                            SearchText = "inteligencia artificial"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "nl",
+                            DisplayName = "Kunstmatige intelligentie",
+                            SearchText = "kunstmatige intelligentie"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "ru",
+                            DisplayName = "Искусственный интеллект",
+                            SearchText = "искусственныи интеллект"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "ar",
+                            DisplayName = "الذكاء الاصطناعي",
+                            SearchText = "الذكاء الاصطناعي"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "人工智能",
+                            SearchText = "人工智能"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "ja",
+                            DisplayName = "人工知能",
+                            SearchText = "人工知能"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "ko",
+                            DisplayName = "인공 지능",
+                            SearchText = "인공 지능"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9c945fb0-8444-4ad7-99fc-e15b5e1a5df0"),
+                            CultureCode = "hi",
+                            DisplayName = "कृत्रिम बुद्धिमत्ता",
+                            SearchText = "कतरिम बदधिमतता"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "tr",
+                            DisplayName = "Yazılım ve Üretkenlik",
+                            SearchText = "yazilim ve uretkenlik"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "en",
+                            DisplayName = "Software and productivity",
+                            SearchText = "software and productivity"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "de",
+                            DisplayName = "Software und Produktivität",
+                            SearchText = "software und produktivitat"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "fr",
+                            DisplayName = "Logiciels et productivité",
+                            SearchText = "logiciels et productivite"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "es",
+                            DisplayName = "Software y productividad",
+                            SearchText = "software y productividad"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "it",
+                            DisplayName = "Software e produttività",
+                            SearchText = "software e produttivita"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Software e produtividade",
+                            SearchText = "software e produtividade"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "nl",
+                            DisplayName = "Software en productiviteit",
+                            SearchText = "software en productiviteit"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "ru",
+                            DisplayName = "Программы и продуктивность",
+                            SearchText = "программы и продуктивность"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "ar",
+                            DisplayName = "البرمجيات والإنتاجية",
+                            SearchText = "البرمجيات والانتاجية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "软件和效率工具",
+                            SearchText = "软件和效率工具"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "ja",
+                            DisplayName = "ソフトウェア・仕事効率化",
+                            SearchText = "ソフトウェア・仕事効率化"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "ko",
+                            DisplayName = "소프트웨어 및 생산성",
+                            SearchText = "소프트웨어 및 생산성"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5689548-1d21-4b91-a509-5bf60ab54c80"),
+                            CultureCode = "hi",
+                            DisplayName = "सॉफ़्टवेयर और उत्पादकता",
+                            SearchText = "सॉफटवयर और उतपादकता"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "tr",
+                            DisplayName = "Bulut ve Depolama",
+                            SearchText = "bulut ve depolama"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "en",
+                            DisplayName = "Cloud and storage",
+                            SearchText = "cloud and storage"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "de",
+                            DisplayName = "Cloud und Speicher",
+                            SearchText = "cloud und speicher"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "fr",
+                            DisplayName = "Cloud et stockage",
+                            SearchText = "cloud et stockage"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "es",
+                            DisplayName = "Nube y almacenamiento",
+                            SearchText = "nube y almacenamiento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "it",
+                            DisplayName = "Cloud e archiviazione",
+                            SearchText = "cloud e archiviazione"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Nuvem e armazenamento",
+                            SearchText = "nuvem e armazenamento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "nl",
+                            DisplayName = "Cloud en opslag",
+                            SearchText = "cloud en opslag"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "ru",
+                            DisplayName = "Облако и хранилище",
+                            SearchText = "облако и хранилище"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "ar",
+                            DisplayName = "السحابة والتخزين",
+                            SearchText = "السحابة والتخزين"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "云服务和存储",
+                            SearchText = "云服务和存储"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "ja",
+                            DisplayName = "クラウド・ストレージ",
+                            SearchText = "クラウト・ストレーシ"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "ko",
+                            DisplayName = "클라우드 및 저장 공간",
+                            SearchText = "클라우드 및 저장 공간"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ee6e4920-cb3d-4005-8651-95c5a3042db5"),
+                            CultureCode = "hi",
+                            DisplayName = "क्लाउड और स्टोरेज",
+                            SearchText = "कलाउड और सटोरज"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "tr",
+                            DisplayName = "Eğitim",
+                            SearchText = "egitim"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "en",
+                            DisplayName = "Education",
+                            SearchText = "education"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "de",
+                            DisplayName = "Bildung",
+                            SearchText = "bildung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "fr",
+                            DisplayName = "Éducation",
+                            SearchText = "education"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "es",
+                            DisplayName = "Educación",
+                            SearchText = "educacion"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "it",
+                            DisplayName = "Istruzione",
+                            SearchText = "istruzione"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Educação",
+                            SearchText = "educacao"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "nl",
+                            DisplayName = "Onderwijs",
+                            SearchText = "onderwijs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "ru",
+                            DisplayName = "Образование",
+                            SearchText = "образование"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "ar",
+                            DisplayName = "التعليم",
+                            SearchText = "التعليم"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "教育",
+                            SearchText = "教育"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "ja",
+                            DisplayName = "教育",
+                            SearchText = "教育"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "ko",
+                            DisplayName = "교육",
+                            SearchText = "교육"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ccf2543c-aa2f-4654-892e-b8720a04bd83"),
+                            CultureCode = "hi",
+                            DisplayName = "शिक्षा",
+                            SearchText = "शिकषा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "tr",
+                            DisplayName = "Spor ve Fitness",
+                            SearchText = "spor ve fitness"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "en",
+                            DisplayName = "Sport and fitness",
+                            SearchText = "sport and fitness"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "de",
+                            DisplayName = "Sport und Fitness",
+                            SearchText = "sport und fitness"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "fr",
+                            DisplayName = "Sport et remise en forme",
+                            SearchText = "sport et remise en forme"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "es",
+                            DisplayName = "Deporte y ejercicio",
+                            SearchText = "deporte y ejercicio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "it",
+                            DisplayName = "Sport e fitness",
+                            SearchText = "sport e fitness"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Esporte e condicionamento físico",
+                            SearchText = "esporte e condicionamento fisico"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "nl",
+                            DisplayName = "Sport en fitness",
+                            SearchText = "sport en fitness"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "ru",
+                            DisplayName = "Спорт и фитнес",
+                            SearchText = "спорт и фитнес"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "ar",
+                            DisplayName = "الرياضة واللياقة",
+                            SearchText = "الرياضة واللياقة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "运动和健身",
+                            SearchText = "运动和健身"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "ja",
+                            DisplayName = "スポーツ・フィットネス",
+                            SearchText = "スホーツ・フィットネス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "ko",
+                            DisplayName = "스포츠 및 피트니스",
+                            SearchText = "스포츠 및 피트니스"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("75330075-0a0e-4edb-ae9a-3b09df6c2515"),
+                            CultureCode = "hi",
+                            DisplayName = "खेल और फ़िटनेस",
+                            SearchText = "खल और फिटनस"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "tr",
+                            DisplayName = "İnternet ve Telekom",
+                            SearchText = "internet ve telekom"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "en",
+                            DisplayName = "Internet and telecom",
+                            SearchText = "internet and telecom"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "de",
+                            DisplayName = "Internet und Telekommunikation",
+                            SearchText = "internet und telekommunikation"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "fr",
+                            DisplayName = "Internet et télécommunications",
+                            SearchText = "internet et telecommunications"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "es",
+                            DisplayName = "Internet y telecomunicaciones",
+                            SearchText = "internet y telecomunicaciones"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "it",
+                            DisplayName = "Internet e telecomunicazioni",
+                            SearchText = "internet e telecomunicazioni"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Internet e telecomunicações",
+                            SearchText = "internet e telecomunicacoes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "nl",
+                            DisplayName = "Internet en telecom",
+                            SearchText = "internet en telecom"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "ru",
+                            DisplayName = "Интернет и связь",
+                            SearchText = "интернет и связь"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "ar",
+                            DisplayName = "الإنترنت والاتصالات",
+                            SearchText = "الانترنت والاتصالات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "互联网和通信",
+                            SearchText = "互联网和通信"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "ja",
+                            DisplayName = "インターネット・通信",
+                            SearchText = "インターネット・通信"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "ko",
+                            DisplayName = "인터넷 및 통신",
+                            SearchText = "인터넷 및 통신"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ad374367-3485-44e7-bc59-0daf55262b74"),
+                            CultureCode = "hi",
+                            DisplayName = "इंटरनेट और दूरसंचार",
+                            SearchText = "इटरनट और दरसचार"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "tr",
+                            DisplayName = "Elektrik, Su ve Doğalgaz",
+                            SearchText = "elektrik, su ve dogalgaz"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "en",
+                            DisplayName = "Utilities",
+                            SearchText = "utilities"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "de",
+                            DisplayName = "Versorgungsrechnungen",
+                            SearchText = "versorgungsrechnungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "fr",
+                            DisplayName = "Eau, électricité et gaz",
+                            SearchText = "eau, electricite et gaz"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "es",
+                            DisplayName = "Servicios básicos",
+                            SearchText = "servicios basicos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "it",
+                            DisplayName = "Utenze domestiche",
+                            SearchText = "utenze domestiche"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Contas de serviços essenciais",
+                            SearchText = "contas de servicos essenciais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "nl",
+                            DisplayName = "Nutsvoorzieningen",
+                            SearchText = "nutsvoorzieningen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "ru",
+                            DisplayName = "Коммунальные услуги",
+                            SearchText = "коммунальные услуги"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "ar",
+                            DisplayName = "فواتير المرافق",
+                            SearchText = "فواتير المرافق"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "水电燃气",
+                            SearchText = "水电燃气"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "ja",
+                            DisplayName = "公共料金",
+                            SearchText = "公共料金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "ko",
+                            DisplayName = "공과금",
+                            SearchText = "공과금"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ff490f7e-4349-4185-8333-9eff77417302"),
+                            CultureCode = "hi",
+                            DisplayName = "बिजली, पानी और गैस",
+                            SearchText = "बिजली, पानी और गस"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "tr",
+                            DisplayName = "Ev ve Kira",
+                            SearchText = "ev ve kira"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "en",
+                            DisplayName = "Home and rent",
+                            SearchText = "home and rent"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "de",
+                            DisplayName = "Wohnen und Miete",
+                            SearchText = "wohnen und miete"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "fr",
+                            DisplayName = "Logement et loyer",
+                            SearchText = "logement et loyer"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "es",
+                            DisplayName = "Vivienda y alquiler",
+                            SearchText = "vivienda y alquiler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "it",
+                            DisplayName = "Casa e affitto",
+                            SearchText = "casa e affitto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Moradia e aluguel",
+                            SearchText = "moradia e aluguel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "nl",
+                            DisplayName = "Wonen en huur",
+                            SearchText = "wonen en huur"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "ru",
+                            DisplayName = "Жильё и аренда",
+                            SearchText = "жилье и аренда"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "ar",
+                            DisplayName = "السكن والإيجار",
+                            SearchText = "السكن والايجار"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "住房和租金",
+                            SearchText = "住房和租金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "ja",
+                            DisplayName = "住まい・家賃",
+                            SearchText = "住まい・家賃"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "ko",
+                            DisplayName = "주거 및 임대료",
+                            SearchText = "주거 및 임대료"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("18acd618-5e34-4f9c-821c-87a7921ad1ad"),
+                            CultureCode = "hi",
+                            DisplayName = "घर और किराया",
+                            SearchText = "घर और किराया"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "tr",
+                            DisplayName = "Araç ve Ulaşım",
+                            SearchText = "arac ve ulasim"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "en",
+                            DisplayName = "Vehicle and transport",
+                            SearchText = "vehicle and transport"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "de",
+                            DisplayName = "Fahrzeug und Verkehr",
+                            SearchText = "fahrzeug und verkehr"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "fr",
+                            DisplayName = "Véhicules et transports",
+                            SearchText = "vehicules et transports"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "es",
+                            DisplayName = "Vehículos y transporte",
+                            SearchText = "vehiculos y transporte"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "it",
+                            DisplayName = "Veicoli e trasporti",
+                            SearchText = "veicoli e trasporti"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Veículos e transporte",
+                            SearchText = "veiculos e transporte"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "nl",
+                            DisplayName = "Voertuigen en vervoer",
+                            SearchText = "voertuigen en vervoer"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "ru",
+                            DisplayName = "Автомобиль и транспорт",
+                            SearchText = "автомобиль и транспорт"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "ar",
+                            DisplayName = "المركبات والنقل",
+                            SearchText = "المركبات والنقل"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "车辆和交通",
+                            SearchText = "车辆和交通"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "ja",
+                            DisplayName = "車・交通",
+                            SearchText = "車・交通"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "ko",
+                            DisplayName = "차량 및 교통",
+                            SearchText = "차량 및 교통"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b23d004-bf0c-498e-afa9-dc2ca67c1af6"),
+                            CultureCode = "hi",
+                            DisplayName = "वाहन और परिवहन",
+                            SearchText = "वाहन और परिवहन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "tr",
+                            DisplayName = "Sigorta",
+                            SearchText = "sigorta"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "en",
+                            DisplayName = "Insurance",
+                            SearchText = "insurance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "de",
+                            DisplayName = "Versicherungen",
+                            SearchText = "versicherungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "fr",
+                            DisplayName = "Assurances",
+                            SearchText = "assurances"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "es",
+                            DisplayName = "Seguros",
+                            SearchText = "seguros"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "it",
+                            DisplayName = "Assicurazioni",
+                            SearchText = "assicurazioni"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Seguros",
+                            SearchText = "seguros"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "nl",
+                            DisplayName = "Verzekeringen",
+                            SearchText = "verzekeringen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "ru",
+                            DisplayName = "Страхование",
+                            SearchText = "страхование"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "ar",
+                            DisplayName = "التأمين",
+                            SearchText = "التامين"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "保险",
+                            SearchText = "保险"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "ja",
+                            DisplayName = "保険",
+                            SearchText = "保険"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "ko",
+                            DisplayName = "보험",
+                            SearchText = "보험"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8b90166-a0f0-4cc4-8833-563025df402c"),
+                            CultureCode = "hi",
+                            DisplayName = "बीमा",
+                            SearchText = "बीमा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "tr",
+                            DisplayName = "Banka, Kredi ve Finans",
+                            SearchText = "banka, kredi ve finans"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "en",
+                            DisplayName = "Banking and finance",
+                            SearchText = "banking and finance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "de",
+                            DisplayName = "Banken und Finanzen",
+                            SearchText = "banken und finanzen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "fr",
+                            DisplayName = "Banque et finances",
+                            SearchText = "banque et finances"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "es",
+                            DisplayName = "Banca y finanzas",
+                            SearchText = "banca y finanzas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "it",
+                            DisplayName = "Banche e finanze",
+                            SearchText = "banche e finanze"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Bancos e finanças",
+                            SearchText = "bancos e financas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "nl",
+                            DisplayName = "Bankieren en financiën",
+                            SearchText = "bankieren en financien"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "ru",
+                            DisplayName = "Банки и финансы",
+                            SearchText = "банки и финансы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "ar",
+                            DisplayName = "البنوك والتمويل",
+                            SearchText = "البنوك والتمويل"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "银行和金融",
+                            SearchText = "银行和金融"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "ja",
+                            DisplayName = "銀行・金融",
+                            SearchText = "銀行・金融"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "ko",
+                            DisplayName = "은행 및 금융",
+                            SearchText = "은행 및 금융"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("43133d20-4b41-4423-bdb1-6e4c9646956c"),
+                            CultureCode = "hi",
+                            DisplayName = "बैंकिंग और वित्त",
+                            SearchText = "बकिग और वितत"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "tr",
+                            DisplayName = "Alışveriş ve Üyelikler",
+                            SearchText = "alisveris ve uyelikler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "en",
+                            DisplayName = "Shopping and memberships",
+                            SearchText = "shopping and memberships"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "de",
+                            DisplayName = "Einkäufe und Mitgliedschaften",
+                            SearchText = "einkaufe und mitgliedschaften"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "fr",
+                            DisplayName = "Achats et adhésions",
+                            SearchText = "achats et adhesions"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "es",
+                            DisplayName = "Compras y membresías",
+                            SearchText = "compras y membresias"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "it",
+                            DisplayName = "Acquisti e iscrizioni",
+                            SearchText = "acquisti e iscrizioni"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Compras e assinaturas",
+                            SearchText = "compras e assinaturas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "nl",
+                            DisplayName = "Winkelen en lidmaatschappen",
+                            SearchText = "winkelen en lidmaatschappen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "ru",
+                            DisplayName = "Покупки и членство",
+                            SearchText = "покупки и членство"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "ar",
+                            DisplayName = "التسوق والعضويات",
+                            SearchText = "التسوق والعضويات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "购物和会员",
+                            SearchText = "购物和会员"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "ja",
+                            DisplayName = "買い物・会員サービス",
+                            SearchText = "買い物・会員サーヒス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "ko",
+                            DisplayName = "쇼핑 및 멤버십",
+                            SearchText = "쇼핑 및 멤버십"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bf324a2d-f3f4-4e5f-966d-6198e8dc4ac8"),
+                            CultureCode = "hi",
+                            DisplayName = "खरीदारी और सदस्यताएँ",
+                            SearchText = "खरीदारी और सदसयताए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "tr",
+                            DisplayName = "Market ve Gıda",
+                            SearchText = "market ve gida"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "en",
+                            DisplayName = "Groceries and food",
+                            SearchText = "groceries and food"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "de",
+                            DisplayName = "Lebensmittel und Einkäufe",
+                            SearchText = "lebensmittel und einkaufe"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "fr",
+                            DisplayName = "Courses et alimentation",
+                            SearchText = "courses et alimentation"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "es",
+                            DisplayName = "Supermercado y alimentación",
+                            SearchText = "supermercado y alimentacion"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "it",
+                            DisplayName = "Spesa e alimentari",
+                            SearchText = "spesa e alimentari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Mercado e alimentação",
+                            SearchText = "mercado e alimentacao"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "nl",
+                            DisplayName = "Boodschappen en voeding",
+                            SearchText = "boodschappen en voeding"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "ru",
+                            DisplayName = "Продукты и питание",
+                            SearchText = "продукты и питание"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "ar",
+                            DisplayName = "البقالة والطعام",
+                            SearchText = "البقالة والطعام"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "杂货和食品",
+                            SearchText = "杂货和食品"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "ja",
+                            DisplayName = "食料品・食品",
+                            SearchText = "食料品・食品"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "ko",
+                            DisplayName = "장보기 및 식품",
+                            SearchText = "장보기 및 식품"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03854818-24a2-4656-b72c-572da5e1661a"),
+                            CultureCode = "hi",
+                            DisplayName = "किराना और भोजन",
+                            SearchText = "किराना और भोजन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "tr",
+                            DisplayName = "Sağlık",
+                            SearchText = "saglik"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "en",
+                            DisplayName = "Health",
+                            SearchText = "health"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "de",
+                            DisplayName = "Gesundheit",
+                            SearchText = "gesundheit"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "fr",
+                            DisplayName = "Santé",
+                            SearchText = "sante"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "es",
+                            DisplayName = "Salud",
+                            SearchText = "salud"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "it",
+                            DisplayName = "Salute",
+                            SearchText = "salute"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Saúde",
+                            SearchText = "saude"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "nl",
+                            DisplayName = "Gezondheid",
+                            SearchText = "gezondheid"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "ru",
+                            DisplayName = "Здоровье",
+                            SearchText = "здоровье"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "ar",
+                            DisplayName = "الصحة",
+                            SearchText = "الصحة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "健康",
+                            SearchText = "健康"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "ja",
+                            DisplayName = "健康",
+                            SearchText = "健康"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "ko",
+                            DisplayName = "건강",
+                            SearchText = "건강"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f72f7d-c561-4496-865a-ee522dcae63f"),
+                            CultureCode = "hi",
+                            DisplayName = "स्वास्थ्य",
+                            SearchText = "सवासथय"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "tr",
+                            DisplayName = "Vergi ve Resmî Ödemeler",
+                            SearchText = "vergi ve resmi odemeler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "en",
+                            DisplayName = "Taxes and official payments",
+                            SearchText = "taxes and official payments"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "de",
+                            DisplayName = "Steuern und amtliche Zahlungen",
+                            SearchText = "steuern und amtliche zahlungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "fr",
+                            DisplayName = "Impôts et paiements officiels",
+                            SearchText = "impots et paiements officiels"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "es",
+                            DisplayName = "Impuestos y pagos oficiales",
+                            SearchText = "impuestos y pagos oficiales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "it",
+                            DisplayName = "Imposte e pagamenti ufficiali",
+                            SearchText = "imposte e pagamenti ufficiali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Impostos e pagamentos oficiais",
+                            SearchText = "impostos e pagamentos oficiais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "nl",
+                            DisplayName = "Belastingen en officiële betalingen",
+                            SearchText = "belastingen en officiele betalingen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "ru",
+                            DisplayName = "Налоги и государственные платежи",
+                            SearchText = "налоги и государственные платежи"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "ar",
+                            DisplayName = "الضرائب والمدفوعات الرسمية",
+                            SearchText = "الضرايب والمدفوعات الرسمية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "税费和政务缴费",
+                            SearchText = "税费和政务缴费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "ja",
+                            DisplayName = "税金・公的支払い",
+                            SearchText = "税金・公的支払い"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "ko",
+                            DisplayName = "세금 및 공적 납부",
+                            SearchText = "세금 및 공적 납부"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7473e800-2311-4ac6-9631-18fab4784f33"),
+                            CultureCode = "hi",
+                            DisplayName = "कर और सरकारी भुगतान",
+                            SearchText = "कर और सरकारी भगतान"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "tr",
+                            DisplayName = "Haber ve Yayıncılık",
+                            SearchText = "haber ve yayincilik"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "en",
+                            DisplayName = "News and publishing",
+                            SearchText = "news and publishing"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "de",
+                            DisplayName = "Nachrichten und Publikationen",
+                            SearchText = "nachrichten und publikationen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "fr",
+                            DisplayName = "Actualités et publications",
+                            SearchText = "actualites et publications"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "es",
+                            DisplayName = "Noticias y publicaciones",
+                            SearchText = "noticias y publicaciones"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "it",
+                            DisplayName = "Notizie ed editoria",
+                            SearchText = "notizie ed editoria"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Notícias e publicações",
+                            SearchText = "noticias e publicacoes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "nl",
+                            DisplayName = "Nieuws en publicaties",
+                            SearchText = "nieuws en publicaties"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "ru",
+                            DisplayName = "Новости и издания",
+                            SearchText = "новости и издания"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "ar",
+                            DisplayName = "الأخبار والنشر",
+                            SearchText = "الاخبار والنشر"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "新闻和出版物",
+                            SearchText = "新闻和出版物"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "ja",
+                            DisplayName = "ニュース・出版",
+                            SearchText = "ニュース・出版"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "ko",
+                            DisplayName = "뉴스 및 출판",
+                            SearchText = "뉴스 및 출판"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8c56a67b-2905-423f-96e9-4d8da4db583c"),
+                            CultureCode = "hi",
+                            DisplayName = "समाचार और प्रकाशन",
+                            SearchText = "समाचार और परकाशन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "tr",
+                            DisplayName = "Aile ve Çocuk",
+                            SearchText = "aile ve cocuk"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "en",
+                            DisplayName = "Family and children",
+                            SearchText = "family and children"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "de",
+                            DisplayName = "Familie und Kinder",
+                            SearchText = "familie und kinder"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "fr",
+                            DisplayName = "Famille et enfants",
+                            SearchText = "famille et enfants"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "es",
+                            DisplayName = "Familia e hijos",
+                            SearchText = "familia e hijos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "it",
+                            DisplayName = "Famiglia e bambini",
+                            SearchText = "famiglia e bambini"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Família e filhos",
+                            SearchText = "familia e filhos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "nl",
+                            DisplayName = "Gezin en kinderen",
+                            SearchText = "gezin en kinderen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "ru",
+                            DisplayName = "Семья и дети",
+                            SearchText = "семья и дети"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "ar",
+                            DisplayName = "الأسرة والأطفال",
+                            SearchText = "الاسرة والاطفال"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "家庭和儿童",
+                            SearchText = "家庭和儿童"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "ja",
+                            DisplayName = "家族・子ども",
+                            SearchText = "家族・子とも"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "ko",
+                            DisplayName = "가족 및 자녀",
+                            SearchText = "가족 및 자녀"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c0f444ee-12ed-43a2-98df-9f61340ca7bc"),
+                            CultureCode = "hi",
+                            DisplayName = "परिवार और बच्चे",
+                            SearchText = "परिवार और बचच"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "tr",
+                            DisplayName = "Kişisel Bakım",
+                            SearchText = "kisisel bakim"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "en",
+                            DisplayName = "Personal care",
+                            SearchText = "personal care"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "de",
+                            DisplayName = "Körperpflege",
+                            SearchText = "korperpflege"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "fr",
+                            DisplayName = "Soins personnels",
+                            SearchText = "soins personnels"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "es",
+                            DisplayName = "Cuidado personal",
+                            SearchText = "cuidado personal"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "it",
+                            DisplayName = "Cura personale",
+                            SearchText = "cura personale"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Cuidados pessoais",
+                            SearchText = "cuidados pessoais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "nl",
+                            DisplayName = "Persoonlijke verzorging",
+                            SearchText = "persoonlijke verzorging"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "ru",
+                            DisplayName = "Уход за собой",
+                            SearchText = "уход за собои"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "ar",
+                            DisplayName = "العناية الشخصية",
+                            SearchText = "العناية الشخصية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "个人护理",
+                            SearchText = "个人护理"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "ja",
+                            DisplayName = "パーソナルケア",
+                            SearchText = "ハーソナルケア"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "ko",
+                            DisplayName = "개인 관리",
+                            SearchText = "개인 관리"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("50dde9cd-647d-4472-b263-ecc52cccff31"),
+                            CultureCode = "hi",
+                            DisplayName = "व्यक्तिगत देखभाल",
+                            SearchText = "वयकतिगत दखभाल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "tr",
+                            DisplayName = "Seyahat ve Konaklama",
+                            SearchText = "seyahat ve konaklama"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "en",
+                            DisplayName = "Travel and accommodation",
+                            SearchText = "travel and accommodation"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "de",
+                            DisplayName = "Reisen und Unterkunft",
+                            SearchText = "reisen und unterkunft"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "fr",
+                            DisplayName = "Voyages et hébergement",
+                            SearchText = "voyages et hebergement"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "es",
+                            DisplayName = "Viajes y alojamiento",
+                            SearchText = "viajes y alojamiento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "it",
+                            DisplayName = "Viaggi e alloggi",
+                            SearchText = "viaggi e alloggi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Viagens e hospedagem",
+                            SearchText = "viagens e hospedagem"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "nl",
+                            DisplayName = "Reizen en verblijf",
+                            SearchText = "reizen en verblijf"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "ru",
+                            DisplayName = "Путешествия и проживание",
+                            SearchText = "путешествия и проживание"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "ar",
+                            DisplayName = "السفر والإقامة",
+                            SearchText = "السفر والاقامة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "旅行和住宿",
+                            SearchText = "旅行和住宿"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "ja",
+                            DisplayName = "旅行・宿泊",
+                            SearchText = "旅行・宿泊"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "ko",
+                            DisplayName = "여행 및 숙박",
+                            SearchText = "여행 및 숙박"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("aa885dfe-203f-4f4c-b36a-c2e252fab7fb"),
+                            CultureCode = "hi",
+                            DisplayName = "यात्रा और आवास",
+                            SearchText = "यातरा और आवास"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "tr",
+                            DisplayName = "İş ve Profesyonel Hizmetler",
+                            SearchText = "is ve profesyonel hizmetler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "en",
+                            DisplayName = "Work and professional services",
+                            SearchText = "work and professional services"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "de",
+                            DisplayName = "Arbeit und professionelle Dienste",
+                            SearchText = "arbeit und professionelle dienste"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "fr",
+                            DisplayName = "Travail et services professionnels",
+                            SearchText = "travail et services professionnels"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "es",
+                            DisplayName = "Trabajo y servicios profesionales",
+                            SearchText = "trabajo y servicios profesionales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "it",
+                            DisplayName = "Lavoro e servizi professionali",
+                            SearchText = "lavoro e servizi professionali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Trabalho e serviços profissionais",
+                            SearchText = "trabalho e servicos profissionais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "nl",
+                            DisplayName = "Werk en professionele diensten",
+                            SearchText = "werk en professionele diensten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "ru",
+                            DisplayName = "Работа и профессиональные услуги",
+                            SearchText = "работа и профессиональные услуги"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "ar",
+                            DisplayName = "العمل والخدمات المهنية",
+                            SearchText = "العمل والخدمات المهنية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "工作和专业服务",
+                            SearchText = "工作和专业服务"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "ja",
+                            DisplayName = "仕事・専門サービス",
+                            SearchText = "仕事・専門サーヒス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "ko",
+                            DisplayName = "업무 및 전문 서비스",
+                            SearchText = "업무 및 전문 서비스"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c8b5b6ee-1204-4e3f-ac08-8d52be7377f1"),
+                            CultureCode = "hi",
+                            DisplayName = "कार्य और पेशेवर सेवाएँ",
+                            SearchText = "कारय और पशवर सवाए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "tr",
+                            DisplayName = "Diğer",
+                            SearchText = "diger"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "en",
+                            DisplayName = "Other",
+                            SearchText = "other"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "de",
+                            DisplayName = "Sonstiges",
+                            SearchText = "sonstiges"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "fr",
+                            DisplayName = "Autres",
+                            SearchText = "autres"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "es",
+                            DisplayName = "Otros",
+                            SearchText = "otros"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "it",
+                            DisplayName = "Altro",
+                            SearchText = "altro"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Outros",
+                            SearchText = "outros"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "nl",
+                            DisplayName = "Overig",
+                            SearchText = "overig"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "ru",
+                            DisplayName = "Прочее",
+                            SearchText = "прочее"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "ar",
+                            DisplayName = "أخرى",
+                            SearchText = "اخرى"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "其他",
+                            SearchText = "其他"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "ja",
+                            DisplayName = "その他",
+                            SearchText = "その他"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "ko",
+                            DisplayName = "기타",
+                            SearchText = "기타"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1e00565d-0e1d-4807-ace9-105b374652fe"),
+                            CultureCode = "hi",
+                            DisplayName = "अन्य",
+                            SearchText = "अनय"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "tr",
+                            DisplayName = "Yakıt",
+                            SearchText = "yakit"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "en",
+                            DisplayName = "Fuel",
+                            SearchText = "fuel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "de",
+                            DisplayName = "Kraftstoff",
+                            SearchText = "kraftstoff"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "fr",
+                            DisplayName = "Carburant",
+                            SearchText = "carburant"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "es",
+                            DisplayName = "Combustible",
+                            SearchText = "combustible"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "it",
+                            DisplayName = "Carburante",
+                            SearchText = "carburante"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Combustível",
+                            SearchText = "combustivel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "nl",
+                            DisplayName = "Brandstof",
+                            SearchText = "brandstof"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "ru",
+                            DisplayName = "Топливо",
+                            SearchText = "топливо"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "ar",
+                            DisplayName = "الوقود",
+                            SearchText = "الوقود"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "燃油",
+                            SearchText = "燃油"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "ja",
+                            DisplayName = "燃料",
+                            SearchText = "燃料"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "ko",
+                            DisplayName = "연료",
+                            SearchText = "연료"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("caef747a-7a1f-4407-a714-40c446666d7d"),
+                            CultureCode = "hi",
+                            DisplayName = "ईंधन",
+                            SearchText = "ईधन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "tr",
+                            DisplayName = "Benzin",
+                            SearchText = "benzin"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "en",
+                            DisplayName = "Petrol",
+                            SearchText = "petrol"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "de",
+                            DisplayName = "Benzin",
+                            SearchText = "benzin"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "fr",
+                            DisplayName = "Essence",
+                            SearchText = "essence"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "es",
+                            DisplayName = "Gasolina",
+                            SearchText = "gasolina"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "it",
+                            DisplayName = "Benzina",
+                            SearchText = "benzina"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Gasolina",
+                            SearchText = "gasolina"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "nl",
+                            DisplayName = "Benzine",
+                            SearchText = "benzine"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "ru",
+                            DisplayName = "Бензин",
+                            SearchText = "бензин"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "ar",
+                            DisplayName = "البنزين",
+                            SearchText = "البنزين"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "汽油",
+                            SearchText = "汽油"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "ja",
+                            DisplayName = "ガソリン",
+                            SearchText = "カソリン"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "ko",
+                            DisplayName = "휘발유",
+                            SearchText = "휘발유"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7dde3bb-7008-4359-968d-d62f12e6d819"),
+                            CultureCode = "hi",
+                            DisplayName = "पेट्रोल",
+                            SearchText = "पटरोल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "tr",
+                            DisplayName = "Motorin",
+                            SearchText = "motorin"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "en",
+                            DisplayName = "Diesel",
+                            SearchText = "diesel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "de",
+                            DisplayName = "Diesel",
+                            SearchText = "diesel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "fr",
+                            DisplayName = "Gazole",
+                            SearchText = "gazole"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "es",
+                            DisplayName = "Diésel",
+                            SearchText = "diesel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "it",
+                            DisplayName = "Gasolio",
+                            SearchText = "gasolio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Diesel",
+                            SearchText = "diesel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "nl",
+                            DisplayName = "Diesel",
+                            SearchText = "diesel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "ru",
+                            DisplayName = "Дизельное топливо",
+                            SearchText = "дизельное топливо"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "ar",
+                            DisplayName = "الديزل",
+                            SearchText = "الديزل"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "柴油",
+                            SearchText = "柴油"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "ja",
+                            DisplayName = "軽油",
+                            SearchText = "軽油"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "ko",
+                            DisplayName = "경유",
+                            SearchText = "경유"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2148fa07-f0db-4a25-b801-2c8bf34e44dc"),
+                            CultureCode = "hi",
+                            DisplayName = "डीज़ल",
+                            SearchText = "डीजल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "tr",
+                            DisplayName = "LPG",
+                            SearchText = "lpg"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "en",
+                            DisplayName = "LPG",
+                            SearchText = "lpg"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "de",
+                            DisplayName = "Autogas (LPG)",
+                            SearchText = "autogas (lpg)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "fr",
+                            DisplayName = "GPL",
+                            SearchText = "gpl"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "es",
+                            DisplayName = "GLP",
+                            SearchText = "glp"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "it",
+                            DisplayName = "GPL",
+                            SearchText = "gpl"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "GLP",
+                            SearchText = "glp"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "nl",
+                            DisplayName = "LPG",
+                            SearchText = "lpg"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "ru",
+                            DisplayName = "Сжиженный газ (LPG)",
+                            SearchText = "сжиженныи газ (lpg)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "ar",
+                            DisplayName = "غاز البترول المسال",
+                            SearchText = "غاز البترول المسال"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "液化石油气",
+                            SearchText = "液化石油气"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "ja",
+                            DisplayName = "LPG",
+                            SearchText = "lpg"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "ko",
+                            DisplayName = "LPG",
+                            SearchText = "lpg"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c27ab3fb-2b5e-4286-af32-d85587e195af"),
+                            CultureCode = "hi",
+                            DisplayName = "एलपीजी",
+                            SearchText = "एलपीजी"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "tr",
+                            DisplayName = "Elektrikli Araç Şarjı",
+                            SearchText = "elektrikli arac sarji"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "en",
+                            DisplayName = "EV charging",
+                            SearchText = "ev charging"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "de",
+                            DisplayName = "Elektroauto laden",
+                            SearchText = "elektroauto laden"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "fr",
+                            DisplayName = "Recharge de véhicule électrique",
+                            SearchText = "recharge de vehicule electrique"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "es",
+                            DisplayName = "Carga de vehículo eléctrico",
+                            SearchText = "carga de vehiculo electrico"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "it",
+                            DisplayName = "Ricarica auto elettrica",
+                            SearchText = "ricarica auto elettrica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Recarga de veículo elétrico",
+                            SearchText = "recarga de veiculo eletrico"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "nl",
+                            DisplayName = "Elektrisch laden",
+                            SearchText = "elektrisch laden"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "ru",
+                            DisplayName = "Зарядка электромобиля",
+                            SearchText = "зарядка электромобиля"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "ar",
+                            DisplayName = "شحن المركبات الكهربائية",
+                            SearchText = "شحن المركبات الكهربايية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "电动车充电",
+                            SearchText = "电动车充电"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "ja",
+                            DisplayName = "電気自動車の充電",
+                            SearchText = "電気自動車の充電"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "ko",
+                            DisplayName = "전기차 충전",
+                            SearchText = "전기차 충전"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7d5de2a8-87e7-498c-926d-a1fe87b86ba0"),
+                            CultureCode = "hi",
+                            DisplayName = "इलेक्ट्रिक वाहन चार्जिंग",
+                            SearchText = "इलकटरिक वाहन चारजिग"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "tr",
+                            DisplayName = "Periyodik Bakım",
+                            SearchText = "periyodik bakim"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "en",
+                            DisplayName = "Scheduled maintenance",
+                            SearchText = "scheduled maintenance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "de",
+                            DisplayName = "Regelmäßige Wartung",
+                            SearchText = "regelmaßige wartung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "fr",
+                            DisplayName = "Entretien périodique",
+                            SearchText = "entretien periodique"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "es",
+                            DisplayName = "Mantenimiento periódico",
+                            SearchText = "mantenimiento periodico"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "it",
+                            DisplayName = "Manutenzione periodica",
+                            SearchText = "manutenzione periodica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Manutenção periódica",
+                            SearchText = "manutencao periodica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "nl",
+                            DisplayName = "Periodiek onderhoud",
+                            SearchText = "periodiek onderhoud"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "ru",
+                            DisplayName = "Плановое техобслуживание",
+                            SearchText = "плановое техобслуживание"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "ar",
+                            DisplayName = "الصيانة الدورية",
+                            SearchText = "الصيانة الدورية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "定期保养",
+                            SearchText = "定期保养"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "ja",
+                            DisplayName = "定期点検",
+                            SearchText = "定期点検"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "ko",
+                            DisplayName = "정기 점검",
+                            SearchText = "정기 점검"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("235d9b7c-07ae-4b74-b1ec-e43e29e66f08"),
+                            CultureCode = "hi",
+                            DisplayName = "नियमित रखरखाव",
+                            SearchText = "नियमित रखरखाव"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "tr",
+                            DisplayName = "Araç Tamiri",
+                            SearchText = "arac tamiri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "en",
+                            DisplayName = "Vehicle repair",
+                            SearchText = "vehicle repair"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "de",
+                            DisplayName = "Fahrzeugreparatur",
+                            SearchText = "fahrzeugreparatur"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "fr",
+                            DisplayName = "Réparation automobile",
+                            SearchText = "reparation automobile"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "es",
+                            DisplayName = "Reparación del vehículo",
+                            SearchText = "reparacion del vehiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "it",
+                            DisplayName = "Riparazione auto",
+                            SearchText = "riparazione auto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Reparo de veículo",
+                            SearchText = "reparo de veiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "nl",
+                            DisplayName = "Autoreparatie",
+                            SearchText = "autoreparatie"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "ru",
+                            DisplayName = "Ремонт автомобиля",
+                            SearchText = "ремонт автомобиля"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "ar",
+                            DisplayName = "إصلاح المركبات",
+                            SearchText = "اصلاح المركبات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "车辆维修",
+                            SearchText = "车辆维修"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "ja",
+                            DisplayName = "車の修理",
+                            SearchText = "車の修理"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "ko",
+                            DisplayName = "차량 수리",
+                            SearchText = "차량 수리"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("56e5cd4f-10ee-4e7a-8761-af1cb8183daa"),
+                            CultureCode = "hi",
+                            DisplayName = "वाहन की मरम्मत",
+                            SearchText = "वाहन की मरममत"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "tr",
+                            DisplayName = "Yedek Parça",
+                            SearchText = "yedek parca"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "en",
+                            DisplayName = "Spare parts",
+                            SearchText = "spare parts"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "de",
+                            DisplayName = "Ersatzteile",
+                            SearchText = "ersatzteile"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "fr",
+                            DisplayName = "Pièces détachées",
+                            SearchText = "pieces detachees"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "es",
+                            DisplayName = "Repuestos",
+                            SearchText = "repuestos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "it",
+                            DisplayName = "Ricambi",
+                            SearchText = "ricambi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Peças de reposição",
+                            SearchText = "pecas de reposicao"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "nl",
+                            DisplayName = "Onderdelen",
+                            SearchText = "onderdelen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "ru",
+                            DisplayName = "Запчасти",
+                            SearchText = "запчасти"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "ar",
+                            DisplayName = "قطع الغيار",
+                            SearchText = "قطع الغيار"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "零配件",
+                            SearchText = "零配件"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "ja",
+                            DisplayName = "交換部品",
+                            SearchText = "交換部品"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "ko",
+                            DisplayName = "예비 부품",
+                            SearchText = "예비 부품"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0ab03d4d-00b4-41eb-aa7c-8bd159f6e316"),
+                            CultureCode = "hi",
+                            DisplayName = "स्पेयर पार्ट्स",
+                            SearchText = "सपयर पारटस"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "tr",
+                            DisplayName = "Lastik ve Jant",
+                            SearchText = "lastik ve jant"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "en",
+                            DisplayName = "Tyres and wheels",
+                            SearchText = "tyres and wheels"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "de",
+                            DisplayName = "Reifen und Felgen",
+                            SearchText = "reifen und felgen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "fr",
+                            DisplayName = "Pneus et jantes",
+                            SearchText = "pneus et jantes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "es",
+                            DisplayName = "Neumáticos y llantas",
+                            SearchText = "neumaticos y llantas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "it",
+                            DisplayName = "Pneumatici e cerchi",
+                            SearchText = "pneumatici e cerchi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Pneus e rodas",
+                            SearchText = "pneus e rodas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "nl",
+                            DisplayName = "Banden en velgen",
+                            SearchText = "banden en velgen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "ru",
+                            DisplayName = "Шины и диски",
+                            SearchText = "шины и диски"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "ar",
+                            DisplayName = "الإطارات والجنوط",
+                            SearchText = "الاطارات والجنوط"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "轮胎和轮毂",
+                            SearchText = "轮胎和轮毂"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "ja",
+                            DisplayName = "タイヤ・ホイール",
+                            SearchText = "タイヤ・ホイール"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "ko",
+                            DisplayName = "타이어 및 휠",
+                            SearchText = "타이어 및 휠"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2d4d078c-a5fb-404e-99fa-ce63e6bfec92"),
+                            CultureCode = "hi",
+                            DisplayName = "टायर और पहिए",
+                            SearchText = "टायर और पहिए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "tr",
+                            DisplayName = "Trafik Sigortası",
+                            SearchText = "trafik sigortasi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "en",
+                            DisplayName = "Traffic insurance",
+                            SearchText = "traffic insurance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "de",
+                            DisplayName = "Kfz-Haftpflichtversicherung",
+                            SearchText = "kfz-haftpflichtversicherung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "fr",
+                            DisplayName = "Assurance responsabilité automobile",
+                            SearchText = "assurance responsabilite automobile"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "es",
+                            DisplayName = "Seguro de responsabilidad civil del vehículo",
+                            SearchText = "seguro de responsabilidad civil del vehiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "it",
+                            DisplayName = "Assicurazione RC auto",
+                            SearchText = "assicurazione rc auto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Seguro de responsabilidade civil de veículos",
+                            SearchText = "seguro de responsabilidade civil de veiculos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "nl",
+                            DisplayName = "WA-autoverzekering",
+                            SearchText = "wa-autoverzekering"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "ru",
+                            DisplayName = "Обязательное автострахование",
+                            SearchText = "обязательное автострахование"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "ar",
+                            DisplayName = "التأمين الإلزامي للمركبات",
+                            SearchText = "التامين الالزامي للمركبات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "机动车第三者责任保险",
+                            SearchText = "机动车第三者责任保险"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "ja",
+                            DisplayName = "自動車賠償責任保険",
+                            SearchText = "自動車賠償責任保険"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "ko",
+                            DisplayName = "자동차 의무 책임 보험",
+                            SearchText = "자동차 의무 책임 보험"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("bde9972a-b980-4e27-af68-5f4ee8d76c2e"),
+                            CultureCode = "hi",
+                            DisplayName = "वाहन तृतीय-पक्ष बीमा",
+                            SearchText = "वाहन ततीय-पकष बीमा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "tr",
+                            DisplayName = "Kasko",
+                            SearchText = "kasko"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "en",
+                            DisplayName = "Comprehensive insurance",
+                            SearchText = "comprehensive insurance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "de",
+                            DisplayName = "Kaskoversicherung",
+                            SearchText = "kaskoversicherung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "fr",
+                            DisplayName = "Assurance tous risques",
+                            SearchText = "assurance tous risques"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "es",
+                            DisplayName = "Seguro a todo riesgo",
+                            SearchText = "seguro a todo riesgo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "it",
+                            DisplayName = "Assicurazione kasko",
+                            SearchText = "assicurazione kasko"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Seguro compreensivo de veículos",
+                            SearchText = "seguro compreensivo de veiculos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "nl",
+                            DisplayName = "Cascoverzekering",
+                            SearchText = "cascoverzekering"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "ru",
+                            DisplayName = "Каско",
+                            SearchText = "каско"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "ar",
+                            DisplayName = "التأمين الشامل للمركبات",
+                            SearchText = "التامين الشامل للمركبات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "车辆综合保险",
+                            SearchText = "车辆综合保险"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "ja",
+                            DisplayName = "車両保険",
+                            SearchText = "車両保険"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "ko",
+                            DisplayName = "자동차 종합 보험",
+                            SearchText = "자동차 종합 보험"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6c29d470-7631-481b-a975-feefcb69688e"),
+                            CultureCode = "hi",
+                            DisplayName = "व्यापक वाहन बीमा",
+                            SearchText = "वयापक वाहन बीमा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "tr",
+                            DisplayName = "Motorlu Taşıtlar Vergisi",
+                            SearchText = "motorlu tasitlar vergisi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "en",
+                            DisplayName = "Motor vehicle tax",
+                            SearchText = "motor vehicle tax"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "de",
+                            DisplayName = "Kfz-Steuer (MTV)",
+                            SearchText = "kfz-steuer (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "fr",
+                            DisplayName = "Taxe automobile (MTV)",
+                            SearchText = "taxe automobile (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "es",
+                            DisplayName = "Impuesto de vehículos (MTV)",
+                            SearchText = "impuesto de vehiculos (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "it",
+                            DisplayName = "Tassa automobilistica (MTV)",
+                            SearchText = "tassa automobilistica (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Imposto sobre veículos (MTV)",
+                            SearchText = "imposto sobre veiculos (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "nl",
+                            DisplayName = "Motorrijtuigenbelasting (MTV)",
+                            SearchText = "motorrijtuigenbelasting (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "ru",
+                            DisplayName = "Транспортный налог (MTV)",
+                            SearchText = "транспортныи налог (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "ar",
+                            DisplayName = "ضريبة المركبات (MTV)",
+                            SearchText = "ضريبة المركبات (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "机动车税（MTV）",
+                            SearchText = "机动车税（mtv）"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "ja",
+                            DisplayName = "自動車税（MTV）",
+                            SearchText = "自動車税（mtv）"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "ko",
+                            DisplayName = "자동차세(MTV)",
+                            SearchText = "자동차세(mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1af3cc7d-80f0-426f-9603-17b944b6acad"),
+                            CultureCode = "hi",
+                            DisplayName = "मोटर वाहन कर (MTV)",
+                            SearchText = "मोटर वाहन कर (mtv)"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "tr",
+                            DisplayName = "Araç Muayenesi",
+                            SearchText = "arac muayenesi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "en",
+                            DisplayName = "Vehicle inspection",
+                            SearchText = "vehicle inspection"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "de",
+                            DisplayName = "Fahrzeuguntersuchung",
+                            SearchText = "fahrzeuguntersuchung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "fr",
+                            DisplayName = "Contrôle technique",
+                            SearchText = "controle technique"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "es",
+                            DisplayName = "Inspección del vehículo",
+                            SearchText = "inspeccion del vehiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "it",
+                            DisplayName = "Revisione del veicolo",
+                            SearchText = "revisione del veicolo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Inspeção veicular",
+                            SearchText = "inspecao veicular"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "nl",
+                            DisplayName = "Voertuigkeuring",
+                            SearchText = "voertuigkeuring"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "ru",
+                            DisplayName = "Техосмотр",
+                            SearchText = "техосмотр"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "ar",
+                            DisplayName = "فحص المركبات",
+                            SearchText = "فحص المركبات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "车辆检验",
+                            SearchText = "车辆检验"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "ja",
+                            DisplayName = "車検",
+                            SearchText = "車検"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "ko",
+                            DisplayName = "자동차 검사",
+                            SearchText = "자동차 검사"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b88c10bf-5502-4fdc-8ddf-f9b3640e8b2c"),
+                            CultureCode = "hi",
+                            DisplayName = "वाहन निरीक्षण",
+                            SearchText = "वाहन निरीकषण"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "tr",
+                            DisplayName = "Egzoz Muayenesi",
+                            SearchText = "egzoz muayenesi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "en",
+                            DisplayName = "Emissions inspection",
+                            SearchText = "emissions inspection"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "de",
+                            DisplayName = "Abgasuntersuchung",
+                            SearchText = "abgasuntersuchung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "fr",
+                            DisplayName = "Contrôle des émissions",
+                            SearchText = "controle des emissions"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "es",
+                            DisplayName = "Inspección de emisiones",
+                            SearchText = "inspeccion de emisiones"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "it",
+                            DisplayName = "Controllo delle emissioni",
+                            SearchText = "controllo delle emissioni"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Inspeção de emissões",
+                            SearchText = "inspecao de emissoes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "nl",
+                            DisplayName = "Emissiekeuring",
+                            SearchText = "emissiekeuring"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "ru",
+                            DisplayName = "Проверка выхлопных газов",
+                            SearchText = "проверка выхлопных газов"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "ar",
+                            DisplayName = "فحص الانبعاثات",
+                            SearchText = "فحص الانبعاثات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "尾气检测",
+                            SearchText = "尾气检测"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "ja",
+                            DisplayName = "排出ガス検査",
+                            SearchText = "排出カス検査"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "ko",
+                            DisplayName = "배출가스 검사",
+                            SearchText = "배출가스 검사"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8b92bbb1-183d-40fe-8512-de7ae23493d8"),
+                            CultureCode = "hi",
+                            DisplayName = "उत्सर्जन निरीक्षण",
+                            SearchText = "उतसरजन निरीकषण"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "tr",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "en",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "de",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "fr",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "es",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "it",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "nl",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "ru",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "ar",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "ja",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "ko",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1dd72c50-47fd-4b26-ae0a-bf60027dc8ee"),
+                            CultureCode = "hi",
+                            DisplayName = "HGS",
+                            SearchText = "hgs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "tr",
+                            DisplayName = "Köprü ve Otoyol",
+                            SearchText = "kopru ve otoyol"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "en",
+                            DisplayName = "Bridge and motorway",
+                            SearchText = "bridge and motorway"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "de",
+                            DisplayName = "Brücken- und Autobahnmaut",
+                            SearchText = "brucken- und autobahnmaut"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "fr",
+                            DisplayName = "Péages et ponts",
+                            SearchText = "peages et ponts"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "es",
+                            DisplayName = "Peajes y puentes",
+                            SearchText = "peajes y puentes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "it",
+                            DisplayName = "Pedaggi e ponti",
+                            SearchText = "pedaggi e ponti"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Pedágios e pontes",
+                            SearchText = "pedagios e pontes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "nl",
+                            DisplayName = "Brug- en snelwegtol",
+                            SearchText = "brug- en snelwegtol"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "ru",
+                            DisplayName = "Платные дороги и мосты",
+                            SearchText = "платные дороги и мосты"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "ar",
+                            DisplayName = "رسوم الجسور والطرق",
+                            SearchText = "رسوم الجسور والطرق"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "桥梁和高速通行费",
+                            SearchText = "桥梁和高速通行费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "ja",
+                            DisplayName = "橋・高速道路料金",
+                            SearchText = "橋・高速道路料金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "ko",
+                            DisplayName = "교량 및 고속도로 통행료",
+                            SearchText = "교량 및 고속도로 통행료"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0b05b51e-1b39-4252-936c-ad141dc2eca7"),
+                            CultureCode = "hi",
+                            DisplayName = "पुल और राजमार्ग टोल",
+                            SearchText = "पल और राजमारग टोल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "tr",
+                            DisplayName = "Otopark",
+                            SearchText = "otopark"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "en",
+                            DisplayName = "Parking",
+                            SearchText = "parking"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "de",
+                            DisplayName = "Parken",
+                            SearchText = "parken"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "fr",
+                            DisplayName = "Stationnement",
+                            SearchText = "stationnement"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "es",
+                            DisplayName = "Aparcamiento",
+                            SearchText = "aparcamiento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "it",
+                            DisplayName = "Parcheggio",
+                            SearchText = "parcheggio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Estacionamento",
+                            SearchText = "estacionamento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "nl",
+                            DisplayName = "Parkeren",
+                            SearchText = "parkeren"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "ru",
+                            DisplayName = "Парковка",
+                            SearchText = "парковка"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "ar",
+                            DisplayName = "مواقف السيارات",
+                            SearchText = "مواقف السيارات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "停车费",
+                            SearchText = "停车费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "ja",
+                            DisplayName = "駐車場",
+                            SearchText = "駐車場"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "ko",
+                            DisplayName = "주차",
+                            SearchText = "주차"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3088cf-333f-4107-8f73-095e2e53920f"),
+                            CultureCode = "hi",
+                            DisplayName = "पार्किंग",
+                            SearchText = "पारकिग"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "tr",
+                            DisplayName = "Araç Yıkama",
+                            SearchText = "arac yikama"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "en",
+                            DisplayName = "Car wash",
+                            SearchText = "car wash"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "de",
+                            DisplayName = "Autowäsche",
+                            SearchText = "autowasche"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "fr",
+                            DisplayName = "Lavage auto",
+                            SearchText = "lavage auto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "es",
+                            DisplayName = "Lavado de coches",
+                            SearchText = "lavado de coches"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "it",
+                            DisplayName = "Autolavaggio",
+                            SearchText = "autolavaggio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Lavagem de veículos",
+                            SearchText = "lavagem de veiculos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "nl",
+                            DisplayName = "Autowassen",
+                            SearchText = "autowassen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "ru",
+                            DisplayName = "Мойка автомобиля",
+                            SearchText = "моика автомобиля"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "ar",
+                            DisplayName = "غسيل السيارات",
+                            SearchText = "غسيل السيارات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "洗车",
+                            SearchText = "洗车"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "ja",
+                            DisplayName = "洗車",
+                            SearchText = "洗車"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "ko",
+                            DisplayName = "세차",
+                            SearchText = "세차"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7fa7a0f-5b7a-454a-8c43-3c75fd4999ad"),
+                            CultureCode = "hi",
+                            DisplayName = "कार धुलाई",
+                            SearchText = "कार धलाई"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "tr",
+                            DisplayName = "Yol Yardım",
+                            SearchText = "yol yardim"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "en",
+                            DisplayName = "Roadside assistance",
+                            SearchText = "roadside assistance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "de",
+                            DisplayName = "Pannenhilfe",
+                            SearchText = "pannenhilfe"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "fr",
+                            DisplayName = "Assistance routière",
+                            SearchText = "assistance routiere"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "es",
+                            DisplayName = "Asistencia en carretera",
+                            SearchText = "asistencia en carretera"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "it",
+                            DisplayName = "Soccorso stradale",
+                            SearchText = "soccorso stradale"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Assistência na estrada",
+                            SearchText = "assistencia na estrada"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "nl",
+                            DisplayName = "Pechhulp",
+                            SearchText = "pechhulp"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "ru",
+                            DisplayName = "Помощь на дороге",
+                            SearchText = "помощь на дороге"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "ar",
+                            DisplayName = "المساعدة على الطريق",
+                            SearchText = "المساعدة على الطريق"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "道路救援",
+                            SearchText = "道路救援"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "ja",
+                            DisplayName = "ロードサービス",
+                            SearchText = "ロートサーヒス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "ko",
+                            DisplayName = "긴급 출동 서비스",
+                            SearchText = "긴급 출동 서비스"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0a4b8fa9-60ab-4b43-ac58-03d04c13e30a"),
+                            CultureCode = "hi",
+                            DisplayName = "सड़क सहायता",
+                            SearchText = "सडक सहायता"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "tr",
+                            DisplayName = "Araç Kiralama",
+                            SearchText = "arac kiralama"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "en",
+                            DisplayName = "Vehicle rental",
+                            SearchText = "vehicle rental"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "de",
+                            DisplayName = "Fahrzeugmiete",
+                            SearchText = "fahrzeugmiete"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "fr",
+                            DisplayName = "Location de véhicule",
+                            SearchText = "location de vehicule"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "es",
+                            DisplayName = "Alquiler de vehículos",
+                            SearchText = "alquiler de vehiculos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "it",
+                            DisplayName = "Noleggio auto",
+                            SearchText = "noleggio auto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Aluguel de veículos",
+                            SearchText = "aluguel de veiculos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "nl",
+                            DisplayName = "Voertuighuur",
+                            SearchText = "voertuighuur"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "ru",
+                            DisplayName = "Аренда автомобиля",
+                            SearchText = "аренда автомобиля"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "ar",
+                            DisplayName = "استئجار المركبات",
+                            SearchText = "استيجار المركبات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "租车",
+                            SearchText = "租车"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "ja",
+                            DisplayName = "レンタカー",
+                            SearchText = "レンタカー"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "ko",
+                            DisplayName = "차량 대여",
+                            SearchText = "차량 대여"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5fe0fad6-83c4-4d71-9da1-6652e804b4f5"),
+                            CultureCode = "hi",
+                            DisplayName = "वाहन किराया",
+                            SearchText = "वाहन किराया"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "tr",
+                            DisplayName = "Araç Kredisi",
+                            SearchText = "arac kredisi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "en",
+                            DisplayName = "Vehicle loan",
+                            SearchText = "vehicle loan"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "de",
+                            DisplayName = "Autokredit",
+                            SearchText = "autokredit"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "fr",
+                            DisplayName = "Crédit automobile",
+                            SearchText = "credit automobile"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "es",
+                            DisplayName = "Préstamo para vehículo",
+                            SearchText = "prestamo para vehiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "it",
+                            DisplayName = "Prestito auto",
+                            SearchText = "prestito auto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Financiamento de veículo",
+                            SearchText = "financiamento de veiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "nl",
+                            DisplayName = "Autolening",
+                            SearchText = "autolening"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "ru",
+                            DisplayName = "Автокредит",
+                            SearchText = "автокредит"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "ar",
+                            DisplayName = "قرض السيارة",
+                            SearchText = "قرض السيارة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "车贷",
+                            SearchText = "车贷"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "ja",
+                            DisplayName = "自動車ローン",
+                            SearchText = "自動車ローン"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "ko",
+                            DisplayName = "자동차 대출",
+                            SearchText = "자동차 대출"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a68e8dc7-7af4-4271-a93b-97513311f280"),
+                            CultureCode = "hi",
+                            DisplayName = "वाहन ऋण",
+                            SearchText = "वाहन ऋण"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "tr",
+                            DisplayName = "Toplu Taşıma",
+                            SearchText = "toplu tasima"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "en",
+                            DisplayName = "Public transport",
+                            SearchText = "public transport"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "de",
+                            DisplayName = "Öffentlicher Verkehr",
+                            SearchText = "offentlicher verkehr"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "fr",
+                            DisplayName = "Transports en commun",
+                            SearchText = "transports en commun"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "es",
+                            DisplayName = "Transporte público",
+                            SearchText = "transporte publico"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "it",
+                            DisplayName = "Trasporto pubblico",
+                            SearchText = "trasporto pubblico"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Transporte público",
+                            SearchText = "transporte publico"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "nl",
+                            DisplayName = "Openbaar vervoer",
+                            SearchText = "openbaar vervoer"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "ru",
+                            DisplayName = "Общественный транспорт",
+                            SearchText = "общественныи транспорт"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "ar",
+                            DisplayName = "النقل العام",
+                            SearchText = "النقل العام"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "公共交通",
+                            SearchText = "公共交通"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "ja",
+                            DisplayName = "公共交通機関",
+                            SearchText = "公共交通機関"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "ko",
+                            DisplayName = "대중교통",
+                            SearchText = "대중교통"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("03e235a7-8be8-48b0-8dd5-11d87ef057aa"),
+                            CultureCode = "hi",
+                            DisplayName = "सार्वजनिक परिवहन",
+                            SearchText = "सारवजनिक परिवहन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "tr",
+                            DisplayName = "Taksi",
+                            SearchText = "taksi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "en",
+                            DisplayName = "Taxi",
+                            SearchText = "taxi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "de",
+                            DisplayName = "Taxi",
+                            SearchText = "taxi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "fr",
+                            DisplayName = "Taxi",
+                            SearchText = "taxi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "es",
+                            DisplayName = "Taxi",
+                            SearchText = "taxi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "it",
+                            DisplayName = "Taxi",
+                            SearchText = "taxi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Táxi",
+                            SearchText = "taxi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "nl",
+                            DisplayName = "Taxi",
+                            SearchText = "taxi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "ru",
+                            DisplayName = "Такси",
+                            SearchText = "такси"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "ar",
+                            DisplayName = "سيارة أجرة",
+                            SearchText = "سيارة اجرة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "出租车",
+                            SearchText = "出租车"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "ja",
+                            DisplayName = "タクシー",
+                            SearchText = "タクシー"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "ko",
+                            DisplayName = "택시",
+                            SearchText = "택시"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("db3d1318-93c7-4f1e-8b1c-5599ab0f1d70"),
+                            CultureCode = "hi",
+                            DisplayName = "टैक्सी",
+                            SearchText = "टकसी"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "tr",
+                            DisplayName = "Diğer Araç Giderleri",
+                            SearchText = "diger arac giderleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "en",
+                            DisplayName = "Other vehicle costs",
+                            SearchText = "other vehicle costs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "de",
+                            DisplayName = "Sonstige Fahrzeugkosten",
+                            SearchText = "sonstige fahrzeugkosten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "fr",
+                            DisplayName = "Autres frais automobiles",
+                            SearchText = "autres frais automobiles"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "es",
+                            DisplayName = "Otros gastos del vehículo",
+                            SearchText = "otros gastos del vehiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "it",
+                            DisplayName = "Altre spese auto",
+                            SearchText = "altre spese auto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Outras despesas de veículo",
+                            SearchText = "outras despesas de veiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "nl",
+                            DisplayName = "Overige autokosten",
+                            SearchText = "overige autokosten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "ru",
+                            DisplayName = "Прочие расходы на автомобиль",
+                            SearchText = "прочие расходы на автомобиль"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "ar",
+                            DisplayName = "نفقات المركبات الأخرى",
+                            SearchText = "نفقات المركبات الاخرى"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "其他车辆支出",
+                            SearchText = "其他车辆支出"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "ja",
+                            DisplayName = "その他の車両費",
+                            SearchText = "その他の車両費"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "ko",
+                            DisplayName = "기타 차량 비용",
+                            SearchText = "기타 차량 비용"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6759dcee-1e8c-4189-b0a7-17bd1f916bd4"),
+                            CultureCode = "hi",
+                            DisplayName = "वाहन के अन्य खर्च",
+                            SearchText = "वाहन क अनय खरच"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "tr",
+                            DisplayName = "Kira",
+                            SearchText = "kira"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "en",
+                            DisplayName = "Rent",
+                            SearchText = "rent"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "de",
+                            DisplayName = "Miete",
+                            SearchText = "miete"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "fr",
+                            DisplayName = "Loyer",
+                            SearchText = "loyer"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "es",
+                            DisplayName = "Alquiler",
+                            SearchText = "alquiler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "it",
+                            DisplayName = "Affitto",
+                            SearchText = "affitto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Aluguel",
+                            SearchText = "aluguel"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "nl",
+                            DisplayName = "Huur",
+                            SearchText = "huur"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "ru",
+                            DisplayName = "Арендная плата",
+                            SearchText = "арендная плата"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "ar",
+                            DisplayName = "الإيجار",
+                            SearchText = "الايجار"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "租金",
+                            SearchText = "租金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "ja",
+                            DisplayName = "家賃",
+                            SearchText = "家賃"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "ko",
+                            DisplayName = "임대료",
+                            SearchText = "임대료"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("42edd8a7-533d-4b79-ac0f-d47e62dc6ab1"),
+                            CultureCode = "hi",
+                            DisplayName = "किराया",
+                            SearchText = "किराया"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "tr",
+                            DisplayName = "Aidat",
+                            SearchText = "aidat"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "en",
+                            DisplayName = "Maintenance dues",
+                            SearchText = "maintenance dues"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "de",
+                            DisplayName = "Hausgeld und Gemeinschaftskosten",
+                            SearchText = "hausgeld und gemeinschaftskosten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "fr",
+                            DisplayName = "Charges de copropriété",
+                            SearchText = "charges de copropriete"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "es",
+                            DisplayName = "Cuotas de comunidad",
+                            SearchText = "cuotas de comunidad"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "it",
+                            DisplayName = "Spese condominiali",
+                            SearchText = "spese condominiali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Taxa de condomínio",
+                            SearchText = "taxa de condominio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "nl",
+                            DisplayName = "Servicekosten",
+                            SearchText = "servicekosten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "ru",
+                            DisplayName = "Взносы на содержание жилья",
+                            SearchText = "взносы на содержание жилья"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "ar",
+                            DisplayName = "رسوم صيانة المبنى",
+                            SearchText = "رسوم صيانة المبنى"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "物业管理费",
+                            SearchText = "物业管理费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "ja",
+                            DisplayName = "管理費・共益費",
+                            SearchText = "管理費・共益費"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "ko",
+                            DisplayName = "공동 관리비",
+                            SearchText = "공동 관리비"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f1033c8-fa71-4005-80a6-880482c931ab"),
+                            CultureCode = "hi",
+                            DisplayName = "आवास रखरखाव शुल्क",
+                            SearchText = "आवास रखरखाव शलक"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "tr",
+                            DisplayName = "Elektrik Faturası",
+                            SearchText = "elektrik faturasi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "en",
+                            DisplayName = "Electricity bill",
+                            SearchText = "electricity bill"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "de",
+                            DisplayName = "Stromrechnung",
+                            SearchText = "stromrechnung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "fr",
+                            DisplayName = "Facture d’électricité",
+                            SearchText = "facture d’electricite"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "es",
+                            DisplayName = "Factura de electricidad",
+                            SearchText = "factura de electricidad"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "it",
+                            DisplayName = "Bolletta elettrica",
+                            SearchText = "bolletta elettrica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Conta de luz",
+                            SearchText = "conta de luz"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "nl",
+                            DisplayName = "Elektriciteitsrekening",
+                            SearchText = "elektriciteitsrekening"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "ru",
+                            DisplayName = "Счёт за электричество",
+                            SearchText = "счет за электричество"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "ar",
+                            DisplayName = "فاتورة الكهرباء",
+                            SearchText = "فاتورة الكهرباء"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "电费",
+                            SearchText = "电费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "ja",
+                            DisplayName = "電気料金",
+                            SearchText = "電気料金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "ko",
+                            DisplayName = "전기 요금",
+                            SearchText = "전기 요금"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("191168e3-9df2-4fdd-81d8-d9d052ae0274"),
+                            CultureCode = "hi",
+                            DisplayName = "बिजली का बिल",
+                            SearchText = "बिजली का बिल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "tr",
+                            DisplayName = "Su Faturası",
+                            SearchText = "su faturasi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "en",
+                            DisplayName = "Water bill",
+                            SearchText = "water bill"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "de",
+                            DisplayName = "Wasserrechnung",
+                            SearchText = "wasserrechnung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "fr",
+                            DisplayName = "Facture d’eau",
+                            SearchText = "facture d’eau"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "es",
+                            DisplayName = "Factura de agua",
+                            SearchText = "factura de agua"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "it",
+                            DisplayName = "Bolletta dell’acqua",
+                            SearchText = "bolletta dell’acqua"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Conta de água",
+                            SearchText = "conta de agua"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "nl",
+                            DisplayName = "Waterrekening",
+                            SearchText = "waterrekening"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "ru",
+                            DisplayName = "Счёт за воду",
+                            SearchText = "счет за воду"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "ar",
+                            DisplayName = "فاتورة المياه",
+                            SearchText = "فاتورة المياه"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "水费",
+                            SearchText = "水费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "ja",
+                            DisplayName = "水道料金",
+                            SearchText = "水道料金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "ko",
+                            DisplayName = "수도 요금",
+                            SearchText = "수도 요금"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0cf398fa-dcdc-466a-ac73-10346708ebf2"),
+                            CultureCode = "hi",
+                            DisplayName = "पानी का बिल",
+                            SearchText = "पानी का बिल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "tr",
+                            DisplayName = "Doğalgaz Faturası",
+                            SearchText = "dogalgaz faturasi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "en",
+                            DisplayName = "Gas bill",
+                            SearchText = "gas bill"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "de",
+                            DisplayName = "Gasrechnung",
+                            SearchText = "gasrechnung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "fr",
+                            DisplayName = "Facture de gaz",
+                            SearchText = "facture de gaz"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "es",
+                            DisplayName = "Factura de gas",
+                            SearchText = "factura de gas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "it",
+                            DisplayName = "Bolletta del gas",
+                            SearchText = "bolletta del gas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Conta de gás",
+                            SearchText = "conta de gas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "nl",
+                            DisplayName = "Gasrekening",
+                            SearchText = "gasrekening"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "ru",
+                            DisplayName = "Счёт за газ",
+                            SearchText = "счет за газ"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "ar",
+                            DisplayName = "فاتورة الغاز",
+                            SearchText = "فاتورة الغاز"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "燃气费",
+                            SearchText = "燃气费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "ja",
+                            DisplayName = "ガス料金",
+                            SearchText = "カス料金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "ko",
+                            DisplayName = "가스 요금",
+                            SearchText = "가스 요금"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("90a47ca5-93a9-4b97-8d42-377193be7377"),
+                            CultureCode = "hi",
+                            DisplayName = "गैस का बिल",
+                            SearchText = "गस का बिल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "tr",
+                            DisplayName = "İnternet Faturası",
+                            SearchText = "internet faturasi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "en",
+                            DisplayName = "Internet bill",
+                            SearchText = "internet bill"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "de",
+                            DisplayName = "Internetrechnung",
+                            SearchText = "internetrechnung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "fr",
+                            DisplayName = "Facture Internet",
+                            SearchText = "facture internet"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "es",
+                            DisplayName = "Factura de Internet",
+                            SearchText = "factura de internet"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "it",
+                            DisplayName = "Bolletta Internet",
+                            SearchText = "bolletta internet"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Conta de internet",
+                            SearchText = "conta de internet"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "nl",
+                            DisplayName = "Internetrekening",
+                            SearchText = "internetrekening"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "ru",
+                            DisplayName = "Счёт за интернет",
+                            SearchText = "счет за интернет"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "ar",
+                            DisplayName = "فاتورة الإنترنت",
+                            SearchText = "فاتورة الانترنت"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "网费",
+                            SearchText = "网费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "ja",
+                            DisplayName = "インターネット料金",
+                            SearchText = "インターネット料金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "ko",
+                            DisplayName = "인터넷 요금",
+                            SearchText = "인터넷 요금"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f19d27ea-74cb-4b2e-b9fe-488c2dfdbb99"),
+                            CultureCode = "hi",
+                            DisplayName = "इंटरनेट का बिल",
+                            SearchText = "इटरनट का बिल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "tr",
+                            DisplayName = "Telefon Faturası",
+                            SearchText = "telefon faturasi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "en",
+                            DisplayName = "Phone bill",
+                            SearchText = "phone bill"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "de",
+                            DisplayName = "Telefonrechnung",
+                            SearchText = "telefonrechnung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "fr",
+                            DisplayName = "Facture de téléphone",
+                            SearchText = "facture de telephone"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "es",
+                            DisplayName = "Factura de teléfono",
+                            SearchText = "factura de telefono"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "it",
+                            DisplayName = "Bolletta telefonica",
+                            SearchText = "bolletta telefonica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Conta de telefone",
+                            SearchText = "conta de telefone"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "nl",
+                            DisplayName = "Telefoonrekening",
+                            SearchText = "telefoonrekening"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "ru",
+                            DisplayName = "Счёт за телефон",
+                            SearchText = "счет за телефон"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "ar",
+                            DisplayName = "فاتورة الهاتف",
+                            SearchText = "فاتورة الهاتف"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "电话费",
+                            SearchText = "电话费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "ja",
+                            DisplayName = "電話料金",
+                            SearchText = "電話料金"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "ko",
+                            DisplayName = "전화 요금",
+                            SearchText = "전화 요금"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("472d4caa-0c65-467c-bee4-ae6d09546f71"),
+                            CultureCode = "hi",
+                            DisplayName = "फ़ोन का बिल",
+                            SearchText = "फोन का बिल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "tr",
+                            DisplayName = "Dijital Yayın Platformları",
+                            SearchText = "dijital yayin platformlari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "en",
+                            DisplayName = "Streaming platforms",
+                            SearchText = "streaming platforms"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "de",
+                            DisplayName = "Streaming-Plattformen",
+                            SearchText = "streaming-plattformen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "fr",
+                            DisplayName = "Plateformes de streaming",
+                            SearchText = "plateformes de streaming"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "es",
+                            DisplayName = "Plataformas de streaming",
+                            SearchText = "plataformas de streaming"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "it",
+                            DisplayName = "Piattaforme di streaming",
+                            SearchText = "piattaforme di streaming"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Plataformas de streaming",
+                            SearchText = "plataformas de streaming"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "nl",
+                            DisplayName = "Streamingplatforms",
+                            SearchText = "streamingplatforms"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "ru",
+                            DisplayName = "Стриминговые платформы",
+                            SearchText = "стриминговые платформы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "ar",
+                            DisplayName = "منصات البث",
+                            SearchText = "منصات البث"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "流媒体平台",
+                            SearchText = "流媒体平台"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "ja",
+                            DisplayName = "動画配信サービス",
+                            SearchText = "動画配信サーヒス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "ko",
+                            DisplayName = "스트리밍 플랫폼",
+                            SearchText = "스트리밍 플랫폼"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6714ec3b-360c-4094-b046-7c1f2ae443cd"),
+                            CultureCode = "hi",
+                            DisplayName = "स्ट्रीमिंग प्लेटफ़ॉर्म",
+                            SearchText = "सटरीमिग पलटफॉरम"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "tr",
+                            DisplayName = "Sinema ve Film Kulüpleri",
+                            SearchText = "sinema ve film kulupleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "en",
+                            DisplayName = "Cinema and film clubs",
+                            SearchText = "cinema and film clubs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "de",
+                            DisplayName = "Kino und Filmclubs",
+                            SearchText = "kino und filmclubs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "fr",
+                            DisplayName = "Cinéma et ciné-clubs",
+                            SearchText = "cinema et cine-clubs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "es",
+                            DisplayName = "Cine y cineclubes",
+                            SearchText = "cine y cineclubes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "it",
+                            DisplayName = "Cinema e cineclub",
+                            SearchText = "cinema e cineclub"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Cinema e cineclubes",
+                            SearchText = "cinema e cineclubes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "nl",
+                            DisplayName = "Bioscoop en filmclubs",
+                            SearchText = "bioscoop en filmclubs"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "ru",
+                            DisplayName = "Кинотеатры и киноклубы",
+                            SearchText = "кинотеатры и киноклубы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "ar",
+                            DisplayName = "السينما ونوادي الأفلام",
+                            SearchText = "السينما ونوادي الافلام"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "影院和电影俱乐部",
+                            SearchText = "影院和电影俱乐部"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "ja",
+                            DisplayName = "映画館・映画クラブ",
+                            SearchText = "映画館・映画クラフ"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "ko",
+                            DisplayName = "영화관 및 영화 동호회",
+                            SearchText = "영화관 및 영화 동호회"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("b2b60aed-aa7d-4018-b594-dbe81fae50dd"),
+                            CultureCode = "hi",
+                            DisplayName = "सिनेमा और फ़िल्म क्लब",
+                            SearchText = "सिनमा और फिलम कलब"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "tr",
+                            DisplayName = "Müzik Platformları",
+                            SearchText = "muzik platformlari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "en",
+                            DisplayName = "Music platforms",
+                            SearchText = "music platforms"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "de",
+                            DisplayName = "Musikplattformen",
+                            SearchText = "musikplattformen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "fr",
+                            DisplayName = "Plateformes musicales",
+                            SearchText = "plateformes musicales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "es",
+                            DisplayName = "Plataformas de música",
+                            SearchText = "plataformas de musica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "it",
+                            DisplayName = "Piattaforme musicali",
+                            SearchText = "piattaforme musicali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Plataformas de música",
+                            SearchText = "plataformas de musica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "nl",
+                            DisplayName = "Muziekplatforms",
+                            SearchText = "muziekplatforms"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "ru",
+                            DisplayName = "Музыкальные платформы",
+                            SearchText = "музыкальные платформы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "ar",
+                            DisplayName = "منصات الموسيقى",
+                            SearchText = "منصات الموسيقى"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "音乐平台",
+                            SearchText = "音乐平台"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "ja",
+                            DisplayName = "音楽配信サービス",
+                            SearchText = "音楽配信サーヒス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "ko",
+                            DisplayName = "음악 플랫폼",
+                            SearchText = "음악 플랫폼"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("14cff2e1-ef04-4193-939a-59463107d17d"),
+                            CultureCode = "hi",
+                            DisplayName = "संगीत प्लेटफ़ॉर्म",
+                            SearchText = "सगीत पलटफॉरम"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "tr",
+                            DisplayName = "Podcast ve Sesli Yayınlar",
+                            SearchText = "podcast ve sesli yayinlar"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "en",
+                            DisplayName = "Podcasts and audio",
+                            SearchText = "podcasts and audio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "de",
+                            DisplayName = "Podcasts und Audio",
+                            SearchText = "podcasts und audio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "fr",
+                            DisplayName = "Podcasts et audio",
+                            SearchText = "podcasts et audio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "es",
+                            DisplayName = "Pódcast y audio",
+                            SearchText = "podcast y audio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "it",
+                            DisplayName = "Podcast e audio",
+                            SearchText = "podcast e audio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Podcasts e áudio",
+                            SearchText = "podcasts e audio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "nl",
+                            DisplayName = "Podcasts en audio",
+                            SearchText = "podcasts en audio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "ru",
+                            DisplayName = "Подкасты и аудио",
+                            SearchText = "подкасты и аудио"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "ar",
+                            DisplayName = "البودكاست والمحتوى الصوتي",
+                            SearchText = "البودكاست والمحتوى الصوتي"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "播客和音频",
+                            SearchText = "播客和音频"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "ja",
+                            DisplayName = "ポッドキャスト・音声配信",
+                            SearchText = "ホットキャスト・音声配信"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "ko",
+                            DisplayName = "팟캐스트 및 오디오",
+                            SearchText = "팟캐스트 및 오디오"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ae96245e-612e-48eb-8cf9-a19571bc907c"),
+                            CultureCode = "hi",
+                            DisplayName = "पॉडकास्ट और ऑडियो",
+                            SearchText = "पॉडकासट और ऑडियो"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "tr",
+                            DisplayName = "Oyun Üyelikleri",
+                            SearchText = "oyun uyelikleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "en",
+                            DisplayName = "Game memberships",
+                            SearchText = "game memberships"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "de",
+                            DisplayName = "Gaming-Mitgliedschaften",
+                            SearchText = "gaming-mitgliedschaften"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "fr",
+                            DisplayName = "Abonnements de jeux",
+                            SearchText = "abonnements de jeux"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "es",
+                            DisplayName = "Suscripciones de juegos",
+                            SearchText = "suscripciones de juegos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "it",
+                            DisplayName = "Abbonamenti di gioco",
+                            SearchText = "abbonamenti di gioco"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Assinaturas de jogos",
+                            SearchText = "assinaturas de jogos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "nl",
+                            DisplayName = "Gaming-abonnementen",
+                            SearchText = "gaming-abonnementen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "ru",
+                            DisplayName = "Игровые подписки",
+                            SearchText = "игровые подписки"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "ar",
+                            DisplayName = "اشتراكات الألعاب",
+                            SearchText = "اشتراكات الالعاب"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "游戏会员",
+                            SearchText = "游戏会员"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "ja",
+                            DisplayName = "ゲーム会員サービス",
+                            SearchText = "ケーム会員サーヒス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "ko",
+                            DisplayName = "게임 멤버십",
+                            SearchText = "게임 멤버십"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("892b2f2b-d6de-4475-b869-1b101f320534"),
+                            CultureCode = "hi",
+                            DisplayName = "गेम सदस्यताएँ",
+                            SearchText = "गम सदसयताए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "tr",
+                            DisplayName = "Bulut Oyun",
+                            SearchText = "bulut oyun"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "en",
+                            DisplayName = "Cloud gaming",
+                            SearchText = "cloud gaming"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "de",
+                            DisplayName = "Cloud-Gaming",
+                            SearchText = "cloud-gaming"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "fr",
+                            DisplayName = "Jeu en cloud",
+                            SearchText = "jeu en cloud"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "es",
+                            DisplayName = "Juegos en la nube",
+                            SearchText = "juegos en la nube"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "it",
+                            DisplayName = "Cloud gaming",
+                            SearchText = "cloud gaming"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Jogos na nuvem",
+                            SearchText = "jogos na nuvem"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "nl",
+                            DisplayName = "Cloudgaming",
+                            SearchText = "cloudgaming"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "ru",
+                            DisplayName = "Облачные игры",
+                            SearchText = "облачные игры"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "ar",
+                            DisplayName = "الألعاب السحابية",
+                            SearchText = "الالعاب السحابية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "云游戏",
+                            SearchText = "云游戏"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "ja",
+                            DisplayName = "クラウドゲーム",
+                            SearchText = "クラウトケーム"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "ko",
+                            DisplayName = "클라우드 게임",
+                            SearchText = "클라우드 게임"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e29a3935-2b05-497a-8203-0eb978e5a7fe"),
+                            CultureCode = "hi",
+                            DisplayName = "क्लाउड गेमिंग",
+                            SearchText = "कलाउड गमिग"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "tr",
+                            DisplayName = "Yapay Zekâ Asistanları",
+                            SearchText = "yapay zeka asistanlari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "en",
+                            DisplayName = "AI assistants",
+                            SearchText = "ai assistants"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "de",
+                            DisplayName = "KI-Assistenten",
+                            SearchText = "ki-assistenten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "fr",
+                            DisplayName = "Assistants IA",
+                            SearchText = "assistants ia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "es",
+                            DisplayName = "Asistentes de IA",
+                            SearchText = "asistentes de ia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "it",
+                            DisplayName = "Assistenti IA",
+                            SearchText = "assistenti ia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Assistentes de IA",
+                            SearchText = "assistentes de ia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "nl",
+                            DisplayName = "AI-assistenten",
+                            SearchText = "ai-assistenten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "ru",
+                            DisplayName = "ИИ-ассистенты",
+                            SearchText = "ии-ассистенты"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "ar",
+                            DisplayName = "مساعدو الذكاء الاصطناعي",
+                            SearchText = "مساعدو الذكاء الاصطناعي"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "人工智能助手",
+                            SearchText = "人工智能助手"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "ja",
+                            DisplayName = "AIアシスタント",
+                            SearchText = "aiアシスタント"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "ko",
+                            DisplayName = "AI 어시스턴트",
+                            SearchText = "ai 어시스턴트"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("761f831e-450d-420c-bcd9-53224fff8669"),
+                            CultureCode = "hi",
+                            DisplayName = "एआई सहायक",
+                            SearchText = "एआई सहायक"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "tr",
+                            DisplayName = "Görsel ve Yaratıcı Araçlar",
+                            SearchText = "gorsel ve yaratici araclar"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "en",
+                            DisplayName = "Creative AI tools",
+                            SearchText = "creative ai tools"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "de",
+                            DisplayName = "Kreative KI-Werkzeuge",
+                            SearchText = "kreative ki-werkzeuge"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "fr",
+                            DisplayName = "Outils créatifs d’IA",
+                            SearchText = "outils creatifs d’ia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "es",
+                            DisplayName = "Herramientas creativas de IA",
+                            SearchText = "herramientas creativas de ia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "it",
+                            DisplayName = "Strumenti creativi IA",
+                            SearchText = "strumenti creativi ia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Ferramentas criativas de IA",
+                            SearchText = "ferramentas criativas de ia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "nl",
+                            DisplayName = "Creatieve AI-tools",
+                            SearchText = "creatieve ai-tools"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "ru",
+                            DisplayName = "Творческие ИИ-инструменты",
+                            SearchText = "творческие ии-инструменты"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "ar",
+                            DisplayName = "أدوات الذكاء الاصطناعي الإبداعية",
+                            SearchText = "ادوات الذكاء الاصطناعي الابداعية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "人工智能创作工具",
+                            SearchText = "人工智能创作工具"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "ja",
+                            DisplayName = "AI制作ツール",
+                            SearchText = "ai制作ツール"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "ko",
+                            DisplayName = "AI 창작 도구",
+                            SearchText = "ai 창작 도구"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05d5e9ec-afff-495e-9541-52416b37f28e"),
+                            CultureCode = "hi",
+                            DisplayName = "रचनात्मक एआई उपकरण",
+                            SearchText = "रचनातमक एआई उपकरण"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "tr",
+                            DisplayName = "Ofis ve Üretkenlik",
+                            SearchText = "ofis ve uretkenlik"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "en",
+                            DisplayName = "Office and productivity",
+                            SearchText = "office and productivity"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "de",
+                            DisplayName = "Büro und Produktivität",
+                            SearchText = "buro und produktivitat"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "fr",
+                            DisplayName = "Bureautique et productivité",
+                            SearchText = "bureautique et productivite"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "es",
+                            DisplayName = "Ofimática y productividad",
+                            SearchText = "ofimatica y productividad"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "it",
+                            DisplayName = "Ufficio e produttività",
+                            SearchText = "ufficio e produttivita"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Escritório e produtividade",
+                            SearchText = "escritorio e produtividade"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "nl",
+                            DisplayName = "Kantoor en productiviteit",
+                            SearchText = "kantoor en productiviteit"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "ru",
+                            DisplayName = "Офис и продуктивность",
+                            SearchText = "офис и продуктивность"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "ar",
+                            DisplayName = "المكتب والإنتاجية",
+                            SearchText = "المكتب والانتاجية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "办公和效率工具",
+                            SearchText = "办公和效率工具"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "ja",
+                            DisplayName = "オフィス・仕事効率化",
+                            SearchText = "オフィス・仕事効率化"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "ko",
+                            DisplayName = "사무 및 생산성",
+                            SearchText = "사무 및 생산성"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1956109e-3bc0-4d72-8190-e858c32b7055"),
+                            CultureCode = "hi",
+                            DisplayName = "ऑफ़िस और उत्पादकता",
+                            SearchText = "ऑफिस और उतपादकता"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "tr",
+                            DisplayName = "Tasarım Araçları",
+                            SearchText = "tasarim araclari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "en",
+                            DisplayName = "Design tools",
+                            SearchText = "design tools"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "de",
+                            DisplayName = "Design-Werkzeuge",
+                            SearchText = "design-werkzeuge"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "fr",
+                            DisplayName = "Outils de conception",
+                            SearchText = "outils de conception"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "es",
+                            DisplayName = "Herramientas de diseño",
+                            SearchText = "herramientas de diseno"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "it",
+                            DisplayName = "Strumenti di design",
+                            SearchText = "strumenti di design"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Ferramentas de design",
+                            SearchText = "ferramentas de design"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "nl",
+                            DisplayName = "Ontwerptools",
+                            SearchText = "ontwerptools"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "ru",
+                            DisplayName = "Инструменты дизайна",
+                            SearchText = "инструменты дизаина"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "ar",
+                            DisplayName = "أدوات التصميم",
+                            SearchText = "ادوات التصميم"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "设计工具",
+                            SearchText = "设计工具"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "ja",
+                            DisplayName = "デザインツール",
+                            SearchText = "テサインツール"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "ko",
+                            DisplayName = "디자인 도구",
+                            SearchText = "디자인 도구"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("c2790a5d-538c-4f1e-9e0b-62b7581c0fcf"),
+                            CultureCode = "hi",
+                            DisplayName = "डिज़ाइन उपकरण",
+                            SearchText = "डिजाइन उपकरण"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "tr",
+                            DisplayName = "Geliştirici Araçları",
+                            SearchText = "gelistirici araclari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "en",
+                            DisplayName = "Developer tools",
+                            SearchText = "developer tools"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "de",
+                            DisplayName = "Entwicklerwerkzeuge",
+                            SearchText = "entwicklerwerkzeuge"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "fr",
+                            DisplayName = "Outils de développement",
+                            SearchText = "outils de developpement"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "es",
+                            DisplayName = "Herramientas de desarrollo",
+                            SearchText = "herramientas de desarrollo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "it",
+                            DisplayName = "Strumenti per sviluppatori",
+                            SearchText = "strumenti per sviluppatori"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Ferramentas de desenvolvimento",
+                            SearchText = "ferramentas de desenvolvimento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "nl",
+                            DisplayName = "Ontwikkeltools",
+                            SearchText = "ontwikkeltools"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "ru",
+                            DisplayName = "Инструменты разработчика",
+                            SearchText = "инструменты разработчика"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "ar",
+                            DisplayName = "أدوات المطورين",
+                            SearchText = "ادوات المطورين"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "开发工具",
+                            SearchText = "开发工具"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "ja",
+                            DisplayName = "開発者向けツール",
+                            SearchText = "開発者向けツール"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "ko",
+                            DisplayName = "개발 도구",
+                            SearchText = "개발 도구"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a9285b52-c39f-4c12-a41a-367f3e89475f"),
+                            CultureCode = "hi",
+                            DisplayName = "डेवलपर उपकरण",
+                            SearchText = "डवलपर उपकरण"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "tr",
+                            DisplayName = "Bulut Depolama",
+                            SearchText = "bulut depolama"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "en",
+                            DisplayName = "Cloud storage",
+                            SearchText = "cloud storage"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "de",
+                            DisplayName = "Cloud-Speicher",
+                            SearchText = "cloud-speicher"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "fr",
+                            DisplayName = "Stockage cloud",
+                            SearchText = "stockage cloud"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "es",
+                            DisplayName = "Almacenamiento en la nube",
+                            SearchText = "almacenamiento en la nube"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "it",
+                            DisplayName = "Archiviazione cloud",
+                            SearchText = "archiviazione cloud"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Armazenamento em nuvem",
+                            SearchText = "armazenamento em nuvem"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "nl",
+                            DisplayName = "Cloudopslag",
+                            SearchText = "cloudopslag"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "ru",
+                            DisplayName = "Облачное хранилище",
+                            SearchText = "облачное хранилище"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "ar",
+                            DisplayName = "التخزين السحابي",
+                            SearchText = "التخزين السحابي"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "云存储",
+                            SearchText = "云存储"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "ja",
+                            DisplayName = "クラウドストレージ",
+                            SearchText = "クラウトストレーシ"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "ko",
+                            DisplayName = "클라우드 저장 공간",
+                            SearchText = "클라우드 저장 공간"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2f9d9b00-84e9-46cd-ad24-b11a1c368889"),
+                            CultureCode = "hi",
+                            DisplayName = "क्लाउड स्टोरेज",
+                            SearchText = "कलाउड सटोरज"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "tr",
+                            DisplayName = "Yedekleme",
+                            SearchText = "yedekleme"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "en",
+                            DisplayName = "Backup",
+                            SearchText = "backup"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "de",
+                            DisplayName = "Datensicherung",
+                            SearchText = "datensicherung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "fr",
+                            DisplayName = "Sauvegarde",
+                            SearchText = "sauvegarde"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "es",
+                            DisplayName = "Copias de seguridad",
+                            SearchText = "copias de seguridad"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "it",
+                            DisplayName = "Backup",
+                            SearchText = "backup"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Backup",
+                            SearchText = "backup"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "nl",
+                            DisplayName = "Back-up",
+                            SearchText = "back-up"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "ru",
+                            DisplayName = "Резервное копирование",
+                            SearchText = "резервное копирование"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "ar",
+                            DisplayName = "النسخ الاحتياطي",
+                            SearchText = "النسخ الاحتياطي"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "备份",
+                            SearchText = "备份"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "ja",
+                            DisplayName = "バックアップ",
+                            SearchText = "ハックアッフ"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "ko",
+                            DisplayName = "백업",
+                            SearchText = "백업"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e64a71f1-4344-44a5-b510-ad89dc899dfc"),
+                            CultureCode = "hi",
+                            DisplayName = "बैकअप",
+                            SearchText = "बकअप"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "tr",
+                            DisplayName = "Kurs ve Online Eğitim",
+                            SearchText = "kurs ve online egitim"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "en",
+                            DisplayName = "Courses and online learning",
+                            SearchText = "courses and online learning"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "de",
+                            DisplayName = "Kurse und Online-Lernen",
+                            SearchText = "kurse und online-lernen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "fr",
+                            DisplayName = "Cours et formation en ligne",
+                            SearchText = "cours et formation en ligne"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "es",
+                            DisplayName = "Cursos y formación en línea",
+                            SearchText = "cursos y formacion en linea"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "it",
+                            DisplayName = "Corsi e formazione online",
+                            SearchText = "corsi e formazione online"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Cursos e ensino on-line",
+                            SearchText = "cursos e ensino on-line"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "nl",
+                            DisplayName = "Cursussen en online leren",
+                            SearchText = "cursussen en online leren"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "ru",
+                            DisplayName = "Курсы и онлайн-обучение",
+                            SearchText = "курсы и онлаин-обучение"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "ar",
+                            DisplayName = "الدورات والتعلم عبر الإنترنت",
+                            SearchText = "الدورات والتعلم عبر الانترنت"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "课程和在线学习",
+                            SearchText = "课程和在线学习"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "ja",
+                            DisplayName = "講座・オンライン学習",
+                            SearchText = "講座・オンライン学習"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "ko",
+                            DisplayName = "강좌 및 온라인 학습",
+                            SearchText = "강좌 및 온라인 학습"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2ecb6935-3a3a-41e1-9a4c-64a357ec94ac"),
+                            CultureCode = "hi",
+                            DisplayName = "पाठ्यक्रम और ऑनलाइन शिक्षा",
+                            SearchText = "पाठयकरम और ऑनलाइन शिकषा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "tr",
+                            DisplayName = "Dil Öğrenimi",
+                            SearchText = "dil ogrenimi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "en",
+                            DisplayName = "Language learning",
+                            SearchText = "language learning"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "de",
+                            DisplayName = "Sprachenlernen",
+                            SearchText = "sprachenlernen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "fr",
+                            DisplayName = "Apprentissage des langues",
+                            SearchText = "apprentissage des langues"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "es",
+                            DisplayName = "Aprendizaje de idiomas",
+                            SearchText = "aprendizaje de idiomas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "it",
+                            DisplayName = "Apprendimento delle lingue",
+                            SearchText = "apprendimento delle lingue"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Aprendizado de idiomas",
+                            SearchText = "aprendizado de idiomas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "nl",
+                            DisplayName = "Talen leren",
+                            SearchText = "talen leren"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "ru",
+                            DisplayName = "Изучение языков",
+                            SearchText = "изучение языков"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "ar",
+                            DisplayName = "تعلم اللغات",
+                            SearchText = "تعلم اللغات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "语言学习",
+                            SearchText = "语言学习"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "ja",
+                            DisplayName = "語学学習",
+                            SearchText = "語学学習"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "ko",
+                            DisplayName = "언어 학습",
+                            SearchText = "언어 학습"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f7719fac-b111-42fe-b044-4179db523637"),
+                            CultureCode = "hi",
+                            DisplayName = "भाषा सीखना",
+                            SearchText = "भाषा सीखना"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "tr",
+                            DisplayName = "Okul ve Özel Ders",
+                            SearchText = "okul ve ozel ders"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "en",
+                            DisplayName = "School and tutoring",
+                            SearchText = "school and tutoring"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "de",
+                            DisplayName = "Schule und Nachhilfe",
+                            SearchText = "schule und nachhilfe"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "fr",
+                            DisplayName = "Scolarité et soutien scolaire",
+                            SearchText = "scolarite et soutien scolaire"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "es",
+                            DisplayName = "Escuela y clases particulares",
+                            SearchText = "escuela y clases particulares"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "it",
+                            DisplayName = "Scuola e ripetizioni",
+                            SearchText = "scuola e ripetizioni"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Escola e aulas particulares",
+                            SearchText = "escola e aulas particulares"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "nl",
+                            DisplayName = "School en bijles",
+                            SearchText = "school en bijles"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "ru",
+                            DisplayName = "Школа и репетиторы",
+                            SearchText = "школа и репетиторы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "ar",
+                            DisplayName = "المدرسة والدروس الخصوصية",
+                            SearchText = "المدرسة والدروس الخصوصية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "学校和辅导",
+                            SearchText = "学校和辅导"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "ja",
+                            DisplayName = "学校・個別指導",
+                            SearchText = "学校・個別指導"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "ko",
+                            DisplayName = "학교 및 개인 지도",
+                            SearchText = "학교 및 개인 지도"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f84e1762-a4a1-447b-a0ea-c7fb0193219c"),
+                            CultureCode = "hi",
+                            DisplayName = "स्कूल और ट्यूशन",
+                            SearchText = "सकल और टयशन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "tr",
+                            DisplayName = "Spor Salonu",
+                            SearchText = "spor salonu"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "en",
+                            DisplayName = "Gym memberships",
+                            SearchText = "gym memberships"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "de",
+                            DisplayName = "Fitnessstudio",
+                            SearchText = "fitnessstudio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "fr",
+                            DisplayName = "Salle de sport",
+                            SearchText = "salle de sport"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "es",
+                            DisplayName = "Gimnasio",
+                            SearchText = "gimnasio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "it",
+                            DisplayName = "Palestra",
+                            SearchText = "palestra"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Academia",
+                            SearchText = "academia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "nl",
+                            DisplayName = "Sportschool",
+                            SearchText = "sportschool"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "ru",
+                            DisplayName = "Спортзал",
+                            SearchText = "спортзал"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "ar",
+                            DisplayName = "النادي الرياضي",
+                            SearchText = "النادي الرياضي"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "健身房",
+                            SearchText = "健身房"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "ja",
+                            DisplayName = "ジム",
+                            SearchText = "シム"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "ko",
+                            DisplayName = "헬스장",
+                            SearchText = "헬스장"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e8db84b2-4ece-4dbe-abed-70e6c8e0b7af"),
+                            CultureCode = "hi",
+                            DisplayName = "जिम",
+                            SearchText = "जिम"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "tr",
+                            DisplayName = "Antrenman Uygulamaları",
+                            SearchText = "antrenman uygulamalari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "en",
+                            DisplayName = "Training apps",
+                            SearchText = "training apps"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "de",
+                            DisplayName = "Trainings-Apps",
+                            SearchText = "trainings-apps"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "fr",
+                            DisplayName = "Applications d’entraînement",
+                            SearchText = "applications d’entrainement"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "es",
+                            DisplayName = "Aplicaciones de entrenamiento",
+                            SearchText = "aplicaciones de entrenamiento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "it",
+                            DisplayName = "App di allenamento",
+                            SearchText = "app di allenamento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Aplicativos de treino",
+                            SearchText = "aplicativos de treino"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "nl",
+                            DisplayName = "Trainingsapps",
+                            SearchText = "trainingsapps"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "ru",
+                            DisplayName = "Приложения для тренировок",
+                            SearchText = "приложения для тренировок"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "ar",
+                            DisplayName = "تطبيقات التدريب",
+                            SearchText = "تطبيقات التدريب"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "训练应用",
+                            SearchText = "训练应用"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "ja",
+                            DisplayName = "トレーニングアプリ",
+                            SearchText = "トレーニンクアフリ"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "ko",
+                            DisplayName = "운동 앱",
+                            SearchText = "운동 앱"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("120d4e70-5475-4b00-85ff-c735ac5dac7c"),
+                            CultureCode = "hi",
+                            DisplayName = "व्यायाम ऐप",
+                            SearchText = "वयायाम ऐप"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "tr",
+                            DisplayName = "Mobil Hat ve Paketler",
+                            SearchText = "mobil hat ve paketler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "en",
+                            DisplayName = "Mobile plans",
+                            SearchText = "mobile plans"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "de",
+                            DisplayName = "Mobilfunktarife",
+                            SearchText = "mobilfunktarife"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "fr",
+                            DisplayName = "Forfaits mobiles",
+                            SearchText = "forfaits mobiles"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "es",
+                            DisplayName = "Planes móviles",
+                            SearchText = "planes moviles"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "it",
+                            DisplayName = "Piani di telefonia mobile",
+                            SearchText = "piani di telefonia mobile"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Planos de celular",
+                            SearchText = "planos de celular"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "nl",
+                            DisplayName = "Mobiele abonnementen",
+                            SearchText = "mobiele abonnementen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "ru",
+                            DisplayName = "Мобильные тарифы",
+                            SearchText = "мобильные тарифы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "ar",
+                            DisplayName = "باقات الهاتف المحمول",
+                            SearchText = "باقات الهاتف المحمول"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "手机套餐",
+                            SearchText = "手机套餐"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "ja",
+                            DisplayName = "携帯電話プラン",
+                            SearchText = "携帯電話フラン"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "ko",
+                            DisplayName = "휴대전화 요금제",
+                            SearchText = "휴대전화 요금제"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a1a46632-73f9-4863-943e-b0c393419c21"),
+                            CultureCode = "hi",
+                            DisplayName = "मोबाइल प्लान",
+                            SearchText = "मोबाइल पलान"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "tr",
+                            DisplayName = "Ev İnterneti",
+                            SearchText = "ev interneti"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "en",
+                            DisplayName = "Home broadband",
+                            SearchText = "home broadband"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "de",
+                            DisplayName = "Internet zu Hause",
+                            SearchText = "internet zu hause"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "fr",
+                            DisplayName = "Internet à domicile",
+                            SearchText = "internet a domicile"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "es",
+                            DisplayName = "Internet para el hogar",
+                            SearchText = "internet para el hogar"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "it",
+                            DisplayName = "Internet domestico",
+                            SearchText = "internet domestico"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Internet residencial",
+                            SearchText = "internet residencial"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "nl",
+                            DisplayName = "Internet thuis",
+                            SearchText = "internet thuis"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "ru",
+                            DisplayName = "Домашний интернет",
+                            SearchText = "домашнии интернет"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "ar",
+                            DisplayName = "الإنترنت المنزلي",
+                            SearchText = "الانترنت المنزلي"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "家庭宽带",
+                            SearchText = "家庭宽带"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "ja",
+                            DisplayName = "自宅のインターネット",
+                            SearchText = "自宅のインターネット"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "ko",
+                            DisplayName = "가정용 인터넷",
+                            SearchText = "가정용 인터넷"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4b284088-f9d6-43a0-bdd9-4f488bb6d67a"),
+                            CultureCode = "hi",
+                            DisplayName = "घरेलू इंटरनेट",
+                            SearchText = "घरल इटरनट"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "tr",
+                            DisplayName = "Ev Bakımı ve Onarım",
+                            SearchText = "ev bakimi ve onarim"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "en",
+                            DisplayName = "Home maintenance",
+                            SearchText = "home maintenance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "de",
+                            DisplayName = "Instandhaltung der Wohnung",
+                            SearchText = "instandhaltung der wohnung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "fr",
+                            DisplayName = "Entretien du logement",
+                            SearchText = "entretien du logement"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "es",
+                            DisplayName = "Mantenimiento de la vivienda",
+                            SearchText = "mantenimiento de la vivienda"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "it",
+                            DisplayName = "Manutenzione della casa",
+                            SearchText = "manutenzione della casa"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Manutenção da moradia",
+                            SearchText = "manutencao da moradia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "nl",
+                            DisplayName = "Woningonderhoud",
+                            SearchText = "woningonderhoud"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "ru",
+                            DisplayName = "Обслуживание жилья",
+                            SearchText = "обслуживание жилья"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "ar",
+                            DisplayName = "صيانة المنزل",
+                            SearchText = "صيانة المنزل"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "房屋维护",
+                            SearchText = "房屋维护"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "ja",
+                            DisplayName = "住宅のメンテナンス",
+                            SearchText = "住宅のメンテナンス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "ko",
+                            DisplayName = "주택 유지 보수",
+                            SearchText = "주택 유지 보수"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("af5f00bc-030b-4804-a833-14eb77800e06"),
+                            CultureCode = "hi",
+                            DisplayName = "घर का रखरखाव",
+                            SearchText = "घर का रखरखाव"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "tr",
+                            DisplayName = "Bakım ve Tamir",
+                            SearchText = "bakim ve tamir"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "en",
+                            DisplayName = "Maintenance and repair",
+                            SearchText = "maintenance and repair"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "de",
+                            DisplayName = "Wartung und Reparatur",
+                            SearchText = "wartung und reparatur"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "fr",
+                            DisplayName = "Entretien et réparation",
+                            SearchText = "entretien et reparation"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "es",
+                            DisplayName = "Mantenimiento y reparación",
+                            SearchText = "mantenimiento y reparacion"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "it",
+                            DisplayName = "Manutenzione e riparazione",
+                            SearchText = "manutenzione e riparazione"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Manutenção e reparo",
+                            SearchText = "manutencao e reparo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "nl",
+                            DisplayName = "Onderhoud en reparatie",
+                            SearchText = "onderhoud en reparatie"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "ru",
+                            DisplayName = "Обслуживание и ремонт",
+                            SearchText = "обслуживание и ремонт"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "ar",
+                            DisplayName = "الصيانة والإصلاح",
+                            SearchText = "الصيانة والاصلاح"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "保养和维修",
+                            SearchText = "保养和维修"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "ja",
+                            DisplayName = "整備・修理",
+                            SearchText = "整備・修理"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "ko",
+                            DisplayName = "정비 및 수리",
+                            SearchText = "정비 및 수리"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("be2f4901-0638-411d-bb10-d566005aec61"),
+                            CultureCode = "hi",
+                            DisplayName = "रखरखाव और मरम्मत",
+                            SearchText = "रखरखाव और मरममत"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "tr",
+                            DisplayName = "Araç Sigortaları",
+                            SearchText = "arac sigortalari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "en",
+                            DisplayName = "Vehicle insurance",
+                            SearchText = "vehicle insurance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "de",
+                            DisplayName = "Fahrzeugversicherung",
+                            SearchText = "fahrzeugversicherung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "fr",
+                            DisplayName = "Assurance automobile",
+                            SearchText = "assurance automobile"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "es",
+                            DisplayName = "Seguro de vehículo",
+                            SearchText = "seguro de vehiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "it",
+                            DisplayName = "Assicurazione auto",
+                            SearchText = "assicurazione auto"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Seguro de veículo",
+                            SearchText = "seguro de veiculo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "nl",
+                            DisplayName = "Autoverzekering",
+                            SearchText = "autoverzekering"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "ru",
+                            DisplayName = "Автострахование",
+                            SearchText = "автострахование"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "ar",
+                            DisplayName = "تأمين المركبات",
+                            SearchText = "تامين المركبات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "车辆保险",
+                            SearchText = "车辆保险"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "ja",
+                            DisplayName = "自動車保険",
+                            SearchText = "自動車保険"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "ko",
+                            DisplayName = "자동차 보험",
+                            SearchText = "자동차 보험"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a7600074-8ee1-45e2-94e1-ee712b1f5626"),
+                            CultureCode = "hi",
+                            DisplayName = "वाहन बीमा",
+                            SearchText = "वाहन बीमा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "tr",
+                            DisplayName = "Konut Sigortaları",
+                            SearchText = "konut sigortalari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "en",
+                            DisplayName = "Home insurance",
+                            SearchText = "home insurance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "de",
+                            DisplayName = "Wohngebäude- und Hausratversicherung",
+                            SearchText = "wohngebaude- und hausratversicherung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "fr",
+                            DisplayName = "Assurance habitation",
+                            SearchText = "assurance habitation"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "es",
+                            DisplayName = "Seguro de hogar",
+                            SearchText = "seguro de hogar"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "it",
+                            DisplayName = "Assicurazione casa",
+                            SearchText = "assicurazione casa"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Seguro residencial",
+                            SearchText = "seguro residencial"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "nl",
+                            DisplayName = "Woonverzekering",
+                            SearchText = "woonverzekering"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "ru",
+                            DisplayName = "Страхование жилья",
+                            SearchText = "страхование жилья"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "ar",
+                            DisplayName = "تأمين المنزل",
+                            SearchText = "تامين المنزل"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "住房保险",
+                            SearchText = "住房保险"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "ja",
+                            DisplayName = "住宅保険",
+                            SearchText = "住宅保険"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "ko",
+                            DisplayName = "주택 보험",
+                            SearchText = "주택 보험"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2e45a6c8-363e-4d61-a10c-29763cbea936"),
+                            CultureCode = "hi",
+                            DisplayName = "गृह बीमा",
+                            SearchText = "गह बीमा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "tr",
+                            DisplayName = "Sağlık Sigortaları",
+                            SearchText = "saglik sigortalari"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "en",
+                            DisplayName = "Health insurance",
+                            SearchText = "health insurance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "de",
+                            DisplayName = "Krankenversicherung",
+                            SearchText = "krankenversicherung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "fr",
+                            DisplayName = "Assurance santé",
+                            SearchText = "assurance sante"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "es",
+                            DisplayName = "Seguro de salud",
+                            SearchText = "seguro de salud"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "it",
+                            DisplayName = "Assicurazione sanitaria",
+                            SearchText = "assicurazione sanitaria"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Seguro de saúde",
+                            SearchText = "seguro de saude"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "nl",
+                            DisplayName = "Zorgverzekering",
+                            SearchText = "zorgverzekering"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "ru",
+                            DisplayName = "Медицинское страхование",
+                            SearchText = "медицинское страхование"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "ar",
+                            DisplayName = "التأمين الصحي",
+                            SearchText = "التامين الصحي"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "健康保险",
+                            SearchText = "健康保险"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "ja",
+                            DisplayName = "医療保険",
+                            SearchText = "医療保険"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "ko",
+                            DisplayName = "건강 보험",
+                            SearchText = "건강 보험"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6f478f47-93b5-41ac-90ca-354e0d4314e4"),
+                            CultureCode = "hi",
+                            DisplayName = "स्वास्थ्य बीमा",
+                            SearchText = "सवासथय बीमा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "tr",
+                            DisplayName = "Diğer Sigortalar",
+                            SearchText = "diger sigortalar"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "en",
+                            DisplayName = "Other insurance",
+                            SearchText = "other insurance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "de",
+                            DisplayName = "Sonstige Versicherungen",
+                            SearchText = "sonstige versicherungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "fr",
+                            DisplayName = "Autres assurances",
+                            SearchText = "autres assurances"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "es",
+                            DisplayName = "Otros seguros",
+                            SearchText = "otros seguros"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "it",
+                            DisplayName = "Altre assicurazioni",
+                            SearchText = "altre assicurazioni"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Outros seguros",
+                            SearchText = "outros seguros"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "nl",
+                            DisplayName = "Overige verzekeringen",
+                            SearchText = "overige verzekeringen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "ru",
+                            DisplayName = "Прочее страхование",
+                            SearchText = "прочее страхование"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "ar",
+                            DisplayName = "أنواع التأمين الأخرى",
+                            SearchText = "انواع التامين الاخرى"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "其他保险",
+                            SearchText = "其他保险"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "ja",
+                            DisplayName = "その他の保険",
+                            SearchText = "その他の保険"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "ko",
+                            DisplayName = "기타 보험",
+                            SearchText = "기타 보험"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("e17b2055-d350-47ff-93be-a8e1e7fdf7ac"),
+                            CultureCode = "hi",
+                            DisplayName = "अन्य बीमा",
+                            SearchText = "अनय बीमा"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "tr",
+                            DisplayName = "Kredi Kartı",
+                            SearchText = "kredi karti"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "en",
+                            DisplayName = "Credit card payments",
+                            SearchText = "credit card payments"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "de",
+                            DisplayName = "Kreditkartenzahlungen",
+                            SearchText = "kreditkartenzahlungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "fr",
+                            DisplayName = "Paiements de carte de crédit",
+                            SearchText = "paiements de carte de credit"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "es",
+                            DisplayName = "Pagos de tarjeta de crédito",
+                            SearchText = "pagos de tarjeta de credito"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "it",
+                            DisplayName = "Pagamenti della carta di credito",
+                            SearchText = "pagamenti della carta di credito"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Pagamentos de cartão de crédito",
+                            SearchText = "pagamentos de cartao de credito"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "nl",
+                            DisplayName = "Creditcardbetalingen",
+                            SearchText = "creditcardbetalingen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "ru",
+                            DisplayName = "Платежи по кредитной карте",
+                            SearchText = "платежи по кредитнои карте"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "ar",
+                            DisplayName = "مدفوعات بطاقة الائتمان",
+                            SearchText = "مدفوعات بطاقة الايتمان"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "信用卡还款",
+                            SearchText = "信用卡还款"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "ja",
+                            DisplayName = "クレジットカード支払い",
+                            SearchText = "クレシットカート支払い"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "ko",
+                            DisplayName = "신용카드 결제",
+                            SearchText = "신용카드 결제"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("fa6624eb-3539-45d1-8308-56ac06b9ba4e"),
+                            CultureCode = "hi",
+                            DisplayName = "क्रेडिट कार्ड भुगतान",
+                            SearchText = "करडिट कारड भगतान"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "tr",
+                            DisplayName = "Kredi Taksitleri",
+                            SearchText = "kredi taksitleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "en",
+                            DisplayName = "Loan instalments",
+                            SearchText = "loan instalments"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "de",
+                            DisplayName = "Kreditraten",
+                            SearchText = "kreditraten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "fr",
+                            DisplayName = "Échéances de prêt",
+                            SearchText = "echeances de pret"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "es",
+                            DisplayName = "Cuotas de préstamos",
+                            SearchText = "cuotas de prestamos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "it",
+                            DisplayName = "Rate dei prestiti",
+                            SearchText = "rate dei prestiti"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Parcelas de empréstimos",
+                            SearchText = "parcelas de emprestimos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "nl",
+                            DisplayName = "Leningtermijnen",
+                            SearchText = "leningtermijnen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "ru",
+                            DisplayName = "Платежи по кредитам",
+                            SearchText = "платежи по кредитам"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "ar",
+                            DisplayName = "أقساط القروض",
+                            SearchText = "اقساط القروض"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "贷款分期还款",
+                            SearchText = "贷款分期还款"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "ja",
+                            DisplayName = "ローン返済",
+                            SearchText = "ローン返済"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "ko",
+                            DisplayName = "대출 상환",
+                            SearchText = "대출 상환"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("105b7a80-58f6-4202-adf3-b0ec7df0853b"),
+                            CultureCode = "hi",
+                            DisplayName = "ऋण की किस्तें",
+                            SearchText = "ऋण की किसत"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "tr",
+                            DisplayName = "Banka Ücretleri",
+                            SearchText = "banka ucretleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "en",
+                            DisplayName = "Bank fees",
+                            SearchText = "bank fees"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "de",
+                            DisplayName = "Bankgebühren",
+                            SearchText = "bankgebuhren"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "fr",
+                            DisplayName = "Frais bancaires",
+                            SearchText = "frais bancaires"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "es",
+                            DisplayName = "Comisiones bancarias",
+                            SearchText = "comisiones bancarias"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "it",
+                            DisplayName = "Commissioni bancarie",
+                            SearchText = "commissioni bancarie"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Tarifas bancárias",
+                            SearchText = "tarifas bancarias"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "nl",
+                            DisplayName = "Bankkosten",
+                            SearchText = "bankkosten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "ru",
+                            DisplayName = "Банковские комиссии",
+                            SearchText = "банковские комиссии"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "ar",
+                            DisplayName = "الرسوم المصرفية",
+                            SearchText = "الرسوم المصرفية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "银行手续费",
+                            SearchText = "银行手续费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "ja",
+                            DisplayName = "銀行手数料",
+                            SearchText = "銀行手数料"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "ko",
+                            DisplayName = "은행 수수료",
+                            SearchText = "은행 수수료"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99ae4b81-6937-4777-a603-e1d89126aab9"),
+                            CultureCode = "hi",
+                            DisplayName = "बैंक शुल्क",
+                            SearchText = "बक शलक"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "tr",
+                            DisplayName = "Alışveriş Üyelikleri",
+                            SearchText = "alisveris uyelikleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "en",
+                            DisplayName = "Shopping memberships",
+                            SearchText = "shopping memberships"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "de",
+                            DisplayName = "Shopping-Mitgliedschaften",
+                            SearchText = "shopping-mitgliedschaften"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "fr",
+                            DisplayName = "Adhésions de shopping",
+                            SearchText = "adhesions de shopping"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "es",
+                            DisplayName = "Membresías de compras",
+                            SearchText = "membresias de compras"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "it",
+                            DisplayName = "Iscrizioni per acquisti",
+                            SearchText = "iscrizioni per acquisti"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Assinaturas de compras",
+                            SearchText = "assinaturas de compras"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "nl",
+                            DisplayName = "Winkellidmaatschappen",
+                            SearchText = "winkellidmaatschappen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "ru",
+                            DisplayName = "Торговые подписки",
+                            SearchText = "торговые подписки"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "ar",
+                            DisplayName = "عضويات التسوق",
+                            SearchText = "عضويات التسوق"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "购物会员",
+                            SearchText = "购物会员"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "ja",
+                            DisplayName = "ショッピング会員",
+                            SearchText = "ショッヒンク会員"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "ko",
+                            DisplayName = "쇼핑 멤버십",
+                            SearchText = "쇼핑 멤버십"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4d596701-c9e7-4f05-9a41-c900f82092bc"),
+                            CultureCode = "hi",
+                            DisplayName = "शॉपिंग सदस्यताएँ",
+                            SearchText = "शॉपिग सदसयताए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "tr",
+                            DisplayName = "Alışveriş ve Siparişler",
+                            SearchText = "alisveris ve siparisler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "en",
+                            DisplayName = "Shopping and orders",
+                            SearchText = "shopping and orders"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "de",
+                            DisplayName = "Einkäufe und Bestellungen",
+                            SearchText = "einkaufe und bestellungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "fr",
+                            DisplayName = "Achats et commandes",
+                            SearchText = "achats et commandes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "es",
+                            DisplayName = "Compras y pedidos",
+                            SearchText = "compras y pedidos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "it",
+                            DisplayName = "Acquisti e ordini",
+                            SearchText = "acquisti e ordini"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Compras e pedidos",
+                            SearchText = "compras e pedidos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "nl",
+                            DisplayName = "Aankopen en bestellingen",
+                            SearchText = "aankopen en bestellingen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "ru",
+                            DisplayName = "Покупки и заказы",
+                            SearchText = "покупки и заказы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "ar",
+                            DisplayName = "المشتريات والطلبات",
+                            SearchText = "المشتريات والطلبات"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "购物和订单",
+                            SearchText = "购物和订单"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "ja",
+                            DisplayName = "買い物・注文",
+                            SearchText = "買い物・注文"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "ko",
+                            DisplayName = "구매 및 주문",
+                            SearchText = "구매 및 주문"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("29020bd2-2e26-42f2-ad8a-853726892fd6"),
+                            CultureCode = "hi",
+                            DisplayName = "खरीदारी और ऑर्डर",
+                            SearchText = "खरीदारी और ऑरडर"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "tr",
+                            DisplayName = "Market Alışverişi",
+                            SearchText = "market alisverisi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "en",
+                            DisplayName = "Grocery shopping",
+                            SearchText = "grocery shopping"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "de",
+                            DisplayName = "Lebensmitteleinkäufe",
+                            SearchText = "lebensmitteleinkaufe"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "fr",
+                            DisplayName = "Courses alimentaires",
+                            SearchText = "courses alimentaires"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "es",
+                            DisplayName = "Compra de alimentos",
+                            SearchText = "compra de alimentos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "it",
+                            DisplayName = "Spesa alimentare",
+                            SearchText = "spesa alimentare"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Compras de supermercado",
+                            SearchText = "compras de supermercado"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "nl",
+                            DisplayName = "Boodschappen",
+                            SearchText = "boodschappen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "ru",
+                            DisplayName = "Покупка продуктов",
+                            SearchText = "покупка продуктов"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "ar",
+                            DisplayName = "التسوق للبقالة",
+                            SearchText = "التسوق للبقالة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "购买食品杂货",
+                            SearchText = "购买食品杂货"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "ja",
+                            DisplayName = "食料品の買い物",
+                            SearchText = "食料品の買い物"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "ko",
+                            DisplayName = "식료품 구매",
+                            SearchText = "식료품 구매"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("40405271-2f01-40bf-8d24-dce932f99dd1"),
+                            CultureCode = "hi",
+                            DisplayName = "किराने की खरीदारी",
+                            SearchText = "किरान की खरीदारी"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "tr",
+                            DisplayName = "Yemek ve Gıda Siparişi",
+                            SearchText = "yemek ve gida siparisi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "en",
+                            DisplayName = "Food delivery",
+                            SearchText = "food delivery"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "de",
+                            DisplayName = "Essenslieferung",
+                            SearchText = "essenslieferung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "fr",
+                            DisplayName = "Livraison de repas",
+                            SearchText = "livraison de repas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "es",
+                            DisplayName = "Entrega de comida",
+                            SearchText = "entrega de comida"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "it",
+                            DisplayName = "Consegna di cibo",
+                            SearchText = "consegna di cibo"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Entrega de alimentos",
+                            SearchText = "entrega de alimentos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "nl",
+                            DisplayName = "Maaltijdbezorging",
+                            SearchText = "maaltijdbezorging"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "ru",
+                            DisplayName = "Доставка еды",
+                            SearchText = "доставка еды"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "ar",
+                            DisplayName = "توصيل الطعام",
+                            SearchText = "توصيل الطعام"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "食品配送",
+                            SearchText = "食品配送"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "ja",
+                            DisplayName = "フードデリバリー",
+                            SearchText = "フートテリハリー"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "ko",
+                            DisplayName = "음식 배달",
+                            SearchText = "음식 배달"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("1443b332-65ae-4dee-8516-163611721787"),
+                            CultureCode = "hi",
+                            DisplayName = "भोजन की डिलीवरी",
+                            SearchText = "भोजन की डिलीवरी"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "tr",
+                            DisplayName = "Muayene ve Tedavi",
+                            SearchText = "muayene ve tedavi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "en",
+                            DisplayName = "Appointments and treatment",
+                            SearchText = "appointments and treatment"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "de",
+                            DisplayName = "Arztbesuche und Behandlung",
+                            SearchText = "arztbesuche und behandlung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "fr",
+                            DisplayName = "Consultations et soins",
+                            SearchText = "consultations et soins"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "es",
+                            DisplayName = "Consultas y tratamientos",
+                            SearchText = "consultas y tratamientos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "it",
+                            DisplayName = "Visite e cure mediche",
+                            SearchText = "visite e cure mediche"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Consultas e tratamentos",
+                            SearchText = "consultas e tratamentos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "nl",
+                            DisplayName = "Consulten en behandelingen",
+                            SearchText = "consulten en behandelingen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "ru",
+                            DisplayName = "Приёмы и лечение",
+                            SearchText = "приемы и лечение"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "ar",
+                            DisplayName = "المواعيد والعلاج",
+                            SearchText = "المواعيد والعلاج"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "就诊和治疗",
+                            SearchText = "就诊和治疗"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "ja",
+                            DisplayName = "診察・治療",
+                            SearchText = "診察・治療"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "ko",
+                            DisplayName = "진료 및 치료",
+                            SearchText = "진료 및 치료"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d6355b47-1900-4cd1-9a40-d3158167f3d5"),
+                            CultureCode = "hi",
+                            DisplayName = "परामर्श और उपचार",
+                            SearchText = "परामरश और उपचार"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "tr",
+                            DisplayName = "İlaç ve Eczane",
+                            SearchText = "ilac ve eczane"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "en",
+                            DisplayName = "Medicine and pharmacy",
+                            SearchText = "medicine and pharmacy"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "de",
+                            DisplayName = "Medikamente und Apotheke",
+                            SearchText = "medikamente und apotheke"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "fr",
+                            DisplayName = "Médicaments et pharmacie",
+                            SearchText = "medicaments et pharmacie"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "es",
+                            DisplayName = "Medicamentos y farmacia",
+                            SearchText = "medicamentos y farmacia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "it",
+                            DisplayName = "Farmaci e farmacia",
+                            SearchText = "farmaci e farmacia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Medicamentos e farmácia",
+                            SearchText = "medicamentos e farmacia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "nl",
+                            DisplayName = "Medicijnen en apotheek",
+                            SearchText = "medicijnen en apotheek"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "ru",
+                            DisplayName = "Лекарства и аптека",
+                            SearchText = "лекарства и аптека"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "ar",
+                            DisplayName = "الأدوية والصيدلية",
+                            SearchText = "الادوية والصيدلية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "药品和药房",
+                            SearchText = "药品和药房"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "ja",
+                            DisplayName = "医薬品・薬局",
+                            SearchText = "医薬品・薬局"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "ko",
+                            DisplayName = "의약품 및 약국",
+                            SearchText = "의약품 및 약국"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("4c48e94d-7207-49b3-8d6f-e3f194847062"),
+                            CultureCode = "hi",
+                            DisplayName = "दवाएँ और फ़ार्मेसी",
+                            SearchText = "दवाए और फारमसी"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "tr",
+                            DisplayName = "Sağlık Güvencesi",
+                            SearchText = "saglik guvencesi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "en",
+                            DisplayName = "Health coverage",
+                            SearchText = "health coverage"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "de",
+                            DisplayName = "Gesundheitsabsicherung",
+                            SearchText = "gesundheitsabsicherung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "fr",
+                            DisplayName = "Couverture santé",
+                            SearchText = "couverture sante"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "es",
+                            DisplayName = "Cobertura sanitaria",
+                            SearchText = "cobertura sanitaria"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "it",
+                            DisplayName = "Copertura sanitaria",
+                            SearchText = "copertura sanitaria"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Cobertura de saúde",
+                            SearchText = "cobertura de saude"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "nl",
+                            DisplayName = "Zorgdekking",
+                            SearchText = "zorgdekking"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "ru",
+                            DisplayName = "Медицинское обеспечение",
+                            SearchText = "медицинское обеспечение"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "ar",
+                            DisplayName = "التغطية الصحية",
+                            SearchText = "التغطية الصحية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "医疗保障",
+                            SearchText = "医疗保障"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "ja",
+                            DisplayName = "医療保障",
+                            SearchText = "医療保障"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "ko",
+                            DisplayName = "의료 보장",
+                            SearchText = "의료 보장"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("05a956ce-0c6b-42fc-bc75-ca1f28e55120"),
+                            CultureCode = "hi",
+                            DisplayName = "स्वास्थ्य कवरेज",
+                            SearchText = "सवासथय कवरज"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "tr",
+                            DisplayName = "Vergi Ödemeleri",
+                            SearchText = "vergi odemeleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "en",
+                            DisplayName = "Tax payments",
+                            SearchText = "tax payments"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "de",
+                            DisplayName = "Steuerzahlungen",
+                            SearchText = "steuerzahlungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "fr",
+                            DisplayName = "Paiements d’impôts",
+                            SearchText = "paiements d’impots"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "es",
+                            DisplayName = "Pagos de impuestos",
+                            SearchText = "pagos de impuestos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "it",
+                            DisplayName = "Pagamenti delle imposte",
+                            SearchText = "pagamenti delle imposte"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Pagamentos de impostos",
+                            SearchText = "pagamentos de impostos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "nl",
+                            DisplayName = "Belastingbetalingen",
+                            SearchText = "belastingbetalingen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "ru",
+                            DisplayName = "Налоговые платежи",
+                            SearchText = "налоговые платежи"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "ar",
+                            DisplayName = "المدفوعات الضريبية",
+                            SearchText = "المدفوعات الضريبية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "缴税",
+                            SearchText = "缴税"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "ja",
+                            DisplayName = "税金の支払い",
+                            SearchText = "税金の支払い"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "ko",
+                            DisplayName = "세금 납부",
+                            SearchText = "세금 납부"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3b06cb49-6beb-4d76-9615-5bc8895b9825"),
+                            CultureCode = "hi",
+                            DisplayName = "कर भुगतान",
+                            SearchText = "कर भगतान"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "tr",
+                            DisplayName = "Harç ve Resmî Ücretler",
+                            SearchText = "harc ve resmi ucretler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "en",
+                            DisplayName = "Official fees",
+                            SearchText = "official fees"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "de",
+                            DisplayName = "Amtliche Gebühren",
+                            SearchText = "amtliche gebuhren"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "fr",
+                            DisplayName = "Frais officiels",
+                            SearchText = "frais officiels"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "es",
+                            DisplayName = "Tasas oficiales",
+                            SearchText = "tasas oficiales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "it",
+                            DisplayName = "Diritti e tasse ufficiali",
+                            SearchText = "diritti e tasse ufficiali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Taxas oficiais",
+                            SearchText = "taxas oficiais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "nl",
+                            DisplayName = "Officiële kosten",
+                            SearchText = "officiele kosten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "ru",
+                            DisplayName = "Государственные сборы",
+                            SearchText = "государственные сборы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "ar",
+                            DisplayName = "الرسوم الرسمية",
+                            SearchText = "الرسوم الرسمية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "行政收费",
+                            SearchText = "行政收费"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "ja",
+                            DisplayName = "公的手数料",
+                            SearchText = "公的手数料"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "ko",
+                            DisplayName = "공적 수수료",
+                            SearchText = "공적 수수료"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d45db776-7db7-405b-9988-26166dbb95df"),
+                            CultureCode = "hi",
+                            DisplayName = "सरकारी शुल्क",
+                            SearchText = "सरकारी शलक"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "tr",
+                            DisplayName = "Dijital Gazete",
+                            SearchText = "dijital gazete"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "en",
+                            DisplayName = "Digital newspapers",
+                            SearchText = "digital newspapers"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "de",
+                            DisplayName = "Digitale Zeitungen",
+                            SearchText = "digitale zeitungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "fr",
+                            DisplayName = "Journaux numériques",
+                            SearchText = "journaux numeriques"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "es",
+                            DisplayName = "Periódicos digitales",
+                            SearchText = "periodicos digitales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "it",
+                            DisplayName = "Giornali digitali",
+                            SearchText = "giornali digitali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Jornais digitais",
+                            SearchText = "jornais digitais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "nl",
+                            DisplayName = "Digitale kranten",
+                            SearchText = "digitale kranten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "ru",
+                            DisplayName = "Цифровые газеты",
+                            SearchText = "цифровые газеты"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "ar",
+                            DisplayName = "الصحف الرقمية",
+                            SearchText = "الصحف الرقمية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "数字报纸",
+                            SearchText = "数字报纸"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "ja",
+                            DisplayName = "電子新聞",
+                            SearchText = "電子新聞"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "ko",
+                            DisplayName = "디지털 신문",
+                            SearchText = "디지털 신문"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a6f3a99d-9120-4dd9-9d15-9340f4f08a22"),
+                            CultureCode = "hi",
+                            DisplayName = "डिजिटल समाचारपत्र",
+                            SearchText = "डिजिटल समाचारपतर"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "tr",
+                            DisplayName = "Basılı Gazete",
+                            SearchText = "basili gazete"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "en",
+                            DisplayName = "Print newspapers",
+                            SearchText = "print newspapers"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "de",
+                            DisplayName = "Gedruckte Zeitungen",
+                            SearchText = "gedruckte zeitungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "fr",
+                            DisplayName = "Journaux papier",
+                            SearchText = "journaux papier"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "es",
+                            DisplayName = "Periódicos impresos",
+                            SearchText = "periodicos impresos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "it",
+                            DisplayName = "Giornali cartacei",
+                            SearchText = "giornali cartacei"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Jornais impressos",
+                            SearchText = "jornais impressos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "nl",
+                            DisplayName = "Papieren kranten",
+                            SearchText = "papieren kranten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "ru",
+                            DisplayName = "Печатные газеты",
+                            SearchText = "печатные газеты"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "ar",
+                            DisplayName = "الصحف المطبوعة",
+                            SearchText = "الصحف المطبوعة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "纸质报纸",
+                            SearchText = "纸质报纸"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "ja",
+                            DisplayName = "紙の新聞",
+                            SearchText = "紙の新聞"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "ko",
+                            DisplayName = "인쇄 신문",
+                            SearchText = "인쇄 신문"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7b31924b-95f0-4d4f-86b2-0882ee74f037"),
+                            CultureCode = "hi",
+                            DisplayName = "मुद्रित समाचारपत्र",
+                            SearchText = "मदरित समाचारपतर"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "tr",
+                            DisplayName = "Dijital Dergi",
+                            SearchText = "dijital dergi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "en",
+                            DisplayName = "Digital magazines",
+                            SearchText = "digital magazines"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "de",
+                            DisplayName = "Digitale Zeitschriften",
+                            SearchText = "digitale zeitschriften"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "fr",
+                            DisplayName = "Magazines numériques",
+                            SearchText = "magazines numeriques"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "es",
+                            DisplayName = "Revistas digitales",
+                            SearchText = "revistas digitales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "it",
+                            DisplayName = "Riviste digitali",
+                            SearchText = "riviste digitali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Revistas digitais",
+                            SearchText = "revistas digitais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "nl",
+                            DisplayName = "Digitale tijdschriften",
+                            SearchText = "digitale tijdschriften"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "ru",
+                            DisplayName = "Цифровые журналы",
+                            SearchText = "цифровые журналы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "ar",
+                            DisplayName = "المجلات الرقمية",
+                            SearchText = "المجلات الرقمية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "数字杂志",
+                            SearchText = "数字杂志"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "ja",
+                            DisplayName = "電子雑誌",
+                            SearchText = "電子雑誌"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "ko",
+                            DisplayName = "디지털 잡지",
+                            SearchText = "디지털 잡지"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a8901ac8-2d92-42da-afea-8cf63d1d6dd5"),
+                            CultureCode = "hi",
+                            DisplayName = "डिजिटल पत्रिकाएँ",
+                            SearchText = "डिजिटल पतरिकाए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "tr",
+                            DisplayName = "Basılı Dergi",
+                            SearchText = "basili dergi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "en",
+                            DisplayName = "Print magazines",
+                            SearchText = "print magazines"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "de",
+                            DisplayName = "Gedruckte Zeitschriften",
+                            SearchText = "gedruckte zeitschriften"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "fr",
+                            DisplayName = "Magazines papier",
+                            SearchText = "magazines papier"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "es",
+                            DisplayName = "Revistas impresas",
+                            SearchText = "revistas impresas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "it",
+                            DisplayName = "Riviste cartacee",
+                            SearchText = "riviste cartacee"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Revistas impressas",
+                            SearchText = "revistas impressas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "nl",
+                            DisplayName = "Papieren tijdschriften",
+                            SearchText = "papieren tijdschriften"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "ru",
+                            DisplayName = "Печатные журналы",
+                            SearchText = "печатные журналы"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "ar",
+                            DisplayName = "المجلات المطبوعة",
+                            SearchText = "المجلات المطبوعة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "纸质杂志",
+                            SearchText = "纸质杂志"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "ja",
+                            DisplayName = "紙の雑誌",
+                            SearchText = "紙の雑誌"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "ko",
+                            DisplayName = "인쇄 잡지",
+                            SearchText = "인쇄 잡지"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("2b0e36a4-2718-4746-abe6-735ef1e9d140"),
+                            CultureCode = "hi",
+                            DisplayName = "मुद्रित पत्रिकाएँ",
+                            SearchText = "मदरित पतरिकाए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "tr",
+                            DisplayName = "Ekonomi ve Finans Haberleri",
+                            SearchText = "ekonomi ve finans haberleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "en",
+                            DisplayName = "Business and finance news",
+                            SearchText = "business and finance news"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "de",
+                            DisplayName = "Wirtschafts- und Finanznachrichten",
+                            SearchText = "wirtschafts- und finanznachrichten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "fr",
+                            DisplayName = "Actualités économiques et financières",
+                            SearchText = "actualites economiques et financieres"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "es",
+                            DisplayName = "Noticias de economía y finanzas",
+                            SearchText = "noticias de economia y finanzas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "it",
+                            DisplayName = "Notizie economiche e finanziarie",
+                            SearchText = "notizie economiche e finanziarie"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Notícias de economia e finanças",
+                            SearchText = "noticias de economia e financas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "nl",
+                            DisplayName = "Economisch en financieel nieuws",
+                            SearchText = "economisch en financieel nieuws"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "ru",
+                            DisplayName = "Экономические и финансовые новости",
+                            SearchText = "экономические и финансовые новости"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "ar",
+                            DisplayName = "الأخبار الاقتصادية والمالية",
+                            SearchText = "الاخبار الاقتصادية والمالية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "经济和财经新闻",
+                            SearchText = "经济和财经新闻"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "ja",
+                            DisplayName = "経済・金融ニュース",
+                            SearchText = "経済・金融ニュース"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "ko",
+                            DisplayName = "경제 및 금융 뉴스",
+                            SearchText = "경제 및 금융 뉴스"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f3c938b2-555f-4029-994d-564745f3e9ad"),
+                            CultureCode = "hi",
+                            DisplayName = "अर्थव्यवस्था और वित्त समाचार",
+                            SearchText = "अरथवयवसथा और वितत समाचार"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "tr",
+                            DisplayName = "Teknoloji Haberleri",
+                            SearchText = "teknoloji haberleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "en",
+                            DisplayName = "Technology news",
+                            SearchText = "technology news"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "de",
+                            DisplayName = "Technologienachrichten",
+                            SearchText = "technologienachrichten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "fr",
+                            DisplayName = "Actualités technologiques",
+                            SearchText = "actualites technologiques"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "es",
+                            DisplayName = "Noticias de tecnología",
+                            SearchText = "noticias de tecnologia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "it",
+                            DisplayName = "Notizie tecnologiche",
+                            SearchText = "notizie tecnologiche"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Notícias de tecnologia",
+                            SearchText = "noticias de tecnologia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "nl",
+                            DisplayName = "Technologienieuws",
+                            SearchText = "technologienieuws"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "ru",
+                            DisplayName = "Новости технологий",
+                            SearchText = "новости технологии"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "ar",
+                            DisplayName = "أخبار التكنولوجيا",
+                            SearchText = "اخبار التكنولوجيا"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "科技新闻",
+                            SearchText = "科技新闻"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "ja",
+                            DisplayName = "テクノロジーニュース",
+                            SearchText = "テクノロシーニュース"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "ko",
+                            DisplayName = "기술 뉴스",
+                            SearchText = "기술 뉴스"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("103d9e4d-bb6d-4d34-89d6-7b73f8bfdd82"),
+                            CultureCode = "hi",
+                            DisplayName = "प्रौद्योगिकी समाचार",
+                            SearchText = "परौदयोगिकी समाचार"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "tr",
+                            DisplayName = "Spor Haberleri",
+                            SearchText = "spor haberleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "en",
+                            DisplayName = "Sports news",
+                            SearchText = "sports news"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "de",
+                            DisplayName = "Sportnachrichten",
+                            SearchText = "sportnachrichten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "fr",
+                            DisplayName = "Actualités sportives",
+                            SearchText = "actualites sportives"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "es",
+                            DisplayName = "Noticias deportivas",
+                            SearchText = "noticias deportivas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "it",
+                            DisplayName = "Notizie sportive",
+                            SearchText = "notizie sportive"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Notícias esportivas",
+                            SearchText = "noticias esportivas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "nl",
+                            DisplayName = "Sportnieuws",
+                            SearchText = "sportnieuws"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "ru",
+                            DisplayName = "Спортивные новости",
+                            SearchText = "спортивные новости"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "ar",
+                            DisplayName = "الأخبار الرياضية",
+                            SearchText = "الاخبار الرياضية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "体育新闻",
+                            SearchText = "体育新闻"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "ja",
+                            DisplayName = "スポーツニュース",
+                            SearchText = "スホーツニュース"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "ko",
+                            DisplayName = "스포츠 뉴스",
+                            SearchText = "스포츠 뉴스"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("5f390075-6df9-4944-88e5-6d2c20a1a7a4"),
+                            CultureCode = "hi",
+                            DisplayName = "खेल समाचार",
+                            SearchText = "खल समाचार"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "tr",
+                            DisplayName = "Uluslararası Haberler",
+                            SearchText = "uluslararasi haberler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "en",
+                            DisplayName = "International news",
+                            SearchText = "international news"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "de",
+                            DisplayName = "Internationale Nachrichten",
+                            SearchText = "internationale nachrichten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "fr",
+                            DisplayName = "Actualités internationales",
+                            SearchText = "actualites internationales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "es",
+                            DisplayName = "Noticias internacionales",
+                            SearchText = "noticias internacionales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "it",
+                            DisplayName = "Notizie internazionali",
+                            SearchText = "notizie internazionali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Notícias internacionais",
+                            SearchText = "noticias internacionais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "nl",
+                            DisplayName = "Internationaal nieuws",
+                            SearchText = "internationaal nieuws"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "ru",
+                            DisplayName = "Международные новости",
+                            SearchText = "международные новости"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "ar",
+                            DisplayName = "الأخبار الدولية",
+                            SearchText = "الاخبار الدولية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "国际新闻",
+                            SearchText = "国际新闻"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "ja",
+                            DisplayName = "国際ニュース",
+                            SearchText = "国際ニュース"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "ko",
+                            DisplayName = "국제 뉴스",
+                            SearchText = "국제 뉴스"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8d1bdf4a-4a4f-41ac-8ca4-3243c39ee9c2"),
+                            CultureCode = "hi",
+                            DisplayName = "अंतरराष्ट्रीय समाचार",
+                            SearchText = "अतरराषटरीय समाचार"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "tr",
+                            DisplayName = "Haber Bültenleri",
+                            SearchText = "haber bultenleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "en",
+                            DisplayName = "Newsletters",
+                            SearchText = "newsletters"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "de",
+                            DisplayName = "Newsletter",
+                            SearchText = "newsletter"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "fr",
+                            DisplayName = "Lettres d’information",
+                            SearchText = "lettres d’information"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "es",
+                            DisplayName = "Boletines informativos",
+                            SearchText = "boletines informativos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "it",
+                            DisplayName = "Newsletter",
+                            SearchText = "newsletter"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Boletins informativos",
+                            SearchText = "boletins informativos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "nl",
+                            DisplayName = "Nieuwsbrieven",
+                            SearchText = "nieuwsbrieven"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "ru",
+                            DisplayName = "Новостные рассылки",
+                            SearchText = "новостные рассылки"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "ar",
+                            DisplayName = "النشرات الإخبارية",
+                            SearchText = "النشرات الاخبارية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "新闻简报",
+                            SearchText = "新闻简报"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "ja",
+                            DisplayName = "ニュースレター",
+                            SearchText = "ニュースレター"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "ko",
+                            DisplayName = "뉴스레터",
+                            SearchText = "뉴스레터"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6cc82a5b-5f94-4532-b9f6-7b0bc44045fd"),
+                            CultureCode = "hi",
+                            DisplayName = "समाचार बुलेटिन",
+                            SearchText = "समाचार बलटिन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "tr",
+                            DisplayName = "Diğer Yayınlar",
+                            SearchText = "diger yayinlar"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "en",
+                            DisplayName = "Other publications",
+                            SearchText = "other publications"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "de",
+                            DisplayName = "Sonstige Publikationen",
+                            SearchText = "sonstige publikationen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "fr",
+                            DisplayName = "Autres publications",
+                            SearchText = "autres publications"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "es",
+                            DisplayName = "Otras publicaciones",
+                            SearchText = "otras publicaciones"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "it",
+                            DisplayName = "Altre pubblicazioni",
+                            SearchText = "altre pubblicazioni"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Outras publicações",
+                            SearchText = "outras publicacoes"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "nl",
+                            DisplayName = "Overige publicaties",
+                            SearchText = "overige publicaties"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "ru",
+                            DisplayName = "Прочие издания",
+                            SearchText = "прочие издания"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "ar",
+                            DisplayName = "المنشورات الأخرى",
+                            SearchText = "المنشورات الاخرى"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "其他出版物",
+                            SearchText = "其他出版物"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "ja",
+                            DisplayName = "その他の出版物",
+                            SearchText = "その他の出版物"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "ko",
+                            DisplayName = "기타 출판물",
+                            SearchText = "기타 출판물"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("775ec693-90f2-4b84-8ad7-f82976278ddf"),
+                            CultureCode = "hi",
+                            DisplayName = "अन्य प्रकाशन",
+                            SearchText = "अनय परकाशन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "tr",
+                            DisplayName = "Çocuk Bakımı",
+                            SearchText = "cocuk bakimi"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "en",
+                            DisplayName = "Childcare",
+                            SearchText = "childcare"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "de",
+                            DisplayName = "Kinderbetreuung",
+                            SearchText = "kinderbetreuung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "fr",
+                            DisplayName = "Garde d’enfants",
+                            SearchText = "garde d’enfants"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "es",
+                            DisplayName = "Cuidado de niños",
+                            SearchText = "cuidado de ninos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "it",
+                            DisplayName = "Assistenza all’infanzia",
+                            SearchText = "assistenza all’infanzia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Cuidados infantis",
+                            SearchText = "cuidados infantis"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "nl",
+                            DisplayName = "Kinderopvang",
+                            SearchText = "kinderopvang"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "ru",
+                            DisplayName = "Уход за детьми",
+                            SearchText = "уход за детьми"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "ar",
+                            DisplayName = "رعاية الأطفال",
+                            SearchText = "رعاية الاطفال"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "儿童照护",
+                            SearchText = "儿童照护"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "ja",
+                            DisplayName = "保育",
+                            SearchText = "保育"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "ko",
+                            DisplayName = "보육",
+                            SearchText = "보육"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("7bc49d86-6863-4849-bf5e-97352d9bdbfa"),
+                            CultureCode = "hi",
+                            DisplayName = "बाल देखभाल",
+                            SearchText = "बाल दखभाल"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "tr",
+                            DisplayName = "Çocuk Etkinlikleri",
+                            SearchText = "cocuk etkinlikleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "en",
+                            DisplayName = "Children activities",
+                            SearchText = "children activities"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "de",
+                            DisplayName = "Kinderaktivitäten",
+                            SearchText = "kinderaktivitaten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "fr",
+                            DisplayName = "Activités pour enfants",
+                            SearchText = "activites pour enfants"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "es",
+                            DisplayName = "Actividades infantiles",
+                            SearchText = "actividades infantiles"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "it",
+                            DisplayName = "Attività per bambini",
+                            SearchText = "attivita per bambini"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Atividades infantis",
+                            SearchText = "atividades infantis"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "nl",
+                            DisplayName = "Kinderactiviteiten",
+                            SearchText = "kinderactiviteiten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "ru",
+                            DisplayName = "Детские занятия",
+                            SearchText = "детские занятия"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "ar",
+                            DisplayName = "أنشطة الأطفال",
+                            SearchText = "انشطة الاطفال"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "儿童活动",
+                            SearchText = "儿童活动"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "ja",
+                            DisplayName = "子どもの活動",
+                            SearchText = "子ともの活動"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "ko",
+                            DisplayName = "어린이 활동",
+                            SearchText = "어린이 활동"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("a5219530-b0b2-4b70-a117-1723f629e801"),
+                            CultureCode = "hi",
+                            DisplayName = "बच्चों की गतिविधियाँ",
+                            SearchText = "बचचो की गतिविधिया"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "tr",
+                            DisplayName = "Kuaför ve Berber",
+                            SearchText = "kuafor ve berber"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "en",
+                            DisplayName = "Hairdressing",
+                            SearchText = "hairdressing"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "de",
+                            DisplayName = "Friseur und Barbier",
+                            SearchText = "friseur und barbier"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "fr",
+                            DisplayName = "Coiffure et barbier",
+                            SearchText = "coiffure et barbier"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "es",
+                            DisplayName = "Peluquería y barbería",
+                            SearchText = "peluqueria y barberia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "it",
+                            DisplayName = "Parrucchiere e barbiere",
+                            SearchText = "parrucchiere e barbiere"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Cabeleireiro e barbearia",
+                            SearchText = "cabeleireiro e barbearia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "nl",
+                            DisplayName = "Kapper en barbier",
+                            SearchText = "kapper en barbier"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "ru",
+                            DisplayName = "Парикмахерская и барбершоп",
+                            SearchText = "парикмахерская и барбершоп"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "ar",
+                            DisplayName = "تصفيف الشعر والحلاقة",
+                            SearchText = "تصفيف الشعر والحلاقة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "美发和理发",
+                            SearchText = "美发和理发"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "ja",
+                            DisplayName = "美容院・理容室",
+                            SearchText = "美容院・理容室"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "ko",
+                            DisplayName = "미용실 및 이발소",
+                            SearchText = "미용실 및 이발소"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("8e8ffbdb-be95-43df-bf2d-11a4637699ee"),
+                            CultureCode = "hi",
+                            DisplayName = "हेयरड्रेसिंग और नाई",
+                            SearchText = "हयरडरसिग और नाई"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "tr",
+                            DisplayName = "Bakım ve Kozmetik",
+                            SearchText = "bakim ve kozmetik"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "en",
+                            DisplayName = "Care and cosmetics",
+                            SearchText = "care and cosmetics"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "de",
+                            DisplayName = "Pflege und Kosmetik",
+                            SearchText = "pflege und kosmetik"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "fr",
+                            DisplayName = "Soins et cosmétiques",
+                            SearchText = "soins et cosmetiques"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "es",
+                            DisplayName = "Cuidado y cosmética",
+                            SearchText = "cuidado y cosmetica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "it",
+                            DisplayName = "Cura e cosmetici",
+                            SearchText = "cura e cosmetici"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Cuidados e cosméticos",
+                            SearchText = "cuidados e cosmeticos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "nl",
+                            DisplayName = "Verzorging en cosmetica",
+                            SearchText = "verzorging en cosmetica"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "ru",
+                            DisplayName = "Уход и косметика",
+                            SearchText = "уход и косметика"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "ar",
+                            DisplayName = "العناية ومستحضرات التجميل",
+                            SearchText = "العناية ومستحضرات التجميل"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "护理和化妆品",
+                            SearchText = "护理和化妆品"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "ja",
+                            DisplayName = "ケア・化粧品",
+                            SearchText = "ケア・化粧品"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "ko",
+                            DisplayName = "관리 및 화장품",
+                            SearchText = "관리 및 화장품"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("406de719-32b2-4100-b2f4-ae74d635b03f"),
+                            CultureCode = "hi",
+                            DisplayName = "देखभाल और सौंदर्य प्रसाधन",
+                            SearchText = "दखभाल और सौदरय परसाधन"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "tr",
+                            DisplayName = "Konaklama",
+                            SearchText = "konaklama"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "en",
+                            DisplayName = "Accommodation",
+                            SearchText = "accommodation"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "de",
+                            DisplayName = "Unterkunft",
+                            SearchText = "unterkunft"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "fr",
+                            DisplayName = "Hébergement",
+                            SearchText = "hebergement"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "es",
+                            DisplayName = "Alojamiento",
+                            SearchText = "alojamiento"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "it",
+                            DisplayName = "Alloggio",
+                            SearchText = "alloggio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Hospedagem",
+                            SearchText = "hospedagem"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "nl",
+                            DisplayName = "Verblijf",
+                            SearchText = "verblijf"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "ru",
+                            DisplayName = "Проживание",
+                            SearchText = "проживание"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "ar",
+                            DisplayName = "الإقامة",
+                            SearchText = "الاقامة"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "住宿",
+                            SearchText = "住宿"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "ja",
+                            DisplayName = "宿泊",
+                            SearchText = "宿泊"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "ko",
+                            DisplayName = "숙박",
+                            SearchText = "숙박"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("ecfa12c2-b8c6-4508-ba5a-6e94dc4e9ffc"),
+                            CultureCode = "hi",
+                            DisplayName = "आवास",
+                            SearchText = "आवास"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "tr",
+                            DisplayName = "Ulaşım Biletleri",
+                            SearchText = "ulasim biletleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "en",
+                            DisplayName = "Travel tickets",
+                            SearchText = "travel tickets"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "de",
+                            DisplayName = "Reisetickets",
+                            SearchText = "reisetickets"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "fr",
+                            DisplayName = "Billets de transport",
+                            SearchText = "billets de transport"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "es",
+                            DisplayName = "Billetes de viaje",
+                            SearchText = "billetes de viaje"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "it",
+                            DisplayName = "Biglietti di viaggio",
+                            SearchText = "biglietti di viaggio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Passagens",
+                            SearchText = "passagens"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "nl",
+                            DisplayName = "Reistickets",
+                            SearchText = "reistickets"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "ru",
+                            DisplayName = "Билеты",
+                            SearchText = "билеты"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "ar",
+                            DisplayName = "تذاكر السفر",
+                            SearchText = "تذاكر السفر"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "旅行票务",
+                            SearchText = "旅行票务"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "ja",
+                            DisplayName = "交通チケット",
+                            SearchText = "交通チケット"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "ko",
+                            DisplayName = "교통편 티켓",
+                            SearchText = "교통편 티켓"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("797fd1da-9053-43b5-8236-ecc698081821"),
+                            CultureCode = "hi",
+                            DisplayName = "यात्रा टिकट",
+                            SearchText = "यातरा टिकट"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "tr",
+                            DisplayName = "Seyahat Hizmetleri",
+                            SearchText = "seyahat hizmetleri"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "en",
+                            DisplayName = "Travel services",
+                            SearchText = "travel services"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "de",
+                            DisplayName = "Reisedienstleistungen",
+                            SearchText = "reisedienstleistungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "fr",
+                            DisplayName = "Services de voyage",
+                            SearchText = "services de voyage"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "es",
+                            DisplayName = "Servicios de viaje",
+                            SearchText = "servicios de viaje"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "it",
+                            DisplayName = "Servizi di viaggio",
+                            SearchText = "servizi di viaggio"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Serviços de viagem",
+                            SearchText = "servicos de viagem"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "nl",
+                            DisplayName = "Reisdiensten",
+                            SearchText = "reisdiensten"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "ru",
+                            DisplayName = "Туристические услуги",
+                            SearchText = "туристические услуги"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "ar",
+                            DisplayName = "خدمات السفر",
+                            SearchText = "خدمات السفر"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "旅行服务",
+                            SearchText = "旅行服务"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "ja",
+                            DisplayName = "旅行サービス",
+                            SearchText = "旅行サーヒス"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "ko",
+                            DisplayName = "여행 서비스",
+                            SearchText = "여행 서비스"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3dcf71b4-1022-4b6c-83f5-dfbeeb78cd5a"),
+                            CultureCode = "hi",
+                            DisplayName = "यात्रा सेवाएँ",
+                            SearchText = "यातरा सवाए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "tr",
+                            DisplayName = "Danışmanlık ve Destek",
+                            SearchText = "danismanlik ve destek"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "en",
+                            DisplayName = "Consulting and support",
+                            SearchText = "consulting and support"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "de",
+                            DisplayName = "Beratung und Unterstützung",
+                            SearchText = "beratung und unterstutzung"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "fr",
+                            DisplayName = "Conseil et assistance",
+                            SearchText = "conseil et assistance"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "es",
+                            DisplayName = "Consultoría y asistencia",
+                            SearchText = "consultoria y asistencia"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "it",
+                            DisplayName = "Consulenza e assistenza",
+                            SearchText = "consulenza e assistenza"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Consultoria e suporte",
+                            SearchText = "consultoria e suporte"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "nl",
+                            DisplayName = "Advies en ondersteuning",
+                            SearchText = "advies en ondersteuning"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "ru",
+                            DisplayName = "Консультации и поддержка",
+                            SearchText = "консультации и поддержка"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "ar",
+                            DisplayName = "الاستشارات والدعم",
+                            SearchText = "الاستشارات والدعم"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "咨询和支持",
+                            SearchText = "咨询和支持"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "ja",
+                            DisplayName = "コンサルティング・サポート",
+                            SearchText = "コンサルティンク・サホート"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "ko",
+                            DisplayName = "컨설팅 및 지원",
+                            SearchText = "컨설팅 및 지원"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("3c960efc-061d-4fa1-90e3-91e2469f86f7"),
+                            CultureCode = "hi",
+                            DisplayName = "परामर्श और सहायता",
+                            SearchText = "परामरश और सहायता"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "tr",
+                            DisplayName = "Profesyonel Araçlar",
+                            SearchText = "profesyonel araclar"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "en",
+                            DisplayName = "Professional tools",
+                            SearchText = "professional tools"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "de",
+                            DisplayName = "Professionelle Werkzeuge",
+                            SearchText = "professionelle werkzeuge"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "fr",
+                            DisplayName = "Outils professionnels",
+                            SearchText = "outils professionnels"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "es",
+                            DisplayName = "Herramientas profesionales",
+                            SearchText = "herramientas profesionales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "it",
+                            DisplayName = "Strumenti professionali",
+                            SearchText = "strumenti professionali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Ferramentas profissionais",
+                            SearchText = "ferramentas profissionais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "nl",
+                            DisplayName = "Professionele hulpmiddelen",
+                            SearchText = "professionele hulpmiddelen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "ru",
+                            DisplayName = "Профессиональные инструменты",
+                            SearchText = "профессиональные инструменты"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "ar",
+                            DisplayName = "الأدوات المهنية",
+                            SearchText = "الادوات المهنية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "专业工具",
+                            SearchText = "专业工具"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "ja",
+                            DisplayName = "専門ツール",
+                            SearchText = "専門ツール"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "ko",
+                            DisplayName = "전문 도구",
+                            SearchText = "전문 도구"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("99af86dc-d903-45b3-832a-ebfcf434b2a4"),
+                            CultureCode = "hi",
+                            DisplayName = "पेशेवर उपकरण",
+                            SearchText = "पशवर उपकरण"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "tr",
+                            DisplayName = "Mesleki Üyelikler",
+                            SearchText = "mesleki uyelikler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "en",
+                            DisplayName = "Professional memberships",
+                            SearchText = "professional memberships"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "de",
+                            DisplayName = "Berufliche Mitgliedschaften",
+                            SearchText = "berufliche mitgliedschaften"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "fr",
+                            DisplayName = "Adhésions professionnelles",
+                            SearchText = "adhesions professionnelles"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "es",
+                            DisplayName = "Membresías profesionales",
+                            SearchText = "membresias profesionales"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "it",
+                            DisplayName = "Iscrizioni professionali",
+                            SearchText = "iscrizioni professionali"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Associações profissionais",
+                            SearchText = "associacoes profissionais"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "nl",
+                            DisplayName = "Beroepslidmaatschappen",
+                            SearchText = "beroepslidmaatschappen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "ru",
+                            DisplayName = "Профессиональное членство",
+                            SearchText = "профессиональное членство"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "ar",
+                            DisplayName = "العضويات المهنية",
+                            SearchText = "العضويات المهنية"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "专业会员",
+                            SearchText = "专业会员"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "ja",
+                            DisplayName = "専門団体の会員",
+                            SearchText = "専門団体の会員"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "ko",
+                            DisplayName = "전문 단체 멤버십",
+                            SearchText = "전문 단체 멤버십"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("0c712d88-d2dc-4b8c-bea7-8b0d0c83f64e"),
+                            CultureCode = "hi",
+                            DisplayName = "पेशेवर सदस्यताएँ",
+                            SearchText = "पशवर सदसयताए"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "tr",
+                            DisplayName = "Diğer Ödemeler",
+                            SearchText = "diger odemeler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "en",
+                            DisplayName = "Other payments",
+                            SearchText = "other payments"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "de",
+                            DisplayName = "Sonstige Zahlungen",
+                            SearchText = "sonstige zahlungen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "fr",
+                            DisplayName = "Autres paiements",
+                            SearchText = "autres paiements"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "es",
+                            DisplayName = "Otros pagos",
+                            SearchText = "otros pagos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "it",
+                            DisplayName = "Altri pagamenti",
+                            SearchText = "altri pagamenti"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Outros pagamentos",
+                            SearchText = "outros pagamentos"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "nl",
+                            DisplayName = "Overige betalingen",
+                            SearchText = "overige betalingen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "ru",
+                            DisplayName = "Прочие платежи",
+                            SearchText = "прочие платежи"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "ar",
+                            DisplayName = "المدفوعات الأخرى",
+                            SearchText = "المدفوعات الاخرى"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "其他付款",
+                            SearchText = "其他付款"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "ja",
+                            DisplayName = "その他の支払い",
+                            SearchText = "その他の支払い"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "ko",
+                            DisplayName = "기타 결제",
+                            SearchText = "기타 결제"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("d8f14d9b-788e-4f8f-881f-f30e46aebd38"),
+                            CultureCode = "hi",
+                            DisplayName = "अन्य भुगतान",
+                            SearchText = "अनय भगतान"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "tr",
+                            DisplayName = "Diğer Abonelikler",
+                            SearchText = "diger abonelikler"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "en",
+                            DisplayName = "Other subscriptions",
+                            SearchText = "other subscriptions"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "de",
+                            DisplayName = "Sonstige Abonnements",
+                            SearchText = "sonstige abonnements"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "fr",
+                            DisplayName = "Autres abonnements",
+                            SearchText = "autres abonnements"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "es",
+                            DisplayName = "Otras suscripciones",
+                            SearchText = "otras suscripciones"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "it",
+                            DisplayName = "Altri abbonamenti",
+                            SearchText = "altri abbonamenti"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "pt-BR",
+                            DisplayName = "Outras assinaturas",
+                            SearchText = "outras assinaturas"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "nl",
+                            DisplayName = "Overige abonnementen",
+                            SearchText = "overige abonnementen"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "ru",
+                            DisplayName = "Прочие подписки",
+                            SearchText = "прочие подписки"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "ar",
+                            DisplayName = "الاشتراكات الأخرى",
+                            SearchText = "الاشتراكات الاخرى"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "zh-Hans",
+                            DisplayName = "其他订阅",
+                            SearchText = "其他订阅"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "ja",
+                            DisplayName = "その他のサブスクリプション",
+                            SearchText = "その他のサフスクリフション"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "ko",
+                            DisplayName = "기타 구독",
+                            SearchText = "기타 구독"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("6bc3778d-d803-4d6f-9fd7-6707989d411b"),
+                            CultureCode = "hi",
+                            DisplayName = "अन्य सदस्यताएँ",
+                            SearchText = "अनय सदसयताए"
+                        });
+                });
+
             modelBuilder.Entity("PayAhead.Domain.CatalogService", b =>
                 {
                     b.Property<Guid>("Id")
@@ -5234,6 +16631,15 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.NoAction);
+                });
+
+            modelBuilder.Entity("PayAhead.Domain.CatalogCategoryTranslation", b =>
+                {
+                    b.HasOne("PayAhead.Domain.CatalogCategory", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PayAhead.Domain.CatalogService", b =>

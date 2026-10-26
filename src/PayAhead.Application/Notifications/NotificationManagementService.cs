@@ -24,7 +24,7 @@ public sealed class SettingsValidator : AbstractValidator<SettingsRequest>
 {
     public SettingsValidator()
     {
-        RuleFor(x => x.LanguageCode).Must(x => x is "tr" or "en");
+        RuleFor(x => x.LanguageCode).Must(PayAhead.Application.Localization.SupportedLanguages.Contains);
         RuleFor(x => x.DefaultCurrencyCode).Must(CurrencyCodes.Contains);
         RuleFor(x => x.TimeZoneId).NotEmpty().MaximumLength(100).Must(x => { NotificationPolicy.Zone(x, out var fallback); return !fallback; });
         RuleFor(x => x.NotificationsEnabled).NotNull();

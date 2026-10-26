@@ -140,7 +140,7 @@ public sealed class SqlNotificationQueue(PayAheadDbContext db, IPaymentRecurrenc
         }
         // A configuration mutation may have revoked the lease during the reads above.
         if (!await OwnedLease(delivery).AnyAsync(x => x.LeaseExpiresAtUtc > now, ct)) return null;
-        return new(delivery.Id, device.PushToken, plan.Id, subscriptionId);
+        return new(delivery.Id, device.PushToken, plan.Id, subscriptionId, PayAhead.Application.Localization.SupportedLanguages.Resolve(settings?.LanguageCode));
     }
     private IQueryable<NotificationDelivery> OwnedLease(NotificationDelivery delivery)
         => db.NotificationDeliveries.Where(x => x.Id == delivery.Id && x.Status == DeliveryStatus.Processing && x.LeaseOwner == delivery.LeaseOwner);

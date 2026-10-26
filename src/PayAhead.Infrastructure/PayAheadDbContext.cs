@@ -6,6 +6,7 @@ namespace PayAhead.Infrastructure;
 public sealed class PayAheadDbContext(DbContextOptions<PayAheadDbContext> options) : DbContext(options)
 {
     public DbSet<CatalogCategory> CatalogCategories => Set<CatalogCategory>();
+    public DbSet<CatalogCategoryTranslation> CatalogCategoryTranslations => Set<CatalogCategoryTranslation>();
     public DbSet<CatalogService> CatalogServices => Set<CatalogService>();
     public DbSet<CatalogServiceCategory> CatalogServiceCategories => Set<CatalogServiceCategory>();
     public DbSet<User> Users => Set<User>();

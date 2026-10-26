@@ -1,0 +1,747 @@
+# AI draft, not a certified professional translation. key|text
+m_dcd2f7f89bdc|Home
+m_c40832ab139b|Payments
+m_6a9128aa68d3|We could not find this page
+m_a86988a50cd1|Return to the home screen to continue.
+m_46e308473e94|Edit payment plan
+m_d5f9262c7b68|Select a valid plan
+m_a77cb430aae5|Edit subscription
+m_6bc63db3c9c3|Select a valid subscription
+m_c545594549bd|This feature is not available yet.
+m_52ba82f41da1|Payment occurrence
+m_9b14761462ed|Select a valid payment date
+m_7c72e97a2e24|Payment details
+m_263fcd13faeb|More room.\nLess worry.
+m_6bba58d6b506|Give your payment and subscription plans a little more freedom.
+m_452d9718d03a|More active payment plans
+m_0b0dfbdda6fe|Multiple payment reminders
+m_c5d8de4c849c|More comprehensive subscription tracking
+m_7f84ca611f74|Product and pricing information will appear when the store connection is ready. This preview does not grant Premium access.
+m_beae145ed70b|Purchases are not available yet
+m_90d82406fd2f|No purchase or charge will be made.
+m_87c8b717052f|Design preview
+m_af1af17b6039|Sample data, simulated actions.
+m_f6acdcf3a45e|This is a development preview only. It does not sign you in or perform payment, subscription or notification actions.
+m_44a04da0609b|Sample content
+m_8413667ec6c2|Preview screens with data
+m_2d74c208f0c3|Empty state
+m_3c9870336f1d|An account with no data yet
+m_daa069d849f4|Loading
+m_3745003f5a43|While content is being prepared
+m_870a46c3db7b|Connection error
+m_02490070e7be|Safe error handling and retry
+m_c1081025bfce|Return to preview
+m_4877b5ec41d9|Reminders
+m_e68c08fd0390|Select a valid payment plan
+m_5a3414a08005|Subscription details
+m_56457ea60f9a|{{value0}} · YYYY-MM-DD
+m_54d5fd12a94c|Select a date
+m_e8fa6bec6bd2|{{value0}}: {{value1}}
+m_6c97805c0bd9|No end date
+m_72278748133a|Cancel
+m_2f36f3362ead|Paid
+m_594b1254c47d|Skipped
+m_6a98ba6759ef|Upcoming
+m_2723833db0f2|{{value0}}, {{value1}}, {{value2}} {{value3}}
+m_3ec33746857c|{{value0}} trial days
+m_bc53cde866a2|active subscription
+m_b667168f2be7|{{value0}}, {{value1}}
+m_a24915d688f1|{{value0}} days free
+m_2538351e6a40|Renews on {{value0}}
+m_310478811716|/ month
+m_21cc6a327c14|NEXT 30 DAYS
+m_1e038a30bbdf|Your upcoming payments
+m_3120cb691453|{{value0}} payments · {{value1}}
+m_dbe3bbf2bf1d|Also {{value0}}
+m_f9b5f266396e|Design preview with sample data. Open display options
+m_87b958b6436a|Design preview · Sample data
+m_2d0d3fe32985|Preparing your financial overview
+m_87a4bbff702f|Your account is connected. Payment and subscription data are not connected in this preview.
+m_b7e193af9550|Go back
+m_7320279cca24|Hide password
+m_8102f4f7ff35|Show password
+m_2eaf24d56ba0|Nothing here yet
+m_764562096839|Add your payments to see them all in one place.
+m_ef8c222befc5|We cannot show this right now
+m_4c97e807cb38|You can try again shortly.
+m_0ce9380b07f8|Try again
+m_317a7648ba7f|Loading content
+m_059faeaf0f7c|You are in control. Always.
+m_aa81c136b41c|{{value0}}{{value1}}
+m_34db704cad42|Analytics
+m_0694bb658290|The order behind the numbers.
+m_b12a04091838|Currency filter · optional
+m_6e567ddfeb02|Leave blank for all · TRY / USD / EUR
+m_7f441105ea24|Apply currency filter
+m_9ca92bf2de8d|Enter a valid ISO 4217 code.
+m_554c13c8e0dc|Your analytics are ready for new plans
+m_dde3c601ccef|There is no payment data in the selected six months. Choose another period or create a new plan.
+m_8e5f3bed5189|All charts group by the month of the scheduled date, not cash flow by payment time. Planned amounts use the current plan definition, not historical price snapshots. Historical amounts use the plan’s current currency and category. Currencies are kept separate. Overdue amounts cover only the selected month.
+m_9e98d8624610|Dates were calculated using UTC.
+m_554b441847dd|No data for this period
+m_086522a2222f|Planned · selected month
+m_432698bc04fb|Actually paid · selected month
+m_6da9e452fcbc|Pending · including overdue
+m_982cf9cb2005|Overdue this month
+m_8d285b551104|Actual payments over 6 months
+m_9fef2b0f0a4d|Only actual amounts marked as paid are included. Zero means the paid amount within this scope is zero.
+m_c86cd1a1d946|Planned amount trend
+m_3864edd32cbf|Payment statuses this month
+m_e8bd0861623e|Paid categories this month
+m_582f83600904|Showing the 8 largest categories out of {{value0}}.
+m_f607b1237936|No paid category data in the selected month.
+m_85a931fa2f9f|Top 5 plans
+m_2219dab1c111|Planned occurrence amounts in the selected month.
+m_6d38d0719d06|{{value0}} occurrences
+m_e7e0215652f9|{{value0}}: {{value1}} payments
+m_e41e9e9f2fdb|Use no more than 254 characters.
+m_4a6cbab3aabd|Enter a valid email address.
+m_1c0653073271|Enter your password.
+m_337e59f03420|Use no more than 128 characters.
+m_bf6b1946fd11|Use at least 12 characters.
+m_fedb94fa1ddd|Enter your name.
+m_503fe2c9852c|Use no more than 100 characters.
+m_8c8b07e2aba8|A secure session could not be established. Check device storage and your connection.
+m_819ad30ff99b|Your account has been created. You can sign in now.
+m_e8d8f98d769d|Meet a calmer\ntomorrow.
+m_53c03a9fee45|A little breathing room\nfor your finances.
+m_fe08d685f51c|One place for your payments and subscriptions. Take control.
+m_e002f77215ca|See payments ahead. Track subscriptions. Clear your mind.
+m_ff138299a73e|Everything clear at a glance.
+m_f82e21c5a4e0|Payments · Subscriptions · Trials
+m_c5176ef33f7c|Your name
+m_899e435d76b8|What should we call you?
+m_e1081b69d80a|Email
+m_b9c454be10ce|example@email.com
+m_e1ac97fff826|Password
+m_7f510bd4744d|At least 12 characters
+m_d247f5085a6c|Your password
+m_fea4c6044718|Your information is sent only to the PayAhead server. Your password is not stored on this device.
+m_14411176800f|Forgot password
+m_bc5c818f2f46|Create account
+m_b872b116e8f6|Sign in
+m_2d479812c86b|Already have an account?\u0020
+m_1056f070e7ea|New to PayAhead?\u0020
+m_aa6bc6b1c20b|Your data, your control.
+m_5785a01da6e0|Calendar
+m_4d83791ea31c|Every payment has its own story.
+m_50636cefa8dc|Payment history
+m_059b7d11ff43|Go to today
+m_6d46ddd615db|Wed
+m_58e8caab760d|, today
+m_5117f9601eb1|{{value0}}{{value1}}{{value2}}
+m_0cf0ee99c1d9|Green: paid · Gray: skipped · Red: overdue · Teal: pending. Statuses are also shown as text when a day is selected.
+m_840a9f0b1c3a|No payments for this day
+m_f0c374b5f4a5|Select a marked day to review payment statuses.
+m_0cc914823e8a|{{value0}} logo
+m_c3a976e80ce0|Custom entry
+m_679e5d207fbc|{{value0}} category icon
+m_d51a1547850f| · Inactive in catalog
+m_9cc94140f48b|Subcategories
+m_1e52995f1656|Popular services
+m_4be65ffd3c4d|Search categories or services
+m_62c753f4ee0b|Netflix, petrol, vehicle, gas…
+m_40c306d33ace|Back in selection
+m_74581d3a753b|Choose a subscription service
+m_a1d2f560a2b9|Choose a payment type
+m_ce0be00a3a04|Selected path: {{value0}}
+m_9669271ce541|Back to main categories
+m_6b467007b709|Custom subscription in this category
+m_9ef05e22a5c5|Custom payment in this category
+m_f08718d380a0|The catalog could not be refreshed. Previously loaded data is shown if available; your existing records are unaffected.
+m_bfccb99faf79|Retry catalog
+m_d8416cf1ef26|Selecting a brand is not a purchase. You set amounts and dates. A category icon is shown when no brand logo is available.
+m_2c842aaf0967|This subcategory has no preset service. Use the custom entry option to enter your own service name.
+m_174c47177720|No services found for this selection. You can add a custom entry in the category.
+m_dc072fb4b5c8|Open subcategories and services ›
+m_9b49b29dfd07|Service page {{value0}}/{{value1}}
+m_b3f4caeb18ea|Previous service page
+m_71c803f67c3c|Next service page
+m_caf667e8034a|Custom subscription · Other
+m_33c3c73b3f07|Custom payment · Other
+m_c7f4be34c02a|Refresh catalog
+m_be1e5431a411|Close selection
+m_df43bddffd68|Category and service
+m_1b585966d2ac|Change category or service
+m_5c04ad033072|Choose category and service
+m_5ad326037b81|Selected service: {{value0}}
+m_64527440a4b7|Not selected yet
+m_ad6823727591| · Custom entry
+m_df0c13e7b694|The catalog response is invalid. Your existing records are preserved.
+m_720e8781912b|A calmer start
+m_187bc29a9dcf|You have no active plans or payment activity this month. Start with a new plan.
+m_c33b5ecf8b44|Account time zone not found; dates were calculated using UTC.
+m_fd5e149b0c41|View all analytics
+m_fc47d3ee96ea|Add payment
+m_c88d4e2ae324|Paid this month
+m_26f92ff4efd1|No paid amounts this month yet.
+m_48cce4a622e0|{{value0}} paid · {{value1}} pending · {{value2}} skipped
+m_a918756a64ea|Next payment
+m_4a986bd03b55|No pending payments in the displayed upcoming date range.
+m_f550df9dcee0|Overdue this month
+m_4a7f5b58233f|There is no overdue date range for this month.
+m_be0bd1466097|{{value0}} overdue payments · From the start of this month through yesterday
+m_28555f323d63|No overdue payments this month.
+m_6747ed989728|Showing the first 3 records.
+m_978b30c5e213|Upcoming payments
+m_a7770145884b|{{value0}} – {{value1}} · {{value2}} records
+m_1ffb3a1d64e7|No upcoming payments in this range.
+m_fc2cbca9acbe|Notifications
+m_3d89a3625605|One step ahead of tomorrow.
+m_72ec2727147f|The session changed.
+m_5aff753f517b|The notification response has an unexpected format.
+m_c7f4e5354a2e|Enter a whole number of days from 0 to 365.
+m_812b82ac9973|Cannot be more than 365 days before.
+m_5a2a329dd50e|Select a time in HH:mm format.
+m_c8e8f2254b43|Enter a valid IANA time zone.
+m_65717ed18036|The previous account’s device registration could not be cleared. Sign in to that account to remove it, or disable notifications in Android settings.
+m_7900e641cb36|Device permission could not be read. Check system settings.
+m_996149c57168|Notifications and reminders
+m_5c778761062b|Your permission, device and account preferences.
+m_796e7d39b546|Notification permission on this device
+m_49e62454340a|Permission granted
+m_9376cf52ba0d|Permission denied
+m_95ed0d227581|Permission not checked yet
+m_e41167a535f4|Allow notifications to see upcoming payment and trial-ending reminders. You can keep using the app without permission. Permission and device registration do not prove delivery.
+m_1679d0879814|Device registration was verified on the server for this session.
+m_6122961c79fc|Device registration has not been verified for this session.
+m_26b8a5c03dfb|Check permission and connect device
+m_aba251b45799|Open system notification settings
+m_e1670ba6707d|System settings could not be opened.
+m_4a3cd0d3f2ee|Disconnect push on this device
+m_a9a9861c603e|The server device registration could not be removed. Notifications may continue; retry with a connection or disable them in system settings.
+m_082675ccc2b8|Permission cannot be requested again; change it in system settings.
+m_55352df66012|Devices registered to your account
+m_aa3cf0d408e7|{{value0}} · Device {{value1}}
+m_b44948b30289|Server registration active
+m_dc1ec4a10b02|Server registration inactive
+m_dd339f27d49c|{{value0}} · Last registered {{value1}}
+m_14477af7fb8f|Remove device {{value0}} registration
+m_39a8d28c1c6b|Cancel
+m_b88019aa289e|Remove
+m_e9e3db3d1e8f|No registered devices
+m_cc44fa0414a3|Real push requires a development build and a connected device.
+m_8a2d59b0f70d|This is not an inbox; the backend has no notification history endpoint. Trial preferences are in the subscription edit screen. There is no account-wide default reminder time; choose it separately for each payment rule.
+m_decce11aef29|Account notification preferences
+m_bc3703640ed8|The server fell back to UTC; save a valid time zone.
+m_99fca4be5948|Account notifications enabled
+m_ca7732645140|Account time zone · IANA
+m_29085b405b36|Europe/Istanbul
+m_c958a8d64dde|Default currency
+m_dcafb2602a42|Your current account language is preserved. Disabling notifications does not delete plans or reminder rules; it changes delivery eligibility. The account time zone is independent of the device clock.
+m_ebf40e0c6eb4|Preferences could not be saved.
+m_25353ac12585|Load current preferences
+m_78a55771dc4b|Save notification preferences
+m_bf1fb9b3ea59|Preferences saved on the server. This does not confirm delivery.
+m_5c9cc7e3f90d|Use an Android/iOS development build for remote push.
+m_2b18cfa9c7a0|Expo Go does not support this remote push flow. A development build is required.
+m_bbc97b82622a|This acceptance flow requires a physical device.
+m_efbdfa191c3e|EAS projectId is not configured. Follow the push setup guide.
+m_864d4467fe43|Device registration information could not be read; safe re-registration is unavailable.
+m_db632663ff41|Timed out while obtaining the push token. Retry with a connection.
+m_5022903c0ba5|Payment and trial reminders
+m_2e98da897a50|Remote push
+m_99647b43db30|This acceptance flow
+m_91f7ad7393ad|EAS projectId
+m_e3737762b564|Previous account
+m_8c2002849317|Device registration information
+m_b630524b9490|Session changed
+m_80397522181a|Obtaining push token
+m_71998b7a8647|Device registration failed. Check your connection and FCM/EAS push configuration.
+m_4239abd5c0fe|The notification listener could not start. Check development build configuration.
+m_449704e67047|Notification record could not be opened
+m_1065fb378e00|The record may have been removed or may not be accessible to this account.
+m_af7041d035cb|Check your connection. You can reopen the notification’s record from the relevant list.
+m_ea6119aa5393|Payment reminders
+m_3420bbb71219|Account time zone: {{value0}}
+m_68dce5fdd9e4|Times use this account’s time zone. For daylight-saving gaps, the server chooses the first valid minute; for repeated times, the later UTC instant. Calendar and UTC scheduling are handled by the server.
+m_3771184e8e48|The time zone is invalid; the server is using UTC fallback.
+m_66d73eec21dd|Account notifications are off; saving a rule does not enable sending.
+m_8d54e58502d4|The plan is inactive; new payment notifications will not be sent.
+m_424dbf42bf81|Notification permissions and settings
+m_ff4947e183f7|On payment day
+m_32cab8a0ff96|{{value0}} days before
+m_82bd83d6cabb|Rule enabled
+m_788c248434f3|Rule disabled
+m_d50fb5cd0e44|{{value0}} · Not proof of delivery
+m_86471fc0130e|Edit {{value0}} days, {{value1}}
+m_7d21de34f624|Delete {{value0}} days, {{value1}}
+m_14842beb581f|No payment reminders yet
+m_44331cdb99ad|Create a rule for payment day or an earlier day.
+m_439e3be67e95|Add reminder
+m_77b658b9666c|Free-trial rules are not in this list; manage them from subscription trial preferences. The server applies your membership quota to all enabled rules. Past jobs have a 24-hour catch-up window; the mobile app does not create independent alarms.
+m_46954ab8fe15|Edit reminder
+m_5bfd5c4fc74c|New reminder
+m_e67c2a090f36|Days before · 0–365
+m_70ba032f779d|Reminder rule enabled
+m_be3095cc7a25|You reached the enabled-reminder limit. The server determines Free/Premium limits; trial rules may also count toward the quota.
+m_5cc017022589|Explore membership options
+m_643f2c5b4ff3|The action could not be completed.
+m_73922fe9b8e9|Load current reminders
+m_a5ef4ea66a75|Save reminder changes
+m_0406a6037ff3|Save reminder
+m_17d89dfee53d|Close form
+m_ffadd8e17995|A saved rule, permission or accepted Expo ticket does not mean delivery to the phone. Check the time zone in notification settings.
+m_4e2d3f27bc91|Local reminder time
+m_bb7ed58f17c4|Local reminder time · HH:mm
+m_c62d351d4d79|Local reminder time: {{value0}}
+m_a993d56aacf7|Period view based on scheduled dates.
+m_4d2f75ead23f|Future plan dates are not shown. Pending items include occurrences that have not been saved. Sorted by scheduled date, then payment name.
+m_3caac5efb49b|{{value0}} entries · Page {{value1}}/{{value2}}
+m_b231b2e3abdf|No activity in this period
+m_b643b19b02e5|Choose another status or month.
+m_b74566b03eea|Previous page
+m_4c68362c332e|Next page
+m_140b6a85ed4f|Previous month
+m_bc1d7478bad2|Next month
+m_25e24627a6ee|Enter a positive actual amount with no more than 4 decimal places.
+m_186683421cb0|Scheduled date
+m_291dca1a2d0c|Plan amount · current definition
+m_b49835f3551b|Historical plan amounts are not stored as snapshots. This amount may change when the plan is edited. Historical payments use the current plan’s currency; historical currency is not stored.
+m_ec38317781ca|Actually paid
+m_1fda86a53e46|Payment time: {{value0}}
+m_a258e497496d|View payment plan
+m_77f23e1b9711|Actual paid amount
+m_fdaf91355c38|The server records payment time in UTC when this action occurs. This API does not support choosing a past payment time. This action does not charge a bank account.
+m_fac7f884c235|Mark as paid
+m_c79dbe3338b9|Mark as skipped
+m_c1db7b38a01d|Back to pending
+m_5c1120aa3f2a|An inactive plan’s history is read-only.
+m_e41da48c42b3|Payment status updated on the server.
+m_2aeed2ec24bc|The record may have changed or the request outcome may be uncertain. Load the current status before submitting again.
+m_a1ee8d6f35e4|Load current status
+m_66f71e58bc91|{{value0}}, {{value1}}, {{value2}}
+m_86276a545c73|Scheduled: {{value0}}
+m_3a56ed96d493|Payment time not found
+m_4a7458f9b406|Actual paid amount · {{value0}}
+m_b2a75aba2a9a|Your password has been reset. Sign in with your new password.
+m_f39a90606360|The action could not be completed. Check your connection and try again.
+m_48cc793fec26|Your new password
+m_907f977177d1|Reset your password
+m_17901d377b68|A secure start for your account.
+m_fd3f0daece3c|Continue with your email address.
+m_1ab5f8dd3652|If the address is registered, a password reset link will be sent. Check your inbox and spam folder.
+m_bd00063bca49|If it does not arrive within a few minutes, check the address and request a new link.
+m_d00c902689a9|Email link or code
+m_7b15b84ff5be|If the link did not open automatically, paste the full email link here. It is single-use and expires shortly.
+m_fefced24bd71|New password
+m_df7cb2aa8f92|Confirm new password
+m_24c83f2c27f8|Reset password
+m_d3ca60d80048|Request reset link
+m_c7e7daf09eac|I have a link, set a new password
+m_5064114b875a|Request a new link
+m_9ff2fd4e9f6d|Back to sign in
+m_368f3e476b9e|Invalid amount.
+m_f5e0975c723a|The server response has an unexpected format. Try again later.
+m_1dee1d8d2aaf|Enter the actual paid amount.
+m_9b81103a9b48|Check your connection and try again.
+m_687f69a3496a|A little more room for your plans
+m_287ade462d7f|You reached the active payment plan limit. Deactivate an existing plan or explore Premium options.
+m_875c469eccea|Explore Premium
+m_0d3206e39f9e|Open {{value0}} details
+m_82413ba35131|{{value0}} · Every {{value1}} periods
+m_b31385e605a6|Active plan
+m_aff1d602e8dd|Inactive plan
+m_97b31ba37783|Loading plan date…
+m_5c0fc0b491b9|No new plan date
+m_d19d95f2f5f1|upcoming
+m_3dfd364d95c2|{{value0}}, {{value1}} payment
+m_60c98fa1f6ed|THIS MONTH · UPCOMING PAYMENTS
+m_e12baefecd33|No upcoming amounts.
+m_887b8091622e|{{value0}} upcoming · {{value1}} active plans
+m_7d5afa5c041e|From today through month-end. Currencies are shown separately.
+m_cd613d82a1a6|Category
+m_5da57b457b37|Recurrence
+m_72373d3f7768|First payment
+m_b649bea15b42|End
+m_774dac727b5c|Day of recurrence
+m_4ac8ab998cc8|Start day
+m_01e23f52e395|Planned
+m_cacd6a7dd4d4|Account date unavailable
+m_1b8b6498c5f1|No new date
+m_c7efa547ceea|The scheduled date follows the recurrence calendar; it does not include paid/skipped status.
+m_d382a5a56146|Manage payment reminders
+m_432ffe87483d|This linked plan is managed through its subscription tracking record. Return to subscription details to make changes.
+m_41bb7b55f9b1|Deactivate plan
+m_5d59500b0808|Deactivate
+m_8546b2337a9a|Delete plan
+m_aafd5445c85f|{{value0}} will be permanently deleted. The server may reject deletion if history, reminders or a linked subscription exist.
+m_7c017ff51519|The action could not be completed. Check the current record.
+m_40e816c987a2|Load current record
+m_7e31f8204d5e|New payment
+m_05fbb278ab68|Choose a category. If the service is not in the catalog, create a custom payment.
+m_50cea4c0f664|Make room for the days ahead.
+m_e4d8d83eef36|{{value0}} · {{value1}}/{{value2}} active plans
+m_51929427e17d|Membership limits are unavailable. The server will check limits when saving.
+m_2b98db0ebe2f|For example, neighborhood mechanic
+m_d13255fd6d45|Repeat
+m_c2cc4ed0e0de|First payment date
+m_edd225f78b1c|End date · optional
+m_f3c0ae536e6c|Uses the start day
+m_9c6457504337|The first payment is always on the start date. If the selected day does not exist in a later month, the last day is used: January 31 becomes February 28/29; yearly February 29 becomes February 28 when needed.
+m_12bb0cfdd296|An inactive plan does not generate new pending dates.
+m_df44192b41ac|The action could not be completed. Check whether the record was created before retrying.
+m_97aa3193e40c|The newer version was not overwritten. Loading the current record removes your form changes. Subscription-linked plans may not be editable here.
+m_e7bbbd13fda6|The result could not be verified. Check your plans before submitting again; the server may have completed the save.
+m_42a396b3c3dd|Check my plans
+m_c6e47849be91|I checked, submit again
+m_f63044f8dff1|Save changes
+m_6c7d3be05e89|Create payment plan
+m_9a4f23eb644c|Creates a plan; does not charge a bank account.
+m_51403c693698|Enter a payment name.
+m_9cce51c167cb|Use no more than 150 characters.
+m_b2a241f9b3d3|Use no more than 2000 characters.
+m_d99126b70aa4|Enter a positive amount with up to 15 integer digits and 4 decimal places. Use a decimal point or comma, without grouping separators.
+m_ceafeb1d890f|Choose a valid ISO 4217 currency.
+m_0406076bbb52|Enter a category.
+m_2b89bd250950|Use no more than 50 characters.
+m_9e4a7f1d9944|Enter a positive whole number.
+m_bbd78b58d296|The interval must be from 1 to 2147483647.
+m_d8a8544c7998|Enter a valid date in YYYY-MM-DD format.
+m_525f19e832a6|The end date cannot precede the start date.
+m_a9dc55ee7ab6|The day must be from 1 to 31.
+m_e34221564fe3|One-time
+m_301ef766a15b|Daily
+m_abc3e615d675|Weekly
+m_e055e06d7581|Monthly
+m_9f2134dbbdd8|Yearly
+m_00fda1a8f061|Every plan, in its place.
+m_ab071c7811fb|Search payments
+m_f3bb1ae02837|Search by payment name
+m_849ff7f27107|Filter options
+m_5991df187aaf|Currency filter
+m_1062dae67545|Leave blank or enter TRY / USD / EUR
+m_19c537a16cf8|Category filter
+m_bd072c271289|Exact category match
+m_362c4c8a211f|Apply filters
+m_7c98416792c1|Enter a valid ISO 4217 code.
+m_28dc74dcd54b|Clear additional filters
+m_f43a65ad8268|All
+m_71605e3019a3|Newest first · Search and filters are applied on the server.
+m_16c74bf5cc6f|All currencies
+m_22ae0cc71dfc|All categories
+m_3be6008529d7|{{value0}} plans · Page {{value1}}/{{value2}}
+m_5a0a2ac2ea70|The account date is unavailable; plan dates cannot be displayed.
+m_d6b86f56f585|The scheduled date is calculated from recurrence; it does not include paid/skipped status.
+m_f1d48e85474e|Previous
+m_ffe6922f5329|Next
+m_8522d5a985f5|No more plans on this page
+m_1176f5007df5|No plans match these filters
+m_6709724982cc|Make room for your first plan
+m_8bbeb6b2e32b|Add your payments to see their amounts and recurrence calendar here.
+m_1a8415416e0e|Internet bill
+m_a81cab46eebf|Home and living
+m_cde9b289b121|Studio Music
+m_ad57a5c86aa1|Monthly subscription
+m_8ea3b2614264|Home rent
+m_782916f8f2c5|Cloud Space
+m_80f230efe8c4|Cloud storage
+m_654c3d5d92af|Electricity bill
+m_fd914780f3f4|Language workshop
+m_41d28f6e4e7b|Personal development
+m_8471ab6843ff|Book club
+m_c1579f388f19|Music and entertainment
+m_1f748b0ca081|Focus Pro
+m_9dd69ea580be|Productivity
+m_80ad54ad05fa|Settings
+m_64bd1224db11|Your organization, your preferences.
+m_a20eda1e3a04|Your account
+m_121128a3449b|Loading profile…
+m_1c56ac8f2dc6|Account
+m_69022fb48e27|Profile could not be loaded. Try again.
+m_e1b0af0c144d|Appearance
+m_7c08e78575d6|App theme
+m_bbb1132f30f1|Light
+m_366fcd93889e|Preferences
+m_be761e877712|Notification permissions and account preferences
+m_a13a55a714f1|Account information
+m_9b7337a7225a|Profile has not loaded yet.
+m_6f71eadb6aaa|Security and privacy
+m_d5fb076f2548|Your session is kept in secure device storage. Your password is not stored. Payment plans and monthly summaries are retrieved from the PayAhead server.
+m_21858317874a|One more step ahead.
+m_f43b35270139|Discover PayAhead Premium
+m_69fbb458f5f0|Signing out…
+m_ea5b69c1ad74|Sign out
+m_f7b305154a1e|PayAhead · Everything on time.
+m_8cb49b7388e8|Enter a valid subscription amount.
+m_4fcd73a757cc|The subscription response has an unexpected format. Try again later.
+m_a75abe66fec2|Free trial
+m_dbd417da03e1|Cancelled
+m_87e91c19c039|Expired
+m_eeee62ca562d|Trial tracking was cancelled.
+m_4045e1f2fa19|The trial has ended.
+m_39ece7b68bec|The trial starts on {{value0}}.
+m_0499b314e350|Last day of the trial
+m_c3f52697e59c|{{value0}} days until the trial ends
+m_22641ad761bf|No access end date specified.
+m_af985fbab912|Access ended · {{value0}}
+m_c8c32fd44bb1|continues
+m_7b6ad902719e|ends
+m_a2b74b09a1e6|Access {{value1}} through {{value0}}, inclusive.
+m_96a9ac11297f|{{value0}}, {{value1}}, details
+m_f85cb0113896|{{value0}} · {{value1}} / {{value2}} periods
+m_cd0d38999b7e|Custom subscription
+m_90e3db49d29e|Next paid date: {{value0}}
+m_dc2c56f19435|No new paid date
+m_59bb6eb356f4|ESTIMATED MONTHLY EQUIVALENT
+m_d96738411504|{{value0}} / month
+m_4ecad399a85a|No cost estimate within this scope.
+m_f5fdcac75a16|{{value0}} active · {{value1}} trial · {{value2}} cancelled · {{value3}} expired
+m_1a6296fdf554|An estimate for auto-renewing active and trial records, not the exact spending for this month. Monthly: amount/interval; yearly: amount/(12×interval); weekly: amount×52/(12×interval); daily: amount×365/(12×interval). Currencies are kept separate; each group total is rounded to 4 decimal places.
+m_31a31e2fdfe1|You reached the active record limit
+m_99e46aeb1075|Subscription tracking and linked active payment plans have separate limits. Check your existing records or explore membership options.
+m_21319cec854e|The record may have changed or the request outcome may be uncertain. Check current records before submitting again.
+m_0426bc127d33|Your subscriptions
+m_5a685ba46d97|Loading subscription summary…
+m_b3012876af05|{{value0}} active · {{value1}} trial
+m_e6a9d0c56b98|Subscription payments are already included in the financial summary through their linked plans.
+m_37e4b6a7987d|No date
+m_b8691c27fa4c|Next renewal: {{value0}} · {{value1}}
+m_b88a01eb7582|{{value0}} upcoming trial endings
+m_b51cb4cab2c8|Last day
+m_008749f47ce5|{{value0}} days left
+m_5a89e7b9050a|First paid: {{value0}}
+m_cdcb6a19c6d2|Billing
+m_39b03995fcce|Subscription start
+m_c1c27516789b|First paid payment
+m_8c74b392a2f7|Next paid payment
+m_38432ff279cf|Trial start
+m_ca1dff322c77|Trial end
+m_c9f213296e2e|Auto-renewal tracking
+m_39ce8f387818|Off
+m_ad24d7cfe429|Access end
+m_0a95b6578caa|Tracking cancellation time
+m_623fc8183b37| · UTC fallback used
+m_5e19d63b6120|Account date: {{value0}} · {{value1}}{{value2}}
+m_e6ecb5aacb90|View linked payment plan
+m_a28ea32a92a3|Payment reminders for the linked plan
+m_a139ddfe6c16|Preference on
+m_d38040e92e84|Preference off
+m_d0ae165f2ea1|Trial reminders: {{value0}}
+m_120955beb4d9|The server creates trial rules at 09:00 in the account’s time zone, subject to membership quota: 1 day for Free; 1/3/7 days and the final day within an eligible Premium quota. Custom trial days/times are not supported. Edit the subscription to change this preference; the server checks eligibility on cancellation/expiry. A preference is not proof of device delivery.
+m_af18c85b8d43|The linked payment plan is the single financial source; no second subscription amount is added to calendar or analytics.
+m_8810c95e97ad|Edit subscription
+m_9c855e9dea46|Cancellation and access
+m_8c19506de966|Cancelling tracking in PayAhead does not cancel the external subscription. Cancel separately with your provider. Specify the actual access end date below.
+m_09ac97477bbd|Last day of access after cancellation
+m_2487cd5b4552|Cancel tracking record
+m_307f11592d33|This does not cancel with the external provider. PayAhead renewals stop; access is tracked as continuing through {{value0}}, inclusive.
+m_2c5a5df10ac9|Cancel tracking
+m_dc2fe2ce17ea|A cancelled or expired record cannot be reactivated. Create a new tracking record if needed.
+m_a73ff22c9a90|Remove tracking record
+m_5230f2b7aaa9|Action in progress…
+m_e8acb1ee980d|Tracking was cancelled. You must also take action with the external provider.
+m_6c57e9a1d5bc|Subscription
+m_9db9e4ffd519|A cancelled or expired tracking record cannot be edited.
+m_2ba638fe6b81|Choose a category. If the service is not in the catalog, create a custom subscription.
+m_3d84aa9bcade|New subscription
+m_43b35e8a5c47|A clear view of recurring expenses.
+m_ad10ab3a2d2a|{{value0}} · {{value1}}/{{value2}} active/trial · {{value3}}/{{value4}} active payment plans
+m_18527dae8cdd|The server will check membership limits when saving.
+m_bbc1a8b9becc|Billing frequency
+m_2140719bfbc7|First paid payment date
+m_2ac439186d4f|The server calculates the next paid date. The first paid date is not the trial end date.
+m_7754aee3cc38|If the day does not exist in a month, the last day is used. The first paid date is the first occurrence; later months follow the selected day.
+m_0d95451acf39|Active subscription
+m_046f79b76c42|Remove trial dates
+m_6ace31f2854a|Enable trial reminders
+m_075e106597b7|This saves a reminder preference; it does not mean a notification was sent or delivered to the phone. Membership limits and the server determine available rules.
+m_6b853275a321|Access end · optional
+m_e510182bc9ac|No access end specified
+m_cdaea12e4154|Save subscription changes
+m_9a75e128810d|Create subscription
+m_cfcd181c31ea|A tracking record and one linked payment plan are created together. No purchase or charge is made with the external provider.
+m_65aedc4c30ef|Before your trial ends
+m_92aab347c863|Be ready for the first paid day.
+m_1387bc38b3ee|Within {{value0}} days{{value1}}
+m_49eae7447e75|Records whose trials have started and are still active in the account’s server time zone. The end day is included; cancelled and expired records are excluded.
+m_9154c18c668d|Trial end: {{value0}}
+m_322ce9e70bfc|First paid payment: {{value0}}
+m_e88a0897c5ca|View {{value0}} details
+m_ba04e88c13f0|Page {{value0}}/{{value1}}
+m_b52d1a229ccf|Previous trial page
+m_4bd9f29d4bbd|Next trial page
+m_0a83a3c1d4cf|No trials ending in this range
+m_615e317726c3|Choose another range or review your subscription list.
+m_8790a538a1c4|Select a valid date.
+m_53fb989d42a5|Enter a subscription name.
+m_f2b4cfecfac2|Enter a provider name.
+m_652316e16657|Enter a positive amount with up to 15 integer digits and 4 decimal places.
+m_3603d7f2ee2f|Enter a positive whole number.
+m_0b006dd3e844|The interval must be from 1 to 2147483647.
+m_579d1caa7d8c|The first paid date cannot precede the start date.
+m_30f875728cf9|Select both trial start and trial end dates.
+m_bf89ccd17e64|The trial cannot start before the subscription start date.
+m_c3e70fe9969f|The trial end cannot precede the trial start.
+m_5b7d76f73e12|The first paid date must be after the trial ends.
+m_41165b001f79|The day must be from 1 to 31.
+m_d4aa12f6efd2|An access end date is required for an active subscription with auto-renewal off.
+m_d649c199ee3b|Access cannot end before the start date or, with auto-renewal on, before the first paid date.
+m_305a7abea88b|Subscriptions
+m_056559cd4769|Small amounts, greater clarity.
+m_3bb51670d4e2|Add subscription
+m_1b794efacab7| · UTC fallback
+m_02222f976398|{{value0}} · {{value1}}/{{value2}} active/trial limit
+m_1e1adc209eed|NEXT PAID RENEWAL
+m_fbafe9fc3173|Your tracking records
+m_108e1b550628|Search subscription or provider
+m_7060d276702b|Subscription currency filter
+m_ff166f34034b|Leave blank for all
+m_d789bd722598|Apply subscription filter
+m_4fa460adaf28|Server order: newest created first. The summary covers all tracking records and is independent of list filters.
+m_f334350d4252|{{value0}} subscriptions · Page {{value1}}/{{value2}}
+m_2aa78fcdc0ca|No subscriptions here yet
+m_a0256836986f|Change your filters or add a subscription you want to track.
+m_028ac77e95d4|Previous subscription page
+m_887c317bfdb9|Next subscription page
+m_b7ac953bddf5|The action could not be completed. You can try again.
+m_97fef89efdf8|The connection timed out. Try again.
+m_148edfcba033|The server is unreachable. Check your internet connection and API address.
+m_64872a0e18b3|Password reset is currently unavailable. Try again later.
+m_96d8c326f702|The link is invalid, already used or expired. Request a new link.
+m_0d2b1db5ac23|The email or password is incorrect, or the session is no longer valid.
+m_99a158d3b327|You reached the active record limit. Deactivate existing plans or explore Premium options.
+m_a25c909874f9|You are not authorized to perform this action.
+m_cfec70e3a8bc|The record was not found or is no longer accessible.
+m_4caef90dffc6|An account cannot be created with this email.
+m_73614d4af236|The record changed. Load current information and try again.
+m_bef85276f101|Too many attempts. Wait a little and try again.
+m_79cea1288206|The server is currently unavailable. Try again later.
+m_2d8988bb1fc4|The request could not be completed.
+m_9c1deb6987ec|The API address is not configured.
+m_5f4b398cc5b6|Use a valid API address; production requires HTTPS.
+m_43a1354bdee5|The API request is outside the allowed address.
+m_1e6636df44e1|Your session is no longer valid. Sign in again.
+m_d1d749ecce55|The session was refreshed. This action was not retried automatically; check the current record and try again.
+m_0e15daef0882|Your account is no longer available. Sign in again.
+m_632f0add5824|Enter your valid email address.
+m_d3cd4aca0609|Enter a valid link or code.
+m_782480e8798a|Passwords must match.
+m_33355201acda|Sign in again.
+m_39f6162d8263|Your session expired. Sign in again.
+m_f3df8a754f4c|The device session could not be cleared. Retry signing out before closing the app.
+m_5e33f996840e|Signed out on this device.
+m_94963f065d53|{{value0}} The server device registration could not be removed. Notifications may continue. Disable them in Android settings, or sign in to the same account and remove the registration.
+m_8218c437b97c|The server did not return a valid session.
+m_5a2b7cd2f617|Sign-in is in progress.
+m_de17ccfcb3a8|The session could not be verified. Check your connection and sign in again.
+m_b8dd5f6d646f|No session found.
+m_c88aa79e449a|The session ended.
+m_95a5cb5fa1fc|Signed out.
+m_0c4b3d96c974|Signed out on this device; server revocation could not be verified. Without an internet connection, the server session may remain valid until it expires.
+m_50fbcc5ae0d0|Use the Android or iOS app for a persistent secure session.
+m_cd1e0724e02a|Good morning
+m_badc3e7e2b20|Good afternoon
+m_7df387187c77|Good evening
+m_abbbdafe41fa|Information
+m_d5f884547452|Active
+m_9025b4af025a|Pending
+m_4c5c101be403|Mon
+m_59cc0fc7e93e|Tue
+m_89ac4dc9eddf|Thu
+m_5f9967713ae0|Fri
+m_36986d15c759|Sat
+m_3b4ca471d9af|Sun
+m_bffd1dfbfbed|Overdue
+m_b3202c47f786|Service
+m_e9371667baa4|Categories
+m_2ce0a7da99c6|Services
+m_aa6a83bfcde1|Plans
+m_f698e9b40f9f|Delete
+m_8fd6cbabf5c7|Not specified
+m_c15a0321c925|Amount
+m_edd812578cbb|Inactive
+m_b24a36089466|Dark
+m_1c466db79243|System
+common:cancel|Cancel
+common:selected|Selected
+settings:languageTitle|App language
+settings:languageSearch|Search languages
+settings:languageFlagNote|Use the language name as your guide. Flags represent countries; a global icon is used for some languages. Português (Brasil) means Brazilian Portuguese.
+settings:languageStorageFailed|The language changed for this session but could not be saved on this device. Select it again to keep it permanently.
+settings:languagePending|Your manual selection takes priority on this device. Account synchronization will be retried when connected.
+settings:languageNotFound|No language matches your search.
+settings:rtlRestartTitle|Reload layout direction
+settings:rtlRestartBody|Text and app layout updated immediately. Some native controls require reopening the app. Save any unsaved form changes first. Expo Go may reset native RTL preferences; full acceptance requires a development build.
+settings:restart|Restart now
+validation:invalidValue|Check this field and enter a valid value.
+common:amountInputHint|Use a decimal point or comma without grouping separators. Changing language does not change the amount or currency.
+common:paymentCount_one|{{count}} payment
+common:paymentCount_other|{{count}} payments
+catalog:serviceTemplate.genel-servis|General garage
+catalog:serviceTemplate.ozel-tamirci|Independent mechanic
+catalog:serviceTemplate.lastikci|Tyre shop
+catalog:serviceTemplate.otopark|Parking
+catalog:serviceTemplate.oto-yikama|Car wash
+catalog:serviceTemplate.elektrik-faturasi|Electricity bill
+catalog:serviceTemplate.su-faturasi|Water bill
+catalog:serviceTemplate.dogalgaz-faturasi|Gas bill
+catalog:serviceTemplate.internet-faturasi|Internet bill
+catalog:serviceTemplate.telefon-faturasi|Phone bill
+catalog:serviceTemplate.kira|Rent
+catalog:serviceTemplate.aidat|Building maintenance dues
+catalog:serviceTemplate.konut-sigortasi|Home insurance
+catalog:serviceTemplate.ev-bakimi|Home maintenance
+catalog:serviceTemplate.kredi-karti-odemesi|Credit card payment
+catalog:serviceTemplate.ihtiyac-kredisi|Personal loan
+catalog:serviceTemplate.konut-kredisi|Home loan
+catalog:serviceTemplate.tasit-kredisi|Vehicle loan
+catalog:serviceTemplate.banka-ucreti|Bank fee
+catalog:serviceTemplate.okul-ucreti|School fee
+catalog:serviceTemplate.kurs|Course
+catalog:serviceTemplate.ozel-ders|Private tutoring
+catalog:serviceTemplate.ozel-saglik-sigortasi|Private health insurance
+catalog:serviceTemplate.muayene|Medical appointment
+catalog:serviceTemplate.ilac|Medicine
+catalog:serviceTemplate.vergi-odemesi|Tax payment
+catalog:serviceTemplate.harc|Government fee
+catalog:serviceTemplate.resmi-ucret|Official fee
+catalog:serviceTemplate.spor-salonu|Gym
+catalog:serviceTemplate.kuafor|Hairdresser
+catalog:serviceTemplate.kisisel-bakim|Personal care
+catalog:serviceTemplate.trafik-sigortasi|Vehicle liability insurance
+catalog:serviceTemplate.kasko|Comprehensive vehicle insurance
+
+m_3ec33746857c_one|{{value0}} trial day
+m_3ec33746857c_other|{{value0}} trial days
+m_a24915d688f1_one|{{value0}} day free
+m_a24915d688f1_other|{{value0}} days free
+m_3120cb691453_one|{{value0}} payment · {{value1}}
+m_3120cb691453_other|{{value0}} payments · {{value1}}
+m_6d38d0719d06_one|{{value0}} occurrence
+m_6d38d0719d06_other|{{value0}} occurrences
+m_be0bd1466097_one|{{value0}} overdue payment · From the start of this month through yesterday
+m_be0bd1466097_other|{{value0}} overdue payments · From the start of this month through yesterday
+m_32cab8a0ff96_one|{{value0}} day before
+m_32cab8a0ff96_other|{{value0}} days before
+m_c3f52697e59c_one|{{value0}} day until the trial ends
+m_c3f52697e59c_other|{{value0}} days until the trial ends
+m_b88a01eb7582_one|{{value0}} upcoming trial ending
+m_b88a01eb7582_other|{{value0}} upcoming trial endings
+m_008749f47ce5_one|{{value0}} day left
+m_008749f47ce5_other|{{value0}} days left
+m_3be6008529d7_one|{{value0}} plan · Page {{value1}}/{{value2}}
+m_3be6008529d7_other|{{value0}} plans · Page {{value1}}/{{value2}}
+m_f334350d4252_one|{{value0}} subscription · Page {{value1}}/{{value2}}
+m_f334350d4252_other|{{value0}} subscriptions · Page {{value1}}/{{value2}}
+
+m_dc1356403d5c|Go to home
+m_32818902a3d4|Remove device registration?
+m_3608ae3ad221|New sends for this registration will stop. Push notifications already accepted by the provider cannot be recalled. Use the unlink button above for this phone.
+m_dc2b092891f8|Delete reminder?
+m_635302bd313c|Unsent jobs for this rule will be cancelled.
+m_f4ba3168e4d4|Deactivate plan?
+m_d9a435bdbef5|No new pending dates will be generated. Existing payment history will be kept.
+m_9c62bf8ff200|Delete payment plan?
+m_78b46a64eb5e|Payment name
+m_0c9e12052e29|Currency · ISO 4217
+m_dfdb7b4f231e|Recurrence interval
+m_62cae61c31f3|Recurrence day · optional
+m_9f4ce70fe7c2|Description · optional
+m_74fddbd51925|Cancel subscription tracking?
+m_5c0481ebe4d9|Remove subscription tracking?
+m_d3579181350f|The subscription will be hidden and its linked plan deactivated. Payment history will be kept; the external provider subscription will not be cancelled.
+m_a45e9436a4ba|Subscription name
+m_93f01c808be2|Provider name
+m_da20470ab885|Subscription amount
+m_5ff71b7378f6|Billing interval

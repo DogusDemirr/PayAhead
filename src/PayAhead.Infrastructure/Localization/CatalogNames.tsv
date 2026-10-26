@@ -1,0 +1,118 @@
+# AI translation drafts, 2026-10-25. Not certified professional translations.
+# code|de|fr|es|it|pt-BR|nl|ru|ar|zh-Hans|ja|ko|hi
+digital|Digitale Abonnements|Abonnements numériques|Suscripciones digitales|Abbonamenti digitali|Assinaturas digitais|Digitale abonnementen|Цифровые подписки|الاشتراكات الرقمية|数字订阅|デジタルサブスクリプション|디지털 구독|डिजिटल सदस्यताएँ
+video|Film und Fernsehen|Films et séries|Cine y series|Film e serie TV|Filmes e séries|Films en series|Фильмы и сериалы|الأفلام والمسلسلات|电影和电视剧|映画・ドラマ|영화 및 TV 시리즈|फ़िल्में और धारावाहिक
+music|Musik und Podcasts|Musique et podcasts|Música y pódcast|Musica e podcast|Música e podcasts|Muziek en podcasts|Музыка и подкасты|الموسيقى والبودكاست|音乐和播客|音楽・ポッドキャスト|음악 및 팟캐스트|संगीत और पॉडकास्ट
+gaming|Spiele und Unterhaltung|Jeux et divertissement|Juegos y entretenimiento|Giochi e intrattenimento|Jogos e entretenimento|Games en entertainment|Игры и развлечения|الألعاب والترفيه|游戏和娱乐|ゲーム・エンターテインメント|게임 및 엔터테인먼트|खेल और मनोरंजन
+ai|Künstliche Intelligenz|Intelligence artificielle|Inteligencia artificial|Intelligenza artificiale|Inteligência artificial|Kunstmatige intelligentie|Искусственный интеллект|الذكاء الاصطناعي|人工智能|人工知能|인공 지능|कृत्रिम बुद्धिमत्ता
+software|Software und Produktivität|Logiciels et productivité|Software y productividad|Software e produttività|Software e produtividade|Software en productiviteit|Программы и продуктивность|البرمجيات والإنتاجية|软件和效率工具|ソフトウェア・仕事効率化|소프트웨어 및 생산성|सॉफ़्टवेयर और उत्पादकता
+cloud|Cloud und Speicher|Cloud et stockage|Nube y almacenamiento|Cloud e archiviazione|Nuvem e armazenamento|Cloud en opslag|Облако и хранилище|السحابة والتخزين|云服务和存储|クラウド・ストレージ|클라우드 및 저장 공간|क्लाउड और स्टोरेज
+education|Bildung|Éducation|Educación|Istruzione|Educação|Onderwijs|Образование|التعليم|教育|教育|교육|शिक्षा
+fitness|Sport und Fitness|Sport et remise en forme|Deporte y ejercicio|Sport e fitness|Esporte e condicionamento físico|Sport en fitness|Спорт и фитнес|الرياضة واللياقة|运动和健身|スポーツ・フィットネス|스포츠 및 피트니스|खेल और फ़िटनेस
+telecom|Internet und Telekommunikation|Internet et télécommunications|Internet y telecomunicaciones|Internet e telecomunicazioni|Internet e telecomunicações|Internet en telecom|Интернет и связь|الإنترنت والاتصالات|互联网和通信|インターネット・通信|인터넷 및 통신|इंटरनेट और दूरसंचार
+utilities|Versorgungsrechnungen|Eau, électricité et gaz|Servicios básicos|Utenze domestiche|Contas de serviços essenciais|Nutsvoorzieningen|Коммунальные услуги|فواتير المرافق|水电燃气|公共料金|공과금|बिजली, पानी और गैस
+home|Wohnen und Miete|Logement et loyer|Vivienda y alquiler|Casa e affitto|Moradia e aluguel|Wonen en huur|Жильё и аренда|السكن والإيجار|住房和租金|住まい・家賃|주거 및 임대료|घर और किराया
+transport|Fahrzeug und Verkehr|Véhicules et transports|Vehículos y transporte|Veicoli e trasporti|Veículos e transporte|Voertuigen en vervoer|Автомобиль и транспорт|المركبات والنقل|车辆和交通|車・交通|차량 및 교통|वाहन और परिवहन
+insurance|Versicherungen|Assurances|Seguros|Assicurazioni|Seguros|Verzekeringen|Страхование|التأمين|保险|保険|보험|बीमा
+finance|Banken und Finanzen|Banque et finances|Banca y finanzas|Banche e finanze|Bancos e finanças|Bankieren en financiën|Банки и финансы|البنوك والتمويل|银行和金融|銀行・金融|은행 및 금융|बैंकिंग और वित्त
+shopping|Einkäufe und Mitgliedschaften|Achats et adhésions|Compras y membresías|Acquisti e iscrizioni|Compras e assinaturas|Winkelen en lidmaatschappen|Покупки и членство|التسوق والعضويات|购物和会员|買い物・会員サービス|쇼핑 및 멤버십|खरीदारी और सदस्यताएँ
+groceries|Lebensmittel und Einkäufe|Courses et alimentation|Supermercado y alimentación|Spesa e alimentari|Mercado e alimentação|Boodschappen en voeding|Продукты и питание|البقالة والطعام|杂货和食品|食料品・食品|장보기 및 식품|किराना और भोजन
+health|Gesundheit|Santé|Salud|Salute|Saúde|Gezondheid|Здоровье|الصحة|健康|健康|건강|स्वास्थ्य
+tax|Steuern und amtliche Zahlungen|Impôts et paiements officiels|Impuestos y pagos oficiales|Imposte e pagamenti ufficiali|Impostos e pagamentos oficiais|Belastingen en officiële betalingen|Налоги и государственные платежи|الضرائب والمدفوعات الرسمية|税费和政务缴费|税金・公的支払い|세금 및 공적 납부|कर और सरकारी भुगतान
+news|Nachrichten und Publikationen|Actualités et publications|Noticias y publicaciones|Notizie ed editoria|Notícias e publicações|Nieuws en publicaties|Новости и издания|الأخبار والنشر|新闻和出版物|ニュース・出版|뉴스 및 출판|समाचार और प्रकाशन
+family|Familie und Kinder|Famille et enfants|Familia e hijos|Famiglia e bambini|Família e filhos|Gezin en kinderen|Семья и дети|الأسرة والأطفال|家庭和儿童|家族・子ども|가족 및 자녀|परिवार और बच्चे
+personal|Körperpflege|Soins personnels|Cuidado personal|Cura personale|Cuidados pessoais|Persoonlijke verzorging|Уход за собой|العناية الشخصية|个人护理|パーソナルケア|개인 관리|व्यक्तिगत देखभाल
+travel|Reisen und Unterkunft|Voyages et hébergement|Viajes y alojamiento|Viaggi e alloggi|Viagens e hospedagem|Reizen en verblijf|Путешествия и проживание|السفر والإقامة|旅行和住宿|旅行・宿泊|여행 및 숙박|यात्रा और आवास
+work|Arbeit und professionelle Dienste|Travail et services professionnels|Trabajo y servicios profesionales|Lavoro e servizi professionali|Trabalho e serviços profissionais|Werk en professionele diensten|Работа и профессиональные услуги|العمل والخدمات المهنية|工作和专业服务|仕事・専門サービス|업무 및 전문 서비스|कार्य और पेशेवर सेवाएँ
+other|Sonstiges|Autres|Otros|Altro|Outros|Overig|Прочее|أخرى|其他|その他|기타|अन्य
+transport.fuel|Kraftstoff|Carburant|Combustible|Carburante|Combustível|Brandstof|Топливо|الوقود|燃油|燃料|연료|ईंधन
+transport.petrol|Benzin|Essence|Gasolina|Benzina|Gasolina|Benzine|Бензин|البنزين|汽油|ガソリン|휘발유|पेट्रोल
+transport.diesel|Diesel|Gazole|Diésel|Gasolio|Diesel|Diesel|Дизельное топливо|الديزل|柴油|軽油|경유|डीज़ल
+transport.lpg|Autogas (LPG)|GPL|GLP|GPL|GLP|LPG|Сжиженный газ (LPG)|غاز البترول المسال|液化石油气|LPG|LPG|एलपीजी
+transport.charging|Elektroauto laden|Recharge de véhicule électrique|Carga de vehículo eléctrico|Ricarica auto elettrica|Recarga de veículo elétrico|Elektrisch laden|Зарядка электромобиля|شحن المركبات الكهربائية|电动车充电|電気自動車の充電|전기차 충전|इलेक्ट्रिक वाहन चार्जिंग
+transport.maintenance|Regelmäßige Wartung|Entretien périodique|Mantenimiento periódico|Manutenzione periodica|Manutenção periódica|Periodiek onderhoud|Плановое техобслуживание|الصيانة الدورية|定期保养|定期点検|정기 점검|नियमित रखरखाव
+transport.repair|Fahrzeugreparatur|Réparation automobile|Reparación del vehículo|Riparazione auto|Reparo de veículo|Autoreparatie|Ремонт автомобиля|إصلاح المركبات|车辆维修|車の修理|차량 수리|वाहन की मरम्मत
+transport.parts|Ersatzteile|Pièces détachées|Repuestos|Ricambi|Peças de reposição|Onderdelen|Запчасти|قطع الغيار|零配件|交換部品|예비 부품|स्पेयर पार्ट्स
+transport.tyres|Reifen und Felgen|Pneus et jantes|Neumáticos y llantas|Pneumatici e cerchi|Pneus e rodas|Banden en velgen|Шины и диски|الإطارات والجنوط|轮胎和轮毂|タイヤ・ホイール|타이어 및 휠|टायर और पहिए
+transport.traffic-insurance|Kfz-Haftpflichtversicherung|Assurance responsabilité automobile|Seguro de responsabilidad civil del vehículo|Assicurazione RC auto|Seguro de responsabilidade civil de veículos|WA-autoverzekering|Обязательное автострахование|التأمين الإلزامي للمركبات|机动车第三者责任保险|自動車賠償責任保険|자동차 의무 책임 보험|वाहन तृतीय-पक्ष बीमा
+transport.comprehensive-insurance|Kaskoversicherung|Assurance tous risques|Seguro a todo riesgo|Assicurazione kasko|Seguro compreensivo de veículos|Cascoverzekering|Каско|التأمين الشامل للمركبات|车辆综合保险|車両保険|자동차 종합 보험|व्यापक वाहन बीमा
+transport.vehicle-tax|Kfz-Steuer (MTV)|Taxe automobile (MTV)|Impuesto de vehículos (MTV)|Tassa automobilistica (MTV)|Imposto sobre veículos (MTV)|Motorrijtuigenbelasting (MTV)|Транспортный налог (MTV)|ضريبة المركبات (MTV)|机动车税（MTV）|自動車税（MTV）|자동차세(MTV)|मोटर वाहन कर (MTV)
+transport.inspection|Fahrzeuguntersuchung|Contrôle technique|Inspección del vehículo|Revisione del veicolo|Inspeção veicular|Voertuigkeuring|Техосмотр|فحص المركبات|车辆检验|車検|자동차 검사|वाहन निरीक्षण
+transport.emissions|Abgasuntersuchung|Contrôle des émissions|Inspección de emisiones|Controllo delle emissioni|Inspeção de emissões|Emissiekeuring|Проверка выхлопных газов|فحص الانبعاثات|尾气检测|排出ガス検査|배출가스 검사|उत्सर्जन निरीक्षण
+transport.hgs|HGS|HGS|HGS|HGS|HGS|HGS|HGS|HGS|HGS|HGS|HGS|HGS
+transport.tolls|Brücken- und Autobahnmaut|Péages et ponts|Peajes y puentes|Pedaggi e ponti|Pedágios e pontes|Brug- en snelwegtol|Платные дороги и мосты|رسوم الجسور والطرق|桥梁和高速通行费|橋・高速道路料金|교량 및 고속도로 통행료|पुल और राजमार्ग टोल
+transport.parking|Parken|Stationnement|Aparcamiento|Parcheggio|Estacionamento|Parkeren|Парковка|مواقف السيارات|停车费|駐車場|주차|पार्किंग
+transport.wash|Autowäsche|Lavage auto|Lavado de coches|Autolavaggio|Lavagem de veículos|Autowassen|Мойка автомобиля|غسيل السيارات|洗车|洗車|세차|कार धुलाई
+transport.roadside|Pannenhilfe|Assistance routière|Asistencia en carretera|Soccorso stradale|Assistência na estrada|Pechhulp|Помощь на дороге|المساعدة على الطريق|道路救援|ロードサービス|긴급 출동 서비스|सड़क सहायता
+transport.rental|Fahrzeugmiete|Location de véhicule|Alquiler de vehículos|Noleggio auto|Aluguel de veículos|Voertuighuur|Аренда автомобиля|استئجار المركبات|租车|レンタカー|차량 대여|वाहन किराया
+transport.loan|Autokredit|Crédit automobile|Préstamo para vehículo|Prestito auto|Financiamento de veículo|Autolening|Автокредит|قرض السيارة|车贷|自動車ローン|자동차 대출|वाहन ऋण
+transport.public|Öffentlicher Verkehr|Transports en commun|Transporte público|Trasporto pubblico|Transporte público|Openbaar vervoer|Общественный транспорт|النقل العام|公共交通|公共交通機関|대중교통|सार्वजनिक परिवहन
+transport.taxi|Taxi|Taxi|Taxi|Taxi|Táxi|Taxi|Такси|سيارة أجرة|出租车|タクシー|택시|टैक्सी
+transport.other|Sonstige Fahrzeugkosten|Autres frais automobiles|Otros gastos del vehículo|Altre spese auto|Outras despesas de veículo|Overige autokosten|Прочие расходы на автомобиль|نفقات المركبات الأخرى|其他车辆支出|その他の車両費|기타 차량 비용|वाहन के अन्य खर्च
+home.rent|Miete|Loyer|Alquiler|Affitto|Aluguel|Huur|Арендная плата|الإيجار|租金|家賃|임대료|किराया
+home.dues|Hausgeld und Gemeinschaftskosten|Charges de copropriété|Cuotas de comunidad|Spese condominiali|Taxa de condomínio|Servicekosten|Взносы на содержание жилья|رسوم صيانة المبنى|物业管理费|管理費・共益費|공동 관리비|आवास रखरखाव शुल्क
+utilities.electricity|Stromrechnung|Facture d’électricité|Factura de electricidad|Bolletta elettrica|Conta de luz|Elektriciteitsrekening|Счёт за электричество|فاتورة الكهرباء|电费|電気料金|전기 요금|बिजली का बिल
+utilities.water|Wasserrechnung|Facture d’eau|Factura de agua|Bolletta dell’acqua|Conta de água|Waterrekening|Счёт за воду|فاتورة المياه|水费|水道料金|수도 요금|पानी का बिल
+utilities.gas|Gasrechnung|Facture de gaz|Factura de gas|Bolletta del gas|Conta de gás|Gasrekening|Счёт за газ|فاتورة الغاز|燃气费|ガス料金|가스 요금|गैस का बिल
+telecom.internet|Internetrechnung|Facture Internet|Factura de Internet|Bolletta Internet|Conta de internet|Internetrekening|Счёт за интернет|فاتورة الإنترنت|网费|インターネット料金|인터넷 요금|इंटरनेट का बिल
+telecom.phone|Telefonrechnung|Facture de téléphone|Factura de teléfono|Bolletta telefonica|Conta de telefone|Telefoonrekening|Счёт за телефон|فاتورة الهاتف|电话费|電話料金|전화 요금|फ़ोन का बिल
+video.streaming|Streaming-Plattformen|Plateformes de streaming|Plataformas de streaming|Piattaforme di streaming|Plataformas de streaming|Streamingplatforms|Стриминговые платформы|منصات البث|流媒体平台|動画配信サービス|스트리밍 플랫폼|स्ट्रीमिंग प्लेटफ़ॉर्म
+video.cinema|Kino und Filmclubs|Cinéma et ciné-clubs|Cine y cineclubes|Cinema e cineclub|Cinema e cineclubes|Bioscoop en filmclubs|Кинотеатры и киноклубы|السينما ونوادي الأفلام|影院和电影俱乐部|映画館・映画クラブ|영화관 및 영화 동호회|सिनेमा और फ़िल्म क्लब
+music.streaming|Musikplattformen|Plateformes musicales|Plataformas de música|Piattaforme musicali|Plataformas de música|Muziekplatforms|Музыкальные платформы|منصات الموسيقى|音乐平台|音楽配信サービス|음악 플랫폼|संगीत प्लेटफ़ॉर्म
+music.podcasts|Podcasts und Audio|Podcasts et audio|Pódcast y audio|Podcast e audio|Podcasts e áudio|Podcasts en audio|Подкасты и аудио|البودكاست والمحتوى الصوتي|播客和音频|ポッドキャスト・音声配信|팟캐스트 및 오디오|पॉडकास्ट और ऑडियो
+gaming.memberships|Gaming-Mitgliedschaften|Abonnements de jeux|Suscripciones de juegos|Abbonamenti di gioco|Assinaturas de jogos|Gaming-abonnementen|Игровые подписки|اشتراكات الألعاب|游戏会员|ゲーム会員サービス|게임 멤버십|गेम सदस्यताएँ
+gaming.cloud|Cloud-Gaming|Jeu en cloud|Juegos en la nube|Cloud gaming|Jogos na nuvem|Cloudgaming|Облачные игры|الألعاب السحابية|云游戏|クラウドゲーム|클라우드 게임|क्लाउड गेमिंग
+ai.assistants|KI-Assistenten|Assistants IA|Asistentes de IA|Assistenti IA|Assistentes de IA|AI-assistenten|ИИ-ассистенты|مساعدو الذكاء الاصطناعي|人工智能助手|AIアシスタント|AI 어시스턴트|एआई सहायक
+ai.creative|Kreative KI-Werkzeuge|Outils créatifs d’IA|Herramientas creativas de IA|Strumenti creativi IA|Ferramentas criativas de IA|Creatieve AI-tools|Творческие ИИ-инструменты|أدوات الذكاء الاصطناعي الإبداعية|人工智能创作工具|AI制作ツール|AI 창작 도구|रचनात्मक एआई उपकरण
+software.office|Büro und Produktivität|Bureautique et productivité|Ofimática y productividad|Ufficio e produttività|Escritório e produtividade|Kantoor en productiviteit|Офис и продуктивность|المكتب والإنتاجية|办公和效率工具|オフィス・仕事効率化|사무 및 생산성|ऑफ़िस और उत्पादकता
+software.design|Design-Werkzeuge|Outils de conception|Herramientas de diseño|Strumenti di design|Ferramentas de design|Ontwerptools|Инструменты дизайна|أدوات التصميم|设计工具|デザインツール|디자인 도구|डिज़ाइन उपकरण
+software.development|Entwicklerwerkzeuge|Outils de développement|Herramientas de desarrollo|Strumenti per sviluppatori|Ferramentas de desenvolvimento|Ontwikkeltools|Инструменты разработчика|أدوات المطورين|开发工具|開発者向けツール|개발 도구|डेवलपर उपकरण
+cloud.storage|Cloud-Speicher|Stockage cloud|Almacenamiento en la nube|Archiviazione cloud|Armazenamento em nuvem|Cloudopslag|Облачное хранилище|التخزين السحابي|云存储|クラウドストレージ|클라우드 저장 공간|क्लाउड स्टोरेज
+cloud.backup|Datensicherung|Sauvegarde|Copias de seguridad|Backup|Backup|Back-up|Резервное копирование|النسخ الاحتياطي|备份|バックアップ|백업|बैकअप
+education.courses|Kurse und Online-Lernen|Cours et formation en ligne|Cursos y formación en línea|Corsi e formazione online|Cursos e ensino on-line|Cursussen en online leren|Курсы и онлайн-обучение|الدورات والتعلم عبر الإنترنت|课程和在线学习|講座・オンライン学習|강좌 및 온라인 학습|पाठ्यक्रम और ऑनलाइन शिक्षा
+education.language|Sprachenlernen|Apprentissage des langues|Aprendizaje de idiomas|Apprendimento delle lingue|Aprendizado de idiomas|Talen leren|Изучение языков|تعلم اللغات|语言学习|語学学習|언어 학습|भाषा सीखना
+education.school|Schule und Nachhilfe|Scolarité et soutien scolaire|Escuela y clases particulares|Scuola e ripetizioni|Escola e aulas particulares|School en bijles|Школа и репетиторы|المدرسة والدروس الخصوصية|学校和辅导|学校・個別指導|학교 및 개인 지도|स्कूल और ट्यूशन
+fitness.gym|Fitnessstudio|Salle de sport|Gimnasio|Palestra|Academia|Sportschool|Спортзал|النادي الرياضي|健身房|ジム|헬스장|जिम
+fitness.training|Trainings-Apps|Applications d’entraînement|Aplicaciones de entrenamiento|App di allenamento|Aplicativos de treino|Trainingsapps|Приложения для тренировок|تطبيقات التدريب|训练应用|トレーニングアプリ|운동 앱|व्यायाम ऐप
+telecom.mobile|Mobilfunktarife|Forfaits mobiles|Planes móviles|Piani di telefonia mobile|Planos de celular|Mobiele abonnementen|Мобильные тарифы|باقات الهاتف المحمول|手机套餐|携帯電話プラン|휴대전화 요금제|मोबाइल प्लान
+telecom.broadband|Internet zu Hause|Internet à domicile|Internet para el hogar|Internet domestico|Internet residencial|Internet thuis|Домашний интернет|الإنترنت المنزلي|家庭宽带|自宅のインターネット|가정용 인터넷|घरेलू इंटरनेट
+home.maintenance|Instandhaltung der Wohnung|Entretien du logement|Mantenimiento de la vivienda|Manutenzione della casa|Manutenção da moradia|Woningonderhoud|Обслуживание жилья|صيانة المنزل|房屋维护|住宅のメンテナンス|주택 유지 보수|घर का रखरखाव
+transport.service|Wartung und Reparatur|Entretien et réparation|Mantenimiento y reparación|Manutenzione e riparazione|Manutenção e reparo|Onderhoud en reparatie|Обслуживание и ремонт|الصيانة والإصلاح|保养和维修|整備・修理|정비 및 수리|रखरखाव और मरम्मत
+insurance.vehicle|Fahrzeugversicherung|Assurance automobile|Seguro de vehículo|Assicurazione auto|Seguro de veículo|Autoverzekering|Автострахование|تأمين المركبات|车辆保险|自動車保険|자동차 보험|वाहन बीमा
+insurance.home|Wohngebäude- und Hausratversicherung|Assurance habitation|Seguro de hogar|Assicurazione casa|Seguro residencial|Woonverzekering|Страхование жилья|تأمين المنزل|住房保险|住宅保険|주택 보험|गृह बीमा
+insurance.health|Krankenversicherung|Assurance santé|Seguro de salud|Assicurazione sanitaria|Seguro de saúde|Zorgverzekering|Медицинское страхование|التأمين الصحي|健康保险|医療保険|건강 보험|स्वास्थ्य बीमा
+insurance.other|Sonstige Versicherungen|Autres assurances|Otros seguros|Altre assicurazioni|Outros seguros|Overige verzekeringen|Прочее страхование|أنواع التأمين الأخرى|其他保险|その他の保険|기타 보험|अन्य बीमा
+finance.cards|Kreditkartenzahlungen|Paiements de carte de crédit|Pagos de tarjeta de crédito|Pagamenti della carta di credito|Pagamentos de cartão de crédito|Creditcardbetalingen|Платежи по кредитной карте|مدفوعات بطاقة الائتمان|信用卡还款|クレジットカード支払い|신용카드 결제|क्रेडिट कार्ड भुगतान
+finance.loans|Kreditraten|Échéances de prêt|Cuotas de préstamos|Rate dei prestiti|Parcelas de empréstimos|Leningtermijnen|Платежи по кредитам|أقساط القروض|贷款分期还款|ローン返済|대출 상환|ऋण की किस्तें
+finance.fees|Bankgebühren|Frais bancaires|Comisiones bancarias|Commissioni bancarie|Tarifas bancárias|Bankkosten|Банковские комиссии|الرسوم المصرفية|银行手续费|銀行手数料|은행 수수료|बैंक शुल्क
+shopping.memberships|Shopping-Mitgliedschaften|Adhésions de shopping|Membresías de compras|Iscrizioni per acquisti|Assinaturas de compras|Winkellidmaatschappen|Торговые подписки|عضويات التسوق|购物会员|ショッピング会員|쇼핑 멤버십|शॉपिंग सदस्यताएँ
+shopping.orders|Einkäufe und Bestellungen|Achats et commandes|Compras y pedidos|Acquisti e ordini|Compras e pedidos|Aankopen en bestellingen|Покупки и заказы|المشتريات والطلبات|购物和订单|買い物・注文|구매 및 주문|खरीदारी और ऑर्डर
+groceries.market|Lebensmitteleinkäufe|Courses alimentaires|Compra de alimentos|Spesa alimentare|Compras de supermercado|Boodschappen|Покупка продуктов|التسوق للبقالة|购买食品杂货|食料品の買い物|식료품 구매|किराने की खरीदारी
+groceries.delivery|Essenslieferung|Livraison de repas|Entrega de comida|Consegna di cibo|Entrega de alimentos|Maaltijdbezorging|Доставка еды|توصيل الطعام|食品配送|フードデリバリー|음식 배달|भोजन की डिलीवरी
+health.appointments|Arztbesuche und Behandlung|Consultations et soins|Consultas y tratamientos|Visite e cure mediche|Consultas e tratamentos|Consulten en behandelingen|Приёмы и лечение|المواعيد والعلاج|就诊和治疗|診察・治療|진료 및 치료|परामर्श और उपचार
+health.medicine|Medikamente und Apotheke|Médicaments et pharmacie|Medicamentos y farmacia|Farmaci e farmacia|Medicamentos e farmácia|Medicijnen en apotheek|Лекарства и аптека|الأدوية والصيدلية|药品和药房|医薬品・薬局|의약품 및 약국|दवाएँ और फ़ार्मेसी
+health.cover|Gesundheitsabsicherung|Couverture santé|Cobertura sanitaria|Copertura sanitaria|Cobertura de saúde|Zorgdekking|Медицинское обеспечение|التغطية الصحية|医疗保障|医療保障|의료 보장|स्वास्थ्य कवरेज
+tax.general|Steuerzahlungen|Paiements d’impôts|Pagos de impuestos|Pagamenti delle imposte|Pagamentos de impostos|Belastingbetalingen|Налоговые платежи|المدفوعات الضريبية|缴税|税金の支払い|세금 납부|कर भुगतान
+tax.fees|Amtliche Gebühren|Frais officiels|Tasas oficiales|Diritti e tasse ufficiali|Taxas oficiais|Officiële kosten|Государственные сборы|الرسوم الرسمية|行政收费|公的手数料|공적 수수료|सरकारी शुल्क
+news.digital-newspaper|Digitale Zeitungen|Journaux numériques|Periódicos digitales|Giornali digitali|Jornais digitais|Digitale kranten|Цифровые газеты|الصحف الرقمية|数字报纸|電子新聞|디지털 신문|डिजिटल समाचारपत्र
+news.print-newspaper|Gedruckte Zeitungen|Journaux papier|Periódicos impresos|Giornali cartacei|Jornais impressos|Papieren kranten|Печатные газеты|الصحف المطبوعة|纸质报纸|紙の新聞|인쇄 신문|मुद्रित समाचारपत्र
+news.digital-magazine|Digitale Zeitschriften|Magazines numériques|Revistas digitales|Riviste digitali|Revistas digitais|Digitale tijdschriften|Цифровые журналы|المجلات الرقمية|数字杂志|電子雑誌|디지털 잡지|डिजिटल पत्रिकाएँ
+news.print-magazine|Gedruckte Zeitschriften|Magazines papier|Revistas impresas|Riviste cartacee|Revistas impressas|Papieren tijdschriften|Печатные журналы|المجلات المطبوعة|纸质杂志|紙の雑誌|인쇄 잡지|मुद्रित पत्रिकाएँ
+news.finance|Wirtschafts- und Finanznachrichten|Actualités économiques et financières|Noticias de economía y finanzas|Notizie economiche e finanziarie|Notícias de economia e finanças|Economisch en financieel nieuws|Экономические и финансовые новости|الأخبار الاقتصادية والمالية|经济和财经新闻|経済・金融ニュース|경제 및 금융 뉴스|अर्थव्यवस्था और वित्त समाचार
+news.technology|Technologienachrichten|Actualités technologiques|Noticias de tecnología|Notizie tecnologiche|Notícias de tecnologia|Technologienieuws|Новости технологий|أخبار التكنولوجيا|科技新闻|テクノロジーニュース|기술 뉴스|प्रौद्योगिकी समाचार
+news.sports|Sportnachrichten|Actualités sportives|Noticias deportivas|Notizie sportive|Notícias esportivas|Sportnieuws|Спортивные новости|الأخبار الرياضية|体育新闻|スポーツニュース|스포츠 뉴스|खेल समाचार
+news.international|Internationale Nachrichten|Actualités internationales|Noticias internacionales|Notizie internazionali|Notícias internacionais|Internationaal nieuws|Международные новости|الأخبار الدولية|国际新闻|国際ニュース|국제 뉴스|अंतरराष्ट्रीय समाचार
+news.newsletters|Newsletter|Lettres d’information|Boletines informativos|Newsletter|Boletins informativos|Nieuwsbrieven|Новостные рассылки|النشرات الإخبارية|新闻简报|ニュースレター|뉴스레터|समाचार बुलेटिन
+news.other|Sonstige Publikationen|Autres publications|Otras publicaciones|Altre pubblicazioni|Outras publicações|Overige publicaties|Прочие издания|المنشورات الأخرى|其他出版物|その他の出版物|기타 출판물|अन्य प्रकाशन
+family.childcare|Kinderbetreuung|Garde d’enfants|Cuidado de niños|Assistenza all’infanzia|Cuidados infantis|Kinderopvang|Уход за детьми|رعاية الأطفال|儿童照护|保育|보육|बाल देखभाल
+family.activities|Kinderaktivitäten|Activités pour enfants|Actividades infantiles|Attività per bambini|Atividades infantis|Kinderactiviteiten|Детские занятия|أنشطة الأطفال|儿童活动|子どもの活動|어린이 활동|बच्चों की गतिविधियाँ
+personal.hair|Friseur und Barbier|Coiffure et barbier|Peluquería y barbería|Parrucchiere e barbiere|Cabeleireiro e barbearia|Kapper en barbier|Парикмахерская и барбершоп|تصفيف الشعر والحلاقة|美发和理发|美容院・理容室|미용실 및 이발소|हेयरड्रेसिंग और नाई
+personal.care|Pflege und Kosmetik|Soins et cosmétiques|Cuidado y cosmética|Cura e cosmetici|Cuidados e cosméticos|Verzorging en cosmetica|Уход и косметика|العناية ومستحضرات التجميل|护理和化妆品|ケア・化粧品|관리 및 화장품|देखभाल और सौंदर्य प्रसाधन
+travel.accommodation|Unterkunft|Hébergement|Alojamiento|Alloggio|Hospedagem|Verblijf|Проживание|الإقامة|住宿|宿泊|숙박|आवास
+travel.tickets|Reisetickets|Billets de transport|Billetes de viaje|Biglietti di viaggio|Passagens|Reistickets|Билеты|تذاكر السفر|旅行票务|交通チケット|교통편 티켓|यात्रा टिकट
+travel.services|Reisedienstleistungen|Services de voyage|Servicios de viaje|Servizi di viaggio|Serviços de viagem|Reisdiensten|Туристические услуги|خدمات السفر|旅行服务|旅行サービス|여행 서비스|यात्रा सेवाएँ
+work.consulting|Beratung und Unterstützung|Conseil et assistance|Consultoría y asistencia|Consulenza e assistenza|Consultoria e suporte|Advies en ondersteuning|Консультации и поддержка|الاستشارات والدعم|咨询和支持|コンサルティング・サポート|컨설팅 및 지원|परामर्श और सहायता
+work.tools|Professionelle Werkzeuge|Outils professionnels|Herramientas profesionales|Strumenti professionali|Ferramentas profissionais|Professionele hulpmiddelen|Профессиональные инструменты|الأدوات المهنية|专业工具|専門ツール|전문 도구|पेशेवर उपकरण
+work.memberships|Berufliche Mitgliedschaften|Adhésions professionnelles|Membresías profesionales|Iscrizioni professionali|Associações profissionais|Beroepslidmaatschappen|Профессиональное членство|العضويات المهنية|专业会员|専門団体の会員|전문 단체 멤버십|पेशेवर सदस्यताएँ
+other.payment|Sonstige Zahlungen|Autres paiements|Otros pagos|Altri pagamenti|Outros pagamentos|Overige betalingen|Прочие платежи|المدفوعات الأخرى|其他付款|その他の支払い|기타 결제|अन्य भुगतान
+other.subscription|Sonstige Abonnements|Autres abonnements|Otras suscripciones|Altri abbonamenti|Outras assinaturas|Overige abonnementen|Прочие подписки|الاشتراكات الأخرى|其他订阅|その他のサブスクリプション|기타 구독|अन्य सदस्यताएँ

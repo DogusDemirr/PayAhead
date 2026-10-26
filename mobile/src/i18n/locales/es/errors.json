@@ -1,0 +1,16 @@
+{
+  "m_b7ac953bddf5": "No se pudo completar la acción. Puedes reintentarlo.",
+  "m_97fef89efdf8": "La conexión agotó el tiempo. Inténtalo de nuevo.",
+  "m_148edfcba033": "Servidor inaccesible. Revisa la conexión a internet y la dirección de la API.",
+  "m_64872a0e18b3": "El restablecimiento de contraseña no está disponible. Inténtalo más tarde.",
+  "m_96d8c326f702": "Enlace no válido, usado o caducado. Solicita otro.",
+  "m_0d2b1db5ac23": "Correo o contraseña incorrectos, o sesión no válida.",
+  "m_99a158d3b327": "Límite de registros activos alcanzado. Desactiva planes existentes o explora Premium.",
+  "m_a25c909874f9": "No tienes autorización para esta acción.",
+  "m_cfec70e3a8bc": "Registro no encontrado o ya no accesible.",
+  "m_4caef90dffc6": "No se puede crear una cuenta con este correo.",
+  "m_73614d4af236": "El registro cambió. Carga la información actual e inténtalo de nuevo.",
+  "m_bef85276f101": "Demasiados intentos. Espera un poco y reinténtalo.",
+  "m_79cea1288206": "Servidor no disponible actualmente. Inténtalo más tarde.",
+  "m_2d8988bb1fc4": "No se pudo completar la solicitud."
+}

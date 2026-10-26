@@ -211,3 +211,19 @@ dotnet test PayAhead.sln
 Bu makinede `.tools/dotnet/dotnet.exe` SDK8.0.426 ve mevcut DOTNET_ROOT/CLI_HOME ayarları kullanılır. SQL testleri Testcontainers ve rastgele PayAheadTest_<guid> DB kullanır. Kestrel smoke gerçek JWT ve kendi geçici SQL DB ile register/login→trial create→expiring→update→summary→cancel→cross-user akışıdır. Worker trial fake sender testi gerçek kuyruk/lease kullanır; gerçek Expo teslimatı değildir.
 
 400 için tarih ilişkilerini (FirstBillingDate > TrialEndDate), recurrence/currency ve body biçimini kontrol edin.409 için son rowVersion ve terminal lifecycle durumunu okuyun; generic payment üzerinden bağlı parent metadata değiştirilemez. Trial saat/gün farkları için response.context timezone/fallback alanına bakın. Cancel otomatik provider iptali veya Paid işaretleme yapmaz. Notifications default disabled ve credential gereksinimleri değişmedi.
+## Phase 5.2 — Development çalıştırma
+
+Dil migration'ı bu makinenin doğrulanmış Docker Development hedefine uygulanmıştır. Yeni makinede önce hedef DB/uygulanmış migration listesini doğrulayın, EF Core 8 ile açıkça migration uygulayın; bağlantı bilgilerini User Secrets/environment içinde tutun. [Şema ve dil rehberi](LOCALIZATION.md).
+
+```powershell
+$env:DOTNET_CLI_HOME="$PWD/.tools/cli"
+.tools/dotnet/dotnet.exe restore PayAhead.sln --artifacts-path artifacts/phase52-check
+.tools/dotnet/dotnet.exe build PayAhead.sln --no-restore --artifacts-path artifacts/phase52-check
+.tools/dotnet/dotnet.exe test PayAhead.sln --no-build --artifacts-path artifacts/phase52-check
+.tools/dotnet/dotnet.exe ef migrations list --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api
+# ConnectionStrings__PayAhead güvenli süreç ortamında seçildikten ve hedef doğrulandıktan sonra:
+.tools/dotnet/dotnet.exe ef database update 20261025154307_CatalogLocalization --project src/PayAhead.Infrastructure --startup-project src/PayAhead.Api
+.\scripts\Start-Development.ps1 -Port 5080
+```
+
+Eski API terminalini bu işlem otomatik durdurmaz. Yeni API'yi başlatmadan önce aynı porttaki eski süreci kendi terminalinden kontrollü kapatın veya boş bir port seçin. Çalışan eski binary 14 dili kabul etmeyebilir; salt migration güncel API kodunun yerine geçmez. SQL testi Testcontainers ve ayrı rastgele DB kullanır, mevcut volume silinmez.

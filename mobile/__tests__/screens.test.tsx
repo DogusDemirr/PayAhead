@@ -92,7 +92,7 @@ test('backend register validation is attached to the matching input', async () =
   await fireEvent.changeText(screen.getByLabelText('E-posta'), 'test@example.com');
   await fireEvent.changeText(screen.getByLabelText('Şifre'), 'Example-password-123');
   await fireEvent.press(screen.getByRole('button', { name: 'Hesap oluştur' }));
-  await waitFor(() => expect(screen.getByText('Sunucu e-posta kuralı.')).toBeTruthy());
+  await waitFor(() => expect(screen.getByText('Bu alanı kontrol edip geçerli bir değer gir.')).toBeTruthy());
 });
 test('overlapping UI submit events are gated before creating a session', async () => {
   let finish!: () => void;

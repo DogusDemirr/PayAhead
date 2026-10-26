@@ -1,0 +1,745 @@
+# AI draft, not a certified professional translation. key|text
+m_dcd2f7f89bdc|Start
+m_c40832ab139b|Zahlungen
+m_6a9128aa68d3|Diese Seite wurde nicht gefunden
+m_a86988a50cd1|Kehre zur Startseite zurück, um fortzufahren.
+m_46e308473e94|Zahlungsplan bearbeiten
+m_d5f9262c7b68|Wähle einen gültigen Plan
+m_a77cb430aae5|Abonnement bearbeiten
+m_6bc63db3c9c3|Wähle ein gültiges Abonnement
+m_c545594549bd|Diese Funktion ist noch nicht verfügbar.
+m_52ba82f41da1|Einzelne Zahlung
+m_9b14761462ed|Wähle ein gültiges Zahlungsdatum
+m_7c72e97a2e24|Zahlungsdetails
+m_263fcd13faeb|Mehr Freiraum.\nWeniger Stress.
+m_6bba58d6b506|Mehr Freiheit für deine Zahlungs- und Abonnementpläne.
+m_452d9718d03a|Mehr aktive Zahlungspläne
+m_0b0dfbdda6fe|Mehrere Zahlungserinnerungen
+m_c5d8de4c849c|Umfassendere Abonnementverwaltung
+m_7f84ca611f74|Produkt- und Preisinformationen erscheinen, sobald die Store-Verbindung bereit ist. Diese Vorschau gewährt keinen Premium-Zugang.
+m_beae145ed70b|Kauf noch nicht verfügbar
+m_90d82406fd2f|Es erfolgt kein Kauf und keine Belastung.
+m_87c8b717052f|Designvorschau
+m_af1af17b6039|Beispieldaten, keine echten Vorgänge.
+m_f6acdcf3a45e|Dieser Bereich dient nur der Entwicklungsvorschau. Keine Anmeldung und keine Zahlungs-, Abonnement- oder Benachrichtigungsvorgänge.
+m_44a04da0609b|Beispielinhalt
+m_8413667ec6c2|Ansicht gefüllter Bildschirme
+m_2d74c208f0c3|Leerer Zustand
+m_3c9870336f1d|Konto ohne Daten
+m_daa069d849f4|Wird geladen
+m_3745003f5a43|Während Inhalte vorbereitet werden
+m_870a46c3db7b|Verbindungsfehler
+m_02490070e7be|Sichere Fehleranzeige und erneuter Versuch
+m_c1081025bfce|Zur Ansicht zurück
+m_4877b5ec41d9|Erinnerungen
+m_e68c08fd0390|Wähle einen gültigen Zahlungsplan
+m_5a3414a08005|Abonnementdetails
+m_56457ea60f9a|{{value0}} · JJJJ-MM-TT
+m_54d5fd12a94c|Datum wählen
+m_e8fa6bec6bd2|{{value0}}: {{value1}}
+m_6c97805c0bd9|Kein Enddatum
+m_72278748133a|Abbrechen
+m_2f36f3362ead|Bezahlt
+m_594b1254c47d|Übersprungen
+m_6a98ba6759ef|Anstehend
+m_2723833db0f2|{{value0}}, {{value1}}, {{value2}} {{value3}}
+m_3ec33746857c|{{value0}} Tage Testphase
+m_bc53cde866a2|aktive Abonnements
+m_b667168f2be7|{{value0}}, {{value1}}
+m_a24915d688f1|{{value0}} Tage kostenlos
+m_2538351e6a40|Verlängerung am {{value0}}
+m_310478811716|/ Monat
+m_21cc6a327c14|NÄCHSTE 30 TAGE
+m_1e038a30bbdf|Deine anstehenden Zahlungen
+m_3120cb691453|{{value0}} Zahlungen · {{value1}}
+m_dbe3bbf2bf1d|Außerdem {{value0}}
+m_f9b5f266396e|Designvorschau mit Beispieldaten. Ansichtsoptionen öffnen
+m_87b958b6436a|Designvorschau · Beispieldaten
+m_2d0d3fe32985|Deine Finanzübersicht wird vorbereitet
+m_87a4bbff702f|Dein Konto ist verbunden. Zahlungs- und Abonnementdaten sind in dieser Version noch nicht angebunden.
+m_b7e193af9550|Zurück
+m_7320279cca24|Passwort ausblenden
+m_8102f4f7ff35|Passwort anzeigen
+m_2eaf24d56ba0|Hier ist noch nichts
+m_764562096839|Wenn du Zahlungen hinzufügst, siehst du alle an einem Ort.
+m_ef8c222befc5|Derzeit nicht verfügbar
+m_4c97e807cb38|Versuche es später erneut.
+m_0ce9380b07f8|Erneut versuchen
+m_317a7648ba7f|Inhalt wird geladen
+m_059faeaf0f7c|Du behältst die Kontrolle. Immer.
+m_aa81c136b41c|{{value0}}{{value1}}
+m_34db704cad42|Auswertungen
+m_0694bb658290|Die Ordnung hinter den Zahlen.
+m_b12a04091838|Währungsfilter · optional
+m_6e567ddfeb02|Für alle leer lassen · TRY / USD / EUR
+m_7f441105ea24|Währungsfilter anwenden
+m_9ca92bf2de8d|Gib einen gültigen ISO 4217-Code ein.
+m_554c13c8e0dc|Deine Auswertungen sind bereit für neue Pläne
+m_dde3c601ccef|Keine Zahlungsdaten in den gewählten sechs Monaten. Wähle einen anderen Zeitraum oder erstelle einen Plan.
+m_8e5f3bed5189|Alle Diagramme sind nach dem Monat des geplanten Datums gruppiert; sie zeigen keinen zahlungszeitbezogenen Geldfluss. Geplante Beträge basieren auf der aktuellen Plandefinition, nicht auf historischen Preisständen. Historische Beträge erscheinen mit aktueller Planwährung und Kategorie. Währungen bleiben getrennt. Überfällige Zahlungen beziehen sich nur auf den gewählten Monat.
+m_9e98d8624610|Die Daten wurden in UTC berechnet.
+m_554b441847dd|Keine Daten für diesen Zeitraum
+m_086522a2222f|Geplant · gewählter Monat
+m_432698bc04fb|Tatsächlich bezahlt · gewählter Monat
+m_6da9e452fcbc|Ausstehend · einschließlich überfällig
+m_982cf9cb2005|Diesen Monat überfällig
+m_8d285b551104|Tatsächliche Zahlungen der letzten 6 Monate
+m_9fef2b0f0a4d|Nur tatsächliche Beträge mit Status bezahlt. Null bedeutet, dass deren Summe in diesem Umfang null ist.
+m_c86cd1a1d946|Trend der geplanten Beträge
+m_3864edd32cbf|Zahlungsstatus diesen Monat
+m_e8bd0861623e|Bezahlte Kategorien diesen Monat
+m_582f83600904|Die 8 höchsten von {{value0}} Kategorien werden gezeigt.
+m_f607b1237936|Keine bezahlten Kategorien im gewählten Monat.
+m_85a931fa2f9f|Die 5 höchsten Pläne
+m_2219dab1c111|Geplante Wiederholungsbeträge im gewählten Monat.
+m_6d38d0719d06|{{value0}} Wiederholungen
+m_e7e0215652f9|{{value0}}: {{value1}} Zahlungen
+m_e41e9e9f2fdb|Verwende höchstens 254 Zeichen.
+m_4a6cbab3aabd|Gib eine gültige E-Mail-Adresse ein.
+m_1c0653073271|Gib dein Passwort ein.
+m_337e59f03420|Verwende höchstens 128 Zeichen.
+m_bf6b1946fd11|Verwende mindestens 12 Zeichen.
+m_fedb94fa1ddd|Gib deinen Namen ein.
+m_503fe2c9852c|Verwende höchstens 100 Zeichen.
+m_8c8b07e2aba8|Sichere Sitzung konnte nicht erstellt werden. Prüfe Gerätespeicher und Verbindung.
+m_819ad30ff99b|Dein Konto wurde erstellt. Du kannst dich jetzt anmelden.
+m_e8d8f98d769d|Entdecke ein\nentspannteres Morgen.
+m_53c03a9fee45|Mehr Freiraum\nfür deine Finanzen.
+m_fe08d685f51c|Ein Ort für Zahlungen und Abonnements. Übernimm die Kontrolle.
+m_e002f77215ca|Sieh Zahlungen im Voraus. Verfolge Abonnements. Schaffe Platz im Kopf.
+m_ff138299a73e|Alles klar auf einen Blick.
+m_f82e21c5a4e0|Zahlungen · Abonnements · Testphasen
+m_c5176ef33f7c|Dein Name
+m_899e435d76b8|Wie dürfen wir dich nennen?
+m_e1081b69d80a|E-Mail
+m_b9c454be10ce|beispiel@mail.de
+m_e1ac97fff826|Passwort
+m_7f510bd4744d|Mindestens 12 Zeichen
+m_d247f5085a6c|Dein Passwort
+m_fea4c6044718|Deine Angaben werden nur an den PayAhead-Server gesendet. Dein Passwort wird auf diesem Gerät nicht gespeichert.
+m_14411176800f|Passwort vergessen
+m_bc5c818f2f46|Konto erstellen
+m_b872b116e8f6|Anmelden
+m_2d479812c86b|Hast du schon ein Konto?\u0020
+m_1056f070e7ea|Neu bei PayAhead?\u0020
+m_aa6bc6b1c20b|Deine Daten, deine Kontrolle.
+m_5785a01da6e0|Kalender
+m_4d83791ea31c|Jede Zahlung hat ihre Geschichte.
+m_50636cefa8dc|Zahlungsverlauf
+m_059b7d11ff43|Zu heute
+m_6d46ddd615db|Mi
+m_58e8caab760d|, heute
+m_5117f9601eb1|{{value0}}{{value1}}{{value2}}
+m_0cf0ee99c1d9|Grün: bezahlt · Grau: übersprungen · Rot: überfällig · Türkis: ausstehend. Nach Auswahl eines Tages wird der Status auch als Text angezeigt.
+m_840a9f0b1c3a|Keine Zahlungen an diesem Tag
+m_f0c374b5f4a5|Wähle einen markierten Tag, um den Zahlungsstatus anzusehen.
+m_0cc914823e8a|Logo von {{value0}}
+m_c3a976e80ce0|Eigener Eintrag
+m_679e5d207fbc|Kategoriesymbol {{value0}}
+m_d51a1547850f| · Im Katalog inaktiv
+m_9cc94140f48b|Unterkategorien
+m_1e52995f1656|Beliebte Dienste
+m_4be65ffd3c4d|Kategorie oder Dienst suchen
+m_62c753f4ee0b|Netflix, Benzin, Auto, Gas…
+m_40c306d33ace|In der Auswahl zurück
+m_74581d3a753b|Abonnementdienst wählen
+m_a1d2f560a2b9|Zahlungsart wählen
+m_ce0be00a3a04|Gewählter Pfad: {{value0}}
+m_9669271ce541|Zu den Hauptkategorien
+m_6b467007b709|Eigenes Abonnement in dieser Kategorie
+m_9ef05e22a5c5|Eigene Zahlung in dieser Kategorie
+m_f08718d380a0|Katalog konnte nicht aktualisiert werden. Falls vorhanden, werden die letzten erfolgreich geladenen Daten gezeigt; deine Einträge bleiben unverändert.
+m_bfccb99faf79|Katalog erneut laden
+m_d8416cf1ef26|Eine Markenauswahl ist kein Kauf. Betrag und Daten legst du fest. Ohne Markenlogo erscheint das Kategoriesymbol.
+m_2c842aaf0967|Keine vorgegebenen Dienste in dieser Unterkategorie. Über einen eigenen Eintrag kannst du einen Dienstnamen eingeben.
+m_174c47177720|Keine Dienste für diese Auswahl. Du kannst einen eigenen Eintrag in der Kategorie hinzufügen.
+m_dc072fb4b5c8|Unterkategorien und Dienste öffnen ›
+m_9b49b29dfd07|Diensteseite {{value0}}/{{value1}}
+m_b3f4caeb18ea|Vorherige Diensteseite
+m_71c803f67c3c|Nächste Diensteseite
+m_caf667e8034a|Eigenes Abonnement · Sonstige
+m_33c3c73b3f07|Eigene Zahlung · Sonstige
+m_c7f4be34c02a|Katalog aktualisieren
+m_be1e5431a411|Auswahl schließen
+m_df43bddffd68|Kategorie und Dienst
+m_1b585966d2ac|Kategorie oder Dienst ändern
+m_5c04ad033072|Kategorie und Dienst wählen
+m_5ad326037b81|Gewählter Dienst: {{value0}}
+m_64527440a4b7|Noch nicht gewählt
+m_ad6823727591| · Eigener Eintrag
+m_df0c13e7b694|Ungültige Katalogantwort. Deine Einträge bleiben erhalten.
+m_720e8781912b|Ein ruhigerer Start
+m_187bc29a9dcf|Diesen Monat keine aktiven Pläne oder Zahlungen. Erstelle einen neuen Plan.
+m_c33b5ecf8b44|Kontozeitzone nicht gefunden; Daten mit UTC berechnet.
+m_fd5e149b0c41|Alle Analysen anzeigen
+m_fc47d3ee96ea|Zahlung hinzufügen
+m_c88d4e2ae324|Diesen Monat bezahlt
+m_26f92ff4efd1|Diesen Monat noch keine bezahlten Beträge.
+m_48cce4a622e0|{{value0}} bezahlt · {{value1}} ausstehend · {{value2}} übersprungen
+m_a918756a64ea|Nächste Zahlung
+m_4a986bd03b55|Keine ausstehenden Zahlungen im angezeigten künftigen Zeitraum.
+m_f550df9dcee0|Diesen Monat überfällig
+m_4a7f5b58233f|Für diesen Monat gibt es keinen überfälligen Zeitraum.
+m_be0bd1466097|{{value0}} überfällige Zahlungen · Vom Monatsanfang bis gestern
+m_28555f323d63|Diesen Monat keine überfälligen Zahlungen.
+m_6747ed989728|Die ersten 3 Einträge werden angezeigt.
+m_978b30c5e213|Anstehende Zahlungen
+m_a7770145884b|{{value0}} – {{value1}} · {{value2}} Einträge
+m_1ffb3a1d64e7|Keine anstehenden Zahlungen in diesem Zeitraum.
+m_fc2cbca9acbe|Benachrichtigungen
+m_3d89a3625605|Morgen einen Schritt voraus.
+m_72ec2727147f|Die Sitzung wurde geändert.
+m_5aff753f517b|Die Benachrichtigungsantwort hat ein unerwartetes Format.
+m_c7f4e5354a2e|Gib eine ganze Tageszahl von 0 bis 365 ein.
+m_812b82ac9973|Höchstens 365 Tage vorher.
+m_5a2a329dd50e|Wähle eine Uhrzeit im Format HH:mm.
+m_c8e8f2254b43|Gib eine gültige IANA-Zeitzone ein.
+m_65717ed18036|Die Geräteregistrierung des vorherigen Kontos konnte nicht entfernt werden. Melde dich dort an, um sie zu entfernen, oder deaktiviere Benachrichtigungen in Android.
+m_7900e641cb36|Die Geräteberechtigung konnte nicht gelesen werden. Prüfe die Systemeinstellungen.
+m_996149c57168|Benachrichtigungen und Erinnerungen
+m_5c778761062b|Deine Berechtigungen, Geräte- und Kontoeinstellungen.
+m_796e7d39b546|Benachrichtigungsberechtigung auf diesem Gerät
+m_49e62454340a|Berechtigung erteilt
+m_9376cf52ba0d|Berechtigung verweigert
+m_95ed0d227581|Berechtigung noch nicht geprüft
+m_e41167a535f4|Erlaube Benachrichtigungen für anstehende Zahlungen und endende Testphasen. Die App bleibt ohne Erlaubnis nutzbar. Berechtigung und Registrierung beweisen keine Zustellung.
+m_1679d0879814|Die Geräteregistrierung wurde für diese Sitzung auf dem Server geprüft.
+m_6122961c79fc|Die Geräteregistrierung wurde für diese Sitzung noch nicht geprüft.
+m_26b8a5c03dfb|Berechtigung prüfen und Gerät verbinden
+m_aba251b45799|System-Benachrichtigungseinstellungen öffnen
+m_e1670ba6707d|Systemeinstellungen konnten nicht geöffnet werden.
+m_4a3cd0d3f2ee|Push auf diesem Gerät trennen
+m_a9a9861c603e|Server-Geräteregistrierung konnte nicht entfernt werden. Benachrichtigungen können fortbestehen; versuche es mit Verbindung erneut oder deaktiviere sie im System.
+m_082675ccc2b8|Berechtigung kann nicht erneut angefordert werden; ändere sie im System.
+m_55352df66012|Bei deinem Konto registrierte Geräte
+m_aa3cf0d408e7|{{value0}} · Gerät {{value1}}
+m_b44948b30289|Serverregistrierung aktiv
+m_dc1ec4a10b02|Serverregistrierung inaktiv
+m_dd339f27d49c|{{value0}} · Zuletzt registriert {{value1}}
+m_14477af7fb8f|Registrierung von Gerät {{value0}} entfernen
+m_39a8d28c1c6b|Abbrechen
+m_b88019aa289e|Entfernen
+m_e9e3db3d1e8f|Keine registrierten Geräte
+m_cc44fa0414a3|Echte Push-Zustellung erfordert einen Development-Build und ein verbundenes Gerät.
+m_8a2d59b0f70d|Dies ist kein Posteingang; das Backend hat keinen Benachrichtigungsverlauf-Endpunkt. Testphasen-Einstellungen findest du beim Bearbeiten des Abos. Eine kontoweite Standard-Erinnerungszeit gibt es nicht; wähle sie pro Zahlungsregel.
+m_decce11aef29|Kontoeinstellungen für Benachrichtigungen
+m_bc3703640ed8|Der Server verwendet UTC; speichere eine gültige Zeitzone.
+m_99fca4be5948|Kontobenachrichtigungen aktiviert
+m_ca7732645140|Kontozeitzone · IANA
+m_29085b405b36|Europe/Istanbul
+m_c958a8d64dde|Standardwährung
+m_dcafb2602a42|Deine Kontosprache bleibt erhalten. Das Deaktivieren löscht weder Pläne noch Erinnerungsregeln, sondern ändert nur die Zustellungsberechtigung. Die Kontozeitzone ist unabhängig von der Geräteuhr.
+m_ebf40e0c6eb4|Einstellungen konnten nicht gespeichert werden.
+m_25353ac12585|Aktuelle Einstellungen laden
+m_78a55771dc4b|Benachrichtigungseinstellungen speichern
+m_bf1fb9b3ea59|Einstellungen auf dem Server gespeichert. Dies bestätigt keine Zustellung.
+m_5c9cc7e3f90d|Nutze einen Android/iOS-Development-Build für Remote-Push.
+m_2b18cfa9c7a0|Expo Go unterstützt diesen Remote-Push-Ablauf nicht. Ein Development-Build ist erforderlich.
+m_bbc97b82622a|Dieser Abnahmetest erfordert ein physisches Gerät.
+m_efbdfa191c3e|EAS projectId ist nicht konfiguriert. Folge der Push-Einrichtungsanleitung.
+m_864d4467fe43|Geräteregistrierung konnte nicht gelesen werden; sichere Neuregistrierung ist nicht möglich.
+m_db632663ff41|Zeitüberschreitung beim Abrufen des Push-Tokens. Versuche es mit Verbindung erneut.
+m_5022903c0ba5|Zahlungs- und Testphasenerinnerungen
+m_2e98da897a50|Remote-Push
+m_99647b43db30|Dieser Abnahmeablauf
+m_91f7ad7393ad|EAS projectId
+m_e3737762b564|Vorheriges Konto
+m_8c2002849317|Geräteregistrierungsdaten
+m_b630524b9490|Sitzung geändert
+m_80397522181a|Push-Token wird abgerufen
+m_71998b7a8647|Geräteregistrierung fehlgeschlagen. Prüfe Verbindung und FCM/EAS-Push-Konfiguration.
+m_4239abd5c0fe|Benachrichtigungslistener konnte nicht starten. Prüfe die Development-Build-Konfiguration.
+m_449704e67047|Benachrichtigungseintrag konnte nicht geöffnet werden
+m_1065fb378e00|Der Eintrag wurde möglicherweise entfernt oder ist für dieses Konto nicht zugänglich.
+m_af7041d035cb|Prüfe deine Verbindung. Öffne den Eintrag der Benachrichtigung erneut über die entsprechende Liste.
+m_ea6119aa5393|Zahlungserinnerungen
+m_3420bbb71219|Kontozeitzone: {{value0}}
+m_68dce5fdd9e4|Uhrzeiten verwenden die Kontozeitzone. Bei Zeitumstellungslücken wählt der Server die erste gültige Minute, bei doppelten Zeiten den späteren UTC-Zeitpunkt. Kalender und UTC-Planung übernimmt der Server.
+m_3771184e8e48|Die Zeitzone ist ungültig; der Server verwendet UTC als Ersatz.
+m_66d73eec21dd|Kontobenachrichtigungen sind aus; das Speichern einer Regel aktiviert den Versand nicht.
+m_8d54e58502d4|Der Plan ist inaktiv; neue Zahlungsbenachrichtigungen werden nicht gesendet.
+m_424dbf42bf81|Benachrichtigungsberechtigungen und Einstellungen
+m_ff4947e183f7|Am Zahlungstag
+m_32cab8a0ff96|{{value0}} Tage vorher
+m_82bd83d6cabb|Regel aktiviert
+m_788c248434f3|Regel deaktiviert
+m_d50fb5cd0e44|{{value0}} · Kein Zustellungsnachweis
+m_86471fc0130e|{{value0}} Tage, {{value1}} bearbeiten
+m_7d21de34f624|{{value0}} Tage, {{value1}} löschen
+m_14842beb581f|Noch keine Zahlungserinnerungen
+m_44331cdb99ad|Erstelle eine Regel für den Zahlungstag oder einen früheren Tag.
+m_439e3be67e95|Erinnerung hinzufügen
+m_77b658b9666c|Testphasen-Regeln sind nicht in dieser Liste; verwalte sie über die Testphasen-Einstellungen des Abos. Der Server wendet dein Mitgliedschaftskontingent auf alle aktiven Regeln an. Vergangene Aufträge werden bis 24 Stunden nachgeholt; die App erzeugt keine eigenen Alarme.
+m_46954ab8fe15|Erinnerung bearbeiten
+m_5bfd5c4fc74c|Neue Erinnerung
+m_e67c2a090f36|Tage vorher · 0–365
+m_70ba032f779d|Erinnerungsregel aktiviert
+m_be3095cc7a25|Limit für aktive Erinnerungen erreicht. Der Server bestimmt Free/Premium-Limits; Testphasen-Regeln können ebenfalls zählen.
+m_5cc017022589|Mitgliedschaftsoptionen entdecken
+m_643f2c5b4ff3|Aktion konnte nicht abgeschlossen werden.
+m_73922fe9b8e9|Aktuelle Erinnerungen laden
+m_a5ef4ea66a75|Änderungen an Erinnerung speichern
+m_0406a6037ff3|Erinnerung speichern
+m_17d89dfee53d|Formular schließen
+m_ffadd8e17995|Eine gespeicherte Regel, Erlaubnis oder ein akzeptiertes Expo-Ticket bedeutet keine Zustellung ans Handy. Prüfe die Zeitzone in den Benachrichtigungseinstellungen.
+m_4e2d3f27bc91|Lokale Erinnerungszeit
+m_bb7ed58f17c4|Lokale Erinnerungszeit · HH:mm
+m_c62d351d4d79|Lokale Erinnerungszeit: {{value0}}
+m_a993d56aacf7|Zeitraumansicht nach geplanten Daten.
+m_4d2f75ead23f|Künftige Plandaten werden nicht angezeigt. Ausstehende Einträge enthalten noch nicht gespeicherte Termine. Sortiert nach geplantem Datum, dann Zahlungsname.
+m_3caac5efb49b|{{value0}} Einträge · Seite {{value1}}/{{value2}}
+m_b231b2e3abdf|Keine Aktivität in diesem Zeitraum
+m_b643b19b02e5|Wähle einen anderen Status oder Monat.
+m_b74566b03eea|Vorherige Seite
+m_4c68362c332e|Nächste Seite
+m_140b6a85ed4f|Vorheriger Monat
+m_bc1d7478bad2|Nächster Monat
+m_25e24627a6ee|Gib einen positiven tatsächlich bezahlten Betrag mit höchstens 4 Nachkommastellen ein.
+m_186683421cb0|Geplantes Datum
+m_291dca1a2d0c|Planbetrag · aktuelle Definition
+m_b49835f3551b|Historische Planbeträge werden nicht als Momentaufnahme gespeichert. Dieser Betrag kann sich bei Planänderungen ändern. Frühere Zahlungen verwenden die aktuelle Planwährung; die historische Währung wird nicht gespeichert.
+m_ec38317781ca|Tatsächlich bezahlt
+m_1fda86a53e46|Zahlungszeitpunkt: {{value0}}
+m_a258e497496d|Zahlungsplan anzeigen
+m_77f23e1b9711|Tatsächlich bezahlter Betrag
+m_fdaf91355c38|Der Server erfasst den Zahlungszeitpunkt bei dieser Aktion in UTC. Die API unterstützt keine vergangenen Zahlungszeitpunkte. Diese Aktion belastet kein Bankkonto.
+m_fac7f884c235|Als bezahlt markieren
+m_c79dbe3338b9|Als übersprungen markieren
+m_c1db7b38a01d|Zurück zu ausstehend
+m_5c1120aa3f2a|Der Verlauf eines inaktiven Plans ist schreibgeschützt.
+m_e41da48c42b3|Zahlungsstatus auf dem Server aktualisiert.
+m_2aeed2ec24bc|Der Eintrag könnte geändert worden sein oder das Ergebnis ist ungewiss. Lade den aktuellen Status vor erneutem Senden.
+m_a1ee8d6f35e4|Aktuellen Status laden
+m_66f71e58bc91|{{value0}}, {{value1}}, {{value2}}
+m_86276a545c73|Geplant: {{value0}}
+m_3a56ed96d493|Zahlungszeitpunkt nicht gefunden
+m_4a7458f9b406|Tatsächlich bezahlt · {{value0}}
+m_b2a75aba2a9a|Dein Passwort wurde zurückgesetzt. Melde dich mit dem neuen Passwort an.
+m_f39a90606360|Die Aktion konnte nicht abgeschlossen werden. Prüfe die Verbindung und versuche es erneut.
+m_48cc793fec26|Dein neues Passwort
+m_907f977177d1|Passwort zurücksetzen
+m_17901d377b68|Ein sicherer Start für dein Konto.
+m_fd3f0daece3c|Mit deiner E-Mail-Adresse fortfahren.
+m_1ab5f8dd3652|Wenn die Adresse registriert ist, wird ein Link zum Zurücksetzen gesendet. Prüfe Posteingang und Spamordner.
+m_bd00063bca49|Wenn nach einigen Minuten nichts ankommt, prüfe die Adresse und fordere einen neuen Link an.
+m_d00c902689a9|E-Mail-Link oder Code
+m_7b15b84ff5be|Wenn sich der Link nicht automatisch öffnet, füge hier den vollständigen E-Mail-Link ein. Er ist einmalig gültig und läuft bald ab.
+m_fefced24bd71|Neues Passwort
+m_df7cb2aa8f92|Neues Passwort bestätigen
+m_24c83f2c27f8|Passwort zurücksetzen
+m_d3ca60d80048|Link zum Zurücksetzen anfordern
+m_c7e7daf09eac|Ich habe einen Link, neues Passwort festlegen
+m_5064114b875a|Neuen Link anfordern
+m_9ff2fd4e9f6d|Zurück zur Anmeldung
+m_368f3e476b9e|Ungültiger Betrag.
+m_f5e0975c723a|Die Serverantwort hat ein unerwartetes Format. Versuche es später erneut.
+m_1dee1d8d2aaf|Gib den tatsächlich bezahlten Betrag ein.
+m_9b81103a9b48|Prüfe die Verbindung und versuche es erneut.
+m_687f69a3496a|Etwas mehr Platz für deine Pläne
+m_287ade462d7f|Limit aktiver Zahlungspläne erreicht. Deaktiviere einen vorhandenen Plan oder entdecke Premium.
+m_875c469eccea|Premium entdecken
+m_0d3206e39f9e|Details von {{value0}} öffnen
+m_82413ba35131|{{value0}} · Alle {{value1}} Perioden
+m_b31385e605a6|Aktiver Plan
+m_aff1d602e8dd|Inaktiver Plan
+m_97b31ba37783|Plandatum wird geladen…
+m_5c0fc0b491b9|Kein neues Plandatum
+m_d19d95f2f5f1|anstehend
+m_3dfd364d95c2|{{value0}}, Zahlung {{value1}}
+m_60c98fa1f6ed|DIESER MONAT · ANSTEHENDE ZAHLUNGEN
+m_e12baefecd33|Keine anstehenden Beträge.
+m_887b8091622e|{{value0}} anstehend · {{value1}} aktive Pläne
+m_7d5afa5c041e|Von heute bis Monatsende. Währungen werden getrennt angezeigt.
+m_cd613d82a1a6|Kategorie
+m_5da57b457b37|Wiederholung
+m_72373d3f7768|Erste Zahlung
+m_b649bea15b42|Ende
+m_774dac727b5c|Wiederholungstag
+m_4ac8ab998cc8|Starttag
+m_01e23f52e395|Geplant
+m_cacd6a7dd4d4|Kontodatum nicht verfügbar
+m_1b8b6498c5f1|Kein neues Datum
+m_c7efa547ceea|Das geplante Datum folgt dem Wiederholungskalender; bezahlt/übersprungen ist nicht enthalten.
+m_d382a5a56146|Zahlungserinnerungen verwalten
+m_432ffe87483d|Dieser verknüpfte Plan wird über den Abo-Tracking-Eintrag verwaltet. Kehre für Änderungen zu den Abo-Details zurück.
+m_41bb7b55f9b1|Plan deaktivieren
+m_5d59500b0808|Deaktivieren
+m_8546b2337a9a|Plan löschen
+m_aafd5445c85f|{{value0}} wird endgültig gelöscht. Der Server kann dies bei vorhandenem Verlauf, Erinnerungen oder verknüpftem Abo ablehnen.
+m_7c017ff51519|Aktion konnte nicht abgeschlossen werden. Prüfe den aktuellen Eintrag.
+m_40e816c987a2|Aktuellen Eintrag laden
+m_7e31f8204d5e|Neue Zahlung
+m_05fbb278ab68|Wähle eine Kategorie. Wenn der Dienst nicht im Katalog ist, erstelle eine eigene Zahlung.
+m_50cea4c0f664|Mach Platz für die kommenden Tage.
+m_e4d8d83eef36|{{value0}} · {{value1}}/{{value2}} aktive Pläne
+m_51929427e17d|Mitgliedschaftslimits nicht verfügbar. Der Server prüft sie beim Speichern.
+m_2b98db0ebe2f|Zum Beispiel Werkstatt in der Nachbarschaft
+m_d13255fd6d45|Wiederholen
+m_c2cc4ed0e0de|Datum der ersten Zahlung
+m_edd225f78b1c|Enddatum · optional
+m_f3c0ae536e6c|Verwendet den Starttag
+m_9c6457504337|Die erste Zahlung ist immer am Startdatum. Fehlt der gewählte Tag später im Monat, gilt der letzte Tag: 31. Januar wird 28./29. Februar; der jährliche 29. Februar wird bei Bedarf 28. Februar.
+m_12bb0cfdd296|Ein inaktiver Plan erzeugt keine neuen ausstehenden Termine.
+m_df44192b41ac|Aktion konnte nicht abgeschlossen werden. Prüfe vor erneutem Versuch, ob der Eintrag erstellt wurde.
+m_97aa3193e40c|Die neuere Version wurde nicht überschrieben. Das Laden des aktuellen Eintrags entfernt Formularänderungen. Mit Abos verknüpfte Pläne sind hier möglicherweise nicht bearbeitbar.
+m_e7bbbd13fda6|Ergebnis konnte nicht bestätigt werden. Prüfe deine Pläne vor erneutem Senden; der Server könnte bereits gespeichert haben.
+m_42a396b3c3dd|Meine Pläne prüfen
+m_c6e47849be91|Geprüft, erneut senden
+m_f63044f8dff1|Änderungen speichern
+m_6c7d3be05e89|Zahlungsplan erstellen
+m_9a4f23eb644c|Erstellt einen Plan; belastet kein Bankkonto.
+m_51403c693698|Gib einen Zahlungsnamen ein.
+m_9cce51c167cb|Höchstens 150 Zeichen.
+m_b2a241f9b3d3|Höchstens 2000 Zeichen.
+m_d99126b70aa4|Gib einen positiven Betrag mit höchstens 15 Vorkomma- und 4 Nachkommastellen ein. Punkt oder Komma als Dezimaltrennzeichen, keine Tausendertrennzeichen.
+m_ceafeb1d890f|Wähle eine gültige ISO-4217-Währung.
+m_0406076bbb52|Gib eine Kategorie ein.
+m_2b89bd250950|Höchstens 50 Zeichen.
+m_9e4a7f1d9944|Gib eine positive ganze Zahl ein.
+m_bbd78b58d296|Das Intervall muss zwischen 1 und 2147483647 liegen.
+m_d8a8544c7998|Gib ein gültiges Datum im Format YYYY-MM-DD ein.
+m_525f19e832a6|Das Enddatum darf nicht vor dem Startdatum liegen.
+m_a9dc55ee7ab6|Der Tag muss zwischen 1 und 31 liegen.
+m_e34221564fe3|Einmalig
+m_301ef766a15b|Täglich
+m_abc3e615d675|Wöchentlich
+m_e055e06d7581|Monatlich
+m_9f2134dbbdd8|Jährlich
+m_00fda1a8f061|Jeder Plan an seinem Platz.
+m_ab071c7811fb|Zahlungen suchen
+m_f3bb1ae02837|Nach Zahlungsname suchen
+m_849ff7f27107|Filteroptionen
+m_5991df187aaf|Währungsfilter
+m_1062dae67545|Leer lassen oder TRY / USD / EUR eingeben
+m_19c537a16cf8|Kategoriefilter
+m_bd072c271289|Exakte Kategorieübereinstimmung
+m_362c4c8a211f|Filter anwenden
+m_7c98416792c1|Gib einen gültigen ISO-4217-Code ein.
+m_28dc74dcd54b|Zusätzliche Filter löschen
+m_f43a65ad8268|Alle
+m_71605e3019a3|Neueste zuerst · Suche und Filter werden auf dem Server angewendet.
+m_16c74bf5cc6f|Alle Währungen
+m_22ae0cc71dfc|Alle Kategorien
+m_3be6008529d7|{{value0}} Pläne · Seite {{value1}}/{{value2}}
+m_5a0a2ac2ea70|Das Kontodatum fehlt; Plandaten können nicht angezeigt werden.
+m_d6b86f56f585|Das geplante Datum wird aus der Wiederholung berechnet; bezahlt/übersprungen ist nicht enthalten.
+m_f1d48e85474e|Zurück
+m_ffe6922f5329|Weiter
+m_8522d5a985f5|Keine weiteren Pläne auf dieser Seite
+m_1176f5007df5|Keine Pläne passen zu diesen Filtern
+m_6709724982cc|Platz für deinen ersten Plan
+m_8bbeb6b2e32b|Füge Zahlungen hinzu, um Beträge und Wiederholungskalender hier zu sehen.
+m_1a8415416e0e|Internetrechnung
+m_a81cab46eebf|Wohnen und Leben
+m_cde9b289b121|Studio Music
+m_ad57a5c86aa1|Monatliches Abo
+m_8ea3b2614264|Wohnungsmiete
+m_782916f8f2c5|Cloud Space
+m_80f230efe8c4|Cloud-Speicher
+m_654c3d5d92af|Stromrechnung
+m_fd914780f3f4|Sprachworkshop
+m_41d28f6e4e7b|Persönliche Entwicklung
+m_8471ab6843ff|Buchclub
+m_c1579f388f19|Musik und Unterhaltung
+m_1f748b0ca081|Focus Pro
+m_9dd69ea580be|Produktivität
+m_80ad54ad05fa|Einstellungen
+m_64bd1224db11|Deine Ordnung, deine Einstellungen.
+m_a20eda1e3a04|Dein Konto
+m_121128a3449b|Profil wird geladen…
+m_1c56ac8f2dc6|Konto
+m_69022fb48e27|Profil konnte nicht geladen werden. Versuche es erneut.
+m_e1b0af0c144d|Darstellung
+m_7c08e78575d6|App-Design
+m_bbb1132f30f1|Hell
+m_366fcd93889e|Einstellungen
+m_be761e877712|Benachrichtigungsberechtigungen und Kontoeinstellungen
+m_a13a55a714f1|Kontoinformationen
+m_9b7337a7225a|Profil ist noch nicht geladen.
+m_6f71eadb6aaa|Sicherheit und Datenschutz
+m_d5fb076f2548|Deine Sitzung wird im sicheren Gerätespeicher aufbewahrt. Dein Passwort wird nicht gespeichert. Zahlungspläne und Monatsübersichten werden vom PayAhead-Server abgerufen.
+m_21858317874a|Noch einen Schritt voraus.
+m_f43b35270139|PayAhead Premium entdecken
+m_69fbb458f5f0|Abmeldung läuft…
+m_ea5b69c1ad74|Abmelden
+m_f7b305154a1e|PayAhead · Alles rechtzeitig.
+m_8cb49b7388e8|Gib einen gültigen Abobetrag ein.
+m_4fcd73a757cc|Die Aboantwort hat ein unerwartetes Format. Versuche es später erneut.
+m_a75abe66fec2|Kostenlose Testphase
+m_dbd417da03e1|Gekündigt
+m_87e91c19c039|Abgelaufen
+m_eeee62ca562d|Testphasen-Tracking wurde beendet.
+m_4045e1f2fa19|Die Testphase ist beendet.
+m_39ece7b68bec|Die Testphase beginnt am {{value0}}.
+m_0499b314e350|Letzter Tag der Testphase
+m_c3f52697e59c|{{value0}} Tage bis zum Ende der Testphase
+m_22641ad761bf|Kein Zugangsende angegeben.
+m_af985fbab912|Zugang beendet · {{value0}}
+m_c8c32fd44bb1|bleibt bestehen
+m_7b6ad902719e|endet
+m_a2b74b09a1e6|Zugang {{value1}} bis einschließlich {{value0}}.
+m_96a9ac11297f|{{value0}}, {{value1}}, Details
+m_f85cb0113896|{{value0}} · {{value1}} / {{value2}} Perioden
+m_cd0d38999b7e|Eigenes Abo
+m_90e3db49d29e|Nächster kostenpflichtiger Termin: {{value0}}
+m_dc2c56f19435|Kein neuer kostenpflichtiger Termin
+m_59bb6eb356f4|GESCHÄTZTER MONATSBETRAG
+m_d96738411504|{{value0}} / Monat
+m_4ecad399a85a|Keine Kostenschätzung in diesem Bereich.
+m_f5fdcac75a16|{{value0}} aktiv · {{value1}} Testphase · {{value2}} gekündigt · {{value3}} abgelaufen
+m_1a6296fdf554|Schätzung für automatisch verlängernde aktive Abos und Testphasen, keine exakten Monatsausgaben. Monatlich: Betrag/Intervall; jährlich: Betrag/(12×Intervall); wöchentlich: Betrag×52/(12×Intervall); täglich: Betrag×365/(12×Intervall). Währungen bleiben getrennt; Gruppensummen werden auf 4 Nachkommastellen gerundet.
+m_31a31e2fdfe1|Limit aktiver Einträge erreicht
+m_99e46aeb1075|Abo-Tracking und verknüpfte aktive Zahlungspläne haben getrennte Limits. Prüfe vorhandene Einträge oder Mitgliedschaftsoptionen.
+m_21319cec854e|Der Eintrag könnte geändert worden sein oder das Ergebnis ist ungewiss. Prüfe aktuelle Einträge vor erneutem Senden.
+m_0426bc127d33|Deine Abos
+m_5a685ba46d97|Aboübersicht wird geladen…
+m_b3012876af05|{{value0}} aktiv · {{value1}} Testphase
+m_e6a9d0c56b98|Abozahlungen sind bereits über verknüpfte Pläne in der Finanzübersicht enthalten.
+m_37e4b6a7987d|Kein Datum
+m_b8691c27fa4c|Nächste Verlängerung: {{value0}} · {{value1}}
+m_b88a01eb7582|{{value0}} bald endende Testphasen
+m_b51cb4cab2c8|Letzter Tag
+m_008749f47ce5|Noch {{value0}} Tage
+m_5a89e7b9050a|Erste kostenpflichtige Zahlung: {{value0}}
+m_cdcb6a19c6d2|Abrechnung
+m_39b03995fcce|Abobeginn
+m_c1c27516789b|Erste kostenpflichtige Zahlung
+m_8c74b392a2f7|Nächste kostenpflichtige Zahlung
+m_38432ff279cf|Beginn der Testphase
+m_ca1dff322c77|Ende der Testphase
+m_c9f213296e2e|Tracking automatischer Verlängerung
+m_39ce8f387818|Aus
+m_ad24d7cfe429|Zugangsende
+m_0a95b6578caa|Zeitpunkt der Tracking-Kündigung
+m_623fc8183b37| · UTC-Ersatz verwendet
+m_5e19d63b6120|Kontodatum: {{value0}} · {{value1}}{{value2}}
+m_e6ecb5aacb90|Verknüpften Zahlungsplan anzeigen
+m_a28ea32a92a3|Zahlungserinnerungen des verknüpften Plans
+m_a139ddfe6c16|Einstellung an
+m_d38040e92e84|Einstellung aus
+m_d0ae165f2ea1|Testphasenerinnerungen: {{value0}}
+m_120955beb4d9|Der Server erstellt Testphasen-Regeln um 09:00 Uhr der Kontozeitzone gemäß Mitgliedschaftskontingent: 1 Tag für Free; 1/3/7 Tage und letzter Tag im zulässigen Premium-Kontingent. Eigene Tage/Uhrzeiten sind nicht unterstützt. Ändere die Einstellung im Abo; der Server prüft Kündigung/Ablauf. Eine Einstellung beweist keine Zustellung.
+m_af18c85b8d43|Der verknüpfte Zahlungsplan ist die einzige Finanzquelle; kein zweiter Abobetrag wird zu Kalender oder Analysen addiert.
+m_8810c95e97ad|Abo bearbeiten
+m_9c855e9dea46|Kündigung und Zugang
+m_8c19506de966|Das Beenden des Trackings in PayAhead kündigt das externe Abo nicht. Kündige gesondert beim Anbieter. Gib unten das tatsächliche Zugangsende an.
+m_09ac97477bbd|Letzter Zugangstag nach Kündigung
+m_2487cd5b4552|Tracking-Eintrag kündigen
+m_307f11592d33|Dies kündigt nicht beim externen Anbieter. PayAhead-Verlängerungen enden; Zugang gilt als bis einschließlich {{value0}} bestehend.
+m_2c5a5df10ac9|Tracking kündigen
+m_dc2fe2ce17ea|Ein gekündigter oder abgelaufener Eintrag kann nicht reaktiviert werden. Erstelle bei Bedarf einen neuen Tracking-Eintrag.
+m_a73ff22c9a90|Tracking-Eintrag entfernen
+m_5230f2b7aaa9|Aktion läuft…
+m_e8acb1ee980d|Tracking wurde gekündigt. Du musst zusätzlich beim externen Anbieter handeln.
+m_6c57e9a1d5bc|Abo
+m_9db9e4ffd519|Ein gekündigter oder abgelaufener Tracking-Eintrag ist nicht bearbeitbar.
+m_2ba638fe6b81|Wähle eine Kategorie. Wenn der Dienst nicht im Katalog ist, erstelle ein eigenes Abo.
+m_3d84aa9bcade|Neues Abo
+m_43b35e8a5c47|Wiederkehrende Ausgaben klar im Blick.
+m_ad10ab3a2d2a|{{value0}} · {{value1}}/{{value2}} aktiv/Testphase · {{value3}}/{{value4}} aktive Zahlungspläne
+m_18527dae8cdd|Der Server prüft die Mitgliedschaftslimits beim Speichern.
+m_bbc1a8b9becc|Abrechnungshäufigkeit
+m_2140719bfbc7|Datum der ersten kostenpflichtigen Zahlung
+m_2ac439186d4f|Der Server berechnet den nächsten kostenpflichtigen Termin. Der erste Zahlungstag ist nicht das Ende der Testphase.
+m_7754aee3cc38|Fehlt der Tag im Monat, gilt der letzte Tag. Die erste kostenpflichtige Zahlung ist der erste Termin; spätere Monate folgen dem gewählten Tag.
+m_0d95451acf39|Aktives Abo
+m_046f79b76c42|Testphasendaten entfernen
+m_6ace31f2854a|Testphasenerinnerungen aktivieren
+m_075e106597b7|Dies speichert eine Erinnerungseinstellung; es bedeutet nicht, dass eine Benachrichtigung gesendet oder zugestellt wurde. Mitgliedschaftslimits und Server bestimmen verfügbare Regeln.
+m_6b853275a321|Zugangsende · optional
+m_e510182bc9ac|Kein Zugangsende angegeben
+m_cdaea12e4154|Aboänderungen speichern
+m_9a75e128810d|Abo erstellen
+m_cfcd181c31ea|Ein Tracking-Eintrag und ein verknüpfter Zahlungsplan werden gemeinsam erstellt. Beim externen Anbieter erfolgt weder Kauf noch Abbuchung.
+m_65aedc4c30ef|Bevor deine Testphase endet
+m_92aab347c863|Bereit für den ersten kostenpflichtigen Tag.
+m_1387bc38b3ee|Innerhalb von {{value0}} Tagen{{value1}}
+m_49eae7447e75|Einträge mit begonnener und noch aktiver Testphase in der Server-Kontozeitzone. Der Endtag ist enthalten; gekündigte und abgelaufene Einträge sind ausgeschlossen.
+m_9154c18c668d|Testphasenende: {{value0}}
+m_322ce9e70bfc|Erste kostenpflichtige Zahlung: {{value0}}
+m_e88a0897c5ca|Details von {{value0}} anzeigen
+m_ba04e88c13f0|Seite {{value0}}/{{value1}}
+m_b52d1a229ccf|Vorherige Testphasen-Seite
+m_4bd9f29d4bbd|Nächste Testphasen-Seite
+m_0a83a3c1d4cf|Keine endenden Testphasen in diesem Zeitraum
+m_615e317726c3|Wähle einen anderen Zeitraum oder prüfe deine Aboliste.
+m_8790a538a1c4|Wähle ein gültiges Datum.
+m_53fb989d42a5|Gib einen Abonamen ein.
+m_f2b4cfecfac2|Gib einen Anbieternamen ein.
+m_652316e16657|Gib einen positiven Betrag mit höchstens 15 Vorkomma- und 4 Nachkommastellen ein.
+m_3603d7f2ee2f|Gib eine positive ganze Zahl ein.
+m_0b006dd3e844|Das Intervall muss zwischen 1 und 2147483647 liegen.
+m_579d1caa7d8c|Die erste kostenpflichtige Zahlung darf nicht vor dem Startdatum liegen.
+m_30f875728cf9|Wähle Beginn und Ende der Testphase.
+m_bf89ccd17e64|Die Testphase darf nicht vor dem Abobeginn starten.
+m_c3e70fe9969f|Das Testphasenende darf nicht vor deren Beginn liegen.
+m_5b7d76f73e12|Die erste kostenpflichtige Zahlung muss nach dem Testphasenende liegen.
+m_41165b001f79|Der Tag muss zwischen 1 und 31 liegen.
+m_d4aa12f6efd2|Ein aktives Abo ohne automatische Verlängerung benötigt ein Zugangsende.
+m_d649c199ee3b|Zugang darf nicht vor dem Beginn oder bei automatischer Verlängerung vor der ersten kostenpflichtigen Zahlung enden.
+m_305a7abea88b|Abos
+m_056559cd4769|Kleine Beträge, mehr Klarheit.
+m_3bb51670d4e2|Abo hinzufügen
+m_1b794efacab7| · UTC-Ersatz
+m_02222f976398|{{value0}} · {{value1}}/{{value2}} Limit aktiv/Testphase
+m_1e1adc209eed|NÄCHSTE KOSTENPFLICHTIGE VERLÄNGERUNG
+m_fbafe9fc3173|Deine Tracking-Einträge
+m_108e1b550628|Abo oder Anbieter suchen
+m_7060d276702b|Abo-Währungsfilter
+m_ff166f34034b|Für alle leer lassen
+m_d789bd722598|Abofilter anwenden
+m_4fa460adaf28|Serverreihenfolge: zuletzt erstellt zuerst. Die Übersicht umfasst alle Tracking-Einträge unabhängig von Listenfiltern.
+m_f334350d4252|{{value0}} Abos · Seite {{value1}}/{{value2}}
+m_2aa78fcdc0ca|Hier gibt es noch keine Abos
+m_a0256836986f|Ändere die Filter oder füge ein Abo zum Tracken hinzu.
+m_028ac77e95d4|Vorherige Aboseite
+m_887c317bfdb9|Nächste Aboseite
+m_b7ac953bddf5|Aktion konnte nicht abgeschlossen werden. Versuche es erneut.
+m_97fef89efdf8|Verbindungszeit überschritten. Versuche es erneut.
+m_148edfcba033|Server nicht erreichbar. Prüfe Internetverbindung und API-Adresse.
+m_64872a0e18b3|Passwortzurücksetzung derzeit nicht verfügbar. Versuche es später erneut.
+m_96d8c326f702|Link ungültig, bereits verwendet oder abgelaufen. Fordere einen neuen an.
+m_0d2b1db5ac23|E-Mail oder Passwort falsch, oder Sitzung nicht mehr gültig.
+m_99a158d3b327|Limit aktiver Einträge erreicht. Deaktiviere vorhandene Pläne oder entdecke Premium.
+m_a25c909874f9|Du darfst diese Aktion nicht ausführen.
+m_cfec70e3a8bc|Eintrag nicht gefunden oder nicht mehr zugänglich.
+m_4caef90dffc6|Mit dieser E-Mail kann kein Konto erstellt werden.
+m_73614d4af236|Eintrag geändert. Lade die aktuellen Daten und versuche es erneut.
+m_bef85276f101|Zu viele Versuche. Warte kurz und versuche es erneut.
+m_79cea1288206|Server derzeit nicht verfügbar. Versuche es später erneut.
+m_2d8988bb1fc4|Anfrage konnte nicht abgeschlossen werden.
+m_9c1deb6987ec|API-Adresse ist nicht konfiguriert.
+m_5f4b398cc5b6|Nutze eine gültige API-Adresse; Produktion erfordert HTTPS.
+m_43a1354bdee5|Die API-Anfrage liegt außerhalb der erlaubten Adresse.
+m_1e6636df44e1|Deine Sitzung ist nicht mehr gültig. Melde dich erneut an.
+m_d1d749ecce55|Die Sitzung wurde erneuert. Diese Aktion wurde nicht automatisch wiederholt; prüfe den aktuellen Eintrag und versuche es erneut.
+m_0e15daef0882|Dein Konto ist nicht mehr verfügbar. Melde dich erneut an.
+m_632f0add5824|Gib deine gültige E-Mail-Adresse ein.
+m_d3cd4aca0609|Gib einen gültigen Link oder Code ein.
+m_782480e8798a|Passwörter müssen übereinstimmen.
+m_33355201acda|Melde dich erneut an.
+m_39f6162d8263|Deine Sitzung ist abgelaufen. Melde dich erneut an.
+m_f3df8a754f4c|Gerätesitzung konnte nicht gelöscht werden. Versuche vor dem Schließen erneut, dich abzumelden.
+m_5e33f996840e|Auf diesem Gerät abgemeldet.
+m_94963f065d53|{{value0}} Die Server-Geräteregistrierung konnte nicht entfernt werden. Benachrichtigungen können fortbestehen. Deaktiviere sie in Android oder melde dich im selben Konto an und entferne die Registrierung.
+m_8218c437b97c|Der Server hat keine gültige Sitzung geliefert.
+m_5a2b7cd2f617|Anmeldung läuft.
+m_de17ccfcb3a8|Die Sitzung konnte nicht bestätigt werden. Prüfe die Verbindung und melde dich erneut an.
+m_b8dd5f6d646f|Keine Sitzung gefunden.
+m_c88aa79e449a|Die Sitzung wurde beendet.
+m_95a5cb5fa1fc|Abgemeldet.
+m_0c4b3d96c974|Auf diesem Gerät abgemeldet; Serverwiderruf konnte nicht bestätigt werden. Ohne Internet kann die Serversitzung bis zum Ablauf gültig bleiben.
+m_50fbcc5ae0d0|Nutze die Android- oder iOS-App für eine dauerhafte sichere Sitzung.
+m_cd1e0724e02a|Guten Morgen
+m_badc3e7e2b20|Guten Tag
+m_7df387187c77|Guten Abend
+m_abbbdafe41fa|Informationen
+m_d5f884547452|Aktiv
+m_9025b4af025a|Ausstehend
+m_4c5c101be403|Mo
+m_59cc0fc7e93e|Di
+m_89ac4dc9eddf|Do
+m_5f9967713ae0|Fr
+m_36986d15c759|Sa
+m_3b4ca471d9af|So
+m_bffd1dfbfbed|Überfällig
+m_b3202c47f786|Dienst
+m_e9371667baa4|Kategorien
+m_2ce0a7da99c6|Dienste
+m_aa6a83bfcde1|Pläne
+m_f698e9b40f9f|Löschen
+m_8fd6cbabf5c7|Nicht angegeben
+m_c15a0321c925|Betrag
+m_edd812578cbb|Inaktiv
+m_b24a36089466|Dunkel
+m_1c466db79243|System
+common:cancel|Abbrechen
+common:selected|Ausgewählt
+settings:languageTitle|App-Sprache
+settings:languageSearch|Sprachen suchen
+settings:languageFlagNote|Orientiere dich am Sprachnamen. Flaggen stehen für Länder; einige Sprachen verwenden ein Weltsymbol. Português (Brasil) bedeutet brasilianisches Portugiesisch.
+settings:languageStorageFailed|Die Sprache wurde für diese Sitzung geändert, aber nicht auf dem Gerät gespeichert. Wähle sie erneut für dauerhafte Speicherung.
+settings:languagePending|Deine manuelle Auswahl hat auf diesem Gerät Vorrang. Die Kontosynchronisierung wird bei Verbindung erneut versucht.
+settings:languageNotFound|Keine Sprache passt zu deiner Suche.
+settings:rtlRestartTitle|Layoutrichtung neu laden
+settings:rtlRestartBody|Text und App-Layout wurden sofort aktualisiert. Einige native Steuerelemente benötigen ein erneutes Öffnen. Speichere zuerst ungesicherte Formulare. Expo Go kann native RTL-Einstellungen zurücksetzen; vollständige Abnahme erfordert einen Development-Build.
+settings:restart|Jetzt neu starten
+validation:invalidValue|Prüfe dieses Feld und gib einen gültigen Wert ein.
+common:amountInputHint|Nutze Dezimalpunkt oder Komma ohne Tausendertrennzeichen. Ein Sprachwechsel ändert weder Betrag noch Währung.
+common:paymentCount_one|{{count}} Zahlung
+common:paymentCount_other|{{count}} Zahlungen
+catalog:serviceTemplate.genel-servis|Allgemeine Werkstatt
+catalog:serviceTemplate.ozel-tamirci|Freie Werkstatt
+catalog:serviceTemplate.lastikci|Reifenservice
+catalog:serviceTemplate.otopark|Parkplatz
+catalog:serviceTemplate.oto-yikama|Autowäsche
+catalog:serviceTemplate.elektrik-faturasi|Stromrechnung
+catalog:serviceTemplate.su-faturasi|Wasserrechnung
+catalog:serviceTemplate.dogalgaz-faturasi|Gasrechnung
+catalog:serviceTemplate.internet-faturasi|Internetrechnung
+catalog:serviceTemplate.telefon-faturasi|Telefonrechnung
+catalog:serviceTemplate.kira|Miete
+catalog:serviceTemplate.aidat|Hausgeld
+catalog:serviceTemplate.konut-sigortasi|Wohngebäudeversicherung
+catalog:serviceTemplate.ev-bakimi|Hausinstandhaltung
+catalog:serviceTemplate.kredi-karti-odemesi|Kreditkartenzahlung
+catalog:serviceTemplate.ihtiyac-kredisi|Privatkredit
+catalog:serviceTemplate.konut-kredisi|Immobilienkredit
+catalog:serviceTemplate.tasit-kredisi|Autokredit
+catalog:serviceTemplate.banka-ucreti|Bankgebühr
+catalog:serviceTemplate.okul-ucreti|Schulgeld
+catalog:serviceTemplate.kurs|Kurs
+catalog:serviceTemplate.ozel-ders|Nachhilfe
+catalog:serviceTemplate.ozel-saglik-sigortasi|Private Krankenversicherung
+catalog:serviceTemplate.muayene|Arztbesuch
+catalog:serviceTemplate.ilac|Medikamente
+catalog:serviceTemplate.vergi-odemesi|Steuerzahlung
+catalog:serviceTemplate.harc|Verwaltungsgebühr
+catalog:serviceTemplate.resmi-ucret|Amtliche Gebühr
+catalog:serviceTemplate.spor-salonu|Fitnessstudio
+catalog:serviceTemplate.kuafor|Friseur
+catalog:serviceTemplate.kisisel-bakim|Körperpflege
+catalog:serviceTemplate.trafik-sigortasi|Kfz-Haftpflichtversicherung
+catalog:serviceTemplate.kasko|Kfz-Kaskoversicherung
+m_3ec33746857c_one|{{value0}} Testtag
+m_a24915d688f1_one|{{value0}} Tag kostenlos
+m_3120cb691453_one|{{value0}} Zahlung · {{value1}}
+m_6d38d0719d06_one|{{value0}} Termin
+m_be0bd1466097_one|{{value0}} überfällige Zahlung · Vom Monatsanfang bis gestern
+m_32cab8a0ff96_one|{{value0}} Tag vorher
+m_c3f52697e59c_one|{{value0}} Tag bis zum Ende der Testphase
+m_b88a01eb7582_one|{{value0}} bald endende Testphase
+m_008749f47ce5_one|Noch {{value0}} Tag
+m_3be6008529d7_one|{{value0}} Plan · Seite {{value1}}/{{value2}}
+m_f334350d4252_one|{{value0}} Abo · Seite {{value1}}/{{value2}}
+m_3ec33746857c_other|{{value0}} Tage Testphase
+m_a24915d688f1_other|{{value0}} Tage kostenlos
+m_3120cb691453_other|{{value0}} Zahlungen · {{value1}}
+m_6d38d0719d06_other|{{value0}} Wiederholungen
+m_be0bd1466097_other|{{value0}} überfällige Zahlungen · Vom Monatsanfang bis gestern
+m_32cab8a0ff96_other|{{value0}} Tage vorher
+m_c3f52697e59c_other|{{value0}} Tage bis zum Ende der Testphase
+m_b88a01eb7582_other|{{value0}} bald endende Testphasen
+m_008749f47ce5_other|Noch {{value0}} Tage
+m_3be6008529d7_other|{{value0}} Pläne · Seite {{value1}}/{{value2}}
+m_f334350d4252_other|{{value0}} Abos · Seite {{value1}}/{{value2}}
+m_dc1356403d5c|Zur Startseite
+m_32818902a3d4|Geräteregistrierung entfernen?
+m_3608ae3ad221|Neue Sendungen für diese Registrierung werden gestoppt. Bereits vom Anbieter akzeptierte Push-Nachrichten können nicht zurückgerufen werden. Nutze für dieses Telefon oben die Schaltfläche zum Trennen.
+m_dc2b092891f8|Erinnerung löschen?
+m_635302bd313c|Noch nicht gesendete Aufträge dieser Regel werden storniert.
+m_f4ba3168e4d4|Plan deaktivieren?
+m_d9a435bdbef5|Keine neuen ausstehenden Termine werden erzeugt. Der bestehende Zahlungsverlauf bleibt erhalten.
+m_9c62bf8ff200|Zahlungsplan löschen?
+m_78b46a64eb5e|Zahlungsname
+m_0c9e12052e29|Währung · ISO 4217
+m_dfdb7b4f231e|Wiederholungsintervall
+m_62cae61c31f3|Wiederholungstag · optional
+m_9f4ce70fe7c2|Beschreibung · optional
+m_74fddbd51925|Tracking-Eintrag kündigen?
+m_5c0481ebe4d9|Tracking-Eintrag entfernen?
+m_d3579181350f|Das Abo wird in der Liste verborgen und der verknüpfte Plan deaktiviert. Der Zahlungsverlauf bleibt erhalten; beim externen Anbieter wird nicht gekündigt.
+m_a45e9436a4ba|Aboname
+m_93f01c808be2|Anbietername
+m_da20470ab885|Abobetrag
+m_5ff71b7378f6|Abrechnungsintervall

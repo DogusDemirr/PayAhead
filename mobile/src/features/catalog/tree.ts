@@ -1,4 +1,6 @@
 import { normalizeCatalogSearch, type CatalogCategory, type CatalogMode } from './contracts';
+import { currentLanguage } from '../../i18n/runtime';
+export function categoryName(category: Pick<CatalogCategory, 'displayName' | 'nameTr' | 'nameEn'>) { return category.displayName ?? (currentLanguage() === 'tr' ? category.nameTr : category.nameEn); }
 
 export function categoryPath(categories: CatalogCategory[], id?: string): CatalogCategory[] {
   const path: CatalogCategory[] = []; const seen = new Set<string>(); let current = categories.find(c => c.id === id);
@@ -10,6 +12,6 @@ export function accessibleCategories(categories: CatalogCategory[], mode: Catalo
 }
 export function visibleCategories(categories: CatalogCategory[], mode: CatalogMode, currentId?: string, search = '') {
   const q = normalizeCatalogSearch(search); const rows = accessibleCategories(categories, mode);
-  return rows.filter(c => q ? normalizeCatalogSearch(categoryPath(categories, c.id).map(p => `${p.nameTr} ${p.nameEn} ${p.code}`).join(' ')).includes(q)
+  return rows.filter(c => q ? normalizeCatalogSearch(categoryPath(categories, c.id).map(p => `${p.displayName ?? ''} ${p.nameTr} ${p.nameEn} ${p.code}`).join(' ')).includes(q)
     : currentId ? c.parentId === currentId : !c.parentId || categories.some(parent => parent.id === c.parentId && parent.code === 'digital'));
 }

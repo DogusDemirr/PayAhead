@@ -17,11 +17,15 @@ public abstract class CatalogReferenceRequest
 }
 public sealed record CatalogCategoryResponse(Guid Id, Guid? ParentId, string Code, string NameTr, string NameEn, string IconKey, int SortOrder, bool IsActive, CatalogApplicability ApplicableTo)
 {
+    public string DisplayName { get; init; } = NameEn;
+    public string CultureCode { get; init; } = "en";
+    public bool UsedLanguageFallback { get; init; }
     public static CatalogCategoryResponse From(CatalogCategory c) => new(c.Id, c.ParentId, c.Code, c.NameTr, c.NameEn, c.IconKey, c.SortOrder, c.IsActive, c.ApplicableTo);
 }
 public sealed record CatalogServiceResponse(Guid Id, string Code, string DisplayName, Guid CategoryId, IReadOnlyList<Guid> CategoryIds, string? LogoKey, string SearchKeywords, int SortOrder, bool IsPopular, bool IsActive, CatalogApplicability ApplicableTo, PaymentFrequency? DefaultRecurrenceType, string? CountryCode);
 public sealed class CatalogQuery
 {
+    public string? Locale { get; init; }
     public Guid? CategoryId { get; init; }
     public CatalogApplicability? ApplicableTo { get; init; }
     public string? Search { get; init; }
@@ -34,6 +38,7 @@ public sealed class CatalogQueryValidator : AbstractValidator<CatalogQuery>
 {
     public CatalogQueryValidator()
     {
+        RuleFor(x => x.Locale).Must(x => x is null || PayAhead.Application.Localization.SupportedLanguages.Contains(x));
         RuleFor(x => x.CategoryId).Must(x => x != Guid.Empty);
         RuleFor(x => x.ApplicableTo).IsInEnum().When(x => x.ApplicableTo.HasValue);
         RuleFor(x => x.Search).MaximumLength(100);
@@ -53,14 +58,18 @@ public static class CatalogSearch
 public interface ICatalogStore
 {
     Task<IReadOnlyList<CatalogCategoryResponse>> CategoriesAsync(CatalogQuery query, CancellationToken ct);
-    Task<CatalogCategoryResponse?> CategoryAsync(Guid id, CancellationToken ct);
+    Task<CatalogCategoryResponse?> CategoryAsync(Guid id, CancellationToken ct, string? locale = null);
     Task<PagedResult<CatalogServiceResponse>> ServicesAsync(CatalogQuery query, CancellationToken ct);
-    Task<CatalogServiceResponse?> ServiceAsync(Guid id, CancellationToken ct);
+    Task<CatalogServiceResponse?> ServiceAsync(Guid id, CancellationToken ct, string? locale = null);
 }
 public sealed class CatalogReader(ICatalogStore store, IValidator<CatalogQuery> validator)
 {
     public async Task<IReadOnlyList<CatalogCategoryResponse>> CategoriesAsync(CatalogQuery query, CancellationToken ct) { await validator.ValidateAndThrowAsync(query, ct); return await store.CategoriesAsync(query, ct); }
     public async Task<PagedResult<CatalogServiceResponse>> ServicesAsync(CatalogQuery query, CancellationToken ct) { await validator.ValidateAndThrowAsync(query, ct); return await store.ServicesAsync(query, ct); }
-    public async Task<CatalogCategoryResponse> CategoryAsync(Guid id, CancellationToken ct) => await store.CategoryAsync(id, ct) ?? throw new ResourceNotFoundException();
-    public async Task<CatalogServiceResponse> ServiceAsync(Guid id, CancellationToken ct) => await store.ServiceAsync(id, ct) ?? throw new ResourceNotFoundException();
+    public async Task<CatalogCategoryResponse> CategoryAsync(Guid id, CancellationToken ct, string? locale = null)
+    {
+        await validator.ValidateAndThrowAsync(new CatalogQuery { Locale = locale }, ct);
+        return await store.CategoryAsync(id, ct, locale) ?? throw new ResourceNotFoundException();
+    }
+    public async Task<CatalogServiceResponse> ServiceAsync(Guid id, CancellationToken ct, string? locale = null) { await validator.ValidateAndThrowAsync(new CatalogQuery { Locale = locale }, ct); return await store.ServiceAsync(id, ct, locale) ?? throw new ResourceNotFoundException(); }
 }

@@ -1,0 +1,757 @@
+# AI draft, not a certified professional translation. key|text
+m_dcd2f7f89bdc|Home
+m_c40832ab139b|Pagamenti
+m_6a9128aa68d3|Pagina non trovata
+m_a86988a50cd1|Torna alla home per continuare.
+m_46e308473e94|Modifica piano di pagamento
+m_d5f9262c7b68|Seleziona un piano valido
+m_a77cb430aae5|Modifica abbonamento
+m_6bc63db3c9c3|Seleziona un abbonamento valido
+m_c545594549bd|Questa funzione non è ancora disponibile.
+m_52ba82f41da1|Singolo pagamento
+m_9b14761462ed|Seleziona una data di pagamento valida
+m_7c72e97a2e24|Dettagli pagamento
+m_263fcd13faeb|Più spazio.\nMeno pensieri.
+m_6bba58d6b506|Più libertà per i tuoi piani di pagamento e abbonamento.
+m_452d9718d03a|Più piani di pagamento attivi
+m_0b0dfbdda6fe|Più promemoria di pagamento
+m_c5d8de4c849c|Monitoraggio più completo degli abbonamenti
+m_7f84ca611f74|Prodotti e prezzi saranno mostrati quando la connessione allo store sarà pronta. Questa anteprima non offre accesso a Premium.
+m_beae145ed70b|Acquisto non ancora disponibile
+m_90d82406fd2f|Non viene effettuato alcun acquisto o addebito.
+m_87c8b717052f|Anteprima del design
+m_af1af17b6039|Dati di esempio, operazioni fittizie.
+m_f6acdcf3a45e|Questa sezione è solo un’anteprima di sviluppo. Non si accede e non si eseguono operazioni di pagamento, abbonamento o notifica.
+m_44a04da0609b|Contenuto di esempio
+m_8413667ec6c2|Schermate con contenuti
+m_2d74c208f0c3|Stato vuoto
+m_3c9870336f1d|Account senza dati
+m_daa069d849f4|Caricamento
+m_3745003f5a43|Durante la preparazione dei contenuti
+m_870a46c3db7b|Errore di connessione
+m_02490070e7be|Errore sicuro e nuovo tentativo
+m_c1081025bfce|Torna alla vista
+m_4877b5ec41d9|Promemoria
+m_e68c08fd0390|Seleziona un piano di pagamento valido
+m_5a3414a08005|Dettagli abbonamento
+m_56457ea60f9a|{{value0}} · AAAA-MM-GG
+m_54d5fd12a94c|Scegli data
+m_e8fa6bec6bd2|{{value0}}: {{value1}}
+m_6c97805c0bd9|Nessuna data di fine
+m_72278748133a|Annulla
+m_2f36f3362ead|Pagato
+m_594b1254c47d|Saltato
+m_6a98ba6759ef|In arrivo
+m_2723833db0f2|{{value0}}, {{value1}}, {{value2}} {{value3}}
+m_3ec33746857c|{{value0}} giorni di prova
+m_bc53cde866a2|abbonamenti attivi
+m_b667168f2be7|{{value0}}, {{value1}}
+m_a24915d688f1|{{value0}} giorni gratis
+m_2538351e6a40|Si rinnova il {{value0}}
+m_310478811716|/ mese
+m_21cc6a327c14|PROSSIMI 30 GIORNI
+m_1e038a30bbdf|I tuoi prossimi pagamenti
+m_3120cb691453|{{value0}} pagamenti · {{value1}}
+m_dbe3bbf2bf1d|Inoltre {{value0}}
+m_f9b5f266396e|Anteprima con dati di esempio. Apri opzioni di visualizzazione
+m_87b958b6436a|Anteprima del design · Dati di esempio
+m_2d0d3fe32985|Preparazione della tua panoramica finanziaria
+m_87a4bbff702f|Il tuo account è collegato. In questa versione i dati di pagamenti e abbonamenti non sono ancora collegati.
+m_b7e193af9550|Indietro
+m_7320279cca24|Nascondi password
+m_8102f4f7ff35|Mostra password
+m_2eaf24d56ba0|Qui non c’è ancora nulla
+m_764562096839|Aggiungi i tuoi pagamenti per vederli tutti in un unico posto.
+m_ef8c222befc5|Al momento non possiamo mostrarlo
+m_4c97e807cb38|Riprova tra poco.
+m_0ce9380b07f8|Riprova
+m_317a7648ba7f|Caricamento dei contenuti
+m_059faeaf0f7c|Il controllo è tuo. Sempre.
+m_aa81c136b41c|{{value0}}{{value1}}
+m_34db704cad42|Analisi
+m_0694bb658290|L’ordine dietro ai numeri.
+m_b12a04091838|Filtro valuta · facoltativo
+m_6e567ddfeb02|Lascia vuoto per tutte · TRY / USD / EUR
+m_7f441105ea24|Applica filtro valuta
+m_9ca92bf2de8d|Inserisci un codice ISO 4217 valido.
+m_554c13c8e0dc|Le tue analisi sono pronte per nuovi piani
+m_dde3c601ccef|Nessun dato di pagamento nei sei mesi selezionati. Scegli un altro periodo o crea un piano.
+m_8e5f3bed5189|I grafici sono raggruppati per mese della data prevista e non rappresentano i flussi di cassa al momento del pagamento. Gli importi previsti si basano sulla definizione attuale del piano, senza istantanee dei prezzi passati. Gli importi passati usano valuta e categoria attuali del piano. Le valute restano separate. Gli arretrati riguardano solo il mese selezionato.
+m_9e98d8624610|Date calcolate in UTC.
+m_554b441847dd|Nessun dato per il periodo
+m_086522a2222f|Previsto · mese selezionato
+m_432698bc04fb|Pagato effettivamente · mese selezionato
+m_6da9e452fcbc|In attesa · inclusi arretrati
+m_982cf9cb2005|Arretrati di questo mese
+m_8d285b551104|Pagamenti effettivi di 6 mesi
+m_9fef2b0f0a4d|Solo importi effettivi con stato pagato. Zero indica che l’importo pagato in questo ambito è zero.
+m_c86cd1a1d946|Andamento degli importi previsti
+m_3864edd32cbf|Stati dei pagamenti di questo mese
+m_e8bd0861623e|Categorie pagate questo mese
+m_582f83600904|Sono mostrate le 8 categorie con importo maggiore su {{value0}}.
+m_f607b1237936|Nessuna categoria pagata nel mese selezionato.
+m_85a931fa2f9f|I 5 piani con importo maggiore
+m_2219dab1c111|Importi delle ricorrenze previste nel mese selezionato.
+m_6d38d0719d06|{{value0}} ricorrenze
+m_e7e0215652f9|{{value0}}: {{value1}} pagamenti
+m_e41e9e9f2fdb|Usa al massimo 254 caratteri.
+m_4a6cbab3aabd|Inserisci un indirizzo e-mail valido.
+m_1c0653073271|Inserisci la password.
+m_337e59f03420|Usa al massimo 128 caratteri.
+m_bf6b1946fd11|Usa almeno 12 caratteri.
+m_fedb94fa1ddd|Inserisci il tuo nome.
+m_503fe2c9852c|Usa al massimo 100 caratteri.
+m_8c8b07e2aba8|Impossibile creare una sessione sicura. Controlla memoria del dispositivo e connessione.
+m_819ad30ff99b|Account creato. Ora puoi accedere.
+m_e8d8f98d769d|Scopri un\ndomani più sereno.
+m_53c03a9fee45|Più respiro\nper le tue finanze.
+m_fe08d685f51c|Un unico posto per pagamenti e abbonamenti. Prendi il controllo.
+m_e002f77215ca|Prevedi i pagamenti. Segui gli abbonamenti. Libera la mente.
+m_ff138299a73e|Tutto chiaro, a colpo d’occhio.
+m_f82e21c5a4e0|Pagamenti · Abbonamenti · Prove
+m_c5176ef33f7c|Il tuo nome
+m_899e435d76b8|Come ti chiami?
+m_e1081b69d80a|E-mail
+m_b9c454be10ce|esempio@posta.it
+m_e1ac97fff826|Password
+m_7f510bd4744d|Almeno 12 caratteri
+m_d247f5085a6c|La tua password
+m_fea4c6044718|I tuoi dati vengono inviati solo al server PayAhead. La password non viene salvata sul dispositivo.
+m_14411176800f|Password dimenticata
+m_bc5c818f2f46|Crea account
+m_b872b116e8f6|Accedi
+m_2d479812c86b|Hai già un account?\u0020
+m_1056f070e7ea|Nuovo su PayAhead?\u0020
+m_aa6bc6b1c20b|I tuoi dati, il tuo controllo.
+m_5785a01da6e0|Calendario
+m_4d83791ea31c|Ogni pagamento ha la sua storia.
+m_50636cefa8dc|Cronologia pagamenti
+m_059b7d11ff43|Torna a oggi
+m_6d46ddd615db|mer
+m_58e8caab760d|, oggi
+m_5117f9601eb1|{{value0}}{{value1}}{{value2}}
+m_0cf0ee99c1d9|Verde: pagato · Grigio: saltato · Rosso: in ritardo · Turchese: in attesa. Selezionando un giorno, gli stati sono mostrati anche come testo.
+m_840a9f0b1c3a|Nessun pagamento per questo giorno
+m_f0c374b5f4a5|Seleziona un giorno contrassegnato per vedere lo stato dei pagamenti.
+m_0cc914823e8a|Logo di {{value0}}
+m_c3a976e80ce0|Voce personalizzata
+m_679e5d207fbc|Icona categoria {{value0}}
+m_d51a1547850f| · Inattivo nel catalogo
+m_9cc94140f48b|Sottocategorie
+m_1e52995f1656|Servizi popolari
+m_4be65ffd3c4d|Cerca categoria o servizio
+m_62c753f4ee0b|Netflix, benzina, auto, gas…
+m_40c306d33ace|Indietro nella selezione
+m_74581d3a753b|Scegli servizio in abbonamento
+m_a1d2f560a2b9|Scegli tipo di pagamento
+m_ce0be00a3a04|Percorso selezionato: {{value0}}
+m_9669271ce541|Torna alle categorie principali
+m_6b467007b709|Abbonamento personalizzato in questa categoria
+m_9ef05e22a5c5|Pagamento personalizzato in questa categoria
+m_f08718d380a0|Impossibile aggiornare il catalogo. Se disponibili, vengono mostrati gli ultimi dati caricati correttamente; le tue voci non sono interessate.
+m_bfccb99faf79|Riprova catalogo
+m_d8416cf1ef26|Scegliere un marchio non è un acquisto. Importo e date sono decisi da te. Senza logo viene mostrata l’icona della categoria.
+m_2c842aaf0967|Nessun servizio predefinito in questa sottocategoria. Con una voce personalizzata puoi inserire il nome del tuo servizio.
+m_174c47177720|Nessun servizio per questa selezione. Puoi aggiungere una voce personalizzata dalla categoria.
+m_dc072fb4b5c8|Apri sottocategorie e servizi ›
+m_9b49b29dfd07|Pagina servizi {{value0}}/{{value1}}
+m_b3f4caeb18ea|Pagina servizi precedente
+m_71c803f67c3c|Pagina servizi successiva
+m_caf667e8034a|Abbonamento personalizzato · Altro
+m_33c3c73b3f07|Pagamento personalizzato · Altro
+m_c7f4be34c02a|Aggiorna catalogo
+m_be1e5431a411|Chiudi selezione
+m_df43bddffd68|Categoria e servizio
+m_1b585966d2ac|Cambia categoria o servizio
+m_5c04ad033072|Scegli categoria e servizio
+m_5ad326037b81|Servizio selezionato: {{value0}}
+m_64527440a4b7|Non ancora selezionato
+m_ad6823727591| · Voce personalizzata
+m_df0c13e7b694|Risposta del catalogo non valida. Le tue voci sono conservate.
+m_720e8781912b|Un inizio più sereno
+m_187bc29a9dcf|Nessun piano attivo o pagamento questo mese. Crea un nuovo piano.
+m_c33b5ecf8b44|Fuso orario dell’account non trovato; date calcolate in UTC.
+m_fd5e149b0c41|Vedi tutte le analisi
+m_fc47d3ee96ea|Aggiungi pagamento
+m_c88d4e2ae324|Pagato questo mese
+m_26f92ff4efd1|Nessun importo pagato questo mese.
+m_48cce4a622e0|{{value0}} pagati · {{value1}} in sospeso · {{value2}} saltati
+m_a918756a64ea|Prossimo pagamento
+m_4a986bd03b55|Nessun pagamento in sospeso nell’intervallo futuro visualizzato.
+m_f550df9dcee0|Scaduto questo mese
+m_4a7f5b58233f|Non c’è un intervallo scaduto per questo mese.
+m_be0bd1466097|{{value0}} pagamenti scaduti · Dall’inizio del mese a ieri
+m_28555f323d63|Nessun pagamento scaduto questo mese.
+m_6747ed989728|Sono mostrate le prime 3 voci.
+m_978b30c5e213|Pagamenti in arrivo
+m_a7770145884b|{{value0}} – {{value1}} · {{value2}} voci
+m_1ffb3a1d64e7|Nessun pagamento in arrivo in questo intervallo.
+m_fc2cbca9acbe|Notifiche
+m_3d89a3625605|Un passo avanti al domani.
+m_72ec2727147f|La sessione è cambiata.
+m_5aff753f517b|La risposta delle notifiche ha un formato inatteso.
+m_c7f4e5354a2e|Inserisci un numero intero di giorni da 0 a 365.
+m_812b82ac9973|Non può essere più di 365 giorni prima.
+m_5a2a329dd50e|Seleziona un’ora nel formato HH:mm.
+m_c8e8f2254b43|Inserisci un fuso orario IANA valido.
+m_65717ed18036|Impossibile rimuovere la registrazione del dispositivo dell’account precedente. Accedi a quell’account per rimuoverla o disattiva le notifiche in Android.
+m_7900e641cb36|Impossibile leggere l’autorizzazione del dispositivo. Controlla le impostazioni di sistema.
+m_996149c57168|Notifiche e promemoria
+m_5c778761062b|Le tue autorizzazioni e preferenze del dispositivo e dell’account.
+m_796e7d39b546|Autorizzazione alle notifiche su questo dispositivo
+m_49e62454340a|Autorizzazione concessa
+m_9376cf52ba0d|Autorizzazione negata
+m_95ed0d227581|Autorizzazione non ancora verificata
+m_e41167a535f4|Consenti le notifiche per pagamenti in arrivo e fine delle prove. Puoi usare l’app senza autorizzazione. Autorizzazione e registrazione non dimostrano la consegna.
+m_1679d0879814|La registrazione del dispositivo è stata verificata sul server per questa sessione.
+m_6122961c79fc|La registrazione del dispositivo non è stata verificata per questa sessione.
+m_26b8a5c03dfb|Verifica autorizzazione e collega dispositivo
+m_aba251b45799|Apri impostazioni di notifica del sistema
+m_e1670ba6707d|Impossibile aprire le impostazioni di sistema.
+m_4a3cd0d3f2ee|Disconnetti push su questo dispositivo
+m_a9a9861c603e|Impossibile rimuovere la registrazione sul server. Le notifiche potrebbero continuare; riprova con una connessione o disattivale nel sistema.
+m_082675ccc2b8|L’autorizzazione non può essere richiesta di nuovo; modificala nelle impostazioni di sistema.
+m_55352df66012|Dispositivi registrati sul tuo account
+m_aa3cf0d408e7|{{value0}} · Dispositivo {{value1}}
+m_b44948b30289|Registrazione server attiva
+m_dc1ec4a10b02|Registrazione server inattiva
+m_dd339f27d49c|{{value0}} · Ultima registrazione {{value1}}
+m_14477af7fb8f|Rimuovi registrazione del dispositivo {{value0}}
+m_39a8d28c1c6b|Annulla
+m_b88019aa289e|Rimuovi
+m_e9e3db3d1e8f|Nessun dispositivo registrato
+m_cc44fa0414a3|Il push reale richiede una build di sviluppo e un dispositivo connesso.
+m_8a2d59b0f70d|Non è una casella di posta; il backend non ha un endpoint per la cronologia delle notifiche. Le preferenze di prova sono nella modifica dell’abbonamento. Non esiste un’ora predefinita per tutto l’account; sceglila per ogni regola di pagamento.
+m_decce11aef29|Preferenze di notifica dell’account
+m_bc3703640ed8|Il server usa UTC come ripiego; salva un fuso orario valido.
+m_99fca4be5948|Notifiche dell’account attive
+m_ca7732645140|Fuso orario dell’account · IANA
+m_29085b405b36|Europe/Istanbul
+m_c958a8d64dde|Valuta predefinita
+m_dcafb2602a42|La lingua dell’account viene conservata. Disattivare le notifiche non elimina piani o regole; cambia l’idoneità all’invio. Il fuso orario dell’account è indipendente dall’orologio del dispositivo.
+m_ebf40e0c6eb4|Impossibile salvare le preferenze.
+m_25353ac12585|Carica preferenze attuali
+m_78a55771dc4b|Salva preferenze di notifica
+m_bf1fb9b3ea59|Preferenze salvate sul server. Questo non conferma la consegna.
+m_5c9cc7e3f90d|Usa una build di sviluppo Android/iOS per push remoti.
+m_2b18cfa9c7a0|Expo Go non supporta questo flusso di push remoto. Serve una build di sviluppo.
+m_bbc97b82622a|Questo flusso di accettazione richiede un dispositivo fisico.
+m_efbdfa191c3e|EAS projectId non è configurato. Segui la guida di configurazione push.
+m_864d4467fe43|Impossibile leggere la registrazione del dispositivo; una nuova registrazione sicura non è disponibile.
+m_db632663ff41|Tempo scaduto durante l’acquisizione del token push. Riprova con una connessione.
+m_5022903c0ba5|Promemoria di pagamenti e prove
+m_2e98da897a50|Push remoto
+m_99647b43db30|Questo flusso di accettazione
+m_91f7ad7393ad|EAS projectId
+m_e3737762b564|Account precedente
+m_8c2002849317|Informazioni di registrazione del dispositivo
+m_b630524b9490|Sessione cambiata
+m_80397522181a|Acquisizione token push
+m_71998b7a8647|Registrazione del dispositivo non riuscita. Controlla connessione e configurazione push FCM/EAS.
+m_4239abd5c0fe|Impossibile avviare l’ascolto delle notifiche. Controlla la configurazione della build di sviluppo.
+m_449704e67047|Impossibile aprire la voce della notifica
+m_1065fb378e00|La voce potrebbe essere stata rimossa o non essere accessibile a questo account.
+m_af7041d035cb|Controlla la connessione. Puoi riaprire la voce della notifica dall’elenco pertinente.
+m_ea6119aa5393|Promemoria di pagamento
+m_3420bbb71219|Fuso orario dell’account: {{value0}}
+m_68dce5fdd9e4|Gli orari usano il fuso dell’account. Per le ore mancanti il server sceglie il primo minuto valido; per quelle ripetute, l’istante UTC successivo. Calendario e pianificazione UTC sono gestiti dal server.
+m_3771184e8e48|Il fuso orario non è valido; il server usa UTC come ripiego.
+m_66d73eec21dd|Le notifiche dell’account sono disattivate; salvare una regola non attiva l’invio.
+m_8d54e58502d4|Il piano è inattivo; non saranno inviate nuove notifiche di pagamento.
+m_424dbf42bf81|Autorizzazioni e impostazioni delle notifiche
+m_ff4947e183f7|Il giorno del pagamento
+m_32cab8a0ff96|{{value0}} giorni prima
+m_82bd83d6cabb|Regola attiva
+m_788c248434f3|Regola disattivata
+m_d50fb5cd0e44|{{value0}} · Non prova la consegna
+m_86471fc0130e|Modifica {{value0}} giorni, {{value1}}
+m_7d21de34f624|Elimina {{value0}} giorni, {{value1}}
+m_14842beb581f|Nessun promemoria di pagamento
+m_44331cdb99ad|Crea una regola per il giorno del pagamento o un giorno precedente.
+m_439e3be67e95|Aggiungi promemoria
+m_77b658b9666c|Le regole di prova non sono in questo elenco; gestiscile dalle preferenze di prova dell’abbonamento. Il server applica la quota di iscrizione a tutte le regole attive. Le attività passate hanno una finestra di recupero di 24 ore; l’app non crea allarmi indipendenti.
+m_46954ab8fe15|Modifica promemoria
+m_5bfd5c4fc74c|Nuovo promemoria
+m_e67c2a090f36|Giorni prima · 0–365
+m_70ba032f779d|Regola di promemoria attiva
+m_be3095cc7a25|Limite dei promemoria attivi raggiunto. Il server determina i limiti Free/Premium; anche le regole di prova possono contare.
+m_5cc017022589|Scopri le opzioni di iscrizione
+m_643f2c5b4ff3|Impossibile completare l’azione.
+m_73922fe9b8e9|Carica promemoria attuali
+m_a5ef4ea66a75|Salva modifiche al promemoria
+m_0406a6037ff3|Salva promemoria
+m_17d89dfee53d|Chiudi modulo
+m_ffadd8e17995|Una regola salvata, un’autorizzazione o un ticket Expo accettato non significa consegna al telefono. Controlla il fuso orario nelle impostazioni delle notifiche.
+m_4e2d3f27bc91|Ora locale del promemoria
+m_bb7ed58f17c4|Ora locale del promemoria · HH:mm
+m_c62d351d4d79|Ora locale del promemoria: {{value0}}
+m_a993d56aacf7|Vista del periodo basata sulle date pianificate.
+m_4d2f75ead23f|Le date future del piano non sono mostrate. Le voci in sospeso includono occorrenze non salvate. Ordine per data pianificata, poi nome del pagamento.
+m_3caac5efb49b|{{value0}} voci · Pagina {{value1}}/{{value2}}
+m_b231b2e3abdf|Nessuna attività in questo periodo
+m_b643b19b02e5|Scegli un altro stato o mese.
+m_b74566b03eea|Pagina precedente
+m_4c68362c332e|Pagina successiva
+m_140b6a85ed4f|Mese precedente
+m_bc1d7478bad2|Mese successivo
+m_25e24627a6ee|Inserisci un importo effettivo positivo con al massimo 4 decimali.
+m_186683421cb0|Data pianificata
+m_291dca1a2d0c|Importo del piano · definizione attuale
+m_b49835f3551b|Gli importi storici del piano non sono salvati come istantanee. Questo importo può cambiare modificando il piano. I pagamenti storici usano la valuta attuale del piano; quella storica non viene memorizzata.
+m_ec38317781ca|Effettivamente pagato
+m_1fda86a53e46|Ora del pagamento: {{value0}}
+m_a258e497496d|Vedi piano di pagamento
+m_77f23e1b9711|Importo effettivamente pagato
+m_fdaf91355c38|Il server registra l’ora del pagamento in UTC al momento dell’azione. Questa API non consente di scegliere un’ora passata. Questa azione non addebita un conto bancario.
+m_fac7f884c235|Segna come pagato
+m_c79dbe3338b9|Segna come saltato
+m_c1db7b38a01d|Torna in sospeso
+m_5c1120aa3f2a|La cronologia di un piano inattivo è di sola lettura.
+m_e41da48c42b3|Stato del pagamento aggiornato sul server.
+m_2aeed2ec24bc|La voce potrebbe essere cambiata o l’esito è incerto. Carica lo stato attuale prima di inviare di nuovo.
+m_a1ee8d6f35e4|Carica stato attuale
+m_66f71e58bc91|{{value0}}, {{value1}}, {{value2}}
+m_86276a545c73|Pianificato: {{value0}}
+m_3a56ed96d493|Ora del pagamento non trovata
+m_4a7458f9b406|Effettivamente pagato · {{value0}}
+m_b2a75aba2a9a|La password è stata reimpostata. Accedi con quella nuova.
+m_f39a90606360|Impossibile completare l’azione. Controlla la connessione e riprova.
+m_48cc793fec26|La tua nuova password
+m_907f977177d1|Reimposta la tua password
+m_17901d377b68|Un inizio sicuro per il tuo account.
+m_fd3f0daece3c|Continua con il tuo indirizzo e-mail.
+m_1ab5f8dd3652|Se l’indirizzo è registrato, verrà inviato un link di reimpostazione. Controlla la posta in arrivo e lo spam.
+m_bd00063bca49|Se non arriva entro pochi minuti, controlla l’indirizzo e richiedi un nuovo link.
+m_d00c902689a9|Link e-mail o codice
+m_7b15b84ff5be|Se il link non si apre automaticamente, incolla qui il link e-mail completo. È monouso e scade a breve.
+m_fefced24bd71|Nuova password
+m_df7cb2aa8f92|Conferma nuova password
+m_24c83f2c27f8|Reimposta password
+m_d3ca60d80048|Richiedi link di reimpostazione
+m_c7e7daf09eac|Ho un link, imposta una nuova password
+m_5064114b875a|Richiedi nuovo link
+m_9ff2fd4e9f6d|Torna all’accesso
+m_368f3e476b9e|Importo non valido.
+m_f5e0975c723a|La risposta del server ha un formato inatteso. Riprova più tardi.
+m_1dee1d8d2aaf|Inserisci l’importo effettivamente pagato.
+m_9b81103a9b48|Controlla la connessione e riprova.
+m_687f69a3496a|Un po’ più di spazio per i tuoi piani
+m_287ade462d7f|Limite dei piani di pagamento attivi raggiunto. Disattiva un piano esistente o scopri Premium.
+m_875c469eccea|Scopri Premium
+m_0d3206e39f9e|Apri dettagli di {{value0}}
+m_82413ba35131|{{value0}} · Ogni {{value1}} periodi
+m_b31385e605a6|Piano attivo
+m_aff1d602e8dd|Piano inattivo
+m_97b31ba37783|Caricamento data del piano…
+m_5c0fc0b491b9|Nessuna nuova data del piano
+m_d19d95f2f5f1|in arrivo
+m_3dfd364d95c2|{{value0}}, pagamento {{value1}}
+m_60c98fa1f6ed|QUESTO MESE · PAGAMENTI IN ARRIVO
+m_e12baefecd33|Nessun importo in arrivo.
+m_887b8091622e|{{value0}} in arrivo · {{value1}} piani attivi
+m_7d5afa5c041e|Da oggi a fine mese. Le valute sono mostrate separatamente.
+m_cd613d82a1a6|Categoria
+m_5da57b457b37|Ricorrenza
+m_72373d3f7768|Primo pagamento
+m_b649bea15b42|Fine
+m_774dac727b5c|Giorno di ricorrenza
+m_4ac8ab998cc8|Giorno iniziale
+m_01e23f52e395|Pianificato
+m_cacd6a7dd4d4|Data dell’account non disponibile
+m_1b8b6498c5f1|Nessuna nuova data
+m_c7efa547ceea|La data pianificata segue il calendario di ricorrenza; non include lo stato pagato/saltato.
+m_d382a5a56146|Gestisci promemoria di pagamento
+m_432ffe87483d|Questo piano collegato si gestisce dal monitoraggio dell’abbonamento. Torna ai dettagli dell’abbonamento per modificarlo.
+m_41bb7b55f9b1|Disattiva piano
+m_5d59500b0808|Disattiva
+m_8546b2337a9a|Elimina piano
+m_aafd5445c85f|{{value0}} sarà eliminato definitivamente. Il server può rifiutare se esistono cronologia, promemoria o un abbonamento collegato.
+m_7c017ff51519|Impossibile completare l’azione. Controlla la voce attuale.
+m_40e816c987a2|Carica voce attuale
+m_7e31f8204d5e|Nuovo pagamento
+m_05fbb278ab68|Scegli una categoria. Se il servizio non è nel catalogo, crea un pagamento personalizzato.
+m_50cea4c0f664|Fai spazio ai giorni che verranno.
+m_e4d8d83eef36|{{value0}} · {{value1}}/{{value2}} piani attivi
+m_51929427e17d|Limiti di iscrizione non disponibili. Il server li controllerà al salvataggio.
+m_2b98db0ebe2f|Ad esempio, meccanico di quartiere
+m_d13255fd6d45|Ripeti
+m_c2cc4ed0e0de|Data del primo pagamento
+m_edd225f78b1c|Data finale · facoltativa
+m_f3c0ae536e6c|Usa il giorno iniziale
+m_9c6457504337|Il primo pagamento è sempre alla data iniziale. Se il giorno scelto non esiste in un mese successivo, viene usato l’ultimo: il 31 gennaio diventa 28/29 febbraio; il 29 febbraio annuale diventa 28 se necessario.
+m_12bb0cfdd296|Un piano inattivo non genera nuove date in sospeso.
+m_df44192b41ac|Impossibile completare l’azione. Controlla se la voce è stata creata prima di riprovare.
+m_97aa3193e40c|La versione più recente non è stata sovrascritta. Caricare la voce attuale elimina le modifiche del modulo. I piani collegati agli abbonamenti potrebbero non essere modificabili qui.
+m_e7bbbd13fda6|Impossibile verificare l’esito. Controlla i piani prima di inviare di nuovo; il server potrebbe aver salvato.
+m_42a396b3c3dd|Controlla i miei piani
+m_c6e47849be91|Ho controllato, invia di nuovo
+m_f63044f8dff1|Salva modifiche
+m_6c7d3be05e89|Crea piano di pagamento
+m_9a4f23eb644c|Crea un piano; non addebita un conto bancario.
+m_51403c693698|Inserisci un nome per il pagamento.
+m_9cce51c167cb|Usa al massimo 150 caratteri.
+m_b2a241f9b3d3|Usa al massimo 2000 caratteri.
+m_d99126b70aa4|Inserisci un importo positivo con massimo 15 cifre intere e 4 decimali. Usa punto o virgola decimale, senza separatori delle migliaia.
+m_ceafeb1d890f|Scegli una valuta ISO 4217 valida.
+m_0406076bbb52|Inserisci una categoria.
+m_2b89bd250950|Usa al massimo 50 caratteri.
+m_9e4a7f1d9944|Inserisci un numero intero positivo.
+m_bbd78b58d296|L’intervallo deve essere tra 1 e 2147483647.
+m_d8a8544c7998|Inserisci una data valida nel formato YYYY-MM-DD.
+m_525f19e832a6|La data finale non può precedere quella iniziale.
+m_a9dc55ee7ab6|Il giorno deve essere tra 1 e 31.
+m_e34221564fe3|Una tantum
+m_301ef766a15b|Giornaliero
+m_abc3e615d675|Settimanale
+m_e055e06d7581|Mensile
+m_9f2134dbbdd8|Annuale
+m_00fda1a8f061|Ogni piano al suo posto.
+m_ab071c7811fb|Cerca pagamenti
+m_f3bb1ae02837|Cerca per nome del pagamento
+m_849ff7f27107|Opzioni filtro
+m_5991df187aaf|Filtro valuta
+m_1062dae67545|Lascia vuoto o inserisci TRY / USD / EUR
+m_19c537a16cf8|Filtro categoria
+m_bd072c271289|Corrispondenza esatta della categoria
+m_362c4c8a211f|Applica filtri
+m_7c98416792c1|Inserisci un codice ISO 4217 valido.
+m_28dc74dcd54b|Cancella filtri aggiuntivi
+m_f43a65ad8268|Tutti
+m_71605e3019a3|Più recenti prima · Ricerca e filtri sono applicati sul server.
+m_16c74bf5cc6f|Tutte le valute
+m_22ae0cc71dfc|Tutte le categorie
+m_3be6008529d7|{{value0}} piani · Pagina {{value1}}/{{value2}}
+m_5a0a2ac2ea70|La data dell’account non è disponibile; impossibile mostrare le date del piano.
+m_d6b86f56f585|La data pianificata è calcolata dalla ricorrenza; non include lo stato pagato/saltato.
+m_f1d48e85474e|Precedente
+m_ffe6922f5329|Successivo
+m_8522d5a985f5|Nessun altro piano in questa pagina
+m_1176f5007df5|Nessun piano corrisponde a questi filtri
+m_6709724982cc|Fai spazio al tuo primo piano
+m_8bbeb6b2e32b|Aggiungi i pagamenti per vedere qui importi e calendario di ricorrenza.
+m_1a8415416e0e|Bolletta internet
+m_a81cab46eebf|Casa e vita quotidiana
+m_cde9b289b121|Studio Music
+m_ad57a5c86aa1|Abbonamento mensile
+m_8ea3b2614264|Affitto di casa
+m_782916f8f2c5|Cloud Space
+m_80f230efe8c4|Archiviazione cloud
+m_654c3d5d92af|Bolletta elettrica
+m_fd914780f3f4|Laboratorio linguistico
+m_41d28f6e4e7b|Crescita personale
+m_8471ab6843ff|Club del libro
+m_c1579f388f19|Musica e intrattenimento
+m_1f748b0ca081|Focus Pro
+m_9dd69ea580be|Produttività
+m_80ad54ad05fa|Impostazioni
+m_64bd1224db11|La tua organizzazione, le tue preferenze.
+m_a20eda1e3a04|Il tuo account
+m_121128a3449b|Caricamento profilo…
+m_1c56ac8f2dc6|Account
+m_69022fb48e27|Impossibile caricare il profilo. Riprova.
+m_e1b0af0c144d|Aspetto
+m_7c08e78575d6|Tema dell’app
+m_bbb1132f30f1|Chiaro
+m_366fcd93889e|Preferenze
+m_be761e877712|Autorizzazioni alle notifiche e preferenze dell’account
+m_a13a55a714f1|Informazioni account
+m_9b7337a7225a|Il profilo non è ancora caricato.
+m_6f71eadb6aaa|Sicurezza e privacy
+m_d5fb076f2548|La sessione è conservata nella memoria sicura del dispositivo. La password non viene memorizzata. Piani di pagamento e riepiloghi mensili provengono dal server PayAhead.
+m_21858317874a|Un altro passo avanti.
+m_f43b35270139|Scopri PayAhead Premium
+m_69fbb458f5f0|Disconnessione…
+m_ea5b69c1ad74|Esci
+m_f7b305154a1e|PayAhead · Tutto in tempo.
+m_8cb49b7388e8|Inserisci un importo di abbonamento valido.
+m_4fcd73a757cc|La risposta dell’abbonamento ha un formato inatteso. Riprova più tardi.
+m_a75abe66fec2|Prova gratuita
+m_dbd417da03e1|Annullato
+m_87e91c19c039|Scaduto
+m_eeee62ca562d|Il monitoraggio della prova è stato annullato.
+m_4045e1f2fa19|La prova è terminata.
+m_39ece7b68bec|La prova inizia il {{value0}}.
+m_0499b314e350|Ultimo giorno di prova
+m_c3f52697e59c|{{value0}} giorni alla fine della prova
+m_22641ad761bf|Nessuna data finale di accesso indicata.
+m_af985fbab912|Accesso terminato · {{value0}}
+m_c8c32fd44bb1|continua
+m_7b6ad902719e|termina
+m_a2b74b09a1e6|L’accesso {{value1}} fino al {{value0}} incluso.
+m_96a9ac11297f|{{value0}}, {{value1}}, dettagli
+m_f85cb0113896|{{value0}} · {{value1}} / {{value2}} periodi
+m_cd0d38999b7e|Abbonamento personalizzato
+m_90e3db49d29e|Prossima data a pagamento: {{value0}}
+m_dc2c56f19435|Nessuna nuova data a pagamento
+m_59bb6eb356f4|EQUIVALENTE MENSILE STIMATO
+m_d96738411504|{{value0}} / mese
+m_4ecad399a85a|Nessuna stima dei costi in questo ambito.
+m_f5fdcac75a16|{{value0}} attivi · {{value1}} in prova · {{value2}} annullati · {{value3}} scaduti
+m_1a6296fdf554|Stima per abbonamenti attivi e prove con rinnovo automatico, non la spesa esatta del mese. Mensile: importo/intervallo; annuale: importo/(12×intervallo); settimanale: importo×52/(12×intervallo); giornaliero: importo×365/(12×intervallo). Valute separate; ogni totale viene arrotondato a 4 decimali.
+m_31a31e2fdfe1|Limite delle voci attive raggiunto
+m_99e46aeb1075|Il monitoraggio degli abbonamenti e i piani attivi collegati hanno limiti separati. Controlla le voci esistenti o le opzioni di iscrizione.
+m_21319cec854e|La voce potrebbe essere cambiata o l’esito è incerto. Controlla le voci attuali prima di inviare di nuovo.
+m_0426bc127d33|I tuoi abbonamenti
+m_5a685ba46d97|Caricamento riepilogo abbonamenti…
+m_b3012876af05|{{value0}} attivi · {{value1}} in prova
+m_e6a9d0c56b98|I pagamenti degli abbonamenti sono già inclusi nel riepilogo finanziario tramite i piani collegati.
+m_37e4b6a7987d|Nessuna data
+m_b8691c27fa4c|Prossimo rinnovo: {{value0}} · {{value1}}
+m_b88a01eb7582|{{value0}} prove in scadenza
+m_b51cb4cab2c8|Ultimo giorno
+m_008749f47ce5|{{value0}} giorni rimasti
+m_5a89e7b9050a|Primo pagamento: {{value0}}
+m_cdcb6a19c6d2|Fatturazione
+m_39b03995fcce|Inizio abbonamento
+m_c1c27516789b|Primo pagamento
+m_8c74b392a2f7|Prossimo pagamento
+m_38432ff279cf|Inizio prova
+m_ca1dff322c77|Fine prova
+m_c9f213296e2e|Monitoraggio rinnovo automatico
+m_39ce8f387818|Disattivo
+m_ad24d7cfe429|Fine accesso
+m_0a95b6578caa|Ora di annullamento del monitoraggio
+m_623fc8183b37| · Usato UTC come ripiego
+m_5e19d63b6120|Data dell’account: {{value0}} · {{value1}}{{value2}}
+m_e6ecb5aacb90|Vedi piano di pagamento collegato
+m_a28ea32a92a3|Promemoria del piano collegato
+m_a139ddfe6c16|Preferenza attiva
+m_d38040e92e84|Preferenza disattiva
+m_d0ae165f2ea1|Promemoria di prova: {{value0}}
+m_120955beb4d9|Il server crea regole di prova alle 09:00 nel fuso dell’account secondo la quota: 1 giorno per Free; 1/3/7 giorni e ultimo giorno nella quota Premium idonea. Giorni/orari personalizzati non supportati. Modifica l’abbonamento per cambiare la preferenza; il server verifica annullamento/scadenza. Una preferenza non prova la consegna.
+m_af18c85b8d43|Il piano collegato è l’unica fonte finanziaria; nessun secondo importo di abbonamento è aggiunto a calendario o analisi.
+m_8810c95e97ad|Modifica abbonamento
+m_9c855e9dea46|Annullamento e accesso
+m_8c19506de966|Annullare il monitoraggio in PayAhead non annulla l’abbonamento esterno. Annullalo separatamente presso il fornitore. Indica sotto la data effettiva di fine accesso.
+m_09ac97477bbd|Ultimo giorno di accesso dopo l’annullamento
+m_2487cd5b4552|Annulla voce di monitoraggio
+m_307f11592d33|Questo non annulla presso il fornitore esterno. I rinnovi PayAhead si fermano; l’accesso è monitorato fino al {{value0}} incluso.
+m_2c5a5df10ac9|Annulla monitoraggio
+m_dc2fe2ce17ea|Una voce annullata o scaduta non può essere riattivata. Crea una nuova voce di monitoraggio se necessario.
+m_a73ff22c9a90|Rimuovi voce di monitoraggio
+m_5230f2b7aaa9|Azione in corso…
+m_e8acb1ee980d|Il monitoraggio è stato annullato. Devi agire anche presso il fornitore esterno.
+m_6c57e9a1d5bc|Abbonamento
+m_9db9e4ffd519|Una voce di monitoraggio annullata o scaduta non è modificabile.
+m_2ba638fe6b81|Scegli una categoria. Se il servizio non è nel catalogo, crea un abbonamento personalizzato.
+m_3d84aa9bcade|Nuovo abbonamento
+m_43b35e8a5c47|Una visione chiara delle spese ricorrenti.
+m_ad10ab3a2d2a|{{value0}} · {{value1}}/{{value2}} attivi/in prova · {{value3}}/{{value4}} piani attivi
+m_18527dae8cdd|Il server controllerà i limiti di iscrizione al salvataggio.
+m_bbc1a8b9becc|Frequenza di fatturazione
+m_2140719bfbc7|Data del primo pagamento dopo la prova
+m_2ac439186d4f|Il server calcola la prossima data a pagamento. La prima data di pagamento non è la fine della prova.
+m_7754aee3cc38|Se il giorno non esiste in un mese si usa l’ultimo. La prima data a pagamento è la prima occorrenza; i mesi successivi seguono il giorno scelto.
+m_0d95451acf39|Abbonamento attivo
+m_046f79b76c42|Rimuovi date di prova
+m_6ace31f2854a|Attiva promemoria di prova
+m_075e106597b7|Questo salva una preferenza di promemoria; non significa che una notifica sia stata inviata o consegnata. I limiti di iscrizione e il server determinano le regole disponibili.
+m_6b853275a321|Fine accesso · facoltativa
+m_e510182bc9ac|Nessuna fine accesso indicata
+m_cdaea12e4154|Salva modifiche abbonamento
+m_9a75e128810d|Crea abbonamento
+m_cfcd181c31ea|Una voce di monitoraggio e un piano collegato vengono creati insieme. Nessun acquisto o addebito viene effettuato presso il fornitore esterno.
+m_65aedc4c30ef|Prima che finisca la prova
+m_92aab347c863|Preparati al primo giorno a pagamento.
+m_1387bc38b3ee|Entro {{value0}} giorni{{value1}}
+m_49eae7447e75|Voci con prove iniziate e ancora attive nel fuso dell’account sul server. Il giorno finale è incluso; voci annullate e scadute sono escluse.
+m_9154c18c668d|Fine prova: {{value0}}
+m_322ce9e70bfc|Primo pagamento: {{value0}}
+m_e88a0897c5ca|Vedi dettagli di {{value0}}
+m_ba04e88c13f0|Pagina {{value0}}/{{value1}}
+m_b52d1a229ccf|Pagina precedente delle prove
+m_4bd9f29d4bbd|Pagina successiva delle prove
+m_0a83a3c1d4cf|Nessuna prova termina in questo intervallo
+m_615e317726c3|Scegli un altro intervallo o controlla l’elenco degli abbonamenti.
+m_8790a538a1c4|Seleziona una data valida.
+m_53fb989d42a5|Inserisci un nome per l’abbonamento.
+m_f2b4cfecfac2|Inserisci un nome del fornitore.
+m_652316e16657|Inserisci un importo positivo con massimo 15 cifre intere e 4 decimali.
+m_3603d7f2ee2f|Inserisci un numero intero positivo.
+m_0b006dd3e844|L’intervallo deve essere tra 1 e 2147483647.
+m_579d1caa7d8c|La prima data a pagamento non può precedere l’inizio.
+m_30f875728cf9|Seleziona le date di inizio e fine prova.
+m_bf89ccd17e64|La prova non può iniziare prima dell’abbonamento.
+m_c3e70fe9969f|La fine della prova non può precedere l’inizio.
+m_5b7d76f73e12|La prima data a pagamento deve essere dopo la fine della prova.
+m_41165b001f79|Il giorno deve essere tra 1 e 31.
+m_d4aa12f6efd2|Un abbonamento attivo senza rinnovo automatico richiede una data di fine accesso.
+m_d649c199ee3b|L’accesso non può terminare prima dell’inizio o, con rinnovo automatico, prima della prima data a pagamento.
+m_305a7abea88b|Abbonamenti
+m_056559cd4769|Piccoli importi, più chiarezza.
+m_3bb51670d4e2|Aggiungi abbonamento
+m_1b794efacab7| · UTC come ripiego
+m_02222f976398|{{value0}} · {{value1}}/{{value2}} limite attivi/in prova
+m_1e1adc209eed|PROSSIMO RINNOVO A PAGAMENTO
+m_fbafe9fc3173|Le tue voci di monitoraggio
+m_108e1b550628|Cerca abbonamento o fornitore
+m_7060d276702b|Filtro valuta abbonamenti
+m_ff166f34034b|Lascia vuoto per tutti
+m_d789bd722598|Applica filtro abbonamenti
+m_4fa460adaf28|Ordine del server: creati più di recente prima. Il riepilogo copre tutte le voci di monitoraggio indipendentemente dai filtri dell’elenco.
+m_f334350d4252|{{value0}} abbonamenti · Pagina {{value1}}/{{value2}}
+m_2aa78fcdc0ca|Nessun abbonamento qui per ora
+m_a0256836986f|Modifica i filtri o aggiungi un abbonamento da monitorare.
+m_028ac77e95d4|Pagina precedente abbonamenti
+m_887c317bfdb9|Pagina successiva abbonamenti
+m_b7ac953bddf5|Impossibile completare l’azione. Puoi riprovare.
+m_97fef89efdf8|Connessione scaduta. Riprova.
+m_148edfcba033|Server non raggiungibile. Controlla internet e l’indirizzo API.
+m_64872a0e18b3|Reimpostazione password non disponibile. Riprova più tardi.
+m_96d8c326f702|Link non valido, già usato o scaduto. Richiedine uno nuovo.
+m_0d2b1db5ac23|E-mail o password errata, oppure sessione non più valida.
+m_99a158d3b327|Limite delle voci attive raggiunto. Disattiva piani esistenti o scopri Premium.
+m_a25c909874f9|Non sei autorizzato a eseguire questa azione.
+m_cfec70e3a8bc|Voce non trovata o non più accessibile.
+m_4caef90dffc6|Impossibile creare un account con questa e-mail.
+m_73614d4af236|La voce è cambiata. Carica i dati attuali e riprova.
+m_bef85276f101|Troppi tentativi. Attendi un po’ e riprova.
+m_79cea1288206|Server attualmente non disponibile. Riprova più tardi.
+m_2d8988bb1fc4|Impossibile completare la richiesta.
+m_9c1deb6987ec|L’indirizzo API non è configurato.
+m_5f4b398cc5b6|Usa un indirizzo API valido; in produzione è richiesto HTTPS.
+m_43a1354bdee5|La richiesta API è al di fuori dell’indirizzo consentito.
+m_1e6636df44e1|La sessione non è più valida. Accedi di nuovo.
+m_d1d749ecce55|La sessione è stata aggiornata. L’azione non è stata ripetuta automaticamente; controlla la voce attuale e riprova.
+m_0e15daef0882|Il tuo account non è più disponibile. Accedi di nuovo.
+m_632f0add5824|Inserisci il tuo indirizzo e-mail valido.
+m_d3cd4aca0609|Inserisci un link o codice valido.
+m_782480e8798a|Le password devono coincidere.
+m_33355201acda|Accedi di nuovo.
+m_39f6162d8263|La sessione è scaduta. Accedi di nuovo.
+m_f3df8a754f4c|Impossibile cancellare la sessione del dispositivo. Riprova a uscire prima di chiudere l’app.
+m_5e33f996840e|Disconnesso su questo dispositivo.
+m_94963f065d53|{{value0}} Impossibile rimuovere la registrazione del dispositivo sul server. Le notifiche potrebbero continuare. Disattivale in Android o accedi allo stesso account e rimuovi la registrazione.
+m_8218c437b97c|Il server non ha restituito una sessione valida.
+m_5a2b7cd2f617|Accesso in corso.
+m_de17ccfcb3a8|Impossibile verificare la sessione. Controlla la connessione e accedi di nuovo.
+m_b8dd5f6d646f|Nessuna sessione trovata.
+m_c88aa79e449a|La sessione è terminata.
+m_95a5cb5fa1fc|Disconnesso.
+m_0c4b3d96c974|Disconnesso su questo dispositivo; revoca sul server non verificata. Senza internet, la sessione server può restare valida fino alla scadenza.
+m_50fbcc5ae0d0|Usa l’app Android o iOS per una sessione sicura persistente.
+m_cd1e0724e02a|Buongiorno
+m_badc3e7e2b20|Buon pomeriggio
+m_7df387187c77|Buonasera
+m_abbbdafe41fa|Informazioni
+m_d5f884547452|Attivo
+m_9025b4af025a|In sospeso
+m_4c5c101be403|Lun
+m_59cc0fc7e93e|Mar
+m_89ac4dc9eddf|Gio
+m_5f9967713ae0|Ven
+m_36986d15c759|Sab
+m_3b4ca471d9af|Dom
+m_bffd1dfbfbed|Scaduto
+m_b3202c47f786|Servizio
+m_e9371667baa4|Categorie
+m_2ce0a7da99c6|Servizi
+m_aa6a83bfcde1|Piani
+m_f698e9b40f9f|Elimina
+m_8fd6cbabf5c7|Non specificato
+m_c15a0321c925|Importo
+m_edd812578cbb|Inattivo
+m_b24a36089466|Scuro
+m_1c466db79243|Sistema
+common:cancel|Annulla
+common:selected|Selezionato
+settings:languageTitle|Lingua dell’app
+settings:languageSearch|Cerca lingue
+settings:languageFlagNote|Usa il nome della lingua come riferimento. Le bandiere rappresentano paesi; alcune lingue usano un’icona globale. Português (Brasil) indica il portoghese brasiliano.
+settings:languageStorageFailed|La lingua è cambiata per questa sessione ma non è stata salvata sul dispositivo. Selezionala di nuovo per mantenerla.
+settings:languagePending|La scelta manuale ha priorità su questo dispositivo. La sincronizzazione dell’account sarà ritentata con una connessione.
+settings:languageNotFound|Nessuna lingua corrisponde alla ricerca.
+settings:rtlRestartTitle|Ricarica direzione del layout
+settings:rtlRestartBody|Testo e layout aggiornati subito. Alcuni controlli nativi richiedono di riaprire l’app. Salva prima le modifiche dei moduli. Expo Go può ripristinare le preferenze RTL native; l’accettazione completa richiede una build di sviluppo.
+settings:restart|Riavvia ora
+validation:invalidValue|Controlla questo campo e inserisci un valore valido.
+common:amountInputHint|Usa punto o virgola decimale senza separatori delle migliaia. Cambiare lingua non cambia importo o valuta.
+common:paymentCount_one|{{count}} pagamento
+common:paymentCount_other|{{count}} pagamenti
+common:paymentCount_many|{{count}} pagamenti
+catalog:serviceTemplate.genel-servis|Officina generale
+catalog:serviceTemplate.ozel-tamirci|Meccanico indipendente
+catalog:serviceTemplate.lastikci|Gommista
+catalog:serviceTemplate.otopark|Parcheggio
+catalog:serviceTemplate.oto-yikama|Autolavaggio
+catalog:serviceTemplate.elektrik-faturasi|Bolletta elettrica
+catalog:serviceTemplate.su-faturasi|Bolletta dell’acqua
+catalog:serviceTemplate.dogalgaz-faturasi|Bolletta del gas
+catalog:serviceTemplate.internet-faturasi|Bolletta internet
+catalog:serviceTemplate.telefon-faturasi|Bolletta telefonica
+catalog:serviceTemplate.kira|Affitto
+catalog:serviceTemplate.aidat|Spese condominiali
+catalog:serviceTemplate.konut-sigortasi|Assicurazione casa
+catalog:serviceTemplate.ev-bakimi|Manutenzione casa
+catalog:serviceTemplate.kredi-karti-odemesi|Pagamento carta di credito
+catalog:serviceTemplate.ihtiyac-kredisi|Prestito personale
+catalog:serviceTemplate.konut-kredisi|Mutuo casa
+catalog:serviceTemplate.tasit-kredisi|Prestito auto
+catalog:serviceTemplate.banka-ucreti|Commissione bancaria
+catalog:serviceTemplate.okul-ucreti|Retta scolastica
+catalog:serviceTemplate.kurs|Corso
+catalog:serviceTemplate.ozel-ders|Lezioni private
+catalog:serviceTemplate.ozel-saglik-sigortasi|Assicurazione sanitaria privata
+catalog:serviceTemplate.muayene|Visita medica
+catalog:serviceTemplate.ilac|Medicinali
+catalog:serviceTemplate.vergi-odemesi|Pagamento imposte
+catalog:serviceTemplate.harc|Tassa amministrativa
+catalog:serviceTemplate.resmi-ucret|Tariffa ufficiale
+catalog:serviceTemplate.spor-salonu|Palestra
+catalog:serviceTemplate.kuafor|Parrucchiere
+catalog:serviceTemplate.kisisel-bakim|Cura personale
+catalog:serviceTemplate.trafik-sigortasi|Assicurazione responsabilità civile auto
+catalog:serviceTemplate.kasko|Assicurazione auto casco
+m_3ec33746857c_one|{{value0}} giorno di prova
+m_a24915d688f1_one|{{value0}} giorno gratis
+m_3120cb691453_one|{{value0}} pagamento · {{value1}}
+m_6d38d0719d06_one|{{value0}} occorrenza
+m_be0bd1466097_one|{{value0}} pagamento scaduto · Dall’inizio del mese a ieri
+m_32cab8a0ff96_one|{{value0}} giorno prima
+m_c3f52697e59c_one|{{value0}} giorno alla fine della prova
+m_b88a01eb7582_one|{{value0}} prova in scadenza
+m_008749f47ce5_one|{{value0}} giorno rimasto
+m_3be6008529d7_one|{{value0}} piano · Pagina {{value1}}/{{value2}}
+m_f334350d4252_one|{{value0}} abbonamento · Pagina {{value1}}/{{value2}}
+m_3ec33746857c_many|{{value0}} giorni di prova
+m_3ec33746857c_other|{{value0}} giorni di prova
+m_a24915d688f1_many|{{value0}} giorni gratis
+m_a24915d688f1_other|{{value0}} giorni gratis
+m_3120cb691453_many|{{value0}} pagamenti · {{value1}}
+m_3120cb691453_other|{{value0}} pagamenti · {{value1}}
+m_6d38d0719d06_many|{{value0}} ricorrenze
+m_6d38d0719d06_other|{{value0}} ricorrenze
+m_be0bd1466097_many|{{value0}} pagamenti scaduti · Dall’inizio del mese a ieri
+m_be0bd1466097_other|{{value0}} pagamenti scaduti · Dall’inizio del mese a ieri
+m_32cab8a0ff96_many|{{value0}} giorni prima
+m_32cab8a0ff96_other|{{value0}} giorni prima
+m_c3f52697e59c_many|{{value0}} giorni alla fine della prova
+m_c3f52697e59c_other|{{value0}} giorni alla fine della prova
+m_b88a01eb7582_many|{{value0}} prove in scadenza
+m_b88a01eb7582_other|{{value0}} prove in scadenza
+m_008749f47ce5_many|{{value0}} giorni rimasti
+m_008749f47ce5_other|{{value0}} giorni rimasti
+m_3be6008529d7_many|{{value0}} piani · Pagina {{value1}}/{{value2}}
+m_3be6008529d7_other|{{value0}} piani · Pagina {{value1}}/{{value2}}
+m_f334350d4252_many|{{value0}} abbonamenti · Pagina {{value1}}/{{value2}}
+m_f334350d4252_other|{{value0}} abbonamenti · Pagina {{value1}}/{{value2}}
+m_dc1356403d5c|Torna alla home
+m_32818902a3d4|Rimuovere la registrazione del dispositivo?
+m_3608ae3ad221|I nuovi invii per questa registrazione vengono interrotti. Le notifiche push già accettate dal fornitore non possono essere ritirate. Per questo telefono usa il pulsante di disconnessione in alto.
+m_dc2b092891f8|Eliminare il promemoria?
+m_635302bd313c|Le attività di questa regola non ancora inviate vengono annullate.
+m_f4ba3168e4d4|Disattivare il piano?
+m_d9a435bdbef5|Non vengono generate nuove date in sospeso. La cronologia dei pagamenti esistente viene conservata.
+m_9c62bf8ff200|Eliminare il piano di pagamento?
+m_78b46a64eb5e|Nome del pagamento
+m_0c9e12052e29|Valuta · ISO 4217
+m_dfdb7b4f231e|Intervallo di ricorrenza
+m_62cae61c31f3|Giorno di ricorrenza · facoltativo
+m_9f4ce70fe7c2|Descrizione · facoltativa
+m_74fddbd51925|Annullare la voce di monitoraggio?
+m_5c0481ebe4d9|Rimuovere la voce di monitoraggio?
+m_d3579181350f|L’abbonamento viene nascosto dall’elenco e il piano collegato disattivato. La cronologia dei pagamenti viene conservata; non viene annullato nulla presso il fornitore esterno.
+m_a45e9436a4ba|Nome dell’abbonamento
+m_93f01c808be2|Nome del fornitore
+m_da20470ab885|Importo dell’abbonamento
+m_5ff71b7378f6|Intervallo di fatturazione
