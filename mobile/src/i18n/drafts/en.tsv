@@ -745,3 +745,60 @@ m_a45e9436a4ba|Subscription name
 m_93f01c808be2|Provider name
 m_da20470ab885|Subscription amount
 m_5ff71b7378f6|Billing interval
+
+settings:profile.accountTitle|My account
+settings:profile.personal|Personal information
+settings:profile.security|Security
+settings:profile.region|Language and region
+settings:profile.notifications|Notifications
+settings:profile.membership|Membership
+settings:profile.actions|Account actions
+settings:profile.displayName|Full name
+settings:profile.emailReadOnly|Changing email requires verification and is unavailable here.
+settings:profile.save|Save profile
+settings:profile.changePassword|Change password
+settings:profile.currentPassword|Current password
+settings:profile.newPassword|New password
+settings:profile.repeatPassword|Repeat new password
+settings:profile.passwordPolicy|Use 12–128 characters and a different password. Changing it signs out all sessions.
+settings:profile.passwordChanged|Password changed. Sign in again with your new password.
+settings:profile.deleteAccount|Delete account
+settings:profile.deleteWarning|This cannot be undone. Financial records are deleted; limited store bindings remain under a pseudonymous account identifier to prevent abuse. Deleting the account does not cancel store subscriptions.
+settings:profile.confirmDelete|Permanently delete my account
+settings:profile.deleteSuccess|Account deleted. You have been signed out.
+settings:profile.unknownMembership|Membership unavailable
+settings:profile.free|Free
+settings:profile.premium|Premium
+settings:profile.expires|Access ends: {{value0}}
+settings:profile.limits|Active payments: {{value0}} · Reminders/plan: {{value1}} · Subscriptions: {{value2}}
+settings:profile.manageMembership|Manage store subscriptions
+settings:profile.timezoneLink|Time zone and region settings
+settings:profile.profileSaved|Profile saved.
+settings:profile.reload|Reload current profile
+settings:profile.invalidName|Enter a valid full name of 1–100 characters.
+settings:profile.passwordMismatch|New passwords do not match.
+settings:profile.uncertainWrite|The result could not be confirmed. Check your connection and account before submitting again.
+settings:profile.passwordInvalid|Check the password requirements.
+settings:profile.requestFailed|The request could not be completed. Check your details and connection.
+settings:profile.wrongPassword|The current password could not be verified.
+
+common:dialog.confirm|Confirm
+common:dialog.close|Close
+common:dialog.error|Request unsuccessful
+common:dialog.info|Information
+common:dialog.success|Done.
+common:dialog.failed|The request could not be completed. Check the current record before trying again.
+common:dialog.network|The result could not be confirmed. Check your connection and the current record.
+common:dialog.changed|The plan changed. Review its current details and confirm deletion again.
+common:dialog.related|This plan has history or reminder records and cannot be deleted. You can keep it inactive.
+common:dialog.linked|This payment belongs to a subscription. Manage it from Subscriptions.
+settings:avatar.change|Change profile photo
+settings:avatar.pick|Choose photo from gallery
+settings:avatar.remove|Remove photo
+settings:avatar.uploading|Uploading photo
+settings:avatar.updated|Photo updated.
+settings:avatar.failed|The photo could not be uploaded. Your existing photo was not changed.
+settings:avatar.invalid|Choose a valid JPEG, PNG or WebP image.
+settings:avatar.large|The file must be at most 2 MB and 2048 × 2048 pixels.
+settings:avatar.permission|Gallery access is required to choose a photo. Check the permission in device settings.
+settings:avatar.unavailable|The photo service is currently unavailable.

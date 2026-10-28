@@ -1,3 +1,9 @@
+> **29 Ekim 2026 — Phase 5.3.1:** `20261028210901_ProfileAvatar` Users tablosuna yalnız nullable `AvatarKey varchar(36)` ekler. Doğrulanmış Development hedefe uygulandı; mevcut kullanıcı/finans/session değerleri aynı, pending0. Startup migration yok. [Avatar saklama/temizlik](AVATARS.md).
+
+## Phase 5.3 — User profil güvenliği (28 Ekim 2026)
+
+`20261028195511_ProfileSecurity`, Users tablosuna SQL `RowVersion` ve `SecurityStamp` ekler. Eski User ID/email/hash ve finansal kayıtlar değiştirilmez. Başlangıç stamp Empty, eski JWT uyumluluğu bu değerle sınırlıdır; parola değişimi yeni stamp üretir. Model hâlâ 20 entity/tablodur. Migration otomatik uygulanmaz; doğrulanmış Docker Development hedefine açıkça uygulandı ve eski alanlar/checksum/satır sayıları korundu. SQL izolasyon/concurrency/upgrade testi274/274 geçti. [Sözleşme ve saklama politikası](ACCOUNT_MANAGEMENT.md).
+
 ## Phase5.1.1 — Additive katalog kapsamı
 
 `20261025145738_CatalogCoverage` yalnız INSERT ile60kategori,7hizmet,113üyelik ekler. Önceki kategori/hizmet kimlik,code,parent,isimleri değişmez; kullanıcı finansal kayıtlarına SQL UPDATE/DELETE yoktur. Yeni tablo/kolon yok;19tablo/PK,22FK aynı. Development `PayAheadDockerDevelopment` hedefi doğrulanıp açıkça uygulandı; eski katalog ve finansal değer/rowversion kontrolü aynı,pending0. Toplam116kategori/104hizmet/245üyelik;102aktif. İdempotentseed ve öncekiCatalogFoundation'dan dolu linked planla upgrade gerçek SQL'de geçti. Down yeni katalog satırlarını kaldırır; artık referans varsa NoAction FK engeller. Gerçek veri üzerinde rollback otomatik yapılmaz. [Kök neden](PHASE5_1_1_DIAGNOSIS.md), [rapor](../mobile/docs/PHASE5_1_1_REPORT.md). Aşağıdaki migration kayıtları tarihseldir.

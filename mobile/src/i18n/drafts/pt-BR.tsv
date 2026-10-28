@@ -756,3 +756,58 @@ m_a45e9436a4ba|Nome da assinatura
 m_93f01c808be2|Nome do provedor
 m_da20470ab885|Valor da assinatura
 m_5ff71b7378f6|Intervalo de cobrança
+settings:profile.accountTitle|Minha conta
+settings:profile.personal|Informações pessoais
+settings:profile.security|Segurança
+settings:profile.region|Idioma e região
+settings:profile.notifications|Notificações
+settings:profile.membership|Adesão
+settings:profile.actions|Ações da conta
+settings:profile.displayName|Nome completo
+settings:profile.emailReadOnly|Alterar o e-mail exige verificação e não está disponível nesta tela.
+settings:profile.save|Salvar perfil
+settings:profile.changePassword|Alterar senha
+settings:profile.currentPassword|Senha atual
+settings:profile.newPassword|Nova senha
+settings:profile.repeatPassword|Repita a nova senha
+settings:profile.passwordPolicy|Use de 12 a 128 caracteres e uma senha diferente da atual. A alteração encerra todas as sessões.
+settings:profile.passwordChanged|Senha alterada. Entre novamente com sua nova senha.
+settings:profile.deleteAccount|Excluir conta
+settings:profile.deleteWarning|Esta ação não pode ser desfeita. Os registros financeiros serão excluídos; vínculos limitados com a loja permanecerão sob um identificador de conta pseudonimizado para evitar abusos. Excluir a conta não cancela as assinaturas da loja.
+settings:profile.confirmDelete|Excluir minha conta permanentemente
+settings:profile.deleteSuccess|Conta excluída. Sua sessão foi encerrada.
+settings:profile.unknownMembership|Não foi possível verificar a adesão
+settings:profile.free|Gratuito
+settings:profile.premium|Premium
+settings:profile.expires|O acesso termina em: {{value0}}
+settings:profile.limits|Pagamentos ativos: {{value0}} · Lembretes/plano: {{value1}} · Assinaturas: {{value2}}
+settings:profile.manageMembership|Gerenciar assinaturas da loja
+settings:profile.timezoneLink|Configurações de fuso horário e região
+settings:profile.profileSaved|Perfil salvo.
+settings:profile.reload|Recarregar perfil atual
+settings:profile.invalidName|Informe um nome completo válido de 1 a 100 caracteres.
+settings:profile.passwordMismatch|As novas senhas não coincidem.
+settings:profile.uncertainWrite|Não foi possível confirmar o resultado. Verifique sua conexão e sua conta antes de enviar novamente.
+settings:profile.passwordInvalid|Verifique os requisitos da senha.
+settings:profile.requestFailed|Não foi possível concluir a solicitação. Verifique seus dados e sua conexão.
+settings:profile.wrongPassword|Não foi possível verificar a senha atual.
+common:dialog.confirm|Confirmar
+common:dialog.close|Fechar
+common:dialog.error|Não foi possível concluir a solicitação
+common:dialog.info|Informação
+common:dialog.success|Concluído.
+common:dialog.failed|Não foi possível concluir a solicitação. Confira o estado atual do registro antes de tentar novamente.
+common:dialog.network|Não foi possível confirmar o resultado. Verifique sua conexão e o estado atual do registro.
+common:dialog.changed|O plano mudou. Confira os dados atuais e confirme a exclusão novamente.
+common:dialog.related|Este plano tem registros de histórico ou lembretes e não pode ser excluído. Você pode mantê-lo inativo.
+common:dialog.linked|Este pagamento pertence a uma assinatura. Gerencie-o em Assinaturas.
+settings:avatar.change|Alterar foto do perfil
+settings:avatar.pick|Escolher foto da galeria
+settings:avatar.remove|Remover foto
+settings:avatar.uploading|Enviando foto
+settings:avatar.updated|Foto atualizada.
+settings:avatar.failed|Não foi possível enviar a foto. Sua foto atual não foi alterada.
+settings:avatar.invalid|Escolha uma imagem JPEG, PNG ou WebP válida.
+settings:avatar.large|O arquivo deve ter no máximo 2 MB e 2048 × 2048 pixels.
+settings:avatar.permission|É necessário acessar a galeria para escolher uma foto. Verifique a permissão nas configurações do dispositivo.
+settings:avatar.unavailable|O serviço de fotos está indisponível no momento.

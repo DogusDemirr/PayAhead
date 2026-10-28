@@ -187,6 +187,16 @@
   "cancel": "Vazgeç",
   "selected": "Seçili",
   "amountInputHint": "Ondalık ayırıcı olarak nokta veya virgül kullan; binlik ayırıcı kullanma. Dil değiştirmek tutarı veya para birimini değiştirmez.",
+  "dialog.confirm": "Onayla",
+  "dialog.close": "Kapat",
+  "dialog.error": "İşlem tamamlanamadı",
+  "dialog.info": "Bilgi",
+  "dialog.success": "İşlem tamamlandı.",
+  "dialog.failed": "İşlem tamamlanamadı. Yeniden denemeden önce kaydın güncel durumunu kontrol et.",
+  "dialog.network": "Sonuç doğrulanamadı. Bağlantını ve kaydın güncel durumunu kontrol et.",
+  "dialog.changed": "Planın bilgileri değişti. Güncel halini inceleyip silmeyi yeniden onayla.",
+  "dialog.related": "Bağlı geçmiş veya hatırlatıcı kayıtları bulunduğu için bu plan silinemiyor. Pasif olarak saklayabilirsin.",
+  "dialog.linked": "Bu ödeme bir aboneliğe bağlı. İşlemi Abonelikler ekranından yönet.",
   "paymentCount_one": "{{count}} ödeme",
   "paymentCount_other": "{{count}} ödeme"
 }

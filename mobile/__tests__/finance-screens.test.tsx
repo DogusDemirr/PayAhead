@@ -1,6 +1,5 @@
 import { beforeEach, afterEach, test, expect, jest } from '@jest/globals';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react-native';
-import { Alert } from 'react-native';
 import { router } from 'expo-router';
 import HomeScreen from '../src/features/HomeScreen';
 import PaymentsScreen from '../src/features/PaymentsScreen';
@@ -116,10 +115,23 @@ test('uncertain write outcome blocks blind double creation', async () => {
   await fireEvent.press(screen.getByRole('button', { name: 'Ödeme planını oluştur' })); expect(await screen.findByText(/Sonuç doğrulanamadı/)).toBeTruthy();
   expect(screen.getByRole('button', { name: 'Ödeme planını oluştur' }).props.accessibilityState.disabled).toBe(true);
 });
-test('delete requires explicit destructive confirmation and uses current version', async () => {
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
+test('delete requires modern confirmation, cancel is safe and successful deletion returns to list', async () => {
   await render(<PaymentDetailScreen id={plan.id} />); await fireEvent.press(screen.getByRole('button', { name: 'Planı sil' })); expect(mutateAsync).not.toHaveBeenCalled();
-  const buttons = alert.mock.calls[0][2]!; expect(buttons[0].style).toBe('cancel');
-  await act(async () => { buttons.find((button) => button.text === 'Sil')?.onPress?.(); });
-  await waitFor(() => expect(mutateAsync).toHaveBeenCalledWith({ kind: 'delete', id: plan.id, rowVersion: plan.rowVersion })); alert.mockRestore();
+  await fireEvent.press(screen.getByRole('button', { name: 'Vazgeç' })); expect(mutateAsync).not.toHaveBeenCalled();
+  await fireEvent.press(screen.getByRole('button', { name: 'Planı sil' })); await fireEvent.press(screen.getByRole('button', { name: 'Sil' }));
+  await waitFor(() => expect(mutateAsync).toHaveBeenCalledWith({ kind: 'delete', id: plan.id, rowVersion: plan.rowVersion })); expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/payments');
+});
+
+test('linked plan rejection explains the rule without reload or fake navigation', async () => {
+  mutateAsync.mockRejectedValueOnce(new ApiError('private server text', 409, undefined, undefined, 'http', 'payment_linked_subscription'));
+  await render(<PaymentDetailScreen id={plan.id} />); await fireEvent.press(screen.getByRole('button', { name: 'Planı sil' })); await fireEvent.press(screen.getByRole('button', { name: 'Sil' }));
+  expect(await screen.findByText(t('common:dialog.linked'))).toBeTruthy(); expect(router.dismissTo).not.toHaveBeenCalled();
+  expect(screen.queryByText('Güncel kaydı yükle')).toBeNull(); expect(screen.queryByText('private server text')).toBeNull(); expect(mutateAsync).toHaveBeenCalledTimes(1);
+});
+
+test('real conflict refetches silently and requires review and a new confirmation', async () => {
+  const query = result(plan); jest.mocked(usePayment).mockReturnValue(query as unknown as ReturnType<typeof usePayment>);
+  mutateAsync.mockRejectedValueOnce(new ApiError('private conflict', 409, undefined, undefined, 'http', 'payment_changed'));
+  await render(<PaymentDetailScreen id={plan.id} />); await fireEvent.press(screen.getByRole('button', { name: 'Planı sil' })); await fireEvent.press(screen.getByRole('button', { name: 'Sil' }));
+  expect(await screen.findByText(t('common:dialog.changed'))).toBeTruthy(); expect(query.refetch).toHaveBeenCalledTimes(1); expect(mutateAsync).toHaveBeenCalledTimes(1); expect(router.dismissTo).not.toHaveBeenCalled();
 });

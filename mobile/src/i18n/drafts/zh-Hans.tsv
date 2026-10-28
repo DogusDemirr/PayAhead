@@ -738,3 +738,60 @@ m_a45e9436a4ba|订阅名称
 m_93f01c808be2|供应商名称
 m_da20470ab885|订阅金额
 m_5ff71b7378f6|计费间隔
+
+settings:profile.accountTitle|我的账户
+settings:profile.personal|个人信息
+settings:profile.security|安全
+settings:profile.region|语言与地区
+settings:profile.notifications|通知
+settings:profile.membership|会员
+settings:profile.actions|账户操作
+settings:profile.displayName|姓名
+settings:profile.emailReadOnly|更改邮箱需要验证，目前无法在此修改。
+settings:profile.save|保存个人资料
+settings:profile.changePassword|更改密码
+settings:profile.currentPassword|当前密码
+settings:profile.newPassword|新密码
+settings:profile.repeatPassword|再次输入新密码
+settings:profile.passwordPolicy|请使用 12–128 个字符，且新密码须与当前密码不同。更改后所有会话都会退出登录。
+settings:profile.passwordChanged|密码已更改，请使用新密码重新登录。
+settings:profile.deleteAccount|删除账户
+settings:profile.deleteWarning|此操作无法撤销。财务记录将被删除；为防止滥用，将以假名化账户标识保留有限的商店关联。删除账户不会取消商店订阅。
+settings:profile.confirmDelete|永久删除我的账户
+settings:profile.deleteSuccess|账户已删除，您已退出登录。
+settings:profile.unknownMembership|无法获取会员信息
+settings:profile.free|免费
+settings:profile.premium|Premium
+settings:profile.expires|访问截止：{{value0}}
+settings:profile.limits|有效付款：{{value0}} · 每计划提醒：{{value1}} · 订阅：{{value2}}
+settings:profile.manageMembership|管理商店订阅
+settings:profile.timezoneLink|时区和地区设置
+settings:profile.profileSaved|个人资料已保存。
+settings:profile.reload|重新加载当前个人资料
+settings:profile.invalidName|请输入 1–100 个字符的有效姓名。
+settings:profile.passwordMismatch|两次输入的新密码不一致。
+settings:profile.uncertainWrite|无法确认操作结果。再次提交前，请检查连接和账户。
+settings:profile.passwordInvalid|请检查密码要求。
+settings:profile.requestFailed|请求无法完成。请检查所填信息和网络连接。
+settings:profile.wrongPassword|无法验证当前密码。
+
+common:dialog.confirm|确认
+common:dialog.close|关闭
+common:dialog.error|操作未成功
+common:dialog.info|信息
+common:dialog.success|操作已完成。
+common:dialog.failed|无法完成请求。请先检查记录的当前状态，然后再重试。
+common:dialog.network|无法确认结果。请检查连接及记录的当前状态。
+common:dialog.changed|计划已更改。请查看最新信息并再次确认删除。
+common:dialog.related|此计划有历史或提醒记录，无法删除。您可以将其停用并保留。
+common:dialog.linked|此付款关联订阅。请在“订阅”页面管理。
+settings:avatar.change|更换个人照片
+settings:avatar.pick|从相册选择照片
+settings:avatar.remove|移除照片
+settings:avatar.uploading|正在上传照片
+settings:avatar.updated|照片已更新。
+settings:avatar.failed|无法上传照片。现有照片未更改。
+settings:avatar.invalid|请选择有效的 JPEG、PNG 或 WebP 图像。
+settings:avatar.large|文件不得超过 2 MB，尺寸不得超过 2048 × 2048 像素。
+settings:avatar.permission|选择照片需要相册访问权限。请在设备设置中检查权限。
+settings:avatar.unavailable|照片服务暂不可用。

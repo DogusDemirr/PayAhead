@@ -49,16 +49,16 @@ export function MotionCard({ children, delay = 0 }: {
 export function AppButton({ title, onPress, variant = 'primary', icon: Icon, disabled = false, loading = false }: {
     title: string;
     onPress: () => void;
-    variant?: 'primary' | 'secondary' | 'ghost';
+    variant?: 'primary' | 'secondary' | 'ghost' | 'destructive';
     icon?: LucideIcon;
     disabled?: boolean;
     loading?: boolean;
 }) {
     useLocaleRevision();
     const { colors } = useTheme();
-    return <Pressable accessibilityRole="button" accessibilityLabel={title} accessibilityState={{ disabled: disabled || loading, busy: loading }} onPress={onPress} disabled={disabled || loading} style={({ pressed }) => [styles.button, { backgroundColor: variant === 'primary' ? colors.navy : variant === 'secondary' ? colors.accentSoft : 'transparent', opacity: disabled ? 0.45 : pressed ? 0.75 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] }]}>
-    {loading ? <ActivityIndicator color={colors.onNavy}/> : Icon ? <Icon size={19} color={variant === 'primary' ? colors.onNavy : colors.accentText}/> : null}
-    <AppText variant="label" style={{ color: variant === 'primary' ? colors.onNavy : colors.accentText, textAlign: 'center', flexShrink: 1 }}>{title}</AppText>
+    return <Pressable accessibilityRole="button" accessibilityLabel={title} accessibilityState={{ disabled: disabled || loading, busy: loading }} onPress={onPress} disabled={disabled || loading} style={({ pressed }) => [styles.button, { backgroundColor: variant === 'destructive' ? colors.danger : variant === 'primary' ? colors.navy : variant === 'secondary' ? colors.accentSoft : 'transparent', opacity: disabled ? 0.45 : pressed ? 0.75 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] }]}>
+    {loading ? <ActivityIndicator color={colors.onNavy}/> : Icon ? <Icon size={19} color={variant === 'primary' || variant === 'destructive' ? colors.onNavy : colors.accentText}/> : null}
+    <AppText variant="label" style={{ color: variant === 'primary' || variant === 'destructive' ? colors.onNavy : colors.accentText, textAlign: 'center', flexShrink: 1 }}>{title}</AppText>
   </Pressable>;
 }
 export function IconButton({ icon: Icon, label, onPress }: {

@@ -40,6 +40,11 @@ public static class DependencyInjection
         services.AddScoped<PayAhead.Application.Subscriptions.ISubscriptionStore, SubscriptionStore>();
         services.AddScoped<PayAhead.Application.Operations.ISharedRateLimiter, SqlSharedRateLimiter>();
         services.AddScoped<PayAhead.Application.Operations.IAccountStore, AccountStore>();
+        services.AddScoped<PayAhead.Application.Auth.IProfileStore, ProfileStore>();
+        services.AddSingleton<PayAhead.Application.Auth.IAvatarImageProcessor, AvatarImageProcessor>();
+        services.AddSingleton<PayAhead.Application.Auth.IAvatarStorage, LocalAvatarStorage>();
+        services.AddScoped<PayAhead.Application.Auth.IAvatarStore, AvatarStore>();
+        services.AddHostedService<AvatarCleanupWorker>();
         var maintenance = configuration.GetSection("Maintenance").Get<PayAhead.Application.Operations.MaintenanceOptions>() ?? new();
         if (maintenance.RefreshRetentionDays is < 90 or > 3650 || maintenance.BatchSize is < 1 or > 1000) throw new InvalidOperationException("Maintenance retention/batch is invalid.");
         services.AddSingleton(maintenance);

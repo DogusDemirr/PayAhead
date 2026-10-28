@@ -82,6 +82,8 @@ public sealed class PaymentApiTests : IClassFixture<SqlServerFixture>, IAsyncLif
         Assert.NotEqual(created.RowVersion, changed.RowVersion);
         await Problem(await client.PutAsJsonAsync($"/api/payments/{created.Id}", update), HttpStatusCode.Conflict);
         await Problem(await Delete(client, created.Id, created.RowVersion), HttpStatusCode.Conflict);
+        using var staleDelete = await Delete(client, created.Id, created.RowVersion);
+        Assert.Contains("payment_changed", await staleDelete.Content.ReadAsStringAsync());
         Assert.Equal(changed, await Payment(await client.GetAsync($"/api/payments/{created.Id}")));
         Assert.Equal(HttpStatusCode.NoContent, (await Delete(client, created.Id, changed.RowVersion)).StatusCode);
         await Problem(await client.GetAsync($"/api/payments/{created.Id}"), HttpStatusCode.NotFound);
@@ -221,9 +223,25 @@ public sealed class PaymentApiTests : IClassFixture<SqlServerFixture>, IAsyncLif
         else db.PaymentOccurrences.Add(new() { Id = Guid.NewGuid(), PaymentPlanId = plan.Id, DueDate = plan.StartDate, CreatedAtUtc = DateTime.UtcNow });
         await db.SaveChangesAsync();
         await Problem(await Delete(client, plan.Id, plan.RowVersion), HttpStatusCode.Conflict);
+        using var blockedDelete = await Delete(client, plan.Id, plan.RowVersion);
+        Assert.Contains("payment_delete_related", await blockedDelete.Content.ReadAsStringAsync());
         Assert.True(await db.PaymentPlans.AnyAsync(x => x.Id == plan.Id));
         if (reminder) Assert.Equal(1, await db.ReminderRules.CountAsync());
         else Assert.Equal(1, await db.PaymentOccurrences.CountAsync());
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task Independent_active_or_inactive_plan_is_deleted_and_removed_from_list(bool active)
+    {
+        using var client = Client(owner);
+        var body = Body(); body["isActive"] = active;
+        var plan = await Payment(await client.PostAsJsonAsync("/api/payments", body));
+        Assert.Equal(active, plan.IsActive);
+        Assert.Equal(HttpStatusCode.NoContent, (await Delete(client, plan.Id, plan.RowVersion)).StatusCode);
+        var list = await client.GetFromJsonAsync<PagedResult<PaymentResponse>>("/api/payments", Json);
+        Assert.Empty(list!.Items); Assert.Equal(0, list.TotalCount);
     }
 
     [Fact]

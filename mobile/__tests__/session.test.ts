@@ -20,6 +20,14 @@ function setup(saved: StoredSession | null = null, beforeEnd?: (identity: { user
   return { manager, api, storage, getUser, clearCache, record: () => record };
 }
 const credentials = { email: 'test@example.com', password: 'Example-password-123' };
+
+test('confirmed profile update changes public session data without storing passwords or rewriting tokens', async () => {
+  const s = setup(); await s.manager.login(credentials); const writes = s.storage.write.mock.calls.length; const epoch = s.manager.credential()!.epoch;
+  s.manager.updateUser({ ...user, displayName: 'Changed' }, epoch);
+  expect(s.manager.getSnapshot().user?.displayName).toBe('Changed'); expect(s.storage.write.mock.calls).toHaveLength(writes);
+  expect(() => s.manager.updateUser({ ...user, id: 'another-user' }, epoch)).toThrow();
+  await s.manager.logout(); expect(() => s.manager.updateUser(user, epoch)).toThrow();
+});
 test('logout clears local credentials/cache before waiting for device cleanup', async () => {
   const cleanup = deferred<void>(); const beforeEnd = jest.fn(() => cleanup.promise); const s = setup(null, beforeEnd); await s.manager.login(credentials); const logout = s.manager.logout();
   for (let i = 0; i < 10 && !beforeEnd.mock.calls.length; i++) await Promise.resolve(); expect(s.manager.credential()).toBeNull(); expect(s.record()).toBeNull(); expect(beforeEnd).toHaveBeenCalledWith(expect.objectContaining({ userId: user.id, accessToken: 'access-a' })); cleanup.resolve(); await logout; expect(s.api.logout).toHaveBeenCalledTimes(1);

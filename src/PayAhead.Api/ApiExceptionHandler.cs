@@ -14,7 +14,8 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
     {
         var status = exception switch
         {
-            ValidationException or DomainRuleException => 400,
+            PayAhead.Application.Auth.AvatarException avatar => avatar.Code switch { "avatar_too_large" => 413, "avatar_changed" => 409, "avatar_unavailable" => 503, _ => 400 },
+            ValidationException or DomainRuleException or PayAhead.Application.Auth.CurrentPasswordException => 400,
             BadHttpRequestException { StatusCode: 413 } => 413,
             BadHttpRequestException => 400,
             StoreVerificationException => 400,
@@ -25,7 +26,7 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
             PayAhead.Application.Operations.ExportLimitException => 413,
             AuthenticationRequiredException => 401,
             ResourceNotFoundException => 404,
-            DbUpdateConcurrencyException or ResourceConflictException => 409,
+            DbUpdateConcurrencyException or ResourceConflictException or PaymentDeletionRestrictedException => 409,
             _ => 500
         };
         // İstisna mesajı/veritabanı parametreleri veya istek gövdesi loglanmaz.
@@ -44,14 +45,18 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
             400 => "İstek doğrulanamadı.",
             401 => "Kimlik doğrulama gerekli.",
             403 => "Üyelik planının aktif kayıt sınırı aşıldı.",
-            503 => exception is PayAhead.Application.Auth.PasswordResetUnavailableException ? "Şifre yenileme hizmeti şu anda kullanılamıyor." : "Mağaza doğrulaması şu anda kullanılamıyor.",
+            503 => exception is PayAhead.Application.Auth.AvatarException ? "Profil fotoğrafı hizmeti şu anda kullanılamıyor." : exception is PayAhead.Application.Auth.PasswordResetUnavailableException ? "Şifre yenileme hizmeti şu anda kullanılamıyor." : "Mağaza doğrulaması şu anda kullanılamıyor.",
             413 => exception is PayAhead.Application.Operations.ExportLimitException ? "Veri dışa aktarım sınırı aşıldı; destek üzerinden parçalara ayrılmış aktarım isteyin." : "İstek gövdesi çok büyük.",
-            404 => "Ödeme planı bulunamadı.",
-            409 => exception is ResourceConflictException ? exception.Message : "Kaynak başka bir işlem tarafından değiştirildi.",
+            404 => context.Request.Path.StartsWithSegments("/api/users/me/avatar") ? "Profil fotoğrafı bulunamadı." : "Ödeme planı bulunamadı.",
+            409 => exception is PaymentDeletionRestrictedException ? "Bağlı kayıtları olan plan silinemiyor." : exception is ResourceConflictException ? exception.Message : "Kaynak başka bir işlem tarafından değiştirildi.",
             _ => "Beklenmeyen sunucu hatası."
         };
         detail.Extensions["traceId"] = context.TraceIdentifier;
         if (exception is EntitlementLimitException) detail.Extensions["code"] = "entitlement_limit";
+        if (exception is PayAhead.Application.Auth.CurrentPasswordException) detail.Extensions["code"] = "current_password_invalid";
+        if (exception is PayAhead.Application.Auth.AvatarException avatarError) detail.Extensions["code"] = avatarError.Code;
+        if (exception is PaymentDeletionRestrictedException restricted) detail.Extensions["code"] = restricted.Code;
+        else if (HttpMethods.IsDelete(context.Request.Method) && context.Request.Path.StartsWithSegments("/api/payments") && exception is DbUpdateConcurrencyException or ResourceConflictException) detail.Extensions["code"] = "payment_changed";
         if (exception is DomainRuleException) detail.Detail = exception.Message;
         context.Response.StatusCode = status;
         return await problems.TryWriteAsync(new ProblemDetailsContext

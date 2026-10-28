@@ -1,6 +1,7 @@
+import { useAppDialog } from '../../components/dialogs';
 import { currentLocale, t, useLocaleRevision } from '../../i18n/runtime';
 import { useRef, useState } from 'react';
-import { Alert, View } from 'react-native';
+import { View } from 'react-native';
 import { router } from 'expo-router';
 import { isCancel } from 'axios';
 import { AppScreen, AppHeader, AppCard, AppText, AppButton, LoadingSkeleton, StatusBadge } from '../../components/ui';
@@ -35,6 +36,7 @@ export function SubscriptionDetail({ initial, reload }: {
     initial: Subscription;
     reload: () => Promise<void>;
 }) {
+    const dialogs = useAppDialog();
     useLocaleRevision();
     const [record, setRecord] = useState(initial);
     const [accessEnd, setAccessEnd] = useState(initial.accessEndsOn && initial.accessEndsOn >= initial.context.today ? initial.accessEndsOn : '');
@@ -66,6 +68,7 @@ export function SubscriptionDetail({ initial, reload }: {
                 if (error instanceof ApiError && (error.status === 409 || error.kind === 'network' || error.kind === 'timeout'))
                     setBlocked(true);
             }
+            throw error;
         }
         finally {
             busy.current = false;
@@ -88,11 +91,11 @@ export function SubscriptionDetail({ initial, reload }: {
     <AppText variant="caption" tone="muted">{t("subscriptions:m_af18c85b8d43")}</AppText>
     {mutable ? <><AppButton title={t("subscriptions:m_8810c95e97ad")} disabled={mutation.isPending || blocked} onPress={() => router.push({ pathname: '/edit-subscription', params: { id: record.id } })}/>
       <AppCard><AppText variant="section">{t("subscriptions:m_9c855e9dea46")}</AppText><AppText tone="muted" style={{ marginVertical: 14 }}>{t("subscriptions:m_8c19506de966")}</AppText><DateField label={t("subscriptions:m_09ac97477bbd")} value={accessEnd} onChange={setAccessEnd} fallback={minimum} minimum={minimum} disabled={mutation.isPending || blocked}/>
-        <View style={{ marginTop: 16 }}><AppButton title={t("subscriptions:m_2487cd5b4552")} variant="secondary" disabled={mutation.isPending || blocked || !validDate(accessEnd) || accessEnd < minimum} onPress={() => Alert.alert(t("common:m_74fddbd51925"), t("subscriptions:m_307f11592d33", { value0: dateLabel(accessEnd, true, true) }), [{ text: t("subscriptions:m_39a8d28c1c6b"), style: 'cancel' }, { text: t("subscriptions:m_2c5a5df10ac9"), onPress: () => { void change('cancel'); } }])}/></View></AppCard></> : <AppCard><AppText tone="muted">{t("subscriptions:m_dc2fe2ce17ea")}</AppText></AppCard>}
-    <AppButton title={t("subscriptions:m_a73ff22c9a90")} variant="ghost" disabled={mutation.isPending || blocked} onPress={() => Alert.alert(t("common:m_5c0481ebe4d9"), t("common:m_d3579181350f"), [{ text: t("subscriptions:m_39a8d28c1c6b"), style: 'cancel' }, { text: t("subscriptions:m_b88019aa289e"), style: 'destructive', onPress: () => { void change('delete'); } }])}/>
+        <View style={{ marginTop: 16 }}><AppButton title={t("subscriptions:m_2487cd5b4552")} variant="secondary" disabled={mutation.isPending || blocked || !validDate(accessEnd) || accessEnd < minimum} onPress={() => dialogs.alert(t("common:m_74fddbd51925"), t("subscriptions:m_307f11592d33", { value0: dateLabel(accessEnd, true, true) }), [{ text: t("subscriptions:m_39a8d28c1c6b"), style: 'cancel' }, { text: t("subscriptions:m_2c5a5df10ac9"), onPress: () => change('cancel') }])}/></View></AppCard></> : <AppCard><AppText tone="muted">{t("subscriptions:m_dc2fe2ce17ea")}</AppText></AppCard>}
+    <AppButton title={t("subscriptions:m_a73ff22c9a90")} variant="ghost" disabled={mutation.isPending || blocked} onPress={() => dialogs.alert(t("common:m_5c0481ebe4d9"), t("common:m_d3579181350f"), [{ text: t("subscriptions:m_39a8d28c1c6b"), style: 'cancel' }, { text: t("subscriptions:m_b88019aa289e"), style: 'destructive', onPress: () => change('delete') }])}/>
     {mutation.isPending && <AppText accessibilityLiveRegion="polite">{t("subscriptions:m_5230f2b7aaa9")}</AppText>}{success && <AppText accessibilityRole="alert" tone="success">{t("subscriptions:m_e8acb1ee980d")}</AppText>}
     {failure instanceof ApiError && failure.code === 'entitlement_limit' && <SubscriptionLimitNotice />}{!!failure && <MutationFailure error={failure} blocked={blocked} reload={() => { void reload(); }}/>}
-  </View></AppScreen>;
+  </View>{dialogs.dialog}</AppScreen>;
 }
 function Detail({ label, value }: {
     label: string;

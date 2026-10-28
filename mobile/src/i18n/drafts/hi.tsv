@@ -749,3 +749,60 @@ m_a45e9436a4ba|सदस्यता का नाम
 m_93f01c808be2|प्रदाता का नाम
 m_da20470ab885|सदस्यता राशि
 m_5ff71b7378f6|बिलिंग अंतराल
+
+settings:profile.accountTitle|मेरा खाता
+settings:profile.personal|व्यक्तिगत जानकारी
+settings:profile.security|सुरक्षा
+settings:profile.region|भाषा और क्षेत्र
+settings:profile.notifications|सूचनाएँ
+settings:profile.membership|सदस्यता
+settings:profile.actions|खाते की कार्रवाइयाँ
+settings:profile.displayName|पूरा नाम
+settings:profile.emailReadOnly|ईमेल बदलने के लिए सत्यापन चाहिए और यहाँ यह उपलब्ध नहीं है।
+settings:profile.save|प्रोफ़ाइल सहेजें
+settings:profile.changePassword|पासवर्ड बदलें
+settings:profile.currentPassword|वर्तमान पासवर्ड
+settings:profile.newPassword|नया पासवर्ड
+settings:profile.repeatPassword|नया पासवर्ड फिर दर्ज करें
+settings:profile.passwordPolicy|12–128 वर्णों का और वर्तमान से अलग पासवर्ड उपयोग करें। बदलने से सभी सत्रों से प्रस्थान होगा।
+settings:profile.passwordChanged|पासवर्ड बदल गया। नए पासवर्ड से फिर प्रवेश करें।
+settings:profile.deleteAccount|खाता हटाएँ
+settings:profile.deleteWarning|यह वापस नहीं किया जा सकता। वित्तीय रिकॉर्ड हटेंगे; दुरुपयोग रोकने के लिए छद्मनाम वाले खाता पहचानकर्ता के अंतर्गत सीमित स्टोर संबंध रखे जाएँगे। खाता हटाने से स्टोर सदस्यताएँ रद्द नहीं होतीं।
+settings:profile.confirmDelete|मेरा खाता स्थायी रूप से हटाएँ
+settings:profile.deleteSuccess|खाता हटा दिया गया। आपका प्रस्थान हो गया है।
+settings:profile.unknownMembership|सदस्यता उपलब्ध नहीं
+settings:profile.free|मुफ़्त
+settings:profile.premium|Premium
+settings:profile.expires|पहुँच समाप्त: {{value0}}
+settings:profile.limits|सक्रिय भुगतान: {{value0}} · अनुस्मारक/योजना: {{value1}} · सदस्यताएँ: {{value2}}
+settings:profile.manageMembership|स्टोर सदस्यताएँ प्रबंधित करें
+settings:profile.timezoneLink|समय क्षेत्र और क्षेत्रीय सेटिंग
+settings:profile.profileSaved|प्रोफ़ाइल सहेजी गई।
+settings:profile.reload|वर्तमान प्रोफ़ाइल फिर लोड करें
+settings:profile.invalidName|1–100 वर्णों का मान्य पूरा नाम दर्ज करें।
+settings:profile.passwordMismatch|नए पासवर्ड मेल नहीं खाते।
+settings:profile.uncertainWrite|परिणाम की पुष्टि नहीं हुई। फिर भेजने से पहले कनेक्शन और खाता जाँचें।
+settings:profile.passwordInvalid|पासवर्ड की आवश्यकताएँ जाँचें।
+settings:profile.requestFailed|अनुरोध पूरा नहीं हुआ। अपनी जानकारी और कनेक्शन जाँचें।
+settings:profile.wrongPassword|वर्तमान पासवर्ड सत्यापित नहीं हुआ।
+
+common:dialog.confirm|पुष्टि करें
+common:dialog.close|बंद करें
+common:dialog.error|अनुरोध सफल नहीं हुआ
+common:dialog.info|जानकारी
+common:dialog.success|पूरा हुआ।
+common:dialog.failed|अनुरोध पूरा नहीं हो सका। फिर से प्रयास करने से पहले रिकॉर्ड की मौजूदा स्थिति जाँचें।
+common:dialog.network|परिणाम की पुष्टि नहीं हुई। कनेक्शन और वर्तमान रिकॉर्ड जाँचें।
+common:dialog.changed|योजना बदल गई। वर्तमान विवरण देखें और हटाने की फिर पुष्टि करें।
+common:dialog.related|इस योजना में इतिहास या अनुस्मारक रिकॉर्ड हैं, इसलिए इसे हटा नहीं सकते। इसे निष्क्रिय रख सकते हैं।
+common:dialog.linked|यह भुगतान किसी सदस्यता से जुड़ा है। इसे सदस्यताएँ स्क्रीन से प्रबंधित करें।
+settings:avatar.change|प्रोफ़ाइल फ़ोटो बदलें
+settings:avatar.pick|गैलरी से फ़ोटो चुनें
+settings:avatar.remove|फ़ोटो हटाएँ
+settings:avatar.uploading|फ़ोटो अपलोड हो रही है
+settings:avatar.updated|फ़ोटो अद्यतन हुई।
+settings:avatar.failed|फ़ोटो अपलोड नहीं हुई। आपकी मौजूदा फ़ोटो नहीं बदली गई।
+settings:avatar.invalid|मान्य JPEG, PNG या WebP छवि चुनें।
+settings:avatar.large|फ़ाइल अधिकतम 2 MB और 2048 × 2048 पिक्सेल की होनी चाहिए।
+settings:avatar.permission|फ़ोटो चुनने के लिए गैलरी की पहुँच चाहिए। डिवाइस सेटिंग में अनुमति जाँचें।
+settings:avatar.unavailable|फ़ोटो सेवा अभी उपलब्ध नहीं है।

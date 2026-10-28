@@ -743,3 +743,58 @@ m_a45e9436a4ba|Aboname
 m_93f01c808be2|Anbietername
 m_da20470ab885|Abobetrag
 m_5ff71b7378f6|Abrechnungsintervall
+settings:profile.accountTitle|Mein Konto
+settings:profile.personal|Persönliche Daten
+settings:profile.security|Sicherheit
+settings:profile.region|Sprache und Region
+settings:profile.notifications|Benachrichtigungen
+settings:profile.membership|Mitgliedschaft
+settings:profile.actions|Kontoaktionen
+settings:profile.displayName|Vollständiger Name
+settings:profile.emailReadOnly|Eine Änderung der E-Mail-Adresse erfordert eine Verifizierung und ist hier nicht möglich.
+settings:profile.save|Profil speichern
+settings:profile.changePassword|Passwort ändern
+settings:profile.currentPassword|Aktuelles Passwort
+settings:profile.newPassword|Neues Passwort
+settings:profile.repeatPassword|Neues Passwort wiederholen
+settings:profile.passwordPolicy|Verwende 12–128 Zeichen und ein anderes Passwort als bisher. Durch die Änderung werden alle Sitzungen abgemeldet.
+settings:profile.passwordChanged|Passwort geändert. Melde dich mit deinem neuen Passwort erneut an.
+settings:profile.deleteAccount|Konto löschen
+settings:profile.deleteWarning|Dieser Vorgang kann nicht rückgängig gemacht werden. Finanzdaten werden gelöscht; begrenzte Store-Verknüpfungen bleiben zur Missbrauchsprävention unter einer pseudonymen Kontokennung gespeichert. Das Löschen des Kontos kündigt keine Store-Abos.
+settings:profile.confirmDelete|Mein Konto endgültig löschen
+settings:profile.deleteSuccess|Konto gelöscht. Du wurdest abgemeldet.
+settings:profile.unknownMembership|Mitgliedschaft nicht verfügbar
+settings:profile.free|Kostenlos
+settings:profile.premium|Premium
+settings:profile.expires|Zugang endet: {{value0}}
+settings:profile.limits|Aktive Zahlungen: {{value0}} · Erinnerungen/Plan: {{value1}} · Abos: {{value2}}
+settings:profile.manageMembership|Store-Abos verwalten
+settings:profile.timezoneLink|Zeitzonen- und Regionseinstellungen
+settings:profile.profileSaved|Profil gespeichert.
+settings:profile.reload|Aktuelles Profil neu laden
+settings:profile.invalidName|Gib einen gültigen vollständigen Namen mit 1–100 Zeichen ein.
+settings:profile.passwordMismatch|Die neuen Passwörter stimmen nicht überein.
+settings:profile.uncertainWrite|Das Ergebnis konnte nicht bestätigt werden. Prüfe Verbindung und Konto vor erneutem Senden.
+settings:profile.passwordInvalid|Prüfe die Passwortanforderungen.
+settings:profile.requestFailed|Die Anfrage konnte nicht abgeschlossen werden. Prüfe deine Angaben und Verbindung.
+settings:profile.wrongPassword|Das aktuelle Passwort konnte nicht bestätigt werden.
+common:dialog.confirm|Bestätigen
+common:dialog.close|Schließen
+common:dialog.error|Anfrage fehlgeschlagen
+common:dialog.info|Informationen
+common:dialog.success|Erledigt.
+common:dialog.failed|Die Anfrage konnte nicht abgeschlossen werden. Prüfe den aktuellen Datensatz, bevor du es erneut versuchst.
+common:dialog.network|Das Ergebnis konnte nicht bestätigt werden. Prüfe die Verbindung und den aktuellen Eintrag.
+common:dialog.changed|Der Plan wurde geändert. Prüfe die aktuellen Angaben und bestätige das Löschen erneut.
+common:dialog.related|Dieser Plan hat Verlaufs- oder Erinnerungseinträge und kann nicht gelöscht werden. Du kannst ihn inaktiv behalten.
+common:dialog.linked|Diese Zahlung gehört zu einem Abo. Verwalte sie unter Abos.
+settings:avatar.change|Profilfoto ändern
+settings:avatar.pick|Foto aus der Galerie auswählen
+settings:avatar.remove|Foto entfernen
+settings:avatar.uploading|Foto wird hochgeladen
+settings:avatar.updated|Foto aktualisiert.
+settings:avatar.failed|Das Foto konnte nicht hochgeladen werden. Dein bisheriges Foto wurde nicht geändert.
+settings:avatar.invalid|Wähle ein gültiges JPEG-, PNG- oder WebP-Bild.
+settings:avatar.large|Die Datei darf höchstens 2 MB groß sein und maximal 2048 × 2048 Pixel haben.
+settings:avatar.permission|Zum Auswählen eines Fotos ist Galeriezugriff erforderlich. Prüfe die Berechtigung in den Geräteeinstellungen.
+settings:avatar.unavailable|Der Fotodienst ist derzeit nicht verfügbar.

@@ -16,7 +16,7 @@ export interface DashboardSummaryResponse {
   paidPaymentCount: number; skippedPaymentCount: number; pendingPaymentCount: number;
   upcomingTotalsByCurrency: CurrencyTotal[]; paidTotalsByCurrency: CurrencyTotal[]; nextUpcomingPayment: ProjectedPayment | null;
 }
-export interface UserResponse { id: string; email: string; displayName: string }
+export interface UserResponse { id: string; email: string; displayName: string; hasAvatar?: boolean; avatarVersion?: string }
 export interface AuthResponse {
   accessToken: string; refreshToken: string; accessTokenExpiresAtUtc: string;
   refreshTokenExpiresAtUtc: string; user: UserResponse; tokenType: 'Bearer';

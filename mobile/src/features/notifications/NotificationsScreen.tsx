@@ -1,6 +1,7 @@
+import { useAppDialog } from '../../components/dialogs';
 import { currentLanguage, currentLocale, t, useLocaleRevision } from '../../i18n/runtime';
 import { useEffect, useRef, useState } from 'react';
-import { Alert, Linking, View, Switch } from 'react-native';
+import { Linking, View, Switch } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isCancel } from 'axios';
@@ -11,6 +12,7 @@ import { settingsFormSchema, type NotificationSettings, type SettingsWrite } fro
 import { usePushState, pushAvailability, connectPush, disconnectPush, refreshPushPermission, acknowledgeRemovedDevice } from './push-runtime';
 import { ApiError } from '../../services/api-error';
 export default function NotificationsScreen() {
+    const dialogs = useAppDialog();
     useLocaleRevision();
     useEffect(() => { void refreshPushPermission().catch(() => usePushState.setState({ error: t("reminders:m_7900e641cb36") })); }, []);
     const settings = useNotificationSettings();
@@ -48,9 +50,9 @@ export default function NotificationsScreen() {
       {!push.canAskAgain && <AppText tone="warning">{t("reminders:m_082675ccc2b8")}</AppText>}{push.error && <AppText tone="danger" accessibilityRole="alert" style={{ marginTop: 12 }}>{push.error}</AppText>}
     </AppCard>
     {settings.isError ? <FinanceError error={settings.error} retry={() => { void reload(); }}/> : !settings.data ? <LoadingSkeleton /> : <SettingsForm key={revision} initial={settings.data} reload={reload}/>}
-    <SectionHeader title={t("reminders:m_55352df66012")}/>{devices.isError ? <FinanceError error={devices.error} retry={() => { void devices.refetch(); }}/> : !devices.data ? <LoadingSkeleton /> : devices.data.length ? devices.data.map((d, index) => <AppCard key={d.id}><AppText variant="label">{t("reminders:m_aa3cf0d408e7", { value0: d.platform === 'android' ? 'Android' : 'iOS', value1: index + 1 })}</AppText><AppText tone="muted">{t("reminders:m_dd339f27d49c", { value0: d.isActive ? t("reminders:m_b44948b30289") : t("reminders:m_dc1ec4a10b02"), value1: new Date(d.lastSeenAtUtc).toLocaleString(currentLocale()) })}</AppText><AppButton title={t("reminders:m_14477af7fb8f", { value0: index + 1 })} variant="ghost" disabled={mutation.isPending || !!failure} onPress={() => Alert.alert(t("common:m_32818902a3d4"), t("common:m_3608ae3ad221"), [{ text: t("reminders:m_39a8d28c1c6b"), style: 'cancel' }, { text: t("reminders:m_b88019aa289e"), style: 'destructive', onPress: () => { void remove(d.id); } }])}/></AppCard>) : <EmptyState title={t("reminders:m_e9e3db3d1e8f")} message={t("reminders:m_cc44fa0414a3")}/>}
+    <SectionHeader title={t("reminders:m_55352df66012")}/>{devices.isError ? <FinanceError error={devices.error} retry={() => { void devices.refetch(); }}/> : !devices.data ? <LoadingSkeleton /> : devices.data.length ? devices.data.map((d, index) => <AppCard key={d.id}><AppText variant="label">{t("reminders:m_aa3cf0d408e7", { value0: d.platform === 'android' ? 'Android' : 'iOS', value1: index + 1 })}</AppText><AppText tone="muted">{t("reminders:m_dd339f27d49c", { value0: d.isActive ? t("reminders:m_b44948b30289") : t("reminders:m_dc1ec4a10b02"), value1: new Date(d.lastSeenAtUtc).toLocaleString(currentLocale()) })}</AppText><AppButton title={t("reminders:m_14477af7fb8f", { value0: index + 1 })} variant="ghost" disabled={mutation.isPending || !!failure} onPress={() => dialogs.alert(t("common:m_32818902a3d4"), t("common:m_3608ae3ad221"), [{ text: t("reminders:m_39a8d28c1c6b"), style: 'cancel' }, { text: t("reminders:m_b88019aa289e"), style: 'destructive', onPress: () => remove(d.id) }])}/></AppCard>) : <EmptyState title={t("reminders:m_e9e3db3d1e8f")} message={t("reminders:m_cc44fa0414a3")}/>}
     {!!failure && <FinanceError error={failure} retry={() => { setFailure(null); void reload(); }}/>}<AppText variant="caption" tone="muted">{t("reminders:m_8a2d59b0f70d")}</AppText>
-  </View></AppScreen>;
+  </View>{dialogs.dialog}</AppScreen>;
 }
 export function SettingsForm({ initial, reload }: {
     initial: NotificationSettings;

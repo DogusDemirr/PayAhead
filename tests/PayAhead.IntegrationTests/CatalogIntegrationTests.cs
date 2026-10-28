@@ -99,7 +99,8 @@ public sealed class CatalogIntegrationTests(SqlServerFixture sql) : IClassFixtur
     {
         await using var db = Db(); var migrator = db.GetService<IMigrator>(); await migrator.MigrateAsync("20261025134913_CatalogFoundation");
         var oldCategories = await db.CatalogCategories.AsNoTracking().OrderBy(x => x.Id).ToArrayAsync(); var oldServices = await db.CatalogServices.AsNoTracking().OrderBy(x => x.Id).ToArrayAsync();
-        var request = Payment(C("video"), S("netflix")); var created = await Read(await client.PostAsJsonAsync("/api/payments", request), HttpStatusCode.Created); var id = created["id"]!.GetValue<Guid>();
+        // The historical DB predates current auth columns; seed the unchanged plan model directly.
+        var id = Guid.NewGuid(); db.PaymentPlans.Add(new() { Id = id, UserId = user, Name = "Private linked plan", Amount = 12.3456m, CurrencyCode = "TRY", Category = "Legacy category", StartDate = new(2026, 10, 25), CatalogCategoryId = C("video"), CatalogServiceId = S("netflix"), CreatedAtUtc = DateTime.UtcNow, UpdatedAtUtc = DateTime.UtcNow }); await db.SaveChangesAsync();
         var before = await db.PaymentPlans.AsNoTracking().SingleAsync(x => x.Id == id);
         await migrator.MigrateAsync(); await CatalogSeed.EnsureMissingAsync(db); await CatalogSeed.EnsureMissingAsync(db);
         Assert.Equal(116, await db.CatalogCategories.CountAsync()); Assert.Equal(104, await db.CatalogServices.CountAsync()); Assert.Equal(245, await db.CatalogServiceCategories.CountAsync());

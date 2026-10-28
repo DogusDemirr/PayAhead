@@ -1,3 +1,11 @@
+> **Phase 5.3.1:** `expo-image-picker` ve `expo-image-manipulator` SDK57 sürümleri kullanılır. Geniş galeri/kamera/mikrofon izni istenmez. Kare kırpma sonrası512 JPEG backend’e gönderilir; telefon dosya yolu kalıcı storage sayılmaz. [Backend/avatar](../../docs/AVATARS.md), [silme/dialog tanısı](../../docs/PHASE5_3_1_DIAGNOSIS.md). Gerçek loopback smoke: `EXPO_PUBLIC_API_BASE_URL=http://127.0.0.1:5094` ortamıyla `node scripts/phase531-smoke.cjs`; yalnız kendi test hesabını temizler.
+
+## Phase 5.3 — Profil merkezi
+
+Ayarlar → Hesap Bilgileri, `/account` route'unu açar. Güncel backend ve ProfileSecurity migration gerekir; bu makinenin Development migration'ı uygulanmıştır. Dil `/language`, bölge/bildirim `/notifications` üzerinden ortak API'leri kullanır. Parola değişince tüm oturumlar kapanır; yeniden login gerekir. Profil/deletion timeout'u başarılı yazı olarak kabul edilmez.
+
+`npm.cmd run test:account:live` yalnız localhost API'sinde kendi rastgele test hesaplarıyla çalışır. Gerekirse süreç ortamında EXPO_PUBLIC_API_BASE_URL portunu5093 seçin, .env LAN adresini değiştirmeyin. Test kişisel hesabınıza bağlanmaz; token/parola yazdırmaz. [Sonuç](PHASE5_3_REPORT.md), [Android adımları](ANDROID_TESTING.md), [API/komutlar](../../docs/ACCOUNT_MANAGEMENT.md).
+
 ## Phase5.1.1 — Kategori ve gerçek logo denemesi
 
 Backend'i güncel kodla yeniden başlatın: repository kökünde `./scripts/Start-Development.ps1 -Port 5080`. Bu makinede CatalogCoverage uygulanmıştır;startup migrate yoktur. Mevcut eski API sürecini önce kendi terminalinden Ctrl+C ile kapatın. Mobile `.env` LAN adresi aynı port/IP'yi göstermeli;telefonda localhost kullanmayın. Mobile dizininde `npx.cmd expo start --go --clear`, ardından yeni bundle ile giriş ve seçicide **Kataloğu yenile**. Her kategori kartının tamamı tıklanır; seçili yol görünür. Dijital altı başlığa ana sayfada kısayol vardır. Payment araç giderlerini gösterir,Subscription göstermez. Haber→Dijital Gazete çalışmalıdır.

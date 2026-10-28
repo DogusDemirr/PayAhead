@@ -1,0 +1,82 @@
+{
+  "common:dialog.confirm": [
+    "Onayla",
+    "Confirm"
+  ],
+  "common:dialog.close": [
+    "Kapat",
+    "Close"
+  ],
+  "common:dialog.error": [
+    "İşlem tamamlanamadı",
+    "Request unsuccessful"
+  ],
+  "common:dialog.info": [
+    "Bilgi",
+    "Information"
+  ],
+  "common:dialog.success": [
+    "İşlem tamamlandı.",
+    "Done."
+  ],
+  "common:dialog.failed": [
+    "İşlem tamamlanamadı. Yeniden denemeden önce kaydın güncel durumunu kontrol et.",
+    "The request could not be completed. Check the current record before trying again."
+  ],
+  "common:dialog.network": [
+    "Sonuç doğrulanamadı. Bağlantını ve kaydın güncel durumunu kontrol et.",
+    "The result could not be confirmed. Check your connection and the current record."
+  ],
+  "common:dialog.changed": [
+    "Planın bilgileri değişti. Güncel halini inceleyip silmeyi yeniden onayla.",
+    "The plan changed. Review its current details and confirm deletion again."
+  ],
+  "common:dialog.related": [
+    "Bağlı geçmiş veya hatırlatıcı kayıtları bulunduğu için bu plan silinemiyor. Pasif olarak saklayabilirsin.",
+    "This plan has history or reminder records and cannot be deleted. You can keep it inactive."
+  ],
+  "common:dialog.linked": [
+    "Bu ödeme bir aboneliğe bağlı. İşlemi Abonelikler ekranından yönet.",
+    "This payment belongs to a subscription. Manage it from Subscriptions."
+  ],
+  "settings:avatar.change": [
+    "Profil fotoğrafını değiştir",
+    "Change profile photo"
+  ],
+  "settings:avatar.pick": [
+    "Galeriden fotoğraf seç",
+    "Choose photo from gallery"
+  ],
+  "settings:avatar.remove": [
+    "Fotoğrafı kaldır",
+    "Remove photo"
+  ],
+  "settings:avatar.uploading": [
+    "Fotoğraf yükleniyor",
+    "Uploading photo"
+  ],
+  "settings:avatar.updated": [
+    "Fotoğraf güncellendi.",
+    "Photo updated."
+  ],
+  "settings:avatar.failed": [
+    "Fotoğraf yüklenemedi. Mevcut fotoğrafın değiştirilmedi.",
+    "The photo could not be uploaded. Your existing photo was not changed."
+  ],
+  "settings:avatar.invalid": [
+    "Geçerli bir JPEG, PNG veya WebP görseli seç.",
+    "Choose a valid JPEG, PNG or WebP image."
+  ],
+  "settings:avatar.large": [
+    "Dosya en fazla 2 MB, boyutları en fazla 2048 × 2048 olmalı.",
+    "The file must be at most 2 MB and 2048 × 2048 pixels."
+  ],
+  "settings:avatar.permission": [
+    "Fotoğraf seçmek için galeri erişimi gerekli. Cihaz ayarlarından izni kontrol et.",
+    "Gallery access is required to choose a photo. Check the permission in device settings."
+  ],
+  "settings:avatar.unavailable": [
+    "Fotoğraf hizmeti şu anda kullanılamıyor.",
+    "The photo service is currently unavailable."
+  ]
+}

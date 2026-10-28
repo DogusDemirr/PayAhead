@@ -755,3 +755,58 @@ m_a45e9436a4ba|Nom de l’abonnement
 m_93f01c808be2|Nom du fournisseur
 m_da20470ab885|Montant de l’abonnement
 m_5ff71b7378f6|Intervalle de facturation
+settings:profile.accountTitle|Mon compte
+settings:profile.personal|Informations personnelles
+settings:profile.security|Sécurité
+settings:profile.region|Langue et région
+settings:profile.notifications|Notifications
+settings:profile.membership|Adhésion
+settings:profile.actions|Actions du compte
+settings:profile.displayName|Nom complet
+settings:profile.emailReadOnly|Changer d’adresse e-mail nécessite une vérification et n’est pas possible ici.
+settings:profile.save|Enregistrer le profil
+settings:profile.changePassword|Changer le mot de passe
+settings:profile.currentPassword|Mot de passe actuel
+settings:profile.newPassword|Nouveau mot de passe
+settings:profile.repeatPassword|Répéter le nouveau mot de passe
+settings:profile.passwordPolicy|Utilisez 12 à 128 caractères et un mot de passe différent de l’actuel. Le changement déconnecte toutes les sessions.
+settings:profile.passwordChanged|Mot de passe modifié. Reconnectez-vous avec votre nouveau mot de passe.
+settings:profile.deleteAccount|Supprimer le compte
+settings:profile.deleteWarning|Cette action est irréversible. Les données financières sont supprimées ; des liens limités avec les boutiques sont conservés sous un identifiant de compte pseudonyme pour prévenir les abus. Supprimer le compte n’annule pas les abonnements des boutiques.
+settings:profile.confirmDelete|Supprimer définitivement mon compte
+settings:profile.deleteSuccess|Compte supprimé. Vous avez été déconnecté.
+settings:profile.unknownMembership|Adhésion indisponible
+settings:profile.free|Gratuit
+settings:profile.premium|Premium
+settings:profile.expires|Fin de l’accès : {{value0}}
+settings:profile.limits|Paiements actifs : {{value0}} · Rappels/plan : {{value1}} · Abonnements : {{value2}}
+settings:profile.manageMembership|Gérer les abonnements des boutiques
+settings:profile.timezoneLink|Réglages du fuseau horaire et de la région
+settings:profile.profileSaved|Profil enregistré.
+settings:profile.reload|Recharger le profil actuel
+settings:profile.invalidName|Saisissez un nom complet valide de 1 à 100 caractères.
+settings:profile.passwordMismatch|Les nouveaux mots de passe ne correspondent pas.
+settings:profile.uncertainWrite|Le résultat n’a pas pu être confirmé. Vérifiez votre connexion et votre compte avant de renvoyer.
+settings:profile.passwordInvalid|Vérifiez les exigences du mot de passe.
+settings:profile.requestFailed|La demande n’a pas pu être terminée. Vérifiez vos informations et votre connexion.
+settings:profile.wrongPassword|Le mot de passe actuel n’a pas pu être vérifié.
+common:dialog.confirm|Confirmer
+common:dialog.close|Fermer
+common:dialog.error|Échec de la demande
+common:dialog.info|Informations
+common:dialog.success|Terminé.
+common:dialog.failed|La demande n’a pas pu aboutir. Vérifiez l’état actuel de l’enregistrement avant de réessayer.
+common:dialog.network|Le résultat n’a pas pu être confirmé. Vérifiez votre connexion et l’entrée actuelle.
+common:dialog.changed|Le plan a changé. Consultez ses informations actuelles et confirmez à nouveau la suppression.
+common:dialog.related|Ce plan contient un historique ou des rappels et ne peut pas être supprimé. Vous pouvez le conserver inactif.
+common:dialog.linked|Ce paiement appartient à un abonnement. Gérez-le depuis Abonnements.
+settings:avatar.change|Changer la photo de profil
+settings:avatar.pick|Choisir une photo dans la galerie
+settings:avatar.remove|Supprimer la photo
+settings:avatar.uploading|Envoi de la photo
+settings:avatar.updated|Photo mise à jour.
+settings:avatar.failed|Impossible d’envoyer la photo. Votre photo actuelle n’a pas été modifiée.
+settings:avatar.invalid|Choisissez une image JPEG, PNG ou WebP valide.
+settings:avatar.large|Le fichier ne doit pas dépasser 2 Mo et 2048 × 2048 pixels.
+settings:avatar.permission|L’accès à la galerie est nécessaire pour choisir une photo. Vérifiez l’autorisation dans les réglages de l’appareil.
+settings:avatar.unavailable|Le service photo est actuellement indisponible.

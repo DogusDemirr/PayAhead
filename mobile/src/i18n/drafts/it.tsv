@@ -755,3 +755,58 @@ m_a45e9436a4ba|Nome dell’abbonamento
 m_93f01c808be2|Nome del fornitore
 m_da20470ab885|Importo dell’abbonamento
 m_5ff71b7378f6|Intervallo di fatturazione
+settings:profile.accountTitle|Il mio account
+settings:profile.personal|Informazioni personali
+settings:profile.security|Sicurezza
+settings:profile.region|Lingua e regione
+settings:profile.notifications|Notifiche
+settings:profile.membership|Iscrizione
+settings:profile.actions|Operazioni account
+settings:profile.displayName|Nome e cognome
+settings:profile.emailReadOnly|Cambiare e-mail richiede una verifica e non è disponibile qui.
+settings:profile.save|Salva profilo
+settings:profile.changePassword|Cambia password
+settings:profile.currentPassword|Password attuale
+settings:profile.newPassword|Nuova password
+settings:profile.repeatPassword|Ripeti nuova password
+settings:profile.passwordPolicy|Usa 12–128 caratteri e una password diversa da quella attuale. La modifica disconnette tutte le sessioni.
+settings:profile.passwordChanged|Password modificata. Accedi di nuovo con la nuova password.
+settings:profile.deleteAccount|Elimina account
+settings:profile.deleteWarning|Questa operazione è irreversibile. I dati finanziari vengono eliminati; limitati collegamenti con gli store restano conservati sotto un identificativo di account pseudonimo per prevenire abusi. Eliminare l’account non annulla gli abbonamenti degli store.
+settings:profile.confirmDelete|Elimina definitivamente il mio account
+settings:profile.deleteSuccess|Account eliminato. La sessione è stata chiusa.
+settings:profile.unknownMembership|Iscrizione non disponibile
+settings:profile.free|Gratuito
+settings:profile.premium|Premium
+settings:profile.expires|Fine accesso: {{value0}}
+settings:profile.limits|Pagamenti attivi: {{value0}} · Promemoria/piano: {{value1}} · Abbonamenti: {{value2}}
+settings:profile.manageMembership|Gestisci abbonamenti degli store
+settings:profile.timezoneLink|Impostazioni di fuso orario e regione
+settings:profile.profileSaved|Profilo salvato.
+settings:profile.reload|Ricarica profilo attuale
+settings:profile.invalidName|Inserisci un nome e cognome valido di 1–100 caratteri.
+settings:profile.passwordMismatch|Le nuove password non coincidono.
+settings:profile.uncertainWrite|Impossibile confermare l’esito. Controlla la connessione e l’account prima di inviare di nuovo.
+settings:profile.passwordInvalid|Controlla i requisiti della password.
+settings:profile.requestFailed|Impossibile completare la richiesta. Controlla i tuoi dati e la connessione.
+settings:profile.wrongPassword|Impossibile verificare la password attuale.
+common:dialog.confirm|Conferma
+common:dialog.close|Chiudi
+common:dialog.error|Richiesta non riuscita
+common:dialog.info|Informazioni
+common:dialog.success|Fatto.
+common:dialog.failed|Impossibile completare la richiesta. Controlla lo stato attuale della voce prima di riprovare.
+common:dialog.network|Impossibile confermare l’esito. Controlla la connessione e la voce attuale.
+common:dialog.changed|Il piano è cambiato. Controlla i dettagli attuali e conferma nuovamente l’eliminazione.
+common:dialog.related|Questo piano ha voci di cronologia o promemoria e non può essere eliminato. Puoi mantenerlo inattivo.
+common:dialog.linked|Questo pagamento appartiene a un abbonamento. Gestiscilo da Abbonamenti.
+settings:avatar.change|Cambia foto del profilo
+settings:avatar.pick|Scegli una foto dalla galleria
+settings:avatar.remove|Rimuovi foto
+settings:avatar.uploading|Caricamento foto
+settings:avatar.updated|Foto aggiornata.
+settings:avatar.failed|Impossibile caricare la foto. La foto esistente non è stata modificata.
+settings:avatar.invalid|Scegli un’immagine JPEG, PNG o WebP valida.
+settings:avatar.large|Il file deve essere al massimo di 2 MB e 2048 × 2048 pixel.
+settings:avatar.permission|Per scegliere una foto serve l’accesso alla galleria. Controlla l’autorizzazione nelle impostazioni del dispositivo.
+settings:avatar.unavailable|Il servizio foto non è attualmente disponibile.

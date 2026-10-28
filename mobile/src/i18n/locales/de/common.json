@@ -187,6 +187,16 @@
   "cancel": "Abbrechen",
   "selected": "Ausgewählt",
   "amountInputHint": "Nutze Dezimalpunkt oder Komma ohne Tausendertrennzeichen. Ein Sprachwechsel ändert weder Betrag noch Währung.",
+  "dialog.confirm": "Bestätigen",
+  "dialog.close": "Schließen",
+  "dialog.error": "Anfrage fehlgeschlagen",
+  "dialog.info": "Informationen",
+  "dialog.success": "Erledigt.",
+  "dialog.failed": "Die Anfrage konnte nicht abgeschlossen werden. Prüfe den aktuellen Datensatz, bevor du es erneut versuchst.",
+  "dialog.network": "Das Ergebnis konnte nicht bestätigt werden. Prüfe die Verbindung und den aktuellen Eintrag.",
+  "dialog.changed": "Der Plan wurde geändert. Prüfe die aktuellen Angaben und bestätige das Löschen erneut.",
+  "dialog.related": "Dieser Plan hat Verlaufs- oder Erinnerungseinträge und kann nicht gelöscht werden. Du kannst ihn inaktiv behalten.",
+  "dialog.linked": "Diese Zahlung gehört zu einem Abo. Verwalte sie unter Abos.",
   "paymentCount_one": "{{count}} Zahlung",
   "paymentCount_other": "{{count}} Zahlungen"
 }

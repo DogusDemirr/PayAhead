@@ -1,6 +1,5 @@
 import { beforeEach, test, expect, jest } from '@jest/globals';
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react-native';
-import { Alert } from 'react-native';
 import { router } from 'expo-router';
 import SubscriptionsScreen from '../src/features/SubscriptionsScreen';
 import TrialsScreen from '../src/features/subscriptions/TrialsScreen';
@@ -78,22 +77,22 @@ test('successful edit unwinds to existing detail and retains editable backend fi
   expect(mutateAsync).toHaveBeenCalledWith(expect.objectContaining({ kind: 'update', rowVersion: subscription.rowVersion, body: expect.objectContaining({ providerName: 'Updated provider', trialEndDate: '2026-10-31', firstBillingDate: '2026-11-01' }) })); expect(router.dismissTo).toHaveBeenCalledWith({ pathname: '/subscription', params: { id: subscription.id } });
 });
 test('cancel requires explicit access date and external-provider warning; double confirmation sends once', async () => {
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {}); let finish!: (value: typeof subscription) => void; mutateAsync.mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
+  let finish!: (value: typeof subscription) => void; mutateAsync.mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
   await render(<SubscriptionDetail initial={subscription} reload={async () => {}} />); expect(screen.getByRole('button', { name: 'Takip kaydını iptal et' })).toBeDisabled();
-  await fireEvent.changeText(screen.getByLabelText('İptal sonrası erişimin son günü'), '2026-11-10'); await fireEvent.press(screen.getByRole('button', { name: 'Takip kaydını iptal et' })); expect(mutateAsync).not.toHaveBeenCalled(); expect(alert.mock.calls[0][1]).toContain('Dış sağlayıcıda iptal yapılmaz');
-  const confirm = alert.mock.calls[0][2]!.find(x => x.text === 'Takibi iptal et')!.onPress!; await act(async () => { confirm(); confirm(); }); expect(mutateAsync).toHaveBeenCalledTimes(1); expect(mutateAsync).toHaveBeenCalledWith({ kind: 'cancel', id: subscription.id, rowVersion: subscription.rowVersion, accessEndsOn: '2026-11-10' });
-  await act(async () => finish({ ...subscription, status: 'Cancelled', autoRenew: false, nextBillingDate: null, accessEndsOn: '2026-11-10' })); expect(await screen.findByText(/dahil erişim devam ediyor/)).toBeTruthy(); expect(screen.queryByRole('button', { name: 'Aboneliği düzenle' })).toBeNull(); alert.mockRestore();
+  await fireEvent.changeText(screen.getByLabelText('İptal sonrası erişimin son günü'), '2026-11-10'); await fireEvent.press(screen.getByRole('button', { name: 'Takip kaydını iptal et' })); expect(mutateAsync).not.toHaveBeenCalled(); expect(screen.getByText(/Dış sağlayıcıda iptal yapılmaz/)).toBeTruthy();
+  const button = screen.getByRole('button', { name: 'Takibi iptal et' }); await fireEvent.press(button); await fireEvent.press(button); expect(mutateAsync).toHaveBeenCalledTimes(1); expect(mutateAsync).toHaveBeenCalledWith({ kind: 'cancel', id: subscription.id, rowVersion: subscription.rowVersion, accessEndsOn: '2026-11-10' });
+  await act(async () => finish({ ...subscription, status: 'Cancelled', autoRenew: false, nextBillingDate: null, accessEndsOn: '2026-11-10' })); expect(await screen.findByText(/dahil erişim devam ediyor/)).toBeTruthy(); expect(screen.queryByRole('button', { name: 'Aboneliği düzenle' })).toBeNull();
 });
 test('delete uses strong version only after confirmation and returns to list', async () => {
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {}); mutateAsync.mockResolvedValueOnce(undefined); await render(<SubscriptionDetail initial={subscription} reload={async () => {}} />);
-  await fireEvent.press(screen.getByRole('button', { name: 'Takip kaydını kaldır' })); expect(alert.mock.calls[0][1]).toContain('Ödeme geçmişi korunur'); await act(async () => alert.mock.calls[0][2]!.find(x => x.text === 'Kaldır')!.onPress!()); await waitFor(() => expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/subscriptions')); expect(mutateAsync).toHaveBeenCalledWith({ kind: 'delete', id: subscription.id, rowVersion: subscription.rowVersion }); alert.mockRestore();
+  mutateAsync.mockResolvedValueOnce(undefined); await render(<SubscriptionDetail initial={subscription} reload={async () => {}} />);
+  await fireEvent.press(screen.getByRole('button', { name: 'Takip kaydını kaldır' })); expect(screen.getByText(/Ödeme geçmişi korunur/)).toBeTruthy(); await fireEvent.press(screen.getByRole('button', { name: 'Kaldır' })); await waitFor(() => expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/subscriptions')); expect(mutateAsync).toHaveBeenCalledWith({ kind: 'delete', id: subscription.id, rowVersion: subscription.rowVersion });
 });
 test('expired detail does not offer edit/cancel and linked plan opens read-only', async () => {
   await render(<SubscriptionDetail initial={{ ...subscription, status: 'Expired', accessEndsOn: '2026-10-23' }} reload={async () => {}} />); expect(screen.queryByRole('button', { name: 'Aboneliği düzenle' })).toBeNull(); expect(screen.queryByRole('button', { name: 'Takip kaydını iptal et' })).toBeNull(); await fireEvent.press(screen.getByRole('button', { name: 'Bağlı ödeme planını gör' })); expect(router.push).toHaveBeenCalledWith({ pathname: '/payment', params: { id: subscription.paymentPlanId, readOnly: 'true' } });
 });
 test('cancel conflict offers reload and prevents stale cancellation retry', async () => {
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {}); const reload = jest.fn(async () => {}); mutateAsync.mockRejectedValueOnce(new ApiError('Kaynak değişti.', 409));
-  await render(<SubscriptionDetail initial={{ ...subscription, accessEndsOn: '2026-11-10' }} reload={reload} />); await fireEvent.press(screen.getByRole('button', { name: 'Takip kaydını iptal et' })); await act(async () => alert.mock.calls[0][2]!.find(x => x.text === 'Takibi iptal et')!.onPress!()); expect(await screen.findByText('Kaynak değişti.')).toBeTruthy(); expect(screen.getByRole('button', { name: 'Takip kaydını iptal et' })).toBeDisabled(); await fireEvent.press(screen.getByRole('button', { name: 'Güncel kaydı yükle' })); expect(reload).toHaveBeenCalledTimes(1); alert.mockRestore();
+  const reload = jest.fn(async () => {}); mutateAsync.mockRejectedValueOnce(new ApiError('Kaynak değişti.', 409));
+  await render(<SubscriptionDetail initial={{ ...subscription, accessEndsOn: '2026-11-10' }} reload={reload} />); await fireEvent.press(screen.getByRole('button', { name: 'Takip kaydını iptal et' })); await fireEvent.press(screen.getByRole('button', { name: 'Takibi iptal et' })); await fireEvent.press((await screen.findAllByRole('button', { name: 'Kapat' })).at(-1)!); expect(await screen.findByText('Kaynak değişti.')).toBeTruthy(); expect(screen.getByRole('button', { name: 'Takip kaydını iptal et' })).toBeDisabled(); await fireEvent.press(screen.getByRole('button', { name: 'Güncel kaydı yükle' })); expect(reload).toHaveBeenCalledTimes(1);
 });
 test('expiring trials use server 1/3/7 windows with no fake notification claim', async () => {
   jest.mocked(useExpiringTrials).mockReturnValue(result([{ subscriptionId: subscription.id, name: subscription.name, providerName: subscription.providerName, trialEndDate: '2026-10-24', daysRemaining: 0, firstBillingDate: '2026-10-25', amount: subscription.amount, currencyCode: 'TRY' }]) as unknown as ReturnType<typeof useExpiringTrials>);

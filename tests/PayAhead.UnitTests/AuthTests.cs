@@ -107,7 +107,7 @@ public sealed class AuthTests
         { if (User is not null) throw new ResourceConflictException("Duplicate"); User = user; return Task.CompletedTask; }
         public Task<User?> AuthenticateAsync(string email, Func<User, bool> verify, DateTime now, CancellationToken ct)
             => Task.FromResult(User is { IsActive: true } && User.NormalizedEmail == email && verify(User) ? User : null);
-        public Task AddSessionAsync(RefreshToken token, CancellationToken ct) { Session = token; return Task.CompletedTask; }
+        public Task AddSessionAsync(RefreshToken token, CancellationToken ct, Guid securityStamp = default) { Session = token; return Task.CompletedTask; }
         public Task<User?> RotateAsync(string hash, RefreshToken replacement, DateTime now, CancellationToken ct)
         {
             if (Session is null || Session.TokenHash != hash || Session.RevokedAtUtc is not null) { Reused = true; if (Session is not null) Session.RevokedAtUtc = now; return Task.FromResult<User?>(null); }

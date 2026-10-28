@@ -101,7 +101,17 @@ export function usePaymentMutation() {
             id: string;
             rowVersion: string;
         }) => input.kind === 'create' ? scope.api.create(input.body) : input.kind === 'update' ? scope.api.update(input.id, input.body, input.rowVersion) : scope.api.remove(input.id, input.rowVersion),
-        onSuccess: async () => {
+        onSuccess: async (data, input) => {
+            if (session.credential()?.epoch !== scope.key[2]) throw new CanceledError();
+            if (data && (input.kind === 'update' || input.kind === 'create')) client.setQueryData([...scope.key, 'plan', data.id], data);
+            if (input.kind === 'delete') {
+                client.removeQueries({ queryKey: [...scope.key, 'plan', input.id], exact: true });
+                client.setQueriesData<{ items: { id: string }[]; totalCount: number; pageSize: number; totalPages: number }>({ queryKey: [...scope.key, 'plans'] }, page => {
+                    if (!page || !page.items.some(row => row.id === input.id)) return page;
+                    const totalCount = Math.max(0, page.totalCount - 1);
+                    return { ...page, items: page.items.filter(row => row.id !== input.id), totalCount, totalPages: Math.ceil(totalCount / page.pageSize) };
+                });
+            }
             await invalidateFinance(client, scope.key);
             if (session.credential()?.epoch !== scope.key[2])
                 throw new CanceledError(t("payments:m_72ec2727147f"));

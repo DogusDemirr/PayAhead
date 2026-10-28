@@ -11,7 +11,9 @@ public sealed record LoginRequest(string? Email, string? Password);
 public sealed record RefreshRequest(string? RefreshToken);
 public sealed record UserResponse(Guid Id, string Email, string DisplayName)
 {
-    public static UserResponse From(User user) => new(user.Id, user.Email, user.DisplayName);
+    public bool HasAvatar { get; init; }
+    public string AvatarVersion { get; init; } = "";
+    public static UserResponse From(User user) => new(user.Id, user.Email, user.DisplayName) { HasAvatar = user.AvatarKey is not null, AvatarVersion = Convert.ToBase64String(user.RowVersion) };
 }
 public sealed record AuthResponse(string AccessToken, string RefreshToken, DateTime AccessTokenExpiresAtUtc,
     DateTime RefreshTokenExpiresAtUtc, UserResponse User, string TokenType = "Bearer");
@@ -23,7 +25,7 @@ public interface IPasswordService
 }
 public interface ITokenService
 {
-    AccessTokenResult CreateAccessToken(Guid userId);
+    AccessTokenResult CreateAccessToken(Guid userId, Guid securityStamp = default);
     string CreateRefreshToken();
     string HashRefreshToken(string token);
     int RefreshLifetimeDays { get; }
@@ -32,7 +34,7 @@ public interface IAuthStore
 {
     Task RegisterAsync(User user, CancellationToken ct);
     Task<User?> AuthenticateAsync(string email, Func<User, bool> verify, DateTime now, CancellationToken ct);
-    Task AddSessionAsync(RefreshToken token, CancellationToken ct);
+    Task AddSessionAsync(RefreshToken token, CancellationToken ct, Guid securityStamp = default);
     Task<User?> RotateAsync(string hash, RefreshToken replacement, DateTime now, CancellationToken ct);
     Task RevokeAsync(string hash, DateTime now, CancellationToken ct);
     Task<User?> FindActiveAsync(Guid id, CancellationToken ct);

@@ -71,19 +71,20 @@ public sealed class PaymentPlanStore(PayAheadDbContext db, IEntitlementService? 
 
     public async Task DeleteAsync(PaymentPlan plan, byte[] expectedVersion, CancellationToken cancellationToken)
     {
-        await EnsureIndependent(plan.Id, cancellationToken);
+        if (await db.TrackedSubscriptions.AnyAsync(x => x.PaymentPlanId == plan.Id, cancellationToken))
+            throw new PaymentDeletionRestrictedException("payment_linked_subscription");
         if (!plan.RowVersion.SequenceEqual(expectedVersion))
             throw new ResourceConflictException("Kaynak başka bir işlem tarafından değiştirildi.");
         if (await db.PaymentOccurrences.AnyAsync(x => x.PaymentPlanId == plan.Id, cancellationToken)
             || await db.ReminderRules.AnyAsync(x => x.PaymentPlanId == plan.Id && x.UserId == plan.UserId, cancellationToken))
-            throw new ResourceConflictException("İlişkili geçmiş veya hatırlatma içeren ödeme planı silinemez.");
+            throw new PaymentDeletionRestrictedException("payment_delete_related");
         db.Entry(plan).Property(x => x.RowVersion).OriginalValue = expectedVersion;
         db.PaymentPlans.Remove(plan);
         try { await db.SaveChangesAsync(cancellationToken); }
         catch (DbUpdateException ex) when (ex.InnerException is SqlException { Number: 547 })
         {
             // Kontrolden sonra eklenmiş bağımlı kaydı SQL FK korur; hiçbir geçmiş kaydı silinmez.
-            throw new ResourceConflictException("İlişkili kayıtlar nedeniyle ödeme planı silinemedi.");
+            throw new PaymentDeletionRestrictedException("payment_delete_related");
         }
     }
     private async Task EnsureIndependent(Guid plan, CancellationToken ct)

@@ -8,7 +8,7 @@ using PayAhead.Domain;
 
 namespace PayAhead.Infrastructure;
 
-public sealed class AccountStore(PayAheadDbContext db, IPasswordService passwords, TimeProvider clock) : IAccountStore
+public sealed class AccountStore(PayAheadDbContext db, IPasswordService passwords, TimeProvider clock, IAvatarStorage? avatars = null) : IAccountStore
 {
     public Task<byte[]> ExportAsync(Guid user, CancellationToken ct) => db.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
     {
@@ -44,6 +44,7 @@ public sealed class AccountStore(PayAheadDbContext db, IPasswordService password
         var row = await db.Users.FromSqlInterpolated($"SELECT * FROM Users WITH(UPDLOCK,HOLDLOCK) WHERE Id={user}").SingleOrDefaultAsync(ct) ?? throw new AuthenticationRequiredException();
         if (!row.IsActive) { await tx.CommitAsync(ct); return; }
         if (!passwords.Verify(row, password, out _)) throw new AuthenticationRequiredException();
+        var oldAvatar = row.AvatarKey; row.AvatarKey = null;
         var now = clock.GetUtcNow().UtcDateTime;
         // Retain only an inactive pseudonymous owner and anti-replay store bindings. No account transfer.
         row.IsActive = false; row.Email = $"deleted-{user:N}@deleted.invalid"; row.NormalizedEmail = row.Email.ToUpperInvariant(); row.DisplayName = "Deleted"; row.PasswordHash = ""; row.FailedLoginCount = 0; row.LoginLockedUntilUtc = null; row.UpdatedAtUtc = now;
@@ -66,5 +67,6 @@ public sealed class AccountStore(PayAheadDbContext db, IPasswordService password
         await db.StoreWebhookInbox.Where(x => appleHashes.Contains(x.ReferenceHash) || db.StorePurchases.Any(p => p.UserId == user && p.TokenHash == EF.Functions.Collate(x.ReferenceHash, "Latin1_General_100_BIN2"))).ExecuteDeleteAsync(ct);
         await db.UserSubscriptions.Where(x => x.UserId == user).ExecuteUpdateAsync(s => s.SetProperty(x => x.IsStoreVerified, false).SetProperty(x => x.ProtectedEvidence, (string?)null).SetProperty(x => x.NextVerificationAtUtc, (DateTime?)null).SetProperty(x => x.UpdatedAtUtc, now), ct);
         await tx.CommitAsync(ct);
+        if (oldAvatar is not null && avatars is not null) await avatars.DeleteAsync(oldAvatar, CancellationToken.None);
     });
 }

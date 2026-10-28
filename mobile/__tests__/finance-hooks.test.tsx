@@ -65,3 +65,32 @@ test('reminder mutation invalidates own settings/rules and finance only within c
   apiClient.defaults.adapter = async config => ({ config, data: JSON.stringify({ id: plan.id, paymentPlanId: plan.id, daysBefore: 1, timeOfDay: '09:00', isEnabled: true }), status: 201, statusText: 'Created', headers: {} });
   const view = await renderHook(() => useNotificationMutation(), { wrapper: ({ children }: { children: ReactNode }) => <QueryClientProvider client={client}>{children}</QueryClientProvider> }); await act(async () => { await view.result.current.mutateAsync({ kind: 'saveReminder', plan: plan.id, body: { daysBefore: 1, timeOfDay: '09:00', isEnabled: true } }); }); expect(client.getQueryState(own)?.isInvalidated).toBe(true); expect(client.getQueryState(other)?.isInvalidated).toBe(false); await view.unmount(); client.clear();
 });
+
+
+test('deactivation immediately installs the returned version and confirmed delete removes only own caches', async () => {
+  const client = new QueryClient({ defaultOptions: { queries: { gcTime: Infinity, retry: false } } });
+  const detail = [...financeKey('user-a', 1), 'plan', plan.id];
+  const list = [...financeKey('user-a', 1), 'plans', {}];
+  const foreign = [...financeKey('user-b', 2), 'plan', plan.id];
+  client.setQueryData(detail, plan); client.setQueryData(foreign, plan);
+  client.setQueryData(list, { items: [plan], totalCount: 1, totalPages: 1, pageSize: 20 });
+  const updated = { ...plan, isActive: false, rowVersion: 'AAAAAAAAAAI=' };
+  let sentVersion: unknown;
+  apiClient.defaults.adapter = async config => { sentVersion = config.headers['If-Match']; return { data: config.method === 'delete' ? '' : JSON.stringify(updated), status: 200, statusText: 'OK', headers: {}, config }; };
+  const view = await renderHook(() => usePaymentMutation(), { wrapper: ({ children }: { children: ReactNode }) => <QueryClientProvider client={client}>{children}</QueryClientProvider> });
+  await act(async () => { await view.result.current.mutateAsync({ kind: 'update', id: plan.id, rowVersion: plan.rowVersion, body: toPaymentWrite(formDefaults('2026-10-23', plan)) }); });
+  expect(client.getQueryData(detail)).toEqual(updated);
+  await act(async () => { await view.result.current.mutateAsync({ kind: 'delete', id: plan.id, rowVersion: updated.rowVersion }); });
+  expect(sentVersion).toBe('"' + updated.rowVersion + '"'); expect(client.getQueryData(detail)).toBeUndefined();
+  expect(client.getQueryData(list)).toMatchObject({ items: [], totalCount: 0 }); expect(client.getQueryData(foreign)).toEqual(plan);
+  await view.unmount(); client.clear();
+});
+
+test('failed deletion preserves the cached plan and list', async () => {
+  const client = new QueryClient(); const detail = [...financeKey('user-a', 1), 'plan', plan.id]; const list = [...financeKey('user-a', 1), 'plans', {}];
+  client.setQueryData(detail, plan); client.setQueryData(list, { items: [plan], totalCount: 1 });
+  apiClient.defaults.adapter = async () => { throw new Error('request rejected'); };
+  const view = await renderHook(() => usePaymentMutation(), { wrapper: ({ children }: { children: ReactNode }) => <QueryClientProvider client={client}>{children}</QueryClientProvider> });
+  await act(async () => { await expect(view.result.current.mutateAsync({ kind: 'delete', id: plan.id, rowVersion: plan.rowVersion })).rejects.toThrow(); });
+  expect(client.getQueryData(detail)).toEqual(plan); expect(client.getQueryData(list)).toEqual({ items: [plan], totalCount: 1 }); await view.unmount(); client.clear();
+});

@@ -181,5 +181,15 @@
   "cancel": "취소",
   "selected": "선택됨",
   "amountInputHint": "소수점이나 쉼표를 사용하고 자릿수 구분자는 넣지 마세요. 언어를 변경해도 금액이나 통화는 바뀌지 않습니다.",
+  "dialog.confirm": "확인",
+  "dialog.close": "닫기",
+  "dialog.error": "작업을 완료하지 못했습니다",
+  "dialog.info": "정보",
+  "dialog.success": "완료되었습니다.",
+  "dialog.failed": "요청을 완료할 수 없습니다. 다시 시도하기 전에 기록의 현재 상태를 확인하세요.",
+  "dialog.network": "결과를 확인하지 못했습니다. 연결과 기록의 현재 상태를 확인하세요.",
+  "dialog.changed": "계획이 변경되었습니다. 최신 내용을 확인하고 삭제를 다시 확인하세요.",
+  "dialog.related": "이 계획에는 내역 또는 미리 알림 기록이 있어 삭제할 수 없습니다. 비활성 상태로 보관할 수 있습니다.",
+  "dialog.linked": "이 결제는 구독에 연결되어 있습니다. 구독 화면에서 관리하세요.",
   "paymentCount_other": "결제 {{count}}건"
 }

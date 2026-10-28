@@ -27,10 +27,13 @@ public static class AuthConfiguration
             {
                 OnTokenValidated = async context =>
                 {
+                    var stampClaim = context.Principal?.FindFirst("security_stamp")?.Value;
+                    var stamp = Guid.Empty;
+                    if (stampClaim is not null && !Guid.TryParse(stampClaim, out stamp)) { context.Fail("Invalid identity."); return; }
                     var subject = context.Principal?.FindAll(JwtRegisteredClaimNames.Sub).ToArray() ?? [];
                     if (subject.Length != 1 || !Guid.TryParse(subject[0].Value, out var id) || id == Guid.Empty
                         || !await context.HttpContext.RequestServices.GetRequiredService<PayAheadDbContext>().Users
-                            .AsNoTracking().AnyAsync(x => x.Id == id && x.IsActive, context.HttpContext.RequestAborted))
+                            .AsNoTracking().AnyAsync(x => x.Id == id && x.IsActive && x.SecurityStamp == stamp, context.HttpContext.RequestAborted))
                         context.Fail("Invalid identity.");
                 },
                 OnChallenge = async context =>

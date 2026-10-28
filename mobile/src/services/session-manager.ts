@@ -35,6 +35,11 @@ export class SessionManager {
     }) { }
     getSnapshot = () => this.snapshot;
     credential = () => this.tokens ? { accessToken: this.tokens.accessToken, epoch: this.epoch } : null;
+    updateUser(user: UserResponse, epoch: number) {
+        this.check(epoch);
+        if (this.snapshot.status !== 'authenticated' || this.snapshot.user?.id !== user.id) throw new CanceledError();
+        this.publish({ ...this.snapshot, user: { id: user.id, email: user.email, displayName: user.displayName, ...(user.hasAvatar === undefined ? {} : { hasAvatar: user.hasAvatar, avatarVersion: user.avatarVersion }) } });
+    }
     async ensureFreshAccess() {
         if (!this.tokens)
             throw new ApiError(t("common:m_33355201acda"), 401);

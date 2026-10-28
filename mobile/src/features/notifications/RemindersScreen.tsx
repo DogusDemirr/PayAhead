@@ -1,6 +1,7 @@
+import { useAppDialog } from '../../components/dialogs';
 import { t, useLocaleRevision } from "../../i18n/runtime";
 import { useRef, useState } from 'react';
-import { Alert, Switch, View } from 'react-native';
+import { Switch, View } from 'react-native';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isCancel } from 'axios';
@@ -15,6 +16,7 @@ import { ApiError } from '../../services/api-error';
 export default function RemindersScreen({ plan }: {
     plan: string;
 }) {
+    const dialogs = useAppDialog();
     useLocaleRevision();
     const payment = usePayment(plan);
     const list = useReminders(plan);
@@ -44,6 +46,7 @@ export default function RemindersScreen({ plan }: {
         catch (e) {
             if (!isCancel(e))
                 setFailure(e);
+            throw e;
         }
         finally {
             busy.current = false;
@@ -52,12 +55,12 @@ export default function RemindersScreen({ plan }: {
     return <AppScreen refreshing={list.isRefetching} onRefresh={() => { void reload(); void settings.refetch(); }}><AppHeader title={t("reminders:m_ea6119aa5393")} subtitle={payment.data?.name} back/>
     {payment.isError || list.isError || settings.isError ? <FinanceError error={payment.error ?? list.error ?? settings.error} retry={() => { void payment.refetch(); void reload(); void settings.refetch(); }}/> : !payment.data || !list.data || !settings.data ? <LoadingSkeleton /> : <View style={{ gap: 16 }}>
       <AppCard><AppText variant="section">{t("reminders:m_3420bbb71219", { value0: settings.data.timeZoneId })}</AppText><AppText tone="muted" style={{ marginTop: 10 }}>{t("reminders:m_68dce5fdd9e4")}</AppText>{settings.data.usedTimeZoneFallback && <AppText tone="warning">{t("reminders:m_3771184e8e48")}</AppText>}{!settings.data.notificationsEnabled && <AppText tone="warning">{t("reminders:m_66d73eec21dd")}</AppText>}{!payment.data.isActive && <AppText tone="warning">{t("reminders:m_8d54e58502d4")}</AppText>}<AppButton title={t("reminders:m_424dbf42bf81")} variant="secondary" onPress={() => router.push('/notifications')}/></AppCard>
-      {list.data.length ? list.data.map(rule => <AppCard key={rule.id}><AppText variant="section">{rule.daysBefore === 0 ? t("reminders:m_ff4947e183f7") : t("reminders:m_32cab8a0ff96", { value0: rule.daysBefore })} · {rule.timeOfDay}</AppText><AppText tone="muted">{t("reminders:m_d50fb5cd0e44", { value0: rule.isEnabled ? t("reminders:m_82bd83d6cabb") : t("reminders:m_788c248434f3") })}</AppText><View style={{ gap: 8, marginTop: 12 }}><AppButton title={t("reminders:m_86471fc0130e", { value0: rule.daysBefore, value1: rule.timeOfDay })} variant="secondary" disabled={mutation.isPending || !!failure} onPress={() => { setEditing(rule); setRevision(n => n + 1); }}/><AppButton title={t("reminders:m_7d21de34f624", { value0: rule.daysBefore, value1: rule.timeOfDay })} variant="ghost" disabled={mutation.isPending || !!failure} onPress={() => Alert.alert(t("common:m_dc2b092891f8"), t("common:m_635302bd313c"), [{ text: t("reminders:m_39a8d28c1c6b"), style: 'cancel' }, { text: t("common:m_f698e9b40f9f"), style: 'destructive', onPress: () => { void remove(rule.id); } }])}/></View></AppCard>) : <EmptyState title={t("reminders:m_14842beb581f")} message={t("reminders:m_44331cdb99ad")}/>}
+      {list.data.length ? list.data.map(rule => <AppCard key={rule.id}><AppText variant="section">{rule.daysBefore === 0 ? t("reminders:m_ff4947e183f7") : t("reminders:m_32cab8a0ff96", { value0: rule.daysBefore })} · {rule.timeOfDay}</AppText><AppText tone="muted">{t("reminders:m_d50fb5cd0e44", { value0: rule.isEnabled ? t("reminders:m_82bd83d6cabb") : t("reminders:m_788c248434f3") })}</AppText><View style={{ gap: 8, marginTop: 12 }}><AppButton title={t("reminders:m_86471fc0130e", { value0: rule.daysBefore, value1: rule.timeOfDay })} variant="secondary" disabled={mutation.isPending || !!failure} onPress={() => { setEditing(rule); setRevision(n => n + 1); }}/><AppButton title={t("reminders:m_7d21de34f624", { value0: rule.daysBefore, value1: rule.timeOfDay })} variant="ghost" disabled={mutation.isPending || !!failure} onPress={() => dialogs.alert(t("common:m_dc2b092891f8"), t("common:m_635302bd313c"), [{ text: t("reminders:m_39a8d28c1c6b"), style: 'cancel' }, { text: t("common:m_f698e9b40f9f"), style: 'destructive', onPress: () => remove(rule.id) }])}/></View></AppCard>) : <EmptyState title={t("reminders:m_14842beb581f")} message={t("reminders:m_44331cdb99ad")}/>}
       {failure ? <FinanceError error={failure} retry={() => { void reload(); }}/> : <AppButton title={t("reminders:m_439e3be67e95")} disabled={list.data.length >= 10} onPress={() => { setEditing(null); setRevision(n => n + 1); }}/>}
       {editing !== undefined && <ReminderForm key={revision} plan={plan} rule={editing ?? undefined} activeCount={list.data.filter(r => r.isEnabled).length} limit={entitlement.data?.limits.activeRemindersPerPlan} done={() => setEditing(undefined)} reload={reload}/>}
       <AppText tone="muted" variant="caption">{t("reminders:m_77b658b9666c")}</AppText>
     </View>}
-  </AppScreen>;
+  {dialogs.dialog}</AppScreen>;
 }
 export function ReminderForm({ plan, rule, activeCount, limit, done, reload }: {
     plan: string;

@@ -40,7 +40,7 @@ public sealed class AuthService(IAuthStore store, IPasswordService passwords, IT
         var raw = tokens.CreateRefreshToken();
         var session = NewRefresh(raw, now);
         session.UserId = user.Id;
-        await store.AddSessionAsync(session, ct);
+        await store.AddSessionAsync(session, ct, user.SecurityStamp);
         return Response(user, raw, session);
     }
 
@@ -75,7 +75,7 @@ public sealed class AuthService(IAuthStore store, IPasswordService passwords, IT
     };
     private AuthResponse Response(User user, string raw, RefreshToken session)
     {
-        var access = tokens.CreateAccessToken(user.Id);
+        var access = tokens.CreateAccessToken(user.Id, user.SecurityStamp);
         return new(access.Token, raw, access.ExpiresAtUtc, session.ExpiresAtUtc, UserResponse.From(user));
     }
 }

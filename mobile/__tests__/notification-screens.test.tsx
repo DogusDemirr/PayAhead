@@ -1,6 +1,5 @@
 import { beforeEach, test, expect, jest } from '@jest/globals';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
-import { Alert } from 'react-native';
 import { router } from 'expo-router';
 import RemindersScreen, { ReminderForm } from '../src/features/notifications/RemindersScreen';
 import { SettingsForm } from '../src/features/notifications/NotificationsScreen';
@@ -42,7 +41,7 @@ test('server limit denial never claims notification sent', async () => {
   mutateAsync.mockRejectedValueOnce(new ApiError('Limit dolu.', 403, undefined, undefined, 'http', 'entitlement_limit')); await render(<ReminderForm plan={plan.id} activeCount={0} done={() => {}} reload={async () => {}} />); await fireEvent.press(screen.getByRole('button', { name: 'Hatırlatmayı kaydet' })); expect(await screen.findByText(/Etkin hatırlatma sınırına/)).toBeTruthy(); await fireEvent.press(screen.getByRole('button', { name: 'Üyelik seçeneklerini incele' })); expect(router.push).toHaveBeenCalledWith('/premium');
 });
 test('reminder delete requires destructive confirmation', async () => {
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {}); await render(<RemindersScreen plan={plan.id} />); await fireEvent.press(screen.getByRole('button', { name: '1 gün 09:00 sil' })); expect(mutateAsync).not.toHaveBeenCalled(); await act(async () => alert.mock.calls[0][2]!.find(x => x.text === 'Sil')!.onPress!()); expect(mutateAsync).toHaveBeenCalledWith({ kind: 'deleteReminder', plan: plan.id, id: rule.id }); alert.mockRestore();
+  await render(<RemindersScreen plan={plan.id} />); await fireEvent.press(screen.getByRole('button', { name: '1 gün 09:00 sil' })); expect(mutateAsync).not.toHaveBeenCalled(); await fireEvent.press(screen.getByRole('button', { name: 'Sil' })); expect(mutateAsync).toHaveBeenCalledWith({ kind: 'deleteReminder', plan: plan.id, id: rule.id });
 });
 test('settings validate timezone, preserve language and submit actual backend settings', async () => {
   mutateAsync.mockResolvedValue(settings); await render(<SettingsForm initial={settings} reload={async () => {}} />); await fireEvent.changeText(screen.getByLabelText('Hesap saat dilimi · IANA'), 'bad/timezone'); await fireEvent.press(screen.getByRole('button', { name: 'Bildirim tercihlerini kaydet' })); expect(await screen.findByText('Geçerli IANA saat dilimi gir.')).toBeTruthy(); expect(mutateAsync).not.toHaveBeenCalled();

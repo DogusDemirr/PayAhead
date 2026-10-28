@@ -181,5 +181,15 @@
   "cancel": "取消",
   "selected": "已选",
   "amountInputHint": "使用小数点或逗号，不要使用分组分隔符。切换语言不会改变金额或货币。",
+  "dialog.confirm": "确认",
+  "dialog.close": "关闭",
+  "dialog.error": "操作未成功",
+  "dialog.info": "信息",
+  "dialog.success": "操作已完成。",
+  "dialog.failed": "无法完成请求。请先检查记录的当前状态，然后再重试。",
+  "dialog.network": "无法确认结果。请检查连接及记录的当前状态。",
+  "dialog.changed": "计划已更改。请查看最新信息并再次确认删除。",
+  "dialog.related": "此计划有历史或提醒记录，无法删除。您可以将其停用并保留。",
+  "dialog.linked": "此付款关联订阅。请在“订阅”页面管理。",
   "paymentCount_other": "{{count}} 笔付款"
 }

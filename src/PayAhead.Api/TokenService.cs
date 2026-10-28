@@ -53,12 +53,13 @@ public sealed class JwtSettings
 public sealed class TokenService(JwtSettings settings, TimeProvider clock) : ITokenService
 {
     public int RefreshLifetimeDays => settings.RefreshLifetimeDays;
-    public AccessTokenResult CreateAccessToken(Guid userId)
+    public AccessTokenResult CreateAccessToken(Guid userId, Guid securityStamp = default)
     {
         var now = clock.GetUtcNow().UtcDateTime;
         var expires = now.AddMinutes(settings.AccessLifetimeMinutes);
         var token = new JwtSecurityToken(settings.Issuer, settings.Audience,
             [new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+             new Claim("security_stamp", securityStamp.ToString("N")),
              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
              new Claim(JwtRegisteredClaimNames.Iat, EpochTime.GetIntDate(now).ToString(System.Globalization.CultureInfo.InvariantCulture), ClaimValueTypes.Integer64)],
             now, expires, new SigningCredentials(new SymmetricSecurityKey(settings.KeyBytes), SecurityAlgorithms.HmacSha256));

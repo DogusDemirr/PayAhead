@@ -117,8 +117,7 @@ public sealed class FrontendPhase4Tests(SqlServerFixture sql) : IClassFixture<Sq
         var migrator = db.GetService<Microsoft.EntityFrameworkCore.Migrations.IMigrator>();
         await migrator.MigrateAsync("20261021152026_ProductionOperations");
         var id = Guid.NewGuid(); var now = DateTime.UtcNow;
-        db.Users.Add(new() { Id = id, Email = "migration@example.test", NormalizedEmail = "MIGRATION@EXAMPLE.TEST", DisplayName = "Retained", PasswordHash = "retained-hash", CreatedAtUtc = now, UpdatedAtUtc = now });
-        await db.SaveChangesAsync();
+        await db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO Users (Id,Email,NormalizedEmail,DisplayName,PasswordHash,IsActive,FailedLoginCount,LoginLockedUntilUtc,CreatedAtUtc,UpdatedAtUtc) VALUES ({id},{"migration@example.test"},{"MIGRATION@EXAMPLE.TEST"},{"Retained"},{"retained-hash"},{true},{0},NULL,{now},{now})");
         // Insert using the historical schema; the current EF model has later nullable catalog columns.
         var retainedAmount = new SqlParameter("RetainedAmount", System.Data.SqlDbType.Decimal) { Precision = 19, Scale = 4, Value = 10.1234m };
         await db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO PaymentPlans (Id,UserId,Name,Amount,CurrencyCode,Category,Frequency,Interval,StartDate,IsActive,CreatedAtUtc,UpdatedAtUtc) VALUES ({Guid.NewGuid()},{id},{"Retained"},{retainedAmount},{"TRY"},{"Bills"},{0},{1},{DateOnly.FromDateTime(now)},{true},{now},{now})");

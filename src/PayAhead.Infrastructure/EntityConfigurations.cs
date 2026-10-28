@@ -23,6 +23,8 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
         b.Property(x => x.NormalizedEmail).HasMaxLength(254).IsRequired();
         b.Property(x => x.DisplayName).HasMaxLength(100).IsRequired();
         b.Property(x => x.PasswordHash).HasMaxLength(512).IsRequired();
+        b.Property(x => x.AvatarKey).HasMaxLength(36).IsUnicode(false);
+        b.Property(x => x.RowVersion).IsRowVersion();
         b.HasIndex(x => x.NormalizedEmail).IsUnique();
     }
 }

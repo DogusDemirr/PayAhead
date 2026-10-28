@@ -1,3 +1,9 @@
+> **Phase 5.3.1:** Fotoğraf için [özel yerel storage ve Avatars__Root](AVATARS.md) yönergesini izleyin. Eski API süreci güncel kod sayılmaz; `scripts/Start-Development.ps1` güncel kaynakları derler. Development ProfileAvatar migration durumu doğrulanmalıdır.
+
+## Phase 5.3 — Güncel backend gerekir
+
+ProfileSecurity migration'ı doğrulanmış Docker Development DB'ye uygulandı. Android öncesi eski API terminalini kontrollü kapatıp `scripts/Start-Development.ps1 -Port 5080` ile yeni kodu başlatın; port/LAN değeri mobile/.env ile eşleşsin. Yeni GET/PUT me/profile ve POST me/change-password endpoint'leri eski binary'de yoktur. [Kurulum, session politikası, test ve silme saklama ayrıntıları](ACCOUNT_MANAGEMENT.md). Otomatik migration, production deployment veya gerçek push teslimi bu fazda yoktur.
+
 ## Phase5.1.1 — Güncel katalog için yeniden başlatma
 
 Bu makinenin doğrulanmış Development DB'sine `20261025145738_CatalogCoverage` uygulandı;pending0. Başka ortamda önce hedef/pendingmigration kontrolü ve yedek/inceleme yapın; startup migrate yoktur. Sonra açık eski API terminalini Ctrl+C ile kontrollü kapatıp `./scripts/Start-Development.ps1 -Port 5080` çalıştırın. Güncel kod ayrı artifacts çıktısında derlenir; eski `src/bin` DLL'i `--no-build` ile çalıştırmayın. Bu oturum mevcut eski API'yi durdurmadı; güncel API ayrı5086portunda doğrulandı.

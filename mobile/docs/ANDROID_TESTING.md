@@ -180,6 +180,25 @@ SDK 57 uyumlu [Expo Go](https://expo.dev/go), aynı Wi-Fi, çalışan SQL/backen
 Production HTTP reddi otomatik testte doğrulandı; gerçek cihaz production build testi yapılmadı. Web SecureStore oturumu desteklenmez. Örnek finans preview flag'i açılsa bile auth guard atlanamaz; varsayılan kapalıdır.
 
 Sonuç kaydı: cihaz modeli, Android ve Expo Go sürümü, boyut/font ölçeği, API erişim yolu, test satırı ve gözlenen sonucu yaz. JWT/parola/refresh body ekran görüntüsü veya loga koyma. Bu faz push cihazı kaydetmez ve gerçek finans verisini bağlamaz; bunları auth başarısı olarak test etme.
+## Phase 5.3 — Hesap yönetimi Android kabulü (bekliyor)
+
+Önce güncel backend'i `scripts/Start-Development.ps1` ile başlatın; eski API yeni endpoint'leri desteklemez. Development `ProfileSecurity` migration'ı bu makinede uygulanmıştır. Telefonun `mobile/.env` LAN adresi/portu backend ile eşleşmeli. Metro'yu `npx.cmd expo start --clear` ile yeniden açıp Expo Go'da güncel bundle'a bağlanın.
+
+1. **Hesabım:** Ayarlar → Hesap Bilgileri'ne girin. Avatar/ad/e-posta ve altı bölüm görünmeli; Android geri tuşu Ayarlar'a dönmeli.
+2. **Profil:** Bilgiler kendi hesabınıza ait olmalı. E-posta düzenlenememeli, doğrulanmış e-posta rozeti bulunmamalı.
+3. **Ad soyad:** Değiştirip kaydedin. Boş, yalnız boşluk ve aşırı uzun değer reddedilmeli. Başka cihazda değişmiş sürüm için 409/reload akışı gözlenebilir; kör tekrar yazma yapılmamalı.
+4. **Kalıcılık:** Uygulamayı kapat-açın; ad soyad sunucudan korunmalı. Profil alanını değiştirip kaydetmeden dil değiştirildiğinde taslak kaybolmamalı.
+5. **Şifre:** Önce yanlış mevcut parola ve eşleşmeyen yeni parolayı deneyin. Güvenli yerel hata çıkmalı. Sonra farklı 12–128 karakterli parola kullanın; alanlar temizlenmeli, tüm oturumlar kapanmalı.
+6. **Tekrar giriş:** Eski parola/token geçersiz, yeni parola geçerli olmalı. Yeniden girişte profil/finansal kayıtlar aynı kalmalı. Uçak modunda sonucu belirsiz credential işlemi başarılı gösterilmemeli.
+7. **Dil:** 14 dilin her birinde hesap başlıkları/alanları/uyarıları değişmeli. Arapça RTL ve CJK/Hindi/Rusça karakterleri, uzun metin ve büyük sistem fontu fiziksel olarak incelenmeli. Dil tercihi logout sonrası korunmalı.
+8. **Bildirim/bölge:** Bildirim ve saat dilimi satırları mevcut ayar ekranını açmalı. Saat dilimi değişikliği aynı User Settings API'sinde kalıcı olmalı; para birimi/dil istemeden değişmemeli.
+9. **Üyelik:** Gerçek Free/Premium, bitiş tarihi varsa tarih ve server limitleri görülmeli; offline doğrulanamayan durum Premium gibi sunulmamalı. Mağaza yönetimi linki otomatik iptal/satın alma yapmamalı; üyelik satın alındığı mağazada yönetilmeli.
+10. **Karanlık tema:** Light/dark, erişilebilir etiketler, alan/uyarı kontrastı, klavye ve geri gezinmeyi kontrol edin.
+
+Silme akışını yalnız kaybetmeyi kabul ettiğiniz **ayrı test hesabında** deneyin: parola + ayrı açık destructive onay olmadan istek gitmemeli. Uyarı, sınırlı takma kimlikli mağaza bağlarının tutulduğunu ve hesabı silmenin mağaza aboneliğini iptal etmediğini anlatmalı. 204 sonrası oturum kapanmalı; hata/timeout başarı gösterilmemeli. Gerçek hesabınızda bu kabul testi zorunlu değildir.
+
+**Bu fiziksel senaryolar bu çalışma sırasında yapılmadı.** Otomatik testler, Hermes export ve localhost HTTP testi fiziksel Android veya gerçek push teslimi sayılmaz.
+
 ## Phase 5.2 — Fiziksel Android kabulü (bekliyor)
 
 Otomatik Jest/SQL/HTTP testleri fiziksel Expo Go veya development build kabulü değildir. Her adımı light/dark ve büyük sistem yazı boyutuyla deneyin; gerçek kişisel veriler yerine kendi test hesabınızı kullanın.
@@ -200,3 +219,17 @@ Otomatik Jest/SQL/HTTP testleri fiziksel Expo Go veya development build kabulü 
 14. **CRUD ve offline:** Her dilde ödeme/abonelik oluştur-güncelle-sorgula-sil akışını, generic validation/401/409/429 hatalarını ve kaydedilmemiş taslağı deneyin. Uçak modunda dil seçip uygulamayı açın; seçim korunmalı, bağlantı sonrası uygulamayı öne getirince hesap eşitlemesi tamamlanmalı. Gerçek push teslimini bu fazın sonucu saymayın.
 
 Sonuç: **Bu 14 fiziksel senaryo bu çalışma sırasında yapılmadı; kullanıcı kabulü açık.** AI taslak çeviriler ayrıca hedef dil uzmanı incelemesi bekler. SMTP/Resend veya production deployment yapılmadı.
+# Phase 5.3.1 — fiziksel Android kabulü (bekliyor)
+
+Güncel backend'i `scripts/Start-Development.ps1` ile derleyip çalıştırın. Development ProfileAvatar migration'ı uygulanmış olmalı. Telefon `.env` API adresi bilgisayarın LAN IP'sini kullanmalı; Metro'yu cache temizleyerek yeniden başlatın. Eski API binary'si yeni endpoint/hata kodlarını sağlamaz. Aşağıdaki işlemler henüz fiziksel cihazda doğrulanmış sayılmaz.
+
+1. Bağımsız, geçmişsiz/hatırlatıcısız/aboneliğe bağlı olmayan pasif test planı oluşturun. Sil → Vazgeç kaydı korusun; Sil → onay yalnız bir işlemle kaydı listeden kaldırsın. Aktif bağımsız planı da deneyin.
+2. Bağımsız planı önce pasife alıp sonra silin; normal akışta “güncel kaydı yükle” gerekmemeli. Hızlı iki onay tek DELETE göndermeli, spinner sırasında Android geri tuşu işlemi kapatmamalı.
+3. İki cihaz/oturumda aynı planı açıp diğerinden değiştirin. Eski ekrandan silme yeni değişikliği otomatik silmemeli; inceleme ve yeniden onay açıklaması görünmeli.
+4. Mevcut aboneliğe bağlı pasif planı silmeyi deneyin. Abonelikler üzerinden yönetim açıklaması beklenir; bu planın zorla silinmesi beklenmez. Geçmiş/hatırlatıcı bağlantılı bağımsız plan için ilgili engel açıklaması beklenir. Kayıt başarısızlıkta listede kalsın.
+5. Abonelik silme ve reminder silme için ortak tasarım, cancel, tek onay ve başarılı güncelleme kontrolü yapın. Hesap silme testini yalnız kaybedilebilir test hesabında yapın; mevcut parola ve açık onay korunmalı, mağaza aboneliği ayrıca yönetilmeli.
+6. Hesabım → kamera simgesi → Galeriden fotoğraf seç: kare kırpın, spinner/başarı, dairesel yeni fotoğraf ve Ayarlar avatarını kontrol edin. Tekrar fotoğraf değiştirin. Picker'ı iptal etmek mevcut fotoğrafı korumalı.
+7. Uygulamayı kapat/aç ve yeniden giriş yapın; aynı backend hesabında fotoğraf korunmalı. Başka hesaba geçin; önceki kişinin fotoğrafı gösterilmemeli. Fotoğrafı kaldırınca baş harfler gelmeli; olmayan fotoğrafta kaldır seçeneği görünmemeli.
+8. Ağ kapalı/yükleme hatasında sahte başarı gösterilmemeli, eski doğrulanmış fotoğraf korunmalı. Seçici izin hatası, bozuk/çok büyük kaynak, Android geri ve küçük ekranda klavye/uzun metin davranışını kontrol edin. Sistem picker geniş galeri izni istemeyebilir; bu normaldir.
+9. Light/dark; TR/EN/DE/AR ve diğer10 dilde dialog/avatar metinleri, uzun mesaj kaydırma, TalkBack başlık/buton duyurusu ve dokunma alanlarını inceleyin. Arapça native RTL için uygulamanın mevcut açık yeniden başlatma uyarısını izleyin.
+10. Profil adını güncelleme, mevcut/yeni şifre akışı, yeniden giriş, Free/Premium, bildirim ayarları, Payments/Dashboard/Calendar/History ve Subscriptions regresyonlarını kontrol edin. Gerçek push testi bu kapsamın dışındadır.

@@ -1,3 +1,50 @@
+## Phase 5.3.1 — Plan silme, modern dialoglar ve profil fotoğrafı (29 Ekim 2026)
+
+Onaylanan kapsam tamamlandı; fiziksel Android ve profesyonel dil kabulü açık olarak durulmaktadır. Phase 5.2/5.3 değişiklikleri korunmuştur; Phase 6 push/Phase 7 veya production deployment yapılmadı. [Kök neden/etkilenen dosyalar](PHASE5_3_1_DIAGNOSIS.md), [avatar API ve depolama](AVATARS.md), [Android kabulü](../mobile/docs/ANDROID_TESTING.md).
+
+Gerçek Development SQL incelemesi: tek pasif planın hem reminder hem tracked subscription ilişkisi var, occurrence0. Backend'in doğru iş kuralı engeli HTTP409 dönüyordu; frontend her409'u yanlışlıkla concurrency/reload diye sunuyordu. Buna ek olarak pasife alma yanıtındaki yeni rowVersion detay cache'ine hemen yazılmıyordu. İş kuralı hataları payment_linked_subscription/payment_delete_related; gerçek DELETE conflict payment_changed olarak ayrıldı. Güçlü If-Match/rowversion/FK korunur. Normal delete tek onayla biter, doğrulanmış204 sonrası kendi liste/detay cache'i güncellenir. Gerçek conflict sessiz refetch sonrası yeniden inceleme/onay ister; yeni değişikliği körlemesine silmez. Mevcut gerçek bağlı plan zorla silinmedi.
+
+Ortak ConfirmDialog/DestructiveConfirmDialog/InfoDialog/ErrorDialog/SuccessFeedback: light/dark, RTL, uzun içerik kaydırma, accessibility, loading, tek işlem kapısı ve Android onRequestClose. Ödeme/abonelik/hatırlatıcı/cihaz kaydı/hesap silme ve RTL restart uyarısı kullanır. Hesap silmenin parola/açık onay/session güvenliği korunur.20 semantic metin×14 dil; missing/duplicate/placeholder/JSON ve taranan raw UI hatası0.714 tarihsel extraction anahtarından713 aktif,1 gerekçeli retired; kaynaklar silinmedi. Dil sayımı CLDR ekleriyle828–893. AI taslakları profesyonel çeviri kabulü sayılmaz.
+
+Avatar: SDK57 picker+manipulator, kare kırpma,512 JPEG85, geniş galeri/kamera/mikrofon izni yok. Authenticated GET/PUT/DELETE /api/users/me/avatar;2MiB/2048piksel/single frame gerçek JPEG/PNG/WebP decode, server JPEG reencode/EXIF-GPS temizliği, güvenli random ad, private no-store okuma, verified user5/dakika, güçlü If-Match. IAvatarStorage/LocalAvatarStorage DB'ye göre ayrılmış özel .data alanında kalıcıdır; test sweeper gerçek Development dosyalarını göremez. Eski dosya/hesap silme temizliği ve referanssız dosya worker'ı var. Commit cevabı belirsizken referans verilen dosya silinmez; hata eski fotoğrafı doğrulanmadan değiştirmez. Production nesne depolama adaptörü/çok instance/runtime kabulü yapılmadı.
+
+ProfileAvatar migration20261028210901 yalnız nullable Users.AvatarKey varchar36 ekler.127.0.0.1:14333/PayAheadDockerDevelopment hedefi, pending seti ve mevcut kullanıcı/finans/session alanları önce doğrulandı; uygulama sonrası aynı değerler, pending0. Veri/volume reset yok, startup otomatik migration yok. Net8/C#12/EF8.0.21 korundu.
+
+| Kontrol | Gerçek sonuç |
+|---|---|
+| .NET restore/build | Başarılı;0hata/0uyarı |
+| Backend unit |420/420, skipped0 |
+| SQL Server2022 Testcontainers |280/280, skipped0; rastgele izole PayAheadTest DB |
+| Son avatar odaklı tekrar |7unit+3SQL başarılı; orphan/live dosya sweeper testi dahil |
+| Mobil Jest |296/296;24suite, skipped0 |
+| TypeScript / ESLint |Başarılı;lint0hata/0uyarı |
+| i18n generator/source audit |14dil;issue0,raw UI0 |
+| Expo Doctor |21/21 |
+| Android Hermes export |Başarılı;4178modül/9.2MB hbc; APK/cihaz testi değildir |
+| Gerçek güncel loopback HTTP |26kontrol; aktif/pasif/deactivate-delete/stale409/linked409/avatar upload-read-remove/relogin; yalnız kendi test hesabı temizlendi |
+
+Kanıtlar: artifacts/phase531-final/test-results/phase531final_net8.0_20261029003108.trx(unit), phase531final_net8.0_20261029003931.trx(SQL); artifacts/phase531-review/test-results/avatar-review_*; mobile/artifacts/phase531-hermes; tekrarlanabilir mobile/scripts/phase531-smoke.cjs. İlk tam koşu418+277geçti; ek testlerle son sayılar420+280oldu. Son küçük API fotoğraf hata başlığı/sweeper test değişikliği için ayrı review build0/0 ve odaklı test tekrarları geçti. Sandbox Hermes permission denied izinli yeniden çalıştırmada çözüldü; engelli deneme başarılı sayılmadı. .NET run --artifacts-path SDK arama yolu ve koruma helper UserSettings sıralama hataları migration öncesi düzeltildi; veri kaybı olmadı.
+
+Açıklar: fiziksel Android/Expo Go kırpma/izin, küçük ekran/uzun metin/TalkBack/dark/RTL ve yeniden açma/diğer cihaz kabulü bekler. Linux container Skia native runtime kabulü yapılmadı. npm audit21uyarı(14low/3moderate/4high,critical0): Expo/CLI zinciri, node-forge ve transitive zod; otomatik force fix veya SDK downgrade yapılmadı. Kaynaklara sır eklenmedi; fotoğraf yolu/token/parola raporlanmadı. Önceki gerçek SMTP/push/mağaza/production açıkları bu fazla tamamlanmış sayılmaz. Kendi geçici5094API süreci kapanır; kullanıcının mevcut API/SQL/Mailpit süreçleri korunur. Android testi için güncel API yeniden derlenip LAN adresiyle kullanılmalıdır.
+
+**Duruş:** Phase 5.3.1 kod ve otomatik doğrulama tamamlandı; fiziksel/dilsel kabul açık. Yeni faza geçilmedi.
+
+## Phase 5.3 — Profil ve hesap yönetimi (28 Ekim 2026)
+
+Mevcut Phase5.2/BigInt düzeltmesi korundu. Hesap Bilgileri placeholder'ı korumalı `/account` merkezine bağlandı: baş harf avatarı, gerçek ad/e-posta, gerçek entitlement/expiry/limit, kişisel/güvenlik/dil-bölge/bildirim/üyelik/hesap bölümleri. Mevcut language ve notifications/settings ekranları yeniden kullanılır. E-posta düzenleme/doğrulama veya gereksiz kişisel alan eklenmedi.
+
+Yeni GET/PUT`/api/users/me/profile`, POST`/api/users/me/change-password`; yalnız doğrulanmış sahip, DTO unknown-field engeli, ad1–100/control/boşluk kontrolü, rowversion409, profile30/dakika/credentials5/dakika SQL rate limit. Mevcut DELETE/parola/privacy altyapısı kullanılır; ayrı destructive Alert, doğrulanmış204, session/cache temizliği ve saklama/mağaza iptal uyarısı vardır. Tam anonimlik veya mağazada otomatik iptal iddiası yoktur. Şifre değişimi refresh/reset token'larını tüketir/revoke eder, cihazları pasifleştirir, SecurityStamp değiştirerek eski JWT'leri de reddeder. Login/session yarışına stamp fence eklendi; legacyJWT yalnızEmpty stamp için geçerlidir. Parola karşılaştırma hataları sabit metindir; token/parola loglanmaz veya yeni bir depoya yazılmaz. Epoch/owner cache fence, gcTime0/reset ve belirsiz credential yazısında fail-closed davranış vardır.
+
+`20261028195511_ProfileSecurity` User'a yalnızRowVersion/SecurityStamp ekler. UserSecrets/environment hedefi127.0.0.1:14333/PayAheadDockerDevelopment ve başlangıçCatalogLocalization doğrulandı; migration açıkça uygulandı. Users eski kolonları ve10diğer tablo checksum/satır sayısı aynı kaldı. Mevcut kullanıcı/finansal veriler ve ID'ler korundu, DB/volume sıfırlanmadı. Otomatik migration yok; SDK8.0.426/net8/C#12/EF8.0.21 korunur.
+
+35yeni profil metni×14dil=490 AI taslak çeviri; eksik/duplicate/placeholder/plural/JSON/unused/source audit0. Testler14dil, light/dark/back, profil görüntüleme/yazma, validation, yanlış parola/alan temizliği, session invalidation/stale response, user isolation, offline, Free/Premium/unknown/expiry ve dil değişiminde taslak korumayı kapsar. Son TS/lint temiz, Jest266/266 (22suite), skipped0. Doctor21/21,SDKuyumlu; Hermes Android export4167modül/9,2MB/36asset `mobile/artifacts/phase53-final-export` başarılı.
+
+Son restore/build0hata0uyarı; unit413/413, gerçek SQL2022 Testcontainers274/274, skipped0. Kanıt `artifacts/phase53-verified/test-results/phase53-verified_net8.0_20261028231226.trx` ve `phase53-verified_net8.0_20261028232122.trx`. İlk tur3tarihsel migration testi güncelUser modeli/eskiDBşeması uyumsuzluğundan kırıldı; tarihsel şemaya uygun seed ile düzeltildi. Ara tur273/274, son tam tur274/274. Yeni final tur parola hata metni sızıntısı testini ve device deactivation kontrolünü içerir. Çözümün olmayanPhase53configuration denemesi proje config/artifacts yolu ile düzeltildi; test validator overload ve TSconfig hataları son kontrolde giderildi. Başarısız ara komutlar başarılı sayılmadı.
+
+Gerçek ayrı5093DevelopmentAPI (push/SMTPkapalı)31HTTP+3cleanup geçti: profilpersist/409/400/isolation, mevcutparola400, eskiaccess/refresh401, yeniLogin200, gerçekFreeentitlement, dil/settingsUTC veDELETE204→401. İlk smoke'ta yalnızscript entitlementURL'si404 verdi; doğru `/api/premium/entitlements` ile yeniden geçti, ilk turun kendi hesapları da temizlendi. Gerçek kullanıcılara dokunulmadı; son test API/Metro kapatılır, eski kullanıcıAPI/SQL/Mailpit süreçleri korunur.
+
+[Model/endpoint/saklama/komutlar](ACCOUNT_MANAGEMENT.md), [Türkçe sonuç raporu](../mobile/docs/PHASE5_3_REPORT.md), [10Android kabulü](../mobile/docs/ANDROID_TESTING.md). Fiziksel Android/font/RTL/taşma, profesyonel dilsel kabul ve önceki gerçek push/inbox/mağaza kabul açıkları sürer. Production/SMTP/Resend veya yeniPhase6/7yok. Phase5.3kod ve otomatik doğrulama tamamlandı; kabul açıkları belirtilerek duruldu. Aşağıdaki kayıtlar tarihseldir.
+
 ## Phase 5.2 sonrası — Payments BigInt render düzeltmesi (26 Ekim 2026)
 
 Kök neden `financialMoney` içindeki `.format(BigInt(integer))`: Hermes'in Intl NumberFormat'ı BigInt'i Number'a dönüştürmeye çalışarak TypeError üretir. Payment/Category/Service ID'leri UUID string; API mapping/tarih/native prop/animasyon kaynaklı başka BigInt yolu bulunmadı. Eski kod, Number-only Intl test sınırı altında aynı hatayla kırıldı. Önceki Node tabanlı testler bu platform farkını kaçırmıştı; eski Hermes export sonucu fiziksel runtime kanıtı değildi.

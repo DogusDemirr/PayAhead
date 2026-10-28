@@ -19,7 +19,7 @@ using Xunit;
 
 namespace PayAhead.IntegrationTests;
 
-public sealed class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<SqlServerFixture>, IAsyncLifetime
+public sealed partial class AuthApiTests(SqlServerFixture sqlServer) : IClassFixture<SqlServerFixture>, IAsyncLifetime
 {
     private string connection = "";
     private readonly string key = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));

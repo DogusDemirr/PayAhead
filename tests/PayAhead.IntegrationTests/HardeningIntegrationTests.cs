@@ -186,7 +186,8 @@ public sealed class HardeningIntegrationTests(SqlServerFixture sql) : IClassFixt
         {
             var migrator = Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService<Microsoft.EntityFrameworkCore.Migrations.IMigrator>(db);
             await migrator.MigrateAsync("20261021143405_VerifiedPremiumMembership");
-            db.Users.Add(new() { Id = user, Email = "upgrade@test.invalid", NormalizedEmail = "UPGRADE@TEST.INVALID", DisplayName = "Preserved", CreatedAtUtc = DateTime.UtcNow, UpdatedAtUtc = DateTime.UtcNow }); await db.SaveChangesAsync();
+            // Insert against the historical schema rather than today's EF model with new columns.
+            await db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO Users (Id,Email,NormalizedEmail,DisplayName,PasswordHash,IsActive,FailedLoginCount,LoginLockedUntilUtc,CreatedAtUtc,UpdatedAtUtc) VALUES ({user},{"upgrade@test.invalid"},{"UPGRADE@TEST.INVALID"},{"Preserved"},{""},{true},{0},NULL,{DateTime.UtcNow},{DateTime.UtcNow})");
             await db.Database.MigrateAsync(); Assert.Equal("Preserved", (await db.Users.SingleAsync()).DisplayName); Assert.Empty(await db.RateLimitBuckets.ToArrayAsync());
         }
         finally { Assert.StartsWith("PayAheadTest_", db.Database.GetDbConnection().Database); await db.Database.EnsureDeletedAsync(); }

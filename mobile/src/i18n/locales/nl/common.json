@@ -187,6 +187,16 @@
   "cancel": "Annuleren",
   "selected": "Geselecteerd",
   "amountInputHint": "Gebruik een decimale punt of komma zonder scheidingstekens voor duizendtallen. De taal wijzigen verandert het bedrag of de valuta niet.",
+  "dialog.confirm": "Bevestigen",
+  "dialog.close": "Sluiten",
+  "dialog.error": "Aanvraag niet geslaagd",
+  "dialog.info": "Informatie",
+  "dialog.success": "Voltooid.",
+  "dialog.failed": "Het verzoek kon niet worden voltooid. Controleer de huidige gegevens voordat je het opnieuw probeert.",
+  "dialog.network": "Het resultaat kon niet worden bevestigd. Controleer je verbinding en de huidige staat van de vermelding.",
+  "dialog.changed": "Het plan is gewijzigd. Bekijk de huidige gegevens en bevestig de verwijdering opnieuw.",
+  "dialog.related": "Dit plan heeft geschiedenis- of herinneringsgegevens en kan niet worden verwijderd. Je kunt het inactief bewaren.",
+  "dialog.linked": "Deze betaling hoort bij een abonnement. Beheer dit via Abonnementen.",
   "paymentCount_one": "{{count}} betaling",
   "paymentCount_other": "{{count}} betalingen"
 }

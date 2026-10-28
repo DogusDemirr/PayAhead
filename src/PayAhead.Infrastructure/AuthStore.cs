@@ -39,13 +39,13 @@ public sealed class AuthStore(PayAheadDbContext db) : IAuthStore
             return user;
         }, ct);
 
-    public async Task AddSessionAsync(RefreshToken token, CancellationToken ct)
+    public async Task AddSessionAsync(RefreshToken token, CancellationToken ct, Guid securityStamp = default)
     {
         // Fence a login verified just before a password reset. Reset and session mutations lock the owner first.
         await TransactionAsync(async () =>
         {
             var user = await db.Users.FromSqlInterpolated($"SELECT * FROM Users WITH(UPDLOCK,HOLDLOCK) WHERE Id={token.UserId}").SingleOrDefaultAsync(ct);
-            if (user is null || !user.IsActive || await db.Set<PasswordResetToken>().AnyAsync(x => x.UserId == token.UserId && x.ConsumedAtUtc > token.CreatedAtUtc, ct))
+            if (user is null || !user.IsActive || user.SecurityStamp != securityStamp || await db.Set<PasswordResetToken>().AnyAsync(x => x.UserId == token.UserId && x.ConsumedAtUtc > token.CreatedAtUtc, ct))
                 throw new AuthenticationRequiredException();
             db.RefreshTokens.Add(token); await db.SaveChangesAsync(ct); return user;
         }, ct);

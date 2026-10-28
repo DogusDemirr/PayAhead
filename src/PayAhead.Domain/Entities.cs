@@ -11,6 +11,9 @@ public sealed class User
     public string NormalizedEmail { get; set; } = "";
     public string DisplayName { get; set; } = "";
     public string PasswordHash { get; set; } = "";
+    public string? AvatarKey { get; set; }
+    public Guid SecurityStamp { get; set; }
+    public byte[] RowVersion { get; set; } = [];
     public bool IsActive { get; set; } = true;
     public int FailedLoginCount { get; set; }
     public DateTime? LoginLockedUntilUtc { get; set; }

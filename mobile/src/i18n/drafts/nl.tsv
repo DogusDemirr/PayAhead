@@ -744,3 +744,58 @@ m_a45e9436a4ba|Naam van abonnement
 m_93f01c808be2|Naam van aanbieder
 m_da20470ab885|Abonnementsbedrag
 m_5ff71b7378f6|Factureringsinterval
+settings:profile.accountTitle|Mijn account
+settings:profile.personal|Persoonlijke gegevens
+settings:profile.security|Beveiliging
+settings:profile.region|Taal en regio
+settings:profile.notifications|Meldingen
+settings:profile.membership|Lidmaatschap
+settings:profile.actions|Accountacties
+settings:profile.displayName|Volledige naam
+settings:profile.emailReadOnly|Een e-mailadres wijzigen vereist verificatie en is hier niet beschikbaar.
+settings:profile.save|Profiel opslaan
+settings:profile.changePassword|Wachtwoord wijzigen
+settings:profile.currentPassword|Huidig wachtwoord
+settings:profile.newPassword|Nieuw wachtwoord
+settings:profile.repeatPassword|Herhaal het nieuwe wachtwoord
+settings:profile.passwordPolicy|Gebruik 12–128 tekens en een ander wachtwoord dan het huidige. Door de wijziging worden alle sessies afgemeld.
+settings:profile.passwordChanged|Wachtwoord gewijzigd. Meld je opnieuw aan met je nieuwe wachtwoord.
+settings:profile.deleteAccount|Account verwijderen
+settings:profile.deleteWarning|Dit kan niet ongedaan worden gemaakt. Financiële gegevens worden verwijderd; beperkte winkelkoppelingen blijven onder een gepseudonimiseerde accountidentificatie bewaard om misbruik te voorkomen. Het account verwijderen zegt winkelabonnementen niet op.
+settings:profile.confirmDelete|Mijn account definitief verwijderen
+settings:profile.deleteSuccess|Account verwijderd. Je bent afgemeld.
+settings:profile.unknownMembership|Lidmaatschap kon niet worden geverifieerd
+settings:profile.free|Gratis
+settings:profile.premium|Premium
+settings:profile.expires|Toegang eindigt: {{value0}}
+settings:profile.limits|Actieve betalingen: {{value0}} · Herinneringen/plan: {{value1}} · Abonnementen: {{value2}}
+settings:profile.manageMembership|Winkelabonnementen beheren
+settings:profile.timezoneLink|Tijdzone- en regio-instellingen
+settings:profile.profileSaved|Profiel opgeslagen.
+settings:profile.reload|Huidig profiel opnieuw laden
+settings:profile.invalidName|Voer een geldige volledige naam van 1–100 tekens in.
+settings:profile.passwordMismatch|De nieuwe wachtwoorden komen niet overeen.
+settings:profile.uncertainWrite|Het resultaat kon niet worden bevestigd. Controleer je verbinding en account voordat je opnieuw verzendt.
+settings:profile.passwordInvalid|Controleer de wachtwoordvereisten.
+settings:profile.requestFailed|De aanvraag kon niet worden voltooid. Controleer je gegevens en verbinding.
+settings:profile.wrongPassword|Het huidige wachtwoord kon niet worden geverifieerd.
+common:dialog.confirm|Bevestigen
+common:dialog.close|Sluiten
+common:dialog.error|Aanvraag niet geslaagd
+common:dialog.info|Informatie
+common:dialog.success|Voltooid.
+common:dialog.failed|Het verzoek kon niet worden voltooid. Controleer de huidige gegevens voordat je het opnieuw probeert.
+common:dialog.network|Het resultaat kon niet worden bevestigd. Controleer je verbinding en de huidige staat van de vermelding.
+common:dialog.changed|Het plan is gewijzigd. Bekijk de huidige gegevens en bevestig de verwijdering opnieuw.
+common:dialog.related|Dit plan heeft geschiedenis- of herinneringsgegevens en kan niet worden verwijderd. Je kunt het inactief bewaren.
+common:dialog.linked|Deze betaling hoort bij een abonnement. Beheer dit via Abonnementen.
+settings:avatar.change|Profielfoto wijzigen
+settings:avatar.pick|Foto uit de galerij kiezen
+settings:avatar.remove|Foto verwijderen
+settings:avatar.uploading|Foto uploaden
+settings:avatar.updated|Foto bijgewerkt.
+settings:avatar.failed|De foto kon niet worden geüpload. Je bestaande foto is niet gewijzigd.
+settings:avatar.invalid|Kies een geldige JPEG-, PNG- of WebP-afbeelding.
+settings:avatar.large|Het bestand mag maximaal 2 MB en 2048 × 2048 pixels zijn.
+settings:avatar.permission|Toegang tot de galerij is nodig om een foto te kiezen. Controleer de toestemming in de apparaatinstellingen.
+settings:avatar.unavailable|De fotoservice is momenteel niet beschikbaar.

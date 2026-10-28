@@ -791,3 +791,58 @@ m_a45e9436a4ba|اسم الاشتراك
 m_93f01c808be2|اسم المزود
 m_da20470ab885|مبلغ الاشتراك
 m_5ff71b7378f6|فترة الفوترة
+settings:profile.accountTitle|حسابي
+settings:profile.personal|المعلومات الشخصية
+settings:profile.security|الأمان
+settings:profile.region|اللغة والمنطقة
+settings:profile.notifications|الإشعارات
+settings:profile.membership|العضوية
+settings:profile.actions|إجراءات الحساب
+settings:profile.displayName|الاسم الكامل
+settings:profile.emailReadOnly|يتطلب تغيير البريد الإلكتروني التحقق، وهو غير متاح في هذه الشاشة.
+settings:profile.save|حفظ الملف الشخصي
+settings:profile.changePassword|تغيير كلمة المرور
+settings:profile.currentPassword|كلمة المرور الحالية
+settings:profile.newPassword|كلمة مرور جديدة
+settings:profile.repeatPassword|أعد كتابة كلمة المرور الجديدة
+settings:profile.passwordPolicy|استخدم 12–128 حرفًا وكلمة مرور مختلفة عن الحالية. يؤدي تغييرها إلى إنهاء جميع الجلسات.
+settings:profile.passwordChanged|تغيرت كلمة المرور. سجّل الدخول مجددًا بكلمة مرورك الجديدة.
+settings:profile.deleteAccount|حذف الحساب
+settings:profile.deleteWarning|لا يمكن التراجع عن هذا الإجراء. ستُحذف السجلات المالية؛ وستُحفظ ارتباطات محدودة بالمتجر تحت معرّف حساب مستعار لمنع إساءة الاستخدام. حذف الحساب لا يلغي اشتراكات المتجر.
+settings:profile.confirmDelete|حذف حسابي نهائيًا
+settings:profile.deleteSuccess|حُذف الحساب. تم تسجيل خروجك.
+settings:profile.unknownMembership|تعذر التحقق من العضوية
+settings:profile.free|مجاني
+settings:profile.premium|Premium
+settings:profile.expires|ينتهي الوصول: {{value0}}
+settings:profile.limits|المدفوعات النشطة: {{value0}} · التذكيرات/الخطة: {{value1}} · الاشتراكات: {{value2}}
+settings:profile.manageMembership|إدارة اشتراكات المتجر
+settings:profile.timezoneLink|إعدادات المنطقة الزمنية والمنطقة
+settings:profile.profileSaved|حُفظ الملف الشخصي.
+settings:profile.reload|إعادة تحميل الملف الشخصي الحالي
+settings:profile.invalidName|أدخل اسمًا كاملًا صالحًا من 1–100 حرف.
+settings:profile.passwordMismatch|كلمتا المرور الجديدتان غير متطابقتين.
+settings:profile.uncertainWrite|تعذر تأكيد النتيجة. تحقق من اتصالك وحسابك قبل الإرسال مجددًا.
+settings:profile.passwordInvalid|تحقق من متطلبات كلمة المرور.
+settings:profile.requestFailed|تعذر إكمال الطلب. تحقق من بياناتك واتصالك.
+settings:profile.wrongPassword|تعذر التحقق من كلمة المرور الحالية.
+common:dialog.confirm|تأكيد
+common:dialog.close|إغلاق
+common:dialog.error|تعذر إكمال الطلب
+common:dialog.info|معلومات
+common:dialog.success|تم.
+common:dialog.failed|تعذر إكمال الطلب. تحقق من الحالة الحالية للسجل قبل المحاولة مرة أخرى.
+common:dialog.network|تعذر تأكيد النتيجة. تحقق من اتصالك والحالة الحالية للسجل.
+common:dialog.changed|تغيرت الخطة. راجع تفاصيلها الحالية وأكّد الحذف مجددًا.
+common:dialog.related|لهذه الخطة سجلات سابقة أو تذكيرات ولا يمكن حذفها. يمكنك الاحتفاظ بها غير نشطة.
+common:dialog.linked|هذه الدفعة مرتبطة باشتراك. أدِرها من شاشة الاشتراكات.
+settings:avatar.change|تغيير صورة الملف الشخصي
+settings:avatar.pick|اختيار صورة من المعرض
+settings:avatar.remove|إزالة الصورة
+settings:avatar.uploading|جارٍ رفع الصورة
+settings:avatar.updated|حُدثت الصورة.
+settings:avatar.failed|تعذر رفع الصورة. لم تتغير صورتك الحالية.
+settings:avatar.invalid|اختر صورة JPEG أو PNG أو WebP صالحة.
+settings:avatar.large|يجب ألا يتجاوز حجم الملف 2 ميغابايت وأبعاده 2048 × 2048 بكسل.
+settings:avatar.permission|يلزم الوصول إلى المعرض لاختيار صورة. تحقق من الإذن في إعدادات الجهاز.
+settings:avatar.unavailable|خدمة الصور غير متاحة حاليًا.

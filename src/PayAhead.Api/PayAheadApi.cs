@@ -95,7 +95,7 @@ public static class PayAheadApi
             context.Response.Headers["X-Frame-Options"] = "DENY";
             context.Response.Headers["Referrer-Policy"] = "no-referrer";
             context.Response.Headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()";
-            var maximumBody = HttpMethods.IsDelete(context.Request.Method) && context.Request.Path.Equals("/api/users/me", StringComparison.OrdinalIgnoreCase) ? 4096 : 1_048_576;
+            var maximumBody = HttpMethods.IsPut(context.Request.Method) && context.Request.Path.Equals("/api/users/me/avatar", StringComparison.OrdinalIgnoreCase) ? PayAhead.Application.Auth.AvatarService.MaximumBytes + 65536 : HttpMethods.IsDelete(context.Request.Method) && context.Request.Path.Equals("/api/users/me", StringComparison.OrdinalIgnoreCase) ? 4096 : 1_048_576;
             if (context.Request.ContentLength > maximumBody)
             {
                 await Results.Problem(statusCode: 413, title: "İstek gövdesi çok büyük.").ExecuteAsync(context); return;

@@ -187,6 +187,16 @@
   "cancel": "Cancel",
   "selected": "Selected",
   "amountInputHint": "Use a decimal point or comma without grouping separators. Changing language does not change the amount or currency.",
+  "dialog.confirm": "Confirm",
+  "dialog.close": "Close",
+  "dialog.error": "Request unsuccessful",
+  "dialog.info": "Information",
+  "dialog.success": "Done.",
+  "dialog.failed": "The request could not be completed. Check the current record before trying again.",
+  "dialog.network": "The result could not be confirmed. Check your connection and the current record.",
+  "dialog.changed": "The plan changed. Review its current details and confirm deletion again.",
+  "dialog.related": "This plan has history or reminder records and cannot be deleted. You can keep it inactive.",
+  "dialog.linked": "This payment belongs to a subscription. Manage it from Subscriptions.",
   "paymentCount_one": "{{count}} payment",
   "paymentCount_other": "{{count}} payments"
 }
