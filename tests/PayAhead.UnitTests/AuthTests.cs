@@ -36,13 +36,13 @@ public sealed class AuthTests
     [InlineData("a@b.com", "short", "Name")]
     [InlineData("a@b.com", "valid-long-password", " ")]
     public void Registration_rejects_invalid_fields(string? email, string password, string name)
-        => Assert.False(new RegisterValidator().Validate(new RegisterRequest(email, password, name)).IsValid);
+        => Assert.False(new RegisterValidator().Validate(new RegisterRequest(email, password, name, Legal: TestLegal.Confirmed)).IsValid);
     [Fact]
     public void Registration_accepts_long_passphrases_and_trimmed_email()
-        => Assert.True(new RegisterValidator().Validate(new RegisterRequest(" User@example.com ", new string('p', 128), "Name")).IsValid);
+        => Assert.True(new RegisterValidator().Validate(new RegisterRequest(" User@example.com ", new string('p', 128), "Name", Legal: TestLegal.Confirmed)).IsValid);
     [Fact]
     public void Registration_caps_password_length()
-        => Assert.False(new RegisterValidator().Validate(new RegisterRequest("a@b.com", new string('p', 129), "Name")).IsValid);
+        => Assert.False(new RegisterValidator().Validate(new RegisterRequest("a@b.com", new string('p', 129), "Name", Legal: TestLegal.Confirmed)).IsValid);
     [Fact] public void Email_normalization_is_invariant() => Assert.Equal("USER@EXAMPLE.COM", EmailNormalization.Normalize(" user@example.com "));
     [Fact]
     public void Identity_hash_is_salted_verifiable_and_never_plaintext()
@@ -103,7 +103,7 @@ public sealed class AuthTests
     private sealed class MemoryStore : IAuthStore
     {
         public User? User; public RefreshToken? Session; public bool Reused;
-        public Task RegisterAsync(User user, CancellationToken ct, string? legalVersion = null)
+        public Task RegisterAsync(User user, CancellationToken ct, string? legalVersion = null, RegistrationLegal? legal = null)
         { if (User is not null) throw new ResourceConflictException("Duplicate"); User = user; return Task.CompletedTask; }
         public Task<User?> AuthenticateAsync(string email, Func<User, bool> verify, DateTime now, CancellationToken ct)
             => Task.FromResult(User is { IsActive: true } && User.NormalizedEmail == email && verify(User) ? User : null);
@@ -122,9 +122,9 @@ public sealed class AuthTests
     public async Task Registration_login_rotation_reuse_and_logout_service_contract()
     {
         var store = new MemoryStore(); var service = Service(store); var ct = CancellationToken.None;
-        var user = await service.RegisterAsync(new(" first@example.com ", "correct-long-password", " Name "), ct);
+        var user = await service.RegisterAsync(new(" first@example.com ", "correct-long-password", " Name ", Legal: TestLegal.Confirmed), ct);
         Assert.Equal("Name", user.DisplayName); Assert.Equal("FIRST@EXAMPLE.COM", store.User!.NormalizedEmail);
-        await Assert.ThrowsAsync<ResourceConflictException>(() => service.RegisterAsync(new("first@example.com", "correct-long-password", "Name"), ct));
+        await Assert.ThrowsAsync<ResourceConflictException>(() => service.RegisterAsync(new("first@example.com", "correct-long-password", "Name", Legal: TestLegal.Confirmed), ct));
         await Assert.ThrowsAsync<AuthenticationRequiredException>(() => service.LoginAsync(new("first@example.com", "wrong"), ct));
         var login = await service.LoginAsync(new("FIRST@example.com", "correct-long-password"), ct);
         Assert.NotEqual(login.RefreshToken, store.Session!.TokenHash);

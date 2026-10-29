@@ -7,6 +7,7 @@ import { router } from 'expo-router';
 jest.mock('../src/services/auth-runtime', () => ({ session: { login: jest.fn(), logout: jest.fn() }, authApi: { register: jest.fn() } }));
 jest.mock('../src/hooks/use-current-user', () => ({ useCurrentUser: () => ({ data: { id: 'test-id', displayName: 'Test User', email: 'test@example.com' }, isError: false, refetch: jest.fn() }) }));
 import { useUiStore } from '../src/store/ui';
+import { documentIds, useRegistrationLegal } from '../src/features/privacy/registration-legal';
 
 import AuthScreen from '../src/features/AuthScreen';
 
@@ -82,8 +83,9 @@ test('registration returns to login and does not assume automatic login', async 
   await fireEvent.changeText(screen.getByLabelText('E-posta'), 'test@example.com');
   await fireEvent.changeText(screen.getByLabelText('Şifre'), 'Example-password-123');
   if (screen.queryByLabelText('Yeni şifre tekrar')) await fireEvent.changeText(screen.getByLabelText('Yeni şifre tekrar'), 'Example-password-123');
+  await act(async () => { const state = useRegistrationLegal.getState(); for (const id of documentIds) state.toggle(state.attempt!, id); });
   await fireEvent.press(screen.getByRole('button', { name: 'Hesap oluştur' }));
-  expect(authApi.register).toHaveBeenCalledWith({ email: 'test@example.com', displayName: 'Test', password: 'Example-password-123', legalVersion: '2026-10-29-draft-1' });
+  expect(authApi.register).toHaveBeenCalledWith({ email: 'test@example.com', displayName: 'Test', password: 'Example-password-123', legalVersion: '2026-10-29-draft-1', legal: { noticeVersion: '2026-10-29-draft-1', noticeAcknowledged: true, privacyVersion: '2026-10-29-draft-1', privacyAcknowledged: true, termsVersion: '2026-10-29-draft-1', termsAccepted: true } });
   expect(router.replace).toHaveBeenCalledWith({ pathname: '/(auth)/login', params: { registered: 'true' } });
   expect(session.login).not.toHaveBeenCalled();
 });
@@ -94,6 +96,7 @@ test('backend register validation is attached to the matching input', async () =
   await fireEvent.changeText(screen.getByLabelText('E-posta'), 'test@example.com');
   await fireEvent.changeText(screen.getByLabelText('Şifre'), 'Example-password-123');
   if (screen.queryByLabelText('Yeni şifre tekrar')) await fireEvent.changeText(screen.getByLabelText('Yeni şifre tekrar'), 'Example-password-123');
+  await act(async () => { const state = useRegistrationLegal.getState(); for (const id of documentIds) state.toggle(state.attempt!, id); });
   await fireEvent.press(screen.getByRole('button', { name: 'Hesap oluştur' }));
   await waitFor(() => expect(screen.getByText('Bu alanı kontrol edip geçerli bir değer gir.')).toBeTruthy());
 });

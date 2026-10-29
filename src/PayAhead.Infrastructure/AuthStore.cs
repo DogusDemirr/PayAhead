@@ -11,11 +11,19 @@ public sealed class AuthStore(PayAheadDbContext db) : IAuthStore
     // Unknown accounts still perform the same expensive Identity verification.
     private static readonly User Dummy = new() { PasswordHash = new IdentityPasswordService().Hash(new User(), "dummy-account-timing-only") };
 
-    public async Task RegisterAsync(User user, CancellationToken ct, string? legalVersion = null)
+    public async Task RegisterAsync(User user, CancellationToken ct, string? legalVersion = null, RegistrationLegal? legal = null)
     {
         db.Users.Add(user);
         db.UserSettings.Add(new() { UserId = user.Id, CreatedAtUtc = user.CreatedAtUtc, UpdatedAtUtc = user.CreatedAtUtc });
         db.Set<LegalNoticeReceipt>().Add(new() { UserId = user.Id, NoticeVersion = legalVersion, PresentedAtUtc = legalVersion is null ? null : user.CreatedAtUtc, RecordedAtUtc = user.CreatedAtUtc });
+        if (legal is not null)
+        {
+            db.Set<RegistrationLegalConfirmation>().AddRange(
+                Confirmation("notice", LegalConfirmationKind.NoticeAcknowledgment, legal.NoticeVersion!),
+                Confirmation("privacy", LegalConfirmationKind.PrivacyReadAcknowledgment, legal.PrivacyVersion!),
+                Confirmation("terms", LegalConfirmationKind.TermsAcceptance, legal.TermsVersion!));
+        }
+        RegistrationLegalConfirmation Confirmation(string document, LegalConfirmationKind kind, string version) => new() { UserId = user.Id, DocumentId = document, Kind = kind, DocumentVersion = version, ConfirmedAtUtc = user.CreatedAtUtc };
         try { await db.SaveChangesAsync(ct); } // EF's implicit transaction covers all registration inserts.
         catch (DbUpdateException error) when (error.InnerException is SqlException { Number: 2601 or 2627 })
         { throw new ResourceConflictException("Bu e-posta ile kayıt oluşturulamıyor."); }

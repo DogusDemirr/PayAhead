@@ -1,3 +1,5 @@
+> **Phase 5.4.1 — 29 Ekim 2026:** Kayıtta üç ayrı belge teyidi ve zorunlu backend doğrulaması, sürüm/tür/UTC kayıtları; boşken gizlenen parola gücü göstergesi. [Sonuç](docs/PHASE5_4_1_REPORT.md), [Android kabulü](mobile/docs/PHASE5_4_1_ANDROID_ACCEPTANCE.md). Belge gövdeleri ve mevcut veriler korundu; hukuki/fiziksel kabul bekler.
+
 > **Phase 5.4 — 29 Ekim 2026:** Gizlilik/Güvenlik ekranı, 14 dil sürümlü hukuki taslaklar, asgari kayıt bilgilendirme metadata'sı, 3 başarılı normal parola değişikliği/30 gün ve güvenli parola geçmişi. Kurtarma kota dışında; oturum iptali korunur. [Teknik sözleşme](docs/PRIVACY_SECURITY.md), [sonuç ve açık kabuller](docs/PHASE5_4_REPORT.md). Belgeler hukuken onaylı değildir; production veya Phase 6/7 yok.
 
 > **Phase 5.3.2 — 29 Ekim 2026:** Profil fotoğrafı için korumalı görsel GET401 düzeltmesi, merkezi yetkili JPEG okuması, açık native XHR yüklemesi, status+code ile ayrı hata sınıflandırması, güvenli conflict yenileme ve Development LAN/AllowedHosts düzeltmesi. [Tanı, testler ve cihaz kabulü](docs/PHASE5_3_2_DIAGNOSIS.md). Fotoğraf görünümü fiziksel Android’de kullanıcı tarafından doğrulandı; Phase 6 veya production yok.

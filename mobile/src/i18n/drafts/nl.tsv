@@ -828,7 +828,6 @@ settings:legal.notice|KVKK-informatiebericht
 settings:legal.privacy|Privacybeleid
 settings:legal.terms|Gebruiksvoorwaarden
 settings:legal.draft|Juridisch concept: juridische en taalkundige controle is nodig vóór publicatie. Niet definitief of als volledig conform verklaard.
-settings:legal.registration|Vóór registratie zijn drie concepten beschikbaar. De informatie is geen toestemming. In deze fase vragen we geen marketingtoestemming of verplichte contractaanvaarding.
 settings:legal.identity|Verwerkingsverantwoordelijke en contact
 settings:legal.retentionTitle|Bewaartermijnen en accountverwijdering
 settings:legal.transfersTitle|Diensten en gegevensoverdracht
@@ -840,3 +839,12 @@ settings:legal.retention|Actieve gegevens blijven gedurende de accountduur bewaa
 settings:legal.transfers|Expo kan worden gebruikt voor meldingen, Apple/Google voor aankoopcontrole en de ingestelde SMTP-provider voor e-mail. Ontwikkeling gebruikt SQL Server, private lokale foto-opslag en Mailpit. Productieontvangers, landen en juridische overdrachtsvoorwaarden: vóór publicatie invullen.
 settings:legal.rights|Je kunt informatie, inzage, correctie, verwijdering/vernietiging indien van toepassing en andere wettelijke rechten verzoeken. Profielcorrectie en accountverwijdering zijn beschikbaar; vóór publicatie komt een geverifieerd kanaal. Dit concept vervangt geen juridische controle.
 settings:security.historyInfo|De controle omvat het huidige wachtwoord en wachtwoorden vastgelegd sinds deze functie. Onbekende oudere wachtwoorden zijn niet achteraf te herkennen.
+settings:registrationLegal.info|Lees en bevestig elk document afzonderlijk. De bevestigingen van de informatieverklaring en het privacybeleid zijn geen toestemming voor gegevensverwerking.
+settings:registrationLegal.required|Lees en bevestig de vereiste documenten om een account aan te maken.
+settings:registrationLegal.confirmed|Bevestiging voltooid
+settings:registrationLegal.missing|Bevestiging vereist
+settings:registrationLegal.review|Lezen en bevestigen
+settings:registrationLegal.noticeCheck|Ik heb de informatieverklaring over persoonsgegevens gelezen en ben geïnformeerd.
+settings:registrationLegal.privacyCheck|Ik heb het privacybeleid gelezen.
+settings:registrationLegal.termsCheck|Ik accepteer de gebruiksvoorwaarden.
+settings:legal.registration|Documentbevestigingen worden afzonderlijk vastgelegd. Deze concepten vereisen juridische beoordeling vóór publicatie.

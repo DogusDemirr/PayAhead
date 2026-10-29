@@ -1,3 +1,5 @@
+> **Phase 5.4.1:** Kayıt belge kartları, ayrı checkbox ve zorunlu teyitler; boşken gizlenen parola gücü göstergesi. [Sonuç](../docs/PHASE5_4_1_REPORT.md), [Android kabulü](docs/PHASE5_4_1_ANDROID_ACCEPTANCE.md).
+
 > **Phase 5.4:** Gizlilik/Güvenlik, sürümlü hukuki AI taslakları, gerçek parola kotası ve güvenli geçmiş denetimi. [Sonuç raporu](../docs/PHASE5_4_REPORT.md), [Android kabulü](docs/PHASE5_4_ANDROID_ACCEPTANCE.md). Hukuki yayın ve fiziksel cihaz kabulü bekler.
 
 > **Phase 5.3.1:** Ödeme/abonelik/hatırlatıcı/hesap dialogları standartlaştırıldı; Hesabım ve Ayarlar gerçek authenticated fotoğrafı kullanır. [Silme tanısı](../docs/PHASE5_3_1_DIAGNOSIS.md), [fotoğraf API ve storage](../docs/AVATARS.md), [Android kabulü](docs/ANDROID_TESTING.md).

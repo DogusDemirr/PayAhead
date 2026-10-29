@@ -875,7 +875,6 @@ settings:legal.notice|إشعار معلومات KVKK
 settings:legal.privacy|سياسة الخصوصية
 settings:legal.terms|شروط الاستخدام
 settings:legal.draft|مسودة قانونية: تتطلب مراجعة قانونية ولغوية قبل النشر. ليست نهائية ولا يُدّعى امتثالها الكامل.
-settings:legal.registration|يمكن الاطلاع على ثلاث مسودات قبل التسجيل. هذه المعلومات ليست موافقة. لا تُطلب موافقة تسويقية أو موافقة تعاقدية إلزامية في مرحلة المسودة.
 settings:legal.identity|المتحكم بالبيانات والتواصل
 settings:legal.retentionTitle|الاحتفاظ وحذف الحساب
 settings:legal.transfersTitle|الخدمات ونقل البيانات
@@ -887,3 +886,12 @@ settings:legal.retention|تُحفظ البيانات النشطة طوال عم�
 settings:legal.transfers|قد يُستخدم Expo للإشعارات وApple/Google للتحقق من المشتريات ومزود SMTP المضبوط للبريد. يستخدم التطوير SQL Server وتخزين صور محليًا خاصًا وMailpit. الجهات المستلمة والدول وشروط النقل القانونية في الإنتاج: تُستكمل قبل النشر.
 settings:legal.rights|يمكنك طلب المعلومات والوصول والتصحيح والحذف أو الإتلاف عند استيفاء الشروط وغيرها من الحقوق القانونية. تصحيح الملف وحذف الحساب متاحان؛ وتُضاف قناة طلبات موثقة قبل النشر. لا تحل المسودة محل المراجعة القانونية.
 settings:security.historyInfo|يشمل الفحص كلمة المرور الحالية وما سُجل منذ هذه الميزة. لا يمكن كشف الكلمات السابقة غير المعروفة بأثر رجعي.
+settings:registrationLegal.info|راجع كل مستند وأكّده على حدة. تأكيد الاطلاع على الإشعار وسياسة الخصوصية ليس موافقة على معالجة البيانات.
+settings:registrationLegal.required|لإنشاء حساب، راجع المستندات المطلوبة وأكّدها.
+settings:registrationLegal.confirmed|تم التأكيد
+settings:registrationLegal.missing|التأكيد مطلوب
+settings:registrationLegal.review|مراجعة وتأكيد
+settings:registrationLegal.noticeCheck|قرأت إشعار البيانات الشخصية وتم إبلاغي بمضمونه.
+settings:registrationLegal.privacyCheck|قرأت سياسة الخصوصية.
+settings:registrationLegal.termsCheck|أوافق على شروط الاستخدام.
+settings:legal.registration|تُسجّل تأكيدات المستندات بشكل منفصل. هذه مسودات تتطلب مراجعة قانونية قبل النشر.

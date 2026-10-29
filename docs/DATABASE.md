@@ -1,3 +1,5 @@
+> **Phase 5.4.1:** `20261029192237_RegistrationLegalConfirmations` yalnız yeni tablo/PK/FK ekler; toplam 23 tablo/PK,26FK. Doğrulanmış Development hedefe açıkça uygulandı, mevcut22tablo fingerprint aynı, pending0. Eski receipt/hash/finans verisine backfill yok. [Sürüm/tür/UTC saklama](PHASE5_4_1_REPORT.md).
+
 > **29 Ekim 2026 — Phase 5.4:** `20261029131024_AccountPrivacySecurity` yalnız `PasswordHistory` ve `LegalNoticeReceipts` ekler; toplam 22 tablo/PK ve 25 FK. Mevcut hash, User ID, avatar ve finansal veriye backfill/update yoktur. Doğrulanmış `PayAheadDockerDevelopment` hedefine açıkça uygulandı; önce/sonra mevcut kullanıcı/finans/session/katalog fingerprint aynı, pending0. Startup migration ve gerçek DB rollback yok. [Transaction, saklama ve komutlar](PRIVACY_SECURITY.md).
 
 > **29 Ekim 2026 — Phase 5.3.1:** `20261028210901_ProfileAvatar` Users tablosuna yalnız nullable `AvatarKey varchar(36)` ekler. Doğrulanmış Development hedefe uygulandı; mevcut kullanıcı/finans/session değerleri aynı, pending0. Startup migration yok. [Avatar saklama/temizlik](AVATARS.md).

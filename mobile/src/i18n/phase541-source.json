@@ -1,0 +1,38 @@
+{
+  "settings:registrationLegal.info": [
+    "Her belgeyi ayrı inceleyip teyit et. KVKK ve gizlilik teyitleri açık rıza değildir.",
+    "Review and confirm each document separately. Notice and privacy acknowledgments are not consent to data processing."
+  ],
+  "settings:registrationLegal.required": [
+    "Hesap oluşturmak için gerekli belgeleri inceleyip onaylamalısın.",
+    "To create an account, review and confirm the required documents."
+  ],
+  "settings:registrationLegal.confirmed": [
+    "Teyit tamamlandı",
+    "Confirmation complete"
+  ],
+  "settings:registrationLegal.missing": [
+    "Teyit gerekli",
+    "Confirmation required"
+  ],
+  "settings:registrationLegal.review": [
+    "İncele ve teyit et",
+    "Review and confirm"
+  ],
+  "settings:registrationLegal.noticeCheck": [
+    "KVKK Aydınlatma Metni’ni okudum ve bilgilendirildim.",
+    "I have read the Personal Data Notice and have been informed."
+  ],
+  "settings:registrationLegal.privacyCheck": [
+    "Gizlilik Politikası’nı okudum.",
+    "I have read the Privacy Policy."
+  ],
+  "settings:registrationLegal.termsCheck": [
+    "Kullanım Koşulları’nı kabul ediyorum.",
+    "I accept the Terms of Use."
+  ],
+  "settings:legal.registration": [
+    "Belge teyitleri ayrı alınır. Metinler yayın öncesi hukuk incelemesi gerektiren taslaklardır.",
+    "Document confirmations are recorded separately. These drafts require legal review before publication."
+  ]
+}

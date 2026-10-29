@@ -104,7 +104,7 @@
   "legal.privacy": "プライバシーポリシー",
   "legal.terms": "利用規約",
   "legal.draft": "法的草案：公開前に法務・言語の確認が必要です。確定済みまたは完全準拠の文書ではありません。",
-  "legal.registration": "登録前に3つの草案を確認できます。告知は同意ではありません。草案段階ではマーケティング同意や契約の強制的な承諾は求めません。",
+  "legal.registration": "文書ごとの確認は別々に記録されます。これらの草案は公開前に法的審査が必要です。",
   "legal.identity": "データ管理者と連絡先",
   "legal.retentionTitle": "保存期間とアカウント削除",
   "legal.transfersTitle": "サービスとデータ移転",
@@ -115,5 +115,13 @@
   "legal.retention": "有効なデータはアカウント存続期間中保存します。既知の過去パスワードハッシュはアカウント削除時に消去し、通常変更の日時は30日後の保守で除去します。財務記録・写真は削除されますが、仮名化ストア紐付けが残る場合があります。バックアップと最終保存／消去計画は公開前に確定します。",
   "legal.transfers": "通知ではExpo、購入確認ではApple／Google、メールでは設定済みSMTP事業者が使われる場合があります。開発ではSQL Server、非公開のローカル写真保存、Mailpitを利用します。本番の受領者・国・移転の法的条件は公開前に記入します。",
   "legal.rights": "処理情報、開示、訂正、条件を満たす場合の消去・破棄、その他の法的権利を請求できます。プロフィール訂正とアカウント削除は利用可能で、確認済み申請窓口は公開前に追加します。この草案は法務確認に代わるものではありません。",
-  "security.historyInfo": "現在のパスワードとこの機能以降に記録されたものを確認します。不明なそれ以前のパスワードは遡って検出できません。"
+  "security.historyInfo": "現在のパスワードとこの機能以降に記録されたものを確認します。不明なそれ以前のパスワードは遡って検出できません。",
+  "registrationLegal.info": "各文書を個別に読み、確認してください。通知およびプライバシーポリシーの確認は、データ処理への同意ではありません。",
+  "registrationLegal.required": "アカウントを作成するには、必要な文書を読み、確認してください。",
+  "registrationLegal.confirmed": "確認済み",
+  "registrationLegal.missing": "確認が必要",
+  "registrationLegal.review": "内容を読んで確認",
+  "registrationLegal.noticeCheck": "個人データに関する通知を読み、説明を受けました。",
+  "registrationLegal.privacyCheck": "プライバシーポリシーを読みました。",
+  "registrationLegal.termsCheck": "利用規約に同意します。"
 }

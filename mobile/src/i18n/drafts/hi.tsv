@@ -835,7 +835,6 @@ settings:legal.notice|KVKK सूचना पत्र
 settings:legal.privacy|गोपनीयता नीति
 settings:legal.terms|उपयोग की शर्तें
 settings:legal.draft|कानूनी मसौदा: प्रकाशन से पहले कानूनी और भाषाई समीक्षा आवश्यक है। यह अंतिम या पूरी तरह अनुपालन घोषित दस्तावेज़ नहीं है।
-settings:legal.registration|पंजीकरण से पहले तीन मसौदे देख सकते हैं। सूचना सहमति नहीं है। मसौदा चरण में विपणन सहमति या अनिवार्य अनुबंध स्वीकृति नहीं ली जाती।
 settings:legal.identity|डेटा नियंत्रक और संपर्क
 settings:legal.retentionTitle|प्रतिधारण और खाता हटाना
 settings:legal.transfersTitle|सेवाएँ और डेटा हस्तांतरण
@@ -847,3 +846,12 @@ settings:legal.retention|सक्रिय डेटा खाते के ज
 settings:legal.transfers|सूचनाओं के लिए Expo, खरीद सत्यापन के लिए Apple／Google और ईमेल के लिए निर्धारित SMTP प्रदाता इस्तेमाल हो सकता है। विकास में SQL Server, निजी स्थानीय फ़ोटो भंडारण और Mailpit हैं। उत्पादन प्राप्तकर्ता, देश और हस्तांतरण की कानूनी शर्तें प्रकाशन से पहले भरी जाएँगी।
 settings:legal.rights|आप प्रसंस्करण जानकारी, पहुँच, सुधार, शर्तें पूरी होने पर मिटाने／नष्ट करने और अन्य कानूनी अधिकारों का अनुरोध कर सकते हैं। प्रोफ़ाइल सुधार और खाता हटाना उपलब्ध हैं; सत्यापित अनुरोध माध्यम प्रकाशन से पहले जोड़ा जाएगा। मसौदा कानूनी समीक्षा का विकल्प नहीं है।
 settings:security.historyInfo|जाँच वर्तमान पासवर्ड और इस सुविधा के बाद दर्ज पासवर्ड तक सीमित है। अज्ञात पुराने पासवर्ड बाद में पता नहीं किए जा सकते।
+settings:registrationLegal.info|हर दस्तावेज़ को अलग से पढ़कर पुष्टि करें। सूचना और गोपनीयता नीति पढ़ने की पुष्टि, डेटा संसाधित करने की सहमति नहीं है।
+settings:registrationLegal.required|खाता बनाने के लिए ज़रूरी दस्तावेज़ पढ़कर पुष्टि करें।
+settings:registrationLegal.confirmed|पुष्टि पूरी हुई
+settings:registrationLegal.missing|पुष्टि ज़रूरी है
+settings:registrationLegal.review|पढ़ें और पुष्टि करें
+settings:registrationLegal.noticeCheck|मैंने व्यक्तिगत डेटा सूचना पढ़ी है और मुझे जानकारी दी गई है।
+settings:registrationLegal.privacyCheck|मैंने गोपनीयता नीति पढ़ ली है।
+settings:registrationLegal.termsCheck|मैं उपयोग की शर्तें स्वीकार करता हूँ।
+settings:legal.registration|दस्तावेज़ों की पुष्टि अलग-अलग दर्ज होती है। प्रकाशन से पहले इन मसौदों की कानूनी समीक्षा ज़रूरी है।

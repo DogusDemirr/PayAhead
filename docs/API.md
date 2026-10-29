@@ -1,5 +1,9 @@
 # API sözleşmesi — Faz 1–10
 
+## Phase 5.4.1 — Kayıt teyitleri
+
+`POST /api/auth/register` artık güncel sürümlerle `legal.noticeAcknowledged`, `legal.privacyAcknowledged` ve `legal.termsAccepted` alanlarını true ister. Eksik nesne/teyit veya geçersiz belge sürümü400; eski `legalVersion` tek başına yeterli değildir. [Tam gövde ve üç ayrı kayıt türü](PHASE5_4_1_REPORT.md). `GET /api/legal` manifesti korunur, required flag'leri true'dur; mevcut kullanıcıların login/refresh akışı yeni teyide bağlanmaz. Export kendi `registrationLegal` metadata'sını da içerir; parola/hash/token eklenmez.
+
 ## Frontend Phase 4 ekleri
 
 `POST /api/auth/forgot-password` (202 generic), `POST /api/auth/reset-password` (204) ve yetkili `GET /api/analytics?year=&month=&currencyCode=` eklendi. Ayrıntılı gövdeler, hata/kota ve semantik: [PASSWORD_RESET](PASSWORD_RESET.md), [ANALYTICS](ANALYTICS.md). Mevcut occurrence/calendar/payment sözleşmeleri değişmedi.

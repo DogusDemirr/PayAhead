@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Explicit real-backend check. No JWT, password or response body is printed.
 const { randomUUID, randomBytes } = require('node:crypto');
 async function main() {
@@ -16,7 +17,7 @@ async function main() {
     return result.status === 204 ? null : result.json();
   }
   try {
-    const registered = await call('/api/auth/register', 'POST', account, null, 201); createdId = registered.id;
+    const registered = await call('/api/auth/register', 'POST', { ...account, ...registrationLegal() }, null, 201); createdId = registered.id;
     if ('accessToken' in registered) throw new Error('Register beklenmedik oturum döndürdü.');
     auth = await call('/api/auth/login', 'POST', { email: account.email, password: account.password }, null, 200);
     const me = await call('/api/users/me', 'GET', null, auth.accessToken, 200);

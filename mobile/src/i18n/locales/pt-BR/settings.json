@@ -104,7 +104,7 @@
   "legal.privacy": "Política de privacidade",
   "legal.terms": "Termos de uso",
   "legal.draft": "Rascunho jurídico: exige revisão jurídica e linguística antes da publicação. Não é definitivo nem declarado totalmente conforme.",
-  "legal.registration": "Três rascunhos estão disponíveis antes do cadastro. A informação não é consentimento. Não se pede consentimento de marketing nem aceitação contratual obrigatória nesta fase.",
+  "legal.registration": "As confirmações são registradas separadamente. Estes rascunhos exigem revisão jurídica antes da publicação.",
   "legal.identity": "Controlador e contato",
   "legal.retentionTitle": "Retenção e exclusão da conta",
   "legal.transfersTitle": "Serviços e transferências de dados",
@@ -115,5 +115,13 @@
   "legal.retention": "Dados ativos permanecem pela duração da conta. Hashes anteriores conhecidos são removidos ao excluir a conta; datas de alterações normais são limpas pela manutenção após 30 dias. Registros financeiros e fotos são removidos; vínculos pseudônimos com lojas podem permanecer. Backups e prazos finais de retenção/eliminação devem ser definidos antes da publicação.",
   "legal.transfers": "Expo pode ser usado para notificações, Apple/Google para verificar compras e o provedor SMTP configurado para e-mails. O desenvolvimento usa SQL Server, fotos em armazenamento local privado e Mailpit. Destinatários, países e condições legais de transferência em produção: a preencher antes da publicação.",
   "legal.rights": "Você pode solicitar informações, acesso, correção, exclusão/destruição quando aplicável e outros direitos legais. Correção de perfil e exclusão da conta estão disponíveis; um canal verificado será adicionado antes da publicação. Este rascunho não substitui análise jurídica.",
-  "security.historyInfo": "A verificação abrange a senha atual e as registradas após este recurso. Senhas anteriores desconhecidas não podem ser detectadas retroativamente."
+  "security.historyInfo": "A verificação abrange a senha atual e as registradas após este recurso. Senhas anteriores desconhecidas não podem ser detectadas retroativamente.",
+  "registrationLegal.info": "Leia e confirme cada documento separadamente. As confirmações do aviso e da política de privacidade não são consentimento para o tratamento de dados.",
+  "registrationLegal.required": "Para criar uma conta, leia e confirme os documentos obrigatórios.",
+  "registrationLegal.confirmed": "Confirmação concluída",
+  "registrationLegal.missing": "Confirmação obrigatória",
+  "registrationLegal.review": "Ler e confirmar",
+  "registrationLegal.noticeCheck": "Li o aviso sobre dados pessoais e fui informado.",
+  "registrationLegal.privacyCheck": "Li a política de privacidade.",
+  "registrationLegal.termsCheck": "Aceito os termos de uso."
 }

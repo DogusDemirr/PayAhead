@@ -824,7 +824,6 @@ settings:legal.notice|KVKK告知书
 settings:legal.privacy|隐私政策
 settings:legal.terms|使用条款
 settings:legal.draft|法律草案：发布前需要法律及语言审核。此文件未定稿，也不宣称完全合规。
-settings:legal.registration|注册前可查看三份草案。告知不等于同意。草案阶段不要求营销同意或强制接受合同。
 settings:legal.identity|数据控制者与联系方式
 settings:legal.retentionTitle|保留期限与账户删除
 settings:legal.transfersTitle|服务与数据传输
@@ -836,3 +835,12 @@ settings:legal.retention|活跃数据在账户存续期间保留。已知曾用�
 settings:legal.transfers|通知可能使用Expo，购买核实使用Apple／Google，邮件使用配置的SMTP提供商。开发环境使用SQL Server、私有本地头像存储及Mailpit。生产接收者、国家及传输法律条件：发布前填写。
 settings:legal.rights|你可以申请处理信息、访问、更正、在条件满足时删除／销毁及其他法律权利。可更正资料和删除账户；经核实的申请渠道将在发布前补充。本草案不代替法律审核。
 settings:security.historyInfo|检查仅涵盖当前密码及此功能启用后记录的密码，无法追溯识别未知的更早密码。
+settings:registrationLegal.info|请分别阅读并确认每份文件。对告知书和隐私政策的阅读确认不代表同意处理个人数据。
+settings:registrationLegal.required|创建账户前，请阅读并确认必需的文件。
+settings:registrationLegal.confirmed|已确认
+settings:registrationLegal.missing|需要确认
+settings:registrationLegal.review|阅读并确认
+settings:registrationLegal.noticeCheck|我已阅读个人数据告知书并已获知相关信息。
+settings:registrationLegal.privacyCheck|我已阅读隐私政策。
+settings:registrationLegal.termsCheck|我接受使用条款。
+settings:legal.registration|各文件的确认分别记录。这些草案在发布前需要法律审核。

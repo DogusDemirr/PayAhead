@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Controlled local API test. Synthetic tokens are never sent to Expo; worker must be disabled.
 const { randomUUID, randomBytes } = require('node:crypto');
 async function main() {
@@ -11,7 +12,7 @@ async function main() {
     const label = `${method} ${path.split('?')[0].replace(/[0-9a-f]{8}-[0-9a-f-]{27,}/g, '{id}')}`;
     assert(response.status === expected, `${label}: beklenen ${expected}, alınan ${response.status}`); count++; console.log(`${label}: ${response.status}`); const raw = await response.text(); return { raw, data: raw ? JSON.parse(raw) : null };
   }
-  async function account() { const body = { email: `notification-smoke-${randomUUID()}@example.invalid`, displayName: 'Disposable notification smoke', password: randomBytes(24).toString('base64url') }; const entry = { body, id: null, auth: null }; accounts.push(entry); entry.id = (await call('/api/auth/register', 'POST', body, null, 201)).data.id; entry.auth = (await call('/api/auth/login', 'POST', { email: body.email, password: body.password }, null, 200)).data; return entry; }
+  async function account() { const body = { email: `notification-smoke-${randomUUID()}@example.invalid`, displayName: 'Disposable notification smoke', password: randomBytes(24).toString('base64url') }; const entry = { body, id: null, auth: null }; accounts.push(entry); entry.id = (await call('/api/auth/register', 'POST', { ...body, ...registrationLegal() }, null, 201)).data.id; entry.auth = (await call('/api/auth/login', 'POST', { email: body.email, password: body.password }, null, 200)).data; return entry; }
   try {
     for (const path of ['/api/devices', '/api/users/me/settings']) await call(path, 'GET', null, null, 401);
     const owner = await account(); const token = owner.auth.accessToken;

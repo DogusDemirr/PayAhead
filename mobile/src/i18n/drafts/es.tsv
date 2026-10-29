@@ -839,7 +839,6 @@ settings:legal.notice|Aviso informativo KVKK
 settings:legal.privacy|Política de privacidad
 settings:legal.terms|Condiciones de uso
 settings:legal.draft|Borrador legal: requiere revisión jurídica y lingüística antes de publicarse. No es un documento definitivo ni declarado plenamente conforme.
-settings:legal.registration|Puedes consultar tres borradores antes del registro. La información no constituye consentimiento. No se solicita consentimiento comercial ni aceptación contractual obligatoria en esta etapa.
 settings:legal.identity|Responsable y contacto
 settings:legal.retentionTitle|Conservación y eliminación de cuenta
 settings:legal.transfersTitle|Servicios y transferencias de datos
@@ -851,3 +850,12 @@ settings:legal.retention|Los datos activos se conservan durante la vida de la cu
 settings:legal.transfers|Puede usarse Expo para notificaciones, Apple/Google para verificar compras y el proveedor SMTP configurado para correos. En desarrollo se usan SQL Server, almacenamiento local privado de fotos y Mailpit. Destinatarios, países y condiciones legales de transferencias de producción: por completar antes de publicar.
 settings:legal.rights|Puedes solicitar información, acceso, rectificación, eliminación/destrucción cuando proceda y otros derechos legales. Se permite corregir el perfil y eliminar la cuenta; se añadirá un canal verificado antes de publicar. Este borrador no sustituye la revisión jurídica.
 settings:security.historyInfo|Se comprueban la contraseña actual y las registradas desde esta función. No se detectan retroactivamente las anteriores desconocidas.
+settings:registrationLegal.info|Revisa y confirma cada documento por separado. Las confirmaciones del aviso y de la política de privacidad no son un consentimiento para tratar datos.
+settings:registrationLegal.required|Para crear una cuenta, revisa y confirma los documentos obligatorios.
+settings:registrationLegal.confirmed|Confirmación completada
+settings:registrationLegal.missing|Confirmación obligatoria
+settings:registrationLegal.review|Revisar y confirmar
+settings:registrationLegal.noticeCheck|He leído el aviso sobre datos personales y he recibido la información.
+settings:registrationLegal.privacyCheck|He leído la política de privacidad.
+settings:registrationLegal.termsCheck|Acepto las condiciones de uso.
+settings:legal.registration|Las confirmaciones se registran por separado. Estos borradores requieren revisión jurídica antes de publicarse.

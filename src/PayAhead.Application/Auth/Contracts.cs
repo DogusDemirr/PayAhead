@@ -4,7 +4,9 @@ using PayAhead.Domain;
 namespace PayAhead.Application.Auth;
 
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
-public sealed record RegisterRequest(string? Email, string? Password, string? DisplayName, string? LegalVersion = null);
+public sealed record RegisterRequest(string? Email, string? Password, string? DisplayName, string? LegalVersion = null, RegistrationLegal? Legal = null);
+[JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
+public sealed record RegistrationLegal(string? NoticeVersion, bool NoticeAcknowledged, string? PrivacyVersion, bool PrivacyAcknowledged, string? TermsVersion, bool TermsAccepted);
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
 public sealed record LoginRequest(string? Email, string? Password);
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
@@ -33,7 +35,7 @@ public interface ITokenService
 }
 public interface IAuthStore
 {
-    Task RegisterAsync(User user, CancellationToken ct, string? legalVersion = null);
+    Task RegisterAsync(User user, CancellationToken ct, string? legalVersion = null, RegistrationLegal? legal = null);
     Task<User?> AuthenticateAsync(string email, Func<User, bool> verify, DateTime now, CancellationToken ct);
     Task AddSessionAsync(RefreshToken token, CancellationToken ct, Guid securityStamp = default);
     Task<User?> RotateAsync(string hash, RefreshToken replacement, DateTime now, CancellationToken ct);

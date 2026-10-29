@@ -26,10 +26,7 @@ test.each(languages)('$code renders draft documents, real quota and RTL text wit
   expect(screen.getByRole('header', { name: t('settings:security.title') })).toBeTruthy();
   expect(screen.getByText(t('settings:security.remaining', { value0: 0 }))).toBeTruthy();
   expect(screen.getByText(t('settings:security.sessions', { value0: 2 }))).toBeTruthy();
-  for (const [id, doc] of Object.entries(legalDocuments)) {
-    await fireEvent.press(screen.getByRole('button', { name: t(doc.title) }));
-    expect(router.push).toHaveBeenLastCalledWith({ pathname: '/legal', params: { id } });
-  }
+  for (const doc of Object.values(legalDocuments)) expect(screen.queryByRole('button', { name: t(doc.title) })).toBeNull();
   await fireEvent.press(screen.getByRole('button', { name: t('settings:security.recovery') })); expect(router.push).toHaveBeenLastCalledWith('/forgot-password');
   await render(<LegalScreen />);
   const text = screen.getByText(t('settings:legal.noticeBody'));

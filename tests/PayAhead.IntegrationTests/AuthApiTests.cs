@@ -40,7 +40,7 @@ public sealed partial class AuthApiTests(SqlServerFixture sqlServer) : IClassFix
         client.Dispose(); await factory.DisposeAsync(); await using var db = Db();
         Assert.StartsWith("PayAheadTest_", db.Database.GetDbConnection().Database); await db.Database.EnsureDeletedAsync();
     }
-    private static RegisterRequest Registration(string email = "first@example.com") => new(email, "correct-long-password!", "Auth user");
+    private static RegisterRequest Registration(string email = "first@example.com") => new(email, "correct-long-password!", "Auth user", Legal: TestLegal.Confirmed);
     private async Task<AuthResponse> Login(string email = "first@example.com")
     {
         var response = await client.PostAsJsonAsync("/api/auth/login", new LoginRequest(email, "correct-long-password!"));
@@ -70,7 +70,7 @@ public sealed partial class AuthApiTests(SqlServerFixture sqlServer) : IClassFix
     {
         var responses = await Task.WhenAll(client.PostAsJsonAsync("/api/auth/register", Registration()), client.PostAsJsonAsync("/api/auth/register", Registration("FIRST@example.com")));
         Assert.Single(responses, x => x.StatusCode == HttpStatusCode.Created); Assert.Single(responses, x => x.StatusCode == HttpStatusCode.Conflict);
-        await using var db = Db(); Assert.Equal(1, await db.Users.CountAsync()); Assert.Equal(1, await db.UserSettings.CountAsync());
+        await using var db = Db(); Assert.Equal(1, await db.Users.CountAsync()); Assert.Equal(1, await db.UserSettings.CountAsync()); Assert.Equal(3, await db.Set<RegistrationLegalConfirmation>().CountAsync());
     }
     [Theory]
     [InlineData("", "correct-long-password!", "Name")]
@@ -80,7 +80,7 @@ public sealed partial class AuthApiTests(SqlServerFixture sqlServer) : IClassFix
     [InlineData("user@example.com", "correct-long-password!", " ")]
     public async Task Registration_invalid_input_returns_safe_400(string email, string password, string name)
     {
-        var response = await client.PostAsJsonAsync("/api/auth/register", new RegisterRequest(email, password, name));
+        var response = await client.PostAsJsonAsync("/api/auth/register", new RegisterRequest(email, password, name, Legal: TestLegal.Confirmed));
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode); Assert.Equal("application/problem+json", response.Content.Headers.ContentType?.MediaType);
         Assert.DoesNotContain("correct-long-password!", await response.Content.ReadAsStringAsync());
     }

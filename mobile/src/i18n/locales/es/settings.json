@@ -104,7 +104,7 @@
   "legal.privacy": "Política de privacidad",
   "legal.terms": "Condiciones de uso",
   "legal.draft": "Borrador legal: requiere revisión jurídica y lingüística antes de publicarse. No es un documento definitivo ni declarado plenamente conforme.",
-  "legal.registration": "Puedes consultar tres borradores antes del registro. La información no constituye consentimiento. No se solicita consentimiento comercial ni aceptación contractual obligatoria en esta etapa.",
+  "legal.registration": "Las confirmaciones se registran por separado. Estos borradores requieren revisión jurídica antes de publicarse.",
   "legal.identity": "Responsable y contacto",
   "legal.retentionTitle": "Conservación y eliminación de cuenta",
   "legal.transfersTitle": "Servicios y transferencias de datos",
@@ -115,5 +115,13 @@
   "legal.retention": "Los datos activos se conservan durante la vida de la cuenta. Los hashes antiguos conocidos se eliminan al borrar la cuenta; las fechas de cambios normales se limpian por mantenimiento tras 30 días. Se borran datos financieros y fotos; pueden quedar vínculos seudónimos con tiendas. Copias y plazos finales de retención/eliminación deben definirse antes de publicar.",
   "legal.transfers": "Puede usarse Expo para notificaciones, Apple/Google para verificar compras y el proveedor SMTP configurado para correos. En desarrollo se usan SQL Server, almacenamiento local privado de fotos y Mailpit. Destinatarios, países y condiciones legales de transferencias de producción: por completar antes de publicar.",
   "legal.rights": "Puedes solicitar información, acceso, rectificación, eliminación/destrucción cuando proceda y otros derechos legales. Se permite corregir el perfil y eliminar la cuenta; se añadirá un canal verificado antes de publicar. Este borrador no sustituye la revisión jurídica.",
-  "security.historyInfo": "Se comprueban la contraseña actual y las registradas desde esta función. No se detectan retroactivamente las anteriores desconocidas."
+  "security.historyInfo": "Se comprueban la contraseña actual y las registradas desde esta función. No se detectan retroactivamente las anteriores desconocidas.",
+  "registrationLegal.info": "Revisa y confirma cada documento por separado. Las confirmaciones del aviso y de la política de privacidad no son un consentimiento para tratar datos.",
+  "registrationLegal.required": "Para crear una cuenta, revisa y confirma los documentos obligatorios.",
+  "registrationLegal.confirmed": "Confirmación completada",
+  "registrationLegal.missing": "Confirmación obligatoria",
+  "registrationLegal.review": "Revisar y confirmar",
+  "registrationLegal.noticeCheck": "He leído el aviso sobre datos personales y he recibido la información.",
+  "registrationLegal.privacyCheck": "He leído la política de privacidad.",
+  "registrationLegal.termsCheck": "Acepto las condiciones de uso."
 }

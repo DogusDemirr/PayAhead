@@ -16231,6 +16231,36 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PayAhead.Domain.RegistrationLegalConfirmation", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DocumentId")
+                        .HasMaxLength(16)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(16)");
+
+                    b.Property<DateTime>("ConfirmedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocumentVersion")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("UserId", "DocumentId");
+
+                    b.ToTable("RegistrationLegalConfirmations", (string)null);
+                });
+
             modelBuilder.Entity("PayAhead.Domain.ReminderRule", b =>
                 {
                     b.Property<Guid>("Id")
@@ -16821,6 +16851,15 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PayAhead.Domain.RegistrationLegalConfirmation", b =>
+                {
+                    b.HasOne("PayAhead.Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

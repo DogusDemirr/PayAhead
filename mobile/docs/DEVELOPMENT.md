@@ -1,3 +1,5 @@
+> **Phase 5.4.1:** Belgeler yalnız kayıt kartlarından açılır; aktif kayıt denemesinde belge altındaki üç ayrı checkbox gereklidir. Güncel API/migration zorunlu. `EXPO_PUBLIC_API_BASE_URL` bu LAN için192.168.1.155:5080 olmalıdır. [API sözleşmesi](../../docs/PHASE5_4_1_REPORT.md), [Android](PHASE5_4_1_ANDROID_ACCEPTANCE.md).
+
 > **Phase 5.4:** Yeni `/privacy-security` ve herkese açık `/legal` route'ları; güncel Development API + AccountPrivacySecurity migration gerekir. [Teknik sözleşme](../../docs/PRIVACY_SECURITY.md), [Android kabulü](PHASE5_4_ANDROID_ACCEPTANCE.md). Hukuki belgeler 14 dilde AI taslağıdır; nihai yayın onayı değildir.
 
 > **Phase 5.3.2:** Native avatar FormData URI parçası Axios XHR ile gönderilir; Content-Type/boundary elle yazılmaz. Telefon API kökü ile backend Development AllowedHosts gerçek LAN IP’siyle eşleşmelidir. DHCP sonrası ikisi birlikte güncellenip API/Metro yeniden başlatılır. [Tanı](../../docs/PHASE5_3_2_DIAGNOSIS.md).

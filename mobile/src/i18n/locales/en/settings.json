@@ -104,7 +104,7 @@
   "legal.privacy": "Privacy Policy",
   "legal.terms": "Terms of Use",
   "legal.draft": "Legal draft — legal and language review is required before publication. This is not a finalized or fully compliant document.",
-  "legal.registration": "You can access three draft documents before registration. This information is not consent. No marketing consent is requested; mandatory contract acceptance is not collected during the draft stage.",
+  "legal.registration": "Document confirmations are recorded separately. These drafts require legal review before publication.",
   "legal.identity": "Data controller and contact",
   "legal.retentionTitle": "Retention and account deletion",
   "legal.transfersTitle": "Services and data transfers",
@@ -115,5 +115,13 @@
   "legal.retention": "Active account data is retained for the account lifetime. Known retired password hashes are removed on account deletion; normal-change timestamps are cleared by maintenance after 30 days. Deletion removes financial records and photos; pseudonymous store bindings may remain. Backups and final retention/deletion schedules require completion before publication.",
   "legal.transfers": "Expo may be used when notifications are enabled, Apple/Google for store verification, and the configured SMTP provider for email. Development uses SQL Server, private local photo storage and Mailpit. Production recipients, countries and legal transfer conditions: To be completed before publication.",
   "legal.rights": "You may request processing information, access, correction, deletion/destruction where conditions apply, and other legal rights. Profile correction and account deletion are available; a verified request channel will be added before publication. This draft does not replace legal review.",
-  "security.historyInfo": "History checks cover the current password and those recorded after this feature. Unknown earlier passwords cannot be detected retroactively."
+  "security.historyInfo": "History checks cover the current password and those recorded after this feature. Unknown earlier passwords cannot be detected retroactively.",
+  "registrationLegal.info": "Review and confirm each document separately. Notice and privacy acknowledgments are not consent to data processing.",
+  "registrationLegal.required": "To create an account, review and confirm the required documents.",
+  "registrationLegal.confirmed": "Confirmation complete",
+  "registrationLegal.missing": "Confirmation required",
+  "registrationLegal.review": "Review and confirm",
+  "registrationLegal.noticeCheck": "I have read the Personal Data Notice and have been informed.",
+  "registrationLegal.privacyCheck": "I have read the Privacy Policy.",
+  "registrationLegal.termsCheck": "I accept the Terms of Use."
 }

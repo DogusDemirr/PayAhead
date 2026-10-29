@@ -15,7 +15,7 @@ public sealed partial class AuthApiTests
     {
         var manifest = await client.GetFromJsonAsync<JsonElement>("/api/legal");
         Assert.Equal(LegalDocuments.Version, manifest.GetProperty("version").GetString());
-        Assert.True(manifest.GetProperty("isDraft").GetBoolean()); Assert.False(manifest.GetProperty("requiresTermsAcceptance").GetBoolean());
+        Assert.True(manifest.GetProperty("isDraft").GetBoolean()); Assert.True(manifest.GetProperty("requiresTermsAcceptance").GetBoolean());
         var stale = await client.PostAsJsonAsync("/api/auth/register", Registration() with { LegalVersion = "obsolete" });
         Assert.Equal(HttpStatusCode.BadRequest, stale.StatusCode);
         Assert.Equal(HttpStatusCode.Created, (await client.PostAsJsonAsync("/api/auth/register", Registration() with { LegalVersion = LegalDocuments.Version })).StatusCode);

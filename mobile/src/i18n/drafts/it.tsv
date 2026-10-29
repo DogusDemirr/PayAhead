@@ -839,7 +839,6 @@ settings:legal.notice|Informativa KVKK
 settings:legal.privacy|Informativa sulla privacy
 settings:legal.terms|Condizioni d’uso
 settings:legal.draft|Bozza legale: richiede revisione giuridica e linguistica prima della pubblicazione. Non è definitiva né dichiarata pienamente conforme.
-settings:legal.registration|Prima della registrazione sono disponibili tre bozze. L’informazione non è consenso. Non si richiedono consenso marketing o accettazione contrattuale obbligatoria in questa fase.
 settings:legal.identity|Titolare e contatti
 settings:legal.retentionTitle|Conservazione ed eliminazione account
 settings:legal.transfersTitle|Servizi e trasferimenti di dati
@@ -851,3 +850,12 @@ settings:legal.retention|I dati attivi restano per la durata dell’account. Gli
 settings:legal.transfers|Expo può gestire le notifiche, Apple/Google la verifica degli acquisti e il fornitore SMTP configurato le e-mail. Lo sviluppo usa SQL Server, archivio foto locale privato e Mailpit. Destinatari, paesi e condizioni legali dei trasferimenti in produzione: da completare prima della pubblicazione.
 settings:legal.rights|Puoi richiedere informazioni, accesso, rettifica, eliminazione/distruzione quando applicabile e altri diritti legali. Correzione del profilo ed eliminazione dell’account sono disponibili; un canale verificato sarà aggiunto prima della pubblicazione. La bozza non sostituisce una revisione legale.
 settings:security.historyInfo|Il controllo riguarda la password attuale e quelle registrate da questa funzione. Le precedenti sconosciute non sono rilevabili retroattivamente.
+settings:registrationLegal.info|Leggi e conferma ogni documento separatamente. Le conferme dell’informativa e della privacy non costituiscono consenso al trattamento dei dati.
+settings:registrationLegal.required|Per creare un account, leggi e conferma i documenti richiesti.
+settings:registrationLegal.confirmed|Conferma completata
+settings:registrationLegal.missing|Conferma richiesta
+settings:registrationLegal.review|Leggi e conferma
+settings:registrationLegal.noticeCheck|Ho letto l’informativa sui dati personali e sono stato informato.
+settings:registrationLegal.privacyCheck|Ho letto l’informativa sulla privacy.
+settings:registrationLegal.termsCheck|Accetto le condizioni d’uso.
+settings:legal.registration|Le conferme sono registrate separatamente. Queste bozze richiedono una revisione legale prima della pubblicazione.

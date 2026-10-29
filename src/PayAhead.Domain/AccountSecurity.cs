@@ -14,3 +14,12 @@ public sealed class LegalNoticeReceipt
     public DateTime? PresentedAtUtc { get; set; }
     public DateTime RecordedAtUtc { get; set; }
 }
+public enum LegalConfirmationKind { NoticeAcknowledgment, PrivacyReadAcknowledgment, TermsAcceptance }
+public sealed class RegistrationLegalConfirmation
+{
+    public Guid UserId { get; set; }
+    public string DocumentId { get; set; } = "";
+    public LegalConfirmationKind Kind { get; set; }
+    public string DocumentVersion { get; set; } = "";
+    public DateTime ConfirmedAtUtc { get; set; }
+}

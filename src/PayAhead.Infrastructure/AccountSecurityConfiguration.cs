@@ -20,3 +20,14 @@ public sealed class LegalReceiptConfiguration : IEntityTypeConfiguration<LegalNo
         b.HasOne<User>().WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
     }
 }
+public sealed class RegistrationLegalConfiguration : IEntityTypeConfiguration<RegistrationLegalConfirmation>
+{
+    public void Configure(EntityTypeBuilder<RegistrationLegalConfirmation> b)
+    {
+        b.ToTable("RegistrationLegalConfirmations"); b.HasKey(x => new { x.UserId, x.DocumentId });
+        b.Property(x => x.DocumentId).HasMaxLength(16).IsUnicode(false);
+        b.Property(x => x.Kind).HasConversion<string>().HasMaxLength(32).IsUnicode(false);
+        b.Property(x => x.DocumentVersion).HasMaxLength(64).IsUnicode(false).IsRequired();
+        b.HasOne<User>().WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
+    }
+}

@@ -104,7 +104,7 @@
   "legal.privacy": "Privacybeleid",
   "legal.terms": "Gebruiksvoorwaarden",
   "legal.draft": "Juridisch concept: juridische en taalkundige controle is nodig vóór publicatie. Niet definitief of als volledig conform verklaard.",
-  "legal.registration": "Vóór registratie zijn drie concepten beschikbaar. De informatie is geen toestemming. In deze fase vragen we geen marketingtoestemming of verplichte contractaanvaarding.",
+  "legal.registration": "Documentbevestigingen worden afzonderlijk vastgelegd. Deze concepten vereisen juridische beoordeling vóór publicatie.",
   "legal.identity": "Verwerkingsverantwoordelijke en contact",
   "legal.retentionTitle": "Bewaartermijnen en accountverwijdering",
   "legal.transfersTitle": "Diensten en gegevensoverdracht",
@@ -115,5 +115,13 @@
   "legal.retention": "Actieve gegevens blijven gedurende de accountduur bewaard. Bekende oude wachtwoordhashes verdwijnen bij accountverwijdering; normale wijzigingsdatums worden na 30 dagen door onderhoud gewist. Financiële gegevens en foto’s worden verwijderd; gepseudonimiseerde winkelkoppelingen kunnen blijven. Backups en definitieve bewaar-/verwijdertermijnen worden vóór publicatie vastgesteld.",
   "legal.transfers": "Expo kan worden gebruikt voor meldingen, Apple/Google voor aankoopcontrole en de ingestelde SMTP-provider voor e-mail. Ontwikkeling gebruikt SQL Server, private lokale foto-opslag en Mailpit. Productieontvangers, landen en juridische overdrachtsvoorwaarden: vóór publicatie invullen.",
   "legal.rights": "Je kunt informatie, inzage, correctie, verwijdering/vernietiging indien van toepassing en andere wettelijke rechten verzoeken. Profielcorrectie en accountverwijdering zijn beschikbaar; vóór publicatie komt een geverifieerd kanaal. Dit concept vervangt geen juridische controle.",
-  "security.historyInfo": "De controle omvat het huidige wachtwoord en wachtwoorden vastgelegd sinds deze functie. Onbekende oudere wachtwoorden zijn niet achteraf te herkennen."
+  "security.historyInfo": "De controle omvat het huidige wachtwoord en wachtwoorden vastgelegd sinds deze functie. Onbekende oudere wachtwoorden zijn niet achteraf te herkennen.",
+  "registrationLegal.info": "Lees en bevestig elk document afzonderlijk. De bevestigingen van de informatieverklaring en het privacybeleid zijn geen toestemming voor gegevensverwerking.",
+  "registrationLegal.required": "Lees en bevestig de vereiste documenten om een account aan te maken.",
+  "registrationLegal.confirmed": "Bevestiging voltooid",
+  "registrationLegal.missing": "Bevestiging vereist",
+  "registrationLegal.review": "Lezen en bevestigen",
+  "registrationLegal.noticeCheck": "Ik heb de informatieverklaring over persoonsgegevens gelezen en ben geïnformeerd.",
+  "registrationLegal.privacyCheck": "Ik heb het privacybeleid gelezen.",
+  "registrationLegal.termsCheck": "Ik accepteer de gebruiksvoorwaarden."
 }

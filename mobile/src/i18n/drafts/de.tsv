@@ -827,7 +827,6 @@ settings:legal.notice|KVKK-Informationshinweis
 settings:legal.privacy|Datenschutzerklärung
 settings:legal.terms|Nutzungsbedingungen
 settings:legal.draft|Rechtlicher Entwurf — vor Veröffentlichung sind rechtliche und sprachliche Prüfungen erforderlich. Kein endgültiges oder als vollständig konform bestätigtes Dokument.
-settings:legal.registration|Vor der Registrierung sind drei Entwürfe zugänglich. Diese Information ist keine Einwilligung. Keine Marketingeinwilligung und in der Entwurfsphase keine verpflichtende Vertragsannahme.
 settings:legal.identity|Verantwortlicher und Kontakt
 settings:legal.retentionTitle|Aufbewahrung und Kontolöschung
 settings:legal.transfersTitle|Dienste und Datenübermittlungen
@@ -839,3 +838,12 @@ settings:legal.retention|Aktive Kontodaten bleiben für die Kontolaufzeit erhalt
 settings:legal.transfers|Bei Mitteilungen kann Expo, bei Store-Prüfung Apple/Google und bei E-Mail der konfigurierte SMTP-Anbieter verwendet werden. Entwicklung nutzt SQL Server, privaten lokalen Fotospeicher und Mailpit. Produktionsempfänger, Länder und rechtliche Übermittlungsbedingungen: Vor Veröffentlichung auszufüllen.
 settings:legal.rights|Information, Auskunft, Berichtigung, Löschung bei erfüllten Voraussetzungen und weitere gesetzliche Rechte können beantragt werden. Profilkorrektur und Kontolöschung sind verfügbar; ein verifizierter Anfragekanal folgt vor Veröffentlichung. Dieser Entwurf ersetzt keine Rechtsprüfung.
 settings:security.historyInfo|Geprüft werden das aktuelle Passwort und ab dieser Funktion gespeicherte Passwörter. Unbekannte frühere Passwörter sind rückwirkend nicht erkennbar.
+settings:registrationLegal.info|Prüfe und bestätige jedes Dokument einzeln. Die Bestätigungen zum Datenschutzhinweis und zur Datenschutzerklärung sind keine Einwilligung in die Datenverarbeitung.
+settings:registrationLegal.required|Prüfe und bestätige die erforderlichen Dokumente, um ein Konto zu erstellen.
+settings:registrationLegal.confirmed|Bestätigung abgeschlossen
+settings:registrationLegal.missing|Bestätigung erforderlich
+settings:registrationLegal.review|Prüfen und bestätigen
+settings:registrationLegal.noticeCheck|Ich habe den Hinweis zum Schutz personenbezogener Daten gelesen und wurde informiert.
+settings:registrationLegal.privacyCheck|Ich habe die Datenschutzerklärung gelesen.
+settings:registrationLegal.termsCheck|Ich akzeptiere die Nutzungsbedingungen.
+settings:legal.registration|Dokumentbestätigungen werden getrennt erfasst. Diese Entwürfe erfordern vor Veröffentlichung eine rechtliche Prüfung.

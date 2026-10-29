@@ -104,7 +104,7 @@
   "legal.privacy": "Politique de confidentialité",
   "legal.terms": "Conditions d’utilisation",
   "legal.draft": "Projet juridique — une révision juridique et linguistique est nécessaire avant publication. Ce document n’est ni définitif ni déclaré pleinement conforme.",
-  "legal.registration": "Trois projets sont accessibles avant l’inscription. Cette information n’est pas un consentement. Aucun consentement marketing ni acceptation contractuelle obligatoire n’est recueilli au stade du projet.",
+  "legal.registration": "Les confirmations sont enregistrées séparément. Ces projets nécessitent un examen juridique avant publication.",
   "legal.identity": "Responsable du traitement et contact",
   "legal.retentionTitle": "Conservation et suppression du compte",
   "legal.transfersTitle": "Services et transferts de données",
@@ -115,5 +115,13 @@
   "legal.retention": "Les données actives sont conservées pendant la vie du compte. Les anciennes empreintes connues sont retirées à sa suppression ; les dates de changements normaux sont effacées par maintenance après 30 jours. Données financières et photos sont supprimées ; des liens pseudonymisés avec les boutiques peuvent rester. Sauvegardes et durées finales de conservation/suppression restent à préciser avant publication.",
   "legal.transfers": "Expo peut servir aux notifications, Apple/Google aux vérifications de boutique et le fournisseur SMTP configuré aux e-mails. Le développement utilise SQL Server, un stockage photo local privé et Mailpit. Destinataires, pays et conditions juridiques des transferts de production : à compléter avant publication.",
   "legal.rights": "Vous pouvez demander information, accès, rectification, effacement/destruction sous conditions et exercer les autres droits légaux. Correction du profil et suppression du compte sont disponibles ; un canal vérifié sera ajouté avant publication. Ce projet ne remplace pas une revue juridique.",
-  "security.historyInfo": "Le contrôle couvre le mot de passe actuel et ceux enregistrés depuis cette fonction. Les anciens mots de passe inconnus ne sont pas détectables rétroactivement."
+  "security.historyInfo": "Le contrôle couvre le mot de passe actuel et ceux enregistrés depuis cette fonction. Les anciens mots de passe inconnus ne sont pas détectables rétroactivement.",
+  "registrationLegal.info": "Consulte et confirme chaque document séparément. Les confirmations de lecture de la notice et de la politique de confidentialité ne constituent pas un consentement au traitement des données.",
+  "registrationLegal.required": "Pour créer un compte, consulte et confirme les documents requis.",
+  "registrationLegal.confirmed": "Confirmation terminée",
+  "registrationLegal.missing": "Confirmation requise",
+  "registrationLegal.review": "Consulter et confirmer",
+  "registrationLegal.noticeCheck": "J’ai lu la notice sur les données personnelles et j’ai été informé.",
+  "registrationLegal.privacyCheck": "J’ai lu la politique de confidentialité.",
+  "registrationLegal.termsCheck": "J’accepte les conditions d’utilisation."
 }

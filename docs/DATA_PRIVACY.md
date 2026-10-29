@@ -1,5 +1,7 @@
 # Veri export ve hesap silme
 
+Phase 5.4.1: Kendi export'una `registrationLegal` belge ID/tür/sürüm/server UTC kayıtları eklenir. İlk iki tür bilgilendirme/okundu teyidi, üçüncüsü terms kabulüdür; genel veri işleme rızası değildir. Hesap silme yalnız bu kullanıcıya ait yeni satırları da temizler. Mevcut kullanıcı ve eski receipt'ler backfill edilmez. [Güncel saklama ve hukuki sınırlar](PHASE5_4_1_REPORT.md).
+
 Phase 5.4: Export'a yalnız `legalNotice` sürüm/sunum/kayıt metadata'sı eklenir; parola geçmişi/özetleri export edilmez. Doğrulamalı silme bu kullanıcıya ait `PasswordHistory` ve `LegalNoticeReceipts` satırlarını da temizler. Kayıt bilgilendirmesi açık rıza değildir. [Saklama ve bilinmeyen yayın bilgileri](PRIVACY_SECURITY.md), [hukuki taslaklar](legal/KVKK_AYDINLATMA_TASLAK.md).
 
 Teknik davranış açıklanır; KVKK veya başka uygulanabilir mevzuata uygunluk garanti edilmez. Veri sorumlusu, aydınlatma, işleme/aktarım dayanağı, saklama ve silme yükümlülükleri hukuk/gizlilik sahibi tarafından incelenmelidir. [KVKK resmi kaynakları](https://www.kvkk.gov.tr/).

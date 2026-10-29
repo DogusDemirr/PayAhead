@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Yalnızca yerel Development API; sadece kendi oluşturduğu hesapları temizler. Token/veri gövdeleri yazdırılmaz.
 const { randomUUID, randomBytes } = require('node:crypto');
 async function main() {
@@ -17,7 +18,7 @@ async function main() {
   async function account() {
     const body = { email: `subscription-smoke-${randomUUID()}@example.invalid`, displayName: 'Disposable subscription smoke', password: randomBytes(24).toString('base64url') };
     const entry = { body, id: null, auth: null }; accounts.push(entry);
-    entry.id = (await call('/api/auth/register', 'POST', body, null, 201)).data.id;
+    entry.id = (await call('/api/auth/register', 'POST', { ...body, ...registrationLegal() }, null, 201)).data.id;
     entry.auth = (await call('/api/auth/login', 'POST', { email: body.email, password: body.password }, null, 200)).data; return entry;
   }
   const day = (date, delta) => { const d = new Date(date + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + delta); return d.toISOString().slice(0, 10); };

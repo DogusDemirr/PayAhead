@@ -840,7 +840,6 @@ settings:legal.notice|Aviso informativo KVKK
 settings:legal.privacy|Política de privacidade
 settings:legal.terms|Termos de uso
 settings:legal.draft|Rascunho jurídico: exige revisão jurídica e linguística antes da publicação. Não é definitivo nem declarado totalmente conforme.
-settings:legal.registration|Três rascunhos estão disponíveis antes do cadastro. A informação não é consentimento. Não se pede consentimento de marketing nem aceitação contratual obrigatória nesta fase.
 settings:legal.identity|Controlador e contato
 settings:legal.retentionTitle|Retenção e exclusão da conta
 settings:legal.transfersTitle|Serviços e transferências de dados
@@ -852,3 +851,12 @@ settings:legal.retention|Dados ativos permanecem pela duração da conta. Hashes
 settings:legal.transfers|Expo pode ser usado para notificações, Apple/Google para verificar compras e o provedor SMTP configurado para e-mails. O desenvolvimento usa SQL Server, fotos em armazenamento local privado e Mailpit. Destinatários, países e condições legais de transferência em produção: a preencher antes da publicação.
 settings:legal.rights|Você pode solicitar informações, acesso, correção, exclusão/destruição quando aplicável e outros direitos legais. Correção de perfil e exclusão da conta estão disponíveis; um canal verificado será adicionado antes da publicação. Este rascunho não substitui análise jurídica.
 settings:security.historyInfo|A verificação abrange a senha atual e as registradas após este recurso. Senhas anteriores desconhecidas não podem ser detectadas retroativamente.
+settings:registrationLegal.info|Leia e confirme cada documento separadamente. As confirmações do aviso e da política de privacidade não são consentimento para o tratamento de dados.
+settings:registrationLegal.required|Para criar uma conta, leia e confirme os documentos obrigatórios.
+settings:registrationLegal.confirmed|Confirmação concluída
+settings:registrationLegal.missing|Confirmação obrigatória
+settings:registrationLegal.review|Ler e confirmar
+settings:registrationLegal.noticeCheck|Li o aviso sobre dados pessoais e fui informado.
+settings:registrationLegal.privacyCheck|Li a política de privacidade.
+settings:registrationLegal.termsCheck|Aceito os termos de uso.
+settings:legal.registration|As confirmações são registradas separadamente. Estes rascunhos exigem revisão jurídica antes da publicação.

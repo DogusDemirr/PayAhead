@@ -824,7 +824,6 @@ settings:legal.notice|KVKK告知文
 settings:legal.privacy|プライバシーポリシー
 settings:legal.terms|利用規約
 settings:legal.draft|法的草案：公開前に法務・言語の確認が必要です。確定済みまたは完全準拠の文書ではありません。
-settings:legal.registration|登録前に3つの草案を確認できます。告知は同意ではありません。草案段階ではマーケティング同意や契約の強制的な承諾は求めません。
 settings:legal.identity|データ管理者と連絡先
 settings:legal.retentionTitle|保存期間とアカウント削除
 settings:legal.transfersTitle|サービスとデータ移転
@@ -836,3 +835,12 @@ settings:legal.retention|有効なデータはアカウント存続期間中保�
 settings:legal.transfers|通知ではExpo、購入確認ではApple／Google、メールでは設定済みSMTP事業者が使われる場合があります。開発ではSQL Server、非公開のローカル写真保存、Mailpitを利用します。本番の受領者・国・移転の法的条件は公開前に記入します。
 settings:legal.rights|処理情報、開示、訂正、条件を満たす場合の消去・破棄、その他の法的権利を請求できます。プロフィール訂正とアカウント削除は利用可能で、確認済み申請窓口は公開前に追加します。この草案は法務確認に代わるものではありません。
 settings:security.historyInfo|現在のパスワードとこの機能以降に記録されたものを確認します。不明なそれ以前のパスワードは遡って検出できません。
+settings:registrationLegal.info|各文書を個別に読み、確認してください。通知およびプライバシーポリシーの確認は、データ処理への同意ではありません。
+settings:registrationLegal.required|アカウントを作成するには、必要な文書を読み、確認してください。
+settings:registrationLegal.confirmed|確認済み
+settings:registrationLegal.missing|確認が必要
+settings:registrationLegal.review|内容を読んで確認
+settings:registrationLegal.noticeCheck|個人データに関する通知を読み、説明を受けました。
+settings:registrationLegal.privacyCheck|プライバシーポリシーを読みました。
+settings:registrationLegal.termsCheck|利用規約に同意します。
+settings:legal.registration|文書ごとの確認は別々に記録されます。これらの草案は公開前に法的審査が必要です。

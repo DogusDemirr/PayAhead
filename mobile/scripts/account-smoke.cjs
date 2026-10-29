@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Development localhost only. Disposable accounts; no credentials or response bodies are printed.
 const { randomUUID, randomBytes } = require('node:crypto');
 async function main() {
@@ -12,7 +13,7 @@ async function main() {
   async function login(entry, password = entry.password, expected = 200) { return call('/api/auth/login', 'POST', { email: entry.email, password }, null, expected); }
   async function register() {
     const entry = { email: `account-smoke-${randomUUID()}@example.invalid`, password: randomBytes(24).toString('base64url'), displayName: 'Disposable profile account', id: null, token: null, deleted: false }; accounts.push(entry);
-    entry.id = (await call('/api/auth/register', 'POST', { email: entry.email, password: entry.password, displayName: entry.displayName }, null, 201)).id;
+    entry.id = (await call('/api/auth/register', 'POST', { email: entry.email, password: entry.password, displayName: entry.displayName, ...registrationLegal() }, null, 201)).id;
     const auth = await login(entry); entry.token = auth.accessToken; entry.refresh = auth.refreshToken; return entry;
   }
   try {

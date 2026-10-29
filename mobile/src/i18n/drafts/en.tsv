@@ -831,7 +831,6 @@ settings:legal.notice|KVKK Information Notice
 settings:legal.privacy|Privacy Policy
 settings:legal.terms|Terms of Use
 settings:legal.draft|Legal draft — legal and language review is required before publication. This is not a finalized or fully compliant document.
-settings:legal.registration|You can access three draft documents before registration. This information is not consent. No marketing consent is requested; mandatory contract acceptance is not collected during the draft stage.
 settings:legal.identity|Data controller and contact
 settings:legal.retentionTitle|Retention and account deletion
 settings:legal.transfersTitle|Services and data transfers
@@ -843,3 +842,12 @@ settings:legal.retention|Active account data is retained for the account lifetim
 settings:legal.transfers|Expo may be used when notifications are enabled, Apple/Google for store verification, and the configured SMTP provider for email. Development uses SQL Server, private local photo storage and Mailpit. Production recipients, countries and legal transfer conditions: To be completed before publication.
 settings:legal.rights|You may request processing information, access, correction, deletion/destruction where conditions apply, and other legal rights. Profile correction and account deletion are available; a verified request channel will be added before publication. This draft does not replace legal review.
 settings:security.historyInfo|History checks cover the current password and those recorded after this feature. Unknown earlier passwords cannot be detected retroactively.
+settings:registrationLegal.info|Review and confirm each document separately. Notice and privacy acknowledgments are not consent to data processing.
+settings:registrationLegal.required|To create an account, review and confirm the required documents.
+settings:registrationLegal.confirmed|Confirmation complete
+settings:registrationLegal.missing|Confirmation required
+settings:registrationLegal.review|Review and confirm
+settings:registrationLegal.noticeCheck|I have read the Personal Data Notice and have been informed.
+settings:registrationLegal.privacyCheck|I have read the Privacy Policy.
+settings:registrationLegal.termsCheck|I accept the Terms of Use.
+settings:legal.registration|Document confirmations are recorded separately. These drafts require legal review before publication.

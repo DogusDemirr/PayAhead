@@ -23,5 +23,5 @@ public static class PasswordSecurity
 public static class LegalDocuments
 {
     public const string Version = "2026-10-29-draft-1";
-    public static object Manifest => new { version = Version, isDraft = true, requiresTermsAcceptance = false, documentIds = new[] { "notice", "privacy", "terms" } };
+    public static object Manifest => new { version = Version, isDraft = true, requiresTermsAcceptance = true, requiresNoticeAcknowledgment = true, requiresPrivacyAcknowledgment = true, documentIds = new[] { "notice", "privacy", "terms" } };
 }

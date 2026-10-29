@@ -1,5 +1,9 @@
 # Authentication ve güvenlik kararları — Faz 6–10
 
+## Phase 5.4.1 — Zorunlu kayıt teyitleri
+
+Kayıtta güncel sürümlü notice/privacy teyidi ve ayrı terms kabulü backend'de zorunludur; notice/privacy açık rıza değildir. User/settings/presentation ve üç tür kayıt aynı transaction içinde yazılır. Eski receipt'ler değiştirilmez; mevcut hesaplara geriye dönük teyit veya giriş engeli eklenmez. [Sözleşme, saklama ve testler](PHASE5_4_1_REPORT.md). Hukuki yayın onayı bekler.
+
 ## Mobil Phase 5.4 ekleri
 
 [Parola kotası, geçmiş ve hukuki taslak teknik sözleşmesi](PRIVACY_SECURITY.md). Normal değişim son 30 günde en fazla 3 başarıdır; recovery bu kotaya dahil değildir. Geçmiş hash doğrulaması normal/resette, kullanıcı SQL kilidi ve aynı transaction altında yapılır. Mevcut salted Identity hash algoritması, credentials rate limiti ve access/refresh invalidation korunur. Yeni security summary parola/cihaz kimliği döndürmez. Geçmiş aktif hesap ömrünce tutulur, hesap silmede temizlenir; eski normal zaman etiketleri bakımda temizlenir. Küçük yerel yaygın parola listesi kapsamlı breach taraması veya NIST uygunluğu değildir.

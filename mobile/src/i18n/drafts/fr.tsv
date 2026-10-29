@@ -839,7 +839,6 @@ settings:legal.notice|Notice d’information KVKK
 settings:legal.privacy|Politique de confidentialité
 settings:legal.terms|Conditions d’utilisation
 settings:legal.draft|Projet juridique — une révision juridique et linguistique est nécessaire avant publication. Ce document n’est ni définitif ni déclaré pleinement conforme.
-settings:legal.registration|Trois projets sont accessibles avant l’inscription. Cette information n’est pas un consentement. Aucun consentement marketing ni acceptation contractuelle obligatoire n’est recueilli au stade du projet.
 settings:legal.identity|Responsable du traitement et contact
 settings:legal.retentionTitle|Conservation et suppression du compte
 settings:legal.transfersTitle|Services et transferts de données
@@ -851,3 +850,12 @@ settings:legal.retention|Les données actives sont conservées pendant la vie du
 settings:legal.transfers|Expo peut servir aux notifications, Apple/Google aux vérifications de boutique et le fournisseur SMTP configuré aux e-mails. Le développement utilise SQL Server, un stockage photo local privé et Mailpit. Destinataires, pays et conditions juridiques des transferts de production : à compléter avant publication.
 settings:legal.rights|Vous pouvez demander information, accès, rectification, effacement/destruction sous conditions et exercer les autres droits légaux. Correction du profil et suppression du compte sont disponibles ; un canal vérifié sera ajouté avant publication. Ce projet ne remplace pas une revue juridique.
 settings:security.historyInfo|Le contrôle couvre le mot de passe actuel et ceux enregistrés depuis cette fonction. Les anciens mots de passe inconnus ne sont pas détectables rétroactivement.
+settings:registrationLegal.info|Consulte et confirme chaque document séparément. Les confirmations de lecture de la notice et de la politique de confidentialité ne constituent pas un consentement au traitement des données.
+settings:registrationLegal.required|Pour créer un compte, consulte et confirme les documents requis.
+settings:registrationLegal.confirmed|Confirmation terminée
+settings:registrationLegal.missing|Confirmation requise
+settings:registrationLegal.review|Consulter et confirmer
+settings:registrationLegal.noticeCheck|J’ai lu la notice sur les données personnelles et j’ai été informé.
+settings:registrationLegal.privacyCheck|J’ai lu la politique de confidentialité.
+settings:registrationLegal.termsCheck|J’accepte les conditions d’utilisation.
+settings:legal.registration|Les confirmations sont enregistrées séparément. Ces projets nécessitent un examen juridique avant publication.

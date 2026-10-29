@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Real development API only. Creates/cleans its own disposable accounts; never prints financial bodies or credentials.
 const { randomUUID, randomBytes } = require('node:crypto');
 async function main() {
@@ -17,7 +18,7 @@ async function main() {
   async function account() {
     const record = { email: `finance-smoke-${randomUUID()}@example.invalid`, displayName: 'Disposable finance smoke', password: randomBytes(24).toString('base64url') };
     const entry = { record, id: null, auth: null }; accounts.push(entry);
-    entry.id = (await call('/api/auth/register', 'POST', record, null, 201)).data.id;
+    entry.id = (await call('/api/auth/register', 'POST', { ...record, ...registrationLegal() }, null, 201)).data.id;
     entry.auth = (await call('/api/auth/login', 'POST', { email: record.email, password: record.password }, null, 200)).data; return entry;
   }
   try {

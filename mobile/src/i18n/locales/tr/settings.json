@@ -104,7 +104,7 @@
   "legal.privacy": "Gizlilik Politikası",
   "legal.terms": "Kullanım Koşulları",
   "legal.draft": "Hukuki taslak — yayın öncesi hukuk ve dil incelemesi gerekir. Kesinleşmiş veya tam uyumlu belge değildir.",
-  "legal.registration": "Kayıttan önce üç taslak metne erişebilirsin. Bu bilgilendirme açık rıza değildir. Pazarlama rızası istenmez; taslak aşamasında zorunlu sözleşme kabulü alınmaz.",
+  "legal.registration": "Belge teyitleri ayrı alınır. Metinler yayın öncesi hukuk incelemesi gerektiren taslaklardır.",
   "legal.identity": "Veri sorumlusu ve iletişim",
   "legal.retentionTitle": "Saklama ve hesap silme",
   "legal.transfersTitle": "Hizmetler ve veri aktarımı",
@@ -115,5 +115,13 @@
   "legal.retention": "Aktif hesap verileri hesap süresince tutulur. Bilinen eski şifre hashleri hesap silinince kaldırılır; normal değişim zaman etiketleri 30 gün sonra bakımda temizlenir. Silmede finansal kayıtlar ve fotoğraf temizlenir; takma kimlikli mağaza bağları kalabilir. Yedekler ve nihai saklama/imha takvimi yayın öncesinde netleştirilecek.",
   "legal.transfers": "Bildirim açılırsa Expo, mağaza doğrulamasında Apple/Google, e-posta açılırsa yapılandırılan SMTP sağlayıcısı kullanılabilir. Geliştirmede SQL Server, özel yerel fotoğraf depolama ve Mailpit vardır. Üretim alıcıları, ülkeler ve aktarımın hukuki şartları yayın öncesi doldurulacak.",
   "legal.rights": "İşleme hakkında bilgi, erişim, düzeltme, şartları oluştuğunda silme/yok etme ve diğer yasal haklar için talepte bulunabilirsin. Profil düzeltme ve hesap silme mevcuttur; doğrulanmış başvuru kanalı yayın öncesi eklenecek. Bu taslak hukuki incelemenin yerine geçmez.",
-  "security.historyInfo": "Geçmiş kontrolü mevcut şifre ve bu özellikten sonra kaydedilenlerle sınırlıdır; bilinmeyen eski şifreler geriye dönük tespit edilemez."
+  "security.historyInfo": "Geçmiş kontrolü mevcut şifre ve bu özellikten sonra kaydedilenlerle sınırlıdır; bilinmeyen eski şifreler geriye dönük tespit edilemez.",
+  "registrationLegal.info": "Her belgeyi ayrı inceleyip teyit et. KVKK ve gizlilik teyitleri açık rıza değildir.",
+  "registrationLegal.required": "Hesap oluşturmak için gerekli belgeleri inceleyip onaylamalısın.",
+  "registrationLegal.confirmed": "Teyit tamamlandı",
+  "registrationLegal.missing": "Teyit gerekli",
+  "registrationLegal.review": "İncele ve teyit et",
+  "registrationLegal.noticeCheck": "KVKK Aydınlatma Metni’ni okudum ve bilgilendirildim.",
+  "registrationLegal.privacyCheck": "Gizlilik Politikası’nı okudum.",
+  "registrationLegal.termsCheck": "Kullanım Koşulları’nı kabul ediyorum."
 }

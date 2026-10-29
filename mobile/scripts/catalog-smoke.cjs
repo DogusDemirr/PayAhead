@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Local development only. No real user credentials, no provider call, own disposable accounts only.
 const { randomUUID, randomBytes } = require('node:crypto');
 async function main() {
@@ -9,7 +10,7 @@ async function main() {
     let response; try { response = await fetch(new URL(path, base), { method, redirect: 'error', signal: AbortSignal.timeout(15000), headers: { Accept: 'application/json', ...(json ? { 'Content-Type': 'application/json' } : {}), ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(version ? { 'If-Match': `"${version}"` } : {}) }, body: json }); } catch { throw new Error('Yerel API bağlantısı kurulamadı.'); }
     const label = `${method} ${path.split('?')[0].replace(/[0-9a-f]{8}-[0-9a-f-]{27,}/g, '{id}')}`; assert(response.status === expected, `${label}: beklenen ${expected}, alınan ${response.status}`); checks++; console.log(`${label}: ${response.status}`); const raw = await response.text(); return { raw, data: raw ? JSON.parse(raw) : null };
   }
-  async function account() { const body = { email: `catalog-smoke-${randomUUID()}@example.invalid`, displayName: 'Disposable catalog smoke', password: randomBytes(24).toString('base64url') }; const entry = { body, id: null, auth: null }; accounts.push(entry); entry.id = (await call('/api/auth/register', 'POST', body, null, 201)).data.id; entry.auth = (await call('/api/auth/login', 'POST', { email: body.email, password: body.password }, null, 200)).data; return entry; }
+  async function account() { const body = { email: `catalog-smoke-${randomUUID()}@example.invalid`, displayName: 'Disposable catalog smoke', password: randomBytes(24).toString('base64url') }; const entry = { body, id: null, auth: null }; accounts.push(entry); entry.id = (await call('/api/auth/register', 'POST', { ...body, ...registrationLegal() }, null, 201)).data.id; entry.auth = (await call('/api/auth/login', 'POST', { email: body.email, password: body.password }, null, 200)).data; return entry; }
   try {
     await call('/api/catalog/categories', 'GET', null, null, 401); const owner = await account(); const token = owner.auth.accessToken;
     const cats = (await call('/api/catalog/categories', 'GET', null, token, 200)).data;

@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Yalnız loopback Development API; sadece kendi geçici hesabını temizler.
 const { randomUUID, randomBytes } = require('node:crypto');
 async function main() {
@@ -13,9 +14,9 @@ async function main() {
   }
   async function login() { token = (await call('/api/auth/login', 'POST', { email, password })).accessToken; }
   try {
-    await call('/health/ready'); const manifest = await call('/api/legal'); assert(manifest.version === version && manifest.isDraft && !manifest.requiresTermsAcceptance, 'Draft manifest mismatch');
+    await call('/health/ready'); const manifest = await call('/api/legal'); assert(manifest.version === version && manifest.isDraft && manifest.requiresTermsAcceptance, 'Draft manifest mismatch');
     await call('/api/users/me/security', 'GET', null, 401);
-    id = (await call('/api/auth/register', 'POST', { email, password, displayName: 'Disposable Phase54', legalVersion: version }, 201)).id;
+    id = (await call('/api/auth/register', 'POST', { email, password, displayName: 'Disposable Phase54', ...registrationLegal() }, 201)).id;
     await login(); const first = await call('/api/users/me/security'); assert(first.remainingChanges === 3 && first.activeSessions === 1, 'Initial summary mismatch');
     const exported = await call('/api/users/me/export'); assert(exported.legalNotice.noticeVersion === version && exported.legalNotice.presentedAtUtc, 'Notice receipt missing');
     assert(!JSON.stringify(exported).match(/passwordHash|tokenHash|passwordHistory/i), 'Export included secret fields');

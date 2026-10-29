@@ -44,7 +44,7 @@ public sealed class FrontendPhase4Tests(SqlServerFixture sql) : IClassFixture<Sq
     }
     private async Task<AuthResponse> Register(string address = "phase4@example.com")
     {
-        Assert.Equal(HttpStatusCode.Created, (await client.PostAsJsonAsync("/api/auth/register", new RegisterRequest(address, "old-password-long!", "Phase 4"))).StatusCode);
+        Assert.Equal(HttpStatusCode.Created, (await client.PostAsJsonAsync("/api/auth/register", new RegisterRequest(address, "old-password-long!", "Phase 4", Legal: TestLegal.Confirmed))).StatusCode);
         var response = await client.PostAsJsonAsync("/api/auth/login", new LoginRequest(address, "old-password-long!"));
         response.EnsureSuccessStatusCode(); return (await response.Content.ReadFromJsonAsync<AuthResponse>())!;
     }
@@ -96,7 +96,7 @@ public sealed class FrontendPhase4Tests(SqlServerFixture sql) : IClassFixture<Sq
             using var http = new HttpClient { BaseAddress = new Uri(app.Urls.Single()), Timeout = TimeSpan.FromSeconds(15) };
             Assert.Equal(HttpStatusCode.OK, (await http.GetAsync("/health/ready")).StatusCode);
             Assert.Equal(HttpStatusCode.OK, (await http.GetAsync("/swagger/v1/swagger.json")).StatusCode);
-            Assert.Equal(HttpStatusCode.Created, (await http.PostAsJsonAsync("/api/auth/register", new RegisterRequest("tcp@example.test", "old-password-long!", "TCP smoke"))).StatusCode);
+            Assert.Equal(HttpStatusCode.Created, (await http.PostAsJsonAsync("/api/auth/register", new RegisterRequest("tcp@example.test", "old-password-long!", "TCP smoke", Legal: TestLegal.Confirmed))).StatusCode);
             var login = (await (await http.PostAsJsonAsync("/api/auth/login", new LoginRequest("tcp@example.test", "old-password-long!"))).Content.ReadFromJsonAsync<AuthResponse>())!;
             http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", login.AccessToken);
             Assert.Equal(HttpStatusCode.OK, (await http.GetAsync("/api/calendar?year=2026&month=10")).StatusCode);

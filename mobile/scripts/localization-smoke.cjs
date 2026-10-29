@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Only local Development API and disposable accounts; never prints credentials or private responses.
 const { randomUUID, randomBytes } = require('node:crypto');
 const names = require('../../src/PayAhead.Infrastructure/Localization/ServiceNames.json');
@@ -13,7 +14,7 @@ async function main() {
   }
   try {
     await call('/health/ready'); await call('/api/users/me/language', 'GET', null, 401, true);
-    id = (await call('/api/auth/register', 'POST', account, 201)).id;
+    id = (await call('/api/auth/register', 'POST', { ...account, ...registrationLegal() }, 201)).id;
     token = (await call('/api/auth/login', 'POST', { email: account.email, password: account.password })).accessToken;
     const first = await call('/api/catalog/services?pageSize=100&locale=en'); const shell = first.items.find(x => x.code === 'shell'); const generic = first.items.find(x => x.code === 'elektrik-faturasi'); assert(shell && generic, 'Hizmetler eksik.');
     for (const locale of Object.keys(names)) {

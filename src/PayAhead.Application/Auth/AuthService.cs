@@ -23,7 +23,7 @@ public sealed class AuthService(IAuthStore store, IPasswordService passwords, IT
             UpdatedAtUtc = now
         };
         user.PasswordHash = passwords.Hash(user, request.Password!);
-        await store.RegisterAsync(user, ct, request.LegalVersion);
+        await store.RegisterAsync(user, ct, request.Legal!.NoticeVersion, request.Legal);
         return UserResponse.From(user);
     }
 

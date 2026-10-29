@@ -1,3 +1,4 @@
+const { registrationLegal } = require('./registration-fixture.cjs');
 // Yalnız loopback Development; sadece kendi geçici hesabını ve kayıtlarını temizler.
 const { randomUUID, randomBytes } = require('node:crypto');
 const sharp = require('sharp');
@@ -16,7 +17,7 @@ async function main() {
   }
   function upload(bytes) { const form = new FormData(); form.append('image', new Blob([bytes], { type: 'application/octet-stream' }), '../../untrusted.svg'); return form; }
   try {
-    await call('/health/ready'); id = (await call('/api/auth/register', 'POST', body, 201)).id;
+    await call('/health/ready'); id = (await call('/api/auth/register', 'POST', { ...body, ...registrationLegal() }, 201)).id;
     token = (await call('/api/auth/login', 'POST', { email: body.email, password: body.password })).accessToken;
     const write = { name: 'Disposable plan', amount: 12.3456, currencyCode: 'USD', category: 'Other', frequency: 'Monthly', interval: 1, startDate: '2026-10-01', anchorDay: 1, isActive: true };
     for (const active of [false, true]) {

@@ -116,12 +116,12 @@ public sealed class FoundationIntegrationTests(SqlServerFixture sqlServer) : ICl
             {
                 var tables = new List<string>();
                 while (await reader.ReadAsync()) tables.Add(reader.GetString(0));
-                Assert.Equal(new[] { "AuditLogs", "DeviceTokens", "NotificationDeliveries", "PasswordResetTokens", "PaymentOccurrences", "PaymentPlans", "RefreshTokens", "ReminderRules", "UserSettings", "UserSubscriptions", "Users", "TrackedSubscriptions", "StorePurchases", "StoreTransactions", "StoreWebhookInbox", "RateLimitBuckets", "CatalogCategories", "CatalogServices", "CatalogServiceCategories", "CatalogCategoryTranslations", "PasswordHistory", "LegalNoticeReceipts" }.OrderBy(x => x, StringComparer.Ordinal), tables.OrderBy(x => x, StringComparer.Ordinal));
+                Assert.Equal(new[] { "AuditLogs", "DeviceTokens", "NotificationDeliveries", "PasswordResetTokens", "PaymentOccurrences", "PaymentPlans", "RefreshTokens", "ReminderRules", "UserSettings", "UserSubscriptions", "Users", "TrackedSubscriptions", "StorePurchases", "StoreTransactions", "StoreWebhookInbox", "RateLimitBuckets", "CatalogCategories", "CatalogServices", "CatalogServiceCategories", "CatalogCategoryTranslations", "PasswordHistory", "LegalNoticeReceipts", "RegistrationLegalConfirmations" }.OrderBy(x => x, StringComparer.Ordinal), tables.OrderBy(x => x, StringComparer.Ordinal));
             }
             command.CommandText = "SELECT COUNT(*) FROM sys.key_constraints WHERE type = 'PK' AND parent_object_id <> OBJECT_ID('__EFMigrationsHistory')";
-            Assert.Equal(22, (int)(await command.ExecuteScalarAsync())!);
+            Assert.Equal(23, (int)(await command.ExecuteScalarAsync())!);
             command.CommandText = "SELECT COUNT(*) FROM sys.foreign_keys WHERE is_disabled = 0 AND is_not_trusted = 0";
-            Assert.Equal(25, (int)(await command.ExecuteScalarAsync())!);
+            Assert.Equal(26, (int)(await command.ExecuteScalarAsync())!);
             command.CommandText = "SELECT COUNT(*) FROM sys.columns WHERE object_id = OBJECT_ID('PaymentPlans') AND name = 'Amount' AND precision = 19 AND scale = 4";
             Assert.Equal(1, (int)(await command.ExecuteScalarAsync())!);
             command.CommandText = "SELECT COUNT(*) FROM sys.columns WHERE object_id IN (OBJECT_ID('PaymentPlans'), OBJECT_ID('PaymentOccurrences')) AND name = 'RowVersion' AND system_type_id = 189 AND max_length = 8 AND is_nullable = 0";

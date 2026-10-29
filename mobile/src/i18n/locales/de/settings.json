@@ -104,7 +104,7 @@
   "legal.privacy": "Datenschutzerklärung",
   "legal.terms": "Nutzungsbedingungen",
   "legal.draft": "Rechtlicher Entwurf — vor Veröffentlichung sind rechtliche und sprachliche Prüfungen erforderlich. Kein endgültiges oder als vollständig konform bestätigtes Dokument.",
-  "legal.registration": "Vor der Registrierung sind drei Entwürfe zugänglich. Diese Information ist keine Einwilligung. Keine Marketingeinwilligung und in der Entwurfsphase keine verpflichtende Vertragsannahme.",
+  "legal.registration": "Dokumentbestätigungen werden getrennt erfasst. Diese Entwürfe erfordern vor Veröffentlichung eine rechtliche Prüfung.",
   "legal.identity": "Verantwortlicher und Kontakt",
   "legal.retentionTitle": "Aufbewahrung und Kontolöschung",
   "legal.transfersTitle": "Dienste und Datenübermittlungen",
@@ -115,5 +115,13 @@
   "legal.retention": "Aktive Kontodaten bleiben für die Kontolaufzeit erhalten. Bekannte alte Passwort-Hashes werden bei Kontolöschung entfernt; Zeitmarken normaler Änderungen werden nach 30 Tagen durch Wartung geleert. Finanzdaten und Fotos werden gelöscht; pseudonyme Store-Zuordnungen können bleiben. Backups und endgültige Aufbewahrungs-/Löschfristen sind vor Veröffentlichung festzulegen.",
   "legal.transfers": "Bei Mitteilungen kann Expo, bei Store-Prüfung Apple/Google und bei E-Mail der konfigurierte SMTP-Anbieter verwendet werden. Entwicklung nutzt SQL Server, privaten lokalen Fotospeicher und Mailpit. Produktionsempfänger, Länder und rechtliche Übermittlungsbedingungen: Vor Veröffentlichung auszufüllen.",
   "legal.rights": "Information, Auskunft, Berichtigung, Löschung bei erfüllten Voraussetzungen und weitere gesetzliche Rechte können beantragt werden. Profilkorrektur und Kontolöschung sind verfügbar; ein verifizierter Anfragekanal folgt vor Veröffentlichung. Dieser Entwurf ersetzt keine Rechtsprüfung.",
-  "security.historyInfo": "Geprüft werden das aktuelle Passwort und ab dieser Funktion gespeicherte Passwörter. Unbekannte frühere Passwörter sind rückwirkend nicht erkennbar."
+  "security.historyInfo": "Geprüft werden das aktuelle Passwort und ab dieser Funktion gespeicherte Passwörter. Unbekannte frühere Passwörter sind rückwirkend nicht erkennbar.",
+  "registrationLegal.info": "Prüfe und bestätige jedes Dokument einzeln. Die Bestätigungen zum Datenschutzhinweis und zur Datenschutzerklärung sind keine Einwilligung in die Datenverarbeitung.",
+  "registrationLegal.required": "Prüfe und bestätige die erforderlichen Dokumente, um ein Konto zu erstellen.",
+  "registrationLegal.confirmed": "Bestätigung abgeschlossen",
+  "registrationLegal.missing": "Bestätigung erforderlich",
+  "registrationLegal.review": "Prüfen und bestätigen",
+  "registrationLegal.noticeCheck": "Ich habe den Hinweis zum Schutz personenbezogener Daten gelesen und wurde informiert.",
+  "registrationLegal.privacyCheck": "Ich habe die Datenschutzerklärung gelesen.",
+  "registrationLegal.termsCheck": "Ich akzeptiere die Nutzungsbedingungen."
 }

@@ -23,8 +23,8 @@ public sealed class PasswordSecurityTests
     [Fact] public void Notice_is_versioned_and_legacy_client_is_not_falsely_reported()
     {
         var validator = new RegisterValidator();
-        Assert.True(validator.Validate(new RegisterRequest("a@example.invalid", "a-valid-password!", "A")).IsValid);
-        Assert.True(validator.Validate(new RegisterRequest("a@example.invalid", "a-valid-password!", "A", LegalDocuments.Version)).IsValid);
-        Assert.False(validator.Validate(new RegisterRequest("a@example.invalid", "a-valid-password!", "A", "stale")).IsValid);
+        Assert.False(validator.Validate(new RegisterRequest("a@example.invalid", "a-valid-password!", "A")).IsValid);
+        Assert.True(validator.Validate(new RegisterRequest("a@example.invalid", "a-valid-password!", "A", LegalDocuments.Version, TestLegal.Confirmed)).IsValid);
+        Assert.False(validator.Validate(new RegisterRequest("a@example.invalid", "a-valid-password!", "A", "stale", TestLegal.Confirmed)).IsValid);
     }
 }

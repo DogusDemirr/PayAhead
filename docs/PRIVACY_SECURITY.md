@@ -1,5 +1,7 @@
 # Phase 5.4 — Gizlilik ve hesap güvenliği
 
+**Phase 5.4.1 güncellemesi:** [Güncel kayıt sözleşmesi ve sonuç](PHASE5_4_1_REPORT.md). Üç belge bağlantısı yalnız kayıt akışına taşındı; notice/privacy ayrı okundu-bilgilendirme teyidi, terms ayrı zorunlu kabul olarak kaydedilir. Eski kayıt istemcilerine teyitsiz kayıt artık açık değildir. Belge gövdeleri/sürüm ve mevcut kullanıcı receipt'leri korundu; aşağıdaki Phase 5.4 açıklamaları eski akışın tarihsel kaydıdır. Mevcut parola kotası/geçmiş/oturum kuralları aynı kalır.
+
 29 Ekim 2026. Bu belge teknik davranışı açıklar; hukuki uygunluk onayı değildir. Yalnız Phase 5.4 uygulanır. Mevcut avatar, hesap, ödeme ve i18n akışları korunur.
 
 ## Ekranlar ve sözleşmeler

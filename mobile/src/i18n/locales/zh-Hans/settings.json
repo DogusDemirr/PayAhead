@@ -104,7 +104,7 @@
   "legal.privacy": "隐私政策",
   "legal.terms": "使用条款",
   "legal.draft": "法律草案：发布前需要法律及语言审核。此文件未定稿，也不宣称完全合规。",
-  "legal.registration": "注册前可查看三份草案。告知不等于同意。草案阶段不要求营销同意或强制接受合同。",
+  "legal.registration": "各文件的确认分别记录。这些草案在发布前需要法律审核。",
   "legal.identity": "数据控制者与联系方式",
   "legal.retentionTitle": "保留期限与账户删除",
   "legal.transfersTitle": "服务与数据传输",
@@ -115,5 +115,13 @@
   "legal.retention": "活跃数据在账户存续期间保留。已知曾用密码哈希在删号时删除；常规更改日期在30天后由维护清除。财务记录与头像会删除；可能保留有限的假名化商店关联。备份及最终保留／销毁时间表需在发布前确定。",
   "legal.transfers": "通知可能使用Expo，购买核实使用Apple／Google，邮件使用配置的SMTP提供商。开发环境使用SQL Server、私有本地头像存储及Mailpit。生产接收者、国家及传输法律条件：发布前填写。",
   "legal.rights": "你可以申请处理信息、访问、更正、在条件满足时删除／销毁及其他法律权利。可更正资料和删除账户；经核实的申请渠道将在发布前补充。本草案不代替法律审核。",
-  "security.historyInfo": "检查仅涵盖当前密码及此功能启用后记录的密码，无法追溯识别未知的更早密码。"
+  "security.historyInfo": "检查仅涵盖当前密码及此功能启用后记录的密码，无法追溯识别未知的更早密码。",
+  "registrationLegal.info": "请分别阅读并确认每份文件。对告知书和隐私政策的阅读确认不代表同意处理个人数据。",
+  "registrationLegal.required": "创建账户前，请阅读并确认必需的文件。",
+  "registrationLegal.confirmed": "已确认",
+  "registrationLegal.missing": "需要确认",
+  "registrationLegal.review": "阅读并确认",
+  "registrationLegal.noticeCheck": "我已阅读个人数据告知书并已获知相关信息。",
+  "registrationLegal.privacyCheck": "我已阅读隐私政策。",
+  "registrationLegal.termsCheck": "我接受使用条款。"
 }
