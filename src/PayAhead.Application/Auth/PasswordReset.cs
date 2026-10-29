@@ -41,7 +41,7 @@ public interface IPasswordResetDispatcher
 public interface IPasswordResetStore
 {
     Task<User?> IssueAsync(string normalizedEmail, PasswordResetToken token, CancellationToken ct);
-    Task<bool> ConsumeAsync(string hash, DateTime now, Func<User, string> newHash, CancellationToken ct);
+    Task<bool> ConsumeAsync(string hash, DateTime now, Func<User, IReadOnlyList<string>, string> newHash, CancellationToken ct);
     Task InvalidateAsync(Guid id, DateTime now, CancellationToken ct);
 }
 public sealed class PasswordResetService(IPasswordResetStore store, IPasswordService passwords,
@@ -66,7 +66,7 @@ public sealed class PasswordResetService(IPasswordResetStore store, IPasswordSer
     public async Task ResetAsync(ResetPasswordRequest request, CancellationToken ct)
     {
         await resetValidator.ValidateAndThrowAsync(request, ct);
-        if (!await store.ConsumeAsync(Hash(request.Token!), clock.GetUtcNow().UtcDateTime, user => passwords.Hash(user, request.Password!), ct))
+        if (!await store.ConsumeAsync(Hash(request.Token!), clock.GetUtcNow().UtcDateTime, (user, retired) => { PasswordSecurity.ValidateNew(passwords, user, request.Password!, retired); return passwords.Hash(user, request.Password!); }, ct))
             throw new PayAhead.Domain.DomainRuleException("Bağlantı geçersiz, kullanılmış veya süresi dolmuş. Yeni bir bağlantı iste.");
     }
 }

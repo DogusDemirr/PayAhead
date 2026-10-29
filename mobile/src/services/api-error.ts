@@ -17,6 +17,8 @@ export function mapApiError(error: unknown): Error {
     if (!error.response)
         return new ApiError(t("errors:m_148edfcba033"), undefined, undefined, undefined, 'network');
     const { status, data } = error.response;
+    const securityMessages: Record<string, string> = { password_common: 'settings:security.common', password_reused: 'settings:security.reused', password_change_limit: 'settings:security.limit' };
+    if (data?.code && securityMessages[data.code] && status === (data.code === 'password_change_limit' ? 409 : 400)) return new ApiError(t(securityMessages[data.code]), status, data.traceId, undefined, 'http', data.code);
     const registration = error.config?.url === '/api/auth/register';
     const reset = ['/api/auth/forgot-password', '/api/auth/reset-password'].includes(error.config?.url ?? '');
     if (reset && [401, 404].includes(status))

@@ -47,7 +47,7 @@ test('login requires a password but does not impose registration length', () => 
 test('registration requires a 12-character password and a nonblank name', () => {
   expect(registerSchema.safeParse({ ...credentials, password: 'short', displayName: 'Test' }).success).toBe(false);
   expect(registerSchema.safeParse({ ...credentials, displayName: '  ' }).success).toBe(false);
-  expect(registerSchema.safeParse({ ...credentials, displayName: 'Test' }).success).toBe(true);
+  expect(registerSchema.safeParse({ ...credentials, confirmation: credentials.password, displayName: 'Test' }).success).toBe(true);
 });
 test('successful login persists both tokens and verifies current user before admission', async () => {
   const s = setup(); await s.manager.login(credentials);

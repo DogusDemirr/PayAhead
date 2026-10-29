@@ -1,3 +1,5 @@
+> **Phase 5.4:** Gizlilik/Güvenlik, sürümlü hukuki AI taslakları, gerçek parola kotası ve güvenli geçmiş denetimi. [Sonuç raporu](../docs/PHASE5_4_REPORT.md), [Android kabulü](docs/PHASE5_4_ANDROID_ACCEPTANCE.md). Hukuki yayın ve fiziksel cihaz kabulü bekler.
+
 > **Phase 5.3.1:** Ödeme/abonelik/hatırlatıcı/hesap dialogları standartlaştırıldı; Hesabım ve Ayarlar gerçek authenticated fotoğrafı kullanır. [Silme tanısı](../docs/PHASE5_3_1_DIAGNOSIS.md), [fotoğraf API ve storage](../docs/AVATARS.md), [Android kabulü](docs/ANDROID_TESTING.md).
 
 > **Phase 5.3 — Hesabım:** Ayarlar → Hesap Bilgileri gerçek hesap merkezine açılır. Profil, parola, gerçek entitlement ve mevcut dil/bölge/bildirim bağlantıları; parola + açık onay ile hesap silme. 14 dil, light/dark ve epoch/cache koruması. [Rapor](docs/PHASE5_3_REPORT.md), [güvenlik/API](../docs/ACCOUNT_MANAGEMENT.md), [10 Android adımı](docs/ANDROID_TESTING.md). Güncel Development API'yi ve Metro'yu yeniden başlatın.

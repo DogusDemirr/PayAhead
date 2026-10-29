@@ -1,3 +1,5 @@
+> **Phase 5.4:** AccountPrivacySecurity migration ve güncel API gerekir; yalnız Development hedefi doğrulanarak uygulanır. [Güvenlik/manifest endpoint'leri ve migration komutları](PRIVACY_SECURITY.md), [Android kabul planı](../mobile/docs/PHASE5_4_ANDROID_ACCEPTANCE.md). API başarı yanıtı e-posta teslimi değildir. Bu faz SMTP/push veya production kurulumunu değiştirmez.
+
 > **Phase 5.3.2 LAN düzeltmesi:** Bu makinenin yeni LAN IP’si192.168.1.110; önceki192.168.1.155 adresi ve Development AllowedHosts kaydı erişim/HTTP400 hatası üretiyordu. Mobil .env ile açık Development host listesi hizalandı. Production listesi ve host güvenliği korunur. [Fotoğraf tanısı](PHASE5_3_2_DIAGNOSIS.md).
 
 > **Phase 5.3.1:** Fotoğraf için [özel yerel storage ve Avatars__Root](AVATARS.md) yönergesini izleyin. Eski API süreci güncel kod sayılmaz; `scripts/Start-Development.ps1` güncel kaynakları derler. Development ProfileAvatar migration durumu doğrulanmalıdır.

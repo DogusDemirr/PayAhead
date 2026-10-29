@@ -4,7 +4,7 @@ using PayAhead.Domain;
 namespace PayAhead.Application.Auth;
 
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
-public sealed record RegisterRequest(string? Email, string? Password, string? DisplayName);
+public sealed record RegisterRequest(string? Email, string? Password, string? DisplayName, string? LegalVersion = null);
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
 public sealed record LoginRequest(string? Email, string? Password);
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
@@ -22,6 +22,7 @@ public interface IPasswordService
 {
     string Hash(User user, string password);
     bool Verify(User user, string password, out bool needsRehash);
+    bool VerifyStored(User user, string hash, string password);
 }
 public interface ITokenService
 {
@@ -32,7 +33,7 @@ public interface ITokenService
 }
 public interface IAuthStore
 {
-    Task RegisterAsync(User user, CancellationToken ct);
+    Task RegisterAsync(User user, CancellationToken ct, string? legalVersion = null);
     Task<User?> AuthenticateAsync(string email, Func<User, bool> verify, DateTime now, CancellationToken ct);
     Task AddSessionAsync(RefreshToken token, CancellationToken ct, Guid securityStamp = default);
     Task<User?> RotateAsync(string hash, RefreshToken replacement, DateTime now, CancellationToken ct);

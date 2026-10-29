@@ -33,11 +33,13 @@ public interface IProfileStore
     Task<ProfileResponse> ReadAsync(Guid user, CancellationToken ct);
     Task<ProfileResponse> UpdateAsync(Guid user, UpdateProfileRequest request, CancellationToken ct);
     Task ChangePasswordAsync(Guid user, ChangePasswordRequest request, CancellationToken ct);
+    Task<SecuritySummary> ReadSecurityAsync(Guid user, CancellationToken ct);
 }
 public sealed class ProfileService(IProfileStore store, ICurrentUser current, IValidator<UpdateProfileRequest> profile, IValidator<ChangePasswordRequest> password)
 {
     private Guid User => current.UserId ?? throw new AuthenticationRequiredException();
     public Task<ProfileResponse> ReadAsync(CancellationToken ct) => store.ReadAsync(User, ct);
+    public Task<SecuritySummary> ReadSecurityAsync(CancellationToken ct) => store.ReadSecurityAsync(User, ct);
     public async Task<ProfileResponse> UpdateAsync(UpdateProfileRequest request, CancellationToken ct) { var user = User; await profile.ValidateAndThrowAsync(request, ct); return await store.UpdateAsync(user, request, ct); }
     public async Task ChangePasswordAsync(ChangePasswordRequest request, CancellationToken ct) { var user = User; await password.ValidateAndThrowAsync(request, ct); await store.ChangePasswordAsync(user, request, ct); }
 }

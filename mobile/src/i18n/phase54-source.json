@@ -1,0 +1,154 @@
+{
+  "settings:security.title": [
+    "Gizlilik ve Güvenlik",
+    "Privacy and Security"
+  ],
+  "settings:security.accountInfo": [
+    "Şifre değiştiğinde tüm oturumların sonlandırılır ve yeniden giriş gerekir. Zorunlu periyodik şifre değişimi yoktur.",
+    "Changing your password ends all sessions and requires signing in again. No mandatory periodic password changes apply."
+  ],
+  "settings:security.avatarInfo": [
+    "Profil fotoğrafını Hesabım ekranından değiştirip kaldırabilirsin. Fotoğraflar yalnız yetkili hesap erişimiyle gösterilir.",
+    "Change or remove your profile photo in My Account. Photos are shown only with authorized account access."
+  ],
+  "settings:security.password": [
+    "Şifre Değiştirme",
+    "Change Password"
+  ],
+  "settings:security.quotaInfo": [
+    "Kayan son 30 günde en fazla 3 başarılı normal değişiklik yapılabilir. Güvenli hesap kurtarma bu limite dahil değildir.",
+    "Up to 3 successful normal changes are allowed in a rolling 30 days. Secure account recovery is excluded."
+  ],
+  "settings:security.remaining": [
+    "Kalan normal değişiklik hakkı: {{value0}}",
+    "Normal changes remaining: {{value0}}"
+  ],
+  "settings:security.next": [
+    "Sonraki normal değişiklik hakkı: {{value0}} UTC",
+    "Next normal change available: {{value0}} UTC"
+  ],
+  "settings:security.recovery": [
+    "Şifremi unuttum / hesabımı kurtar",
+    "Forgot password / recover my account"
+  ],
+  "settings:security.sessions": [
+    "Aktif oturum sayısı: {{value0}}",
+    "Active sessions: {{value0}}"
+  ],
+  "settings:security.sessionsInfo": [
+    "Bu sayı geçerli yenileme oturumlarını gösterir. Cihaz adları ve tek oturum kapatma bu sürümde sunulmaz.",
+    "This counts valid refresh sessions. Device names and individual session sign-out are not available in this version."
+  ],
+  "settings:security.legal": [
+    "Hukuki Bilgilendirme",
+    "Legal Information"
+  ],
+  "settings:security.rights": [
+    "Kişisel Veri Hakları",
+    "Personal Data Rights"
+  ],
+  "settings:security.rightsInfo": [
+    "Profilini düzeltebilir ve hesabını silebilirsin. Diğer hak talepleri için doğrulanmış iletişim kanalı yayın öncesinde eklenecek.",
+    "You can correct your profile and delete your account. A verified contact channel for other rights requests will be added before publication."
+  ],
+  "settings:security.deleteInfo": [
+    "Silme, kişisel ve finansal kayıtları temizler; sınırlı takma kimlikli mağaza bağları kalabilir. Mağaza aboneliğini ayrıca iptal etmen gerekebilir.",
+    "Deletion removes personal and financial records; limited pseudonymous store bindings may remain. Store subscriptions may need separate cancellation."
+  ],
+  "settings:security.reused": [
+    "Mevcut veya daha önce kullandığın bir şifreyi seçemezsin.",
+    "You cannot choose your current password or a previously used password."
+  ],
+  "settings:security.common": [
+    "Bu şifre yaygın parolalar listesinde. Farklı bir şifre seç.",
+    "This password is on the common-password list. Choose a different one."
+  ],
+  "settings:security.limit": [
+    "Son 30 günün normal şifre değişikliği hakkı doldu. Hesap kurtarma kullanılabilir.",
+    "Your normal password-change allowance for the last 30 days is exhausted. Account recovery remains available."
+  ],
+  "settings:security.weak": [
+    "Zayıf",
+    "Weak"
+  ],
+  "settings:security.fair": [
+    "Orta",
+    "Fair"
+  ],
+  "settings:security.strong": [
+    "Daha güçlü",
+    "Stronger"
+  ],
+  "settings:security.strength": [
+    "Şifre güç tahmini",
+    "Password strength estimate"
+  ],
+  "settings:security.strengthHelp": [
+    "Bu gösterge garanti değildir. Bazı yaygın parolalar engellenir; parolan üçüncü taraf sızıntı servisine gönderilmez.",
+    "This meter is not a guarantee. Some common passwords are blocked; your password is not sent to a third-party breach service."
+  ],
+  "settings:legal.notice": [
+    "KVKK Aydınlatma Metni",
+    "KVKK Information Notice"
+  ],
+  "settings:legal.privacy": [
+    "Gizlilik Politikası",
+    "Privacy Policy"
+  ],
+  "settings:legal.terms": [
+    "Kullanım Koşulları",
+    "Terms of Use"
+  ],
+  "settings:legal.draft": [
+    "Hukuki taslak — yayın öncesi hukuk ve dil incelemesi gerekir. Kesinleşmiş veya tam uyumlu belge değildir.",
+    "Legal draft — legal and language review is required before publication. This is not a finalized or fully compliant document."
+  ],
+  "settings:legal.registration": [
+    "Kayıttan önce üç taslak metne erişebilirsin. Bu bilgilendirme açık rıza değildir. Pazarlama rızası istenmez; taslak aşamasında zorunlu sözleşme kabulü alınmaz.",
+    "You can access three draft documents before registration. This information is not consent. No marketing consent is requested; mandatory contract acceptance is not collected during the draft stage."
+  ],
+  "settings:legal.identity": [
+    "Veri sorumlusu ve iletişim",
+    "Data controller and contact"
+  ],
+  "settings:legal.retentionTitle": [
+    "Saklama ve hesap silme",
+    "Retention and account deletion"
+  ],
+  "settings:legal.transfersTitle": [
+    "Hizmetler ve veri aktarımı",
+    "Services and data transfers"
+  ],
+  "settings:legal.pending": [
+    "Veri sorumlusu kimliği, başvuru adresi/kanalı ve doğrulanmış iletişim bilgileri: Yayın öncesi doldurulacak.",
+    "Data controller identity, request address/channel and verified contact details: To be completed before publication."
+  ],
+  "settings:legal.noticeBody": [
+    "E-posta, ad, parola hashleri, ödeme/abonelik kayıtları, tercihler, isteğe bağlı fotoğraf ve bildirim açılırsa cihaz bilgileri; hesap, takip, güvenlik ve istenen hatırlatmalar için uygulama/API üzerinden alınır. Her amaç için hukuki sebep yayın öncesinde doğrulanıp eklenecektir. Aydınlatma açık rıza değildir.",
+    "Email, name, password hashes, payment/subscription records, preferences, optional photo and device details if notifications are enabled are collected through the app/API for accounts, tracking, security and requested reminders. The legal basis for each purpose must be verified and added before publication. Information is not consent."
+  ],
+  "settings:legal.privacyBody": [
+    "Hesap kaynakları doğrulanmış kullanıcıyla sınırlandırılır. Parolalar hashlenir; tam şifreleme veya mutlak güvenlik garantisi verilmez. Üretim güvenliği ve altyapı kontrolleri yayın öncesinde doğrulanmalıdır. Pazarlama veya isteğe bağlı analiz rızası toplanmaz.",
+    "Account resources are scoped to the verified user. Passwords are hashed; full encryption or absolute security is not guaranteed. Production security and infrastructure controls must be verified before publication. No marketing or optional analytics consent is collected."
+  ],
+  "settings:legal.termsBody": [
+    "PayAhead kişisel ödeme ve abonelik takibi sunar; faturaları ödemez, banka kayıtlarını otomatik doğrulamaz. Tahminler garanti değildir. Premium, doğrulanmış mağaza durumuna bağlıdır; hesabı silmek mağaza aboneliğini iptal etmez. Taraf kimliği, ücret/iade ve uyuşmazlık hükümleri yayın öncesi doldurulacak.",
+    "PayAhead tracks personal payments and subscriptions; it does not pay bills or automatically verify bank records. Estimates are not guaranteed. Premium depends on verified store status; account deletion does not cancel store subscriptions. Party identity, fees/refunds and dispute terms: To be completed before publication."
+  ],
+  "settings:legal.retention": [
+    "Aktif hesap verileri hesap süresince tutulur. Bilinen eski şifre hashleri hesap silinince kaldırılır; normal değişim zaman etiketleri 30 gün sonra bakımda temizlenir. Silmede finansal kayıtlar ve fotoğraf temizlenir; takma kimlikli mağaza bağları kalabilir. Yedekler ve nihai saklama/imha takvimi yayın öncesinde netleştirilecek.",
+    "Active account data is retained for the account lifetime. Known retired password hashes are removed on account deletion; normal-change timestamps are cleared by maintenance after 30 days. Deletion removes financial records and photos; pseudonymous store bindings may remain. Backups and final retention/deletion schedules require completion before publication."
+  ],
+  "settings:legal.transfers": [
+    "Bildirim açılırsa Expo, mağaza doğrulamasında Apple/Google, e-posta açılırsa yapılandırılan SMTP sağlayıcısı kullanılabilir. Geliştirmede SQL Server, özel yerel fotoğraf depolama ve Mailpit vardır. Üretim alıcıları, ülkeler ve aktarımın hukuki şartları yayın öncesi doldurulacak.",
+    "Expo may be used when notifications are enabled, Apple/Google for store verification, and the configured SMTP provider for email. Development uses SQL Server, private local photo storage and Mailpit. Production recipients, countries and legal transfer conditions: To be completed before publication."
+  ],
+  "settings:legal.rights": [
+    "İşleme hakkında bilgi, erişim, düzeltme, şartları oluştuğunda silme/yok etme ve diğer yasal haklar için talepte bulunabilirsin. Profil düzeltme ve hesap silme mevcuttur; doğrulanmış başvuru kanalı yayın öncesi eklenecek. Bu taslak hukuki incelemenin yerine geçmez.",
+    "You may request processing information, access, correction, deletion/destruction where conditions apply, and other legal rights. Profile correction and account deletion are available; a verified request channel will be added before publication. This draft does not replace legal review."
+  ],
+  "settings:security.historyInfo": [
+    "Geçmiş kontrolü mevcut şifre ve bu özellikten sonra kaydedilenlerle sınırlıdır; bilinmeyen eski şifreler geriye dönük tespit edilemez.",
+    "History checks cover the current password and those recorded after this feature. Unknown earlier passwords cannot be detected retroactively."
+  ]
+}

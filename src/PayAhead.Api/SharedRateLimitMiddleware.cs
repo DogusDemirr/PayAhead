@@ -12,7 +12,7 @@ public sealed class SharedRateLimitMiddleware(RequestDelegate next)
         var policy = path.StartsWith("/api/auth/", StringComparison.Ordinal) ? "auth" : path is "/api/premium/verify-purchase" or "/api/premium/restore" ? "purchase" : path.StartsWith("/api/webhooks/", StringComparison.Ordinal) ? "webhook" : path == "/api/users/me/export" || path == "/api/users/me" && HttpMethods.IsDelete(context.Request.Method) ? "privacy" : null;
         if (path == "/api/users/me/change-password") policy = "credentials";
         if (path == "/api/users/me/avatar" && !HttpMethods.IsGet(context.Request.Method)) policy = "avatar";
-        if (path == "/api/users/me/profile") policy = "profile";
+        if (path is "/api/users/me/profile" or "/api/users/me/security") policy = "profile";
         if (path == "/api/analytics") policy = "analytics";
         if (path.StartsWith("/api/catalog/", StringComparison.Ordinal)) policy = "catalog";
         if (path == "/api/users/me/language") policy = "language";

@@ -15855,6 +15855,27 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PayAhead.Domain.LegalNoticeReceipt", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NoticeVersion")
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime?>("PresentedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RecordedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("LegalNoticeReceipts", (string)null);
+                });
+
             modelBuilder.Entity("PayAhead.Domain.NotificationDelivery", b =>
                 {
                     b.Property<Guid>("Id")
@@ -15943,6 +15964,30 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
 
                             t.HasCheckConstraint("CK_NotificationDeliveries_Status", "[Status] BETWEEN 0 AND 5");
                         });
+                });
+
+            modelBuilder.Entity("PayAhead.Domain.PasswordHistoryEntry", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("NormalChangedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "NormalChangedAtUtc");
+
+                    b.ToTable("PasswordHistory", (string)null);
                 });
 
             modelBuilder.Entity("PayAhead.Domain.PasswordResetToken", b =>
@@ -16689,6 +16734,15 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PayAhead.Domain.LegalNoticeReceipt", b =>
+                {
+                    b.HasOne("PayAhead.Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PayAhead.Domain.NotificationDelivery", b =>
                 {
                     b.HasOne("PayAhead.Domain.DeviceToken", null)
@@ -16702,6 +16756,15 @@ namespace PayAhead.Infrastructure.Persistence.Migrations
                         .HasForeignKey("ReminderRuleId", "PaymentPlanId", "UserId")
                         .HasPrincipalKey("Id", "PaymentPlanId", "UserId")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PayAhead.Domain.PasswordHistoryEntry", b =>
+                {
+                    b.HasOne("PayAhead.Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

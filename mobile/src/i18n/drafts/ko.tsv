@@ -798,3 +798,41 @@ settings:avatar.unavailable|현재 사진 서비스를 사용할 수 없습니�
 settings:avatar.network|인터넷 연결을 확인하고 다시 시도하세요.
 settings:avatar.retry|프로필이 변경되었을 수 있습니다. 새로 고친 후 사진을 다시 선택하세요.
 settings:avatar.unconfirmed|결과를 확인할 수 없습니다. 프로필을 새로 고치고 사진을 확인하세요.
+settings:security.title|개인정보 및 보안
+settings:security.accountInfo|비밀번호를 변경하면 모든 세션이 종료되어 다시 로그인해야 합니다. 주기적인 변경을 강제하지 않습니다.
+settings:security.avatarInfo|내 계정에서 프로필 사진을 변경하거나 삭제할 수 있습니다. 사진은 인증된 계정 접근으로만 표시됩니다.
+settings:security.password|비밀번호 변경
+settings:security.quotaInfo|최근 30일 동안 성공한 일반 변경은 최대 3회입니다. 안전한 계정 복구는 제한에서 제외됩니다.
+settings:security.remaining|남은 일반 변경 횟수: {{value0}}
+settings:security.next|다음 일반 변경 가능 시간: {{value0}} UTC
+settings:security.recovery|비밀번호 찾기 / 계정 복구
+settings:security.sessions|활성 세션: {{value0}}
+settings:security.sessionsInfo|유효한 갱신 세션 수입니다. 이 버전에서는 기기 이름과 개별 세션 종료를 제공하지 않습니다.
+settings:security.legal|법적 정보
+settings:security.rights|개인정보 권리
+settings:security.rightsInfo|프로필을 수정하고 계정을 삭제할 수 있습니다. 기타 권리 요청을 위한 확인된 연락처는 출시 전에 추가됩니다.
+settings:security.deleteInfo|삭제하면 개인 및 금융 기록이 지워지지만 제한된 가명 스토어 연결 정보는 남을 수 있습니다. 스토어 구독은 별도로 취소해야 할 수 있습니다.
+settings:security.reused|현재 또는 이전에 사용한 비밀번호는 선택할 수 없습니다.
+settings:security.common|흔히 쓰이는 비밀번호 목록에 포함되어 있습니다. 다른 비밀번호를 선택하세요.
+settings:security.limit|최근 30일의 일반 변경 한도를 모두 사용했습니다. 계정 복구는 계속 이용할 수 있습니다.
+settings:security.weak|약함
+settings:security.fair|보통
+settings:security.strong|더 강함
+settings:security.strength|비밀번호 강도 추정
+settings:security.strengthHelp|이 표시는 보장이 아닙니다. 일부 흔한 비밀번호를 차단하며 비밀번호를 외부 유출 확인 서비스에 전송하지 않습니다.
+settings:legal.notice|KVKK 안내문
+settings:legal.privacy|개인정보 처리방침
+settings:legal.terms|이용약관
+settings:legal.draft|법률 초안: 출시 전에 법률 및 언어 검토가 필요합니다. 확정되었거나 완전한 법규 준수를 선언하는 문서가 아닙니다.
+settings:legal.registration|가입 전에 세 개의 초안을 볼 수 있습니다. 안내는 동의가 아닙니다. 초안 단계에서는 마케팅 동의나 필수 계약 수락을 받지 않습니다.
+settings:legal.identity|개인정보 관리자 및 연락처
+settings:legal.retentionTitle|보관 및 계정 삭제
+settings:legal.transfersTitle|서비스 및 데이터 이전
+settings:legal.pending|개인정보 관리자 신원, 요청 주소／창구와 확인된 연락처: 출시 전에 작성됩니다.
+settings:legal.noticeBody|이메일, 이름, 비밀번호 해시, 결제／구독 기록, 설정, 선택적 사진 및 알림 활성화 시 기기 정보를 계정, 기록, 보안, 요청한 알림을 위해 앱／API로 수집합니다. 목적별 법적 근거는 출시 전에 확인하고 추가해야 합니다. 안내는 동의가 아닙니다.
+settings:legal.privacyBody|계정 자료는 확인된 사용자에게 제한됩니다. 비밀번호는 해시로 보관하며 전체 암호화나 절대적인 보안을 보장하지 않습니다. 운영 보안과 기반시설 통제는 출시 전에 확인해야 합니다. 마케팅이나 선택적 분석 동의를 수집하지 않습니다.
+settings:legal.termsBody|PayAhead는 개인 결제와 구독을 기록하며 청구서를 결제하거나 은행 기록을 자동 확인하지 않습니다. 예측은 보장되지 않습니다. Premium은 확인된 스토어 상태에 따르며 계정 삭제는 스토어 구독을 해지하지 않습니다. 계약 당사자, 요금／환불, 분쟁 조항은 출시 전에 작성됩니다.
+settings:legal.retention|활성 자료는 계정 존속 기간에 보관합니다. 알려진 과거 비밀번호 해시는 계정 삭제 시 제거하며 일반 변경 시간은 30일 후 유지관리에서 지웁니다. 금융 기록과 사진은 삭제되나 가명 스토어 연결은 남을 수 있습니다. 백업과 최종 보관／파기 일정은 출시 전에 정합니다.
+settings:legal.transfers|알림에는 Expo, 구매 확인에는 Apple／Google, 이메일에는 설정된 SMTP 제공자가 사용될 수 있습니다. 개발 환경은 SQL Server, 비공개 로컬 사진 저장소와 Mailpit을 이용합니다. 운영 수신자, 국가, 이전 법적 조건은 출시 전에 작성됩니다.
+settings:legal.rights|처리 정보, 열람, 정정, 조건 충족 시 삭제／파기 및 기타 법적 권리를 요청할 수 있습니다. 프로필 정정과 계정 삭제는 제공되며 확인된 요청 창구는 출시 전에 추가됩니다. 이 초안은 법률 검토를 대신하지 않습니다.
+settings:security.historyInfo|현재 비밀번호와 이 기능 이후 기록된 비밀번호를 검사합니다. 알려지지 않은 이전 비밀번호는 소급해 확인할 수 없습니다.

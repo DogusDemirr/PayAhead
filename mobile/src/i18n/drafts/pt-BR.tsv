@@ -814,3 +814,41 @@ settings:avatar.unavailable|O serviço de fotos está indisponível no momento.
 settings:avatar.network|Verifique sua conexão com a internet e tente novamente.
 settings:avatar.retry|Seu perfil pode ter mudado. Atualize-o e selecione a foto novamente.
 settings:avatar.unconfirmed|Não foi possível confirmar o resultado. Atualize seu perfil e confira sua foto.
+settings:security.title|Privacidade e segurança
+settings:security.accountInfo|Alterar a senha encerra todas as sessões e exige um novo login. Não há alterações periódicas obrigatórias.
+settings:security.avatarInfo|Altere ou remova sua foto em Minha conta. As fotos são exibidas apenas com acesso autorizado à conta.
+settings:security.password|Alterar senha
+settings:security.quotaInfo|São permitidas até 3 alterações normais bem-sucedidas em 30 dias corridos móveis. A recuperação segura da conta fica de fora.
+settings:security.remaining|Alterações normais restantes: {{value0}}
+settings:security.next|Próxima alteração normal disponível: {{value0}} UTC
+settings:security.recovery|Esqueci minha senha / recuperar conta
+settings:security.sessions|Sessões ativas: {{value0}}
+settings:security.sessionsInfo|São contadas as sessões de renovação válidas. Nomes de dispositivos e encerramento individual não estão disponíveis nesta versão.
+settings:security.legal|Informações jurídicas
+settings:security.rights|Direitos sobre dados pessoais
+settings:security.rightsInfo|Você pode corrigir seu perfil e excluir sua conta. Um contato verificado para outras solicitações será adicionado antes da publicação.
+settings:security.deleteInfo|A exclusão remove registros pessoais e financeiros; vínculos pseudônimos limitados com as lojas podem permanecer. Assinaturas podem exigir cancelamento separado.
+settings:security.reused|Você não pode escolher a senha atual ou uma já utilizada.
+settings:security.common|Esta senha está na lista de senhas comuns. Escolha outra.
+settings:security.limit|O limite de alterações normais dos últimos 30 dias foi atingido. A recuperação continua disponível.
+settings:security.weak|Fraca
+settings:security.fair|Média
+settings:security.strong|Mais forte
+settings:security.strength|Estimativa de força da senha
+settings:security.strengthHelp|O indicador não é uma garantia. Algumas senhas comuns são bloqueadas; sua senha não é enviada a serviços externos de vazamentos.
+settings:legal.notice|Aviso informativo KVKK
+settings:legal.privacy|Política de privacidade
+settings:legal.terms|Termos de uso
+settings:legal.draft|Rascunho jurídico: exige revisão jurídica e linguística antes da publicação. Não é definitivo nem declarado totalmente conforme.
+settings:legal.registration|Três rascunhos estão disponíveis antes do cadastro. A informação não é consentimento. Não se pede consentimento de marketing nem aceitação contratual obrigatória nesta fase.
+settings:legal.identity|Controlador e contato
+settings:legal.retentionTitle|Retenção e exclusão da conta
+settings:legal.transfersTitle|Serviços e transferências de dados
+settings:legal.pending|Identidade do controlador, endereço/canal de solicitações e contato verificado: a preencher antes da publicação.
+settings:legal.noticeBody|E-mail, nome, hashes de senhas, pagamentos/assinaturas, preferências, foto opcional e dados do dispositivo com notificações ativas são coletados pelo app/API para conta, acompanhamento, segurança e lembretes solicitados. A base legal de cada finalidade deve ser verificada e acrescentada antes da publicação. Informação não é consentimento.
+settings:legal.privacyBody|Os recursos são limitados ao usuário verificado. Senhas são armazenadas como hashes; não há garantia de criptografia total ou segurança absoluta. Controles de produção e infraestrutura precisam ser verificados antes da publicação. Não se coleta consentimento de marketing ou análise opcional.
+settings:legal.termsBody|PayAhead acompanha pagamentos e assinaturas pessoais; não paga contas nem verifica registros bancários automaticamente. Estimativas não são garantidas. Premium depende do estado verificado da loja; excluir a conta não cancela a assinatura. Identificação da parte, taxas/reembolsos e disputas: a preencher antes da publicação.
+settings:legal.retention|Dados ativos permanecem pela duração da conta. Hashes anteriores conhecidos são removidos ao excluir a conta; datas de alterações normais são limpas pela manutenção após 30 dias. Registros financeiros e fotos são removidos; vínculos pseudônimos com lojas podem permanecer. Backups e prazos finais de retenção/eliminação devem ser definidos antes da publicação.
+settings:legal.transfers|Expo pode ser usado para notificações, Apple/Google para verificar compras e o provedor SMTP configurado para e-mails. O desenvolvimento usa SQL Server, fotos em armazenamento local privado e Mailpit. Destinatários, países e condições legais de transferência em produção: a preencher antes da publicação.
+settings:legal.rights|Você pode solicitar informações, acesso, correção, exclusão/destruição quando aplicável e outros direitos legais. Correção de perfil e exclusão da conta estão disponíveis; um canal verificado será adicionado antes da publicação. Este rascunho não substitui análise jurídica.
+settings:security.historyInfo|A verificação abrange a senha atual e as registradas após este recurso. Senhas anteriores desconhecidas não podem ser detectadas retroativamente.

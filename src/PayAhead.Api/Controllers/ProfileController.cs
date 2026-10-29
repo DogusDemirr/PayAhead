@@ -8,6 +8,7 @@ namespace PayAhead.Api.Controllers;
 public sealed class ProfileController(ProfileService service) : ControllerBase
 {
     [HttpGet("profile")] public async Task<IActionResult> Get(CancellationToken ct) => Ok(await service.ReadAsync(ct));
+    [HttpGet("security")] public async Task<IActionResult> Security(CancellationToken ct) => Ok(await service.ReadSecurityAsync(ct));
     [HttpPut("profile"), RequestSizeLimit(4096)] public async Task<IActionResult> Update(UpdateProfileRequest request, CancellationToken ct) => Ok(await service.UpdateAsync(request, ct));
     [HttpPost("change-password"), RequestSizeLimit(4096)] public async Task<IActionResult> ChangePassword(ChangePasswordRequest request, CancellationToken ct) { await service.ChangePasswordAsync(request, ct); return NoContent(); }
 }

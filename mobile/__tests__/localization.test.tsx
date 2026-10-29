@@ -78,5 +78,5 @@ test.each(['light', 'dark'] as const)('language picker has fourteen accessible c
   await fireEvent.press(screen.getByRole('radio', { name: 'Deutsch' }));
   expect(currentLanguage()).toBe('de'); expect(screen.getByText(resources.de.settings.languageTitle)).toBeTruthy();
   expect(screen.getByRole('radio', { name: 'Deutsch', checked: true })).toBeTruthy();
-  expect(reloadAppAsync).not.toHaveBeenCalled(); useUiStore.setState({ theme: 'system' });
+  expect(reloadAppAsync).not.toHaveBeenCalled(); await act(async () => { useUiStore.setState({ theme: 'system' }); });
 });

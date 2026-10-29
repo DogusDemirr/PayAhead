@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PayAhead.Application.Operations;
+using PayAhead.Domain;
 
 namespace PayAhead.Infrastructure;
 
@@ -24,6 +25,8 @@ public sealed class MaintenanceStore(PayAheadDbContext db, MaintenanceOptions op
             var count = await db.RefreshTokens.Where(x => ids.Contains(x.Id)).ExecuteDeleteAsync(ct);
             var buckets = await db.RateLimitBuckets.Where(x => x.ExpiresAtUtc < now.AddMinutes(-5)).OrderBy(x => x.ExpiresAtUtc).Take(options.BatchSize).Select(x => x.Id).ToArrayAsync(ct);
             count += await db.RateLimitBuckets.Where(x => buckets.Contains(x.Id) && x.ExpiresAtUtc < now.AddMinutes(-5)).ExecuteDeleteAsync(ct);
+            var historyIds = await db.Set<PasswordHistoryEntry>().Where(x => x.NormalChangedAtUtc <= now.AddDays(-30)).OrderBy(x => x.NormalChangedAtUtc).Take(options.BatchSize).Select(x => x.Id).ToArrayAsync(ct);
+            count += await db.Set<PasswordHistoryEntry>().Where(x => historyIds.Contains(x.Id) && x.NormalChangedAtUtc <= now.AddDays(-30)).ExecuteUpdateAsync(s => s.SetProperty(x => x.NormalChangedAtUtc, (DateTime?)null), ct);
             await tx.CommitAsync(ct);
             return count;
         });

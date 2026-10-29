@@ -103,7 +103,7 @@ public sealed class AuthTests
     private sealed class MemoryStore : IAuthStore
     {
         public User? User; public RefreshToken? Session; public bool Reused;
-        public Task RegisterAsync(User user, CancellationToken ct)
+        public Task RegisterAsync(User user, CancellationToken ct, string? legalVersion = null)
         { if (User is not null) throw new ResourceConflictException("Duplicate"); User = user; return Task.CompletedTask; }
         public Task<User?> AuthenticateAsync(string email, Func<User, bool> verify, DateTime now, CancellationToken ct)
             => Task.FromResult(User is { IsActive: true } && User.NormalizedEmail == email && verify(User) ? User : null);

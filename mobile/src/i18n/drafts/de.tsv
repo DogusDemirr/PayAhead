@@ -801,3 +801,41 @@ settings:avatar.unavailable|Der Fotodienst ist derzeit nicht verfügbar.
 settings:avatar.network|Prüfe deine Internetverbindung und versuche es erneut.
 settings:avatar.retry|Dein Profil wurde möglicherweise geändert. Aktualisiere es und wähle das Foto erneut aus.
 settings:avatar.unconfirmed|Das Ergebnis konnte nicht bestätigt werden. Aktualisiere dein Profil und prüfe dein Foto.
+settings:security.title|Datenschutz und Sicherheit
+settings:security.accountInfo|Eine Passwortänderung beendet alle Sitzungen und erfordert eine erneute Anmeldung. Es gibt keine vorgeschriebenen regelmäßigen Änderungen.
+settings:security.avatarInfo|Ändere oder entferne dein Profilfoto unter Mein Konto. Fotos werden nur mit autorisiertem Kontozugriff angezeigt.
+settings:security.password|Passwort ändern
+settings:security.quotaInfo|In einem gleitenden Zeitraum von 30 Tagen sind bis zu 3 erfolgreiche normale Änderungen erlaubt. Die sichere Kontowiederherstellung ist ausgenommen.
+settings:security.remaining|Verbleibende normale Änderungen: {{value0}}
+settings:security.next|Nächste normale Änderung möglich: {{value0}} UTC
+settings:security.recovery|Passwort vergessen / Konto wiederherstellen
+settings:security.sessions|Aktive Sitzungen: {{value0}}
+settings:security.sessionsInfo|Gezählt werden gültige Erneuerungssitzungen. Gerätenamen und das Abmelden einzelner Sitzungen sind in dieser Version nicht verfügbar.
+settings:security.legal|Rechtliche Informationen
+settings:security.rights|Rechte an personenbezogenen Daten
+settings:security.rightsInfo|Du kannst dein Profil berichtigen und dein Konto löschen. Ein verifizierter Kontaktkanal für weitere Anfragen wird vor Veröffentlichung ergänzt.
+settings:security.deleteInfo|Die Löschung entfernt persönliche und finanzielle Datensätze; begrenzte pseudonyme Store-Zuordnungen können bleiben. Store-Abos müssen eventuell separat gekündigt werden.
+settings:security.reused|Dein aktuelles oder ein früher verwendetes Passwort ist nicht zulässig.
+settings:security.common|Dieses Passwort steht auf der Liste häufiger Passwörter. Wähle ein anderes.
+settings:security.limit|Dein Kontingent normaler Passwortänderungen der letzten 30 Tage ist aufgebraucht. Die Kontowiederherstellung bleibt verfügbar.
+settings:security.weak|Schwach
+settings:security.fair|Mittel
+settings:security.strong|Stärker
+settings:security.strength|Geschätzte Passwortstärke
+settings:security.strengthHelp|Diese Anzeige ist keine Garantie. Einige häufige Passwörter werden gesperrt; dein Passwort wird nicht an einen externen Datenleckdienst gesendet.
+settings:legal.notice|KVKK-Informationshinweis
+settings:legal.privacy|Datenschutzerklärung
+settings:legal.terms|Nutzungsbedingungen
+settings:legal.draft|Rechtlicher Entwurf — vor Veröffentlichung sind rechtliche und sprachliche Prüfungen erforderlich. Kein endgültiges oder als vollständig konform bestätigtes Dokument.
+settings:legal.registration|Vor der Registrierung sind drei Entwürfe zugänglich. Diese Information ist keine Einwilligung. Keine Marketingeinwilligung und in der Entwurfsphase keine verpflichtende Vertragsannahme.
+settings:legal.identity|Verantwortlicher und Kontakt
+settings:legal.retentionTitle|Aufbewahrung und Kontolöschung
+settings:legal.transfersTitle|Dienste und Datenübermittlungen
+settings:legal.pending|Identität des Verantwortlichen, Anfrageadresse/-kanal und verifizierte Kontaktdaten: Vor Veröffentlichung auszufüllen.
+settings:legal.noticeBody|E-Mail, Name, Passwort-Hashes, Zahlungs-/Abodaten, Einstellungen, optionales Foto und bei aktivierten Mitteilungen Gerätedaten werden über App/API für Konto, Verwaltung, Sicherheit und angeforderte Erinnerungen erhoben. Die Rechtsgrundlage jedes Zwecks ist vor Veröffentlichung zu prüfen und zu ergänzen. Information ist keine Einwilligung.
+settings:legal.privacyBody|Kontodaten werden auf den verifizierten Nutzer beschränkt. Passwörter werden gehasht; vollständige Verschlüsselung oder absolute Sicherheit wird nicht garantiert. Produktionssicherheit und Infrastruktur sind vor Veröffentlichung zu prüfen. Marketing- oder optionale Analyseeinwilligungen werden nicht eingeholt.
+settings:legal.termsBody|PayAhead verwaltet persönliche Zahlungen und Abos; Rechnungen werden nicht bezahlt und Bankdaten nicht automatisch geprüft. Schätzungen sind nicht garantiert. Premium hängt vom verifizierten Store-Status ab; Kontolöschung kündigt kein Store-Abo. Vertragspartei, Gebühren/Erstattung und Streitregelungen: Vor Veröffentlichung auszufüllen.
+settings:legal.retention|Aktive Kontodaten bleiben für die Kontolaufzeit erhalten. Bekannte alte Passwort-Hashes werden bei Kontolöschung entfernt; Zeitmarken normaler Änderungen werden nach 30 Tagen durch Wartung geleert. Finanzdaten und Fotos werden gelöscht; pseudonyme Store-Zuordnungen können bleiben. Backups und endgültige Aufbewahrungs-/Löschfristen sind vor Veröffentlichung festzulegen.
+settings:legal.transfers|Bei Mitteilungen kann Expo, bei Store-Prüfung Apple/Google und bei E-Mail der konfigurierte SMTP-Anbieter verwendet werden. Entwicklung nutzt SQL Server, privaten lokalen Fotospeicher und Mailpit. Produktionsempfänger, Länder und rechtliche Übermittlungsbedingungen: Vor Veröffentlichung auszufüllen.
+settings:legal.rights|Information, Auskunft, Berichtigung, Löschung bei erfüllten Voraussetzungen und weitere gesetzliche Rechte können beantragt werden. Profilkorrektur und Kontolöschung sind verfügbar; ein verifizierter Anfragekanal folgt vor Veröffentlichung. Dieser Entwurf ersetzt keine Rechtsprüfung.
+settings:security.historyInfo|Geprüft werden das aktuelle Passwort und ab dieser Funktion gespeicherte Passwörter. Unbekannte frühere Passwörter sind rückwirkend nicht erkennbar.

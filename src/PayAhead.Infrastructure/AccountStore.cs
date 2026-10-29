@@ -26,8 +26,9 @@ public sealed class AccountStore(PayAheadDbContext db, IPasswordService password
         var settings = await db.UserSettings.AsNoTracking().Where(x => x.UserId == user).Select(x => new { x.LanguageCode, x.DefaultCurrencyCode, x.TimeZoneId, x.NotificationsEnabled }).SingleOrDefaultAsync(ct);
         var memberships = await db.UserSubscriptions.AsNoTracking().Where(x => x.UserId == user).Select(x => new { x.Provider, x.ProductId, x.Status, x.AutoRenew, x.CurrentPeriodEndUtc }).Take(101).ToArrayAsync(ct);
         var devices = await db.DeviceTokens.AsNoTracking().Where(x => x.UserId == user).Select(x => new { x.Id, x.Platform, x.IsActive, x.LastSeenAtUtc }).Take(1001).ToArrayAsync(ct);
+        var legalNotice = await db.Set<LegalNoticeReceipt>().AsNoTracking().Where(x => x.UserId == user).Select(x => new { x.NoticeVersion, x.PresentedAtUtc, x.RecordedAtUtc }).SingleOrDefaultAsync(ct);
         if (memberships.Length > 100 || devices.Length > 1000) throw new ExportLimitException();
-        var bytes = JsonSerializer.SerializeToUtf8Bytes(new { schemaVersion = 1, exportedAtUtc = clock.GetUtcNow(), profile, settings, plans, occurrences, reminders, trackedSubscriptions = tracked, memberships, devices }, new JsonSerializerOptions(JsonSerializerDefaults.Web) { Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter(), new ExportUtcConverter() } });
+        var bytes = JsonSerializer.SerializeToUtf8Bytes(new { schemaVersion = 1, exportedAtUtc = clock.GetUtcNow(), profile, settings, plans, occurrences, reminders, trackedSubscriptions = tracked, memberships, devices, legalNotice }, new JsonSerializerOptions(JsonSerializerDefaults.Web) { Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter(), new ExportUtcConverter() } });
         if (bytes.Length > 8 * 1024 * 1024) throw new ExportLimitException();
         await tx.CommitAsync(ct);
         return bytes;
@@ -52,6 +53,8 @@ public sealed class AccountStore(PayAheadDbContext db, IPasswordService password
         await db.RefreshTokens.Where(x => x.UserId == user).ExecuteUpdateAsync(s => s.SetProperty(x => x.RevokedAtUtc, now).SetProperty(x => x.ReplacedByTokenId, (Guid?)null), ct);
         await db.RefreshTokens.Where(x => x.UserId == user).ExecuteDeleteAsync(ct);
         await db.Set<PasswordResetToken>().Where(x => x.UserId == user).ExecuteDeleteAsync(ct);
+        await db.Set<PasswordHistoryEntry>().Where(x => x.UserId == user).ExecuteDeleteAsync(ct);
+        await db.Set<LegalNoticeReceipt>().Where(x => x.UserId == user).ExecuteDeleteAsync(ct);
         // Lock plans in a stable order to fence the notification scheduler before deleting dependent rows.
         _ = await db.PaymentPlans.FromSqlInterpolated($"SELECT * FROM PaymentPlans WITH(UPDLOCK,HOLDLOCK) WHERE UserId={user} ORDER BY Id").AsNoTracking().ToArrayAsync(ct);
         await db.NotificationDeliveries.Where(x => x.UserId == user).ExecuteDeleteAsync(ct);

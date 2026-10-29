@@ -17,4 +17,9 @@ public sealed class IdentityPasswordService : IPasswordService
         needsRehash = result == PasswordVerificationResult.SuccessRehashNeeded;
         return result != PasswordVerificationResult.Failed;
     }
+    public bool VerifyStored(User user, string hash, string password)
+    {
+        try { return hasher.VerifyHashedPassword(user, hash, password) != PasswordVerificationResult.Failed; }
+        catch (FormatException) { return false; }
+    }
 }

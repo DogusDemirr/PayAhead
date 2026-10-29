@@ -1,7 +1,7 @@
 import type { AxiosInstance } from 'axios';
 import type { AuthResponse, UserResponse } from '../types/api';
 export interface LoginRequest { email: string; password: string }
-export interface RegisterRequest extends LoginRequest { displayName: string }
+export interface RegisterRequest extends LoginRequest { displayName: string; legalVersion?: string }
 export function createAuthApi(client: AxiosInstance) {
   return {
     register: async (request: RegisterRequest) => (await client.post<UserResponse>('/api/auth/register', request)).data,

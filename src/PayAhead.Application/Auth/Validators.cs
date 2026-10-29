@@ -15,6 +15,7 @@ public sealed class RegisterValidator : AbstractValidator<RegisterRequest>
             .EmailAddress().WithMessage("Geçerli e-posta gereklidir.");
         RuleFor(x => x.DisplayName).NotEmpty().MaximumLength(100).Must(x => !string.IsNullOrWhiteSpace(x));
         RuleFor(x => x.Password).NotEmpty().MinimumLength(12).MaximumLength(128);
+        RuleFor(x => x.LegalVersion).Must(x => x is null || x == LegalDocuments.Version).WithMessage("The legal document version is not current.");
     }
 }
 public sealed class LoginValidator : AbstractValidator<LoginRequest>

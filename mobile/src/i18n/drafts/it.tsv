@@ -813,3 +813,41 @@ settings:avatar.unavailable|Il servizio foto non è attualmente disponibile.
 settings:avatar.network|Controlla la connessione Internet e riprova.
 settings:avatar.retry|Il profilo potrebbe essere cambiato. Aggiornalo e seleziona di nuovo la foto.
 settings:avatar.unconfirmed|Impossibile confermare il risultato. Aggiorna il profilo e controlla la foto.
+settings:security.title|Privacy e sicurezza
+settings:security.accountInfo|Cambiare la password termina tutte le sessioni e richiede un nuovo accesso. Non sono previste modifiche periodiche obbligatorie.
+settings:security.avatarInfo|Modifica o rimuovi la foto da Il mio account. Le foto sono visibili solo con accesso autorizzato all’account.
+settings:security.password|Cambia password
+settings:security.quotaInfo|Sono consentite fino a 3 modifiche normali riuscite in 30 giorni mobili. Il recupero sicuro dell’account è escluso.
+settings:security.remaining|Modifiche normali rimanenti: {{value0}}
+settings:security.next|Prossima modifica normale disponibile: {{value0}} UTC
+settings:security.recovery|Password dimenticata / recupera account
+settings:security.sessions|Sessioni attive: {{value0}}
+settings:security.sessionsInfo|Sono conteggiate le sessioni di rinnovo valide. Nomi dei dispositivi e chiusura delle singole sessioni non sono disponibili in questa versione.
+settings:security.legal|Informazioni legali
+settings:security.rights|Diritti sui dati personali
+settings:security.rightsInfo|Puoi correggere il profilo ed eliminare l’account. Prima della pubblicazione sarà aggiunto un contatto verificato per le altre richieste.
+settings:security.deleteInfo|L’eliminazione rimuove i dati personali e finanziari; possono restare limitati collegamenti pseudonimi con gli store. Gli abbonamenti possono richiedere una disdetta separata.
+settings:security.reused|Non puoi scegliere la password attuale o una già usata.
+settings:security.common|Questa password è nell’elenco di quelle comuni. Scegline un’altra.
+settings:security.limit|Hai esaurito le modifiche normali degli ultimi 30 giorni. Il recupero resta disponibile.
+settings:security.weak|Debole
+settings:security.fair|Media
+settings:security.strong|Più forte
+settings:security.strength|Stima della robustezza della password
+settings:security.strengthHelp|L’indicatore non è una garanzia. Alcune password comuni sono bloccate; la password non viene inviata a servizi esterni sulle violazioni.
+settings:legal.notice|Informativa KVKK
+settings:legal.privacy|Informativa sulla privacy
+settings:legal.terms|Condizioni d’uso
+settings:legal.draft|Bozza legale: richiede revisione giuridica e linguistica prima della pubblicazione. Non è definitiva né dichiarata pienamente conforme.
+settings:legal.registration|Prima della registrazione sono disponibili tre bozze. L’informazione non è consenso. Non si richiedono consenso marketing o accettazione contrattuale obbligatoria in questa fase.
+settings:legal.identity|Titolare e contatti
+settings:legal.retentionTitle|Conservazione ed eliminazione account
+settings:legal.transfersTitle|Servizi e trasferimenti di dati
+settings:legal.pending|Identità del titolare, indirizzo/canale delle richieste e contatti verificati: da completare prima della pubblicazione.
+settings:legal.noticeBody|E-mail, nome, hash delle password, pagamenti/abbonamenti, preferenze, foto facoltativa e dati del dispositivo con notifiche attive sono raccolti tramite app/API per account, gestione, sicurezza e promemoria richiesti. La base giuridica di ogni finalità va verificata e aggiunta prima della pubblicazione. Informazione non significa consenso.
+settings:legal.privacyBody|Le risorse sono limitate all’utente verificato. Le password sono memorizzate come hash; non si garantiscono cifratura totale o sicurezza assoluta. I controlli di produzione e infrastruttura vanno verificati prima della pubblicazione. Non si raccolgono consensi marketing o di analisi facoltativa.
+settings:legal.termsBody|PayAhead tiene traccia di pagamenti e abbonamenti personali; non paga bollette né verifica automaticamente registri bancari. Le stime non sono garantite. Premium dipende dallo stato verificato dello store; eliminare l’account non disdice l’abbonamento. Identità della parte, costi/rimborsi e controversie: da completare prima della pubblicazione.
+settings:legal.retention|I dati attivi restano per la durata dell’account. Gli hash precedenti noti vengono rimossi eliminando l’account; le date delle modifiche normali sono cancellate dalla manutenzione dopo 30 giorni. Dati finanziari e foto vengono eliminati; possono restare legami pseudonimi con gli store. Backup e tempi finali di conservazione/eliminazione vanno definiti prima della pubblicazione.
+settings:legal.transfers|Expo può gestire le notifiche, Apple/Google la verifica degli acquisti e il fornitore SMTP configurato le e-mail. Lo sviluppo usa SQL Server, archivio foto locale privato e Mailpit. Destinatari, paesi e condizioni legali dei trasferimenti in produzione: da completare prima della pubblicazione.
+settings:legal.rights|Puoi richiedere informazioni, accesso, rettifica, eliminazione/distruzione quando applicabile e altri diritti legali. Correzione del profilo ed eliminazione dell’account sono disponibili; un canale verificato sarà aggiunto prima della pubblicazione. La bozza non sostituisce una revisione legale.
+settings:security.historyInfo|Il controllo riguarda la password attuale e quelle registrate da questa funzione. Le precedenti sconosciute non sono rilevabili retroattivamente.

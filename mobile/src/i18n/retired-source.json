@@ -1,3 +1,4 @@
 {
-  "payments:m_7c017ff51519": "Phase 5.3.1: genel silme/yükle hatası yerine iş kuralına özgü modern dialog kullanılıyor; eski çeviri kaynakları korunuyor."
+  "payments:m_7c017ff51519": "Phase 5.3.1: genel silme/yükle hatası yerine iş kuralına özgü modern dialog kullanılıyor; eski çeviri kaynakları korunuyor.",
+  "settings:m_d5fb076f2548": "Phase 5.4: gizlilik placeholder metni yerine gerçek güvenlik/hukuki taslak ekranı kullanılır."
 }

@@ -802,3 +802,41 @@ settings:avatar.unavailable|De fotoservice is momenteel niet beschikbaar.
 settings:avatar.network|Controleer je internetverbinding en probeer het opnieuw.
 settings:avatar.retry|Je profiel is mogelijk gewijzigd. Vernieuw het en selecteer de foto opnieuw.
 settings:avatar.unconfirmed|Het resultaat kon niet worden bevestigd. Vernieuw je profiel en controleer je foto.
+settings:security.title|Privacy en beveiliging
+settings:security.accountInfo|Een nieuw wachtwoord beëindigt alle sessies en vereist opnieuw aanmelden. Er zijn geen verplichte periodieke wijzigingen.
+settings:security.avatarInfo|Wijzig of verwijder je profielfoto via Mijn account. Foto’s zijn alleen zichtbaar met bevoegde accounttoegang.
+settings:security.password|Wachtwoord wijzigen
+settings:security.quotaInfo|Maximaal 3 geslaagde normale wijzigingen in een voortschrijdende periode van 30 dagen. Veilig accountherstel valt erbuiten.
+settings:security.remaining|Normale wijzigingen over: {{value0}}
+settings:security.next|Volgende normale wijziging mogelijk: {{value0}} UTC
+settings:security.recovery|Wachtwoord vergeten / account herstellen
+settings:security.sessions|Actieve sessies: {{value0}}
+settings:security.sessionsInfo|Dit telt geldige vernieuwingssessies. Apparaatnamen en afzonderlijk afmelden zijn niet beschikbaar in deze versie.
+settings:security.legal|Juridische informatie
+settings:security.rights|Rechten op persoonsgegevens
+settings:security.rightsInfo|Je kunt je profiel corrigeren en je account verwijderen. Voor andere verzoeken komt vóór publicatie een geverifieerd contactkanaal.
+settings:security.deleteInfo|Verwijderen wist persoonlijke en financiële gegevens; beperkte gepseudonimiseerde winkelkoppelingen kunnen blijven. Abonnementen moet je mogelijk apart opzeggen.
+settings:security.reused|Je kunt je huidige of een eerder gebruikt wachtwoord niet kiezen.
+settings:security.common|Dit wachtwoord staat op de lijst met veelgebruikte wachtwoorden. Kies een ander.
+settings:security.limit|Je normale wijzigingslimiet over de afgelopen 30 dagen is bereikt. Accountherstel blijft beschikbaar.
+settings:security.weak|Zwak
+settings:security.fair|Redelijk
+settings:security.strong|Sterker
+settings:security.strength|Geschatte wachtwoordsterkte
+settings:security.strengthHelp|Deze meter biedt geen garantie. Sommige veelgebruikte wachtwoorden worden geblokkeerd; je wachtwoord gaat niet naar een externe datalekdienst.
+settings:legal.notice|KVKK-informatiebericht
+settings:legal.privacy|Privacybeleid
+settings:legal.terms|Gebruiksvoorwaarden
+settings:legal.draft|Juridisch concept: juridische en taalkundige controle is nodig vóór publicatie. Niet definitief of als volledig conform verklaard.
+settings:legal.registration|Vóór registratie zijn drie concepten beschikbaar. De informatie is geen toestemming. In deze fase vragen we geen marketingtoestemming of verplichte contractaanvaarding.
+settings:legal.identity|Verwerkingsverantwoordelijke en contact
+settings:legal.retentionTitle|Bewaartermijnen en accountverwijdering
+settings:legal.transfersTitle|Diensten en gegevensoverdracht
+settings:legal.pending|Identiteit van de verantwoordelijke, adres/kanaal voor verzoeken en geverifieerde contactgegevens: vóór publicatie invullen.
+settings:legal.noticeBody|E-mail, naam, wachtwoordhashes, betalingen/abonnementen, voorkeuren, optionele foto en bij meldingen apparaatgegevens worden via app/API verzameld voor account, beheer, beveiliging en gevraagde herinneringen. De rechtsgrond per doel moet vóór publicatie worden gecontroleerd en toegevoegd. Informeren is geen toestemming.
+settings:legal.privacyBody|Accountgegevens zijn beperkt tot de geverifieerde gebruiker. Wachtwoorden worden gehasht; volledige versleuteling of absolute veiligheid wordt niet gegarandeerd. Productie- en infrastructuurcontroles moeten vóór publicatie worden geverifieerd. Er wordt geen marketing- of optionele analysetoestemming verzameld.
+settings:legal.termsBody|PayAhead houdt persoonlijke betalingen en abonnementen bij; het betaalt geen rekeningen en controleert geen bankgegevens automatisch. Schattingen zijn niet gegarandeerd. Premium hangt af van de geverifieerde winkelstatus; accountverwijdering zegt geen winkelabonnement op. Contractpartij, kosten/terugbetaling en geschillen: vóór publicatie invullen.
+settings:legal.retention|Actieve gegevens blijven gedurende de accountduur bewaard. Bekende oude wachtwoordhashes verdwijnen bij accountverwijdering; normale wijzigingsdatums worden na 30 dagen door onderhoud gewist. Financiële gegevens en foto’s worden verwijderd; gepseudonimiseerde winkelkoppelingen kunnen blijven. Backups en definitieve bewaar-/verwijdertermijnen worden vóór publicatie vastgesteld.
+settings:legal.transfers|Expo kan worden gebruikt voor meldingen, Apple/Google voor aankoopcontrole en de ingestelde SMTP-provider voor e-mail. Ontwikkeling gebruikt SQL Server, private lokale foto-opslag en Mailpit. Productieontvangers, landen en juridische overdrachtsvoorwaarden: vóór publicatie invullen.
+settings:legal.rights|Je kunt informatie, inzage, correctie, verwijdering/vernietiging indien van toepassing en andere wettelijke rechten verzoeken. Profielcorrectie en accountverwijdering zijn beschikbaar; vóór publicatie komt een geverifieerd kanaal. Dit concept vervangt geen juridische controle.
+settings:security.historyInfo|De controle omvat het huidige wachtwoord en wachtwoorden vastgelegd sinds deze functie. Onbekende oudere wachtwoorden zijn niet achteraf te herkennen.

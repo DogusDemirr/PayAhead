@@ -1,5 +1,9 @@
 # Authentication ve güvenlik kararları — Faz 6–10
 
+## Mobil Phase 5.4 ekleri
+
+[Parola kotası, geçmiş ve hukuki taslak teknik sözleşmesi](PRIVACY_SECURITY.md). Normal değişim son 30 günde en fazla 3 başarıdır; recovery bu kotaya dahil değildir. Geçmiş hash doğrulaması normal/resette, kullanıcı SQL kilidi ve aynı transaction altında yapılır. Mevcut salted Identity hash algoritması, credentials rate limiti ve access/refresh invalidation korunur. Yeni security summary parola/cihaz kimliği döndürmez. Geçmiş aktif hesap ömrünce tutulur, hesap silmede temizlenir; eski normal zaman etiketleri bakımda temizlenir. Küçük yerel yaygın parola listesi kapsamlı breach taraması veya NIST uygunluğu değildir.
+
 ## Faz 10 ekleri
 
 Production/Staging TLS doğrulayan SA olmayan SQL, açık AllowedHosts ve güçlü dış JWT key ile fail-fast; fake push/etkin resmi olmayan Expo URL reddi. CORS exact HTTPS allowlist, credentials yok. Genel1MiB ve privacy4096byte sınırı, güvenlik başlıkları ve doğrulanmış CorrelationId eklendi. SQL rate limit tüm instance'larda ortak, kesinti sensitive route503 fail-closed. İki API bütçesi/40bağlantı yarışı, export izolasyonu, reauth deletion/rollback, cleanup ve eski JWT/replay/IDOR testleri vardır. Ayrıntılar [runbook](OPERATIONS_RUNBOOK.md), [privacy](DATA_PRIVACY.md), [deployment](DEPLOYMENT.md).

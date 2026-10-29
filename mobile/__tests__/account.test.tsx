@@ -9,6 +9,7 @@ import { i18next, t, useLanguageStore } from '../src/i18n/runtime';
 import { languages } from '../src/i18n/languages';
 import { useUiStore } from '../src/store/ui';
 import { session } from '../src/services/auth-runtime';
+jest.mock('../src/features/privacy/queries', () => ({ useSecuritySummary: () => ({ data: { remainingChanges: 3, activeSessions: 1, nextAvailableAtUtc: null }, refetch: jest.fn(), isError: false }) }));
 jest.mock('../src/features/account/avatar', () => ({ AvatarControl: () => null }));
 jest.mock('../src/features/account/queries', () => ({ useProfile: jest.fn(), useAccountMutation: jest.fn() }));
 jest.mock('../src/features/payments/queries', () => ({ useEntitlements: jest.fn() }));
@@ -84,6 +85,22 @@ test('mismatched new passwords do not reach the API', async () => {
   await render(<PasswordForm />);
   for (const [field, value] of [['currentPassword', 'old-password!'], ['newPassword', 'new-password!'], ['repeatPassword', 'different-password!']]) await fireEvent.changeText(screen.getByLabelText(t('settings:profile.' + field)), value);
   await fireEvent.press(screen.getByRole('button', { name: t('settings:profile.changePassword') })); expect(screen.getByText(t('settings:profile.passwordMismatch'))).toBeTruthy(); expect(mutate).not.toHaveBeenCalled();
+});
+
+test('exhausted normal allowance disables submission without changing account deletion', async () => {
+  await render(<PasswordForm policy={{ remainingChanges: 0 }} />);
+  expect(screen.getByRole('button', { name: t('settings:profile.changePassword') })).toBeDisabled();
+  await render(<PasswordForm deleting policy={{ remainingChanges: 0 }} />);
+  expect(screen.getByRole('button', { name: t('settings:profile.confirmDelete') })).toBeEnabled();
+});
+
+test.each(['password_reused', 'password_common', 'password_change_limit'])('%s clears secrets, refreshes quota and leaves session intact', async code => {
+  mutate.mockRejectedValueOnce(new ApiError('untrusted detail', code === 'password_change_limit' ? 409 : 400, undefined, undefined, 'http', code)); const refreshPolicy = jest.fn();
+  await render(<PasswordForm refreshPolicy={refreshPolicy} />);
+  for (const [field, value] of [['currentPassword', 'old-password!'], ['newPassword', 'new-password!'], ['repeatPassword', 'new-password!']]) await fireEvent.changeText(screen.getByLabelText(t('settings:profile.' + field)), value);
+  await fireEvent.press(screen.getByRole('button', { name: t('settings:profile.changePassword') }));
+  expect(refreshPolicy).toHaveBeenCalled(); expect(session.invalidate).not.toHaveBeenCalled(); expect(screen.queryByText('untrusted detail')).toBeNull();
+  for (const field of ['currentPassword', 'newPassword', 'repeatPassword']) expect(screen.getByLabelText(t('settings:profile.' + field)).props.value).toBe('');
 });
 test('uncertain password write clears secrets and closes the local session without claiming success', async () => {
   mutate.mockRejectedValueOnce(new ApiError('offline', undefined, undefined, undefined, 'network')); await render(<PasswordForm />);

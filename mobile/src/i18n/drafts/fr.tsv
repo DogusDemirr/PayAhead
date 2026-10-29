@@ -813,3 +813,41 @@ settings:avatar.unavailable|Le service photo est actuellement indisponible.
 settings:avatar.network|Vérifiez votre connexion Internet et réessayez.
 settings:avatar.retry|Votre profil a peut-être changé. Actualisez-le et sélectionnez à nouveau la photo.
 settings:avatar.unconfirmed|Le résultat n’a pas pu être confirmé. Actualisez votre profil et vérifiez votre photo.
+settings:security.title|Confidentialité et sécurité
+settings:security.accountInfo|Changer de mot de passe ferme toutes les sessions et impose une nouvelle connexion. Aucun changement périodique obligatoire n’est prévu.
+settings:security.avatarInfo|Modifiez ou retirez votre photo dans Mon compte. Seul un accès autorisé au compte permet de l’afficher.
+settings:security.password|Changer le mot de passe
+settings:security.quotaInfo|Au maximum 3 changements normaux réussis sur 30 jours glissants. La récupération sécurisée du compte en est exclue.
+settings:security.remaining|Changements normaux restants : {{value0}}
+settings:security.next|Prochain changement normal possible : {{value0}} UTC
+settings:security.recovery|Mot de passe oublié / récupérer mon compte
+settings:security.sessions|Sessions actives : {{value0}}
+settings:security.sessionsInfo|Ce nombre correspond aux sessions de renouvellement valides. Les noms des appareils et la fermeture individuelle ne sont pas disponibles dans cette version.
+settings:security.legal|Informations juridiques
+settings:security.rights|Droits sur les données personnelles
+settings:security.rightsInfo|Vous pouvez corriger votre profil et supprimer votre compte. Un contact vérifié pour les autres demandes sera ajouté avant publication.
+settings:security.deleteInfo|La suppression efface les données personnelles et financières ; certains liens pseudonymisés avec les boutiques peuvent subsister. Les abonnements peuvent nécessiter une résiliation séparée.
+settings:security.reused|Vous ne pouvez pas utiliser le mot de passe actuel ou un ancien mot de passe.
+settings:security.common|Ce mot de passe figure dans la liste des mots de passe courants. Choisissez-en un autre.
+settings:security.limit|Le quota de changements normaux sur les 30 derniers jours est épuisé. La récupération reste disponible.
+settings:security.weak|Faible
+settings:security.fair|Moyen
+settings:security.strong|Plus fort
+settings:security.strength|Estimation de la force du mot de passe
+settings:security.strengthHelp|Cet indicateur ne garantit rien. Certains mots de passe courants sont bloqués ; votre mot de passe n’est pas transmis à un service tiers de fuites.
+settings:legal.notice|Notice d’information KVKK
+settings:legal.privacy|Politique de confidentialité
+settings:legal.terms|Conditions d’utilisation
+settings:legal.draft|Projet juridique — une révision juridique et linguistique est nécessaire avant publication. Ce document n’est ni définitif ni déclaré pleinement conforme.
+settings:legal.registration|Trois projets sont accessibles avant l’inscription. Cette information n’est pas un consentement. Aucun consentement marketing ni acceptation contractuelle obligatoire n’est recueilli au stade du projet.
+settings:legal.identity|Responsable du traitement et contact
+settings:legal.retentionTitle|Conservation et suppression du compte
+settings:legal.transfersTitle|Services et transferts de données
+settings:legal.pending|Identité du responsable, adresse/canal des demandes et coordonnées vérifiées : à compléter avant publication.
+settings:legal.noticeBody|E-mail, nom, empreintes des mots de passe, paiements/abonnements, préférences, photo facultative et données d’appareil si les notifications sont activées sont recueillis via l’application/API pour le compte, le suivi, la sécurité et les rappels demandés. La base juridique de chaque finalité doit être vérifiée et ajoutée avant publication. Informer ne vaut pas consentement.
+settings:legal.privacyBody|Les ressources sont limitées à l’utilisateur vérifié. Les mots de passe sont hachés ; aucun chiffrement intégral ou sécurité absolue n’est garanti. Les contrôles de production et d’infrastructure doivent être vérifiés avant publication. Aucun consentement marketing ou d’analyse facultative n’est recueilli.
+settings:legal.termsBody|PayAhead suit les paiements et abonnements personnels ; il ne règle pas les factures et ne vérifie pas automatiquement les données bancaires. Les estimations ne sont pas garanties. Premium dépend du statut vérifié de la boutique ; supprimer le compte ne résilie pas l’abonnement. Identité contractante, frais/remboursements et litiges : à compléter avant publication.
+settings:legal.retention|Les données actives sont conservées pendant la vie du compte. Les anciennes empreintes connues sont retirées à sa suppression ; les dates de changements normaux sont effacées par maintenance après 30 jours. Données financières et photos sont supprimées ; des liens pseudonymisés avec les boutiques peuvent rester. Sauvegardes et durées finales de conservation/suppression restent à préciser avant publication.
+settings:legal.transfers|Expo peut servir aux notifications, Apple/Google aux vérifications de boutique et le fournisseur SMTP configuré aux e-mails. Le développement utilise SQL Server, un stockage photo local privé et Mailpit. Destinataires, pays et conditions juridiques des transferts de production : à compléter avant publication.
+settings:legal.rights|Vous pouvez demander information, accès, rectification, effacement/destruction sous conditions et exercer les autres droits légaux. Correction du profil et suppression du compte sont disponibles ; un canal vérifié sera ajouté avant publication. Ce projet ne remplace pas une revue juridique.
+settings:security.historyInfo|Le contrôle couvre le mot de passe actuel et ceux enregistrés depuis cette fonction. Les anciens mots de passe inconnus ne sont pas détectables rétroactivement.

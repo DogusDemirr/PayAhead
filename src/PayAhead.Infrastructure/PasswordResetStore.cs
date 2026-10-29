@@ -38,7 +38,7 @@ public sealed class PasswordResetStore(PayAheadDbContext db) : IPasswordResetSto
             await db.Set<PasswordResetToken>().Where(x => x.UserId == user.Id && x.ExpiresAtUtc < token.CreatedAtUtc.AddDays(-1)).ExecuteDeleteAsync(ct);
             token.UserId = user.Id; db.Add(token); await db.SaveChangesAsync(ct); await tx.CommitAsync(ct); return user;
         });
-    public async Task<bool> ConsumeAsync(string hash, DateTime now, Func<User, string> newHash, CancellationToken ct)
+    public async Task<bool> ConsumeAsync(string hash, DateTime now, Func<User, IReadOnlyList<string>, string> newHash, CancellationToken ct)
     {
         await EnsureSchemaAsync(ct);
         var owner = await db.Set<PasswordResetToken>().AsNoTracking().Where(x => x.TokenHash == hash).Select(x => (Guid?)x.UserId).SingleOrDefaultAsync(ct);
@@ -49,7 +49,11 @@ public sealed class PasswordResetStore(PayAheadDbContext db) : IPasswordResetSto
             var user = await db.Users.FromSqlInterpolated($"SELECT * FROM Users WITH(UPDLOCK,HOLDLOCK) WHERE Id={owner.Value}").SingleOrDefaultAsync(ct);
             var token = await db.Set<PasswordResetToken>().SingleOrDefaultAsync(x => x.TokenHash == hash, ct);
             if (user is null || !user.IsActive || token is null || token.ConsumedAtUtc != null || token.ExpiresAtUtc <= now) return false;
-            user.PasswordHash = newHash(user); user.FailedLoginCount = 0; user.LoginLockedUntilUtc = null; user.UpdatedAtUtc = now;
+            var retired = await db.Set<PasswordHistoryEntry>().Where(x => x.UserId == user.Id).Select(x => x.PasswordHash).ToArrayAsync(ct);
+            var replacement = newHash(user, retired);
+            db.Set<PasswordHistoryEntry>().Add(new() { Id = Guid.NewGuid(), UserId = user.Id, PasswordHash = user.PasswordHash });
+            user.PasswordHash = replacement; user.SecurityStamp = Guid.NewGuid(); user.FailedLoginCount = 0; user.LoginLockedUntilUtc = null; user.UpdatedAtUtc = now;
+            await db.DeviceTokens.Where(x => x.UserId == user.Id && x.IsActive).ExecuteUpdateAsync(s => s.SetProperty(x => x.IsActive, false), ct);
             await db.Set<PasswordResetToken>().Where(x => x.UserId == user.Id && x.ConsumedAtUtc == null).ExecuteUpdateAsync(s => s.SetProperty(x => x.ConsumedAtUtc, now), ct);
             await db.RefreshTokens.Where(x => x.UserId == user.Id && x.RevokedAtUtc == null).ExecuteUpdateAsync(s => s.SetProperty(x => x.RevokedAtUtc, now), ct);
             await db.SaveChangesAsync(ct); await tx.CommitAsync(ct); return true;

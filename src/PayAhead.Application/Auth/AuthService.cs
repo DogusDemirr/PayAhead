@@ -11,6 +11,7 @@ public sealed class AuthService(IAuthStore store, IPasswordService passwords, IT
     public async Task<UserResponse> RegisterAsync(RegisterRequest request, CancellationToken ct)
     {
         await registration.ValidateAndThrowAsync(request, ct);
+        if (PasswordSecurity.IsCommon(request.Password!)) throw new PasswordSecurityException("password_common");
         var now = clock.GetUtcNow().UtcDateTime;
         var user = new User
         {
@@ -22,7 +23,7 @@ public sealed class AuthService(IAuthStore store, IPasswordService passwords, IT
             UpdatedAtUtc = now
         };
         user.PasswordHash = passwords.Hash(user, request.Password!);
-        await store.RegisterAsync(user, ct);
+        await store.RegisterAsync(user, ct, request.LegalVersion);
         return UserResponse.From(user);
     }
 

@@ -1,5 +1,7 @@
 # Veri export ve hesap silme
 
+Phase 5.4: Export'a yalnız `legalNotice` sürüm/sunum/kayıt metadata'sı eklenir; parola geçmişi/özetleri export edilmez. Doğrulamalı silme bu kullanıcıya ait `PasswordHistory` ve `LegalNoticeReceipts` satırlarını da temizler. Kayıt bilgilendirmesi açık rıza değildir. [Saklama ve bilinmeyen yayın bilgileri](PRIVACY_SECURITY.md), [hukuki taslaklar](legal/KVKK_AYDINLATMA_TASLAK.md).
+
 Teknik davranış açıklanır; KVKK veya başka uygulanabilir mevzuata uygunluk garanti edilmez. Veri sorumlusu, aydınlatma, işleme/aktarım dayanağı, saklama ve silme yükümlülükleri hukuk/gizlilik sahibi tarafından incelenmelidir. [KVKK resmi kaynakları](https://www.kvkk.gov.tr/).
 
 ## Export

@@ -14,6 +14,7 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
     {
         var status = exception switch
         {
+            PayAhead.Application.Auth.PasswordSecurityException security => security.Code == "password_change_limit" ? 409 : 400,
             PayAhead.Application.Auth.AvatarException avatar => avatar.Code switch { "avatar_too_large" => 413, "avatar_changed" => 409, "avatar_unavailable" => 503, _ => 400 },
             ValidationException or DomainRuleException or PayAhead.Application.Auth.CurrentPasswordException => 400,
             BadHttpRequestException { StatusCode: 413 } => 413,
@@ -52,10 +53,11 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
             503 => exception is PayAhead.Application.Auth.AvatarException ? "Profil fotoğrafı hizmeti şu anda kullanılamıyor." : exception is PayAhead.Application.Auth.PasswordResetUnavailableException ? "Şifre yenileme hizmeti şu anda kullanılamıyor." : "Mağaza doğrulaması şu anda kullanılamıyor.",
             413 => exception is PayAhead.Application.Operations.ExportLimitException ? "Veri dışa aktarım sınırı aşıldı; destek üzerinden parçalara ayrılmış aktarım isteyin." : "İstek gövdesi çok büyük.",
             404 => context.Request.Path.StartsWithSegments("/api/users/me/avatar") ? "Profil fotoğrafı bulunamadı." : "Ödeme planı bulunamadı.",
-            409 => exception is PaymentDeletionRestrictedException ? "Bağlı kayıtları olan plan silinemiyor." : exception is ResourceConflictException ? exception.Message : "Kaynak başka bir işlem tarafından değiştirildi.",
+            409 => exception is PayAhead.Application.Auth.PasswordSecurityException ? "Normal şifre değiştirme sınırına ulaşıldı." : exception is PaymentDeletionRestrictedException ? "Bağlı kayıtları olan plan silinemiyor." : exception is ResourceConflictException ? exception.Message : "Kaynak başka bir işlem tarafından değiştirildi.",
             _ => "Beklenmeyen sunucu hatası."
         };
         detail.Extensions["traceId"] = context.TraceIdentifier;
+        if (exception is PayAhead.Application.Auth.PasswordSecurityException securityError) detail.Extensions["code"] = securityError.Code;
         if (exception is EntitlementLimitException) detail.Extensions["code"] = "entitlement_limit";
         if (exception is PayAhead.Application.Auth.CurrentPasswordException) detail.Extensions["code"] = "current_password_invalid";
         if (exception is PayAhead.Application.Auth.AvatarException avatarError) detail.Extensions["code"] = avatarError.Code;

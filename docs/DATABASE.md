@@ -1,3 +1,5 @@
+> **29 Ekim 2026 — Phase 5.4:** `20261029131024_AccountPrivacySecurity` yalnız `PasswordHistory` ve `LegalNoticeReceipts` ekler; toplam 22 tablo/PK ve 25 FK. Mevcut hash, User ID, avatar ve finansal veriye backfill/update yoktur. Doğrulanmış `PayAheadDockerDevelopment` hedefine açıkça uygulandı; önce/sonra mevcut kullanıcı/finans/session/katalog fingerprint aynı, pending0. Startup migration ve gerçek DB rollback yok. [Transaction, saklama ve komutlar](PRIVACY_SECURITY.md).
+
 > **29 Ekim 2026 — Phase 5.3.1:** `20261028210901_ProfileAvatar` Users tablosuna yalnız nullable `AvatarKey varchar(36)` ekler. Doğrulanmış Development hedefe uygulandı; mevcut kullanıcı/finans/session değerleri aynı, pending0. Startup migration yok. [Avatar saklama/temizlik](AVATARS.md).
 
 ## Phase 5.3 — User profil güvenliği (28 Ekim 2026)

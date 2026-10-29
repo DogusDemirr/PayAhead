@@ -3,15 +3,18 @@ import { useRef, useState } from 'react';
 import { View, Pressable } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { ArrowRight, Layers3 } from 'lucide-react-native';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isCancel } from 'axios';
 import { authApi, session } from '../services/auth-runtime';
 import { ApiError } from '../services/api-error';
 import { useSessionStore } from '../store/session';
-import { loginSchema, registerSchema, type AuthFields } from './auth-validation';
+import { loginSchema, registerSchema, type AuthFields, type AuthValues } from './auth-validation';
 import { AppScreen, AppText, AppInput, AppButton, Brand, AppCard, Assurance, styles } from '../components/ui';
 import { useTheme } from '../theme/use-theme';
+import { LegalLinks } from './privacy/PrivacyScreen';
+import { legalVersion } from './privacy/documents';
+import { PasswordStrength } from './privacy/PasswordStrength';
 export default function AuthScreen({ register = false }: {
     register?: boolean;
 }) {
@@ -24,7 +27,8 @@ export default function AuthScreen({ register = false }: {
     const { registered } = useLocalSearchParams<{
         registered?: string;
     }>();
-    const { control, handleSubmit, setError, resetField, formState: { errors } } = useForm<AuthFields>({ resolver: zodResolver(register ? registerSchema : loginSchema), defaultValues: { email: '', password: '', displayName: '' } });
+    const { control, handleSubmit, setError, resetField, formState: { errors } } = useForm<AuthFields, unknown, AuthValues>({ resolver: zodResolver(register ? registerSchema : loginSchema), defaultValues: { email: '', password: '', displayName: '', confirmation: '' } });
+    const passwordValue = useWatch({ control, name: 'password' });
     const submit = () => handleSubmit(async ({ email, password, displayName }) => {
         if (busy.current)
             return;
@@ -33,8 +37,9 @@ export default function AuthScreen({ register = false }: {
         setNotice(null);
         try {
             if (register) {
-                await authApi.register({ email, password, displayName });
+                await authApi.register({ email, password, displayName, legalVersion });
                 resetField('password');
+                resetField('confirmation');
                 router.replace({ pathname: '/(auth)/login', params: { registered: 'true' } });
             }
             else {
@@ -68,7 +73,7 @@ export default function AuthScreen({ register = false }: {
     <View style={{ gap: 18 }}>{register && <Controller control={control} name="displayName" render={({ field }) => <AppInput label={t("auth:m_c5176ef33f7c")} placeholder={t("auth:m_899e435d76b8")} autoComplete="name" value={field.value} onChangeText={field.onChange} onBlur={field.onBlur} error={errors.displayName?.message}/>}/>}
       <Controller control={control} name="email" render={({ field }) => <AppInput label={t("auth:m_e1081b69d80a")} placeholder={t("auth:m_b9c454be10ce")} keyboardType="email-address" autoCapitalize="none" autoCorrect={false} autoComplete="email" value={field.value} onChangeText={field.onChange} onBlur={field.onBlur} error={errors.email?.message}/>}/>
       <Controller control={control} name="password" render={({ field }) => <AppInput label={t("auth:m_e1ac97fff826")} placeholder={register ? t("auth:m_7f510bd4744d") : t("auth:m_d247f5085a6c")} secureTextEntry autoComplete={register ? 'new-password' : 'current-password'} value={field.value} onChangeText={field.onChange} onBlur={field.onBlur} error={errors.password?.message} returnKeyType="done" onSubmitEditing={submit}/>}/>
-      <AppText variant="caption" tone="muted">{t("auth:m_fea4c6044718")}</AppText>
+      {register && <><Controller control={control} name="confirmation" render={({ field }) => <AppInput label={t('settings:profile.repeatPassword')} value={field.value ?? ''} onChangeText={field.onChange} secureTextEntry autoComplete="new-password" error={errors.confirmation?.message} />} /><PasswordStrength password={passwordValue} /><AppCard><AppText variant="caption" tone="warning">{t('settings:legal.registration')}</AppText><LegalLinks /></AppCard></>}<AppText variant="caption" tone="muted">{t("auth:m_fea4c6044718")}</AppText>
       {(notice || sessionNotice) && <AppCard style={{ backgroundColor: colors.warningSoft, padding: 16 }}><AppText tone="warning" accessibilityRole="alert">{notice || sessionNotice}</AppText></AppCard>}
       {!register && <AppButton title={t("auth:m_14411176800f")} variant="ghost" disabled={submitting} onPress={() => router.push('/forgot-password')}/>}<AppButton title={register ? t("auth:m_bc5c818f2f46") : t("auth:m_b872b116e8f6")} icon={ArrowRight} loading={submitting} disabled={submitting} onPress={submit}/>
     </View>

@@ -81,7 +81,9 @@ test('registration returns to login and does not assume automatic login', async 
   await fireEvent.changeText(screen.getByLabelText('Adın'), 'Test');
   await fireEvent.changeText(screen.getByLabelText('E-posta'), 'test@example.com');
   await fireEvent.changeText(screen.getByLabelText('Şifre'), 'Example-password-123');
+  if (screen.queryByLabelText('Yeni şifre tekrar')) await fireEvent.changeText(screen.getByLabelText('Yeni şifre tekrar'), 'Example-password-123');
   await fireEvent.press(screen.getByRole('button', { name: 'Hesap oluştur' }));
+  expect(authApi.register).toHaveBeenCalledWith({ email: 'test@example.com', displayName: 'Test', password: 'Example-password-123', legalVersion: '2026-10-29-draft-1' });
   expect(router.replace).toHaveBeenCalledWith({ pathname: '/(auth)/login', params: { registered: 'true' } });
   expect(session.login).not.toHaveBeenCalled();
 });
@@ -91,6 +93,7 @@ test('backend register validation is attached to the matching input', async () =
   await fireEvent.changeText(screen.getByLabelText('Adın'), 'Test');
   await fireEvent.changeText(screen.getByLabelText('E-posta'), 'test@example.com');
   await fireEvent.changeText(screen.getByLabelText('Şifre'), 'Example-password-123');
+  if (screen.queryByLabelText('Yeni şifre tekrar')) await fireEvent.changeText(screen.getByLabelText('Yeni şifre tekrar'), 'Example-password-123');
   await fireEvent.press(screen.getByRole('button', { name: 'Hesap oluştur' }));
   await waitFor(() => expect(screen.getByText('Bu alanı kontrol edip geçerli bir değer gir.')).toBeTruthy());
 });
