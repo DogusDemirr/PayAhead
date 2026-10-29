@@ -70,9 +70,12 @@
   "avatar.remove": "Foto verwijderen",
   "avatar.uploading": "Foto uploaden",
   "avatar.updated": "Foto bijgewerkt.",
-  "avatar.failed": "De foto kon niet worden geüpload. Je bestaande foto is niet gewijzigd.",
-  "avatar.invalid": "Kies een geldige JPEG-, PNG- of WebP-afbeelding.",
-  "avatar.large": "Het bestand mag maximaal 2 MB en 2048 × 2048 pixels zijn.",
+  "avatar.failed": "De foto kon niet worden geüpload. Probeer het later opnieuw.",
+  "avatar.invalid": "Kies een JPG, PNG of een ander ondersteund fotoformaat.",
+  "avatar.large": "De foto is groter dan toegestaan.",
   "avatar.permission": "Toegang tot de galerij is nodig om een foto te kiezen. Controleer de toestemming in de apparaatinstellingen.",
-  "avatar.unavailable": "De fotoservice is momenteel niet beschikbaar."
+  "avatar.unavailable": "De fotoservice is momenteel niet beschikbaar.",
+  "avatar.network": "Controleer je internetverbinding en probeer het opnieuw.",
+  "avatar.retry": "Je profiel is mogelijk gewijzigd. Vernieuw het en selecteer de foto opnieuw.",
+  "avatar.unconfirmed": "Het resultaat kon niet worden bevestigd. Vernieuw je profiel en controleer je foto."
 }

@@ -1,3 +1,44 @@
+## Ek düzeltme — Yükleme başarılı, avatar görünmüyor (29 Ekim 2026)
+
+Canlı fiziksel Android denemesinde yükleme200dönerken hemen ardından görsel GET isteği401aldı; Metro'da avatar.display/image_error görüldü. Native Image doğrudan korumalı URL'yi çağırıyordu ve merkezi API istemcisinin refresh/yeniden okuma akışından geçmiyordu. Önce denenen katman/boyut düzenlemesi tek başına sorunu çözmedi; kullanıcı ikonun kaldığını bildirdi.
+
+Son düzeltmede GET /api/users/me/avatar, session-aware apiClient üzerinden arraybuffer olarak okunur. GET401 için mevcut merkezi refresh/replay politikası kullanılır. JPEG MIME/imza/2MiB sınırı kontrol edilir, Hermes uyumlu kodlayıcıyla yalnız bellekte data URI oluşturulur. Native Image artık HTTP veya Bearer header taşımaz; doğrulanmış JPEG byte'larını gösterir. Görsel boyutları açıktır. Owner+epoch+rowversion cache anahtarı, geç yanıt iptali, logout/cache temizliği ve kaldırmada scoped image-cache temizliği korunur. Son gözlemciden sonra30s boyunca yalnız JS belleğinde tutulan kaynak SecureStore'a/dosyaya persist edilmez. Upload bildirimi authenticated görsel okuması doğrulandıktan sonra gösterilir; write200ama okuma başarısızsa avatar_unconfirmed döner.
+
+**Fiziksel sonuç:** Kullanıcı aynı8085oturumunu tekrar açıp mevcut fotoğrafı yeniden yüklemeden gördüğünü açıkça doğruladı: “Evet, fotoğraf görünüyor”. Bu doğrulama Hesabım görünümü içindir; başka cihaz/OS/geniş dark-RTL kabulü yapılmış sayılmaz.
+
+Dosyalar: mobile/src/features/account/avatar.tsx, yeni avatar-source.ts, avatar.test.tsx, avatar-transport.test.tsx ve yeni avatar-source.test.ts. Yeni testler: merkezi401refresh→JPEGokuma, native Image kaynağında token/HTTPolmaması, base64padding/chunkdoğruluğu, MIME/boyut reddi, eski oturum yanıtının iptali, sürüm değişimi ve okuma hatasında sahte başarı olmaması. Son doğrulama: TypeScript başarılı, ESLint0hata/0uyarı, i18n issue0; mobil325/325 (26suite), skipped0. Hermes export4180modül/9.2MBbaşarılı. Bu ek düzeltmede backend/model/migration değişmedi; önceki420unit/280SQLkanıtı tarihsel olarak korunur, yeniden çalıştırılmış gibi gösterilmez. Production veya yeni faz yok.
+
+## Phase 5.3.2 — Profil fotoğrafı yükleme tanısı ve düzeltme (29 Ekim 2026)
+
+[Kök neden, gerçek HTTP ve kapsam](PHASE5_3_2_DIAGNOSIS.md). Cihazın önceki HTTP/istisna kaydı bulunmadığından genel dialog mesajından concurrency sonucu çıkarılmadı. Kullanıcı hatanın kırpma sonrasında geldiğini doğruladı; güncel cihaz denemesini birazdan yapacağını bildirdi. Fiziksel Android başarı sonucu henüz alınmadı.
+
+Kanıtlanan Development bağlantı kusuru: mobil .env eski192.168.1.155:5080 adresini, AllowedHosts da eski155hostunu kullanıyordu; gerçek LAN192.168.1.110. EskiIP erişilemedi, yeniIP mevcut host filtresinde gerçek400HTML Invalid Hostname/codeyok verdi. Mobil adres ve yalnız Development açık host listesi110ile hizalandı. LAN health200 ve Metro status200 doğrulandı. Docker Engine başlangıçta kapalıydı; Desktop kullanıcı kurulumundan açıldı, mevcut SQL/Mailpit healthy; volume/DB sıfırlanmadı. Eski varsayılan build23Ekim tarihliydi, güncel kaynaklardan yeniden derlendi; önceki cihazın hangi binary'yi kullandığı bilinmiyor.
+
+Native avatar upload XHR'e sabitlendi; URI/FormData, MIME, Authorization ve güçlüIf-Match korunur, Content-Type/boundary elle atanmaz. Kurulu gerçek SDK57 Expo fetch encoder'ında eski URI parçasının HTTP öncesi Unsupported FormDataPart implementation ile reddedilmesi testte üretildi; önceki cihazda o adapter'ın kullanıldığı kanıtlanmadı. Bu uyumluluk düzeltmesi tarihsel cihaz istisnasının kesin nedeni gibi raporlanmaz.
+
+AvatarFailure aşama/status/allowlistcode ile fotoğraf hatalarını sınıflandırır; ağ/boyut/format/sunucu/oturum/gerçekconflict/doğrulanamayan200 ayrımesajdır. Yalnız409+avatar_changed güvenliprofil yenilemesi yapar, otomatik yazı tekrar yoktur.400/409işkuralı/500sahtekodları concurrency sayılmaz. HTTP200+bozukDTO veya beklenmeyen hasAvatar başarısızlığı sahte başarıya dönüşmez. Eski cache iyimser silinmez; owner/epoch sınırı ve session politikası korunur. Yeni deneme önceki başarıbildirimini temizler. Development diagnostic yalnız stage/status/code; backend log yalnız status/code/ExceptionType/TraceId, token/URI/fotoğraf/parola/gizli dosya yolu yoktur.
+
+Üç yeni+üç güncellenenmetin14dilde tamamlandı; generator/audit issue0. Fotoğraf güvenlik limitleri/gerçekdecode/EXIFtemizliği/private storage/rate limiting/User rowversion aynıdır. Domain/EFmodel/finans kaydı değişmedi; migration gerekmedi. Phase6/7/production yok.
+
+| Kontrol | Gerçek sonuç |
+|---|---|
+| .NET restore/build |0hata/0uyarı |
+| Unit |420/420; skipped0 |
+| Gerçek SQL Server2022 Testcontainers ilk tam koşu |280/280; skipped0 |
+| Son backend log/config tekrarı |420unit+280SQL başarılı; skipped0 |
+| Mobil Jest |319/319;25suite; skipped0 |
+| TS / ESLint |Başarılı,lint0hata0uyarı |
+| i18n |14dil;issue0/rawUI0; kaynaklar korundu |
+| Doctor |21/21 |
+| Hermes Android export |4179modül/9.2MB; son LAN adresiyle tekrar başarılı; cihaz kabulü değildir |
+| Gerçek HTTP smoke |28kontrol; PNG200/JPG200/SVG400/large413/GET512JPEG+noStore+EXIFyok/reloginpersistent/remove200/sonra404; profil/ödeme regresyonları dahil |
+
+Kanıt: artifacts/phase532/test-results/phase532_net8.0_20261029143811.trx(unit), phase532_net8.0_20261029144648.trx(SQL); sontekrar artifacts/phase532-final/test-results/phase532final_net8.0_20261029145529.trx (unit420) ve phase532final_net8.0_20261029150422.trx (SQL280); mobile/artifacts/phase532-hermes; mobile/scripts/phase532-smoke.cjs. Testler SQLInMemory/SQLite değil, rastgele izole PayAheadTest DB kullanır. HTTP smoke yalnız kendi hesabı/kayıtlarını temizledi. İlk Jest denemelerinde browser FormData/XHR otomatik mock/import-order farkı test altyapısında düzeltildi; başarısız ilk denemeler başarılı sayılmadı.
+
+Fiziksel deneme için güncel LANAPI5080 ve ExpoGoMetro8085 açık bırakıldı: exp://192.168.1.110:8085. SMTP/push worker görev API'sinde kapalıdır. PowerShell Start-Development.ps1 execution policy tarafından reddedildi; politika değiştirilmedi. Standart onaylı dotnet build ve derlenmiş Development DLL çalıştırması kullanıldı. .env Git dışındadır; gizli bilgi eklenmedi. Kullanıcının mevcut süreçleri durdurulmadı; yalnız görev süreçleri yönetildi.
+
+**Duruş:** Kod ve otomatik doğrulama hazır; fiziksel tekrar sonucu bekleniyor. Önceki telefon denemesinin HTTPstatus/adapter/istisnası kesinmiş gibi sunulmadı. Yeni faza geçilmedi.
+
 ## Phase 5.3.1 — Plan silme, modern dialoglar ve profil fotoğrafı (29 Ekim 2026)
 
 Onaylanan kapsam tamamlandı; fiziksel Android ve profesyonel dil kabulü açık olarak durulmaktadır. Phase 5.2/5.3 değişiklikleri korunmuştur; Phase 6 push/Phase 7 veya production deployment yapılmadı. [Kök neden/etkilenen dosyalar](PHASE5_3_1_DIAGNOSIS.md), [avatar API ve depolama](AVATARS.md), [Android kabulü](../mobile/docs/ANDROID_TESTING.md).

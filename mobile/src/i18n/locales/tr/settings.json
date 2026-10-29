@@ -70,9 +70,12 @@
   "avatar.remove": "Fotoğrafı kaldır",
   "avatar.uploading": "Fotoğraf yükleniyor",
   "avatar.updated": "Fotoğraf güncellendi.",
-  "avatar.failed": "Fotoğraf yüklenemedi. Mevcut fotoğrafın değiştirilmedi.",
-  "avatar.invalid": "Geçerli bir JPEG, PNG veya WebP görseli seç.",
-  "avatar.large": "Dosya en fazla 2 MB, boyutları en fazla 2048 × 2048 olmalı.",
+  "avatar.failed": "Fotoğraf yüklenemedi. Biraz sonra tekrar dene.",
+  "avatar.invalid": "Lütfen JPG, PNG veya desteklenen başka bir fotoğraf seç.",
+  "avatar.large": "Fotoğrafın boyutu izin verilen sınırı aşıyor.",
   "avatar.permission": "Fotoğraf seçmek için galeri erişimi gerekli. Cihaz ayarlarından izni kontrol et.",
-  "avatar.unavailable": "Fotoğraf hizmeti şu anda kullanılamıyor."
+  "avatar.unavailable": "Fotoğraf hizmeti şu anda kullanılamıyor.",
+  "avatar.network": "İnternet bağlantını kontrol edip tekrar dene.",
+  "avatar.retry": "Profil bilgilerin değişmiş olabilir. Profilini yenileyip fotoğrafı yeniden seçerek tekrar dene.",
+  "avatar.unconfirmed": "İşlem sonucu doğrulanamadı. Profilini yenileyip fotoğrafını kontrol et."
 }

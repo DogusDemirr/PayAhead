@@ -70,9 +70,12 @@
   "avatar.remove": "写真を削除",
   "avatar.uploading": "写真をアップロード中",
   "avatar.updated": "写真を更新しました。",
-  "avatar.failed": "写真をアップロードできませんでした。既存の写真は変更されていません。",
-  "avatar.invalid": "有効な JPEG、PNG、WebP 画像を選択してください。",
-  "avatar.large": "ファイルは2 MB以下、画像は2048 × 2048ピクセル以下にしてください。",
+  "avatar.failed": "写真をアップロードできませんでした。後でもう一度お試しください。",
+  "avatar.invalid": "JPG、PNG、または対応する形式の写真を選んでください。",
+  "avatar.large": "写真がサイズの上限を超えています。",
   "avatar.permission": "写真を選ぶにはギャラリーへのアクセスが必要です。端末の設定で権限を確認してください。",
-  "avatar.unavailable": "現在、写真サービスは利用できません。"
+  "avatar.unavailable": "現在、写真サービスは利用できません。",
+  "avatar.network": "インターネット接続を確認して、もう一度お試しください。",
+  "avatar.retry": "プロフィールが変更された可能性があります。更新して写真を選び直してください。",
+  "avatar.unconfirmed": "結果を確認できませんでした。プロフィールを更新して写真を確認してください。"
 }

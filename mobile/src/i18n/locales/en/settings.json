@@ -70,9 +70,12 @@
   "avatar.remove": "Remove photo",
   "avatar.uploading": "Uploading photo",
   "avatar.updated": "Photo updated.",
-  "avatar.failed": "The photo could not be uploaded. Your existing photo was not changed.",
-  "avatar.invalid": "Choose a valid JPEG, PNG or WebP image.",
-  "avatar.large": "The file must be at most 2 MB and 2048 × 2048 pixels.",
+  "avatar.failed": "The photo could not be uploaded. Try again later.",
+  "avatar.invalid": "Please choose a JPG, PNG or another supported photo.",
+  "avatar.large": "The photo exceeds the allowed size limit.",
   "avatar.permission": "Gallery access is required to choose a photo. Check the permission in device settings.",
-  "avatar.unavailable": "The photo service is currently unavailable."
+  "avatar.unavailable": "The photo service is currently unavailable.",
+  "avatar.network": "Check your internet connection and try again.",
+  "avatar.retry": "Your profile may have changed. Refresh it and select the photo again to retry.",
+  "avatar.unconfirmed": "The result could not be confirmed. Refresh your profile and check your photo."
 }

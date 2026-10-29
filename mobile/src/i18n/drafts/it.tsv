@@ -805,8 +805,11 @@ settings:avatar.pick|Scegli una foto dalla galleria
 settings:avatar.remove|Rimuovi foto
 settings:avatar.uploading|Caricamento foto
 settings:avatar.updated|Foto aggiornata.
-settings:avatar.failed|Impossibile caricare la foto. La foto esistente non è stata modificata.
-settings:avatar.invalid|Scegli un’immagine JPEG, PNG o WebP valida.
-settings:avatar.large|Il file deve essere al massimo di 2 MB e 2048 × 2048 pixel.
+settings:avatar.failed|Impossibile caricare la foto. Riprova più tardi.
+settings:avatar.invalid|Scegli una foto JPG, PNG o un altro formato supportato.
+settings:avatar.large|La foto supera le dimensioni consentite.
 settings:avatar.permission|Per scegliere una foto serve l’accesso alla galleria. Controlla l’autorizzazione nelle impostazioni del dispositivo.
 settings:avatar.unavailable|Il servizio foto non è attualmente disponibile.
+settings:avatar.network|Controlla la connessione Internet e riprova.
+settings:avatar.retry|Il profilo potrebbe essere cambiato. Aggiornalo e seleziona di nuovo la foto.
+settings:avatar.unconfirmed|Impossibile confermare il risultato. Aggiorna il profilo e controlla la foto.

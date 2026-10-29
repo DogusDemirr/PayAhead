@@ -1,3 +1,5 @@
+> **Phase 5.3.2 görüntüleme düzeltmesi:** Korumalı JPEG merkezi session-aware API istemcisiyle okunur; native Image yalnız bellekteki data URI’yi gösterir. Native Image üzerinden ayrı Bearer/HTTP isteği yapılmaz. Query cache owner/epoch/version ile ayrılır, son gözlemciden30s sonra temizlenir; logout/kaldırmada temizlenir ve diske persist edilmez. [Fiziksel401tanısı ve doğrulama](PHASE5_3_2_DIAGNOSIS.md).
+
 # Profil fotoğrafları — Phase 5.3.1
 
 ## API ve doğrulama

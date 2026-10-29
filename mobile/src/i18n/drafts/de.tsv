@@ -793,8 +793,11 @@ settings:avatar.pick|Foto aus der Galerie auswählen
 settings:avatar.remove|Foto entfernen
 settings:avatar.uploading|Foto wird hochgeladen
 settings:avatar.updated|Foto aktualisiert.
-settings:avatar.failed|Das Foto konnte nicht hochgeladen werden. Dein bisheriges Foto wurde nicht geändert.
-settings:avatar.invalid|Wähle ein gültiges JPEG-, PNG- oder WebP-Bild.
-settings:avatar.large|Die Datei darf höchstens 2 MB groß sein und maximal 2048 × 2048 Pixel haben.
+settings:avatar.failed|Das Foto konnte nicht hochgeladen werden. Versuche es später erneut.
+settings:avatar.invalid|Wähle bitte ein JPG, PNG oder ein anderes unterstütztes Foto.
+settings:avatar.large|Das Foto überschreitet die zulässige Größe.
 settings:avatar.permission|Zum Auswählen eines Fotos ist Galeriezugriff erforderlich. Prüfe die Berechtigung in den Geräteeinstellungen.
 settings:avatar.unavailable|Der Fotodienst ist derzeit nicht verfügbar.
+settings:avatar.network|Prüfe deine Internetverbindung und versuche es erneut.
+settings:avatar.retry|Dein Profil wurde möglicherweise geändert. Aktualisiere es und wähle das Foto erneut aus.
+settings:avatar.unconfirmed|Das Ergebnis konnte nicht bestätigt werden. Aktualisiere dein Profil und prüfe dein Foto.

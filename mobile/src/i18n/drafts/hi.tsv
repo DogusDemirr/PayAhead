@@ -801,8 +801,11 @@ settings:avatar.pick|गैलरी से फ़ोटो चुनें
 settings:avatar.remove|फ़ोटो हटाएँ
 settings:avatar.uploading|फ़ोटो अपलोड हो रही है
 settings:avatar.updated|फ़ोटो अद्यतन हुई।
-settings:avatar.failed|फ़ोटो अपलोड नहीं हुई। आपकी मौजूदा फ़ोटो नहीं बदली गई।
-settings:avatar.invalid|मान्य JPEG, PNG या WebP छवि चुनें।
-settings:avatar.large|फ़ाइल अधिकतम 2 MB और 2048 × 2048 पिक्सेल की होनी चाहिए।
+settings:avatar.failed|फ़ोटो अपलोड नहीं हो सकी। थोड़ी देर बाद फिर प्रयास करें।
+settings:avatar.invalid|कृपया JPG, PNG या किसी अन्य समर्थित फ़ॉर्मैट की फ़ोटो चुनें।
+settings:avatar.large|फ़ोटो का आकार अनुमत सीमा से अधिक है।
 settings:avatar.permission|फ़ोटो चुनने के लिए गैलरी की पहुँच चाहिए। डिवाइस सेटिंग में अनुमति जाँचें।
 settings:avatar.unavailable|फ़ोटो सेवा अभी उपलब्ध नहीं है।
+settings:avatar.network|इंटरनेट कनेक्शन जाँचें और फिर प्रयास करें।
+settings:avatar.retry|आपकी प्रोफ़ाइल बदल गई हो सकती है। उसे रीफ़्रेश करके फ़ोटो फिर चुनें।
+settings:avatar.unconfirmed|नतीजे की पुष्टि नहीं हो सकी। प्रोफ़ाइल रीफ़्रेश करके अपनी फ़ोटो जाँचें।

@@ -789,11 +789,14 @@
       "avatar.remove": "Fotoğrafı kaldır",
       "avatar.uploading": "Fotoğraf yükleniyor",
       "avatar.updated": "Fotoğraf güncellendi.",
-      "avatar.failed": "Fotoğraf yüklenemedi. Mevcut fotoğrafın değiştirilmedi.",
-      "avatar.invalid": "Geçerli bir JPEG, PNG veya WebP görseli seç.",
-      "avatar.large": "Dosya en fazla 2 MB, boyutları en fazla 2048 × 2048 olmalı.",
+      "avatar.failed": "Fotoğraf yüklenemedi. Biraz sonra tekrar dene.",
+      "avatar.invalid": "Lütfen JPG, PNG veya desteklenen başka bir fotoğraf seç.",
+      "avatar.large": "Fotoğrafın boyutu izin verilen sınırı aşıyor.",
       "avatar.permission": "Fotoğraf seçmek için galeri erişimi gerekli. Cihaz ayarlarından izni kontrol et.",
-      "avatar.unavailable": "Fotoğraf hizmeti şu anda kullanılamıyor."
+      "avatar.unavailable": "Fotoğraf hizmeti şu anda kullanılamıyor.",
+      "avatar.network": "İnternet bağlantını kontrol edip tekrar dene.",
+      "avatar.retry": "Profil bilgilerin değişmiş olabilir. Profilini yenileyip fotoğrafı yeniden seçerek tekrar dene.",
+      "avatar.unconfirmed": "İşlem sonucu doğrulanamadı. Profilini yenileyip fotoğrafını kontrol et."
     },
     "premium": {
       "m_263fcd13faeb": "Daha fazla alan.\nDaha az telaş.",
@@ -1658,11 +1661,14 @@
       "avatar.remove": "Remove photo",
       "avatar.uploading": "Uploading photo",
       "avatar.updated": "Photo updated.",
-      "avatar.failed": "The photo could not be uploaded. Your existing photo was not changed.",
-      "avatar.invalid": "Choose a valid JPEG, PNG or WebP image.",
-      "avatar.large": "The file must be at most 2 MB and 2048 × 2048 pixels.",
+      "avatar.failed": "The photo could not be uploaded. Try again later.",
+      "avatar.invalid": "Please choose a JPG, PNG or another supported photo.",
+      "avatar.large": "The photo exceeds the allowed size limit.",
       "avatar.permission": "Gallery access is required to choose a photo. Check the permission in device settings.",
-      "avatar.unavailable": "The photo service is currently unavailable."
+      "avatar.unavailable": "The photo service is currently unavailable.",
+      "avatar.network": "Check your internet connection and try again.",
+      "avatar.retry": "Your profile may have changed. Refresh it and select the photo again to retry.",
+      "avatar.unconfirmed": "The result could not be confirmed. Refresh your profile and check your photo."
     },
     "premium": {
       "m_263fcd13faeb": "More room.\nLess worry.",
@@ -2527,11 +2533,14 @@
       "avatar.remove": "Foto entfernen",
       "avatar.uploading": "Foto wird hochgeladen",
       "avatar.updated": "Foto aktualisiert.",
-      "avatar.failed": "Das Foto konnte nicht hochgeladen werden. Dein bisheriges Foto wurde nicht geändert.",
-      "avatar.invalid": "Wähle ein gültiges JPEG-, PNG- oder WebP-Bild.",
-      "avatar.large": "Die Datei darf höchstens 2 MB groß sein und maximal 2048 × 2048 Pixel haben.",
+      "avatar.failed": "Das Foto konnte nicht hochgeladen werden. Versuche es später erneut.",
+      "avatar.invalid": "Wähle bitte ein JPG, PNG oder ein anderes unterstütztes Foto.",
+      "avatar.large": "Das Foto überschreitet die zulässige Größe.",
       "avatar.permission": "Zum Auswählen eines Fotos ist Galeriezugriff erforderlich. Prüfe die Berechtigung in den Geräteeinstellungen.",
-      "avatar.unavailable": "Der Fotodienst ist derzeit nicht verfügbar."
+      "avatar.unavailable": "Der Fotodienst ist derzeit nicht verfügbar.",
+      "avatar.network": "Prüfe deine Internetverbindung und versuche es erneut.",
+      "avatar.retry": "Dein Profil wurde möglicherweise geändert. Aktualisiere es und wähle das Foto erneut aus.",
+      "avatar.unconfirmed": "Das Ergebnis konnte nicht bestätigt werden. Aktualisiere dein Profil und prüfe dein Foto."
     },
     "premium": {
       "m_263fcd13faeb": "Mehr Freiraum.\nWeniger Stress.",
@@ -3409,11 +3418,14 @@
       "avatar.remove": "Supprimer la photo",
       "avatar.uploading": "Envoi de la photo",
       "avatar.updated": "Photo mise à jour.",
-      "avatar.failed": "Impossible d’envoyer la photo. Votre photo actuelle n’a pas été modifiée.",
-      "avatar.invalid": "Choisissez une image JPEG, PNG ou WebP valide.",
-      "avatar.large": "Le fichier ne doit pas dépasser 2 Mo et 2048 × 2048 pixels.",
+      "avatar.failed": "La photo n’a pas pu être envoyée. Réessayez plus tard.",
+      "avatar.invalid": "Choisissez une photo JPG, PNG ou un autre format pris en charge.",
+      "avatar.large": "La photo dépasse la taille autorisée.",
       "avatar.permission": "L’accès à la galerie est nécessaire pour choisir une photo. Vérifiez l’autorisation dans les réglages de l’appareil.",
-      "avatar.unavailable": "Le service photo est actuellement indisponible."
+      "avatar.unavailable": "Le service photo est actuellement indisponible.",
+      "avatar.network": "Vérifiez votre connexion Internet et réessayez.",
+      "avatar.retry": "Votre profil a peut-être changé. Actualisez-le et sélectionnez à nouveau la photo.",
+      "avatar.unconfirmed": "Le résultat n’a pas pu être confirmé. Actualisez votre profil et vérifiez votre photo."
     },
     "premium": {
       "m_263fcd13faeb": "Plus d’espace.\nMoins de soucis.",
@@ -4291,11 +4303,14 @@
       "avatar.remove": "Quitar foto",
       "avatar.uploading": "Subiendo foto",
       "avatar.updated": "Foto actualizada.",
-      "avatar.failed": "No se pudo subir la foto. Tu foto actual no cambió.",
-      "avatar.invalid": "Elige una imagen JPEG, PNG o WebP válida.",
-      "avatar.large": "El archivo debe tener como máximo 2 MB y 2048 × 2048 píxeles.",
+      "avatar.failed": "No se pudo subir la foto. Inténtalo más tarde.",
+      "avatar.invalid": "Elige una foto JPG, PNG u otro formato compatible.",
+      "avatar.large": "La foto supera el tamaño permitido.",
       "avatar.permission": "Se necesita acceso a la galería para elegir una foto. Revisa el permiso en los ajustes del dispositivo.",
-      "avatar.unavailable": "El servicio de fotos no está disponible actualmente."
+      "avatar.unavailable": "El servicio de fotos no está disponible actualmente.",
+      "avatar.network": "Comprueba tu conexión a Internet e inténtalo de nuevo.",
+      "avatar.retry": "Puede que tu perfil haya cambiado. Actualízalo y vuelve a seleccionar la foto.",
+      "avatar.unconfirmed": "No se pudo confirmar el resultado. Actualiza tu perfil y comprueba tu foto."
     },
     "premium": {
       "m_263fcd13faeb": "Más espacio.\nMenos preocupaciones.",
@@ -5173,11 +5188,14 @@
       "avatar.remove": "Rimuovi foto",
       "avatar.uploading": "Caricamento foto",
       "avatar.updated": "Foto aggiornata.",
-      "avatar.failed": "Impossibile caricare la foto. La foto esistente non è stata modificata.",
-      "avatar.invalid": "Scegli un’immagine JPEG, PNG o WebP valida.",
-      "avatar.large": "Il file deve essere al massimo di 2 MB e 2048 × 2048 pixel.",
+      "avatar.failed": "Impossibile caricare la foto. Riprova più tardi.",
+      "avatar.invalid": "Scegli una foto JPG, PNG o un altro formato supportato.",
+      "avatar.large": "La foto supera le dimensioni consentite.",
       "avatar.permission": "Per scegliere una foto serve l’accesso alla galleria. Controlla l’autorizzazione nelle impostazioni del dispositivo.",
-      "avatar.unavailable": "Il servizio foto non è attualmente disponibile."
+      "avatar.unavailable": "Il servizio foto non è attualmente disponibile.",
+      "avatar.network": "Controlla la connessione Internet e riprova.",
+      "avatar.retry": "Il profilo potrebbe essere cambiato. Aggiornalo e seleziona di nuovo la foto.",
+      "avatar.unconfirmed": "Impossibile confermare il risultato. Aggiorna il profilo e controlla la foto."
     },
     "premium": {
       "m_263fcd13faeb": "Più spazio.\nMeno pensieri.",
@@ -6055,11 +6073,14 @@
       "avatar.remove": "Remover foto",
       "avatar.uploading": "Enviando foto",
       "avatar.updated": "Foto atualizada.",
-      "avatar.failed": "Não foi possível enviar a foto. Sua foto atual não foi alterada.",
-      "avatar.invalid": "Escolha uma imagem JPEG, PNG ou WebP válida.",
-      "avatar.large": "O arquivo deve ter no máximo 2 MB e 2048 × 2048 pixels.",
+      "avatar.failed": "Não foi possível enviar a foto. Tente novamente mais tarde.",
+      "avatar.invalid": "Escolha uma foto JPG, PNG ou outro formato compatível.",
+      "avatar.large": "A foto excede o tamanho permitido.",
       "avatar.permission": "É necessário acessar a galeria para escolher uma foto. Verifique a permissão nas configurações do dispositivo.",
-      "avatar.unavailable": "O serviço de fotos está indisponível no momento."
+      "avatar.unavailable": "O serviço de fotos está indisponível no momento.",
+      "avatar.network": "Verifique sua conexão com a internet e tente novamente.",
+      "avatar.retry": "Seu perfil pode ter mudado. Atualize-o e selecione a foto novamente.",
+      "avatar.unconfirmed": "Não foi possível confirmar o resultado. Atualize seu perfil e confira sua foto."
     },
     "premium": {
       "m_263fcd13faeb": "Mais espaço.\nMenos preocupação.",
@@ -6924,11 +6945,14 @@
       "avatar.remove": "Foto verwijderen",
       "avatar.uploading": "Foto uploaden",
       "avatar.updated": "Foto bijgewerkt.",
-      "avatar.failed": "De foto kon niet worden geüpload. Je bestaande foto is niet gewijzigd.",
-      "avatar.invalid": "Kies een geldige JPEG-, PNG- of WebP-afbeelding.",
-      "avatar.large": "Het bestand mag maximaal 2 MB en 2048 × 2048 pixels zijn.",
+      "avatar.failed": "De foto kon niet worden geüpload. Probeer het later opnieuw.",
+      "avatar.invalid": "Kies een JPG, PNG of een ander ondersteund fotoformaat.",
+      "avatar.large": "De foto is groter dan toegestaan.",
       "avatar.permission": "Toegang tot de galerij is nodig om een foto te kiezen. Controleer de toestemming in de apparaatinstellingen.",
-      "avatar.unavailable": "De fotoservice is momenteel niet beschikbaar."
+      "avatar.unavailable": "De fotoservice is momenteel niet beschikbaar.",
+      "avatar.network": "Controleer je internetverbinding en probeer het opnieuw.",
+      "avatar.retry": "Je profiel is mogelijk gewijzigd. Vernieuw het en selecteer de foto opnieuw.",
+      "avatar.unconfirmed": "Het resultaat kon niet worden bevestigd. Vernieuw je profiel en controleer je foto."
     },
     "premium": {
       "m_263fcd13faeb": "Meer ruimte.\nMinder zorgen.",
@@ -7819,11 +7843,14 @@
       "avatar.remove": "Удалить фото",
       "avatar.uploading": "Загрузка фото",
       "avatar.updated": "Фото обновлено.",
-      "avatar.failed": "Не удалось загрузить фото. Текущее фото не изменено.",
-      "avatar.invalid": "Выберите действительное изображение JPEG, PNG или WebP.",
-      "avatar.large": "Размер файла — не более 2 МБ, разрешение — не более 2048 × 2048 пикселей.",
+      "avatar.failed": "Не удалось загрузить фото. Попробуйте позже.",
+      "avatar.invalid": "Выберите фото JPG, PNG или другого поддерживаемого формата.",
+      "avatar.large": "Фото превышает допустимый размер.",
       "avatar.permission": "Для выбора фото нужен доступ к галерее. Проверьте разрешение в настройках устройства.",
-      "avatar.unavailable": "Сервис фотографий сейчас недоступен."
+      "avatar.unavailable": "Сервис фотографий сейчас недоступен.",
+      "avatar.network": "Проверьте подключение к интернету и повторите попытку.",
+      "avatar.retry": "Возможно, профиль изменился. Обновите его и выберите фото заново.",
+      "avatar.unconfirmed": "Не удалось подтвердить результат. Обновите профиль и проверьте фото."
     },
     "premium": {
       "m_263fcd13faeb": "Больше свободы.\nМеньше забот.",
@@ -8740,11 +8767,14 @@
       "avatar.remove": "إزالة الصورة",
       "avatar.uploading": "جارٍ رفع الصورة",
       "avatar.updated": "حُدثت الصورة.",
-      "avatar.failed": "تعذر رفع الصورة. لم تتغير صورتك الحالية.",
-      "avatar.invalid": "اختر صورة JPEG أو PNG أو WebP صالحة.",
-      "avatar.large": "يجب ألا يتجاوز حجم الملف 2 ميغابايت وأبعاده 2048 × 2048 بكسل.",
+      "avatar.failed": "تعذر تحميل الصورة. حاول لاحقًا.",
+      "avatar.invalid": "اختر صورة JPG أو PNG أو تنسيقًا آخر مدعومًا.",
+      "avatar.large": "حجم الصورة يتجاوز الحد المسموح به.",
       "avatar.permission": "يلزم الوصول إلى المعرض لاختيار صورة. تحقق من الإذن في إعدادات الجهاز.",
-      "avatar.unavailable": "خدمة الصور غير متاحة حاليًا."
+      "avatar.unavailable": "خدمة الصور غير متاحة حاليًا.",
+      "avatar.network": "تحقق من اتصالك بالإنترنت وحاول مرة أخرى.",
+      "avatar.retry": "ربما تغير ملفك الشخصي. حدّثه ثم اختر الصورة مرة أخرى.",
+      "avatar.unconfirmed": "تعذر تأكيد النتيجة. حدّث ملفك الشخصي وتحقق من صورتك."
     },
     "premium": {
       "m_263fcd13faeb": "مساحة أكبر.\nقلق أقل.",
@@ -9596,11 +9626,14 @@
       "avatar.remove": "移除照片",
       "avatar.uploading": "正在上传照片",
       "avatar.updated": "照片已更新。",
-      "avatar.failed": "无法上传照片。现有照片未更改。",
-      "avatar.invalid": "请选择有效的 JPEG、PNG 或 WebP 图像。",
-      "avatar.large": "文件不得超过 2 MB，尺寸不得超过 2048 × 2048 像素。",
+      "avatar.failed": "照片上传失败。请稍后重试。",
+      "avatar.invalid": "请选择 JPG、PNG 或其他支持的照片格式。",
+      "avatar.large": "照片超出了允许的大小限制。",
       "avatar.permission": "选择照片需要相册访问权限。请在设备设置中检查权限。",
-      "avatar.unavailable": "照片服务暂不可用。"
+      "avatar.unavailable": "照片服务暂不可用。",
+      "avatar.network": "请检查网络连接后重试。",
+      "avatar.retry": "个人资料可能已更改。请刷新资料并重新选择照片。",
+      "avatar.unconfirmed": "无法确认操作结果。请刷新个人资料并检查照片。"
     },
     "premium": {
       "m_263fcd13faeb": "更多空间。\n更少烦恼。",
@@ -10452,11 +10485,14 @@
       "avatar.remove": "写真を削除",
       "avatar.uploading": "写真をアップロード中",
       "avatar.updated": "写真を更新しました。",
-      "avatar.failed": "写真をアップロードできませんでした。既存の写真は変更されていません。",
-      "avatar.invalid": "有効な JPEG、PNG、WebP 画像を選択してください。",
-      "avatar.large": "ファイルは2 MB以下、画像は2048 × 2048ピクセル以下にしてください。",
+      "avatar.failed": "写真をアップロードできませんでした。後でもう一度お試しください。",
+      "avatar.invalid": "JPG、PNG、または対応する形式の写真を選んでください。",
+      "avatar.large": "写真がサイズの上限を超えています。",
       "avatar.permission": "写真を選ぶにはギャラリーへのアクセスが必要です。端末の設定で権限を確認してください。",
-      "avatar.unavailable": "現在、写真サービスは利用できません。"
+      "avatar.unavailable": "現在、写真サービスは利用できません。",
+      "avatar.network": "インターネット接続を確認して、もう一度お試しください。",
+      "avatar.retry": "プロフィールが変更された可能性があります。更新して写真を選び直してください。",
+      "avatar.unconfirmed": "結果を確認できませんでした。プロフィールを更新して写真を確認してください。"
     },
     "premium": {
       "m_263fcd13faeb": "もっと余裕を。\n心配を少なく。",
@@ -11308,11 +11344,14 @@
       "avatar.remove": "사진 삭제",
       "avatar.uploading": "사진 업로드 중",
       "avatar.updated": "사진이 업데이트되었습니다.",
-      "avatar.failed": "사진을 업로드하지 못했습니다. 기존 사진은 변경되지 않았습니다.",
-      "avatar.invalid": "올바른 JPEG, PNG 또는 WebP 이미지를 선택하세요.",
-      "avatar.large": "파일은 최대 2 MB, 크기는 최대 2048 × 2048픽셀이어야 합니다.",
+      "avatar.failed": "사진을 업로드하지 못했습니다. 잠시 후 다시 시도하세요.",
+      "avatar.invalid": "JPG, PNG 또는 지원되는 다른 사진 형식을 선택하세요.",
+      "avatar.large": "사진이 허용된 크기 제한을 초과합니다.",
       "avatar.permission": "사진을 선택하려면 갤러리 접근 권한이 필요합니다. 기기 설정에서 권한을 확인하세요.",
-      "avatar.unavailable": "현재 사진 서비스를 사용할 수 없습니다."
+      "avatar.unavailable": "현재 사진 서비스를 사용할 수 없습니다.",
+      "avatar.network": "인터넷 연결을 확인하고 다시 시도하세요.",
+      "avatar.retry": "프로필이 변경되었을 수 있습니다. 새로 고친 후 사진을 다시 선택하세요.",
+      "avatar.unconfirmed": "결과를 확인할 수 없습니다. 프로필을 새로 고치고 사진을 확인하세요."
     },
     "premium": {
       "m_263fcd13faeb": "더 넓은 여유.\n더 적은 걱정.",
@@ -12177,11 +12216,14 @@
       "avatar.remove": "फ़ोटो हटाएँ",
       "avatar.uploading": "फ़ोटो अपलोड हो रही है",
       "avatar.updated": "फ़ोटो अद्यतन हुई।",
-      "avatar.failed": "फ़ोटो अपलोड नहीं हुई। आपकी मौजूदा फ़ोटो नहीं बदली गई।",
-      "avatar.invalid": "मान्य JPEG, PNG या WebP छवि चुनें।",
-      "avatar.large": "फ़ाइल अधिकतम 2 MB और 2048 × 2048 पिक्सेल की होनी चाहिए।",
+      "avatar.failed": "फ़ोटो अपलोड नहीं हो सकी। थोड़ी देर बाद फिर प्रयास करें।",
+      "avatar.invalid": "कृपया JPG, PNG या किसी अन्य समर्थित फ़ॉर्मैट की फ़ोटो चुनें।",
+      "avatar.large": "फ़ोटो का आकार अनुमत सीमा से अधिक है।",
       "avatar.permission": "फ़ोटो चुनने के लिए गैलरी की पहुँच चाहिए। डिवाइस सेटिंग में अनुमति जाँचें।",
-      "avatar.unavailable": "फ़ोटो सेवा अभी उपलब्ध नहीं है।"
+      "avatar.unavailable": "फ़ोटो सेवा अभी उपलब्ध नहीं है।",
+      "avatar.network": "इंटरनेट कनेक्शन जाँचें और फिर प्रयास करें।",
+      "avatar.retry": "आपकी प्रोफ़ाइल बदल गई हो सकती है। उसे रीफ़्रेश करके फ़ोटो फिर चुनें।",
+      "avatar.unconfirmed": "नतीजे की पुष्टि नहीं हो सकी। प्रोफ़ाइल रीफ़्रेश करके अपनी फ़ोटो जाँचें।"
     },
     "premium": {
       "m_263fcd13faeb": "ज़्यादा जगह।\nकम चिंता।",

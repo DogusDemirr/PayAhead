@@ -1,0 +1,26 @@
+{
+  "settings:avatar.failed": [
+    "Fotoğraf yüklenemedi. Biraz sonra tekrar dene.",
+    "The photo could not be uploaded. Try again later."
+  ],
+  "settings:avatar.invalid": [
+    "Lütfen JPG, PNG veya desteklenen başka bir fotoğraf seç.",
+    "Please choose a JPG, PNG or another supported photo."
+  ],
+  "settings:avatar.large": [
+    "Fotoğrafın boyutu izin verilen sınırı aşıyor.",
+    "The photo exceeds the allowed size limit."
+  ],
+  "settings:avatar.network": [
+    "İnternet bağlantını kontrol edip tekrar dene.",
+    "Check your internet connection and try again."
+  ],
+  "settings:avatar.retry": [
+    "Profil bilgilerin değişmiş olabilir. Profilini yenileyip fotoğrafı yeniden seçerek tekrar dene.",
+    "Your profile may have changed. Refresh it and select the photo again to retry."
+  ],
+  "settings:avatar.unconfirmed": [
+    "İşlem sonucu doğrulanamadı. Profilini yenileyip fotoğrafını kontrol et.",
+    "The result could not be confirmed. Refresh your profile and check your photo."
+  ]
+}

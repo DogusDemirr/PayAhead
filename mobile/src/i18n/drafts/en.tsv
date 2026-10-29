@@ -797,8 +797,11 @@ settings:avatar.pick|Choose photo from gallery
 settings:avatar.remove|Remove photo
 settings:avatar.uploading|Uploading photo
 settings:avatar.updated|Photo updated.
-settings:avatar.failed|The photo could not be uploaded. Your existing photo was not changed.
-settings:avatar.invalid|Choose a valid JPEG, PNG or WebP image.
-settings:avatar.large|The file must be at most 2 MB and 2048 × 2048 pixels.
+settings:avatar.failed|The photo could not be uploaded. Try again later.
+settings:avatar.invalid|Please choose a JPG, PNG or another supported photo.
+settings:avatar.large|The photo exceeds the allowed size limit.
 settings:avatar.permission|Gallery access is required to choose a photo. Check the permission in device settings.
 settings:avatar.unavailable|The photo service is currently unavailable.
+settings:avatar.network|Check your internet connection and try again.
+settings:avatar.retry|Your profile may have changed. Refresh it and select the photo again to retry.
+settings:avatar.unconfirmed|The result could not be confirmed. Refresh your profile and check your photo.

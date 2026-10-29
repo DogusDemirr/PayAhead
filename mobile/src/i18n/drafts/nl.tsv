@@ -794,8 +794,11 @@ settings:avatar.pick|Foto uit de galerij kiezen
 settings:avatar.remove|Foto verwijderen
 settings:avatar.uploading|Foto uploaden
 settings:avatar.updated|Foto bijgewerkt.
-settings:avatar.failed|De foto kon niet worden geüpload. Je bestaande foto is niet gewijzigd.
-settings:avatar.invalid|Kies een geldige JPEG-, PNG- of WebP-afbeelding.
-settings:avatar.large|Het bestand mag maximaal 2 MB en 2048 × 2048 pixels zijn.
+settings:avatar.failed|De foto kon niet worden geüpload. Probeer het later opnieuw.
+settings:avatar.invalid|Kies een JPG, PNG of een ander ondersteund fotoformaat.
+settings:avatar.large|De foto is groter dan toegestaan.
 settings:avatar.permission|Toegang tot de galerij is nodig om een foto te kiezen. Controleer de toestemming in de apparaatinstellingen.
 settings:avatar.unavailable|De fotoservice is momenteel niet beschikbaar.
+settings:avatar.network|Controleer je internetverbinding en probeer het opnieuw.
+settings:avatar.retry|Je profiel is mogelijk gewijzigd. Vernieuw het en selecteer de foto opnieuw.
+settings:avatar.unconfirmed|Het resultaat kon niet worden bevestigd. Vernieuw je profiel en controleer je foto.

@@ -70,9 +70,12 @@
   "avatar.remove": "Quitar foto",
   "avatar.uploading": "Subiendo foto",
   "avatar.updated": "Foto actualizada.",
-  "avatar.failed": "No se pudo subir la foto. Tu foto actual no cambió.",
-  "avatar.invalid": "Elige una imagen JPEG, PNG o WebP válida.",
-  "avatar.large": "El archivo debe tener como máximo 2 MB y 2048 × 2048 píxeles.",
+  "avatar.failed": "No se pudo subir la foto. Inténtalo más tarde.",
+  "avatar.invalid": "Elige una foto JPG, PNG u otro formato compatible.",
+  "avatar.large": "La foto supera el tamaño permitido.",
   "avatar.permission": "Se necesita acceso a la galería para elegir una foto. Revisa el permiso en los ajustes del dispositivo.",
-  "avatar.unavailable": "El servicio de fotos no está disponible actualmente."
+  "avatar.unavailable": "El servicio de fotos no está disponible actualmente.",
+  "avatar.network": "Comprueba tu conexión a Internet e inténtalo de nuevo.",
+  "avatar.retry": "Puede que tu perfil haya cambiado. Actualízalo y vuelve a seleccionar la foto.",
+  "avatar.unconfirmed": "No se pudo confirmar el resultado. Actualiza tu perfil y comprueba tu foto."
 }

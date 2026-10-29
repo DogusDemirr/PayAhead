@@ -817,8 +817,11 @@ settings:avatar.pick|Выбрать фото из галереи
 settings:avatar.remove|Удалить фото
 settings:avatar.uploading|Загрузка фото
 settings:avatar.updated|Фото обновлено.
-settings:avatar.failed|Не удалось загрузить фото. Текущее фото не изменено.
-settings:avatar.invalid|Выберите действительное изображение JPEG, PNG или WebP.
-settings:avatar.large|Размер файла — не более 2 МБ, разрешение — не более 2048 × 2048 пикселей.
+settings:avatar.failed|Не удалось загрузить фото. Попробуйте позже.
+settings:avatar.invalid|Выберите фото JPG, PNG или другого поддерживаемого формата.
+settings:avatar.large|Фото превышает допустимый размер.
 settings:avatar.permission|Для выбора фото нужен доступ к галерее. Проверьте разрешение в настройках устройства.
 settings:avatar.unavailable|Сервис фотографий сейчас недоступен.
+settings:avatar.network|Проверьте подключение к интернету и повторите попытку.
+settings:avatar.retry|Возможно, профиль изменился. Обновите его и выберите фото заново.
+settings:avatar.unconfirmed|Не удалось подтвердить результат. Обновите профиль и проверьте фото.

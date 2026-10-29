@@ -32,6 +32,10 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problems, ILogger
         // İstisna mesajı/veritabanı parametreleri veya istek gövdesi loglanmaz.
         if (status == 500) logger.LogError("İstek başarısız. ExceptionType={ExceptionType} TraceId={TraceId}",
             exception.GetType().Name, context.TraceIdentifier);
+        if (context.Request.Path.StartsWithSegments("/api/users/me/avatar"))
+            logger.LogWarning("Avatar request rejected. StatusCode={StatusCode} Code={Code} ExceptionType={ExceptionType} TraceId={TraceId}",
+                status, exception is PayAhead.Application.Auth.AvatarException avatarFailure ? avatarFailure.Code : "avatar_failed",
+                exception.GetType().Name, context.TraceIdentifier);
         if (exception is PayAhead.Application.Auth.PasswordResetUnavailableException)
             logger.LogWarning("Password reset schema is unavailable. Pending migrations require operator review.");
         ProblemDetails detail = exception is ValidationException validation

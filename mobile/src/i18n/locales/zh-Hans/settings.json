@@ -70,9 +70,12 @@
   "avatar.remove": "移除照片",
   "avatar.uploading": "正在上传照片",
   "avatar.updated": "照片已更新。",
-  "avatar.failed": "无法上传照片。现有照片未更改。",
-  "avatar.invalid": "请选择有效的 JPEG、PNG 或 WebP 图像。",
-  "avatar.large": "文件不得超过 2 MB，尺寸不得超过 2048 × 2048 像素。",
+  "avatar.failed": "照片上传失败。请稍后重试。",
+  "avatar.invalid": "请选择 JPG、PNG 或其他支持的照片格式。",
+  "avatar.large": "照片超出了允许的大小限制。",
   "avatar.permission": "选择照片需要相册访问权限。请在设备设置中检查权限。",
-  "avatar.unavailable": "照片服务暂不可用。"
+  "avatar.unavailable": "照片服务暂不可用。",
+  "avatar.network": "请检查网络连接后重试。",
+  "avatar.retry": "个人资料可能已更改。请刷新资料并重新选择照片。",
+  "avatar.unconfirmed": "无法确认操作结果。请刷新个人资料并检查照片。"
 }

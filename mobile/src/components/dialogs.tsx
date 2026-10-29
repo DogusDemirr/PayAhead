@@ -6,6 +6,7 @@ import { useTheme } from '../theme/use-theme';
 import { isRTL, t, useLocaleRevision } from '../i18n/runtime';
 import { ApiError } from '../services/api-error';
 import { isCancel } from 'axios';
+import { avatarMessage } from '../services/avatar-error';
 
 export type DialogButton = { text?: string; style?: 'cancel' | 'destructive' | 'default'; onPress?(): void | Promise<unknown> };
 type Props = { visible: boolean; title: string; message: string; confirmLabel?: string; cancelLabel?: string; loading?: boolean; onConfirm(): void; onCancel(): void; destructive?: boolean; single?: boolean };
@@ -30,15 +31,10 @@ export function ErrorDialog(p: Omit<Props, 'confirmLabel'>) { return <ConfirmDia
 export function SuccessFeedback({ message = t('common:dialog.success') }: { message?: string }) { useLocaleRevision(); const { colors } = useTheme(); return <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center', paddingVertical: 12 }}><CheckCircle2 color={colors.success} size={20} /><AppText accessibilityRole="alert" accessibilityLiveRegion="polite" tone="success" style={{ flex: 1 }}>{message}</AppText></View>; }
 export function dialogError(error: unknown): string {
   if (error instanceof ApiError) {
+    if (error.code?.startsWith('avatar_')) return avatarMessage(error);
     if (error.code === 'payment_linked_subscription') return t('common:dialog.linked');
     if (error.code === 'payment_delete_related') return t('common:dialog.related');
     if (error.code === 'payment_changed') return t('common:dialog.changed');
-    if (error.code === 'avatar_permission') return t('settings:avatar.permission');
-    if (error.code === 'avatar_failed') return t('settings:avatar.failed');
-    if (error.code === 'avatar_invalid') return t('settings:avatar.invalid');
-    if (error.code === 'avatar_too_large' || error.status === 413) return t('settings:avatar.large');
-    if (error.code === 'avatar_unavailable') return t('settings:avatar.unavailable');
-    if (error.code === 'avatar_changed') return t('settings:profile.uncertainWrite');
     if (error.kind === 'network' || error.kind === 'timeout') return t('common:dialog.network');
   }
   return t('common:dialog.failed');

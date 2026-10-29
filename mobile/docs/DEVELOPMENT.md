@@ -1,3 +1,5 @@
+> **Phase 5.3.2:** Native avatar FormData URI parçası Axios XHR ile gönderilir; Content-Type/boundary elle yazılmaz. Telefon API kökü ile backend Development AllowedHosts gerçek LAN IP’siyle eşleşmelidir. DHCP sonrası ikisi birlikte güncellenip API/Metro yeniden başlatılır. [Tanı](../../docs/PHASE5_3_2_DIAGNOSIS.md).
+
 > **Phase 5.3.1:** `expo-image-picker` ve `expo-image-manipulator` SDK57 sürümleri kullanılır. Geniş galeri/kamera/mikrofon izni istenmez. Kare kırpma sonrası512 JPEG backend’e gönderilir; telefon dosya yolu kalıcı storage sayılmaz. [Backend/avatar](../../docs/AVATARS.md), [silme/dialog tanısı](../../docs/PHASE5_3_1_DIAGNOSIS.md). Gerçek loopback smoke: `EXPO_PUBLIC_API_BASE_URL=http://127.0.0.1:5094` ortamıyla `node scripts/phase531-smoke.cjs`; yalnız kendi test hesabını temizler.
 
 ## Phase 5.3 — Profil merkezi

@@ -841,8 +841,11 @@ settings:avatar.pick|اختيار صورة من المعرض
 settings:avatar.remove|إزالة الصورة
 settings:avatar.uploading|جارٍ رفع الصورة
 settings:avatar.updated|حُدثت الصورة.
-settings:avatar.failed|تعذر رفع الصورة. لم تتغير صورتك الحالية.
-settings:avatar.invalid|اختر صورة JPEG أو PNG أو WebP صالحة.
-settings:avatar.large|يجب ألا يتجاوز حجم الملف 2 ميغابايت وأبعاده 2048 × 2048 بكسل.
+settings:avatar.failed|تعذر تحميل الصورة. حاول لاحقًا.
+settings:avatar.invalid|اختر صورة JPG أو PNG أو تنسيقًا آخر مدعومًا.
+settings:avatar.large|حجم الصورة يتجاوز الحد المسموح به.
 settings:avatar.permission|يلزم الوصول إلى المعرض لاختيار صورة. تحقق من الإذن في إعدادات الجهاز.
 settings:avatar.unavailable|خدمة الصور غير متاحة حاليًا.
+settings:avatar.network|تحقق من اتصالك بالإنترنت وحاول مرة أخرى.
+settings:avatar.retry|ربما تغير ملفك الشخصي. حدّثه ثم اختر الصورة مرة أخرى.
+settings:avatar.unconfirmed|تعذر تأكيد النتيجة. حدّث ملفك الشخصي وتحقق من صورتك.
