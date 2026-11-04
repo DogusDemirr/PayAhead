@@ -3,7 +3,7 @@
   <EmbeddedResource Include="Localization/CatalogNames.tsv" />
   <EmbeddedResource Include="Localization/ServiceNames.json" />
   <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.21" />
+  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.33" />
   <PackageReference Include="SkiaSharp" Version="4.154.0" />
   <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="4.154.0" />
   <ProjectReference Include="../PayAhead.Application/PayAhead.Application.csproj" />
